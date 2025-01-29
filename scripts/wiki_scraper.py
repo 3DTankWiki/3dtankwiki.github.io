@@ -43,15 +43,32 @@ def fetch_and_translate(url, output_file):
     # 获取完整 HTML 结构
     soup = BeautifulSoup(driver.page_source, "html.parser")
 
-    # 从 <div class="container" id="mw-main-container"> 开始抓取
-    main_container = soup.find("div", class_="container", id="mw-main-container")
-
-    if not main_container:
-        print("❌ 未找到 <div class='container' id='mw-main-container'>，请检查页面结构！")
+    # 找到 <div class="col-12 my-4"> 内部的 <h1 class="firstHeading">
+    container = soup.find("div", class_="col-12 my-4")
+    if not container:
+        print("❌ 未找到 <div class='col-12 my-4'>，请检查页面结构！")
         return
 
+    first_heading = container.find("h1", class_="firstHeading")
+    if not first_heading:
+        print("❌ 未找到 <h1 class='firstHeading'>")
+        return
+
+    # 获取从 <h1> 到 <div align="right"><small> 之间的内容
+    extracted_html = ""
+    current_element = first_heading
+
+    while current_element:
+        extracted_html += str(current_element)
+        if current_element.name == "div" and current_element.get("align") == "right":
+            small_tag = current_element.find("small")
+            if small_tag:
+                extracted_html += str(small_tag)
+                break
+        current_element = current_element.find_next()
+
     # 解析提取的 HTML 结构
-    content_soup = BeautifulSoup(str(main_container), "html.parser")
+    content_soup = BeautifulSoup(extracted_html, "html.parser")
 
     # 翻译正文内容
     for tag in content_soup.find_all(string=True):
