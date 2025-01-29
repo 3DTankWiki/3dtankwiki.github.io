@@ -45,7 +45,6 @@ def fetch_and_translate(url, output_file):
     print("⏳ 读取网页源代码...")
     print(page_source)  # 打印页面源代码（用于调试）
 
-    # 查找从 "Title" 注释开始的部分
     soup = BeautifulSoup(page_source, "html.parser")
 
     # 找到 <!-- Title --> 注释
@@ -57,12 +56,12 @@ def fetch_and_translate(url, output_file):
     # 获取从注释节点开始的下一个兄弟节点
     current_element = comment.find_next_sibling()
 
-    # 提取从注释开始到 "NewPP" 出现之前的所有内容
+    # 提取从注释开始到 </small> 之间的所有内容
     extracted_html = ""
     while current_element:
-        # 判断当前元素的文本内容是否包含 "NewPP"
-        if "NewPP" in str(current_element):
-            break  # 遇到包含 "NewPP" 的文本，停止抓取
+        # 停止条件：找到 <small> 标签时不再继续抓取
+        if current_element.name == "small":
+            break  # 退出循环，停止提取
 
         # 添加当前元素
         extracted_html += str(current_element)
@@ -116,7 +115,6 @@ def fetch_and_translate(url, output_file):
         f.write(final_html)
 
     print(f"✅ 保存成功: {file_path}")
-
 
 # 运行爬取和翻译
 if __name__ == "__main__":
