@@ -59,6 +59,7 @@ def fetch_and_translate(url, output_file):
     extracted_html = ""
     current_element = first_heading
 
+    # 遍历直到找到 <small>（结束条件）
     while current_element:
         extracted_html += str(current_element)
 
@@ -69,7 +70,8 @@ def fetch_and_translate(url, output_file):
                 extracted_html += str(small_tag)
                 break  # 找到 <small> 直接退出循环
 
-        current_element = current_element.find_next_sibling()  # 只查找同级，不跨层级
+        # 获取下一个兄弟节点
+        current_element = current_element.find_next_sibling()  # 只查找同级
 
     # 解析提取的 HTML 结构
     content_soup = BeautifulSoup(extracted_html, "html.parser")
