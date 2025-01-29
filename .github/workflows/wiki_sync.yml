@@ -29,15 +29,15 @@ jobs:
       - name: Run Wiki Scraper and Translator
         run: python scripts/wiki_scraper.py  # 执行爬取脚本
 
-      - name: Check wiki directory
-        run: ls -al wiki/  # 确保 wiki 目录是否有 HTML 文件
+      - name: Check the root directory for HTML files
+        run: ls -al  # 确保根目录有 HTML 文件
 
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add wiki/
+          git add .  # 将所有更改的文件（包括 HTML）添加到 Git 暂存区
           git commit -m "Auto update Tanki Online Wiki" || echo "No changes to commit"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/testanki1/testanki1.github.io.git HEAD:main
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/3dtankwiki/3dtankwiki.github.io.git HEAD:main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
