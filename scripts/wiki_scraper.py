@@ -62,6 +62,7 @@ def fetch_and_translate(url, output_file):
     # 遍历直到找到 <small>（结束条件）
     while current_element:
         extracted_html += str(current_element)
+        print(f"Current element: {current_element}")  # 调试信息
 
         # 停止条件：找到 <div align="right"><small>
         if current_element.name == "div" and current_element.get("align") == "right":
@@ -72,6 +73,8 @@ def fetch_and_translate(url, output_file):
 
         # 获取下一个兄弟节点
         current_element = current_element.find_next_sibling()  # 只查找同级
+
+    print(f"Extracted HTML: {extracted_html}")  # 调试信息
 
     # 解析提取的 HTML 结构
     content_soup = BeautifulSoup(extracted_html, "html.parser")
