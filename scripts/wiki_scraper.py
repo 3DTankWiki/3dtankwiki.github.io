@@ -49,17 +49,17 @@ def fetch_and_translate(url, output_file):
         print("❌ 未找到 <div class='col-12 my-4'>，请检查页面结构！")
         return
 
-    # 找到 <h1 class="firstHeading">
-    first_heading = container.find("h1", class_="firstHeading")
+    # 找到 <h1 id="firstHeading" class="firstHeading">
+    first_heading = container.find("h1", id="firstHeading", class_="firstHeading")
     if not first_heading:
-        print("❌ 未找到 <h1 class='firstHeading'>")
+        print("❌ 未找到 <h1 id='firstHeading' class='firstHeading'>")
         return
 
     # 提取从 <h1> 到 <div align="right"><small> 之间的所有内容
     extracted_html = ""
     current_element = first_heading
 
-    # 遍历直到找到 <small>（结束条件）
+    # 遍历直到找到 <div align="right"><small>
     while current_element:
         extracted_html += str(current_element)
         print(f"Current element: {current_element}")  # 调试信息
