@@ -5,7 +5,11 @@ def fetch_and_translate(url, output_file):
     time.sleep(5)  # 等待页面加载完毕
 
     # 获取完整 HTML 结构
-    soup = BeautifulSoup(driver.page_source, "html.parser")
+    page_source = driver.page_source  # 获取页面的 HTML 源代码
+    print("⏳ 读取网页源代码...")
+    print(page_source)  # 打印页面源代码（用于调试）
+
+    soup = BeautifulSoup(page_source, "html.parser")
 
     # 找到 <!-- Title --> 注释
     comment = soup.find(string=lambda text: isinstance(text, Comment) and "Title" in text)
@@ -20,7 +24,7 @@ def fetch_and_translate(url, output_file):
     extracted_html = ""
     while current_element:
         extracted_html += str(current_element)
-        print(f"Current element: {current_element}")  # 调试信息
+        print(f"当前元素: {current_element}")  # 打印当前元素（用于调试）
 
         # 停止条件：找到 <div align="right"><small>
         if current_element.name == "div" and current_element.get("align") == "right":
@@ -32,7 +36,9 @@ def fetch_and_translate(url, output_file):
         # 获取下一个兄弟节点
         current_element = current_element.find_next_sibling()  # 只查找同级
 
-    print(f"Extracted HTML: {extracted_html}")  # 调试信息
+    # 打印提取的 HTML 结构
+    print("提取的 HTML 内容:")
+    print(extracted_html)
 
     # 解析提取的 HTML 结构
     content_soup = BeautifulSoup(extracted_html, "html.parser")
