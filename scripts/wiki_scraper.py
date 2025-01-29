@@ -1,42 +1,49 @@
 import os
 import time
-from bs4 import BeautifulSoup, Comment
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from googletrans import Translator
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from deep_translator import GoogleTranslator
+from bs4 import BeautifulSoup, Comment
 
-# 配置 Chrome 驱动程序
-def setup_driver():
-    """设置并返回 Selenium WebDriver"""
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")  # 隐藏浏览器窗口
-    driver = webdriver.Chrome(options=chrome_options)
-    return driver
+# 目标页面和存放路径
+URL = "https://en.tankiwiki.com/Tanki_Online_Wiki"
+OUTPUT_FILE = "Tanki_Online_Wiki.html"  # 生成 HTML 文件
 
-# 翻译文本
+# 初始化翻译器
+translator = GoogleTranslator(source="en", target="zh-CN")
+
+# 配置 Selenium WebDriver
+options = webdriver.ChromeOptions()
+options.add_argument("--headless")  # 无头模式
+options.add_argument("--disable-gpu")
+options.add_argument("--no-sandbox")
+options.add_argument("--disable-software-rasterizer")
+
+# 启动 Selenium WebDriver
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+
 def translate_text(text):
-    """翻译文本"""
-    translator = Translator()
+    """使用 Google 翻译文本"""
+    if not text or not text.strip():  # 避免空文本
+        return text
     try:
-        translated = translator.translate(text, src="en", dest="zh-cn")
-        return translated.text
+        translated = translator.translate(text)
+        return translated if translated else text  # 避免返回 None
     except Exception as e:
-        print(f"翻译失败: {e}")
-        return None
+        print(f"⚠️ 翻译失败: {e}")
+        return text  # 翻译失败时，返回原文
 
-# 从网页抓取并翻译
 def fetch_and_translate(url, output_file):
     """爬取 HTML 并翻译正文部分"""
     print(f"🚀 Fetching {url}...")
-    driver = setup_driver()
     driver.get(url)
     time.sleep(5)  # 等待页面加载完毕
 
     # 获取完整 HTML 结构
     page_source = driver.page_source  # 获取页面的 HTML 源代码
     print("⏳ 读取网页源代码...")
-    # 打印部分 HTML 供调试用
-    print(page_source[:1000])  # 只打印前 1000 个字符来检查是否正常获取
+    print(page_source)  # 打印页面源代码（用于调试）
 
     # 查找从 "Title" 注释开始的部分
     soup = BeautifulSoup(page_source, "html.parser")
@@ -59,6 +66,7 @@ def fetch_and_translate(url, output_file):
 
         # 添加当前元素
         extracted_html += str(current_element)
+        print(f"当前元素: {current_element}")  # 打印当前元素（用于调试）
 
         # 获取下一个兄弟节点
         current_element = current_element.find_next_sibling()  # 只查找同级
@@ -109,10 +117,10 @@ def fetch_and_translate(url, output_file):
 
     print(f"✅ 保存成功: {file_path}")
 
-    # 关闭浏览器
-    driver.quit()
 
-# 使用示例
-url = "https://en.tankiwiki.com/index.php?title=Tanki_Online_Wiki&oldid=62502"  # 替换为目标网页的 URL
-output_file = "translated_page.html"  # 生成的 HTML 文件名称
-fetch_and_translate(url, output_file)
+# 运行爬取和翻译
+if __name__ == "__main__":
+    fetch_and_translate(URL, OUTPUT_FILE)
+
+# 关闭浏览器
+driver.quit()
