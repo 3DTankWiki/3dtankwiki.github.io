@@ -25,17 +25,18 @@ driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), opti
 
 def translate_text(text):
     """使用 Google 翻译文本"""
-    if not text.strip():  # 空文本不翻译
+    if not text or not text.strip():  # 避免空文本
         return text
     try:
-        return translator.translate(text)
+        translated = translator.translate(text)
+        return translated if translated else text  # 避免返回 None
     except Exception as e:
-        print(f"翻译失败: {e}")
-        return text  # 翻译失败时，保留原文本
+        print(f"⚠️ 翻译失败: {e}")
+        return text  # 翻译失败时，返回原文
 
 def fetch_and_translate(url, output_file):
     """爬取 HTML 并翻译正文部分"""
-    print(f"Fetching {url}...")
+    print(f"🚀 Fetching {url}...")
     driver.get(url)
     time.sleep(5)  # 等待页面加载完毕
 
@@ -56,7 +57,8 @@ def fetch_and_translate(url, output_file):
     for tag in content_soup.find_all(string=True):
         if tag.parent.name not in ["script", "style", "meta", "link"]:  # 跳过非正文内容
             translated_text = translate_text(tag.string)
-            tag.replace_with(translated_text)
+            if translated_text is not None:  # 避免 None 造成错误
+                tag.replace_with(translated_text)
 
     # 生成完整 HTML 文件（包含 head）
     final_html = f"""
