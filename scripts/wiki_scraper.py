@@ -59,13 +59,13 @@ def fetch_and_translate(url, output_file):
     # 提取从注释开始到 </small> 之间的所有内容
     extracted_html = ""
     while current_element:
+        # 停止条件：找到 <small> 标签时不再继续抓取
+        if current_element.name == "small":
+            break  # 退出循环，停止提取
+
+        # 添加当前元素
         extracted_html += str(current_element)
         print(f"当前元素: {current_element}")  # 打印当前元素（用于调试）
-
-        # 停止条件：找到 <small> 标签
-        if current_element.name == "small":
-            extracted_html += str(current_element)  # 添加 <small> 内容
-            break  # 找到 <small> 标签，跳出循环
 
         # 获取下一个兄弟节点
         current_element = current_element.find_next_sibling()  # 只查找同级
