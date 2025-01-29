@@ -56,18 +56,18 @@ def fetch_and_translate(url, output_file):
     # 获取从注释节点开始的下一个兄弟节点
     current_element = comment.find_next_sibling()
 
-    # 提取从注释开始到 <div align="right"><small> 之间的所有内容
+    # 提取从注释开始到 </small></div> 之间的所有内容
     extracted_html = ""
     while current_element:
         extracted_html += str(current_element)
         print(f"当前元素: {current_element}")  # 打印当前元素（用于调试）
 
-        # 停止条件：找到 <div align="right"><small>
+        # 停止条件：找到 </small></div>（实际的结束标记）
         if current_element.name == "div" and current_element.get("align") == "right":
             small_tag = current_element.find("small")
             if small_tag:
-                extracted_html += str(small_tag)
-                break  # 找到 <small> 直接退出循环
+                extracted_html += str(small_tag)  # 添加 <small> 内容
+                break  # 找到结束标记，跳出循环
 
         # 获取下一个兄弟节点
         current_element = current_element.find_next_sibling()  # 只查找同级
