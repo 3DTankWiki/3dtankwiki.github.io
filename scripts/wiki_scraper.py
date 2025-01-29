@@ -1,39 +1,3 @@
-import os
-import time
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-from deep_translator import GoogleTranslator
-from bs4 import BeautifulSoup, Comment
-
-# 目标页面和存放路径
-URL = "https://en.tankiwiki.com/Tanki_Online_Wiki"
-OUTPUT_FILE = "Tanki_Online_Wiki.html"  # 生成 HTML 文件
-
-# 初始化翻译器
-translator = GoogleTranslator(source="en", target="zh-CN")
-
-# 配置 Selenium WebDriver
-options = webdriver.ChromeOptions()
-options.add_argument("--headless")  # 无头模式
-options.add_argument("--disable-gpu")
-options.add_argument("--no-sandbox")
-options.add_argument("--disable-software-rasterizer")
-
-# 启动 Selenium WebDriver
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-
-def translate_text(text):
-    """使用 Google 翻译文本"""
-    if not text or not text.strip():  # 避免空文本
-        return text
-    try:
-        translated = translator.translate(text)
-        return translated if translated else text  # 避免返回 None
-    except Exception as e:
-        print(f"⚠️ 翻译失败: {e}")
-        return text  # 翻译失败时，返回原文
-
 def fetch_and_translate(url, output_file):
     """爬取 HTML 并翻译正文部分"""
     print(f"🚀 Fetching {url}...")
@@ -62,12 +26,15 @@ def fetch_and_translate(url, output_file):
         extracted_html += str(current_element)
         print(f"当前元素: {current_element}")  # 打印当前元素（用于调试）
 
-        # 停止条件：找到 </small></div>（实际的结束标记）
+        # 停止条件：查找 </small></div> 结束标记
         if current_element.name == "div" and current_element.get("align") == "right":
             small_tag = current_element.find("small")
             if small_tag:
                 extracted_html += str(small_tag)  # 添加 <small> 内容
-                break  # 找到结束标记，跳出循环
+                # 判断是否结束
+                next_element = current_element.find_next_sibling()
+                if next_element and next_element.name == "div" and next_element.find("small"):
+                    break  # 找到 </small></div>，跳出循环
 
         # 获取下一个兄弟节点
         current_element = current_element.find_next_sibling()  # 只查找同级
