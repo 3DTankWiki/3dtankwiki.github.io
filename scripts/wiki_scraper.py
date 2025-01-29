@@ -1,39 +1,3 @@
-import os
-import time
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-from deep_translator import GoogleTranslator
-from bs4 import BeautifulSoup, Comment
-
-# 目标页面和存放路径
-URL = "https://en.tankiwiki.com/Tanki_Online_Wiki"
-OUTPUT_FILE = "Tanki_Online_Wiki.html"  # 生成 HTML 文件
-
-# 初始化翻译器
-translator = GoogleTranslator(source="en", target="zh-CN")
-
-# 配置 Selenium WebDriver
-options = webdriver.ChromeOptions()
-options.add_argument("--headless")  # 无头模式
-options.add_argument("--disable-gpu")
-options.add_argument("--no-sandbox")
-options.add_argument("--disable-software-rasterizer")
-
-# 启动 Selenium WebDriver
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-
-def translate_text(text):
-    """使用 Google 翻译文本"""
-    if not text or not text.strip():  # 避免空文本
-        return text
-    try:
-        translated = translator.translate(text)
-        return translated if translated else text  # 避免返回 None
-    except Exception as e:
-        print(f"⚠️ 翻译失败: {e}")
-        return text  # 翻译失败时，返回原文
-
 def fetch_and_translate(url, output_file):
     """爬取 HTML 并翻译正文部分"""
     print(f"🚀 Fetching {url}...")
@@ -56,12 +20,12 @@ def fetch_and_translate(url, output_file):
     # 获取从注释节点开始的下一个兄弟节点
     current_element = comment.find_next_sibling()
 
-    # 提取从注释开始到 </small> 之间的所有内容
+    # 提取从注释开始到字符 "NewPP" 出现之前的所有内容
     extracted_html = ""
     while current_element:
-        # 停止条件：找到 <small> 标签时不再继续抓取
-        if current_element.name == "small":
-            break  # 退出循环，停止提取
+        # 判断当前元素的文本内容是否包含 "NewPP"
+        if "NewPP" in current_element.get_text():
+            break  # 遇到包含 "NewPP" 的文本，停止抓取
 
         # 添加当前元素
         extracted_html += str(current_element)
@@ -115,10 +79,3 @@ def fetch_and_translate(url, output_file):
         f.write(final_html)
 
     print(f"✅ 保存成功: {file_path}")
-
-# 运行爬取和翻译
-if __name__ == "__main__":
-    fetch_and_translate(URL, OUTPUT_FILE)
-
-# 关闭浏览器
-driver.quit()
