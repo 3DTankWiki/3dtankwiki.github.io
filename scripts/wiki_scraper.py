@@ -2,7 +2,6 @@ import os
 import time
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from deep_translator import GoogleTranslator
 from bs4 import BeautifulSoup
@@ -43,25 +42,15 @@ def fetch_and_translate(url, output_file):
     # 获取完整 HTML 结构
     soup = BeautifulSoup(driver.page_source, "html.parser")
 
-    # 提取目标部分：从 <h1 class="firstHeading"> 到 <small>
-    first_heading = soup.find("h1", class_="firstHeading")
-    if not first_heading:
-        print("❌ 未找到 <h1 class='firstHeading'>，可能页面结构有变动！")
+    # 从 <div class="container" id="mw-main-container"> 开始抓取
+    main_container = soup.find("div", class_="container", id="mw-main-container")
+
+    if not main_container:
+        print("❌ 未找到 <div class='container' id='mw-main-container'>，请检查页面结构！")
         return
 
-    # 获取从 <h1> 到 <small> 之间的所有内容
-    extracted_html = ""
-    current_element = first_heading
-
-    # 遍历直到找到 <small> 标签
-    while current_element:
-        extracted_html += str(current_element)
-        if current_element.name == "small":
-            break
-        current_element = current_element.find_next_sibling()
-
     # 解析提取的 HTML 结构
-    content_soup = BeautifulSoup(extracted_html, "html.parser")
+    content_soup = BeautifulSoup(str(main_container), "html.parser")
 
     # 翻译正文内容
     for tag in content_soup.find_all(string=True):
