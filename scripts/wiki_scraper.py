@@ -9,7 +9,6 @@ from bs4 import BeautifulSoup
 
 # 目标页面和存放路径
 URL = "https://en.tankiwiki.com/Tanki_Online_Wiki"
-OUTPUT_DIR = "wiki"
 OUTPUT_FILE = "Tanki_Online_Wiki.html"  # 生成 HTML 文件
 
 # 初始化翻译器
@@ -94,9 +93,8 @@ def fetch_and_translate(url, output_file):
     </html>
     """
 
-    # 保存 HTML 文件
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
-    file_path = os.path.join(OUTPUT_DIR, output_file)
+    # 保存 HTML 文件到根目录
+    file_path = os.path.join(os.getcwd(), output_file)  # 保存到当前工作目录（即根目录）
 
     with open(file_path, "w", encoding="utf-8") as f:
         f.write(final_html)
