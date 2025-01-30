@@ -97,9 +97,11 @@ def fetch_and_translate(url, output_file):
                 margin: 20px;
                 max-width: 900px;
                 line-height: 1.6;
+                background-color: #001926;  /* 设置背景颜色 */
+                color: #ffffff;  /* 设置文字颜色为白色 */
             }}
             h1 {{
-                color: #333;
+                color: #ffffff;  /* 设置标题文字颜色为白色 */
             }}
         </style>
     </head>
