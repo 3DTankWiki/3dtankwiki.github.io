@@ -1,14 +1,17 @@
 import os
 import time
+import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from deep_translator import GoogleTranslator
 from bs4 import BeautifulSoup, Comment
+from urllib.parse import urljoin, urlparse
 
 # 目标页面和存放路径
 URL = "https://en.tankiwiki.com/Tanki_Online_Wiki"
 OUTPUT_FILE = "Tanki_Online_Wiki.html"  # 生成 HTML 文件
+IMAGES_FOLDER = "images"  # 图片保存文件夹
 
 # 初始化翻译器
 translator = GoogleTranslator(source="en", target="zh-CN")
@@ -34,6 +37,23 @@ def translate_text(text):
         print(f"⚠️ 翻译失败: {e}")
         return text  # 翻译失败时，返回原文
 
+def download_image(img_url, output_folder):
+    """下载图片到本地并返回本地路径"""
+    try:
+        # 获取图片的文件名
+        img_name = os.path.basename(urlparse(img_url).path)
+        img_path = os.path.join(output_folder, img_name)
+
+        # 下载图片
+        img_data = requests.get(img_url).content
+        with open(img_path, "wb") as f:
+            f.write(img_data)
+
+        return os.path.join(output_folder, img_name)
+    except Exception as e:
+        print(f"⚠️ 下载图片失败: {e}")
+        return img_url  # 返回原始 URL
+
 def fetch_and_translate(url, output_file):
     """爬取 HTML 并翻译正文部分"""
     print(f"🚀 Fetching {url}...")
@@ -43,7 +63,6 @@ def fetch_and_translate(url, output_file):
     # 获取完整 HTML 结构
     page_source = driver.page_source  # 获取页面的 HTML 源代码
     print("⏳ 读取网页源代码...")
-    print(page_source)  # 打印页面源代码（用于调试）
 
     soup = BeautifulSoup(page_source, "html.parser")
 
@@ -61,20 +80,24 @@ def fetch_and_translate(url, output_file):
     current_element = title_comment.find_next_sibling()
     extracted_html = ""
     while current_element:
-
-        # 添加当前元素
         extracted_html += str(current_element)
-        print(f"当前元素: {current_element}")  # 打印当前元素（用于调试）
-
-        # 获取下一个兄弟节点
         current_element = current_element.find_next_sibling()  # 只查找同级
-
-    # 打印提取的 HTML 结构
-    print("提取的 HTML 内容:")
-    print(extracted_html)
 
     # 解析提取的 HTML 结构
     content_soup = BeautifulSoup(extracted_html, "html.parser")
+
+    # 创建图片存放文件夹
+    if not os.path.exists(IMAGES_FOLDER):
+        os.makedirs(IMAGES_FOLDER)
+
+    # 下载并替换图片链接
+    for img_tag in content_soup.find_all("img"):
+        img_url = img_tag.get("src")
+        if img_url:
+            # 处理相对路径
+            img_url = urljoin(url, img_url)
+            local_img_path = download_image(img_url, IMAGES_FOLDER)
+            img_tag["src"] = local_img_path  # 替换为本地路径
 
     # 翻译正文内容
     for tag in content_soup.find_all(string=True):
@@ -116,7 +139,6 @@ def fetch_and_translate(url, output_file):
     </body>
 </html>
 """
-
 
     # 删除 </small></div> 后面的所有内容
     end_index = final_html.find("</small></div>")  # 查找 </small></div> 的位置
