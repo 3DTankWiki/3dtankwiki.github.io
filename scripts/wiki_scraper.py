@@ -53,7 +53,7 @@ def fetch_and_translate(url, output_file):
         print("❌ 未找到 <!-- Title --> 注释，无法定位开始位置！")
         return
 
-    # 找到第一个以 <!-- NewPP 开头的注释
+    # 找到第一个以 <!-- NewPP 开头的注释，且跳过空白行
     newpp_comment = soup.find(string=lambda text: isinstance(text, Comment) and text.strip().startswith("NewPP"))
     if not newpp_comment:
         print("❌ 未找到以 <!-- NewPP 开头的注释，无法定位结束位置！")
