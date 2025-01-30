@@ -48,19 +48,23 @@ def fetch_and_translate(url, output_file):
     soup = BeautifulSoup(page_source, "html.parser")
 
     # 找到 <!-- Title --> 注释
-    comment = soup.find(string=lambda text: isinstance(text, Comment) and "Title" in text)
-    if not comment:
+    title_comment = soup.find(string=lambda text: isinstance(text, Comment) and "Title" in text)
+    if not title_comment:
         print("❌ 未找到 <!-- Title --> 注释，无法定位开始位置！")
         return
 
-    # 获取从注释节点开始的下一个兄弟节点
-    current_element = comment.find_next_sibling()
+    # 找到第一个以 <!-- NewPP 开头的注释
+    newpp_comment = soup.find(string=lambda text: isinstance(text, Comment) and text.strip().startswith("NewPP"))
+    if not newpp_comment:
+        print("❌ 未找到以 <!-- NewPP 开头的注释，无法定位结束位置！")
+        return
 
-    # 提取从注释开始到 </small> 之间的所有内容
+    # 获取从 <!-- Title --> 注释到第一个 <!-- NewPP --> 注释之间的所有内容
+    current_element = title_comment.find_next_sibling()
     extracted_html = ""
     while current_element:
-        # 停止条件：找到 <small> 标签时不再继续抓取
-        if current_element.name == "small":
+        # 停止条件：找到以 <!-- NewPP 开头的注释时不再继续抓取
+        if isinstance(current_element, Comment) and current_element.string.strip().startswith("NewPP"):
             break  # 退出循环，停止提取
 
         # 添加当前元素
