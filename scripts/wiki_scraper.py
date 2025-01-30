@@ -61,9 +61,6 @@ def fetch_and_translate(url, output_file):
     current_element = title_comment.find_next_sibling()
     extracted_html = ""
     while current_element:
-        # 停止条件：找到 </small> 标签时不再继续抓取
-        if current_element.name == "small" and current_element.find_parent("div"):
-            break  # 退出循环，停止提取
 
         # 添加当前元素
         extracted_html += str(current_element)
