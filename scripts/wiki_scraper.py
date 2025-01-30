@@ -40,16 +40,21 @@ def translate_text(text):
 def download_image(img_url, output_folder):
     """下载图片到本地并返回本地路径"""
     try:
-        # 获取图片的文件名
-        img_name = os.path.basename(urlparse(img_url).path)
-        img_path = os.path.join(output_folder, img_name)
+        # 获取图片的相对路径
+        parsed_url = urlparse(img_url)
+        img_path = os.path.join(output_folder, parsed_url.path.lstrip('/'))  # 去掉开头的 '/'
+
+        # 创建保存图片的文件夹（如果不存在）
+        img_dir = os.path.dirname(img_path)
+        if not os.path.exists(img_dir):
+            os.makedirs(img_dir)
 
         # 下载图片
         img_data = requests.get(img_url).content
         with open(img_path, "wb") as f:
             f.write(img_data)
 
-        return os.path.join(output_folder, img_name)
+        return img_path  # 返回本地图片路径
     except Exception as e:
         print(f"⚠️ 下载图片失败: {e}")
         return img_url  # 返回原始 URL
