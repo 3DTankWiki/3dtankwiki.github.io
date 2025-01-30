@@ -106,12 +106,11 @@ def fetch_and_translate(url, output_file):
     </html>
     """
 
-    # 删除 </small></div> 与 </body></html> 之间的内容
-    start_index = final_html.find("</small></div>")
-    end_index = final_html.find("</body></html>")
+    # 删除 </small></div> 后面的所有内容
+    end_index = final_html.find("</small></div>")  # 查找 </small></div> 的位置
 
-    if start_index != -1 and end_index != -1:
-        final_html = final_html[:start_index + len("</small></div>")] + final_html[end_index:]
+    if end_index != -1:
+        final_html = final_html[:end_index + len("</small></div>")]  # 保留到 </small></div> 位置之前的内容
 
     # 保存 HTML 文件到根目录
     file_path = os.path.join(os.getcwd(), output_file)  # 保存到当前工作目录（即根目录）
