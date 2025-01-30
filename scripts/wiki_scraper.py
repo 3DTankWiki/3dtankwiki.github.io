@@ -37,7 +37,7 @@ def translate_text(text):
         print(f"⚠️ 翻译失败: {e}")
         return text  # 翻译失败时，返回原文
 
-def download_image(img_url, output_folder):
+def download_image(img_url):
     """下载图片到本地并返回本地路径"""
     try:
         # 提取图片的路径部分
@@ -45,7 +45,7 @@ def download_image(img_url, output_folder):
         image_path = parsed_url.path
 
         # 构建本地路径
-        local_image_path = os.path.join(output_folder, image_path.lstrip('/'))  # 去掉开头的 `/`
+        local_image_path = os.path.join(os.getcwd(), image_path.lstrip('/'))  # 去掉开头的 `/`
 
         # 创建文件夹（如果不存在）
         os.makedirs(os.path.dirname(local_image_path), exist_ok=True)
@@ -98,7 +98,7 @@ def fetch_and_translate(url, output_file):
         if img_url:
             # 处理相对路径
             img_url = urljoin(BASE_IMAGE_URL, img_url)  # 生成绝对 URL
-            local_img_path = download_image(img_url, "images")  # 保存到 `images` 文件夹
+            local_img_path = download_image(img_url)  # 保存到根目录
             img_tag["src"] = local_img_path  # 替换为本地路径
 
     # 翻译正文内容
