@@ -4,7 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from deep_translator import GoogleTranslator
-from bs4 import BeautifulSoup, Comment
+from bs4 import BeautifulSoup
 
 # 目标页面和存放路径
 URL = "https://en.tankiwiki.com/Tanki_Online_Wiki"
@@ -53,18 +53,12 @@ def fetch_and_translate(url, output_file):
         print("❌ 未找到 <!-- Title --> 注释，无法定位开始位置！")
         return
 
-    # 找到第一个以 <!-- NewPP 开头的注释，且跳过空白行
-    newpp_comment = soup.find(string=lambda text: isinstance(text, Comment) and text.strip().startswith("NewPP"))
-    if not newpp_comment:
-        print("❌ 未找到以 <!-- NewPP 开头的注释，无法定位结束位置！")
-        return
-
-    # 获取从 <!-- Title --> 注释到第一个 <!-- NewPP --> 注释之间的所有内容
+    # 获取从 <!-- Title --> 注释到 </small> 之间的所有内容
     current_element = title_comment.find_next_sibling()
     extracted_html = ""
     while current_element:
-        # 停止条件：找到以 <!-- NewPP 开头的注释时不再继续抓取
-        if isinstance(current_element, Comment) and current_element.string.strip().startswith("NewPP"):
+        # 停止条件：找到 </small> 标签时不再继续抓取
+        if current_element.name == "small" and current_element.find_parent("div"):
             break  # 退出循环，停止提取
 
         # 添加当前元素
@@ -88,7 +82,15 @@ def fetch_and_translate(url, output_file):
             if translated_text is not None:  # 避免 None 造成错误
                 tag.replace_with(translated_text)
 
-    # 生成完整 HTML 文件（包含 head）
+    # 删除 </small></div> 与 </body></html> 之间的内容
+    final_html = str(content_soup)
+    start_index = final_html.find("</small></div>")
+    end_index = final_html.find("</body></html>")
+
+    if start_index != -1 and end_index != -1:
+        final_html = final_html[:start_index + len("</small></div>")] + final_html[end_index:]
+
+    # 生成最终 HTML 文件（包含 head）
     final_html = f"""
     <html>
     <head>
@@ -107,7 +109,7 @@ def fetch_and_translate(url, output_file):
         </style>
     </head>
     <body>
-        {str(content_soup)}
+        {final_html}
     </body>
     </html>
     """
