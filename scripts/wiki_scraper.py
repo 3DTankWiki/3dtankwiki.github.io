@@ -4,7 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from deep_translator import GoogleTranslator
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Comment
 
 # 目标页面和存放路径
 URL = "https://en.tankiwiki.com/Tanki_Online_Wiki"
@@ -82,15 +82,7 @@ def fetch_and_translate(url, output_file):
             if translated_text is not None:  # 避免 None 造成错误
                 tag.replace_with(translated_text)
 
-    # 删除 </small></div> 与 </body></html> 之间的内容
-    final_html = str(content_soup)
-    start_index = final_html.find("</small></div>")
-    end_index = final_html.find("</body></html>")
-
-    if start_index != -1 and end_index != -1:
-        final_html = final_html[:start_index + len("</small></div>")] + final_html[end_index:]
-
-    # 生成最终 HTML 文件（包含 head）
+    # 生成完整 HTML 文件
     final_html = f"""
     <html>
     <head>
@@ -109,10 +101,17 @@ def fetch_and_translate(url, output_file):
         </style>
     </head>
     <body>
-        {final_html}
+        {str(content_soup)}
     </body>
     </html>
     """
+
+    # 删除 </small></div> 与 </body></html> 之间的内容
+    start_index = final_html.find("</small></div>")
+    end_index = final_html.find("</body></html>")
+
+    if start_index != -1 and end_index != -1:
+        final_html = final_html[:start_index + len("</small></div>")] + final_html[end_index:]
 
     # 保存 HTML 文件到根目录
     file_path = os.path.join(os.getcwd(), output_file)  # 保存到当前工作目录（即根目录）
