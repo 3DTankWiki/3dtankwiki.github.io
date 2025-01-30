@@ -47,6 +47,10 @@ def fetch_and_translate(url, output_file):
 
     soup = BeautifulSoup(page_source, "html.parser")
 
+    # 提取网页的标题并翻译
+    original_title = soup.title.string if soup.title else "Tanki Online Wiki"  # 获取原网页的标题
+    translated_title = translate_text(original_title)  # 翻译标题
+
     # 找到 <!-- Title --> 注释
     title_comment = soup.find(string=lambda text: isinstance(text, Comment) and "Title" in text)
     if not title_comment:
@@ -82,12 +86,11 @@ def fetch_and_translate(url, output_file):
             if translated_text is not None:  # 避免 None 造成错误
                 tag.replace_with(translated_text)
 
-    # 生成完整 HTML 文件
-    final_html = f"""
-    <html>
+    # 生成完整 HTML 文件，使用翻译后的标题
+    final_html = f"""<html>
     <head>
         <meta charset="UTF-8">
-        <title>Tanki Online Wiki - 中文翻译</title>
+        <title>{translated_title}</title>
         <style>
             body {{
                 font-family: Arial, sans-serif;
@@ -113,7 +116,7 @@ def fetch_and_translate(url, output_file):
         final_html = final_html[:end_index + len("</small></div>")]  # 保留到 </small></div> 位置之前的内容
 
     # 添加 </html> 到文件末尾（确保 </html> 在文件末尾）
-    final_html += "</body></html>"
+    final_html += "</html>"
 
     # 保存 HTML 文件到根目录
     file_path = os.path.join(os.getcwd(), output_file)  # 保存到当前工作目录（即根目录）
