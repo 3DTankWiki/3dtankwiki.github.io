@@ -112,6 +112,9 @@ def fetch_and_translate(url, output_file):
     if end_index != -1:
         final_html = final_html[:end_index + len("</small></div>")]  # 保留到 </small></div> 位置之前的内容
 
+    # 添加 </html> 到文件末尾（确保 </html> 在文件末尾）
+    final_html += "</body></html>"
+
     # 保存 HTML 文件到根目录
     file_path = os.path.join(os.getcwd(), output_file)  # 保存到当前工作目录（即根目录）
 
