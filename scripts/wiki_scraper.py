@@ -87,10 +87,12 @@ def fetch_and_translate(url, output_file):
     final_html = f"""<html>
     <head>
         <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p&display=swap" rel="stylesheet">
         <title>{translated_title}</title>
         <style>
             body {{
-                font-family: Arial, sans-serif;
+                font-family: 'Rubik', 'M PLUS 1p';
                 margin: 20px;
                 max-width: 900px;
                 line-height: 1.6;
