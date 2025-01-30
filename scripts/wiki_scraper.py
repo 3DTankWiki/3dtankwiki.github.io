@@ -91,32 +91,32 @@ def fetch_and_translate(url, output_file):
         <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p&display=swap" rel="stylesheet">
         <title>{translated_title}</title>
         <style>
-            body {
+            body {{
                 font-family: 'Rubik', 'M PLUS 1p';
                 margin: 20px;
                 max-width: 900px;
                 line-height: 1.6;
                 background-color: #001926;  /* 设置背景颜色 */
                 color: #ffffff;  /* 设置文字颜色为白色 */
-            }
-            h1 {
+            }}
+            h1 {{
                 color: #ffffff;  /* 设置标题文字颜色为白色 */
-            }
-            a {
+            }}
+            a {{
                 color: #76FF33;  /* 设置超链接文字颜色 */
                 text-decoration: none;  /* 去掉下划线 */
-            }
-            a:hover {
+            }}
+            a:hover {{
                 color: #ffffff;  /* 设置鼠标悬停时的超链接文字颜色 */
-            }
+            }}
         </style>
     </head>
     <body>
         {str(content_soup)}
     </body>
 </html>
+"""
 
-    """
 
     # 删除 </small></div> 后面的所有内容
     end_index = final_html.find("</small></div>")  # 查找 </small></div> 的位置
