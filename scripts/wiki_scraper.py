@@ -11,7 +11,7 @@ from urllib.parse import urljoin, urlparse
 # 目标页面和存放路径
 URL = "https://en.tankiwiki.com/Tanki_Online_Wiki"
 OUTPUT_FILE = "Tanki_Online_Wiki.html"  # 生成 HTML 文件
-BASE_IMAGE_URL = "https://en.tankiwiki.com"  # 图片的基础 URL
+IMAGES_FOLDER = "images"  # 图片保存文件夹
 
 # 初始化翻译器
 translator = GoogleTranslator(source="en", target="zh-CN")
@@ -37,28 +37,22 @@ def translate_text(text):
         print(f"⚠️ 翻译失败: {e}")
         return text  # 翻译失败时，返回原文
 
-def download_image(img_url):
+def download_image(img_url, output_folder):
     """下载图片到本地并返回本地路径"""
     try:
-        # 提取图片的路径部分
-        parsed_url = urlparse(img_url)
-        image_path = parsed_url.path
-
-        # 构建本地路径
-        local_image_path = os.path.join(os.getcwd(), image_path.lstrip('/'))  # 去掉开头的 `/`
-
-        # 创建文件夹（如果不存在）
-        os.makedirs(os.path.dirname(local_image_path), exist_ok=True)
+        # 获取图片的文件名
+        img_name = os.path.basename(urlparse(img_url).path)
+        img_path = os.path.join(output_folder, img_name)
 
         # 下载图片
         img_data = requests.get(img_url).content
-        with open(local_image_path, "wb") as f:
+        with open(img_path, "wb") as f:
             f.write(img_data)
 
-        return local_image_path  # 返回本地图片的相对路径
+        return os.path.join(output_folder, img_name)
     except Exception as e:
         print(f"⚠️ 下载图片失败: {e}")
-        return img_url  # 返回原始 URL，表示下载失败
+        return img_url  # 返回原始 URL
 
 def fetch_and_translate(url, output_file):
     """爬取 HTML 并翻译正文部分"""
@@ -92,13 +86,17 @@ def fetch_and_translate(url, output_file):
     # 解析提取的 HTML 结构
     content_soup = BeautifulSoup(extracted_html, "html.parser")
 
+    # 创建图片存放文件夹
+    if not os.path.exists(IMAGES_FOLDER):
+        os.makedirs(IMAGES_FOLDER)
+
     # 下载并替换图片链接
     for img_tag in content_soup.find_all("img"):
         img_url = img_tag.get("src")
         if img_url:
             # 处理相对路径
-            img_url = urljoin(BASE_IMAGE_URL, img_url)  # 生成绝对 URL
-            local_img_path = download_image(img_url)  # 保存到根目录
+            img_url = urljoin(url, img_url)
+            local_img_path = download_image(img_url, IMAGES_FOLDER)
             img_tag["src"] = local_img_path  # 替换为本地路径
 
     # 翻译正文内容
