@@ -1,6 +1,6 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
-const fs = 'fs-extra';
+const fs = require('fs-extra'); // <-- 这里已经被我修正了！
 const path = require('path');
 
 // --- 配置 ---
@@ -29,10 +29,8 @@ async function runScraper() {
             const $ = cheerio.load(html);
 
             // 2. 提取核心内容
-            // 维基的主要内容在 #mw-content-text > .mw-parser-output 中
             const contentContainer = $('#mw-content-text .mw-parser-output');
             
-            // 移除不需要的末尾部分 (例如 "Retrieved from...", 分类链接等)
             contentContainer.find('.printfooter').remove();
             contentContainer.find('#catlinks').remove();
             
@@ -46,10 +44,7 @@ async function runScraper() {
                 let src = $img.attr('src');
                 if (!src) return;
 
-                // 将相对 URL 转换为绝对 URL 以便下载
                 const imageUrl = new URL(src, BASE_URL).href;
-                
-                // 本地保存路径与网站路径保持一致
                 const localImagePath = path.join(OUTPUT_DIR, new URL(imageUrl).pathname);
 
                 console.log(`   - Found image: ${imageUrl}`);
@@ -63,8 +58,7 @@ async function runScraper() {
                 const $a = $(a);
                 let href = $a.attr('href');
                 if (href && href.startsWith('/')) {
-                    // 将 /PageName 转换为 /PageName/ (GitHub Pages 友好)
-                    const cleanHref = href.split('#')[0].split('?')[0]; // 去除 hash 和 query
+                    const cleanHref = href.split('#')[0].split('?')[0];
                     if (PAGES_TO_SCRAPE.includes(cleanHref.substring(1))) {
                         $a.attr('href', `${cleanHref}/`);
                     }
@@ -78,7 +72,6 @@ async function runScraper() {
             finalHtml = finalHtml.replace('{{PAGE_CONTENT}}', scrapedContent);
 
             // 6. 保存文件
-            // 将 'Tanki_Online_Wiki' 保存为根目录的 index.html
             const isHomePage = pageName === 'Tanki_Online_Wiki';
             const outputFilePath = isHomePage
                 ? path.join(OUTPUT_DIR, 'index.html')
