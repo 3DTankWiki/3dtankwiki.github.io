@@ -30,7 +30,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18' # 使用一个稳定的 Node.js 版本
-          cache: 'npm'
 
       # 第3步：安装依赖项
       - name: Install dependencies
