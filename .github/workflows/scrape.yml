@@ -1,44 +1,44 @@
 name: Scrape Wiki and Deploy to GitHub Pages
 
 on:
-  # 1. 允许你手动在 Actions 标签页触发此工作流
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-  # 2. 设置定时任务，每天 UTC 时间 0点 执行一次 (北京时间早上8点)
+  # Runs on a schedule (every day at midnight UTC)
   schedule:
     - cron: '0 0 * * *'
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest # 使用最新的 Ubuntu 运行环境
+    runs-on: ubuntu-latest
 
     steps:
-  # 第 1 步: 获取你的仓库代码
-  - name: Checkout repository
-    uses: actions/checkout@v4
+      # Step 1: Get the repository code
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-  # 第 2 步: 设置 Node.js 环境
-  - name: Set up Node.js
-    uses: actions/setup-node@v4
-    with:
-      node-version: '18'
-      cache: 'npm' # 仍然使用缓存以加快速度
+      # Step 2: Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
 
-  # 第 3 步: 强制清理 npm 缓存 (解决 corrupted tarball 问题)
-  - name: Clean npm cache
-    run: npm cache clean --force
+      # Step 3: Force clean npm cache to prevent corruption issues
+      - name: Clean npm cache
+        run: npm cache clean --force
 
-  # 第 4 步: 安装项目依赖 (使用 npm install)
-  - name: Install dependencies
-    run: npm install
+      # Step 4: Install dependencies using the more flexible 'npm install'
+      - name: Install dependencies
+        run: npm install
 
-  # 第 5 步: 运行抓取脚本
-  - name: Run scraper
-    run: npm start
+      # Step 5: Run the scraper script
+      - name: Run scraper
+        run: npm start
 
-  # 第 6 步: 部署到 GitHub Pages
-  - name: Deploy to gh-pages
-    uses: peaceiris/actions-gh-pages@v3
-    with:
-      github_token: ${{ secrets.GITHUB_TOKEN }}
-      publish_dir: ./dist
+      # Step 6: Deploy the generated 'dist' folder to gh-pages branch
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
