@@ -1,14 +1,14 @@
 name: Scrape Tanki Wiki and Deploy to GitHub Pages
 
 on:
-  # 1. 允许你从 Actions 标签页手动运行此工作流
+  # 允许你从 Actions 标签页手动运行此工作流
   workflow_dispatch:
   
-  # 2. 每天在 UTC 时间 03:00 自动运行
+  # 每天在 UTC 时间 03:00 自动运行
   schedule:
     - cron: '0 3 * * *'
   
-  # 3. 当 main 分支有推送到指定文件时触发（可选）
+  # 当 main 分支有推送到指定文件时触发
   push:
     branches:
       - main
@@ -21,29 +21,29 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      # 第1步：检出你的仓库代码
+      # 1. 检出你的仓库代码
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 第2步：设置 Node.js 环境
+      # 2. 设置 Node.js 环境
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18' # 使用一个稳定的 Node.js 版本
+          node-version: '18'
+          cache: 'npm' # 使用缓存加快安装速度
 
-      # 第3步：安装依赖项
+      # 3. 安装依赖项
       - name: Install dependencies
         run: npm install
 
-      # 第4步：运行搬运脚本
+      # 4. 运行搬运脚本
       - name: Run scraper script
-        run: npm start
+        run: node scraper.js
 
-      # 第5步：部署到 GitHub Pages
+      # 5. 部署到 GitHub Pages
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public  # 指定要部署的目录
-          # publish_branch: gh-pages # 默认就是 gh-pages 分支
-          # cname: your.custom.domain # 如果你有自定义域名，在这里取消注释并填写
+          publish_dir: ./public
+          # cname: your.custom.domain # 如果有自定义域名，在这里取消注释并填写
