@@ -1,10 +1,7 @@
 name: Scrape Wiki and Deploy to GitHub Pages
 
 on:
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-
-  # Runs on a schedule (every day at midnight UTC)
   schedule:
     - cron: '0 0 * * *'
 
@@ -13,30 +10,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Get the repository code
+      # 步骤 1: 获取仓库代码
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Set up Node.js environment
+      # 步骤 2: 设置 Node.js 环境 (已移除缓存功能)
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
 
-      # Step 3: Force clean npm cache to prevent corruption issues
-      - name: Clean npm cache
-        run: npm cache clean --force
-
-      # Step 4: Install dependencies using the more flexible 'npm install'
+      # 步骤 3: 安装依赖 (将不再有任何缓存或 lockfile 问题)
       - name: Install dependencies
         run: npm install
 
-      # Step 5: Run the scraper script
+      # 步骤 4: 运行抓取脚本
       - name: Run scraper
         run: npm start
 
-      # Step 6: Deploy the generated 'dist' folder to gh-pages branch
+      # 步骤 5: 部署到 GitHub Pages
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
