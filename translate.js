@@ -113,12 +113,9 @@ async function translateTextWithEnglishCheck(textToTranslate) {
 // --- 查找页面内符合条件的链接 ---
 function findInternalLinks($) {
     const links = new Set();
-    // 寻找所有href属性以 "/wiki/" 开头的链接，这是MediaWiki的标准格式
     $('#mw-content-text a[href^="/wiki/"]').each((i, el) => {
         const href = $(el).attr('href');
-        // 过滤掉包含 ":" (如 Category:, File:) 和 "#" (锚点) 的链接
         if (href && !href.includes(':') && !href.includes('#')) {
-            // 从 "/wiki/PageName" 中提取 "PageName"
             const pageName = href.substring('/wiki/'.length);
             links.add(pageName);
         }
@@ -135,7 +132,7 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
         if (!pageName || pageName === '/') pageName = 'index';
     } catch (e) {
         console.error(`无效的源 URL: ${sourceUrl}`);
-        return null; // 返回 null 表示严重错误
+        return null;
     }
     const OUTPUT_FILE = path.join(OUTPUT_DIR, `${pageName}.html`);
 
@@ -144,12 +141,16 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
     const page = await browser.newPage();
     let htmlContent;
     try {
-        await page.goto(sourceUrl, { waitUntil: 'networkidle0' });
+        // 【关键修改 ①】使用更可靠的方式等待动态内容加载完成
+        await page.goto(sourceUrl, { waitUntil: 'domcontentloaded' });
+        // 等待第一个目标链接出现，最长等待30秒
+        await page.waitForSelector('#mw-content-text a[href^="/wiki/"]', { timeout: 30000 });
         htmlContent = await page.content();
+
     } catch (error) {
-        console.error(`[${pageName}] 抓取页面时发生错误: ${error.message}`);
+        console.error(`[${pageName}] 抓取或等待页面内容时发生错误: ${error.message}`);
         await browser.close();
-        return null; // 抓取失败，返回 null
+        return null;
     } finally {
         await browser.close();
     }
@@ -157,7 +158,6 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
 
     const $ = cheerio.load(htmlContent);
 
-    // --- 检查页面是否需要更新 ---
     const isForced = forceTranslateList.includes(pageName);
     const $smallTag = $('small'); 
     const currentEditInfo = $smallTag.length > 0 ? $smallTag.text().trim() : null;
@@ -174,7 +174,7 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
         console.warn(`[${pageName}] ⚠️ 未能找到最后编辑信息。将继续处理。`);
     }
 
-    // --- 开始翻译流程 ---
+    // (此处省略了与之前版本完全相同的翻译逻辑代码)
     const headElements = [];
     $('head').children('link, style, script, meta, title').each(function() {
         const $el = $(this);
@@ -195,139 +195,68 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
         if (src && src.startsWith('/')) { $el.attr('src', BASE_URL + src); }
         bodyEndScripts.push($.html(this));
     });
-    
     const $contentContainer = $('<div id="wiki-content-wrapper"></div>');
     $('#firstHeading').clone().appendTo($contentContainer);
     $('#mw-content-text .mw-parser-output').children().each(function() {
         $contentContainer.append($(this).clone());
     });
-    
     const $factBoxContent = $contentContainer.find('.random-text-box > div:last-child');
     if ($factBoxContent.length > 0) {
         $factBoxContent.html('<p id="dynamic-fact-placeholder" style="margin:0;">正在加载有趣的事实...</p>');
-        const factScript = `
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const factsUrl = '/facts.json'; 
-        const placeholder = document.getElementById('dynamic-fact-placeholder');
-        if (placeholder) {
-            fetch(factsUrl)
-                .then(response => {
-                    if (!response.ok) { throw new Error('网络响应错误，状态码: ' + response.status); }
-                    return response.json();
-                })
-                .then(facts => {
-                    if (facts && Array.isArray(facts) && facts.length > 0) {
-                        const randomIndex = Math.floor(Math.random() * facts.length);
-                        const randomFact = facts[randomIndex].cn;
-                        placeholder.innerHTML = randomFact;
-                    } else {
-                        placeholder.innerHTML = '暂时没有可显示的事实。';
-                    }
-                })
-                .catch(error => {
-                    console.error('加载或显示事实时出错:', error);
-                    placeholder.innerHTML = '加载事实失败，请稍后再试。';
-                });
-        }
-    });
-</script>`;
+        const factScript = `<script>document.addEventListener('DOMContentLoaded', function() { const factsUrl = '/facts.json'; const placeholder = document.getElementById('dynamic-fact-placeholder'); if (placeholder) { fetch(factsUrl).then(response => { if (!response.ok) { throw new Error('网络响应错误，状态码: ' + response.status); } return response.json(); }).then(facts => { if (facts && Array.isArray(facts) && facts.length > 0) { const randomIndex = Math.floor(Math.random() * facts.length); const randomFact = facts[randomIndex].cn; placeholder.innerHTML = randomFact; } else { placeholder.innerHTML = '暂时没有可显示的事实。'; } }).catch(error => { console.error('加载或显示事实时出错:', error); placeholder.innerHTML = '加载事实失败，请稍后再试。'; }); } });</script>`;
         bodyEndScripts.push(factScript);
     }
-
     const originalTitle = $('title').text() || pageName;
     const preReplacedTitle = replaceTermsDirectly(originalTitle, fullDictionary, sortedKeys);
     let translatedTitle = await translateTextWithEnglishCheck(preReplacedTitle);
     translatedTitle = translatedTitle.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3');
-
     $contentContainer.find('a').each(function() {
         const href = $(this).attr('href');
         if (href?.startsWith('/wiki/')) {
             const cleanPageName = path.basename(href);
             $(this).attr('href', `./${cleanPageName}.html`); 
         } else if (href?.startsWith('/')) {
-            try { 
-                $(this).attr('href', new URL(href, BASE_URL).href); 
-            } catch(e) { 
-                console.warn(`[${pageName}] 无效的外部 href: ${href}`); 
-            } 
+            try { $(this).attr('href', new URL(href, BASE_URL).href); } catch(e) { console.warn(`[${pageName}] 无效的外部 href: ${href}`); }
         }
     });
-
     $contentContainer.find('img').each(function() {
         const $el = $(this);
         let src = $el.attr('src');
         if (src) {
             const absoluteSrc = src.startsWith('/') ? BASE_URL + src : src;
-            if (imageReplacementMap.has(absoluteSrc)) {
-                $el.attr('src', imageReplacementMap.get(absoluteSrc));
-            } else if (src.startsWith('/')) {
-                $el.attr('src', absoluteSrc);
-            }
+            if (imageReplacementMap.has(absoluteSrc)) { $el.attr('src', imageReplacementMap.get(absoluteSrc)); } else if (src.startsWith('/')) { $el.attr('src', absoluteSrc); }
         }
         const srcset = $el.attr('srcset');
         if (srcset) {
             const newSrcset = srcset.split(',').map(s => {
-                const parts = s.trim().split(/\s+/);
-                let url = parts[0];
-                const descriptor = parts.length > 1 ? ` ${parts[1]}` : '';
-                const absoluteUrl = url.startsWith('/') ? BASE_URL + url : url;
-                if (imageReplacementMap.has(absoluteUrl)) {
-                    return imageReplacementMap.get(absoluteUrl) + descriptor;
-                }
+                const parts = s.trim().split(/\s+/); let url = parts[0]; const descriptor = parts.length > 1 ? ` ${parts[1]}` : ''; const absoluteUrl = url.startsWith('/') ? BASE_URL + url : url;
+                if (imageReplacementMap.has(absoluteUrl)) { return imageReplacementMap.get(absoluteUrl) + descriptor; }
                 return (url.startsWith('/') ? absoluteUrl : url) + descriptor;
             }).join(', ');
             $el.attr('srcset', newSrcset);
         }
     });
-
     const textNodes = [];
-    $contentContainer.find('*:not(script,style)').addBack().contents().each(function() { 
-        if (this.type === 'text' && this.data.trim()) {
-            if (!$(this).parent().is('span.hotkey')) {
-                textNodes.push(this);
-            }
-        } 
-    });
-
-    const textPromises = textNodes.map(node => {
-        const preReplaced = replaceTermsDirectly(node.data, fullDictionary, sortedKeys);
-        return translateTextWithEnglishCheck(preReplaced);
-    });
+    $contentContainer.find('*:not(script,style)').addBack().contents().each(function() { if (this.type === 'text' && this.data.trim() && !$(this).parent().is('span.hotkey')) { textNodes.push(this); } });
+    const textPromises = textNodes.map(node => { const preReplaced = replaceTermsDirectly(node.data, fullDictionary, sortedKeys); return translateTextWithEnglishCheck(preReplaced); });
     const translatedTexts = await Promise.all(textPromises);
-
-    textNodes.forEach((node, index) => { 
-        if (translatedTexts[index]) { 
-            node.data = translatedTexts[index].trim(); 
-        } 
-    });
-
+    textNodes.forEach((node, index) => { if (translatedTexts[index]) { node.data = translatedTexts[index].trim(); } });
     const elementsWithAttributes = $contentContainer.find('[title], [alt]');
     for (let i = 0; i < elementsWithAttributes.length; i++) {
         const $element = $(elementsWithAttributes[i]);
         for (const attr of ['title', 'alt']) {
             const originalValue = $element.attr(attr);
-            if (originalValue) {
-                const preReplaced = replaceTermsDirectly(originalValue, fullDictionary, sortedKeys);
-                const translatedValue = await translateTextWithEnglishCheck(preReplaced);
-                $element.attr(attr, translatedValue);
-            }
+            if (originalValue) { const preReplaced = replaceTermsDirectly(originalValue, fullDictionary, sortedKeys); const translatedValue = await translateTextWithEnglishCheck(preReplaced); $element.attr(attr, translatedValue); }
         }
     }
-
     let finalHtmlContent = $contentContainer.html();
     finalHtmlContent = finalHtmlContent.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3');
     finalHtmlContent = finalHtmlContent.replace(/rgb\(70, 223, 17\)/g, '#76FF33');
-
     let homeButtonHtml = '';
-    if (pageName !== START_PAGE) {
-        homeButtonHtml = `<a href="./${START_PAGE}.html" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">返回主页</a>`;
-    }
-
+    if (pageName !== START_PAGE) { homeButtonHtml = `<a href="./${START_PAGE}.html" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">返回主页</a>`; }
     const headContent = headElements.filter(el => !el.toLowerCase().startsWith('<title>')).join('\n    ');
     const bodyClasses = $('body').attr('class') || '';
     const finalHtml = `<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>${translatedTitle}</title>${headContent}<style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="${bodyClasses}"><div id="mw-main-container">${homeButtonHtml}<div class="main-content"><div class="mw-body ve-init-mw-desktopArticleTarget-targetContainer" id="content" role="main"><a id="top"></a><div class="mw-body-content" id="bodyContent"><div id="siteNotice"></div><div id="mw-content-text" class="mw-content-ltr mw-parser-output" lang="zh-CN" dir="ltr">${finalHtmlContent}</div></div></div></div></div>${bodyEndScripts.join('\n    ')}</body></html>`;
-    
     fs.writeFileSync(OUTPUT_FILE, finalHtml, 'utf-8');
     console.log(`✅ [${pageName}] 翻译完成！文件已保存到: ${OUTPUT_FILE}`);
 
@@ -343,27 +272,18 @@ async function run() {
     console.log("--- 翻译任务开始 (爬虫模式) ---");
 
     try {
-        // --- 1. 准备所有资源 ---
         const imageReplacementMap = getPreparedImageDictionary();
         const { fullDictionary, sortedKeys } = await getPreparedDictionary();
         
         let lastEditInfo = {};
         if (fs.existsSync(EDIT_INFO_FILE)) {
-            try {
-                lastEditInfo = JSON.parse(fs.readFileSync(EDIT_INFO_FILE, 'utf-8'));
-                console.log(`已成功加载上次的编辑信息记录。`);
-            } catch (e) {
-                console.error(`❌ 读取或解析 ${EDIT_INFO_FILE} 时出错，将作为首次运行处理。`);
-            }
+            try { lastEditInfo = JSON.parse(fs.readFileSync(EDIT_INFO_FILE, 'utf-8')); console.log(`已成功加载上次的编辑信息记录。`); } catch (e) { console.error(`❌ 读取或解析 ${EDIT_INFO_FILE} 时出错，将作为首次运行处理。`); }
         }
 
-        if (!fs.existsSync(OUTPUT_DIR)) {
-            fs.mkdirSync(OUTPUT_DIR, { recursive: true });
-        }
+        if (!fs.existsSync(OUTPUT_DIR)) { fs.mkdirSync(OUTPUT_DIR, { recursive: true }); }
 
-        // --- 2. 初始化爬虫队列 ---
-        const pagesToProcess = new Set([START_PAGE]); // 待处理队列
-        const processedPages = new Set(); // 已处理集合
+        const pagesToProcess = new Set([START_PAGE]);
+        const processedPages = new Set();
         const newEditInfo = { ...lastEditInfo };
         let hasUpdates = false;
 
@@ -372,7 +292,6 @@ async function run() {
         console.log(`并行处理上限: ${CONCURRENCY_LIMIT}`);
         console.log(`==================================================\n`);
 
-        // --- 3. 开始爬取和处理 ---
         while (pagesToProcess.size > 0) {
             const batch = Array.from(pagesToProcess).slice(0, CONCURRENCY_LIMIT);
             
@@ -380,15 +299,11 @@ async function run() {
                 pagesToProcess.delete(pageName);
                 processedPages.add(pageName);
 
-                // 【关键修正】构建正确的页面访问 URL
                 const fullUrl = `${BASE_URL}/${pageName}`;
                 
                 try {
                     const processOutput = await processPage(fullUrl, fullDictionary, sortedKeys, imageReplacementMap, lastEditInfo);
-
-                    if (!processOutput) { // 如果页面处理失败
-                        return;
-                    }
+                    if (!processOutput) { return; }
 
                     if (processOutput.translationResult) {
                         const { pageName: pName, newEditInfo: editInfo } = processOutput.translationResult;
@@ -401,15 +316,18 @@ async function run() {
                     const $ = cheerio.load(processOutput.rawHtml);
                     const newLinks = findInternalLinks($);
                     
+                    // 【关键修改 ②】增强日志，显示找到的链接
                     if (newLinks.length > 0) {
-                        console.log(`[${pageName}] 在页面上发现 ${newLinks.length} 个新链接。`);
+                        console.log(`[${pageName}] 在页面上发现 ${newLinks.length} 个链接: [${newLinks.join(', ')}]`);
                         newLinks.forEach(link => {
                             if (!processedPages.has(link) && !pagesToProcess.has(link)) {
                                 pagesToProcess.add(link);
-                                console.log(`  -> 已添加新页面到队列: ${link}`);
                             }
                         });
+                    } else {
+                        console.log(`[${pageName}] 未在该页面上发现可处理的新链接。`);
                     }
+
                 } catch (error) {
                     console.error(`❌ 处理页面 ${pageName} 过程中发生严重错误:`, error.message);
                 }
@@ -423,7 +341,6 @@ async function run() {
             console.log(`----------------------\n`);
         }
 
-        // --- 4. 任务结束，保存更新的编辑信息 ---
         if (hasUpdates) {
             fs.writeFileSync(EDIT_INFO_FILE, JSON.stringify(newEditInfo, null, 2), 'utf-8');
             console.log(`\n✅ 最后编辑信息已更新到 ${EDIT_INFO_FILE}`);
