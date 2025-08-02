@@ -89,25 +89,28 @@ function containsEnglish(text) {
     return /[a-zA-Z]/.test(text);
 }
 
-// --- 4. 带英文检测的翻译函数 ---
+// --- 4. 带英文检测的翻译函数 (已修复) ---
 async function translateTextWithEnglishCheck(textToTranslate) {
     if (!textToTranslate || !textToTranslate.trim()) { return ""; }
     if (!containsEnglish(textToTranslate)) { return textToTranslate; }
 
     try {
         const res = await bingTranslate(textToTranslate, 'en', 'zh-Hans', false);
-        return res.translation;
+        // 【已修复】使用可选链和逻辑或操作符，确保即使API返回不规范，也总能得到一个字符串
+        return res?.translation || textToTranslate;
     } catch (bingError) {
         console.warn(`⚠️ 必应翻译失败 (回退到谷歌): ${bingError.message.substring(0, 100)}`);
         try {
             const res = await googleTranslate(textToTranslate, { from: 'en', to: 'zh-CN' });
-            return res.text;
+            // 【已修复】同样为谷歌翻译API的返回值添加保障
+            return res?.text || textToTranslate;
         } catch (googleError) {
             console.error(`❌ 谷歌翻译也失败了。将返回原始文本。`);
             return textToTranslate;
         }
     }
 }
+
 
 // --- 辅助函数：从链接中提取可处理的页面名称 ---
 function getPageNameFromWikiLink(href) {
@@ -174,13 +177,11 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
     const page = await browser.newPage();
     let htmlContent;
     try {
-        // --- 【核心修改】将两个关键步骤的超时设置为 0，表示无限等待 ---
         await page.goto(sourceUrl, { waitUntil: 'domcontentloaded', timeout: 0 });
         await page.waitForSelector('#mw-content-text', { timeout: 0 });
         
         htmlContent = await page.content();
     } catch (error) {
-        // 尽管超时被禁用，但仍保留此 catch 块以处理其他潜在的抓取错误（如 DNS 查找失败）
         console.error(`[${pageName}] 抓取或等待页面内容时发生错误: ${error.message}`);
         await browser.close();
         return null;
