@@ -16,6 +16,60 @@ const IMAGE_DICT_FILE = 'image_replacements.js';
 const OUTPUT_DIR = './output';
 const EDIT_INFO_FILE = path.join(__dirname, 'last_edit_info.json');
 
+// --- 【新增】下载图片的辅助函数 ---
+// 功能：下载单个图片到指定的本地路径，并自动创建目录。
+// downloadedImageUrls: 一个 Set 对象，用于跟踪已下载的图片，避免重复下载。
+async function downloadImage(imageUrl, outputDir, downloadedImageUrls) {
+    // 检查是否已经下载过，避免重复工作
+    if (downloadedImageUrls.has(imageUrl)) {
+        return;
+    }
+
+    let urlObj;
+    try {
+        urlObj = new URL(imageUrl);
+    } catch (e) {
+        console.error(`❌ 无效的图片 URL: ${imageUrl}`);
+        return;
+    }
+
+    // 从 URL 中提取相对路径 (例如: /images/thumb/a/ab/Some_Image.png/120px-Some_Image.png)
+    const relativePath = decodeURIComponent(urlObj.pathname);
+    // 构建完整的本地保存路径
+    const localPath = path.join(outputDir, relativePath);
+    // 获取本地路径的目录部分，用于检查和创建文件夹
+    const dirName = path.dirname(localPath);
+
+    // 如果目标文件夹不存在，则递归创建它
+    if (!fs.existsSync(dirName)) {
+        fs.mkdirSync(dirName, { recursive: true });
+    }
+
+    // 如果文件已存在，则跳过下载 (可能在之前的运行中已下载)
+    if (fs.existsSync(localPath)) {
+        // console.log(`[图片] 文件已存在，跳过: ${relativePath}`);
+        downloadedImageUrls.add(imageUrl); // 标记为已处理
+        return;
+    }
+
+    try {
+        console.log(`[图片] 正在下载: ${imageUrl}`);
+        const response = await fetch(imageUrl);
+        if (!response.ok) {
+            throw new Error(`网络请求失败: ${response.status} ${response.statusText}`);
+        }
+        // 将响应体转为 ArrayBuffer，这是处理二进制文件的标准方式
+        const imageBuffer = await response.arrayBuffer();
+        // 写入文件
+        fs.writeFileSync(localPath, Buffer.from(imageBuffer));
+        // console.log(`[图片] ✅ 下载成功: ${localPath}`);
+        downloadedImageUrls.add(imageUrl); // 下载成功后，添加到 Set 中
+    } catch (error) {
+        console.error(`❌ 下载图片 ${imageUrl} 失败:`, error.message);
+    }
+}
+
+
 // --- 1. 准备文本翻译词典 (从网络 URL) ---
 async function getPreparedDictionary() {
     console.log(`正在从 URL 获取文本词典: ${DICTIONARY_URL}`);
@@ -96,13 +150,11 @@ async function translateTextWithEnglishCheck(textToTranslate) {
 
     try {
         const res = await bingTranslate(textToTranslate, 'en', 'zh-Hans', false);
-        // 【已修复】使用可选链和逻辑或操作符，确保即使API返回不规范，也总能得到一个字符串
         return res?.translation || textToTranslate;
     } catch (bingError) {
         console.warn(`⚠️ 必应翻译失败 (回退到谷歌): ${bingError.message.substring(0, 100)}`);
         try {
             const res = await googleTranslate(textToTranslate, { from: 'en', to: 'zh-CN' });
-            // 【已修复】同样为谷歌翻译API的返回值添加保障
             return res?.text || textToTranslate;
         } catch (googleError) {
             console.error(`❌ 谷歌翻译也失败了。将返回原始文本。`);
@@ -161,7 +213,8 @@ function findInternalLinks($) {
 }
 
 // --- 5. 翻译单个页面的核心函数 ---
-async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplacementMap, lastEditInfoState, forceTranslateList = []) {
+// --- 【修改】函数签名增加了 downloadedImageUrls 参数 ---
+async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplacementMap, lastEditInfoState, downloadedImageUrls, forceTranslateList = []) {
     let pageName = '';
     try {
         pageName = getPageNameFromWikiLink(sourceUrl) || path.basename(new URL(sourceUrl).pathname);
@@ -250,10 +303,70 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
         }
     });
 
+    // --- 【修改】图片处理逻辑 ---
+    const imageDownloadPromises = []; // 存储所有图片下载的 Promise
+
     $contentContainer.find('img').each(function() {
-        const $el = $(this); let src = $el.attr('src'); if (src) { const absoluteSrc = src.startsWith('/') ? BASE_URL + src : src; if (imageReplacementMap.has(absoluteSrc)) { $el.attr('src', imageReplacementMap.get(absoluteSrc)); } else if (src.startsWith('/')) { $el.attr('src', absoluteSrc); } }
-        const srcset = $el.attr('srcset'); if (srcset) { const newSrcset = srcset.split(',').map(s => { const parts = s.trim().split(/\s+/); let url = parts[0]; const descriptor = parts.length > 1 ? ` ${parts[1]}` : ''; const absoluteUrl = url.startsWith('/') ? BASE_URL + url : url; if (imageReplacementMap.has(absoluteUrl)) { return imageReplacementMap.get(absoluteUrl) + descriptor; } return (url.startsWith('/') ? absoluteUrl : url) + descriptor; }).join(', '); $el.attr('srcset', newSrcset); }
+        const $el = $(this);
+
+        // 统一处理 src 和 srcset 中的 URL
+        const processUrl = (url) => {
+            if (!url) return url;
+            
+            // 1. 构建绝对 URL
+            const absoluteUrl = new URL(url, BASE_URL).href;
+
+            // 2. 检查是否在图片替换词典中
+            if (imageReplacementMap.has(absoluteUrl)) {
+                return imageReplacementMap.get(absoluteUrl);
+            }
+
+            // 3. 检查是否是本站的图片，需要下载
+            if (absoluteUrl.startsWith(BASE_URL)) {
+                // 将下载任务添加到 Promise 数组中
+                imageDownloadPromises.push(downloadImage(absoluteUrl, OUTPUT_DIR, downloadedImageUrls));
+                
+                // 返回相对于 output 目录的相对路径
+                const urlObj = new URL(absoluteUrl);
+                // 移除开头的斜杠，得到 'images/...' 这样的相对路径
+                return decodeURIComponent(urlObj.pathname).substring(1); 
+            }
+
+            // 4. 如果是外部图片，则保持原样（已经是绝对 URL）
+            return absoluteUrl;
+        };
+
+        // 处理 src 属性
+        const src = $el.attr('src');
+        if (src) {
+            $el.attr('src', processUrl(src));
+        }
+
+        // 处理 srcset 属性
+        const srcset = $el.attr('srcset');
+        if (srcset) {
+            const newSrcset = srcset
+                .split(',')
+                .map(part => {
+                    const item = part.trim().split(/\s+/);
+                    const url = item[0];
+                    const descriptor = item.length > 1 ? ` ${item[1]}` : '';
+                    return processUrl(url) + descriptor;
+                })
+                .join(', ');
+            $el.attr('srcset', newSrcset);
+        }
     });
+
+    // 等待本页面所有图片的下载任务完成
+    if (imageDownloadPromises.length > 0) {
+        console.log(`[${pageName}] 正在处理 ${imageDownloadPromises.length} 个图片下载任务...`);
+        await Promise.all(imageDownloadPromises);
+        console.log(`[${pageName}] 图片下载任务处理完毕。`);
+    }
+    // --- 图片处理逻辑修改结束 ---
+
+
     const textNodes = [];
     $contentContainer.find('*:not(script,style)').addBack().contents().each(function() { if (this.type === 'text' && this.data.trim() && !$(this).parent().is('span.hotkey')) { textNodes.push(this); } });
     const textPromises = textNodes.map(node => { const preReplaced = replaceTermsDirectly(node.data, fullDictionary, sortedKeys); return translateTextWithEnglishCheck(preReplaced); });
@@ -295,6 +408,9 @@ async function run() {
         }
 
         if (!fs.existsSync(OUTPUT_DIR)) { fs.mkdirSync(OUTPUT_DIR, { recursive: true }); }
+        
+        // --- 【新增】创建一个 Set 来跟踪整个运行过程中已下载的图片 ---
+        const downloadedImageUrls = new Set();
 
         const pagesToProcess = new Set([START_PAGE]);
         const processedPages = new Set();
@@ -319,7 +435,8 @@ async function run() {
                 const fullUrl = `${BASE_URL}/${encodeURIComponent(pageName)}`;
                 
                 try {
-                    const processOutput = await processPage(fullUrl, fullDictionary, sortedKeys, imageReplacementMap, lastEditInfo);
+                    // --- 【修改】将 downloadedImageUrls 传递给 processPage 函数 ---
+                    const processOutput = await processPage(fullUrl, fullDictionary, sortedKeys, imageReplacementMap, lastEditInfo, downloadedImageUrls);
                     if (!processOutput) { return; }
 
                     if (processOutput.translationResult) {
