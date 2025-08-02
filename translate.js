@@ -16,24 +16,116 @@ const IMAGE_DICT_FILE = 'image_replacements.js';
 const OUTPUT_DIR = './output';
 const EDIT_INFO_FILE = path.join(__dirname, 'last_edit_info.json');
 
-// --- 准备工作函数 (与之前版本相同，此处为简洁省略) ---
-async function getPreparedDictionary() { /* ...与上一版相同... */ }
-function getPreparedImageDictionary() { /* ...与上一版相同... */ }
-function replaceTermsDirectly(text, fullDictionary, sortedKeys) { /* ...与上一版相同... */ }
-function containsEnglish(text) { /* ...与上一版相同... */ }
-async function translateTextWithEnglishCheck(textToTranslate) { /* ...与上一版相同... */ }
-// 为了节省篇幅，上面几个函数保持不变，请从之前的代码中复制
+// --- 1. 准备文本翻译词典 (从网络 URL) ---
+async function getPreparedDictionary() {
+    console.log(`正在从 URL 获取文本词典: ${DICTIONARY_URL}`);
+    let originalDict;
+    try {
+        const response = await fetch(DICTIONARY_URL);
+        if (!response.ok) { throw new Error(`网络请求失败: ${response.status}`); }
+        const scriptContent = await response.text();
+        originalDict = new Function(`${scriptContent}; return replacementDict;`)();
+        console.log("在线文本词典加载成功。原始大小:", Object.keys(originalDict).length);
+    } catch (error) {
+        console.error("加载或解析在线文本词典时出错。将使用空词典。", error.message);
+        return { fullDictionary: new Map(), sortedKeys: [] };
+    }
+
+    const tempDict = { ...originalDict };
+    for (const key in originalDict) {
+        if (Object.hasOwnProperty.call(originalDict, key)) {
+            const pluralKey = pluralize(key);
+            if (pluralKey !== key && !tempDict.hasOwnProperty(pluralKey)) {
+                tempDict[pluralKey] = originalDict[key];
+            }
+        }
+    }
+    
+    const fullDictionary = new Map(Object.entries(tempDict));
+    const sortedKeys = Object.keys(tempDict).sort((a, b) => b.length - a.length);
+    console.log(`文本词典准备完毕。总词条数 (含复数): ${fullDictionary.size}，已按长度排序。`);
+    return { fullDictionary, sortedKeys };
+}
+
+// --- 准备图片替换词典 (从本地文件) ---
+function getPreparedImageDictionary() {
+    const filePath = path.resolve(__dirname, IMAGE_DICT_FILE);
+    console.log(`正在从本地文件加载图片词典: ${filePath}`);
+
+    if (!fs.existsSync(filePath)) {
+        console.warn(`⚠️ 图片词典文件未找到: ${IMAGE_DICT_FILE}。将不进行图片替换。`);
+        return new Map();
+    }
+
+    try {
+        const scriptContent = fs.readFileSync(filePath, 'utf-8');
+        const imageDict = new Function(`${scriptContent}; return imageReplacementDict;`)();
+        const imageMap = new Map(Object.entries(imageDict || {}));
+        if (imageMap.size > 0) {
+             console.log(`本地图片词典加载成功。共 ${imageMap.size} 条替换规则。`);
+        }
+        return imageMap;
+    } catch (error) {
+        console.error(`❌ 加载或解析本地图片词典文件 ${IMAGE_DICT_FILE} 时出错。`, error.message);
+        return new Map();
+    }
+}
+
+// --- 2. 直接替换函数 ---
+function replaceTermsDirectly(text, fullDictionary, sortedKeys) {
+    if (!text) return "";
+    let result = text;
+    for (const key of sortedKeys) {
+        const regex = new RegExp(`\\b${key}\\b`, 'gi');
+        if (regex.test(result)) {
+            result = result.replace(regex, fullDictionary.get(key));
+        }
+    }
+    return result;
+}
+
+// --- 3. 检测是否包含英文字母的函数 ---
+function containsEnglish(text) {
+    return /[a-zA-Z]/.test(text);
+}
+
+// --- 4. 带英文检测的翻译函数 ---
+async function translateTextWithEnglishCheck(textToTranslate) {
+    if (!textToTranslate || !textToTranslate.trim()) { return ""; }
+    if (!containsEnglish(textToTranslate)) { return textToTranslate; }
+
+    try {
+        const res = await bingTranslate(textToTranslate, 'en', 'zh-Hans', false);
+        return res.translation;
+    } catch (bingError) {
+        console.warn(`⚠️ 必应翻译失败 (回退到谷歌): ${bingError.message.substring(0, 100)}`);
+        try {
+            const res = await googleTranslate(textToTranslate, { from: 'en', to: 'zh-CN' });
+            return res.text;
+        } catch (googleError) {
+            console.error(`❌ 谷歌翻译也失败了。将返回原始文本。`);
+            return textToTranslate;
+        }
+    }
+}
 
 // --- 【已修正】查找页面内符合条件的链接 ---
 function findInternalLinks($) {
     const links = new Set();
+    // 选择器现在更广泛：查找所有以 "/" 开头的链接
     $('#mw-content-text a[href^="/"]').each((i, el) => {
         const href = $(el).attr('href');
+
+        // 应用一系列更严格的过滤器来确保只捕获文章页面
         if (
-            href && href.length > 1 && !href.startsWith('//') &&
-            !href.includes(':') && !href.includes('#') &&
-            !/\.(css|js|png|jpg|jpeg|gif|svg|ico)$/i.test(href)
+            href &&                          // 链接必须存在
+            href.length > 1 &&               // 链接不能只是一个 "/"
+            !href.startsWith('//') &&        // 排除协议相对URL (如 //example.com)
+            !href.includes(':') &&           // 排除特殊页面 (如 Category:, Special:)
+            !href.includes('#') &&           // 排除锚点
+            !/\.(css|js|png|jpg|jpeg|gif|svg|ico)$/i.test(href) // 排除常见资源文件
         ) {
+            // 页面名称就是去掉第一个 "/" 的 href
             const pageName = href.substring(1);
             links.add(pageName);
         }
@@ -103,7 +195,18 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
     const $contentContainer = $('<div id="wiki-content-wrapper"></div>');
     $('#firstHeading').clone().appendTo($contentContainer);
     $('#mw-content-text .mw-parser-output').children().each(function() { $contentContainer.append($(this).clone()); });
-    
+
+    const $factBoxContent = $contentContainer.find('.random-text-box > div:last-child');
+    if ($factBoxContent.length > 0) {
+        $factBoxContent.html('<p id="dynamic-fact-placeholder" style="margin:0;">正在加载有趣的事实...</p>');
+        const factScript = `<script>document.addEventListener('DOMContentLoaded', function() { const factsUrl = '/facts.json'; const placeholder = document.getElementById('dynamic-fact-placeholder'); if (placeholder) { fetch(factsUrl).then(response => { if (!response.ok) { throw new Error('网络响应错误，状态码: ' + response.status); } return response.json(); }).then(facts => { if (facts && Array.isArray(facts) && facts.length > 0) { const randomIndex = Math.floor(Math.random() * facts.length); const randomFact = facts[randomIndex].cn; placeholder.innerHTML = randomFact; } else { placeholder.innerHTML = '暂时没有可显示的事实。'; } }).catch(error => { console.error('加载或显示事实时出错:', error); placeholder.innerHTML = '加载事实失败，请稍后再试。'; }); } });</script>`;
+        bodyEndScripts.push(factScript);
+    }
+    const originalTitle = $('title').text() || pageName;
+    const preReplacedTitle = replaceTermsDirectly(originalTitle, fullDictionary, sortedKeys);
+    let translatedTitle = await translateTextWithEnglishCheck(preReplacedTitle);
+    translatedTitle = translatedTitle.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3');
+
     // --- 【已修正】链接重写逻辑 ---
     $contentContainer.find('a').each(function() {
         const href = $(this).attr('href');
@@ -120,22 +223,6 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
         }
     });
 
-    // (此处省略了图片处理、文本翻译等与之前版本完全相同的逻辑，以保持简洁)
-    // ...
-    // --- HTML 整合与构建 (省略) ---
-    // ...
-
-    // (为确保完整性，我将把省略的部分补全)
-    const $factBoxContent = $contentContainer.find('.random-text-box > div:last-child');
-    if ($factBoxContent.length > 0) {
-        $factBoxContent.html('<p id="dynamic-fact-placeholder" style="margin:0;">正在加载有趣的事实...</p>');
-        const factScript = `<script>document.addEventListener('DOMContentLoaded', function() { const factsUrl = '/facts.json'; const placeholder = document.getElementById('dynamic-fact-placeholder'); if (placeholder) { fetch(factsUrl).then(response => { if (!response.ok) { throw new Error('网络响应错误，状态码: ' + response.status); } return response.json(); }).then(facts => { if (facts && Array.isArray(facts) && facts.length > 0) { const randomIndex = Math.floor(Math.random() * facts.length); const randomFact = facts[randomIndex].cn; placeholder.innerHTML = randomFact; } else { placeholder.innerHTML = '暂时没有可显示的事实。'; } }).catch(error => { console.error('加载或显示事实时出错:', error); placeholder.innerHTML = '加载事实失败，请稍后再试。'; }); } });</script>`;
-        bodyEndScripts.push(factScript);
-    }
-    const originalTitle = $('title').text() || pageName;
-    const preReplacedTitle = replaceTermsDirectly(originalTitle, fullDictionary, sortedKeys);
-    let translatedTitle = await translateTextWithEnglishCheck(preReplacedTitle);
-    translatedTitle = translatedTitle.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3');
     $contentContainer.find('img').each(function() {
         const $el = $(this); let src = $el.attr('src'); if (src) { const absoluteSrc = src.startsWith('/') ? BASE_URL + src : src; if (imageReplacementMap.has(absoluteSrc)) { $el.attr('src', imageReplacementMap.get(absoluteSrc)); } else if (src.startsWith('/')) { $el.attr('src', absoluteSrc); } }
         const srcset = $el.attr('srcset'); if (srcset) { const newSrcset = srcset.split(',').map(s => { const parts = s.trim().split(/\s+/); let url = parts[0]; const descriptor = parts.length > 1 ? ` ${parts[1]}` : ''; const absoluteUrl = url.startsWith('/') ? BASE_URL + url : url; if (imageReplacementMap.has(absoluteUrl)) { return imageReplacementMap.get(absoluteUrl) + descriptor; } return (url.startsWith('/') ? absoluteUrl : url) + descriptor; }).join(', '); $el.attr('srcset', newSrcset); }
@@ -164,11 +251,8 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
     return { translationResult: { pageName: pageName, newEditInfo: currentEditInfo }, rawHtml: htmlContent };
 }
 
-
-// --- 6. 主运行函数 (run) ---
+// --- 6. 主运行函数 ---
 async function run() {
-    // 这个函数保持不变，因为它不关心链接的具体格式，只负责调度
-    // ...请从之前的代码中复制 run 函数...
     console.log("--- 翻译任务开始 (爬虫模式) ---");
 
     try {
