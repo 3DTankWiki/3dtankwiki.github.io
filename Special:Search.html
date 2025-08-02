@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D坦克 Wiki 页面搜索</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500;700&family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #001926;
+            --primary-color: #76FF33;
+            --text-color: #ccc;
+            --text-muted-color: #BFD5FF;
+            --container-bg: #00253a;
+            --border-color: #38444d;
+        }
+
+        body {
+            font-family: 'Rubik', 'M PLUS 1p', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px 15px;
+        }
+        
+        .container { max-width: 900px; margin: 0 auto; }
+        h1 { color: var(--primary-color); text-align: center; font-weight: 600; letter-spacing: 1px; }
+        .description { text-align: center; color: var(--text-muted-color); margin-bottom: 30px; }
+        #search-container { display: flex; gap: 10px; margin-bottom: 20px; }
+        #search-input { flex-grow: 1; padding: 12px 15px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 16px; background-color: var(--container-bg); color: #fff; transition: border-color 0.3s, box-shadow 0.3s; }
+        #search-input:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(118, 255, 51, 0.2); }
+        #search-button { padding: 12px 25px; border: none; background-color: var(--primary-color); color: var(--bg-color); font-weight: bold; border-radius: 6px; cursor: pointer; font-size: 16px; transition: background-color 0.2s, transform 0.1s; }
+        #search-button:hover { background-color: #62d92b; }
+        #search-button:active { transform: scale(0.98); }
+        #search-button:disabled { background-color: #55664a; cursor: not-allowed; }
+        #status { text-align: center; font-style: italic; color: var(--text-muted-color); margin: 20px 0; min-height: 1.6em; }
+        .result-item { background-color: var(--container-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); transition: transform 0.2s, border-color 0.2s; }
+        .result-item:hover { transform: translateY(-3px); border-color: var(--primary-color); }
+        
+        .result-item h3 { margin: 0 0 10px 0; font-size: 1.2em; }
+        .result-item h3 a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .result-item h3 a:hover {
+            text-decoration: underline;
+        }
+
+        .result-item p { margin: 0; color: var(--text-color); word-break: break-word; }
+        .highlight { background-color: var(--primary-color); color: var(--bg-color); font-weight: bold; padding: 2px 5px; border-radius: 4px; }
+        #no-results-message { text-align: center; padding: 40px 20px; background-color: var(--container-bg); border-radius: 8px; color: var(--text-muted-color); font-size: 1.1em; display: none; }
+        footer { text-align: center; margin-top: 40px; font-size: 0.9em; color: #777; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>3D坦克 Wiki 页面搜索</h1>
+        <p class="description">在<strong>3D坦克 Wiki</strong> 的所有页面中搜索内容。</p>
+        
+        <div id="search-container">
+            <input type="text" id="search-input" placeholder="输入要查找的关键词...">
+            <button id="search-button">搜索</button>
+        </div>
+        <div id="status"></div>
+        <div id="results"></div>
+        <div id="no-results-message">在这里未找到匹配的结果。</div>
+    </div>
+    <footer>
+        <p>此工具通过 GitHub API 获取文件列表并进行内容搜索。</p>
+    </footer>
+
+<script>
+    const owner = '3dtankwiki';
+    const repo = '3dtankwiki.github.io';
+    const path = ''; 
+    const branch = 'gh-pages'; 
+    const apiURL = `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${branch}`;
+    const fileBaseURL = `https://${owner}.github.io/`;
+
+    const searchInput = document.getElementById('search-input');
+    const searchButton = document.getElementById('search-button');
+    const statusDiv = document.getElementById('status');
+    const resultsDiv = document.getElementById('results');
+    const noResultsMessage = document.getElementById('no-results-message');
+    
+    let wikiFiles = [];
+    let fileDataCache = new Map();
+
+    async function fetchFileList() {
+        // 修改点 1: 移除初始化信息中的分支名
+        statusDiv.textContent = '正在初始化，获取 Wiki 页面列表...';
+        try {
+            const response = await fetch(apiURL);
+            if (!response.ok) throw new Error(`GitHub API 请求失败: ${response.status}`);
+            const data = await response.json();
+            wikiFiles = data
+                .filter(file => file.type === 'file' && file.name.endsWith('.html') && file.name !== 'index.html')
+                .map(file => file.name);
+
+            if (wikiFiles.length > 0) {
+                statusDiv.textContent = `已成功加载 ${wikiFiles.length} 个 Wiki 页面，请输入关键词开始搜索。`;
+            } else {
+                // 修改点 2: 移除警告信息中的分支名
+                statusDiv.textContent = '警告：未在仓库中找到 .html 文件。';
+            }
+        } catch (error) {
+            console.error('获取文件列表失败:', error);
+            statusDiv.textContent = `错误：无法加载文件列表。请检查网络连接或浏览器控制台。`;
+        }
+    }
+
+    async function performSearch() {
+        const searchTerm = searchInput.value.trim();
+        if (!searchTerm) {
+            alert('请输入搜索关键词！');
+            return;
+        }
+        if (wikiFiles.length === 0) {
+            alert('文件列表尚未加载完成，请稍候。');
+            return;
+        }
+        
+        const newUrl = `${window.location.pathname}?search=${encodeURIComponent(searchTerm)}`;
+        history.pushState({ search: searchTerm }, '', newUrl);
+
+        searchButton.disabled = true;
+        searchButton.textContent = '搜索中...';
+        resultsDiv.innerHTML = '';
+        noResultsMessage.style.display = 'none';
+        statusDiv.textContent = `正在 ${wikiFiles.length} 个文件中搜索 "${searchTerm}"...`;
+
+        const searchPromises = wikiFiles.map(fileName => searchInFile(fileName, searchTerm));
+        
+        try {
+            const allMatches = (await Promise.all(searchPromises)).filter(Boolean);
+            if (allMatches.length === 0) {
+                statusDiv.textContent = `关于“${searchTerm}”的搜索完成，没有找到结果。`;
+                noResultsMessage.style.display = 'block';
+            } else {
+                statusDiv.textContent = `搜索完成！共在 ${allMatches.length} 个页面中找到匹配结果。`;
+                allMatches.forEach(displayResult);
+            }
+        } catch (error) {
+            console.error('搜索过程中发生错误:', error);
+            statusDiv.textContent = `搜索失败: ${error.message}`;
+        } finally {
+            searchButton.disabled = false;
+            searchButton.textContent = '搜索';
+        }
+    }
+
+    async function searchInFile(fileName, searchTerm) {
+        try {
+            let pageTitle = fileName;
+            let plainText = '';
+
+            if (fileDataCache.has(fileName)) {
+                ({ title: pageTitle, text: plainText } = fileDataCache.get(fileName));
+            } else {
+                const fileURL = fileBaseURL + encodeURIComponent(fileName);
+                const response = await fetch(fileURL);
+                if (!response.ok) return null;
+                const htmlContent = await response.text();
+
+                const titleMatch = htmlContent.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
+                if (titleMatch && titleMatch[1]) {
+                    pageTitle = titleMatch[1].trim();
+                }
+
+                plainText = htmlContent
+                    .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
+                    .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
+                    .replace(/<[^>]+>/g, ' ')
+                    .replace(/\s{2,}/g, ' ')
+                    .trim();
+                
+                fileDataCache.set(fileName, { title: pageTitle, text: plainText });
+            }
+
+            const lowerCaseSearchTerm = searchTerm.toLowerCase();
+            const titleMatch = pageTitle.toLowerCase().includes(lowerCaseSearchTerm);
+            const contentMatchIndex = plainText.toLowerCase().indexOf(lowerCaseSearchTerm);
+
+            if (titleMatch || contentMatchIndex > -1) {
+                let snippet = '';
+                if (contentMatchIndex > -1) {
+                    const start = Math.max(0, contentMatchIndex - 50);
+                    const end = Math.min(plainText.length, contentMatchIndex + searchTerm.length + 50);
+                    snippet = (start > 0 ? '...' : '') + plainText.substring(start, end) + (end < plainText.length ? '...' : '');
+                } else if (titleMatch) {
+                    snippet = '（关键词匹配于页面标题）';
+                }
+                
+                return { fileName, title: pageTitle, snippet };
+            }
+
+        } catch (error) {
+            console.error(`处理文件 ${fileName} 时出错:`, error);
+        }
+        return null;
+    }
+
+    function displayResult(result) {
+        const resultItem = document.createElement('div');
+        resultItem.className = 'result-item';
+
+        const h3 = document.createElement('h3');
+        const link = document.createElement('a');
+        
+        link.href = result.fileName.replace(/\.html$/, '');
+        link.innerHTML = result.title;
+        h3.appendChild(link);
+
+        const p = document.createElement('p');
+        if (result.snippet) {
+            const regex = new RegExp(escapeRegExp(searchInput.value), 'gi');
+            p.innerHTML = escapeHTML(result.snippet).replace(regex, `<span class="highlight">$&</span>`);
+        }
+        
+        resultItem.appendChild(h3);
+        resultItem.appendChild(p);
+        resultsDiv.appendChild(resultItem);
+    }
+    
+    function escapeRegExp(string) {
+        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    function escapeHTML(str) {
+        return str.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function handleInitialSearch() {
+        const params = new URLSearchParams(window.location.search);
+        const searchTerm = params.get('search');
+        if (searchTerm) {
+            searchInput.value = searchTerm;
+            performSearch();
+        }
+    }
+
+    searchButton.addEventListener('click', performSearch);
+    searchInput.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') {
+            performSearch();
+        }
+    });
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        fetchFileList().then(() => {
+            handleInitialSearch();
+        });
+    });
+</script>
+</body>
+</html>
