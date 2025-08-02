@@ -3,7 +3,7 @@ name: 翻译并部署维基页面
 
 on:
   schedule:
-    - cron: '0 4 * * *'
+    - cron: '0 4 * * *' # 每天北京时间中午12点运行
   workflow_dispatch:
 
 jobs:
@@ -43,10 +43,26 @@ jobs:
       - name: 运行翻译脚本
         run: node translate.js
 
+      # --- 【新增步骤】 ---
+      # 这个步骤会检查 last_edit_info.json 文件是否有变动
+      # 如果有，就自动将其提交回你的仓库主分支
+      - name: 提交更新后的编辑信息记录
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          # 提交信息
+          commit_message: "ci: 更新页面最后编辑信息记录"
+          # 指定要提交的文件模式，这里我们只关心这一个文件
+          file_pattern: last_edit_info.json
+          # 提交者信息
+          commit_user_name: github-actions[bot]
+          commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
+          # 如果仓库中有受保护分支的规则，可能需要这个
+          commit_options: '--no-verify'
+
       - name: 部署到 GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./output
-          # 关键修改：设置为 true 来保留目标分支上的其他文件
+          # 这个设置保持不变，它只影响 gh-pages 分支
           keep_files: true
