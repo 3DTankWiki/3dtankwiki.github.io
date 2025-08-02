@@ -9,14 +9,10 @@ const path = require('path');
 
 // --- 【配置常量】 ---
 const BASE_URL ='https://en.tankiwiki.com';
-
-// 【修改】文本词典使用 URL
 const DICTIONARY_URL = 'https://testanki1.github.io/translations.js'; 
-
-// 【修改】图片词典使用本地文件
 const IMAGE_DICT_FILE = 'image_replacements.js'; 
-
-const OUTPUT_DIR = './output'; // 输出文件夹
+// 【删除】不再需要本地事实文件 const FACTS_FILE = 'facts.json'; 
+const OUTPUT_DIR = './output';
 
 // --- 【页面列表】 ---
 const PAGES_TO_TRANSLATE = [
@@ -28,8 +24,7 @@ const PAGES_TO_TRANSLATE = [
     'Help',
 ];
 
-// --- 1. 准备文本翻译词典 (从网络 URL) ---
-// 【修改】此函数恢复为从网络获取的异步版本
+// ... (getPreparedDictionary 和 getPreparedImageDictionary 函数保持不变) ...
 async function getPreparedDictionary() {
     console.log(`正在从 URL 获取文本词典: ${DICTIONARY_URL}`);
     let originalDict;
@@ -60,9 +55,6 @@ async function getPreparedDictionary() {
     return { fullDictionary, sortedKeys };
 }
 
-
-// --- 准备图片替换词典 (从本地文件) ---
-// 【修改】此函数保持从本地文件加载的同步版本
 function getPreparedImageDictionary() {
     const filePath = path.resolve(__dirname, IMAGE_DICT_FILE);
     console.log(`正在从本地文件加载图片词典: ${filePath}`);
@@ -125,7 +117,9 @@ async function translateTextWithEnglishCheck(textToTranslate) {
     }
 }
 
+
 // --- 5. 翻译单个页面的核心函数 ---
+// 【修改】删除 factsData 参数
 async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplacementMap) {
     let filename = '';
     try {
@@ -176,7 +170,52 @@ async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplace
     $('#mw-content-text .mw-parser-output').children().each(function() {
         $contentContainer.append($(this).clone());
     });
+    
+    // 【修改】处理“你知道吗”板块，注入客户端脚本
+    const $factBoxContent = $contentContainer.find('.random-text-box > div:last-child');
+    if ($factBoxContent.length > 0) {
+        // 替换为占位符，以便客户端脚本填充
+        $factBoxContent.html('<p id="dynamic-fact-placeholder" style="margin:0;">正在加载有趣的事实...</p>');
+        console.log(`[${filename}] 找到“你知道吗”板块并设置占位符。`);
+
+        // 创建注入脚本，该脚本将在客户端执行
+        const factScript = `
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const factsUrl = '/facts.json'; // 【重要】指定从服务器根目录获取文件
+        const placeholder = document.getElementById('dynamic-fact-placeholder');
+
+        if (placeholder) {
+            fetch(factsUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('网络响应错误，状态码: ' + response.status);
+                    }
+                    return response.json();
+                })
+                .then(facts => {
+                    if (facts && Array.isArray(facts) && facts.length > 0) {
+                        const randomIndex = Math.floor(Math.random() * facts.length);
+                        const randomFact = facts[randomIndex].cn;
+                        placeholder.innerHTML = randomFact;
+                    } else {
+                        placeholder.innerHTML = '暂时没有可显示的事实。';
+                    }
+                })
+                .catch(error => {
+                    console.error('加载或显示事实时出错:', error);
+                    placeholder.innerHTML = '加载事实失败，请稍后再试。';
+                });
+        }
+    });
+</script>`;
+        // 将脚本添加到 body 尾部
+        bodyEndScripts.push(factScript);
+        console.log(`[${filename}] 已准备用于客户端加载事实的脚本。`);
+    }
+
     const originalTitle = $('title').text() || filename;
+    // ... (后续的翻译逻辑保持不变) ...
     const preReplacedTitle = replaceTermsDirectly(originalTitle, fullDictionary, sortedKeys);
     let translatedTitle = await translateTextWithEnglishCheck(preReplacedTitle);
     translatedTitle = translatedTitle.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3');
@@ -216,10 +255,8 @@ async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplace
         }
     });
     const textNodes = [];
-    // 【修改】在这里添加判断逻辑，跳过特定元素内的文本节点
     $contentContainer.find('*:not(script,style)').addBack().contents().each(function() { 
         if (this.type === 'text' && this.data.trim()) {
-            // 如果当前文本节点的父元素是 <span class="hotkey">，则不将其加入翻译列表
             if ($(this).parent().is('span.hotkey')) {
                 // 不做任何事，直接跳过
             } else {
@@ -273,9 +310,8 @@ async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplace
 async function run() {
     console.log("--- 翻译任务开始 ---");
 
-    // 【修改】使用 Promise.all 来并行准备资源
-    // 它会等待 getPreparedDictionary (异步网络请求) 完成
-    // 同时 getPreparedImageDictionary (同步本地读取) 会立即返回值
+    // 【修改】不再需要读取本地 facts.json 文件
+    
     const [
         { fullDictionary, sortedKeys },
         imageReplacementMap
@@ -299,6 +335,7 @@ async function run() {
     console.log(`即将并行处理 ${PAGES_TO_TRANSLATE.length} 个页面...`);
     console.log(`==================================================`);
 
+    // 【修改】调用 translatePage 时不再传递 factsData
     const translationPromises = PAGES_TO_TRANSLATE.map(pageName => {
         const fullUrl = `${BASE_URL}/${pageName}`;
         return translatePage(fullUrl, fullDictionary, sortedKeys, imageReplacementMap)
