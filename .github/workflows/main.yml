@@ -19,10 +19,7 @@ jobs:
       - name: 设置 Node.js 环境
         uses: actions/setup-node@v4
         with:
-          # 关键修改：将 Node.js 版本从 18 升级到 20
           node-version: '20'
-          # 我们仍然不使用缓存，以确保环境的纯净
-          # cache: 'yarn' # 保持删除状态
 
       - name: 安装系统依赖
         run: |
@@ -51,3 +48,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./output
+          # 关键修改：设置为 true 来保留目标分支上的其他文件
+          keep_files: true
