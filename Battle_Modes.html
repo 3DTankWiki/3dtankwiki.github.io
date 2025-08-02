@@ -1,0 +1,545 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>战斗模式 - 3D坦克维基</title><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+    <meta charset="UTF-8">
+    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/DBIsSQ0s2djD_akThoRUDeHa/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-1WKYge3dK2/UTDzhSp5yz67wCBmi0z81tX6M3swiQAxIbgepbnchtTZFPr6x5sGi"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"df82f51a2f3941ed6203ffd5","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Battle_modes","wgTitle":"Battle modes","wgCurRevisionId":64459,"wgRevisionId":64459,"wgArticleId":492,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Battle_modes","wgRelevantArticleId":492,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgRedirectedFrom":"Battle_Modes","wgVisualEditor":{"pageLanguageCode":"en",
+"pageLanguageDir":"ltr","pageVariantFallbacks":"en"},"wgInternalRedirectTargetUrl":"/index.php?title=Battle_modes\u0026attempt=1","wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.visualEditor.desktopArticleTarget.noscript":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["mediawiki.action.view.redirect","site","mediawiki.page.ready","mediawiki.toc","ext.gadget.UTCLiveClock","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://en.tankiwiki.com/load.php?lang=en&amp;modules=ext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://en.tankiwiki.com/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <style>
+.mw-editfont-monospace{font-family:monospace,monospace}.mw-editfont-sans-serif{font-family:sans-serif}.mw-editfont-serif{font-family:serif} .mw-editfont-monospace,.mw-editfont-sans-serif,.mw-editfont-serif{  font-size:13px;  -moz-tab-size:4; tab-size:4; }.mw-editfont-monospace.oo-ui-textInputWidget,.mw-editfont-sans-serif.oo-ui-textInputWidget,.mw-editfont-serif.oo-ui-textInputWidget{font-size:inherit}.mw-editfont-monospace.oo-ui-textInputWidget > .oo-ui-inputWidget-input,.mw-editfont-sans-serif.oo-ui-textInputWidget > .oo-ui-inputWidget-input,.mw-editfont-serif.oo-ui-textInputWidget > .oo-ui-inputWidget-input{  font-size:13px}.mw-editfont-monospace.oo-ui-textInputWidget > input.oo-ui-inputWidget-input,.mw-editfont-sans-serif.oo-ui-textInputWidget > input.oo-ui-inputWidget-input,.mw-editfont-serif.oo-ui-textInputWidget > input.oo-ui-inputWidget-input{min-height:32px}
+.ve-init-mw-progressBarWidget{height:1em;overflow:hidden;margin:0 25%}.ve-init-mw-progressBarWidget-bar{height:1em;width:0} .ve-init-mw-progressBarWidget{background-color:#fff;box-sizing:border-box;height:0.875em;border:1px solid #36c;border-radius:0.875em;box-shadow:0 1px 1px rgba(0,0,0,0.15)}.ve-init-mw-progressBarWidget-bar{background-color:#36c;height:0.875em}
+@media screen {
+	.toctoggle{-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none;font-size:94%}}
+#mw-teleport-target{position:absolute;z-index:450}</style>
+    <style>
+.ve-init-mw-tempWikitextEditorWidget{border:0;padding:0;color:inherit;line-height:1.5em;width:100%;-moz-tab-size:4;tab-size:4; }.ve-init-mw-tempWikitextEditorWidget:focus{outline:0;padding:0}.ve-init-mw-tempWikitextEditorWidget::selection{background:rgba(109,169,247,0.5); }</style>
+    <style>
+.ve-active .ve-init-mw-desktopArticleTarget-targetContainer #siteNotice,.ve-active .mw-indicators,.ve-active #t-print,.ve-active #t-permalink,.ve-active #p-coll-print_export,.ve-active #t-cite,.ve-active .ve-init-mw-desktopArticleTarget-editableContent,.ve-active .ve-init-mw-tempWikitextEditorWidget{display:none}.ve-deactivating .ve-ui-surface{display:none}.ve-activating{ }.ve-activating .ve-ui-surface{height:0;padding:0 !important; overflow:hidden} .ve-loading .ve-init-mw-desktopArticleTarget-targetContainer > :not(.ve-init-mw-desktopArticleTarget-toolbarPlaceholder):not(.ve-init-mw-desktopArticleTarget),.ve-loading .ve-init-mw-desktopArticleTarget-originalContent,.ve-activated:not(.ve-loading) .ve-init-mw-desktopArticleTarget-uneditableContent{pointer-events:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;opacity:0.5}.ve-activated .ve-init-mw-desktopArticleTarget-targetContainer #firstHeading{ -webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;pointer-events:auto;cursor:text}.ve-activated .ve-init-mw-desktopArticleTarget-targetContainer #firstHeading a{ pointer-events:none}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks{cursor:pointer}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks:hover{ background:#e9f2fd}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks a{opacity:1} .ve-init-mw-desktopArticleTarget-loading-overlay{z-index:2;position:absolute;width:100%;top:1em}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder{overflow:hidden;transition:height 250ms ease;height:0;padding-bottom:2px; }.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{transform:translateY(-100%);transition:transform 250ms ease}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-open .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{transform:translateY(0)}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating{transition:none}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{position:fixed;top:0;z-index:1;background:#fff} .oo-ui-element-hidden{display:none !important; } .mw-editsection{ unicode-bidi:-moz-isolate;unicode-bidi:-webkit-isolate;unicode-bidi:isolate}.mw-editsection::before{content:'\200B'}.mw-editsection a{white-space:nowrap}.mw-editsection-divider{color:#54595d} .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{height:42px;border-bottom:1px solid #c8ccd1;box-shadow:0 1px 1px 0 rgba(0,0,0,0.1)}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating,.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-open{height:42px}</style>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://en.tankiwiki.com/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta property="og:image" content="https://en.tankiwiki.com/images/en/b/b9/Cp_mode.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    <meta property="og:image" content="https://en.tankiwiki.com/images/en/b/b9/Cp_mode.png">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="800">
+    <meta property="og:image:width" content="640">
+    <meta property="og:image:height" content="640">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://en.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://en.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (en)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://en.tankiwiki.com/api.php?action=rsd">
+    <link rel="canonical" href="https://en.tankiwiki.com/Battle_modes">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki Atom feed" href="https://en.tankiwiki.com/index.php?title=Special:RecentChanges&amp;feed=atom">
+    <style>#utcdate a { font-weight:bolder; font-size:120%; }</style><style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Battle_modes rootpage-Battle_modes skin-tankiblue action-view"><div id="mw-main-container"><a href="./Tanki_Online_Wiki.html" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">返回主页</a><div class="main-content"><div class="mw-body ve-init-mw-desktopArticleTarget-targetContainer" id="content" role="main"><a id="top"></a><div class="mw-body-content" id="bodyContent"><div id="siteNotice"></div><div id="mw-content-text" class="mw-content-ltr mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">战斗模式</h1><div class="dablink"><em>另见</em>:<a href="./Maps.html" title="地图">地图</a>
+</div><div class="modules_list">
+<ul><li><span class="mw-default-size" typeof="mw:File"><a href="./Control_Points.html" title="控制点"><img src="https://en.tankiwiki.com/images/en/b/b9/Cp_mode.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./Siege_Mode.html" title="Siege Mode"><img src="https://en.tankiwiki.com/images/en/5/54/SGE_icon.png" decoding="async" loading="lazy" width="1500" height="1500" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./Team_Juggernaut.html" title="团队剑圣"><img src="https://en.tankiwiki.com/images/en/4/45/Double_JGR_Icon.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./Team_Deathmatch.html" title="团队对战"><img src="https://en.tankiwiki.com/images/en/6/6f/Tdm_mode.png" decoding="async" loading="lazy" width="512" height="523" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./Rugby.html" title="橄榄球"><img src="https://en.tankiwiki.com/images/en/7/79/RGB_mode.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./Capture_the_Flag.html" title="互夺军旗"><img src="https://en.tankiwiki.com/images/en/6/6c/Ctf_mode.png" decoding="async" loading="lazy" width="512" height="480" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./Assault_(battle_mode).html" title="突袭 (战斗模式)"><img src="https://en.tankiwiki.com/images/en/b/b1/ASL_mode.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./Deathmatch.html" title="死亡混战"><img src="https://en.tankiwiki.com/images/en/2/20/Dm_mode.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./Solo_Juggernaut.html" title="Solo 剑圣"><img src="https://en.tankiwiki.com/images/en/5/57/JGR_mode.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./Arms_Race.html" title="军备竞赛"><img src="https://en.tankiwiki.com/images/en/6/6c/AR_Icon.png" decoding="async" loading="lazy" width="204" height="204" class="mw-file-element"></a></span></li></ul>
+</div><p>战斗模式（也称为游戏模式）是可以在3D坦克中使用的不同游戏变体。它们决定了各自的游戏目标：夺旗、得分、消灭对手等等。在<a href="./Matchmaking_System.html" title="匹配系统">匹配</a>系统确定战斗模式，<a href="./Maps.html" title="地图">地图</a>和<a href="./Format_Battles.html" title="格式战斗">战斗格式</a>; 在<a href="https://en.tankiwiki.com/Format_Battles#%C2%ABPRO_Battles%C2%BB_format" title="格式战斗">专家战场</a>玩家自己完成这个。<br><br>以下战斗模式可用：<br>
+</p><table class="wikitable-modern white-table">
+
+<tbody><tr class="wikitable-header">
+<td width="220px">
+</td>
+<td><span typeof="mw:File"><a href="./Control_Points.html" title="控制点"><img src="https://en.tankiwiki.com/images/en/thumb/b/b9/Cp_mode.png/28px-Cp_mode.png" decoding="async" loading="lazy" width="28" height="28" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/b/b9/Cp_mode.png/42px-Cp_mode.png 1.5x, https://en.tankiwiki.com/images/en/thumb/b/b9/Cp_mode.png/56px-Cp_mode.png 2x"></a></span><br><a href="./Control_Points.html" title="控制点">控制点</a>
+</td>
+<td><span typeof="mw:File"><a href="./Siege_Mode.html" title="围攻模式"><img src="https://en.tankiwiki.com/images/en/thumb/5/54/SGE_icon.png/28px-SGE_icon.png" decoding="async" loading="lazy" width="28" height="28" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/5/54/SGE_icon.png/42px-SGE_icon.png 1.5x, https://en.tankiwiki.com/images/en/thumb/5/54/SGE_icon.png/56px-SGE_icon.png 2x"></a></span><br><a href="./Siege_Mode.html" title="围攻模式">围城大战</a>
+</td>
+<td><span typeof="mw:File"><a href="./Team_Juggernaut.html" title="团队剑圣"><img src="https://en.tankiwiki.com/images/en/thumb/4/45/Double_JGR_Icon.png/28px-Double_JGR_Icon.png" decoding="async" loading="lazy" width="28" height="28" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/4/45/Double_JGR_Icon.png/42px-Double_JGR_Icon.png 1.5x, https://en.tankiwiki.com/images/en/thumb/4/45/Double_JGR_Icon.png/56px-Double_JGR_Icon.png 2x"></a></span><br><a href="./Team_Juggernaut.html" title="团队剑圣">团队剑圣</a>
+</td>
+<td><span typeof="mw:File"><a href="./Team_Deathmatch.html" title="团队对战"><img src="https://en.tankiwiki.com/images/en/thumb/6/6f/Tdm_mode.png/28px-Tdm_mode.png" decoding="async" loading="lazy" width="28" height="29" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/6/6f/Tdm_mode.png/42px-Tdm_mode.png 1.5x, https://en.tankiwiki.com/images/en/thumb/6/6f/Tdm_mode.png/56px-Tdm_mode.png 2x"></a></span><br><a href="./Team_Deathmatch.html" title="团队对战">团队对战</a>
+</td>
+<td><span typeof="mw:File"><a href="./Rugby.html" title="橄榄球"><img src="https://en.tankiwiki.com/images/en/thumb/7/79/RGB_mode.png/28px-RGB_mode.png" decoding="async" loading="lazy" width="28" height="28" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/79/RGB_mode.png/42px-RGB_mode.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/79/RGB_mode.png/56px-RGB_mode.png 2x"></a></span><br><a href="./Rugby.html" title="橄榄球">橄榄球</a>
+</td>
+<td><span typeof="mw:File"><a href="./Capture_the_Flag.html" title="互夺军旗"><img src="https://en.tankiwiki.com/images/en/thumb/6/6c/Ctf_mode.png/28px-Ctf_mode.png" decoding="async" loading="lazy" width="28" height="26" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/6/6c/Ctf_mode.png/42px-Ctf_mode.png 1.5x, https://en.tankiwiki.com/images/en/thumb/6/6c/Ctf_mode.png/56px-Ctf_mode.png 2x"></a></span><br><a href="./Capture_the_Flag.html" title="互夺军旗">互夺军旗</a>
+</td>
+<td><span typeof="mw:File"><a href="./Assault_(battle_mode).html" title="突袭 (战斗模式)"><img src="https://en.tankiwiki.com/images/en/thumb/b/b1/ASL_mode.png/28px-ASL_mode.png" decoding="async" loading="lazy" width="28" height="28" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/b/b1/ASL_mode.png/42px-ASL_mode.png 1.5x, https://en.tankiwiki.com/images/en/thumb/b/b1/ASL_mode.png/56px-ASL_mode.png 2x"></a></span><br><a href="./Assault_(battle_mode).html" title="突袭 (战斗模式)">突袭</a>
+</td>
+<td><span typeof="mw:File"><a href="./Deathmatch.html" title="死亡混战"><img src="https://en.tankiwiki.com/images/en/thumb/2/20/Dm_mode.png/28px-Dm_mode.png" decoding="async" loading="lazy" width="28" height="28" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/2/20/Dm_mode.png/42px-Dm_mode.png 1.5x, https://en.tankiwiki.com/images/en/thumb/2/20/Dm_mode.png/56px-Dm_mode.png 2x"></a></span><br><a href="./Deathmatch.html" title="死亡混战">死亡混战</a>
+</td>
+<td><span typeof="mw:File"><a href="./Solo_Juggernaut.html" title="Solo 剑圣"><img src="https://en.tankiwiki.com/images/en/thumb/5/57/JGR_mode.png/28px-JGR_mode.png" decoding="async" loading="lazy" width="28" height="28" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/5/57/JGR_mode.png/42px-JGR_mode.png 1.5x, https://en.tankiwiki.com/images/en/thumb/5/57/JGR_mode.png/56px-JGR_mode.png 2x"></a></span><br><a href="./Solo_Juggernaut.html" title="Solo 剑圣">SJR</a>
+</td>
+<td><span typeof="mw:File"><a href="./Arms_Race.html" title="军备竞赛"><img src="https://en.tankiwiki.com/images/en/thumb/6/6c/AR_Icon.png/28px-AR_Icon.png" decoding="async" loading="lazy" width="28" height="28" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/6/6c/AR_Icon.png/42px-AR_Icon.png 1.5x, https://en.tankiwiki.com/images/en/thumb/6/6c/AR_Icon.png/56px-AR_Icon.png 2x"></a></span><br><a href="./Arms_Race.html" title="军备竞赛">军备竞赛</a>
+</td></tr>
+<tr>
+<td><a href="./Matchmaking_System.html" title="匹配系统">匹配</a>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/2f/Plus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/2f/Plus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/2f/Plus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/2f/Plus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/2f/Plus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/2f/Plus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/2f/Plus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/e/ee/Minus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/e/ee/Minus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/e/ee/Minus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td></tr>
+<tr>
+<td><a href="./PRO_Battles.html" title="专家战场">专家战场</a>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/2f/Plus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/2f/Plus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/e/ee/Minus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/2f/Plus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/2f/Plus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/2f/Plus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/2f/Plus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/2f/Plus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/e/ee/Minus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/e/ee/Minus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td></tr>
+<tr>
+<td><a href="#List_of_special_modes">活动格式</a>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/2f/Plus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/2f/Plus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/2f/Plus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/2f/Plus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/2f/Plus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/2f/Plus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/2f/Plus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/2f/Plus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/2f/Plus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/2f/Plus.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td></tr></tbody></table><p><br>
+</p><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">内容</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Standard_modes"><span class="tocnumber">1</span> <span class="toctext">标准模式</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Control_Points_(CP)"><span class="tocnumber">1.1</span> <span class="toctext">控制点 (控制点)</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Siege_(SGE)"><span class="tocnumber">1.2</span> <span class="toctext">围城大战</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Team_Juggernaut_(TJR)"><span class="tocnumber">1.3</span> <span class="toctext">团队剑圣 (团队剑圣)</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Team_Deathmatch_(TDM)"><span class="tocnumber">1.4</span> <span class="toctext">团队对战 (团队对战)</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Rugby_(RGB)"><span class="tocnumber">1.5</span> <span class="toctext">橄榄球 (橄榄球)</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Capture_the_Flag_(CTF)"><span class="tocnumber">1.6</span> <span class="toctext">互夺军旗 (互夺军旗)</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Assault_(ASL)"><span class="tocnumber">1.7</span> <span class="toctext">突袭 (突袭)</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Deathmatch_(DM)"><span class="tocnumber">1.8</span> <span class="toctext">死亡混战 (死亡混战)</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="#Special_Modes"><span class="tocnumber">2</span> <span class="toctext">特殊模式</span></a>
+<ul>
+<li class="toclevel-2 tocsection-11"><a href="#Solo_juggernaut_(SJR)"><span class="tocnumber">2.1</span> <span class="toctext">Solo 剑圣 (SJR)</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#Arms_Race_(AR)"><span class="tocnumber">2.2</span> <span class="toctext">军备竞赛 (军备竞赛)</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-13"><a href="#List_of_special_modes"><span class="tocnumber">3</span> <span class="toctext">特殊模式列表</span></a></li>
+</ul>
+</div><h2><span class="mw-headline" id="Standard_modes">标准模式</span></h2><div class="img__container" style="float:right;clear:right;width:160pxpx;"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/6/68/MmPlayButton.png/160px-MmPlayButton.png" decoding="async" loading="lazy" width="160" height="78" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/6/68/MmPlayButton.png/240px-MmPlayButton.png 1.5x, https://en.tankiwiki.com/images/en/thumb/6/68/MmPlayButton.png/320px-MmPlayButton.png 2x"></span></span></div><p>标准模式在游戏中永久开放。在这些格式中的战斗可以在匹配战斗中找到，或在玩家创建的专家战场中。</p><p><br>
+</p><h4><span id="Control_Points_.28CP.29"></span><span class="mw-headline" id="Control_Points_(CP)">控制点 (<a href="./Control_Points.html" title="控制点">控制点</a>)</span></h4><div style="display: flex;">
+<div style="padding-right: 10px; min-width: 100px; box-sizing: content-box;">
+<p><span typeof="mw:File"><a href="./Control_Points.html" title="控制点"><img src="https://en.tankiwiki.com/images/en/thumb/b/b9/Cp_mode.png/50px-Cp_mode.png" decoding="async" loading="lazy" width="50" height="50" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/b/b9/Cp_mode.png/75px-Cp_mode.png 1.5x, https://en.tankiwiki.com/images/en/thumb/b/b9/Cp_mode.png/100px-Cp_mode.png 2x"></a></span>
+</p>
+</div>
+<div>
+<p>团队争夺地图上的某些点位。团队定期因为占领这些点而获得积分，同时也会从敌人那里夺走点数。捕获的点数越多，获得积分的速度就越快，而对手失去积分的速度也会更快。获得比对手更多积分的团队获胜。在控制点模式中，占点的速度非常快。团队可以选择用重型坦克防守点位的战术，也可以选择用轻型坦克快速占领点位的战术。在这个模式下，重要的是要记住，团队只有在占领点时才能获得积分。消灭敌方团队有助于占领或夺取点位，但不应是主要目标。控制点模式的游戏时间有限，要么受限于一定的积分，要么受限于时间。<br><br>该模式在等级的匹配中可用<span typeof="mw:File"><a href="./Recruit.html" title="新兵"><img src="https://en.tankiwiki.com/images/en/thumb/6/64/IconsNormal_01.png/25px-IconsNormal_01.png" decoding="async" loading="lazy" width="25" height="24" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/6/64/IconsNormal_01.png/38px-IconsNormal_01.png 1.5x, https://en.tankiwiki.com/images/en/thumb/6/64/IconsNormal_01.png/50px-IconsNormal_01.png 2x"></a></span> <a href="./Recruit.html" title="新兵">新兵</a>.</p>
+</div>
+</div><h4><span id="Siege_.28SGE.29"></span><span class="mw-headline" id="Siege_(SGE)">围攻（<a href="./Siege.html" title="围攻">围城大战</a>)</span></h4><div style="display: flex;">
+<div style="padding-right: 10px; min-width: 100px; box-sizing: content-box;">
+<p><span typeof="mw:File"><a href="./Siege.html" title="围攻"><img src="https://en.tankiwiki.com/images/en/thumb/5/54/SGE_icon.png/50px-SGE_icon.png" decoding="async" loading="lazy" width="50" height="50" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/5/54/SGE_icon.png/75px-SGE_icon.png 1.5x, https://en.tankiwiki.com/images/en/thumb/5/54/SGE_icon.png/100px-SGE_icon.png 2x"></a></span>
+</p>
+</div>
+<div>
+<p>地图上有几个非活跃的点捕获动感区域。团队争夺这些随机选择的点之一的控制权。只有当敌方团队的玩家没有占领该点时，才能捕获一个点。每个被捕获的点为团队带来1分。围城大战模式的游戏要么限定在一定数量的点，要么按照时间限制。<br><br>该模式在等级的匹配中可用<span typeof="mw:File"><a href="./Private.html" title="二等兵"><img src="https://en.tankiwiki.com/images/en/thumb/9/91/IconsNormal_02.png/25px-IconsNormal_02.png" decoding="async" loading="lazy" width="25" height="24" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/9/91/IconsNormal_02.png/38px-IconsNormal_02.png 1.5x, https://en.tankiwiki.com/images/en/thumb/9/91/IconsNormal_02.png/50px-IconsNormal_02.png 2x"></a></span> <a href="./Private.html" title="二等兵">二等兵</a>.</p>
+</div>
+</div><h4><span id="Team_Juggernaut_.28TJR.29"></span><span class="mw-headline" id="Team_Juggernaut_(TJR)">团队剑圣 (<a href="./Team_Juggernaut.html" title="团队剑圣">团队剑圣</a>)</span></h4><div style="display: flex;">
+<div style="padding-right: 10px; min-width: 100px; box-sizing: content-box;">
+<p><span typeof="mw:File"><a href="./Team_Juggernaut.html" title="团队剑圣"><img src="https://en.tankiwiki.com/images/en/thumb/4/45/Double_JGR_Icon.png/50px-Double_JGR_Icon.png" decoding="async" loading="lazy" width="50" height="50" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/4/45/Double_JGR_Icon.png/75px-Double_JGR_Icon.png 1.5x, https://en.tankiwiki.com/images/en/thumb/4/45/Double_JGR_Icon.png/100px-Double_JGR_Icon.png 2x"></a></span>
+</p>
+</div>
+<div>
+<p>类似于<a href="https://en.tankiwiki.com/Team_Juggernaut#Solo_Juggernaut" title="团队剑圣">Solo 剑圣</a>模式，但现在有两个！每个团队中有一个坦克手控制一个<a href="https://en.tankiwiki.com/Team_Juggernaut#Juggernaut_Tank" title="团队剑圣">独特的«剑圣»坦克</a>当一名剑圣被摧毁时，超级坦克会转移到下一个去复活的队友那里（自我摧毁的除外）。每摧毁一名敌方剑圣，团队将获得1分。每个团队的目标是比对手摧毁敌方剑圣更多次。战斗受到一定分数或时间的限制。<br><br>该模式在等级的匹配中可用<span typeof="mw:File"><a href="./Gefreiter.html" title="一等兵"><img src="https://en.tankiwiki.com/images/en/thumb/2/20/IconsNormal_03.png/25px-IconsNormal_03.png" decoding="async" loading="lazy" width="25" height="24" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/2/20/IconsNormal_03.png/38px-IconsNormal_03.png 1.5x, https://en.tankiwiki.com/images/en/thumb/2/20/IconsNormal_03.png/50px-IconsNormal_03.png 2x"></a></span> <a href="./Gefreiter.html" title="一等兵">一等兵</a>.</p>
+</div>
+</div><h4><span id="Team_Deathmatch_.28TDM.29"></span><span class="mw-headline" id="Team_Deathmatch_(TDM)">团队对战 (<a href="./Team_Deathmatch.html" title="团队对战">团队对战</a>)</span></h4><div style="display: flex;">
+<div style="padding-right: 10px; min-width: 100px; box-sizing: content-box;">
+<p><span typeof="mw:File"><a href="./Team_Deathmatch.html" title="团队对战"><img src="https://en.tankiwiki.com/images/en/thumb/6/6f/Tdm_mode.png/50px-Tdm_mode.png" decoding="async" loading="lazy" width="50" height="51" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/6/6f/Tdm_mode.png/75px-Tdm_mode.png 1.5x, https://en.tankiwiki.com/images/en/thumb/6/6f/Tdm_mode.png/100px-Tdm_mode.png 2x"></a></span>
+</p>
+</div>
+<div>
+<p>游戏中最简单的模式之一。任务是摧毁比对方团队更多的坦克。团队对战模式的游戏数量有限，取决于数量。<a href="https://en.tankiwiki.com/Dictionary_for_players#F" title="玩家的词典">碎片</a>或按时间。每个坦克手都对结果负责，因为他的表现的熟练程度和准确性直接影响比赛的最终分数以及战斗获胜者的命运。<br><br>该模式在等级的匹配中可用<span typeof="mw:File"><a href="./Corporal.html" title="下士"><img src="https://en.tankiwiki.com/images/en/thumb/d/d6/IconsNormal_04.png/25px-IconsNormal_04.png" decoding="async" loading="lazy" width="25" height="24" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/d/d6/IconsNormal_04.png/38px-IconsNormal_04.png 1.5x, https://en.tankiwiki.com/images/en/thumb/d/d6/IconsNormal_04.png/50px-IconsNormal_04.png 2x"></a></span> <a href="./Corporal.html" title="下士">下士</a>.</p>
+</div>
+</div><h4><span id="Rugby_.28RGB.29"></span><span class="mw-headline" id="Rugby_(RGB)">橄榄球 (<a href="./Rugby.html" title="橄榄球">橄榄球</a>)</span></h4><div style="display: flex;">
+<div style="padding-right: 10px; min-width: 100px; box-sizing: content-box;">
+<p><span typeof="mw:File"><a href="./Rugby.html" title="橄榄球"><img src="https://en.tankiwiki.com/images/en/thumb/7/79/RGB_mode.png/50px-RGB_mode.png" decoding="async" loading="lazy" width="50" height="50" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/79/RGB_mode.png/75px-RGB_mode.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/79/RGB_mode.png/100px-RGB_mode.png 2x"></a></span>
+</p>
+</div>
+<div>
+<p>地图上有两个基地，属于不同的团队，还有几个掉落动态区域。一颗球通过 parachute 随机掉入这些区域中的一个（以及一些道具箱）。每个团队的任务是捡起球并将其送到对方的基地。如果一个玩家传球给球，但在一定时间内没有人捡起它，那么球会在一段时间后消失。这个模式的亮点是能够将球传递给另一个玩家（钥匙）<span class="hotkey">R</span>). 球朝着你的炮塔指向的方向飞翔。因此，你可以将球越过低障碍物或敌军坦克。团队通过送达球获得1分。战斗的限制取决于送达的球的数量（“进球”）或时间。<br><br>该模式在等级的匹配中可用<span typeof="mw:File"><a href="./Master_Corporal.html" title="中士"><img src="https://en.tankiwiki.com/images/en/thumb/5/51/IconsNormal_05.png/25px-IconsNormal_05.png" decoding="async" loading="lazy" width="25" height="24" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/5/51/IconsNormal_05.png/38px-IconsNormal_05.png 1.5x, https://en.tankiwiki.com/images/en/thumb/5/51/IconsNormal_05.png/50px-IconsNormal_05.png 2x"></a></span> <a href="./Master_Corporal.html" title="中士">中士</a>.</p>
+</div>
+</div><h4><span id="Capture_the_Flag_.28CTF.29"></span><span class="mw-headline" id="Capture_the_Flag_(CTF)">互夺军旗 (<a href="./Capture_the_Flag.html" title="互夺军旗">互夺军旗</a>)</span></h4><div style="display: flex;">
+<div style="padding-right: 10px; min-width: 100px; box-sizing: content-box;">
+<p><span typeof="mw:File"><a href="./Capture_the_Flag.html" title="互夺军旗"><img src="https://en.tankiwiki.com/images/en/thumb/6/6c/Ctf_mode.png/50px-Ctf_mode.png" decoding="async" loading="lazy" width="50" height="47" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/6/6c/Ctf_mode.png/75px-Ctf_mode.png 1.5x, https://en.tankiwiki.com/images/en/thumb/6/6c/Ctf_mode.png/100px-Ctf_mode.png 2x"></a></span>
+</p>
+</div>
+<div>
+<p>经典团队战斗模式。每个团队的目标是将敌人的旗帜比对手更频繁地送回自己的基地。要成功交付，您必须将旗帜带到基地的旗杆上，并且您的旗帜必须放置到位。互夺军旗模式的游戏限制在交付的旗帜数量或时间上。奖励根据每个玩家获得的积分按比例分配。积分可以通过摧毁敌人和治疗友方坦克，以及参与移除和返回旗帜获得。<br><br>该模式在等级的匹配中可用<span typeof="mw:File"><a href="./Sergeant.html" title="上士"><img src="https://en.tankiwiki.com/images/en/thumb/5/57/IconsNormal_06.png/25px-IconsNormal_06.png" decoding="async" loading="lazy" width="25" height="24" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/5/57/IconsNormal_06.png/38px-IconsNormal_06.png 1.5x, https://en.tankiwiki.com/images/en/thumb/5/57/IconsNormal_06.png/50px-IconsNormal_06.png 2x"></a></span> <a href="./Sergeant.html" title="上士">上士</a>.</p>
+</div>
+</div><h4><span id="Assault_.28ASL.29"></span><span class="mw-headline" id="Assault_(ASL)">突袭 (<a href="./Assault_(battle_mode).html" title="突袭 (战斗模式)">突袭</a>)</span></h4><div style="display: flex;">
+<div style="padding-right: 10px; min-width: 100px; box-sizing: content-box;">
+<p><span typeof="mw:File"><a href="./Assault_(battle_mode).html" title="突袭 (战斗模式)"><img src="https://en.tankiwiki.com/images/en/thumb/b/b1/ASL_mode.png/50px-ASL_mode.png" decoding="async" loading="lazy" width="50" height="50" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/b/b1/ASL_mode.png/75px-ASL_mode.png 1.5x, https://en.tankiwiki.com/images/en/thumb/b/b1/ASL_mode.png/100px-ASL_mode.png 2x"></a></span>
+</p>
+</div>
+<div>
+<p>不对称战斗模式，每个团队都有自己的任务。当你为红方（进攻方）玩时，你必须将旗子传送到对方的据点。旗子只能由红方的玩家拿取。当你为蓝方（防守方）玩时，你必须守住据点，防止进攻方传送旗子。红方每传送一面旗子得20分，蓝方每摧毁一辆敌方坦克得1分。闪击模式的游戏受限于某个点数或时间。<br><br>该模式在等级的匹配中可用<span typeof="mw:File"><a href="./Staff_Sergeant.html" title="三级军士长"><img src="https://en.tankiwiki.com/images/en/thumb/5/53/IconsNormal_07.png/25px-IconsNormal_07.png" decoding="async" loading="lazy" width="25" height="24" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/5/53/IconsNormal_07.png/38px-IconsNormal_07.png 1.5x, https://en.tankiwiki.com/images/en/thumb/5/53/IconsNormal_07.png/50px-IconsNormal_07.png 2x"></a></span> <a href="./Staff_Sergeant.html" title="三级军士长">三级军士长</a>.</p>
+</div>
+</div><h4><span id="Deathmatch_.28DM.29"></span><span class="mw-headline" id="Deathmatch_(DM)">死亡混战 (<a href="./Deathmatch.html" title="死亡混战">死亡混战</a>)</span></h4><div class="alert">
+  <div class="icon"></div>
+  <div class="text"><b>注意！</b>这个模式可用在<b>匹配</b>当没有其他活动模式处于激活状态时。某些<a class="mw-selflink-fragment" href="#List_of_special_modes">特殊活动模式</a>具有独特设置的内容也可以在死亡混战战斗模式中播放。它总是可以使用。<a href="./PRO_Battles.html" title="专家战场">专家战场</a>.</div>
+</div><div style="display: flex;">
+<div style="padding-right: 10px; min-width: 100px; box-sizing: content-box;">
+<p><span typeof="mw:File"><a href="https://en.tankiwiki.com/File:Dm_mode.png" class="mw-file-description" title="死亡混战"><img alt="死亡混战" src="https://en.tankiwiki.com/images/en/thumb/2/20/Dm_mode.png/50px-Dm_mode.png" decoding="async" loading="lazy" width="50" height="50" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/2/20/Dm_mode.png/75px-Dm_mode.png 1.5x, https://en.tankiwiki.com/images/en/thumb/2/20/Dm_mode.png/100px-Dm_mode.png 2x"></a></span>
+</p>
+</div>
+<div>
+<p>目标是摧毁尽可能多的对手。与团队战斗不同，在死亡混战中，一切完全依赖于玩家。死亡混战中的奖励迅速增长，因为红队无处不在，这意味着你不需要去任何地方——在大多数地图上，你可以立即开火。<a href="https://en.tankiwiki.com/Dictionary_for_players#P" title="玩家的词典">重生</a>. 这个模式常常被简单称为 «<a href="https://en.tankiwiki.com/Dictionary_for_players#M" title="玩家的词典">肉</a>». 在死亡混战模式中的游戏受限于被摧毁的坦克数量（击杀数）或时间。</p>
+</div>
+</div><h2><span class="mw-headline" id="Special_Modes">特殊模式</span></h2><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text"><b>注意！</b>在<b>匹配</b>这些模式的战斗出现了<b>仅仅</b>在各种节日活动中。</div>
+</div><p><br>有时候在3D坦克中会有特殊活动，你可以参与特殊战斗。这种模式非常令人兴奋、有趣，有时也非常独特！</p><h4><span id="Solo_juggernaut_.28SJR.29"></span><span class="mw-headline" id="Solo_juggernaut_(SJR)">Solo 剑圣 (<a href="./Solo_Juggernaut.html" title="Solo 剑圣">SJR</a>)</span></h4><div style="display: flex;">
+<div style="padding-right: 10px; min-width: 100px; box-sizing: content-box;">
+<p><span typeof="mw:File"><a href="./Solo_Juggernaut.html" title="Solo 剑圣"><img src="https://en.tankiwiki.com/images/en/thumb/5/57/JGR_mode.png/50px-JGR_mode.png" decoding="async" loading="lazy" width="50" height="50" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/5/57/JGR_mode.png/75px-JGR_mode.png 1.5x, https://en.tankiwiki.com/images/en/thumb/5/57/JGR_mode.png/100px-JGR_mode.png 2x"></a></span>
+</p>
+</div>
+<div>
+<p>一名坦克手控制着独特的超级坦克«剑圣». 在战斗开始时，剑圣的角色会分配给地图上首先加载的随机参与者。消灭剑圣的玩家将控制超级坦克。依此类推。当剑圣进行一系列击杀时，屏幕顶部会出现消息，并伴随相应的声音。</p>
+</div>
+</div><h4><span id="Arms_Race_.28AR.29"></span><span class="mw-headline" id="Arms_Race_(AR)">军备竞赛 (<a href="./Arms_Race.html" title="军备竞赛">军备竞赛</a>)</span></h4><div style="display: flex;">
+<div style="padding-right: 10px; min-width: 100px; box-sizing: content-box;">
+<p><span typeof="mw:File"><a href="./Arms_Race.html" title="军备竞赛"><img src="https://en.tankiwiki.com/images/en/thumb/6/6c/AR_Icon.png/50px-AR_Icon.png" decoding="async" loading="lazy" width="50" height="50" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/6/6c/AR_Icon.png/75px-AR_Icon.png 1.5x, https://en.tankiwiki.com/images/en/thumb/6/6c/AR_Icon.png/100px-AR_Icon.png 2x"></a></span>
+</p>
+</div>
+<div>
+<p>在战斗开始时，无论车库中装备的武器如何，玩家都将以已安装的维京底盘和轰天炮炮塔开始战斗。每杀死3个敌人，玩家将根据这些炮塔添加到游戏中的历史顺序获得一个新的炮塔。在战斗结束时，玩家将获得一个独特的B0-NK炮塔。当地图上的第一个玩家到达新的炮塔时，屏幕上会出现一条铭文，指示他的等级提升。战斗在玩家摧毁7个目标后结束。<a href="./B0-NK.html" title="B0-NK">B0-NK</a>有一种被称为模式的替代版本<a href="./Arms_Race.html" title="军备竞赛">" 团队军备竞赛 "</a>两个团队使用相同的概念互相竞争。</p>
+</div>
+</div><h2><span class="mw-headline" id="List_of_special_modes">特殊模式列表</span></h2><div>
+<p>在 "3D坦克" 中，各种活动格式偶尔会出现在标准战斗模式中，有时也会出现在特殊模式中。通常，获得金箱子的几率会增加，特殊武器会有限制，或者炮塔和底盘会有独特设置。</p><p>当没有其他活动模式时，死亡混战模式默认为活动模式。</p>
+</div><div class="footnote warning">
+<div class="footnote_title">注意</div>
+<div class="footnote_text">特殊模式的所有参数都是近似值，可能会在活动之间有所变化。</div>
+</div><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample1">特殊模式列表</div><div class="collapse" id="collapseExample1"><div class="">
+<table class="wikitable-modern first-column-center default" style="width:100%">
+
+<tbody><tr class="wikitable-header wikitable-title-center">
+<td style="width:15%">标题</td>
+<td style="width:25%">描述</td>
+<td style="width:10%">模式</td>
+<td style="width:20%">增加的频率<br>的金箱子</td>
+<td style="width:13%">炮塔</td>
+<td style="width:12%">底盘</td></tr>
+<tr>
+<td>死亡混战</td>
+<td>标准死亡混战，默认启用，除非其他活动模式处于激活状态</td>
+<td>死亡混战</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/7/79/Group1.png" decoding="async" loading="lazy" width="16" height="12" class="mw-file-element"></span></span>
+</td>
+<td>任何</td>
+<td>任何</td></tr>
+<tr>
+<td>剑圣</td>
+<td>标准 JGR 模式</td>
+<td>JGR</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/7/79/Group1.png" decoding="async" loading="lazy" width="16" height="12" class="mw-file-element"></span></span>
+</td>
+<td>任何</td>
+<td>任何</td></tr>
+<tr>
+<td>淘金热</td>
+<td>标准死亡混战模式与金箱子抓取</td>
+<td>死亡混战</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/27/Vector.png" decoding="async" loading="lazy" width="19" height="12" class="mw-file-element"></span></span>
+</td>
+<td>任何</td>
+<td>任何</td></tr>
+<tr>
+<td>传奇淘金热</td>
+<td>死亡混战模式，抓取金箱子，没有过速装置</td>
+<td>死亡混战</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/27/Vector.png" decoding="async" loading="lazy" width="19" height="12" class="mw-file-element"></span></span>
+</td>
+<td>任何</td>
+<td>任何</td></tr>
+<tr>
+<td>榴弹兵</td>
+<td>团队对战模式与手榴弹</td>
+<td>团队对战</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/27/Vector.png" decoding="async" loading="lazy" width="19" height="12" class="mw-file-element"></span></span>
+</td>
+<td>任何</td>
+<td>任何</td></tr>
+<tr>
+<td>龙之黄金</td>
+<td>金箱子，但其中一个剑圣玩家</td>
+<td>JGR</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/27/Vector.png" decoding="async" loading="lazy" width="19" height="12" class="mw-file-element"></span></span>
+</td>
+<td>任何</td>
+<td>任何</td></tr>
+<tr>
+<td>铁道大师</td>
+<td>蜂王和铁路</td>
+<td>互夺军旗</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/7/79/Group1.png" decoding="async" loading="lazy" width="16" height="12" class="mw-file-element"></span></span>
+</td>
+<td>激光炮</td>
+<td>蜂王</td></tr>
+<tr>
+<td>拦截器</td>
+<td>霍珀和激光炮<br>与金箱子</td>
+<td>死亡混战</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/27/Vector.png" decoding="async" loading="lazy" width="19" height="12" class="mw-file-element"></span></span>
+</td>
+<td>激光炮</td>
+<td>霍珀</td></tr>
+<tr>
+<td>经典</td>
+<td>黄蜂轻甲和轰天炮</td>
+<td>互夺军旗</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/27/Vector.png" decoding="async" loading="lazy" width="19" height="12" class="mw-file-element"></span></span>
+</td>
+<td>轰天炮</td>
+<td>黄蜂轻甲</td></tr>
+<tr>
+<td>黄蜂轻甲和滑膛炮</td>
+<td>黄蜂轻甲和滑膛炮在杜塞尔多夫</td>
+<td>团队对战</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/27/Vector.png" decoding="async" loading="lazy" width="19" height="12" class="mw-file-element"></span></span>
+</td>
+<td>滑膛炮</td>
+<td>黄蜂轻甲</td></tr>
+<tr>
+<td>大混战</td>
+<td>剑圣</td>
+<td>死亡混战</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/27/Vector.png" decoding="async" loading="lazy" width="19" height="12" class="mw-file-element"></span></span>
+</td>
+<td>终结者</td>
+<td>剑圣</td></tr>
+<tr>
+<td>足球</td>
+<td>剑圣手持一个球</td>
+<td>橄榄球</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/7/79/Group1.png" decoding="async" loading="lazy" width="16" height="12" class="mw-file-element"></span></span>
+</td>
+<td>终结者</td>
+<td>剑圣</td></tr>
+<tr>
+<td>不明飞行物</td>
+<td>霍珀和火龙珠增加射速 + «爆破手»效果</td>
+<td>死亡混战</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/27/Vector.png" decoding="async" loading="lazy" width="19" height="12" class="mw-file-element"></span></span>
+</td>
+<td>火龙珠</td>
+<td>霍珀</td></tr>
+<tr>
+<td>战斗跑酷</td>
+<td>黄蜂轻甲和雷暴炮伤害较低但后坐力大</td>
+<td>死亡混战</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/27/Vector.png" decoding="async" loading="lazy" width="19" height="12" class="mw-file-element"></span></span>
+</td>
+<td>黄蜂轻甲</td>
+<td>雷暴炮</td></tr>
+<tr>
+<td>纵火癖</td>
+<td>火灾</td>
+<td>控制点</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/27/Vector.png" decoding="async" loading="lazy" width="19" height="12" class="mw-file-element"></span></span>
+</td>
+<td>火焰炮</td>
+<td>黄蜂轻甲</td></tr>
+<tr>
+<td>僵尸</td>
+<td>B0-NK上的每个人都有爪子，除了剑圣</td>
+<td>JGR</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/27/Vector.png" decoding="async" loading="lazy" width="19" height="12" class="mw-file-element"></span></span>
+</td>
+<td>爪子</td>
+<td>维京</td></tr>
+<tr>
+<td><a href="./Arms_Race.html" title="军备竞赛">军备竞赛</a>
+</td>
+<td>每3次击杀，炮塔会改变。</td>
+<td>军备竞赛</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/7/79/Group1.png" decoding="async" loading="lazy" width="16" height="12" class="mw-file-element"></span></span>
+</td>
+<td>变化</td>
+<td>维京</td></tr>
+<tr>
+<td>流星雨</td>
+<td>死亡混战模式与流星</td>
+<td>死亡混战</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/27/Vector.png" decoding="async" loading="lazy" width="19" height="12" class="mw-file-element"></span></span>
+</td>
+<td>任何</td>
+<td>任何</td></tr>
+<tr>
+<td>屠夫</td>
+<td>拥有 B0-NK 的每个人都在金色控制点模式下</td>
+<td>控制点</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/27/Vector.png" decoding="async" loading="lazy" width="19" height="12" class="mw-file-element"></span></span>
+</td>
+<td>B0-NK</td>
+<td>任何</td></tr>
+<tr>
+<td>运动会</td>
+<td>互夺军旗模式在运动会格式中只有炮塔和过速装置</td>
+<td>互夺军旗</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/7/79/Group1.png" decoding="async" loading="lazy" width="16" height="12" class="mw-file-element"></span></span>
+</td>
+<td>MkMAX</td>
+<td>MkMAX</td></tr>
+<tr>
+<td>经典</td>
+<td>它甚至没有过速装置。</td>
+<td>互夺军旗</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/7/79/Group1.png" decoding="async" loading="lazy" width="16" height="12" class="mw-file-element"></span></span>
+</td>
+<td>任何</td>
+<td>任何</td></tr>
+<tr>
+<td>雪球</td>
+<td>团队对战与雪人和雪球投掷</td>
+<td>团队对战</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/27/Vector.png" decoding="async" loading="lazy" width="19" height="12" class="mw-file-element"></span></span>
+</td>
+<td>雪人</td>
+<td>任何</td></tr>
+<tr>
+<td>随机箱子</td>
+<td>捡起金箱子时的随机奖励</td>
+<td>死亡混战</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/27/Vector.png" decoding="async" loading="lazy" width="19" height="12" class="mw-file-element"></span></span>
+</td>
+<td>任何</td>
+<td>任何</td></tr>
+<tr>
+<td>运动中的金发姑娘</td>
+<td>死亡混战模式在运动会格式中</td>
+<td>死亡混战</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/27/Vector.png" decoding="async" loading="lazy" width="19" height="12" class="mw-file-element"></span></span>
+</td>
+<td>任何</td>
+<td>任何</td></tr>
+<tr>
+<td>战斗</td>
+<td>在死亡混战中的所有B0-NK，任何底盘</td>
+<td>死亡混战</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/27/Vector.png" decoding="async" loading="lazy" width="19" height="12" class="mw-file-element"></span></span>
+</td>
+<td>B0-NK</td>
+<td>任何</td></tr>
+<tr>
+<td>一流的战斗</td>
+<td>飞行的霍珀和火箭炮，快速瞄准</td>
+<td>死亡混战</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/27/Vector.png" decoding="async" loading="lazy" width="19" height="12" class="mw-file-element"></span></span>
+</td>
+<td>火箭炮</td>
+<td>霍珀</td></tr>
+<tr>
+<td>团队<a href="./Arms_Race.html" title="军备竞赛">军备竞赛</a>
+</td>
+<td>第一个通过所有炮塔的团队获胜</td>
+<td>团队对战</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/7/79/Group1.png" decoding="async" loading="lazy" width="16" height="12" class="mw-file-element"></span></span>
+</td>
+<td>变化</td>
+<td>维京</td></tr>
+<tr>
+<td>西红柿大战</td>
+<td>死亡混战在炮塔番茄上</td>
+<td>死亡混战</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/27/Vector.png" decoding="async" loading="lazy" width="19" height="12" class="mw-file-element"></span></span>
+</td>
+<td>番茄</td>
+<td>任何</td></tr>
+<tr>
+<td>大屠杀</td>
+<td>70 玩家，没有过速装置</td>
+<td>团队对战</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/27/Vector.png" decoding="async" loading="lazy" width="19" height="12" class="mw-file-element"></span></span>
+</td>
+<td>任何</td>
+<td>任何</td></tr>
+<tr>
+<td>相扑</td>
+<td>死亡混战与滑膛炮，但增加了冲击力</td>
+<td>死亡混战</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/27/Vector.png" decoding="async" loading="lazy" width="19" height="12" class="mw-file-element"></span></span>
+</td>
+<td>滑膛炮</td>
+<td>猛犸象</td></tr></tbody></table>
+</div></div><div align="right"><small>最后编辑：Emrakul 2025年7月26日</small></div></div></div></div></div></div><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":343,"wgPageParseReport":{"limitreport":{"cputime":"0.219","walltime":"0.350","ppvisitednodes":{"value":840,"limit":1000000},"postexpandincludesize":{"value":5483,"limit":2097152},"templateargumentsize":{"value":1449,"limit":2097152},"expansiondepth":{"value":8,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%   47.287      1 -total"," 23.32%   11.028      1 Template:See_also"," 21.99%   10.398      7 Template:Rank"," 15.50%    7.329      1 Template:Other_meaning"," 14.85%    7.020      7 Template:RankHelper"," 13.36%    6.319      1 Template:ModeNavigation","  7.68%    3.632     14 Template:See_also/link","  7.22%    3.412      1 Template:Img","  6.35%    3.003      1 Template:Hotkey","  6.23%    2.944      1 Template:ModulesList"]},"cachereport":{"timestamp":"20250802053626","ttl":86400,"transientcontent":false}}});});</script></body></html>

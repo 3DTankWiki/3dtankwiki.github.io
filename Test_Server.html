@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>测试服务器 - 3D坦克维基</title><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+    <meta charset="UTF-8">
+    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/DBIsSQ0s2djD_akThoRUDeHa/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-1WKYge3dK2/UTDzhSp5yz67wCBmi0z81tX6M3swiQAxIbgepbnchtTZFPr6x5sGi"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"9a5b7d3f9901b8fb78269800","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Test_Server","wgTitle":"Test Server","wgCurRevisionId":63901,"wgRevisionId":63901,"wgArticleId":6154,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Test_Server","wgRelevantArticleId":6154,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVisualEditor":{"pageLanguageCode":"en","pageLanguageDir":"ltr",
+"pageVariantFallbacks":"en"},"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.visualEditor.desktopArticleTarget.noscript":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","mediawiki.toc","ext.gadget.UTCLiveClock","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://en.tankiwiki.com/load.php?lang=en&amp;modules=ext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://en.tankiwiki.com/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <style>
+.mw-editfont-monospace{font-family:monospace,monospace}.mw-editfont-sans-serif{font-family:sans-serif}.mw-editfont-serif{font-family:serif} .mw-editfont-monospace,.mw-editfont-sans-serif,.mw-editfont-serif{  font-size:13px;  -moz-tab-size:4; tab-size:4; }.mw-editfont-monospace.oo-ui-textInputWidget,.mw-editfont-sans-serif.oo-ui-textInputWidget,.mw-editfont-serif.oo-ui-textInputWidget{font-size:inherit}.mw-editfont-monospace.oo-ui-textInputWidget > .oo-ui-inputWidget-input,.mw-editfont-sans-serif.oo-ui-textInputWidget > .oo-ui-inputWidget-input,.mw-editfont-serif.oo-ui-textInputWidget > .oo-ui-inputWidget-input{  font-size:13px}.mw-editfont-monospace.oo-ui-textInputWidget > input.oo-ui-inputWidget-input,.mw-editfont-sans-serif.oo-ui-textInputWidget > input.oo-ui-inputWidget-input,.mw-editfont-serif.oo-ui-textInputWidget > input.oo-ui-inputWidget-input{min-height:32px}
+.ve-init-mw-progressBarWidget{height:1em;overflow:hidden;margin:0 25%}.ve-init-mw-progressBarWidget-bar{height:1em;width:0} .ve-init-mw-progressBarWidget{background-color:#fff;box-sizing:border-box;height:0.875em;border:1px solid #36c;border-radius:0.875em;box-shadow:0 1px 1px rgba(0,0,0,0.15)}.ve-init-mw-progressBarWidget-bar{background-color:#36c;height:0.875em}
+@media screen {
+	.toctoggle{-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none;font-size:94%}}
+#mw-teleport-target{position:absolute;z-index:450}</style>
+    <style>
+.ve-init-mw-tempWikitextEditorWidget{border:0;padding:0;color:inherit;line-height:1.5em;width:100%;-moz-tab-size:4;tab-size:4; }.ve-init-mw-tempWikitextEditorWidget:focus{outline:0;padding:0}.ve-init-mw-tempWikitextEditorWidget::selection{background:rgba(109,169,247,0.5); }</style>
+    <style>
+.ve-active .ve-init-mw-desktopArticleTarget-targetContainer #siteNotice,.ve-active .mw-indicators,.ve-active #t-print,.ve-active #t-permalink,.ve-active #p-coll-print_export,.ve-active #t-cite,.ve-active .ve-init-mw-desktopArticleTarget-editableContent,.ve-active .ve-init-mw-tempWikitextEditorWidget{display:none}.ve-deactivating .ve-ui-surface{display:none}.ve-activating{ }.ve-activating .ve-ui-surface{height:0;padding:0 !important; overflow:hidden} .ve-loading .ve-init-mw-desktopArticleTarget-targetContainer > :not(.ve-init-mw-desktopArticleTarget-toolbarPlaceholder):not(.ve-init-mw-desktopArticleTarget),.ve-loading .ve-init-mw-desktopArticleTarget-originalContent,.ve-activated:not(.ve-loading) .ve-init-mw-desktopArticleTarget-uneditableContent{pointer-events:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;opacity:0.5}.ve-activated .ve-init-mw-desktopArticleTarget-targetContainer #firstHeading{ -webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;pointer-events:auto;cursor:text}.ve-activated .ve-init-mw-desktopArticleTarget-targetContainer #firstHeading a{ pointer-events:none}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks{cursor:pointer}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks:hover{ background:#e9f2fd}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks a{opacity:1} .ve-init-mw-desktopArticleTarget-loading-overlay{z-index:2;position:absolute;width:100%;top:1em}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder{overflow:hidden;transition:height 250ms ease;height:0;padding-bottom:2px; }.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{transform:translateY(-100%);transition:transform 250ms ease}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-open .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{transform:translateY(0)}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating{transition:none}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{position:fixed;top:0;z-index:1;background:#fff} .oo-ui-element-hidden{display:none !important; } .mw-editsection{ unicode-bidi:-moz-isolate;unicode-bidi:-webkit-isolate;unicode-bidi:isolate}.mw-editsection::before{content:'\200B'}.mw-editsection a{white-space:nowrap}.mw-editsection-divider{color:#54595d} .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{height:42px;border-bottom:1px solid #c8ccd1;box-shadow:0 1px 1px 0 rgba(0,0,0,0.1)}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating,.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-open{height:42px}</style>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://en.tankiwiki.com/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta property="og:image" content="https://en.tankiwiki.com/images/en/5/5c/Test_server_landing.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="737">
+    <meta property="og:image" content="https://en.tankiwiki.com/images/en/thumb/5/5c/Test_server_landing.png/800px-Test_server_landing.png">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="491">
+    <meta property="og:image" content="https://en.tankiwiki.com/images/en/thumb/5/5c/Test_server_landing.png/640px-Test_server_landing.png">
+    <meta property="og:image:width" content="640">
+    <meta property="og:image:height" content="393">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://en.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://en.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (en)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://en.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki Atom feed" href="https://en.tankiwiki.com/index.php?title=Special:RecentChanges&amp;feed=atom">
+    <style>#utcdate a { font-weight:bolder; font-size:120%; }</style><style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Test_Server rootpage-Test_Server skin-tankiblue action-view"><div id="mw-main-container"><a href="./Tanki_Online_Wiki.html" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">返回主页</a><div class="main-content"><div class="mw-body ve-init-mw-desktopArticleTarget-targetContainer" id="content" role="main"><a id="top"></a><div class="mw-body-content" id="bodyContent"><div id="siteNotice"></div><div id="mw-content-text" class="mw-content-ltr mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">测试服务器</h1><p><br>
+</p><div class="dablink"><em>另见</em>:<a href="./Testers.html" title="测试人员">测试人员</a>
+</div><p><br>
+</p><figure class="mw-halign-center" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/5/5c/Test_server_landing.png/700px-Test_server_landing.png" decoding="async" loading="lazy" width="700" height="430" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/5/5c/Test_server_landing.png/1050px-Test_server_landing.png 1.5x, https://en.tankiwiki.com/images/en/5/5c/Test_server_landing.png 2x"></span><figcaption></figcaption></figure><p><br>
+</p><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">内容</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Purpose"><span class="tocnumber">1</span> <span class="toctext">目的</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Invitations"><span class="tocnumber">2</span> <span class="toctext">邀请函</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Mass_Testing"><span class="tocnumber">3</span> <span class="toctext">质量测试</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Commands_for_the_test_server"><span class="tocnumber">4</span> <span class="toctext">测试服务器的命令</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Communication_culture"><span class="tocnumber">5</span> <span class="toctext">沟通文化</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#How_to_get_access_to_the_test_server"><span class="tocnumber">6</span> <span class="toctext">如何访问测试服务器</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#How_to_become_a_tester_and_get_the_invitation"><span class="tocnumber">7</span> <span class="toctext">如何成为测试员并获得邀请</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Frequently_Asked_Questions"><span class="tocnumber">8</span> <span class="toctext">常见问题</span></a></li>
+</ul>
+</div><h2><span class="mw-headline" id="Purpose">目的</span></h2><p><b>测试服务器的目的</b>是为了在测试人员舒适的条件下检查新版本并寻找漏洞。<a href="./Crystals.html" title="水晶">水晶</a>，购买的物品，以及在测试服务器上收到的任何其他游戏内物品将<b>永不</b>被添加到你的<a href="./Account.html" title="账号">账号</a>在主服务器上。</p><h2><span class="mw-headline" id="Invitations">邀请函</span></h2><p>如果在主服务器上没有进行质量测试，进入服务器的权限仅限于邀请。只有一个人可以使用它 - 那个收到邀请的人。</p><p>邀请仅发给<a href="./Testers.html" title="测试人员">测试员和测试员候选人</a>.</p><p>邀请函是<i>仅由开发者提供</i>.</p><p>管理层从不向不属于测试者和测试候选小组的玩家发出邀请。如果测试服务器需要更多玩家，将会开始公开测试（质量测试）。</p><p>如果你在某个地方“注册过”并收到过“邀请”，你将无法访问官方测试服务器。很可能你的账号被盗了，你会看到它因作弊而被禁止或封锁。在这种情况下，你可能是在一个诈骗（钓鱼）网站上注册的，泄露你的密码导致了你的账号被黑客攻击。请记住，获取邀请不需要你的电子邮件或密码。如果你的账号被盗，请联系相关<a href="./Tech_Support.html" title="技术支持">技术支持</a>.</p><h2><span class="mw-headline" id="Mass_Testing">质量测试</span></h2><p>有时候要检查像新版本这样的东西，需要大量玩家同时参与。在这种情况下，测试服务器对所有人开放。测试服务器的开放从不提前通知。</p><h2><span class="mw-headline" id="Commands_for_the_test_server">测试服务器的命令</span></h2><p>有时特殊命令是<b>仅仅</b>可用于测试服务器，可以更改测试账号的参数。通常这些功能仅针对开发人员。</p><ul><li><b>“/addcry n”</b>- 加入n<a href="./Crystals.html" title="水晶">水晶</a>到当前的账号在测试服务器上；</li>
+<li><b>“/addexp n”</b>- 加入n<a href="./Experience.html" title="经验值">经验值</a>指向测试服务器上的当前账号;</li>
+<li><b>“/addpremium n”</b>- 增加 n 分钟的<a href="./index.php?title=Premium_accounts&amp;action=edit&amp;redlink=1.html" class="new" title="vip 账号（页面不存在）">贵宾</a>到当前的账号在测试服务器上；</li></ul><p><br>
+</p><p><br>
+</p><div class="alert error">
+  <div class="icon"></div>
+  <div class="text"><b>注意！</b>命令在主服务器上无效。当尝试在测试服务器之外使用它们时，您可能会遇到问题。<b>警告或禁令。</b></div>
+</div><p><br>
+</p><h2><span class="mw-headline" id="Communication_culture">沟通文化</span></h2><p>在测试服务器上的行为规则和游戏规则与主服务器上的相同。</p><h2><span class="mw-headline" id="How_to_get_access_to_the_test_server">如何访问测试服务器</span></h2><p>真实的3D坦克测试服务器位于链接旁边<a rel="nofollow" class="external free" href="https://test.tankionline.com/">https://test.tankionline.com/</a>
+</p><p><br>
+</p><div class="alert error">
+  <div class="icon"></div>
+  <div class="text"><b>注意！</b>所有提供的其他链接都是骗局，目的是获取你的账号！</div>
+</div><p><br>有<b>不</b>测试服务器开放时间表。</p><p>请不要忘记测试服务器的资源是有限的。如果你无法进入测试服务器，可以稍后再试。在测试期间，服务器可以被重启或停止，以便修复一些问题或进行更新。</p><p>真实测试服务器有三种状态:</p><ul><li>关闭。没有人可以访问；</li>
+<li>进行中<a href="./Testers.html" title="测试人员">测试人员和测试候选人</a>需要邀请才能进入；</li>
+<li>所有人都可以进入。要进入，需要创建一个新的账号，并在主服务器上“激活”账号的登录和密码。</li></ul><h2><span class="mw-headline" id="How_to_become_a_tester_and_get_the_invitation">如何成为测试员并获得邀请</span></h2><p>要申请成为测试者，请填写申请表格。<a rel="nofollow" class="external text" href="https://helper.tankionline.com/group/38">测试人员候选人</a>网站。当您填写表单并发送后，您将被添加到一个特殊的<a rel="nofollow" class="external text" href="https://discord.com">Discord</a>服务器将在这里处理您的请求。您将能够在这个 Discord 服务器上直接与测试管理员交谈。</p><h2><span class="mw-headline" id="Frequently_Asked_Questions">常见问题</span></h2><p><span style="font-size:115%"><span style=""><b>问：</b> </span></span><b>什么是邀请代码？</b><br>
+<span style="font-size:115%"><span style=""><b>A：</b></span></span>测试服务器邀请码是一个由字母数字组成的字符串，供测试者和开发者在进行封闭测试时访问测试服务器。这个代码就像是进入测试服务器的密码。</p><p><br>
+<span style="font-size:115%"><span style=""><b>问：</b> </span></span><b>测试服务器何时会向公众开放？（不需要邀请码）</b><br>
+<span style="font-size:115%"><span style=""><b>A：</b> </span></span>测试服务器仅在需要大规模玩家基础来测试新功能或修复漏洞时开放。这些需要大量玩家的时间没有固定的时间表，因此唯一知道测试服务器是否开放的方法就是自己检查。</p><p><span style="font-size:115%"><span style=""><b>问：</b> </span></span><b>为什么测试服务器上的商店被锁定了？</b><br>
+<span style="font-size:115%"><span style=""><b>A：</b> </span></span>开发者故意锁定商店，因为那里没有需要测试的内容，并且不需要他们的测试统计数据受到商店中购买行为的影响。这也防止玩家用真实货币购买物品，因为这些账号在测试后会被删除.</p><p><br>
+</p><div class="alert warning">
+  <div class="icon"></div>
+  <div class="text">注意！请勿在测试服务器商店中使用真钱购买任何物品。在测试结束后，测试服务器中获得的所有物品将被删除，并不会添加到您的真实账号中。</div>
+</div><p><br>
+<span style="font-size:115%"><span style=""><b>问：</b> </span></span><b>我在哪里可以获得邀请代码？</b><br>
+<span style="font-size:115%"><span style=""><b>A：</b> </span></span>邀请码仅提供给<b>候选测试员、测试员和开发者</b>获得一个的唯一方式是<a rel="nofollow" class="external text" href="https://helper.tankionline.com/group/38">成为测试员</a>.<br><br>
+</p><p><br>
+</p><div class="alert warning">
+  <div class="icon"></div>
+  <div class="text">注意！只有候选测试员、测试员和开发者可以获得邀请代码。其他人无法获得邀请代码。提供出售邀请代码的玩家正在试图骗你！</div>
+</div><p><br>
+</p><div align="right"><small>最后编辑：Jemcool 2025年5月25日</small></div></div></div></div></div></div><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":317,"wgPageParseReport":{"limitreport":{"cputime":"0.038","walltime":"0.060","ppvisitednodes":{"value":220,"limit":1000000},"postexpandincludesize":{"value":1259,"limit":2097152},"templateargumentsize":{"value":716,"limit":2097152},"expansiondepth":{"value":8,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%   25.172      1 -total"," 61.71%   15.534      1 Template:See_also"," 39.45%    9.931      1 Template:Other_meaning"," 18.14%    4.566     14 Template:See_also/link"," 17.97%    4.523      1 Template:LastEdit"," 15.80%    3.977      4 Template:Alert"]},"cachereport":{"timestamp":"20250801191526","ttl":86400,"transientcontent":false}}});});</script></body></html>

@@ -1,0 +1,1089 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>展示 - 3D坦克维基</title><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+    <meta charset="UTF-8">
+    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/DBIsSQ0s2djD_akThoRUDeHa/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-1WKYge3dK2/UTDzhSp5yz67wCBmi0z81tX6M3swiQAxIbgepbnchtTZFPr6x5sGi"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"74160ae69153245ef2da891f","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Showcase","wgTitle":"Showcase","wgCurRevisionId":62331,"wgRevisionId":62331,"wgArticleId":10369,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Showcase","wgRelevantArticleId":10369,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVisualEditor":{"pageLanguageCode":"en","pageLanguageDir":"ltr",
+"pageVariantFallbacks":"en"},"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","jquery.tablesorter.styles":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","jquery.tablesorter","ext.gadget.UTCLiveClock","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://en.tankiwiki.com/load.php?lang=en&amp;modules=ext.visualEditor.desktopArticleTarget.noscript%7Cjquery.tablesorter.styles%7Cmediawiki.skinning.interface%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://en.tankiwiki.com/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <style>
+.mw-editfont-monospace{font-family:monospace,monospace}.mw-editfont-sans-serif{font-family:sans-serif}.mw-editfont-serif{font-family:serif} .mw-editfont-monospace,.mw-editfont-sans-serif,.mw-editfont-serif{  font-size:13px;  -moz-tab-size:4; tab-size:4; }.mw-editfont-monospace.oo-ui-textInputWidget,.mw-editfont-sans-serif.oo-ui-textInputWidget,.mw-editfont-serif.oo-ui-textInputWidget{font-size:inherit}.mw-editfont-monospace.oo-ui-textInputWidget > .oo-ui-inputWidget-input,.mw-editfont-sans-serif.oo-ui-textInputWidget > .oo-ui-inputWidget-input,.mw-editfont-serif.oo-ui-textInputWidget > .oo-ui-inputWidget-input{  font-size:13px}.mw-editfont-monospace.oo-ui-textInputWidget > input.oo-ui-inputWidget-input,.mw-editfont-sans-serif.oo-ui-textInputWidget > input.oo-ui-inputWidget-input,.mw-editfont-serif.oo-ui-textInputWidget > input.oo-ui-inputWidget-input{min-height:32px}
+.ve-init-mw-progressBarWidget{height:1em;overflow:hidden;margin:0 25%}.ve-init-mw-progressBarWidget-bar{height:1em;width:0} .ve-init-mw-progressBarWidget{background-color:#fff;box-sizing:border-box;height:0.875em;border:1px solid #36c;border-radius:0.875em;box-shadow:0 1px 1px rgba(0,0,0,0.15)}.ve-init-mw-progressBarWidget-bar{background-color:#36c;height:0.875em}
+#mw-teleport-target{position:absolute;z-index:450}</style>
+    <style>
+.ve-init-mw-tempWikitextEditorWidget{border:0;padding:0;color:inherit;line-height:1.5em;width:100%;-moz-tab-size:4;tab-size:4; }.ve-init-mw-tempWikitextEditorWidget:focus{outline:0;padding:0}.ve-init-mw-tempWikitextEditorWidget::selection{background:rgba(109,169,247,0.5); }</style>
+    <style>
+.ve-active .ve-init-mw-desktopArticleTarget-targetContainer #siteNotice,.ve-active .mw-indicators,.ve-active #t-print,.ve-active #t-permalink,.ve-active #p-coll-print_export,.ve-active #t-cite,.ve-active .ve-init-mw-desktopArticleTarget-editableContent,.ve-active .ve-init-mw-tempWikitextEditorWidget{display:none}.ve-deactivating .ve-ui-surface{display:none}.ve-activating{ }.ve-activating .ve-ui-surface{height:0;padding:0 !important; overflow:hidden} .ve-loading .ve-init-mw-desktopArticleTarget-targetContainer > :not(.ve-init-mw-desktopArticleTarget-toolbarPlaceholder):not(.ve-init-mw-desktopArticleTarget),.ve-loading .ve-init-mw-desktopArticleTarget-originalContent,.ve-activated:not(.ve-loading) .ve-init-mw-desktopArticleTarget-uneditableContent{pointer-events:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;opacity:0.5}.ve-activated .ve-init-mw-desktopArticleTarget-targetContainer #firstHeading{ -webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;pointer-events:auto;cursor:text}.ve-activated .ve-init-mw-desktopArticleTarget-targetContainer #firstHeading a{ pointer-events:none}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks{cursor:pointer}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks:hover{ background:#e9f2fd}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks a{opacity:1} .ve-init-mw-desktopArticleTarget-loading-overlay{z-index:2;position:absolute;width:100%;top:1em}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder{overflow:hidden;transition:height 250ms ease;height:0;padding-bottom:2px; }.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{transform:translateY(-100%);transition:transform 250ms ease}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-open .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{transform:translateY(0)}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating{transition:none}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{position:fixed;top:0;z-index:1;background:#fff} .oo-ui-element-hidden{display:none !important; } .mw-editsection{ unicode-bidi:-moz-isolate;unicode-bidi:-webkit-isolate;unicode-bidi:isolate}.mw-editsection::before{content:'\200B'}.mw-editsection a{white-space:nowrap}.mw-editsection-divider{color:#54595d} .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{height:42px;border-bottom:1px solid #c8ccd1;box-shadow:0 1px 1px 0 rgba(0,0,0,0.1)}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating,.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-open{height:42px}</style>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://en.tankiwiki.com/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta property="og:image" content="https://en.tankiwiki.com/images/en/thumb/7/7a/Showcase_offers_2024_update.png/1200px-Showcase_offers_2024_update.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="578">
+    <meta property="og:image" content="https://en.tankiwiki.com/images/en/thumb/7/7a/Showcase_offers_2024_update.png/800px-Showcase_offers_2024_update.png">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="386">
+    <meta property="og:image" content="https://en.tankiwiki.com/images/en/thumb/7/7a/Showcase_offers_2024_update.png/640px-Showcase_offers_2024_update.png">
+    <meta property="og:image:width" content="640">
+    <meta property="og:image:height" content="308">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://en.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://en.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (en)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://en.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki Atom feed" href="https://en.tankiwiki.com/index.php?title=Special:RecentChanges&amp;feed=atom">
+    <style>#utcdate a { font-weight:bolder; font-size:120%; }</style><style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Showcase rootpage-Showcase skin-tankiblue action-view"><div id="mw-main-container"><a href="./Tanki_Online_Wiki.html" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">返回主页</a><div class="main-content"><div class="mw-body ve-init-mw-desktopArticleTarget-targetContainer" id="content" role="main"><a id="top"></a><div class="mw-body-content" id="bodyContent"><div id="siteNotice"></div><div id="mw-content-text" class="mw-content-ltr mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang=""><span class="mw-page-title-main">展示</span></h1><div class="dablink"><em>另见</em>:<a href="./Shop.html" title="商店">商店</a>,<a href="./Skins.html" title="皮肤">皮肤</a>,<a href="./Shot_Effects.html" title="射击效果">射击效果</a>和<a href="./Product_Kits.html" class="mw-redirect" title="套件">套件</a>
+</div><p><br>
+</p><p>了解更多关于商店展示的信息<a href="./index.php?title=Shoe&amp;action=edit&amp;redlink=1.html" class="new" title="鞋子（页面不存在）">商店页面</a>.</p><p><br>
+</p><figure class="mw-halign-center" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/7/7a/Showcase_offers_2024_update.png/1000px-Showcase_offers_2024_update.png" decoding="async" loading="lazy" width="1000" height="482" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/7a/Showcase_offers_2024_update.png/1500px-Showcase_offers_2024_update.png 1.5x, https://en.tankiwiki.com/images/en/7/7a/Showcase_offers_2024_update.png 2x"></span><figcaption></figcaption></figure><p><br>
+</p><h3><span class="mw-headline" id="Skin_Showcase_Offers">皮肤展示提供</span></h3><h4><span class="mw-headline" id="Filter">过滤器</span></h4><div id="showcaseFilter">
+<div class="showcaseFilter showcaseFilter__active" data-filter="All"><span>所有</span></div>
+<div class="showcaseFilter" data-filter="type-XT"></div>
+<div class="showcaseFilter" data-filter="type-LC"></div>
+<div class="showcaseFilter" data-filter="type-PR"></div>
+<div class="showcaseFilter" data-filter="type-UT"></div>
+</div><table class="new-wikitable sortable showcase-table jquery-tablesorter" style="text-align:center" width="100%;">
+<thead><tr>
+<th colspan="2" style="text-align: center; font-weight:bold; background-color:#424656;" width="13%;" class="headerSort" tabindex="0" role="columnheader button" title="Sort ascending">皮肤</th>
+<th style="text-align: center; font-weight:bold; background-color:#424656;" class="headerSort" tabindex="0" role="columnheader button" title="升序排列">名字</th>
+<th style="text-align: center; font-weight:bold; background-color:#424656;" class="headerSort" tabindex="0" role="columnheader button" title="升序排列">内容</th>
+<th style="text-align: center; font-weight:bold; background-color:#424656;" class="headerSort" tabindex="0" role="columnheader button" title="升序排列">价格</th></tr></thead><tbody>
+<tr>
+<td rowspan="2" class="type-XT">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/40px-Old_Icon_XT_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/60px-Old_Icon_XT_Skin.png 1.5x, https://en.tankiwiki.com/images/en/2/2f/Old_Icon_XT_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>黑龙</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/4/48/Firebird_XT.png/150px-Firebird_XT.png" decoding="async" loading="lazy" width="150" height="97" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/4/48/Firebird_XT.png 1.5x"></a></span> <span typeof="mw:File"><a href="./Ancient_dragon.html" title="古老的龙"><img src="https://en.tankiwiki.com/images/en/thumb/2/29/Paint_Ancient_Dragon.png/150px-Paint_Ancient_Dragon.png" decoding="async" loading="lazy" width="150" height="89" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/2/29/Paint_Ancient_Dragon.png 1.5x"></a></span> <span typeof="mw:File"><a href="./Shot_Effects.html" title="射击效果"><img src="https://en.tankiwiki.com/images/en/thumb/9/9e/Shot_effect_Firebird_Black.png/66px-Shot_effect_Firebird_Black.png" decoding="async" loading="lazy" width="66" height="66" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/9/9e/Shot_effect_Firebird_Black.png/99px-Shot_effect_Firebird_Black.png 1.5x, https://en.tankiwiki.com/images/en/thumb/9/9e/Shot_effect_Firebird_Black.png/132px-Shot_effect_Firebird_Black.png 2x"></a></span> <span typeof="mw:File"><a href="./Augments.html" title="装备改造"><img src="https://en.tankiwiki.com/images/en/thumb/f/fc/Alteration_firebird_incendiary_mix.png/56px-Alteration_firebird_incendiary_mix.png" decoding="async" loading="lazy" width="56" height="56" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/f/fc/Alteration_firebird_incendiary_mix.png/84px-Alteration_firebird_incendiary_mix.png 1.5x, https://en.tankiwiki.com/images/en/thumb/f/fc/Alteration_firebird_incendiary_mix.png/112px-Alteration_firebird_incendiary_mix.png 2x"></a></span>
+</td>
+<td rowspan="2"><b>5 990</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>火焰炮 Mk2, 古代龙, 黑色, 燃烧混合物</td></tr>
+<tr>
+<td rowspan="2" class="type-XT">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/40px-Old_Icon_XT_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/60px-Old_Icon_XT_Skin.png 1.5x, https://en.tankiwiki.com/images/en/2/2f/Old_Icon_XT_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>冷</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/a/a2/FreezeXT.png/150px-FreezeXT.png" decoding="async" loading="lazy" width="150" height="92" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/a/a2/FreezeXT.png/225px-FreezeXT.png 1.5x, https://en.tankiwiki.com/images/en/thumb/a/a2/FreezeXT.png/300px-FreezeXT.png 2x"></a></span> <span typeof="mw:File"><a href="./Touch_of_chill.html" title="一丝寒意"><img src="https://en.tankiwiki.com/images/en/thumb/5/5e/Touch_of_chill.png/150px-Touch_of_chill.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/5/5e/Touch_of_chill.png 1.5x"></a></span> <span typeof="mw:File"><a href="./Shot_Effects.html" title="射击效果"><img src="https://en.tankiwiki.com/images/en/thumb/f/ff/Shot_effect_Freeze_Snow.png/66px-Shot_effect_Freeze_Snow.png" decoding="async" loading="lazy" width="66" height="66" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/f/ff/Shot_effect_Freeze_Snow.png/99px-Shot_effect_Freeze_Snow.png 1.5x, https://en.tankiwiki.com/images/en/thumb/f/ff/Shot_effect_Freeze_Snow.png/132px-Shot_effect_Freeze_Snow.png 2x"></a></span> <span typeof="mw:File"><a href="./Augments.html" title="装备改造"><img src="https://en.tankiwiki.com/images/en/thumb/8/89/Alteration_freeze_shock_freeze.png/56px-Alteration_freeze_shock_freeze.png" decoding="async" loading="lazy" width="56" height="56" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/8/89/Alteration_freeze_shock_freeze.png/84px-Alteration_freeze_shock_freeze.png 1.5x, https://en.tankiwiki.com/images/en/thumb/8/89/Alteration_freeze_shock_freeze.png/112px-Alteration_freeze_shock_freeze.png 2x"></a></span>
+</td>
+<td rowspan="2"><b>9 990</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>冰风暴 Mk2，寒冷之触，雪，震动冻结</td></tr>
+<tr>
+<td rowspan="2" class="type-XT">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/40px-Old_Icon_XT_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/60px-Old_Icon_XT_Skin.png 1.5x, https://en.tankiwiki.com/images/en/2/2f/Old_Icon_XT_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>战争的熔炉</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/c/cb/Hammer_XT.png/150px-Hammer_XT.png" decoding="async" loading="lazy" width="150" height="92" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/cb/Hammer_XT.png/225px-Hammer_XT.png 1.5x, https://en.tankiwiki.com/images/en/thumb/c/cb/Hammer_XT.png/300px-Hammer_XT.png 2x"></a></span> <span typeof="mw:File"><a href="./Living_Armor.html" title="生活护甲"><img src="https://en.tankiwiki.com/images/en/thumb/7/7a/Paint_Living_Armor.png/150px-Paint_Living_Armor.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/7/7a/Paint_Living_Armor.png 1.5x"></a></span> <span typeof="mw:File"><a href="./Shot_Effects.html" title="射击效果"><img src="https://en.tankiwiki.com/images/en/thumb/5/5e/Shot_effect_Hammer_Blood.png/66px-Shot_effect_Hammer_Blood.png" decoding="async" loading="lazy" width="66" height="66" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/5/5e/Shot_effect_Hammer_Blood.png/99px-Shot_effect_Hammer_Blood.png 1.5x, https://en.tankiwiki.com/images/en/thumb/5/5e/Shot_effect_Hammer_Blood.png/132px-Shot_effect_Hammer_Blood.png 2x"></a></span> <span typeof="mw:File"><a href="./Augments.html" title="装备改造"><img src="https://en.tankiwiki.com/images/en/thumb/4/48/Alteration_hammer_dragon_breath.png/56px-Alteration_hammer_dragon_breath.png" decoding="async" loading="lazy" width="56" height="56" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/4/48/Alteration_hammer_dragon_breath.png/84px-Alteration_hammer_dragon_breath.png 1.5x, https://en.tankiwiki.com/images/en/thumb/4/48/Alteration_hammer_dragon_breath.png/112px-Alteration_hammer_dragon_breath.png 2x"></a></span>
+</td>
+<td rowspan="2"><b>8 790</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>滑膛炮 Mk2, Living 护甲, 血, 龙息</td></tr>
+<tr>
+<td rowspan="2" class="type-XT">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/40px-Old_Icon_XT_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/60px-Old_Icon_XT_Skin.png 1.5x, https://en.tankiwiki.com/images/en/2/2f/Old_Icon_XT_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>暴风雨</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/2/21/Twins_XT.png/150px-Twins_XT.png" decoding="async" loading="lazy" width="150" height="94" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/2/21/Twins_XT.png 1.5x"></a></span> <span typeof="mw:File"><a href="./Electric_Sheep.html" title="Electric Sheep"><img src="https://en.tankiwiki.com/images/en/thumb/d/de/Paint_Electric_Sheep.png/150px-Paint_Electric_Sheep.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/d/de/Paint_Electric_Sheep.png 1.5x"></a></span> <span typeof="mw:File"><a href="./Shot_Effects.html" title="射击效果"><img src="https://en.tankiwiki.com/images/en/thumb/3/30/Shot_effect_Twins_Electric.png/66px-Shot_effect_Twins_Electric.png" decoding="async" loading="lazy" width="66" height="66" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/3/30/Shot_effect_Twins_Electric.png/99px-Shot_effect_Twins_Electric.png 1.5x, https://en.tankiwiki.com/images/en/thumb/3/30/Shot_effect_Twins_Electric.png/132px-Shot_effect_Twins_Electric.png 2x"></a></span> <span typeof="mw:File"><a href="./Augments.html" title="装备改造"><img src="https://en.tankiwiki.com/images/en/thumb/a/a9/Alteration_twins_stabilized_plasma.png/56px-Alteration_twins_stabilized_plasma.png" decoding="async" loading="lazy" width="56" height="56" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/a/a9/Alteration_twins_stabilized_plasma.png/84px-Alteration_twins_stabilized_plasma.png 1.5x, https://en.tankiwiki.com/images/en/thumb/a/a9/Alteration_twins_stabilized_plasma.png/112px-Alteration_twins_stabilized_plasma.png 2x"></a></span>
+</td>
+<td rowspan="2"><b>8 790</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>离子炮 Mk2，电羊，电，稳定等离子</td></tr>
+<tr>
+<td rowspan="2" class="type-XT">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/40px-Old_Icon_XT_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/60px-Old_Icon_XT_Skin.png 1.5x, https://en.tankiwiki.com/images/en/2/2f/Old_Icon_XT_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>爬行动物</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/5/51/RicochetXT.png/150px-RicochetXT.png" decoding="async" loading="lazy" width="150" height="92" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/5/51/RicochetXT.png/225px-RicochetXT.png 1.5x, https://en.tankiwiki.com/images/en/thumb/5/51/RicochetXT.png/300px-RicochetXT.png 2x"></a></span> <span typeof="mw:File"><a href="./Alien_Regeneration.html" title="外星人再生"><img src="https://en.tankiwiki.com/images/en/thumb/7/72/Paint_Alien_regeneration.png/150px-Paint_Alien_regeneration.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/7/72/Paint_Alien_regeneration.png 1.5x"></a></span> <span typeof="mw:File"><a href="./Shot_Effects.html" title="射击效果"><img src="https://en.tankiwiki.com/images/en/thumb/e/e4/Shot_effect_Ricochet_Toxic.png/66px-Shot_effect_Ricochet_Toxic.png" decoding="async" loading="lazy" width="66" height="66" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/e/e4/Shot_effect_Ricochet_Toxic.png/99px-Shot_effect_Ricochet_Toxic.png 1.5x, https://en.tankiwiki.com/images/en/thumb/e/e4/Shot_effect_Ricochet_Toxic.png/132px-Shot_effect_Ricochet_Toxic.png 2x"></a></span> <span typeof="mw:File"><a href="./Augments.html" title="装备改造"><img src="https://en.tankiwiki.com/images/en/thumb/8/80/Alteration_ricochet_plasma_torch.png/56px-Alteration_ricochet_plasma_torch.png" decoding="async" loading="lazy" width="56" height="56" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/8/80/Alteration_ricochet_plasma_torch.png/84px-Alteration_ricochet_plasma_torch.png 1.5x, https://en.tankiwiki.com/images/en/thumb/8/80/Alteration_ricochet_plasma_torch.png/112px-Alteration_ricochet_plasma_torch.png 2x"></a></span>
+</td>
+<td rowspan="2"><b>8 790</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>火龙珠 Mk2, 外星再生, 有毒, 等离子焰枪</td></tr>
+<tr>
+<td rowspan="2" class="type-LC">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/5/57/Old_Icon_Legacy_Skin.png/40px-Old_Icon_Legacy_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/5/57/Old_Icon_Legacy_Skin.png/60px-Old_Icon_Legacy_Skin.png 1.5x, https://en.tankiwiki.com/images/en/5/57/Old_Icon_Legacy_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>柑橘清新</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/0/0f/Skin_ricochet_legacy.png/150px-Skin_ricochet_legacy.png" decoding="async" loading="lazy" width="150" height="92" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/0/0f/Skin_ricochet_legacy.png/225px-Skin_ricochet_legacy.png 1.5x, https://en.tankiwiki.com/images/en/thumb/0/0f/Skin_ricochet_legacy.png/300px-Skin_ricochet_legacy.png 2x"></a></span> <span typeof="mw:File"><a href="./Lime.html" title="青柠"><img src="https://en.tankiwiki.com/images/en/thumb/a/ab/Coloring_lime.png/150px-Coloring_lime.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/a/ab/Coloring_lime.png 1.5x"></a></span> <span typeof="mw:File"><a href="./Shot_Effects.html" title="射击效果"><img src="https://en.tankiwiki.com/images/en/thumb/4/4b/Shot_effect_Ricochet_Gold.png/66px-Shot_effect_Ricochet_Gold.png" decoding="async" loading="lazy" width="66" height="66" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/4/4b/Shot_effect_Ricochet_Gold.png/99px-Shot_effect_Ricochet_Gold.png 1.5x, https://en.tankiwiki.com/images/en/thumb/4/4b/Shot_effect_Ricochet_Gold.png/132px-Shot_effect_Ricochet_Gold.png 2x"></a></span> <span typeof="mw:File"><a href="./Augments.html" title="装备改造"><img src="https://en.tankiwiki.com/images/en/thumb/4/46/Alteration_ricochet_berserk.png/56px-Alteration_ricochet_berserk.png" decoding="async" loading="lazy" width="56" height="56" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/4/46/Alteration_ricochet_berserk.png/84px-Alteration_ricochet_berserk.png 1.5x, https://en.tankiwiki.com/images/en/thumb/4/46/Alteration_ricochet_berserk.png/112px-Alteration_ricochet_berserk.png 2x"></a></span>
+</td>
+<td rowspan="2"><b>8 790</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>火龙珠 Mk2，石灰，黄金，狂暴</td></tr>
+<tr>
+<td rowspan="2" class="type-XT">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/40px-Old_Icon_XT_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/60px-Old_Icon_XT_Skin.png 1.5x, https://en.tankiwiki.com/images/en/2/2f/Old_Icon_XT_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>眼镜蛇帮</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/5/55/Smoky_XT.png/150px-Smoky_XT.png" decoding="async" loading="lazy" width="150" height="92" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/5/55/Smoky_XT.png 1.5x"></a></span> <span typeof="mw:File"><a href="./Flowing_Metal.html" title="Flowing Metal"><img src="https://en.tankiwiki.com/images/en/thumb/2/26/Paint_Flowing_Metal.png/150px-Paint_Flowing_Metal.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/2/26/Paint_Flowing_Metal.png 1.5x"></a></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span typeof="mw:File"><a href="./Augments.html" title="装备改造"><img src="https://en.tankiwiki.com/images/en/thumb/1/10/Alteration_smoky_autocannon.png/56px-Alteration_smoky_autocannon.png" decoding="async" loading="lazy" width="56" height="56" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/1/10/Alteration_smoky_autocannon.png/84px-Alteration_smoky_autocannon.png 1.5x, https://en.tankiwiki.com/images/en/thumb/1/10/Alteration_smoky_autocannon.png/112px-Alteration_smoky_autocannon.png 2x"></a></span>
+</td>
+<td rowspan="2"><b>8 790</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>轰天炮 Mk2，流动金属，自动加农炮</td></tr>
+<tr>
+<td rowspan="2" class="type-XT">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/40px-Old_Icon_XT_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/60px-Old_Icon_XT_Skin.png 1.5x, https://en.tankiwiki.com/images/en/2/2f/Old_Icon_XT_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>下巴</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/a/ab/StrikerXT.png/150px-StrikerXT.png" decoding="async" loading="lazy" width="150" height="92" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/a/ab/StrikerXT.png/225px-StrikerXT.png 1.5x, https://en.tankiwiki.com/images/en/thumb/a/ab/StrikerXT.png/300px-StrikerXT.png 2x"></a></span> <span typeof="mw:File"><a href="./Flow.html" title="流动"><img src="https://en.tankiwiki.com/images/en/thumb/d/d2/Coloring_flow.png/150px-Coloring_flow.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/d/d2/Coloring_flow.png 1.5x"></a></span> <span typeof="mw:File"><a href="./Shot_Effects.html" title="射击效果"><img src="https://en.tankiwiki.com/images/en/thumb/0/08/Shot_effect_Striker_Blue.png/66px-Shot_effect_Striker_Blue.png" decoding="async" loading="lazy" width="66" height="66" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/0/08/Shot_effect_Striker_Blue.png/99px-Shot_effect_Striker_Blue.png 1.5x, https://en.tankiwiki.com/images/en/thumb/0/08/Shot_effect_Striker_Blue.png/132px-Shot_effect_Striker_Blue.png 2x"></a></span> <span typeof="mw:File"><a href="./Augments.html" title="装备改造"><img src="https://en.tankiwiki.com/images/en/thumb/0/0c/Alteration_striker_missile_launcher_uranium.png/56px-Alteration_striker_missile_launcher_uranium.png" decoding="async" loading="lazy" width="56" height="56" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/0/0c/Alteration_striker_missile_launcher_uranium.png/84px-Alteration_striker_missile_launcher_uranium.png 1.5x, https://en.tankiwiki.com/images/en/thumb/0/0c/Alteration_striker_missile_launcher_uranium.png/112px-Alteration_striker_missile_launcher_uranium.png 2x"></a></span>
+</td>
+<td rowspan="2"><b>8 790</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>火箭炮 Mk2，流，蓝色，导弹发射器 "轴"</td></tr>
+<tr>
+<td rowspan="2" class="type-XT">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/40px-Old_Icon_XT_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/60px-Old_Icon_XT_Skin.png 1.5x, https://en.tankiwiki.com/images/en/2/2f/Old_Icon_XT_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>捕食者</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/0/0f/Vulcan_XT.png/150px-Vulcan_XT.png" decoding="async" loading="lazy" width="150" height="97" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/0/0f/Vulcan_XT.png 1.5x"></a></span> <span typeof="mw:File"><a href="./Siberian_Tiger.html" title="西伯利亚虎"><img src="https://en.tankiwiki.com/images/en/thumb/c/ce/Paint_siberian_tiger.png/150px-Paint_siberian_tiger.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/c/ce/Paint_siberian_tiger.png 1.5x"></a></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span typeof="mw:File"><a href="./Augments.html" title="装备改造"><img src="https://en.tankiwiki.com/images/en/thumb/5/54/Alteration_vulcan_shooting_speed_regulator.png/56px-Alteration_vulcan_shooting_speed_regulator.png" decoding="async" loading="lazy" width="56" height="56" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/5/54/Alteration_vulcan_shooting_speed_regulator.png/84px-Alteration_vulcan_shooting_speed_regulator.png 1.5x, https://en.tankiwiki.com/images/en/thumb/5/54/Alteration_vulcan_shooting_speed_regulator.png/112px-Alteration_vulcan_shooting_speed_regulator.png 2x"></a></span>
+</td>
+<td rowspan="2"><b>5 990</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>极速炮 Mk2, 西伯利亚虎, 射击速度调节器</td></tr>
+<tr>
+<td rowspan="2" class="type-PR">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/0/02/Old_Icon_Prime_Skin.png/40px-Old_Icon_Prime_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/0/02/Old_Icon_Prime_Skin.png/60px-Old_Icon_Prime_Skin.png 1.5x, https://en.tankiwiki.com/images/en/0/02/Old_Icon_Prime_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>突击队</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/8/81/Skin_vulcan_prime.png/150px-Skin_vulcan_prime.png" decoding="async" loading="lazy" width="150" height="92" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/8/81/Skin_vulcan_prime.png/225px-Skin_vulcan_prime.png 1.5x, https://en.tankiwiki.com/images/en/thumb/8/81/Skin_vulcan_prime.png/300px-Skin_vulcan_prime.png 2x"></a></span> <span typeof="mw:File"><a href="./Roger.html" title="罗杰"><img src="https://en.tankiwiki.com/images/en/thumb/a/ae/Coloring_roger.png/150px-Coloring_roger.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/a/ae/Coloring_roger.png 1.5x"></a></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span typeof="mw:File"><a href="./Augments.html" title="装备改造"><img src="https://en.tankiwiki.com/images/en/thumb/f/f5/Alteration_vulcan_reinforced_aiming_transmission.png/56px-Alteration_vulcan_reinforced_aiming_transmission.png" decoding="async" loading="lazy" width="56" height="56" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/f/f5/Alteration_vulcan_reinforced_aiming_transmission.png/84px-Alteration_vulcan_reinforced_aiming_transmission.png 1.5x, https://en.tankiwiki.com/images/en/thumb/f/f5/Alteration_vulcan_reinforced_aiming_transmission.png/112px-Alteration_vulcan_reinforced_aiming_transmission.png 2x"></a></span>
+</td>
+<td rowspan="2"><b>5 990</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>极速炮 Mk2，Roger，更快速的水平跟踪</td></tr>
+<tr>
+<td rowspan="2" class="type-XT">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/40px-Old_Icon_XT_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/60px-Old_Icon_XT_Skin.png 1.5x, https://en.tankiwiki.com/images/en/2/2f/Old_Icon_XT_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>杂乱</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/2/22/Thunder_XT.png/150px-Thunder_XT.png" decoding="async" loading="lazy" width="150" height="97" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/2/22/Thunder_XT.png 1.5x"></a></span> <span typeof="mw:File"><a href="./Runes.html" title="Runes"><img src="https://en.tankiwiki.com/images/en/thumb/f/fc/Paint_Runes.png/150px-Paint_Runes.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/f/fc/Paint_Runes.png 1.5x"></a></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span typeof="mw:File"><a href="./Augments.html" title="装备改造"><img src="https://en.tankiwiki.com/images/en/thumb/8/8a/Alteration_thunder_small_caliber_charging_machine.png/56px-Alteration_thunder_small_caliber_charging_machine.png" decoding="async" loading="lazy" width="56" height="56" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/8/8a/Alteration_thunder_small_caliber_charging_machine.png/84px-Alteration_thunder_small_caliber_charging_machine.png 1.5x, https://en.tankiwiki.com/images/en/thumb/8/8a/Alteration_thunder_small_caliber_charging_machine.png/112px-Alteration_thunder_small_caliber_charging_machine.png 2x"></a></span>
+</td>
+<td rowspan="2"><b>5 990</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>雷暴炮 Mk2, 符文, 轻型军械自动装载机</td></tr>
+<tr>
+<td rowspan="2" class="type-LC">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/5/57/Old_Icon_Legacy_Skin.png/40px-Old_Icon_Legacy_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/5/57/Old_Icon_Legacy_Skin.png/60px-Old_Icon_Legacy_Skin.png 1.5x, https://en.tankiwiki.com/images/en/5/57/Old_Icon_Legacy_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>老朋友</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/9/94/Thunder_Legacy.png/150px-Thunder_Legacy.png" decoding="async" loading="lazy" width="150" height="92" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/9/94/Thunder_Legacy.png 1.5x"></a></span> <span typeof="mw:File"><a href="./Eternity.html" title="Eternity"><img src="https://en.tankiwiki.com/images/en/thumb/a/af/Coloring_eternity.png/150px-Coloring_eternity.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/a/af/Coloring_eternity.png 1.5x"></a></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span typeof="mw:File"><a href="./Augments.html" title="装备改造"><img src="https://en.tankiwiki.com/images/en/thumb/c/cb/Alteration_thunder_subcaliber_rounds.png/56px-Alteration_thunder_subcaliber_rounds.png" decoding="async" loading="lazy" width="56" height="56" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/cb/Alteration_thunder_subcaliber_rounds.png/84px-Alteration_thunder_subcaliber_rounds.png 1.5x, https://en.tankiwiki.com/images/en/thumb/c/cb/Alteration_thunder_subcaliber_rounds.png/112px-Alteration_thunder_subcaliber_rounds.png 2x"></a></span>
+</td>
+<td rowspan="2"><b>5 990</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>雷暴炮 Mk2, 永恒, 穿甲弹药</td></tr>
+<tr>
+<td rowspan="2" class="type-PR">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/0/02/Old_Icon_Prime_Skin.png/40px-Old_Icon_Prime_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/0/02/Old_Icon_Prime_Skin.png/60px-Old_Icon_Prime_Skin.png 1.5x, https://en.tankiwiki.com/images/en/0/02/Old_Icon_Prime_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>雷神之锤</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/8/87/ThunderPR.png/150px-ThunderPR.png" decoding="async" loading="lazy" width="150" height="97" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/8/87/ThunderPR.png 1.5x"></a></span> <span typeof="mw:File"><a href="./Lightning_Storm.html" title="Lightning Storm"><img src="https://en.tankiwiki.com/images/en/thumb/f/f8/Paint_Lightning_storm.png/150px-Paint_Lightning_storm.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/f/f8/Paint_Lightning_storm.png 1.5x"></a></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span typeof="mw:File"><a href="./Augments.html" title="装备改造"><img src="https://en.tankiwiki.com/images/en/thumb/7/73/Alteration_thunder_sledgehammer_rounds.png/56px-Alteration_thunder_sledgehammer_rounds.png" decoding="async" loading="lazy" width="56" height="56" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/73/Alteration_thunder_sledgehammer_rounds.png/84px-Alteration_thunder_sledgehammer_rounds.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/73/Alteration_thunder_sledgehammer_rounds.png/112px-Alteration_thunder_sledgehammer_rounds.png 2x"></a></span>
+</td>
+<td rowspan="2"><b>8 790</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>雷暴炮 Mk2，闪电风暴，“大锤”弹</td></tr>
+<tr>
+<td rowspan="2" class="type-UT">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/b/b5/Old_Icon_Ultra_Skin.png/40px-Old_Icon_Ultra_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/b/b5/Old_Icon_Ultra_Skin.png/60px-Old_Icon_Ultra_Skin.png 1.5x, https://en.tankiwiki.com/images/en/b/b5/Old_Icon_Ultra_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>肉贩</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/f/fe/Thunder_Ultra_Skin.png/150px-Thunder_Ultra_Skin.png" decoding="async" loading="lazy" width="150" height="92" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/f/fe/Thunder_Ultra_Skin.png/225px-Thunder_Ultra_Skin.png 1.5x, https://en.tankiwiki.com/images/en/thumb/f/fe/Thunder_Ultra_Skin.png/300px-Thunder_Ultra_Skin.png 2x"></a></span> <span typeof="mw:File"><a href="./Steak.html" title="牛排"><img src="https://en.tankiwiki.com/images/en/thumb/6/66/Steak.png/150px-Steak.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/6/66/Steak.png 1.5x"></a></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span typeof="mw:File"><a href="./Augments.html" title="装备改造"><img src="https://en.tankiwiki.com/images/en/thumb/7/73/Alteration_thunder_sledgehammer_rounds.png/56px-Alteration_thunder_sledgehammer_rounds.png" decoding="async" loading="lazy" width="56" height="56" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/73/Alteration_thunder_sledgehammer_rounds.png/84px-Alteration_thunder_sledgehammer_rounds.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/73/Alteration_thunder_sledgehammer_rounds.png/112px-Alteration_thunder_sledgehammer_rounds.png 2x"></a></span>
+</td>
+<td rowspan="2"><b>9 990</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>雷暴炮 Mk2, 牛排, "大锤" 弹药</td></tr>
+<tr>
+<td rowspan="2" class="type-XT">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/40px-Old_Icon_XT_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/60px-Old_Icon_XT_Skin.png 1.5x, https://en.tankiwiki.com/images/en/2/2f/Old_Icon_XT_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>街机</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/6/65/Railgun_XT_M3.png/150px-Railgun_XT_M3.png" decoding="async" loading="lazy" width="150" height="97" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/6/65/Railgun_XT_M3.png 1.5x"></a></span> <span typeof="mw:File"><a href="./Tic-tac-toe.html" title="三子棋"><img src="https://en.tankiwiki.com/images/en/thumb/6/62/Paint_Tic-tac-toe.png/150px-Paint_Tic-tac-toe.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/6/62/Paint_Tic-tac-toe.png 1.5x"></a></span> <span typeof="mw:File"><a href="./Shot_Effects.html" title="射击效果"><img src="https://en.tankiwiki.com/images/en/thumb/9/9c/Shot_effect_Railgun_Gold.png/66px-Shot_effect_Railgun_Gold.png" decoding="async" loading="lazy" width="66" height="66" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/9/9c/Shot_effect_Railgun_Gold.png/99px-Shot_effect_Railgun_Gold.png 1.5x, https://en.tankiwiki.com/images/en/thumb/9/9c/Shot_effect_Railgun_Gold.png/132px-Shot_effect_Railgun_Gold.png 2x"></a></span> <span typeof="mw:File"><a href="./Augments.html" title="装备改造"><img src="https://en.tankiwiki.com/images/en/thumb/0/0d/Alteration_railgun_electromagnetic_accelerator_scout.png/56px-Alteration_railgun_electromagnetic_accelerator_scout.png" decoding="async" loading="lazy" width="56" height="56" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/0/0d/Alteration_railgun_electromagnetic_accelerator_scout.png/84px-Alteration_railgun_electromagnetic_accelerator_scout.png 1.5x, https://en.tankiwiki.com/images/en/thumb/0/0d/Alteration_railgun_electromagnetic_accelerator_scout.png/112px-Alteration_railgun_electromagnetic_accelerator_scout.png 2x"></a></span>
+</td>
+<td rowspan="2"><b>8 790</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>激光炮 Mk2, 井字游戏, 黄金, 电磁加速器 '侦察机'</td></tr>
+<tr>
+<td rowspan="2" class="type-PR">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/0/02/Old_Icon_Prime_Skin.png/40px-Old_Icon_Prime_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/0/02/Old_Icon_Prime_Skin.png/60px-Old_Icon_Prime_Skin.png 1.5x, https://en.tankiwiki.com/images/en/0/02/Old_Icon_Prime_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>阴影</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/7/73/Skin_railgun_prime.png/150px-Skin_railgun_prime.png" decoding="async" loading="lazy" width="150" height="92" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/73/Skin_railgun_prime.png/225px-Skin_railgun_prime.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/73/Skin_railgun_prime.png/300px-Skin_railgun_prime.png 2x"></a></span> <span typeof="mw:File"><a href="./Obsidian.html" title="黑曜石"><img src="https://en.tankiwiki.com/images/en/thumb/2/28/Paint_Obsidian.png/150px-Paint_Obsidian.png" decoding="async" loading="lazy" width="150" height="89" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/2/28/Paint_Obsidian.png 1.5x"></a></span> <span typeof="mw:File"><a href="./Shot_Effects.html" title="射击效果"><img src="https://en.tankiwiki.com/images/en/thumb/5/57/Shot_effect_Railgun_Darkness.png/66px-Shot_effect_Railgun_Darkness.png" decoding="async" loading="lazy" width="66" height="66" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/5/57/Shot_effect_Railgun_Darkness.png/99px-Shot_effect_Railgun_Darkness.png 1.5x, https://en.tankiwiki.com/images/en/thumb/5/57/Shot_effect_Railgun_Darkness.png/132px-Shot_effect_Railgun_Darkness.png 2x"></a></span> <span typeof="mw:File"><a href="./Augments.html" title="装备改造"><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Alteration_railgun_death_herald_compulsator.png/56px-Alteration_railgun_death_herald_compulsator.png" decoding="async" loading="lazy" width="56" height="56" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/3/31/Alteration_railgun_death_herald_compulsator.png/84px-Alteration_railgun_death_herald_compulsator.png 1.5x, https://en.tankiwiki.com/images/en/thumb/3/31/Alteration_railgun_death_herald_compulsator.png/112px-Alteration_railgun_death_herald_compulsator.png 2x"></a></span>
+</td>
+<td rowspan="2"><b>9 990</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>激光炮 Mk2，黑曜石，黑暗，"死亡先锋" 强制器</td></tr>
+<tr>
+<td rowspan="2" class="type-UT">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/b/b5/Old_Icon_Ultra_Skin.png/40px-Old_Icon_Ultra_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/b/b5/Old_Icon_Ultra_Skin.png/60px-Old_Icon_Ultra_Skin.png 1.5x, https://en.tankiwiki.com/images/en/b/b5/Old_Icon_Ultra_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>阿尔法</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/b/b6/Railgun_ultra.png/150px-Railgun_ultra.png" decoding="async" loading="lazy" width="150" height="92" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/b/b6/Railgun_ultra.png/225px-Railgun_ultra.png 1.5x, https://en.tankiwiki.com/images/en/thumb/b/b6/Railgun_ultra.png/300px-Railgun_ultra.png 2x"></a></span> <span typeof="mw:File"><a href="./Monochrome.html" title="单色"><img src="https://en.tankiwiki.com/images/en/thumb/1/1a/Paint_monochrome.png/150px-Paint_monochrome.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/1/1a/Paint_monochrome.png 1.5x"></a></span> <span typeof="mw:File"><a href="./Shot_Effects.html" title="射击效果"><img src="https://en.tankiwiki.com/images/en/thumb/2/21/Shot_effect_Railgun_Snow.png/66px-Shot_effect_Railgun_Snow.png" decoding="async" loading="lazy" width="66" height="66" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/2/21/Shot_effect_Railgun_Snow.png/99px-Shot_effect_Railgun_Snow.png 1.5x, https://en.tankiwiki.com/images/en/thumb/2/21/Shot_effect_Railgun_Snow.png/132px-Shot_effect_Railgun_Snow.png 2x"></a></span> <span typeof="mw:File"><a href="./Augments.html" title="装备改造"><img src="https://en.tankiwiki.com/images/en/thumb/f/f5/Alteration_railgun_round_destabilization.png/56px-Alteration_railgun_round_destabilization.png" decoding="async" loading="lazy" width="56" height="56" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/f/f5/Alteration_railgun_round_destabilization.png/84px-Alteration_railgun_round_destabilization.png 1.5x, https://en.tankiwiki.com/images/en/thumb/f/f5/Alteration_railgun_round_destabilization.png/112px-Alteration_railgun_round_destabilization.png 2x"></a></span>
+</td>
+<td rowspan="2"><b>12 990</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>激光炮 Mk2，单色，雪，不稳定轮环</td></tr>
+<tr>
+<td rowspan="2" class="type-XT">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/40px-Old_Icon_XT_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/60px-Old_Icon_XT_Skin.png 1.5x, https://en.tankiwiki.com/images/en/2/2f/Old_Icon_XT_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>旧西部</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/f/f8/MagnumXT.png/150px-MagnumXT.png" decoding="async" loading="lazy" width="150" height="92" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/f/f8/MagnumXT.png/225px-MagnumXT.png 1.5x, https://en.tankiwiki.com/images/en/thumb/f/f8/MagnumXT.png/300px-MagnumXT.png 2x"></a></span> <span typeof="mw:File"><a href="./Drought.html" title="干旱"><img src="https://en.tankiwiki.com/images/en/thumb/8/8e/Coloring_drought.png/150px-Coloring_drought.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/8/8e/Coloring_drought.png 1.5x"></a></span> <span typeof="mw:File"><a href="./Shot_Effects.html" title="射击效果"><img src="https://en.tankiwiki.com/images/en/thumb/8/87/Shot_effect_Magnum_Eclipse.png/66px-Shot_effect_Magnum_Eclipse.png" decoding="async" loading="lazy" width="66" height="66" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/8/87/Shot_effect_Magnum_Eclipse.png/99px-Shot_effect_Magnum_Eclipse.png 1.5x, https://en.tankiwiki.com/images/en/thumb/8/87/Shot_effect_Magnum_Eclipse.png/132px-Shot_effect_Magnum_Eclipse.png 2x"></a></span> <span typeof="mw:File"><a href="./Augments.html" title="装备改造"><img src="https://en.tankiwiki.com/images/en/thumb/7/79/Alteration_magnum_reinforced_gun_carriage.png/56px-Alteration_magnum_reinforced_gun_carriage.png" decoding="async" loading="lazy" width="56" height="56" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/79/Alteration_magnum_reinforced_gun_carriage.png/84px-Alteration_magnum_reinforced_gun_carriage.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/79/Alteration_magnum_reinforced_gun_carriage.png/112px-Alteration_magnum_reinforced_gun_carriage.png 2x"></a></span>
+</td>
+<td rowspan="2"><b>5 990</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>马格南 Mk2, 干旱, 蚀, 加强炮架</td></tr>
+<tr>
+<td rowspan="2" class="type-XT">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/40px-Old_Icon_XT_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/60px-Old_Icon_XT_Skin.png 1.5x, https://en.tankiwiki.com/images/en/2/2f/Old_Icon_XT_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>鬼</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/9/9c/ShaftXT.png/150px-ShaftXT.png" decoding="async" loading="lazy" width="150" height="92" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/9/9c/ShaftXT.png/225px-ShaftXT.png 1.5x, https://en.tankiwiki.com/images/en/thumb/9/9c/ShaftXT.png/300px-ShaftXT.png 2x"></a></span> <span typeof="mw:File"><a href="./Nightmare.html" title="噩梦"><img src="https://en.tankiwiki.com/images/en/thumb/2/27/Paint_Nightmare.png/150px-Paint_Nightmare.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/2/27/Paint_Nightmare.png 1.5x"></a></span> <span typeof="mw:File"><a href="./Shot_Effects.html" title="射击效果"><img src="https://en.tankiwiki.com/images/en/thumb/b/ba/Shot_effect_Shaft_Aqua.png/66px-Shot_effect_Shaft_Aqua.png" decoding="async" loading="lazy" width="66" height="66" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/b/ba/Shot_effect_Shaft_Aqua.png/99px-Shot_effect_Shaft_Aqua.png 1.5x, https://en.tankiwiki.com/images/en/thumb/b/ba/Shot_effect_Shaft_Aqua.png/132px-Shot_effect_Shaft_Aqua.png 2x"></a></span> <span typeof="mw:File"><a href="./Augments.html" title="装备改造"><img src="https://en.tankiwiki.com/images/en/thumb/3/39/Alteration_shaft_rapid_fire_mode.png/56px-Alteration_shaft_rapid_fire_mode.png" decoding="async" loading="lazy" width="56" height="56" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/3/39/Alteration_shaft_rapid_fire_mode.png/84px-Alteration_shaft_rapid_fire_mode.png 1.5x, https://en.tankiwiki.com/images/en/thumb/3/39/Alteration_shaft_rapid_fire_mode.png/112px-Alteration_shaft_rapid_fire_mode.png 2x"></a></span>
+</td>
+<td rowspan="2"><b>8 790</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>镭射炮 Mk2，梦魇，水蓝，快速射击模式</td></tr>
+<tr>
+<td rowspan="2" class="type-XT">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/40px-Old_Icon_XT_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/60px-Old_Icon_XT_Skin.png 1.5x, https://en.tankiwiki.com/images/en/2/2f/Old_Icon_XT_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>核能</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/2/2c/Wasp_XT.png/150px-Wasp_XT.png" decoding="async" loading="lazy" width="150" height="97" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/2/2c/Wasp_XT.png 1.5x"></a></span> <span typeof="mw:File"><a href="./Radioactive_Jelly.html" title="放射性果冻"><img src="https://en.tankiwiki.com/images/en/thumb/f/fd/Paint_Radioactive_jelly.png/150px-Paint_Radioactive_jelly.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/f/fd/Paint_Radioactive_jelly.png 1.5x"></a></span>
+</td>
+<td rowspan="2"><b>4 290</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>黄蜂轻甲 Mk2, 放射性果冻</td></tr>
+<tr>
+<td rowspan="2" class="type-XT">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/40px-Old_Icon_XT_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/60px-Old_Icon_XT_Skin.png 1.5x, https://en.tankiwiki.com/images/en/2/2f/Old_Icon_XT_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>角斗士</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/0/06/Hornet_XT_M3.png/150px-Hornet_XT_M3.png" decoding="async" loading="lazy" width="150" height="97" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/0/06/Hornet_XT_M3.png 1.5x"></a></span> <span typeof="mw:File"><a href="./Nanosuit_Armor.html" title="Nanosuit 盔甲"><img src="https://en.tankiwiki.com/images/en/thumb/3/3e/Paint_Nanosuit_Armor.png/150px-Paint_Nanosuit_Armor.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/3e/Paint_Nanosuit_Armor.png 1.5x"></a></span>
+</td>
+<td rowspan="2"><b>4 290</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>蜂王 Mk2，纳米战衣护甲</td></tr>
+<tr>
+<td rowspan="2" class="type-LC">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/5/57/Old_Icon_Legacy_Skin.png/40px-Old_Icon_Legacy_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/5/57/Old_Icon_Legacy_Skin.png/60px-Old_Icon_Legacy_Skin.png 1.5x, https://en.tankiwiki.com/images/en/5/57/Old_Icon_Legacy_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>永恒</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/4/40/Hornet_Legacy.png/150px-Hornet_Legacy.png" decoding="async" loading="lazy" width="150" height="92" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/4/40/Hornet_Legacy.png/225px-Hornet_Legacy.png 1.5x, https://en.tankiwiki.com/images/en/thumb/4/40/Hornet_Legacy.png/300px-Hornet_Legacy.png 2x"></a></span> <span typeof="mw:File"><a href="./Inferno.html" title="地狱"><img src="https://en.tankiwiki.com/images/en/thumb/c/c1/Coloring_inferno.png/150px-Coloring_inferno.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/c/c1/Coloring_inferno.png 1.5x"></a></span>
+</td>
+<td rowspan="2"><b>4 290</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>蜂王 Mk2，地狱火</td></tr>
+<tr>
+<td rowspan="2" class="type-PR">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/0/02/Old_Icon_Prime_Skin.png/40px-Old_Icon_Prime_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/0/02/Old_Icon_Prime_Skin.png/60px-Old_Icon_Prime_Skin.png 1.5x, https://en.tankiwiki.com/images/en/0/02/Old_Icon_Prime_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>法律守护者</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/f/f8/Hornet_Prime.png/150px-Hornet_Prime.png" decoding="async" loading="lazy" width="150" height="92" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/f/f8/Hornet_Prime.png/225px-Hornet_Prime.png 1.5x, https://en.tankiwiki.com/images/en/thumb/f/f8/Hornet_Prime.png/300px-Hornet_Prime.png 2x"></a></span> <span typeof="mw:File"><a href="./Busted.html" title="被抓了"><img src="https://en.tankiwiki.com/images/en/thumb/7/75/Paint_Busted.png/150px-Paint_Busted.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/7/75/Paint_Busted.png 1.5x"></a></span>
+</td>
+<td rowspan="2"><b>5 990</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>蜂王 Mk2，坏了</td></tr>
+<tr>
+<td rowspan="2" class="type-XT">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/40px-Old_Icon_XT_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/60px-Old_Icon_XT_Skin.png 1.5x, https://en.tankiwiki.com/images/en/2/2f/Old_Icon_XT_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>自由</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/9/95/Viking_XT.png/150px-Viking_XT.png" decoding="async" loading="lazy" width="150" height="97" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/9/95/Viking_XT.png 1.5x"></a></span> <span typeof="mw:File"><a href="./Northern_Lights.html" title="北极光"><img src="https://en.tankiwiki.com/images/en/thumb/e/e8/Paint_Northern_lights.png/150px-Paint_Northern_lights.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/e/e8/Paint_Northern_lights.png 1.5x"></a></span>
+</td>
+<td rowspan="2"><b>4 290</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>维京 Mk2，北极光</td></tr>
+<tr>
+<td rowspan="2" class="type-LC">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/5/57/Old_Icon_Legacy_Skin.png/40px-Old_Icon_Legacy_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/5/57/Old_Icon_Legacy_Skin.png/60px-Old_Icon_Legacy_Skin.png 1.5x, https://en.tankiwiki.com/images/en/5/57/Old_Icon_Legacy_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>谦虚</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/6/67/Viking_Legacy.png/150px-Viking_Legacy.png" decoding="async" loading="lazy" width="150" height="92" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/6/67/Viking_Legacy.png 1.5x"></a></span> <span typeof="mw:File"><a href="./Matrix.html" title="矩阵"><img src="https://en.tankiwiki.com/images/en/thumb/9/9d/Paint_Matrix.png/150px-Paint_Matrix.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/9/9d/Paint_Matrix.png 1.5x"></a></span>
+</td>
+<td rowspan="2"><b>5 990</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>维京 Mk2，矩阵</td></tr>
+<tr>
+<td rowspan="2" class="type-PR">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/0/02/Old_Icon_Prime_Skin.png/40px-Old_Icon_Prime_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/0/02/Old_Icon_Prime_Skin.png/60px-Old_Icon_Prime_Skin.png 1.5x, https://en.tankiwiki.com/images/en/0/02/Old_Icon_Prime_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>蘑菇采摘者</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/a/aa/Skin_viking_prime.png/150px-Skin_viking_prime.png" decoding="async" loading="lazy" width="150" height="92" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/a/aa/Skin_viking_prime.png/225px-Skin_viking_prime.png 1.5x, https://en.tankiwiki.com/images/en/thumb/a/aa/Skin_viking_prime.png/300px-Skin_viking_prime.png 2x"></a></span> <span typeof="mw:File"><a href="./Badger-badger.html" title="獾-獾"><img src="https://en.tankiwiki.com/images/en/thumb/8/8a/Paint_Badger-badger.png/150px-Paint_Badger-badger.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/8/8a/Paint_Badger-badger.png 1.5x"></a></span>
+</td>
+<td rowspan="2"><b>5 990</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>维京 Mk2，獾-獾</td></tr>
+<tr>
+<td rowspan="2" class="type-UT">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/b/b5/Old_Icon_Ultra_Skin.png/40px-Old_Icon_Ultra_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/b/b5/Old_Icon_Ultra_Skin.png/60px-Old_Icon_Ultra_Skin.png 1.5x, https://en.tankiwiki.com/images/en/b/b5/Old_Icon_Ultra_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>德拉卡</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/8/8a/Viking_Ultra_Skin.png/150px-Viking_Ultra_Skin.png" decoding="async" loading="lazy" width="150" height="92" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/8/8a/Viking_Ultra_Skin.png/225px-Viking_Ultra_Skin.png 1.5x, https://en.tankiwiki.com/images/en/thumb/8/8a/Viking_Ultra_Skin.png/300px-Viking_Ultra_Skin.png 2x"></a></span> <span typeof="mw:File"><a href="./Far_North.html" title="遥远的北方"><img src="https://en.tankiwiki.com/images/en/thumb/0/01/Paint_Far_North.png/150px-Paint_Far_North.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/0/01/Paint_Far_North.png 1.5x"></a></span>
+</td>
+<td rowspan="2"><b>8 790</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>维京 Mk2，远北</td></tr>
+<tr>
+<td rowspan="2" class="type-XT">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/40px-Old_Icon_XT_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/60px-Old_Icon_XT_Skin.png 1.5x, https://en.tankiwiki.com/images/en/2/2f/Old_Icon_XT_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>钢</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/6/67/HunterXT.png/150px-HunterXT.png" decoding="async" loading="lazy" width="150" height="92" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/6/67/HunterXT.png/225px-HunterXT.png 1.5x, https://en.tankiwiki.com/images/en/thumb/6/67/HunterXT.png/300px-HunterXT.png 2x"></a></span> <span typeof="mw:File"><a href="./Heart_of_Steel.html" title="钢铁之心"><img src="https://en.tankiwiki.com/images/en/thumb/6/61/Paint_Heart_of_Steel.png/150px-Paint_Heart_of_Steel.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/6/61/Paint_Heart_of_Steel.png 1.5x"></a></span>
+</td>
+<td rowspan="2"><b>4 290</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>猎人中甲 Mk2, 钢铁之心</td></tr>
+<tr>
+<td rowspan="2" class="type-PR">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/0/02/Old_Icon_Prime_Skin.png/40px-Old_Icon_Prime_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/0/02/Old_Icon_Prime_Skin.png/60px-Old_Icon_Prime_Skin.png 1.5x, https://en.tankiwiki.com/images/en/0/02/Old_Icon_Prime_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>黑客</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/8/88/Skin_hunter_prime.png/150px-Skin_hunter_prime.png" decoding="async" loading="lazy" width="150" height="92" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/8/88/Skin_hunter_prime.png/225px-Skin_hunter_prime.png 1.5x, https://en.tankiwiki.com/images/en/thumb/8/88/Skin_hunter_prime.png/300px-Skin_hunter_prime.png 2x"></a></span> <span typeof="mw:File"><a href="./Tessaract_Camo.html" title="Tessaract Camo"><img src="https://en.tankiwiki.com/images/en/thumb/8/80/Paint_Tessaract_Camo.png/150px-Paint_Tessaract_Camo.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/8/80/Paint_Tessaract_Camo.png 1.5x"></a></span>
+</td>
+<td rowspan="2"><b>5 990</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>猎人中甲 Mk2，特萨拉克特迷彩</td></tr>
+<tr>
+<td rowspan="2" class="type-XT">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/40px-Old_Icon_XT_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/60px-Old_Icon_XT_Skin.png 1.5x, https://en.tankiwiki.com/images/en/2/2f/Old_Icon_XT_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>遗弃工厂新</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/7/7d/DictatorXT.png/150px-DictatorXT.png" decoding="async" loading="lazy" width="150" height="92" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/7d/DictatorXT.png/225px-DictatorXT.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/7d/DictatorXT.png/300px-DictatorXT.png 2x"></a></span> <span typeof="mw:File"><a href="./Silver_Bricks.html" title="银砖"><img src="https://en.tankiwiki.com/images/en/thumb/5/50/Paint_Silver_Bricks.png/150px-Paint_Silver_Bricks.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/5/50/Paint_Silver_Bricks.png 1.5x"></a></span>
+</td>
+<td rowspan="2"><b>4 290</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>独裁者 Mk2，银砖</td></tr>
+<tr>
+<td rowspan="2" class="type-XT">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/40px-Old_Icon_XT_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/60px-Old_Icon_XT_Skin.png 1.5x, https://en.tankiwiki.com/images/en/2/2f/Old_Icon_XT_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>战士</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/6/6f/Titan_XT.png/150px-Titan_XT.png" decoding="async" loading="lazy" width="150" height="97" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/6/6f/Titan_XT.png 1.5x"></a></span> <span typeof="mw:File"><a href="./Barbed_Wire.html" title="Barbed Wire"><img src="https://en.tankiwiki.com/images/en/thumb/b/bd/Paint_Barbed_Wire.png/150px-Paint_Barbed_Wire.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/b/bd/Paint_Barbed_Wire.png 1.5x"></a></span>
+</td>
+<td rowspan="2"><b>4 290</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>泰坦 Mk2，带刺铁丝</td></tr>
+<tr>
+<td rowspan="2" class="type-XT">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/40px-Old_Icon_XT_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/2/2f/Old_Icon_XT_Skin.png/60px-Old_Icon_XT_Skin.png 1.5x, https://en.tankiwiki.com/images/en/2/2f/Old_Icon_XT_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>派对男孩</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/f/ff/Mammoth_XT.png/150px-Mammoth_XT.png" decoding="async" loading="lazy" width="150" height="97" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/f/ff/Mammoth_XT.png 1.5x"></a></span> <span typeof="mw:File"><a href="./Disco_2.0.html" title="迪斯科 2.0"><img src="https://en.tankiwiki.com/images/en/thumb/8/8b/Paint_Disco_2.0.png/150px-Paint_Disco_2.0.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/8/8b/Paint_Disco_2.0.png 1.5x"></a></span>
+</td>
+<td rowspan="2"><b>4 290</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>猛犸象 Mk2，迪斯科 2.0</td></tr>
+<tr>
+<td rowspan="2" class="type-LC">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/5/57/Old_Icon_Legacy_Skin.png/40px-Old_Icon_Legacy_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/5/57/Old_Icon_Legacy_Skin.png/60px-Old_Icon_Legacy_Skin.png 1.5x, https://en.tankiwiki.com/images/en/5/57/Old_Icon_Legacy_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>机械师</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/f/f0/Skin_mammoth_legacy.png/150px-Skin_mammoth_legacy.png" decoding="async" loading="lazy" width="150" height="92" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/f/f0/Skin_mammoth_legacy.png/225px-Skin_mammoth_legacy.png 1.5x, https://en.tankiwiki.com/images/en/thumb/f/f0/Skin_mammoth_legacy.png/300px-Skin_mammoth_legacy.png 2x"></a></span> <span typeof="mw:File"><a href="./Gears.html" title="齿轮"><img src="https://en.tankiwiki.com/images/en/thumb/e/eb/Paint_Gears.png/150px-Paint_Gears.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/e/eb/Paint_Gears.png 1.5x"></a></span>
+</td>
+<td rowspan="2"><b>5 990</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>猛犸象 Mk2，齿轮</td></tr>
+</tbody><tfoot></tfoot></table><p><br>
+</p><div class="btn btn-collapsed w-100 text-left text-uppercase position-relative py-2 mt-3" data-toggle="collapse" data-target="#collapseExample0">老展示提供</div><div class="collapse" id="collapseExample0"><div class="card card-body">
+<h3><span class="mw-headline" id="Kit_Showcase_Offers">套件展示优惠</span></h3>
+<p>有时候，一<a href="./Product_Kits.html" class="mw-redirect" title="套件">套件</a>始终可用的坦克币将在展示中以30%的折扣出现。出现的套件是随机的，并且在您刷新展示时会更改。很少有套件以15%的折扣可用于水晶。</p><p><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/0/00/ShowcaseKits.png/300px-ShowcaseKits.png" decoding="async" loading="lazy" width="300" height="198" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/0/00/ShowcaseKits.png 1.5x"></span></span>
+</p>
+<table class="new-wikitable sortable showcase-table jquery-tablesorter" style="text-align:center" width="100%;">
+<thead><tr>
+<th colspan="2" style="text-align: center; font-weight:bold; background-color:#424656;" width="13%;" class="headerSort" tabindex="0" role="columnheader button" title="升序排列">皮肤</th>
+<th style="text-align: center; font-weight:bold; background-color:#424656;" class="headerSort" tabindex="0" role="columnheader button" title="升序排列">名字</th>
+<th style="text-align: center; font-weight:bold; background-color:#424656;" class="headerSort" tabindex="0" role="columnheader button" title="升序排列">内容</th>
+<th style="text-align: center; font-weight:bold; background-color:#424656;" class="headerSort" tabindex="0" role="columnheader button" title="升序排列">价格</th></tr></thead><tbody>
+<tr>
+<td rowspan="2" class="type-DC">
+</td>
+<td rowspan="2"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/a/ad/Old_Icon_Demonic_Skin.png/40px-Old_Icon_Demonic_Skin.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/a/ad/Old_Icon_Demonic_Skin.png/60px-Old_Icon_Demonic_Skin.png 1.5x, https://en.tankiwiki.com/images/en/a/ad/Old_Icon_Demonic_Skin.png 2x"></span></span>
+</td>
+<td rowspan="2"><b>路西法</b>
+</td>
+<td><span typeof="mw:File"><a href="./Skins.html" title="皮肤"><img src="https://en.tankiwiki.com/images/en/thumb/4/47/Firebird_DC.png/150px-Firebird_DC.png" decoding="async" loading="lazy" width="150" height="99" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/4/47/Firebird_DC.png/225px-Firebird_DC.png 1.5x, https://en.tankiwiki.com/images/en/thumb/4/47/Firebird_DC.png/300px-Firebird_DC.png 2x"></a></span> <span typeof="mw:File"><a href="./Alien.html" title="外星人"><img src="https://en.tankiwiki.com/images/en/thumb/5/51/Coloring_alien.png/150px-Coloring_alien.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/5/51/Coloring_alien.png 1.5x"></a></span> <span typeof="mw:File"><a href="./Shot_Effects.html" title="射击效果"><img src="https://en.tankiwiki.com/images/en/thumb/3/3b/Shot_effect_Firebird_Magma.png/66px-Shot_effect_Firebird_Magma.png" decoding="async" loading="lazy" width="66" height="66" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/3/3b/Shot_effect_Firebird_Magma.png/99px-Shot_effect_Firebird_Magma.png 1.5x, https://en.tankiwiki.com/images/en/thumb/3/3b/Shot_effect_Firebird_Magma.png/132px-Shot_effect_Firebird_Magma.png 2x"></a></span> <span typeof="mw:File"><a href="./Augments.html" title="装备改造"><img src="https://en.tankiwiki.com/images/en/thumb/a/a3/Alteration_firebird_compact_fuel_tanks.png/56px-Alteration_firebird_compact_fuel_tanks.png" decoding="async" loading="lazy" width="56" height="56" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/a/a3/Alteration_firebird_compact_fuel_tanks.png/84px-Alteration_firebird_compact_fuel_tanks.png 1.5x, https://en.tankiwiki.com/images/en/thumb/a/a3/Alteration_firebird_compact_fuel_tanks.png/112px-Alteration_firebird_compact_fuel_tanks.png 2x"></a></span>
+</td>
+<td rowspan="2"><b>9 990</b> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>火焰炮 Mk2, 外星人, magma, 紧凑型坦克</td></tr></tbody><tfoot></tfoot></table>
+<h3><span class="mw-headline" id="Other_Showcase_Offers">其他展示提供</span></h3>
+<table class="new-wikitable sortable jquery-tablesorter" style="text-align: center; width: 100%;">
+
+<thead><tr>
+<th class="headerSort" tabindex="0" role="columnheader button" title="升序排列">特色商品</th>
+<th class="headerSort" tabindex="0" role="columnheader button" title="升序排列">数量</th>
+<th class="headerSort" tabindex="0" role="columnheader button" title="升序排列">价格</th>
+<th class="headerSort" tabindex="0" role="columnheader button" title="升序排列">折扣</th></tr></thead><tbody>
+<tr>
+<td rowspan="11"><b>水晶</b> <br><br> <figure class="mw-halign-center" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/5/5e/S_C.png/200px-S_C.png" decoding="async" loading="lazy" width="200" height="116" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/5/5e/S_C.png/300px-S_C.png 1.5x, https://en.tankiwiki.com/images/en/5/5e/S_C.png 2x"></span><figcaption></figcaption></figure>
+</td></tr>
+<tr>
+<td>x100</td>
+<td>0<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span></td>
+<td rowspan="10">25%</td></tr>
+<tr>
+<td>x1000</td>
+<td>0<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x4000</td>
+<td>79<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x9000</td>
+<td>169<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x15000</td>
+<td>269<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x21000</td>
+<td>379<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x30000</td>
+<td>529<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x42000</td>
+<td>739<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x136000</td>
+<td>2 290<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x225000</td>
+<td>3 690<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x270000</td>
+<td>4 490<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x449000</td>
+<td>7 290<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td rowspan="10"><b>贵宾</b> <br><br> <figure class="mw-halign-center" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/9/99/S_PA.png/150px-S_PA.png" decoding="async" loading="lazy" width="150" height="80" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/9/99/S_PA.png/225px-S_PA.png 1.5x, https://en.tankiwiki.com/images/en/9/99/S_PA.png 2x"></span><figcaption></figcaption></figure></td>
+<td>x1</td>
+<td>79<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span></td>
+<td rowspan="10">25%</td></tr>
+<tr>
+<td>x3</td>
+<td>169<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x5</td>
+<td>269<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x10</td>
+<td>529<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x14</td>
+<td>739<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x20</td>
+<td>990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x30</td>
+<td>1 490<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x45</td>
+<td>2 290<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x75</td>
+<td>3 690<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x120</td>
+<td>5 890<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td rowspan="9"><b>星星</b> <br><br> <figure class="mw-halign-center" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/7/71/Stars10.png" decoding="async" loading="lazy" width="150" height="109" class="mw-file-element"></span><figcaption></figcaption></figure></td>
+<td>x15</td>
+<td>79<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span></td>
+<td rowspan="9">25%</td></tr>
+<tr>
+<td>x45</td>
+<td>219<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x60</td>
+<td>269<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x75</td>
+<td>379<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x105</td>
+<td>529<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x510</td>
+<td>2 290<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x675</td>
+<td>2 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x840</td>
+<td>3 690<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x1710</td>
+<td>7 290<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td rowspan="8"><b>幸运礼盒</b> <br><br> <figure class="mw-halign-center" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/36/Container_preview_large.png/150px-Container_preview_large.png" decoding="async" loading="lazy" width="150" height="93" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/36/Container_preview_large.png 1.5x"></span><figcaption></figcaption></figure></td>
+<td>x1</td>
+<td>119<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span></td>
+<td rowspan="8">25%</td></tr>
+<tr>
+<td>x2</td>
+<td>219<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x3</td>
+<td>329<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x5</td>
+<td>529<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x15</td>
+<td>1 490<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x30</td>
+<td>2 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x45</td>
+<td>4 490<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x60</td>
+<td>5 890<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td rowspan="9"><b>金箱子</b> <br><br> <figure class="mw-halign-center" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/1/11/S_GB.png" decoding="async" loading="lazy" width="150" height="119" class="mw-file-element"></span><figcaption></figcaption></figure></td>
+<td>x6</td>
+<td>219<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span></td>
+<td rowspan="9">25%</td></tr>
+<tr>
+<td>x9</td>
+<td>329<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x15</td>
+<td>529<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x30</td>
+<td>990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x45</td>
+<td>1 490<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x70</td>
+<td>2 290<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x140</td>
+<td>4 490<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x180</td>
+<td>5 890<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x230</td>
+<td>7 290<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td rowspan="11"><b>电池</b> <br><br> <figure class="mw-halign-center" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/b/bc/S_B.png/150px-S_B.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/b/bc/S_B.png/225px-S_B.png 1.5x, https://en.tankiwiki.com/images/en/thumb/b/bc/S_B.png/300px-S_B.png 2x"></span><figcaption></figcaption></figure></td>
+<td>x15</td>
+<td>2 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span></td>
+<td rowspan="6">25%</td></tr>
+<tr>
+<td>x100</td>
+<td>20 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x150</td>
+<td>29 390<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x450</td>
+<td>89 690<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x750</td>
+<td>146 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x900</td>
+<td>176 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x15</td>
+<td>79<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span></td>
+<td rowspan="5">25%</td></tr>
+<tr>
+<td>x20</td>
+<td>119<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x70</td>
+<td>379<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x100</td>
+<td>529<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x1500</td>
+<td>7 290<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td rowspan="14"><b>道具</b> <br><br> <figure class="mw-halign-center" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/4/47/S_AS.png/150px-S_AS.png" decoding="async" loading="lazy" width="150" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/4/47/S_AS.png/225px-S_AS.png 1.5x, https://en.tankiwiki.com/images/en/thumb/4/47/S_AS.png/300px-S_AS.png 2x"></span><figcaption></figcaption></figure></td>
+<td>x15</td>
+<td>2 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span></td>
+<td rowspan="7">25%</td></tr>
+<tr>
+<td>x30</td>
+<td>6 590<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x60</td>
+<td>14 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x125</td>
+<td>29 390<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x510</td>
+<td>116 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x1020</td>
+<td>233 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x1280</td>
+<td>289 490<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x15</td>
+<td>79<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span></td>
+<td rowspan="7">25%</td></tr>
+<tr>
+<td>x20</td>
+<td>119<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x45</td>
+<td>269<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x60</td>
+<td>379<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x175</td>
+<td>990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x390</td>
+<td>2 290<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x1020</td>
+<td>5 890<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td rowspan="13"><b>维修工具</b> <br><br> <figure class="mw-halign-center" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/6/6c/S_RK.png/150px-S_RK.png" decoding="async" loading="lazy" width="150" height="68" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/6/6c/S_RK.png/225px-S_RK.png 1.5x, https://en.tankiwiki.com/images/en/thumb/6/6c/S_RK.png/300px-S_RK.png 2x"></span><figcaption></figcaption></figure></td>
+<td>x30</td>
+<td>2 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span></td>
+<td rowspan="8">25%</td></tr>
+<tr>
+<td>x45</td>
+<td>4 490<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x140</td>
+<td>14 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x600</td>
+<td>59 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x900</td>
+<td>89 690<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x1500</td>
+<td>146 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x1800</td>
+<td>176 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x3000</td>
+<td>289 490<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x30</td>
+<td>79<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span></td>
+<td rowspan="5">25%</td></tr>
+<tr>
+<td>x45</td>
+<td>119<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x600</td>
+<td>1 490<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x1200</td>
+<td>2 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x3000</td>
+<td>7 290<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td rowspan="14"><b>护甲提升</b> <br><br> <figure class="mw-halign-center" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/f/f2/S_DA.png/150px-S_DA.png" decoding="async" loading="lazy" width="150" height="107" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/f/f2/S_DA.png/225px-S_DA.png 1.5x, https://en.tankiwiki.com/images/en/f/f2/S_DA.png 2x"></span><figcaption></figcaption></figure></td>
+<td>x85</td>
+<td>2 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span></td>
+<td rowspan="7">25%</td></tr>
+<tr>
+<td>x125</td>
+<td>4 490<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x300</td>
+<td>10 790<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x420</td>
+<td>14 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x850</td>
+<td>29 390<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x2800</td>
+<td>89 690<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x3600</td>
+<td>116 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x85</td>
+<td>79<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span></td>
+<td rowspan="7">25%</td></tr>
+<tr>
+<td>x125</td>
+<td>119<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x180</td>
+<td>169<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x300</td>
+<td>269<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x3600</td>
+<td>2 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x7200</td>
+<td>5890<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x9000</td>
+<td>7 290<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td rowspan="9"><b>伤害提升</b> <br><br> <figure class="mw-halign-center" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/a/a6/S_DD.png/200px-S_DD.png" decoding="async" loading="lazy" width="200" height="116" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/a/a6/S_DD.png/300px-S_DD.png 1.5x, https://en.tankiwiki.com/images/en/a/a6/S_DD.png 2x"></span><figcaption></figcaption></figure></td>
+<td>x85</td>
+<td>2 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span></td>
+<td rowspan="5">25%</td></tr>
+<tr>
+<td>x125</td>
+<td>4 490<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x300</td>
+<td>10 790<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x420</td>
+<td>14 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x9000</td>
+<td>289 490<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x85</td>
+<td>79<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span></td>
+<td rowspan="4">25%</td></tr>
+<tr>
+<td>x1200</td>
+<td>990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x5500</td>
+<td>4 490<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x7200</td>
+<td>5 890<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td rowspan="11"><b>速度提升</b> <br><br> <figure class="mw-halign-center" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/1/1d/S_SB.png/150px-S_SB.png" decoding="async" loading="lazy" width="150" height="89" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/1/1d/S_SB.png/225px-S_SB.png 1.5x, https://en.tankiwiki.com/images/en/1/1d/S_SB.png 2x"></span><figcaption></figcaption></figure></td>
+<td>x85</td>
+<td>2 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span></td>
+<td rowspan="5">25%</td></tr>
+<tr>
+<td>x125</td>
+<td>4 490<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x180</td>
+<td>6 590<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x3600</td>
+<td>116 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x5500</td>
+<td>176 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x85</td>
+<td>79<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span></td>
+<td rowspan="6">25%</td></tr>
+<tr>
+<td>x180</td>
+<td>169<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x300</td>
+<td>269<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x850</td>
+<td>739<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x2800</td>
+<td>2 290<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x9000</td>
+<td>7 290<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td rowspan="12"><b>地雷</b> <br><br> <figure class="mw-halign-center" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/d/d6/S_M.png/150px-S_M.png" decoding="async" loading="lazy" width="150" height="88" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/d/d6/S_M.png/225px-S_M.png 1.5x, https://en.tankiwiki.com/images/en/thumb/d/d6/S_M.png/300px-S_M.png 2x"></span><figcaption></figcaption></figure></td>
+<td>x85</td>
+<td>2 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span></td>
+<td rowspan="6">25%</td></tr>
+<tr>
+<td>x850</td>
+<td>29 390<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x300</td>
+<td>10 790<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x1800</td>
+<td>59 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x3600</td>
+<td>116 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x7200</td>
+<td>233 990<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/31/Crystal.png/18px-Crystal.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/31/Crystal.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>x85</td>
+<td>79<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span></td>
+<td rowspan="6">25%</td></tr>
+<tr>
+<td>x300</td>
+<td>269<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x1800</td>
+<td>1 490<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x4500</td>
+<td>3 690<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x5500</td>
+<td>4 490<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>x9000</td>
+<td>7 290<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/18px-Tankoin.png" decoding="async" loading="lazy" width="18" height="17" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/27px-Tankoin.png 1.5x, https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 2x"></span></span>
+</td></tr></tbody><tfoot></tfoot></table>
+</div></div><div align="right"><small>最后编辑：Squirrellover 2025年1月1日</small></div></div></div></div></div></div><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":319,"wgPageParseReport":{"limitreport":{"cputime":"0.597","walltime":"1.311","ppvisitednodes":{"value":361,"limit":1000000},"postexpandincludesize":{"value":822,"limit":2097152},"templateargumentsize":{"value":251,"limit":2097152},"expansiondepth":{"value":9,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%   25.194      1 -total"," 54.63%   13.764      1 Template:See_also"," 36.52%    9.202      1 Template:Other_meaning"," 18.89%    4.759     14 Template:See_also/link"," 16.32%    4.111      1 Template:LastEdit"," 13.59%    3.425      1 Template:BeginPrettySpoiler"," 12.92%    3.254      1 Template:EndPrettySpoiler"]},"cachereport":{"timestamp":"20250801171516","ttl":86400,"transientcontent":false}}});});</script></body></html>

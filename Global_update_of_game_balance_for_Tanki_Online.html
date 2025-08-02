@@ -1,0 +1,3296 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>3D坦克的游戏平衡全球更新 - 3D坦克维基</title><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+    <meta charset="UTF-8">
+    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/DBIsSQ0s2djD_akThoRUDeHa/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-1WKYge3dK2/UTDzhSp5yz67wCBmi0z81tX6M3swiQAxIbgepbnchtTZFPr6x5sGi"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"983c0476757d1276218e632b","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Global_update_of_game_balance_for_Tanki_Online","wgTitle":"Global update of game balance for Tanki Online","wgCurRevisionId":59012,"wgRevisionId":59012,"wgArticleId":3697,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Global_update_of_game_balance_for_Tanki_Online","wgRelevantArticleId":3697,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit"
+:[],"wgRestrictionMove":[],"wgVisualEditor":{"pageLanguageCode":"en","pageLanguageDir":"ltr","pageVariantFallbacks":"en"},"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","jquery.makeCollapsible.styles":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","jquery.makeCollapsible","ext.gadget.UTCLiveClock","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://en.tankiwiki.com/load.php?lang=en&amp;modules=ext.visualEditor.desktopArticleTarget.noscript%7Cjquery.makeCollapsible.styles%7Cmediawiki.skinning.interface%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://en.tankiwiki.com/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <style>
+.mw-editfont-monospace{font-family:monospace,monospace}.mw-editfont-sans-serif{font-family:sans-serif}.mw-editfont-serif{font-family:serif} .mw-editfont-monospace,.mw-editfont-sans-serif,.mw-editfont-serif{  font-size:13px;  -moz-tab-size:4; tab-size:4; }.mw-editfont-monospace.oo-ui-textInputWidget,.mw-editfont-sans-serif.oo-ui-textInputWidget,.mw-editfont-serif.oo-ui-textInputWidget{font-size:inherit}.mw-editfont-monospace.oo-ui-textInputWidget > .oo-ui-inputWidget-input,.mw-editfont-sans-serif.oo-ui-textInputWidget > .oo-ui-inputWidget-input,.mw-editfont-serif.oo-ui-textInputWidget > .oo-ui-inputWidget-input{  font-size:13px}.mw-editfont-monospace.oo-ui-textInputWidget > input.oo-ui-inputWidget-input,.mw-editfont-sans-serif.oo-ui-textInputWidget > input.oo-ui-inputWidget-input,.mw-editfont-serif.oo-ui-textInputWidget > input.oo-ui-inputWidget-input{min-height:32px}
+.ve-init-mw-progressBarWidget{height:1em;overflow:hidden;margin:0 25%}.ve-init-mw-progressBarWidget-bar{height:1em;width:0} .ve-init-mw-progressBarWidget{background-color:#fff;box-sizing:border-box;height:0.875em;border:1px solid #36c;border-radius:0.875em;box-shadow:0 1px 1px rgba(0,0,0,0.15)}.ve-init-mw-progressBarWidget-bar{background-color:#36c;height:0.875em}
+.mw-collapsible-toggle{float:right;-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none}.mw-collapsible-toggle-default{-webkit-appearance:none;-moz-appearance:none;appearance:none;background:none;margin:0;padding:0;border:0;font:inherit}.mw-collapsible-toggle-default .mw-collapsible-text{color:#0645ad}.mw-underline-always .mw-collapsible-toggle-default .mw-collapsible-text{text-decoration:underline}.mw-underline-never .mw-collapsible-toggle-default .mw-collapsible-text{text-decoration:none}.mw-collapsible-toggle-default:hover .mw-collapsible-text{text-decoration:underline}.mw-collapsible-toggle-default:active .mw-collapsible-text{color:#faa700}.mw-collapsible-toggle-default::before{content:'['}.mw-collapsible-toggle-default::after{content:']'}.mw-customtoggle,.mw-collapsible-toggle{cursor:pointer} caption .mw-collapsible-toggle,.mw-content-ltr caption .mw-collapsible-toggle,.mw-content-rtl caption .mw-collapsible-toggle,.mw-content-rtl .mw-content-ltr caption .mw-collapsible-toggle,.mw-content-ltr .mw-content-rtl caption .mw-collapsible-toggle{float:none}
+#mw-teleport-target{position:absolute;z-index:450}</style>
+    <style>
+.ve-init-mw-tempWikitextEditorWidget{border:0;padding:0;color:inherit;line-height:1.5em;width:100%;-moz-tab-size:4;tab-size:4; }.ve-init-mw-tempWikitextEditorWidget:focus{outline:0;padding:0}.ve-init-mw-tempWikitextEditorWidget::selection{background:rgba(109,169,247,0.5); }</style>
+    <style>
+.ve-active .ve-init-mw-desktopArticleTarget-targetContainer #siteNotice,.ve-active .mw-indicators,.ve-active #t-print,.ve-active #t-permalink,.ve-active #p-coll-print_export,.ve-active #t-cite,.ve-active .ve-init-mw-desktopArticleTarget-editableContent,.ve-active .ve-init-mw-tempWikitextEditorWidget{display:none}.ve-deactivating .ve-ui-surface{display:none}.ve-activating{ }.ve-activating .ve-ui-surface{height:0;padding:0 !important; overflow:hidden} .ve-loading .ve-init-mw-desktopArticleTarget-targetContainer > :not(.ve-init-mw-desktopArticleTarget-toolbarPlaceholder):not(.ve-init-mw-desktopArticleTarget),.ve-loading .ve-init-mw-desktopArticleTarget-originalContent,.ve-activated:not(.ve-loading) .ve-init-mw-desktopArticleTarget-uneditableContent{pointer-events:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;opacity:0.5}.ve-activated .ve-init-mw-desktopArticleTarget-targetContainer #firstHeading{ -webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;pointer-events:auto;cursor:text}.ve-activated .ve-init-mw-desktopArticleTarget-targetContainer #firstHeading a{ pointer-events:none}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks{cursor:pointer}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks:hover{ background:#e9f2fd}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks a{opacity:1} .ve-init-mw-desktopArticleTarget-loading-overlay{z-index:2;position:absolute;width:100%;top:1em}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder{overflow:hidden;transition:height 250ms ease;height:0;padding-bottom:2px; }.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{transform:translateY(-100%);transition:transform 250ms ease}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-open .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{transform:translateY(0)}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating{transition:none}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{position:fixed;top:0;z-index:1;background:#fff} .oo-ui-element-hidden{display:none !important; } .mw-editsection{ unicode-bidi:-moz-isolate;unicode-bidi:-webkit-isolate;unicode-bidi:isolate}.mw-editsection::before{content:'\200B'}.mw-editsection a{white-space:nowrap}.mw-editsection-divider{color:#54595d} .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{height:42px;border-bottom:1px solid #c8ccd1;box-shadow:0 1px 1px 0 rgba(0,0,0,0.1)}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating,.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-open{height:42px}</style>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://en.tankiwiki.com/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://en.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://en.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (en)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://en.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki Atom feed" href="https://en.tankiwiki.com/index.php?title=Special:RecentChanges&amp;feed=atom">
+    <style>#utcdate a { font-weight:bolder; font-size:120%; }</style><style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Global_update_of_game_balance_for_Tanki_Online rootpage-Global_update_of_game_balance_for_Tanki_Online skin-tankiblue action-view"><div id="mw-main-container"><a href="./Tanki_Online_Wiki.html" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">返回主页</a><div class="main-content"><div class="mw-body ve-init-mw-desktopArticleTarget-targetContainer" id="content" role="main"><a id="top"></a><div class="mw-body-content" id="bodyContent"><div id="siteNotice"></div><div id="mw-content-text" class="mw-content-ltr mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang=""><span class="mw-page-title-main">3D坦克的全球游戏平衡更新</span></h1><p><br>
+</p><div class="attention-message orange">
+  <div class="warn-sign"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/7/7c/Warn_yellow.png/50px-Warn_yellow.png" decoding="async" loading="lazy" width="50" height="46" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/7c/Warn_yellow.png/75px-Warn_yellow.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/7c/Warn_yellow.png/100px-Warn_yellow.png 2x"></span></span></div>
+  <div style="width: 100%"><b>注意！</b>这是一篇历史文章；自从这次更新以来，平衡发生了许多变化。请查看<a href="./Updates.html" title="更新">补丁说明</a>对于最近的更改。</div>
+</div><div class="dablink"><em>另见</em>:<a href="./Turrets.html" title="炮塔">炮塔</a>,<a href="./Hulls.html" title="底盘">底盘</a>,<a href="./Supplies.html" title="道具">道具</a>,<a href="./Ranks.html" title="等级">等级</a>和<a href="./Micro-upgrades.html" class="mw-redirect" title="微型升级">微型升级</a>
+</div><p><br>
+</p><ul><li><a class="mw-selflink-fragment" href="#General_information">上将信息</a></li>
+<li><a class="mw-selflink-fragment" href="#Smart_cooldowns">道具</a></li>
+<li><a class="mw-selflink-fragment" href="#Hulls">底盘</a></li>
+<li><a class="mw-selflink-fragment" href="#Turrets">炮塔</a></li></ul><p><br>
+</p><h2><span class="mw-headline" id="General_information">上将信息</span></h2><ul><li>几乎所有底盘和炮塔的特征，包括XT版本，都发生了变化：<ol><li>伤害（对于炮塔）和防护（对于底盘）的数值乘以10。</li>
+<li>对于 M3 底盘和炮塔：<ul><li>对齐的等级<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/0/0f/IconsNormal_27.png/15px-IconsNormal_27.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/0/0f/IconsNormal_27.png/23px-IconsNormal_27.png 1.5x, https://en.tankiwiki.com/images/en/thumb/0/0f/IconsNormal_27.png/30px-IconsNormal_27.png 2x"></span></span>元帅;</li>
+<li>物品价格、MU步骤价格、MU立即完成价格和延迟时间已更改；</li></ul></li>
+<li>M3 和 M3+ 底盘在同一类别（轻型、中型、重型）内具有相同的防护；</li></ol></li></ul><ul><li>道具:<ul><li>DA、DD和SB的效果现在持续40秒；</li>
+<li>速度提升现在使坦克的速度提高了40%;</li>
+<li>道具现在重新加载更快，除了地雷；</li>
+<li>地雷和维修工具现在不再锁定彼此的激活。</li></ul></li></ul><p><br>
+<u>颜色代码：</u>
+</p><ul><li><span style="opacity:0.5"><b>灰色</b></span>— 参数的旧值；</li>
+<li><span style="color:green"><b>绿色</b></span>——一个参数的新值，比旧值更好；</li>
+<li><span style="color:red"><b>红色</b></span>——一个参数的新值，比旧值更差；</li>
+<li><b>白色</b>——一个参数的值没有改变。</li></ul><p>只有值发生变化的参数会在底盘和炮塔的表格中显示。</p><p><br> 
+</p><h2><span class="mw-headline" id="Smart_cooldowns">智能冷却</span></h2><div class="btn btn-collapsed w-100 text-left text-uppercase position-relative py-2 mt-3" data-toggle="collapse" data-target="#collapseExample1">智能冷却</div><div class="collapse" id="collapseExample1"><div class="card card-body">
+<table class="wikitable mw-collapsible mw-collapsed mw-made-collapsible" id="mw-customcollapsible-myTable1" border="1" style="width: 100%;">
+<tbody><tr>
+<td>
+</td>
+<td style="background:#2b2b2b" valign="center" align="center">维修工具</td>
+<td style="background:#2b2b2b" valign="center" align="center">双重护甲</td>
+<td style="background:#2b2b2b" valign="center" align="center">双倍伤害</td>
+<td style="background:#2b2b2b" valign="center" align="center">速度提升</td>
+<td style="background:#2b2b2b" valign="center" align="center">地雷</td>
+<td style="background:#2b2b2b" valign="center" align="center"><button type="button" class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" aria-expanded="false" tabindex="0"><span class="mw-collapsible-text">扩展</span></button>金箱子</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b" valign="center" align="center">维修工具</td>
+<td valign="center" align="center">40</td>
+<td valign="center" align="center"><span style="opacity:0.5">15</span>→<span style="color:green">10</span>
+</td>
+<td valign="center" align="center"><span style="opacity:0.5">15</span>→<span style="color:green">10</span>
+</td>
+<td valign="center" align="center">0</td>
+<td valign="center" align="center"><span style="opacity:0.5">10</span>→<span style="color:green">0</span>
+</td>
+<td valign="center" align="center">0</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b" valign="center" align="center">双重护甲</td>
+<td valign="center" align="center">0</td>
+<td valign="center" align="center"><span style="opacity:0.5">15</span>→<span style="color:green">10</span>
+</td>
+<td valign="center" align="center"><span style="opacity:0.5">30</span>→<span style="color:green">20</span>
+</td>
+<td valign="center" align="center"><span style="opacity:0.5">15</span>→<span style="color:green">10</span>
+</td>
+<td valign="center" align="center">0</td>
+<td valign="center" align="center">0</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b" valign="center" align="center">双倍伤害</td>
+<td valign="center" align="center">0</td>
+<td valign="center" align="center"><span style="opacity:0.5">30</span>→<span style="color:green">20</span>
+</td>
+<td valign="center" align="center"><span style="opacity:0.5">15</span>→<span style="color:green">10</span>
+</td>
+<td valign="center" align="center"><span style="opacity:0.5">15</span>→<span style="color:green">10</span>
+</td>
+<td valign="center" align="center">0</td>
+<td valign="center" align="center">0</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b" valign="center" align="center">速度提升</td>
+<td valign="center" align="center">0</td>
+<td valign="center" align="center"><span style="opacity:0.5">15</span>→<span style="color:green">10</span>
+</td>
+<td valign="center" align="center"><span style="opacity:0.5">15</span>→<span style="color:green">10</span>
+</td>
+<td valign="center" align="center"><span style="opacity:0.5">15</span>→<span style="color:green">10</span>
+</td>
+<td valign="center" align="center">0</td>
+<td valign="center" align="center">0</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b" valign="center" align="center">地雷</td>
+<td valign="center" align="center"><span style="opacity:0.5">10</span>→<span style="color:green">0</span>
+</td>
+<td valign="center" align="center"><span style="opacity:0.5">15</span>→<span style="color:green">10</span>
+</td>
+<td valign="center" align="center"><span style="opacity:0.5">15</span>→<span style="color:green">10</span>
+</td>
+<td valign="center" align="center">0</td>
+<td valign="center" align="center"><span style="opacity:0.5">20</span>→<span style="color:red">40</span>
+</td>
+<td valign="center" align="center">0</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b" valign="center" align="center">金箱子</td>
+<td valign="center" align="center">0</td>
+<td valign="center" align="center">0</td>
+<td valign="center" align="center">0</td>
+<td valign="center" align="center">0</td>
+<td valign="center" align="center">0</td>
+<td valign="center" align="center">5</td></tr></tbody></table>
+</div></div><p><br>
+</p><h2><span class="mw-headline" id="Hulls">底盘</span></h2><div class="btn btn-collapsed w-100 text-left text-uppercase position-relative py-2 mt-3" data-toggle="collapse" data-target="#collapseExample2">黄蜂轻甲</div><div class="collapse" id="collapseExample2"><div class="card card-body">
+<table class="wikitable mw-collapsible mw-collapsed mw-made-collapsible" id="mw-customcollapsible-myTable13" border="1" style="width: 100%;">
+<tbody><tr>
+<td width="30%" style="background:#2b2b2b">
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М0</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М1</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М2</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М3</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><button type="button" class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" aria-expanded="false" tabindex="0"><span class="mw-collapsible-text">扩展</span></button><center><b>М3+</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>可用来自</b>
+</td>
+<td><center>新兵</center>
+</td>
+<td><center>上士少校</center>
+</td>
+<td><center>上校</center>
+</td>
+<td><center><span style="opacity:0.5">上将</span>→ 元帅</center>
+</td>
+<td><center><b>微型升级</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>修改的价格</b>
+</td>
+<td><center>100</center>
+</td>
+<td><center>13 100</center>
+</td>
+<td><center>102 700</center>
+</td>
+<td><center><span style="opacity:0.5">215 700</span>→<br><span style="color:green">203 100</span></center>
+</td>
+<td><center><span style="opacity:0.5">745 500</span>→<br><span style="color:red">776 500</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>防护 (hp)</b>
+</td>
+<td><center><span style="opacity:0.5">65</span>→<br>650</center>
+</td>
+<td><center><span style="opacity:0.5">95,44</span>→<br><span style="color:green">1 007,35</span></center>
+</td>
+<td><center><span style="opacity:0.5">136,03</span>→<br><span style="color:green">1 483,82</span></center>
+</td>
+<td><center><span style="opacity:0.5">149,56</span>→<br><span style="color:green">1 682,35</span></center>
+</td>
+<td><center><span style="opacity:0.5">180</span>→<br><span style="color:green">2 000</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>最高速度 (米/秒)</b>
+</td>
+<td><center>10</center>
+</td>
+<td><center><span style="opacity:0.5">10,794</span>→<span style="color:red">10,53</span></center>
+</td>
+<td><center><span style="opacity:0.5">11,853</span>→<span style="color:red">11,24</span></center>
+</td>
+<td><center><span style="opacity:0.5">12,206</span>→<span style="color:red">11,53</span></center>
+</td>
+<td><center><span style="opacity:0.5">13</span>→<span style="color:red">12</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>横向加速度 (米/秒²)</b>
+</td>
+<td><center>15</center>
+</td>
+<td><center>17,38</center>
+</td>
+<td><center>20,56</center>
+</td>
+<td><center><span style="opacity:0.5">21,62</span>→<span style="color:green">21,88</span></center>
+</td>
+<td><center>24</center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>转向灵活度 (度/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">75</span>→<span style="color:green">100</span></center>
+</td>
+<td><center><span style="opacity:0.5">94,85</span>→<span style="color:green">107,94</span></center>
+</td>
+<td><center><span style="opacity:0.5">121,32</span>→<span style="color:red">118,53</span></center>
+</td>
+<td><center><span style="opacity:0.5">130,15</span>→<span style="color:red">122,94</span></center>
+</td>
+<td><center><span style="opacity:0.5">150</span>→<span style="color:red">130</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>转向加速度 (度/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">160</span>→<span style="color:red">130</span></center>
+</td>
+<td><center><span style="opacity:0.5">170,59</span>→<span style="color:red">135,29</span></center>
+</td>
+<td><center><span style="opacity:0.5">184,71</span>→<span style="color:red">142,35</span></center>
+</td>
+<td><center><span style="opacity:0.5">189,41</span>→<span style="color:red">145,29</span></center>
+</td>
+<td><center><span style="opacity:0.5">200</span>→<span style="color:red">150</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>抗惯性转动加速度 (度/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">260</span>→<span style="color:green">280</span></center>
+</td>
+<td><center><span style="opacity:0.5">289,12</span>→<span style="color:green">301,18</span></center>
+</td>
+<td><center><span style="opacity:0.5">327,94</span>→<span style="color:green">329,41</span></center>
+</td>
+<td><center><span style="opacity:0.5">340,88</span>→<span style="color:green">341,18</span></center>
+</td>
+<td><center><span style="opacity:0.5">370</span>→<span style="color:red">360</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>重量</b>
+</td>
+<td><center><span style="opacity:0.5">1 100</span>→<br><span style="color:red">1 000</span></center>
+</td>
+<td><center><span style="opacity:0.5">1 391,18</span>→<br><span style="color:red">1 264,71</span></center>
+</td>
+<td><center><span style="opacity:0.5">1 779,41</span>→<br><span style="color:red">1 617,65</span></center>
+</td>
+<td><center><span style="opacity:0.5">1 908,82</span>→<br><span style="color:red">1 764,71</span></center>
+</td>
+<td><center><span style="opacity:0.5">2 200</span>→<br><span style="color:red">2 000</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>加速度 (米/秒²)</b>
+</td>
+<td><center>820</center>
+</td>
+<td><center>947,06</center>
+</td>
+<td><center>1 116,47</center>
+</td>
+<td><center><span style="opacity:0.5">1 172,94</span>→<br><span style="color:green">1 187,06</span></center>
+</td>
+<td><center>1 300</center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>反向加速度 (米/秒²)</b>
+</td>
+<td><center>12</center>
+</td>
+<td><center><span style="opacity:0.5">13,32</span>→<span style="color:green">13,59</span></center>
+</td>
+<td><center><span style="opacity:0.5">15,09</span>→<span style="color:green">15,71</span></center>
+</td>
+<td><center><span style="opacity:0.5">15,68</span>→<span style="color:green">16,59</span></center>
+</td>
+<td><center><span style="opacity:0.5">17</span>→<span style="color:green">18</span></center>
+</td></tr></tbody></table>
+</div></div><p><br>
+</p><div class="btn btn-collapsed w-100 text-left text-uppercase position-relative py-2 mt-3" data-toggle="collapse" data-target="#collapseExample3">蜂王</div><div class="collapse" id="collapseExample3"><div class="card card-body">
+<table class="wikitable mw-collapsible mw-collapsed mw-made-collapsible" id="mw-customcollapsible-myTable14" border="1" style="width: 100%;">
+<tbody><tr>
+<td width="28%" style="background:#2b2b2b">
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М0</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М1</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М2</b></center>
+</td>
+<td width="16%" style="background:#2b2b2b"><center><b>М3</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><button type="button" class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" aria-expanded="false" tabindex="0"><span class="mw-collapsible-text">扩展</span></button><center><b>М3+</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>可用来自</b>
+</td>
+<td><center>一等兵</center>
+</td>
+<td><center>四级准尉</center>
+</td>
+<td><center>少尉</center>
+</td>
+<td><center><span style="opacity:0.5">少将</span>→ 元帅</center>
+</td>
+<td><center><b>微型升级</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>修改的价格</b>
+</td>
+<td><center>350</center>
+</td>
+<td><center>23 100</center>
+</td>
+<td><center>70 500</center>
+</td>
+<td><center><span style="opacity:0.5">158 300</span>→<br><span style="color:red">225 050</span></center>
+</td>
+<td><center><span style="opacity:0.5">683 250</span>→<br><span style="color:red">776 500</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>防护 (hp)</b>
+</td>
+<td><center><span style="opacity:0.5">82,94</span>→<br><span style="color:red">729,41</span></center>
+</td>
+<td><center><span style="opacity:0.5">118,68</span>→<br><span style="color:red">1 086,76</span></center>
+</td>
+<td><center><span style="opacity:0.5">138,53</span>→<br><span style="color:red">1 285,29</span></center>
+</td>
+<td><center><span style="opacity:0.5">166,32</span>→<br><span style="color:green">1 682,35</span></center>
+</td>
+<td><center><span style="opacity:0.5">210</span>→<br><span style="color:red">2 000</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>最高速度 (米/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">9,177</span>→<br><span style="color:green">9,9</span></center>
+</td>
+<td><center><span style="opacity:0.5">9,971</span>→<br><span style="color:green">10,35</span></center>
+</td>
+<td><center><span style="opacity:0.5">10,412</span>→<br><span style="color:green">10,6</span></center>
+</td>
+<td><center><span style="opacity:0.5">11,029</span>→<br><span style="color:green">11,1</span></center>
+</td>
+<td><center><span style="opacity:0.5">12</span>→<br><span style="color:red">11,5</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>横向加速度 (米/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">8,24</span>→<br><span style="color:green">10,23</span></center>
+</td>
+<td><center><span style="opacity:0.5">9,29</span>→<br><span style="color:green">11,29</span></center>
+</td>
+<td><center><span style="opacity:0.5">9,88</span>→<br><span style="color:green">11,88</span></center>
+</td>
+<td><center><span style="opacity:0.5">10,71</span>→<br><span style="color:green">13,05</span></center>
+</td>
+<td><center><span style="opacity:0.5">12</span>→<br><span style="color:green">14</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>转向灵活度 (度/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">73,53</span>→<br><span style="color:green">100</span></center>
+</td>
+<td><center><span style="opacity:0.5">89,41</span>→<br><span style="color:green">107,94</span></center>
+</td>
+<td><center><span style="opacity:0.5">98,24</span>→<br><span style="color:green">118,53</span></center>
+</td>
+<td><center><span style="opacity:0.5">110,59</span>→<br><span style="color:green">122,94</span></center>
+</td>
+<td><center>130</center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>转向加速度 (度/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">160,59</span>→<br><span style="color:red">130</span></center>
+</td>
+<td><center><span style="opacity:0.5">163,24</span>→<br><span style="color:red">135,29</span></center>
+</td>
+<td><center><span style="opacity:0.5">164,71</span>→<br><span style="color:red">142,35</span></center>
+</td>
+<td><center><span style="opacity:0.5">166,76</span>→<br><span style="color:red">145,29</span></center>
+</td>
+<td><center><span style="opacity:0.5">170</span>→<br><span style="color:red">150</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>抗惯性转动加速度 (度/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">207,06</span>→<br><span style="color:green">280</span></center>
+</td>
+<td><center><span style="opacity:0.5">238,82</span>→<br><span style="color:green">301,18</span></center>
+</td>
+<td><center><span style="opacity:0.5">256,47</span>→<br><span style="color:green">329,41</span></center>
+</td>
+<td><center><span style="opacity:0.5">281,18</span>→<br><span style="color:green">341,18</span></center>
+</td>
+<td><center><span style="opacity:0.5">320</span>→<br><span style="color:green">360</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>重量</b>
+</td>
+<td><center><span style="opacity:0.5">1 270,59</span>→<br><span style="color:red">1 000</span></center>
+</td>
+<td><center><span style="opacity:0.5">1 588,24</span>→<br><span style="color:red">1 264,71</span></center>
+</td>
+<td><center><span style="opacity:0.5">1 764,71</span>→<br><span style="color:red">1 617,65</span></center>
+</td>
+<td><center><span style="opacity:0.5">2 011,76</span>→<br><span style="color:red">1 764,71</span></center>
+</td>
+<td><center><span style="opacity:0.5">2 400</span>→<br><span style="color:red">2 000</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>加速度 (米/秒²)</b>
+</td>
+<td><center>882,35</center>
+</td>
+<td><center>1 027,94</center>
+</td>
+<td><center>1 108,82</center>
+</td>
+<td><center><span style="opacity:0.5">1 222,06</span>→<br><span style="color:green">1 270,59</span></center>
+</td>
+<td><center>1 400</center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>反向加速度 (米/秒²)</b>
+</td>
+<td><center>15,47</center>
+</td>
+<td><center>17,59</center>
+</td>
+<td><center>18,76</center>
+</td>
+<td><center><span style="opacity:0.5">20,41</span>→<br><span style="color:green">21,12</span></center>
+</td>
+<td><center>23</center>
+</td></tr></tbody></table>
+</div></div><p><br> 
+</p><div class="btn btn-collapsed w-100 text-left text-uppercase position-relative py-2 mt-3" data-toggle="collapse" data-target="#collapseExample4">猎人中甲</div><div class="collapse" id="collapseExample4"><div class="card card-body">
+<table class="wikitable mw-collapsible mw-collapsed mw-made-collapsible" id="mw-customcollapsible-myTable15" border="1" style="width: 100%;">
+<tbody><tr>
+<td width="29%" style="background:#2b2b2b">
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М0</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М1</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М2</b></center>
+</td>
+<td width="15%" style="background:#2b2b2b"><center><b>М3</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><button type="button" class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" aria-expanded="false" tabindex="0"><span class="mw-collapsible-text">扩展</span></button><center><b>М3+</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>可用来自</b>
+</td>
+<td><center>新兵</center>
+</td>
+<td><center>二级准尉</center>
+</td>
+<td><center>上尉</center>
+</td>
+<td><center><span style="opacity:0.5">陆军元帅</span>→ 元帅</center>
+</td>
+<td><center><b>微型升级</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>修改的价格</b>
+</td>
+<td><center>0</center>
+</td>
+<td><center>29 900</center>
+</td>
+<td><center>94 100</center>
+</td>
+<td><center><span style="opacity:0.5">214 700</span>→<br><span style="color:green">200 000</span></center>
+</td>
+<td><center><span style="opacity:0.5">807 750</span>→<br><span style="color:green">776 500</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>防护 (hp)</b>
+</td>
+<td><center><span style="opacity:0.5">105</span>→<br><span style="color:red">1 000</span></center>
+</td>
+<td><center><span style="opacity:0.5">173,8</span>→<br><span style="color:green">1 764,71</span></center>
+</td>
+<td><center><span style="opacity:0.5">200,3</span>→<br><span style="color:green">2 058,82</span></center>
+</td>
+<td><center><span style="opacity:0.5">247,9</span>→<br><span style="color:green">2 529,41</span></center>
+</td>
+<td><center><span style="opacity:0.5">285</span>→<br><span style="color:green">3 000</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>最高速度 (米/秒)</b>
+</td>
+<td><center>7,5</center>
+</td>
+<td><center><span style="opacity:0.5">8,456</span>→<br><span style="color:red">8,07</span></center>
+</td>
+<td><center><span style="opacity:0.5">8,824</span>→<br><span style="color:red">8,29</span></center>
+</td>
+<td><center><span style="opacity:0.5">9,485</span>→<br><span style="color:red">8,65</span></center>
+</td>
+<td><center><span style="opacity:0.5">10</span>→<br><span style="color:red">9</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>横向加速度 (米/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">6</span>→<br><span style="color:green">11</span></center>
+</td>
+<td><center><span style="opacity:0.5">9,06</span>→<br><span style="color:green">12,91</span></center>
+</td>
+<td><center><span style="opacity:0.5">10,24</span>→<br><span style="color:green">13,65</span></center>
+</td>
+<td><center><span style="opacity:0.5">12,35</span>→<br><span style="color:green">14,82</span></center>
+</td>
+<td><center><span style="opacity:0.5">14</span>→<br><span style="color:green">16</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>转向灵活度 (度/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">58</span>→<br><span style="color:green">95</span></center>
+</td>
+<td><center><span style="opacity:0.5">89,35</span>→<br><span style="color:green">116,03</span></center>
+</td>
+<td><center><span style="opacity:0.5">101,41</span>→<br><span style="color:green">124,12</span></center>
+</td>
+<td><center><span style="opacity:0.5">123,12</span>→<br><span style="color:green">137,06</span></center>
+</td>
+<td><center><span style="opacity:0.5">140</span>→<br><span style="color:green">150</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>转向加速度 (度/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">120</span>→<br><span style="color:red">100</span></center>
+</td>
+<td><center><span style="opacity:0.5">135,29</span>→<br><span style="color:red">107,65</span></center>
+</td>
+<td><center><span style="opacity:0.5">141,18</span>→<br><span style="color:red">110,59</span></center>
+</td>
+<td><center><span style="opacity:0.5">151,76</span>→<br><span style="color:red">115,29</span></center>
+</td>
+<td><center><span style="opacity:0.5">160</span>→<br><span style="color:red">120</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>抗惯性转动加速度 (度/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">190</span>→<br><span style="color:green">280</span></center>
+</td>
+<td><center><span style="opacity:0.5">224,41</span>→<br><span style="color:green">310,59</span></center>
+</td>
+<td><center><span style="opacity:0.5">237,65</span>→<br><span style="color:green">322,35</span></center>
+</td>
+<td><center><span style="opacity:0.5">261,47</span>→<br><span style="color:green">341,18</span></center>
+</td>
+<td><center><span style="opacity:0.5">280</span>→<br><span style="color:green">360</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>重量</b>
+</td>
+<td><center>1 500</center>
+</td>
+<td><center><span style="opacity:0.5">1 958,82</span>→<br><span style="color:green">2 073,53</span></center>
+</td>
+<td><center><span style="opacity:0.5">2 135,29</span>→<br><span style="color:green">2 294,12</span></center>
+</td>
+<td><center><span style="opacity:0.5">2 452,94</span>→<br><span style="color:green">2 647,06</span></center>
+</td>
+<td><center><span style="opacity:0.5">2 700</span>→<br><span style="color:green">3 000</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>加速度 (米/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">800</span>→<br><span style="color:green">950</span></center>
+</td>
+<td><center><span style="opacity:0.5">991,18</span>→<br><span style="color:green">1 198,53</span></center>
+</td>
+<td><center><span style="opacity:0.5">1 064,71</span>→<br><span style="color:green">1 294,12</span></center>
+</td>
+<td><center><span style="opacity:0.5">1 197,06</span>→<br><span style="color:green">1 447,06</span></center>
+</td>
+<td><center><span style="opacity:0.5">1 300</span>→<br><span style="color:green">1 600</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>反向加速度 (米/秒²)</b>
+</td>
+<td><center>10</center>
+</td>
+<td><center>13,06</center>
+</td>
+<td><center>14,24</center>
+</td>
+<td><center><span style="opacity:0.5">16,35</span>→<br><span style="color:red">16,12</span></center>
+</td>
+<td><center>18</center>
+</td></tr></tbody></table>
+</div></div><p><br> 
+</p><div class="btn btn-collapsed w-100 text-left text-uppercase position-relative py-2 mt-3" data-toggle="collapse" data-target="#collapseExample5">维京</div><div class="collapse" id="collapseExample5"><div class="card card-body">
+<table class="wikitable mw-collapsible mw-collapsed mw-made-collapsible" id="mw-customcollapsible-myTable16" border="1" style="width: 100%;">
+<tbody><tr>
+<td width="30%" style="background:#2b2b2b">
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М0</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М1</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М2</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М3</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><button type="button" class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" aria-expanded="false" tabindex="0"><span class="mw-collapsible-text">扩展</span></button><center><b>М3+</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>可用来自</b>
+</td>
+<td><center>下士</center>
+</td>
+<td><center>五级准尉</center>
+</td>
+<td><center>中校</center>
+</td>
+<td><center><span style="opacity:0.5">中将</span>→ 元帅</center>
+</td>
+<td><center><b>微型升级</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>修改的价格</b>
+</td>
+<td><center>600</center>
+</td>
+<td><center>19 300</center>
+</td>
+<td><center>99 900</center>
+</td>
+<td><center><span style="opacity:0.5">195 600</span>→<br><span style="color:red">204 200</span></center>
+</td>
+<td><center><span style="opacity:0.5">714 500</span>→<br><span style="color:red">776 500</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>防护 (hp)</b>
+</td>
+<td><center><span style="opacity:0.5">128,1</span>→<br><span style="color:red">1 176,47</span></center>
+</td>
+<td><center><span style="opacity:0.5">170,3</span>→<br><span style="color:red">1 588,24</span></center>
+</td>
+<td><center><span style="opacity:0.5">230,6</span>→<br><span style="color:red">2 176,47</span></center>
+</td>
+<td><center><span style="opacity:0.5">254,7</span>→<br><span style="color:red">2 529,41</span></center>
+</td>
+<td><center><span style="opacity:0.5">315</span>→<br><span style="color:red">3 000</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>最高速度 (米/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">7,177</span>→<br><span style="color:green">7,86</span></center>
+</td>
+<td><center><span style="opacity:0.5">7,588</span>→<br><span style="color:green">8,23</span></center>
+</td>
+<td><center><span style="opacity:0.5">8,177</span>→<br><span style="color:green">8,76</span></center>
+</td>
+<td><center><span style="opacity:0.5">8,412</span>→<br><span style="color:green">9,08</span></center>
+</td>
+<td><center><span style="opacity:0.5">9</span>→<br><span style="color:green">9,5</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>横向加速度 (米/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">9,97</span>→<br><span style="color:green">10,35</span></center>
+</td>
+<td><center><span style="opacity:0.5">12,24</span>→<br><span style="color:red">11,18</span></center>
+</td>
+<td><center><span style="opacity:0.5">15,47</span>→<br><span style="color:red">12,35</span></center>
+</td>
+<td><center><span style="opacity:0.5">16,76</span>→<br><span style="color:red">13,06</span></center>
+</td>
+<td><center><span style="opacity:0.5">20</span>→<br><span style="color:red">14</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>转向灵活度 (度/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">64,41</span>→<br><span style="color:green">95</span></center>
+</td>
+<td><center><span style="opacity:0.5">74,71</span>→<br><span style="color:green">116,03</span></center>
+</td>
+<td><center><span style="opacity:0.5">89,41</span>→<br><span style="color:green">124,12</span></center>
+</td>
+<td><center><span style="opacity:0.5">95,29</span>→<br><span style="color:green">137,06</span></center>
+</td>
+<td><center><span style="opacity:0.5">110</span>→<br><span style="color:green">150</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>转向加速度 (度/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">123,53</span>→<br><span style="color:red">100</span></center>
+</td>
+<td><center><span style="opacity:0.5">131,76</span>→<br><span style="color:red">107,65</span></center>
+</td>
+<td><center><span style="opacity:0.5">143,53</span>→<br><span style="color:red">110,59</span></center>
+</td>
+<td><center><span style="opacity:0.5">148,24</span>→<br><span style="color:red">115,29</span></center>
+</td>
+<td><center><span style="opacity:0.5">160</span>→<br><span style="color:red">120</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>抗惯性转动加速度 (度/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">167,06</span>→<br><span style="color:green">280</span></center>
+</td>
+<td><center><span style="opacity:0.5">183,53</span>→<br><span style="color:green">310,59</span></center>
+</td>
+<td><center><span style="opacity:0.5">207,06</span>→<br><span style="color:green">322,35</span></center>
+</td>
+<td><center><span style="opacity:0.5">216,47</span>→<br><span style="color:green">341,18</span></center>
+</td>
+<td><center><span style="opacity:0.5">240</span>→<br><span style="color:green">360</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>重量</b>
+</td>
+<td><center><span style="opacity:0.5">1 814,71</span>→<br><span style="color:red">1 414,71</span></center>
+</td>
+<td><center><span style="opacity:0.5">2 082,35</span>→<br><span style="color:red">1 682,35</span></center>
+</td>
+<td><center><span style="opacity:0.5">2 464,71</span>→<br><span style="color:red">2 064,71</span></center>
+</td>
+<td><center><span style="opacity:0.5">2 617,65</span>→<br><span style="color:red">2 294,12</span></center>
+</td>
+<td><center><span style="opacity:0.5">3 000</span>→<br><span style="color:red">2 600</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>加速度 (米/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">1 061,76</span>→<br><span style="color:red">866,76</span></center>
+</td>
+<td><center><span style="opacity:0.5">1 205,88</span>→<br><span style="color:red">975,88</span></center>
+</td>
+<td><center><span style="opacity:0.5">1 411,76</span>→<br><span style="color:red">1 131,76</span></center>
+</td>
+<td><center><span style="opacity:0.5">1 494,12</span>→<br><span style="color:red">1 225,29</span></center>
+</td>
+<td><center><span style="opacity:0.5">1 700</span>→<br><span style="color:red">1 350</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>反向加速度 (米/秒²)</b>
+</td>
+<td><center>12,71</center>
+</td>
+<td><center>14,35</center>
+</td>
+<td><center>16,71</center>
+</td>
+<td><center><span style="opacity:0.5">17,65</span>→<br><span style="color:green">18,12</span></center>
+</td>
+<td><center>20</center>
+</td></tr></tbody></table>
+</div></div><p><br> 
+</p><div class="btn btn-collapsed w-100 text-left text-uppercase position-relative py-2 mt-3" data-toggle="collapse" data-target="#collapseExample6">独裁者</div><div class="collapse" id="collapseExample6"><div class="card card-body">
+<table class="wikitable mw-collapsible mw-collapsed mw-made-collapsible" id="mw-customcollapsible-myTable17" border="1" style="width: 100%;">
+<tbody><tr>
+<td width="28%" style="background:#2b2b2b">
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М0</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М1</b></center>
+</td>
+<td width="13%" style="background:#2b2b2b"><center><b>М2</b></center>
+</td>
+<td width="17%" style="background:#2b2b2b"><center><b>М3</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><button type="button" class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" aria-expanded="false" tabindex="0"><span class="mw-collapsible-text">扩展</span></button><center><b>М3+</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>可用来自</b>
+</td>
+<td><center>二等兵</center>
+</td>
+<td><center>三级准尉</center>
+</td>
+<td><center>中尉</center>
+</td>
+<td><center><span style="opacity:0.5">大元帅</span>→ 元帅</center>
+</td>
+<td><center><b>微型升级</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>修改的价格</b>
+</td>
+<td><center>200</center>
+</td>
+<td><center>26 700</center>
+</td>
+<td><center>81 800</center>
+</td>
+<td><center><span style="opacity:0.5">223 000</span>→<br><span style="color:green">210 300</span></center>
+</td>
+<td><center><span style="opacity:0.5">869 750</span>→<br><span style="color:green">776 500</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>防护 (hp)</b>
+</td>
+<td><center><span style="opacity:0.5">121,8</span>→<br><span style="color:red">1 058,82</span></center>
+</td>
+<td><center><span style="opacity:0.5">196,2</span>→<br><span style="color:red">1 705,88</span></center>
+</td>
+<td><center><span style="opacity:0.5">230</span>→<br><span style="color:red">2 000</span></center>
+</td>
+<td><center><span style="opacity:0.5">311,2</span>→<br><span style="color:red">2 529,41</span></center>
+</td>
+<td><center><span style="opacity:0.5">345</span>→<br><span style="color:red">3 000</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>最高速度 (米/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">6,544</span>→<br><span style="color:green">7,34</span></center>
+</td>
+<td><center><span style="opacity:0.5">7,029</span>→<br><span style="color:green">7,72</span></center>
+</td>
+<td><center><span style="opacity:0.5">7,25</span>→<br><span style="color:green">7,9</span></center>
+</td>
+<td><center><span style="opacity:0.5">7,779</span>→<br><span style="color:green">8,22</span></center>
+</td>
+<td><center><span style="opacity:0.5">8</span>→<br><span style="color:green">8,5</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>横向加速度 (米/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">8,24</span>→<br><span style="color:green">14,18</span></center>
+</td>
+<td><center><span style="opacity:0.5">10,82</span>→<br><span style="color:green">16,12</span></center>
+</td>
+<td><center><span style="opacity:0.5">12</span>→<br><span style="color:green">17</span></center>
+</td>
+<td><center><span style="opacity:0.5">14,82</span>→<br><span style="color:green">18,59</span></center>
+</td>
+<td><center><span style="opacity:0.5">16</span>→<br><span style="color:green">20</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>转向灵活度 (度/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">71,76</span>→<br><span style="color:green">76,32</span></center>
+</td>
+<td><center><span style="opacity:0.5">91,18</span>→<br><span style="color:red">90,88</span></center>
+</td>
+<td><center><span style="opacity:0.5">100</span>→<br><span style="color:red">97,5</span></center>
+</td>
+<td><center><span style="opacity:0.5">121,18</span>→<br><span style="color:red">109,41</span></center>
+</td>
+<td><center><span style="opacity:0.5">130</span>→<br><span style="color:red">120</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>转向加速度 (度/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">100,88</span>→<br><span style="color:red">100,59</span></center>
+</td>
+<td><center><span style="opacity:0.5">110,59</span>→<br><span style="color:red">107,06</span></center>
+</td>
+<td><center><span style="opacity:0.5">115</span>→<br><span style="color:red">110</span></center>
+</td>
+<td><center><span style="opacity:0.5">125,59</span>→<br><span style="color:red">115,29</span></center>
+</td>
+<td><center><span style="opacity:0.5">130</span>→<br><span style="color:red">120</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>抗惯性转动加速度 (度/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">183,53</span>→<br><span style="color:green">282,35</span></center>
+</td>
+<td><center><span style="opacity:0.5">222,35</span>→<br><span style="color:green">308,24</span></center>
+</td>
+<td><center><span style="opacity:0.5">240</span>→<br><span style="color:green">320</span></center>
+</td>
+<td><center><span style="opacity:0.5">282,35</span>→<br><span style="color:green">341,18</span></center>
+</td>
+<td><center><span style="opacity:0.5">300</span>→<br><span style="color:green">360</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>重量</b>
+</td>
+<td><center><span style="opacity:0.5">2 038,24</span>→<br><span style="color:red">1 852,94</span></center>
+</td>
+<td><center><span style="opacity:0.5">2 458,82</span>→<br><span style="color:red">2 435,29</span></center>
+</td>
+<td><center><span style="opacity:0.5">2 650</span>→<br><span style="color:green">2 700</span></center>
+</td>
+<td><center><span style="opacity:0.5">3 108,82</span>→<br><span style="color:green">3 176,47</span></center>
+</td>
+<td><center><span style="opacity:0.5">3 300</span>→<br><span style="color:green">3 600</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>加速度 (米/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">917,65</span>→<br><span style="color:green">1 020,59</span></center>
+</td>
+<td><center><span style="opacity:0.5">1 111,76</span>→<br><span style="color:green">1 247,06</span></center>
+</td>
+<td><center><span style="opacity:0.5">1 200</span>→<br><span style="color:green">1 350</span></center>
+</td>
+<td><center><span style="opacity:0.5">1 411,76</span>→<br><span style="color:green">1 535,29</span></center>
+</td>
+<td><center><span style="opacity:0.5">1 500</span>→<br><span style="color:green">1 700</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>反向加速度 (米/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">11,24</span>→<br><span style="color:red">9,24</span></center>
+</td>
+<td><center><span style="opacity:0.5">13,82</span>→<br><span style="color:red">11,82</span></center>
+</td>
+<td><center><span style="opacity:0.5">15</span>→<br><span style="color:red">13</span></center>
+</td>
+<td><center><span style="opacity:0.5">17,82</span>→<br><span style="color:red">15,12</span></center>
+</td>
+<td><center><span style="opacity:0.5">19</span>→<br><span style="color:red">17</span></center>
+</td></tr></tbody></table>
+</div></div><p><br> 
+</p><div class="btn btn-collapsed w-100 text-left text-uppercase position-relative py-2 mt-3" data-toggle="collapse" data-target="#collapseExample7">泰坦</div><div class="collapse" id="collapseExample7"><div class="card card-body">
+<table class="wikitable mw-collapsible mw-collapsed mw-made-collapsible" id="mw-customcollapsible-myTable18" border="1" style="width: 100%;">
+<tbody><tr>
+<td width="29%" style="background:#2b2b2b">
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М0</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М1</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М2</b></center>
+</td>
+<td width="15%" style="background:#2b2b2b"><center><b>М3</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><button type="button" class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" aria-expanded="false" tabindex="0"><span class="mw-collapsible-text">扩展</span></button><center><b>М3+</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>可用来自</b>
+</td>
+<td><center>新兵</center>
+</td>
+<td><center>二级军士长</center>
+</td>
+<td><center>上校</center>
+</td>
+<td><center><span style="opacity:0.5">陆军元帅</span>→ 元帅</center>
+</td>
+<td><center><b>微型升级</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>修改的价格</b>
+</td>
+<td><center>100</center>
+</td>
+<td><center>6 000</center>
+</td>
+<td><center>92 900</center>
+</td>
+<td><center><span style="opacity:0.5">241 500</span>→<br><span style="color:green">220 000</span></center>
+</td>
+<td><center><span style="opacity:0.5">807 750</span>→<br><span style="color:green">776 500</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>防护 (hp)</b>
+</td>
+<td><center><span style="opacity:0.5">145</span>→<br><span style="color:red">1 350</span></center>
+</td>
+<td><center><span style="opacity:0.5">201,6</span>→<br><span style="color:red">1 895,59</span></center>
+</td>
+<td><center><span style="opacity:0.5">314,9</span>→<br><span style="color:red">2 986,76</span></center>
+</td>
+<td><center><span style="opacity:0.5">363,4</span>→<br><span style="color:red">3 376,47</span></center>
+</td>
+<td><center><span style="opacity:0.5">420</span>→<br><span style="color:red">4 000</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>最高速度 (米/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">5</span>→<br><span style="color:green">5,2</span></center>
+</td>
+<td><center><span style="opacity:0.5">5,206</span>→<br><span style="color:green">5,47</span></center>
+</td>
+<td><center><span style="opacity:0.5">5,618</span>→<br><span style="color:green">6</span></center>
+</td>
+<td><center><span style="opacity:0.5">5,794</span>→<br><span style="color:green">6,19</span></center>
+</td>
+<td><center><span style="opacity:0.5">6</span>→<br><span style="color:green">6,5</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>横向加速度 (米/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">10</span>→<br><span style="color:green">14</span></center>
+</td>
+<td><center><span style="opacity:0.5">12,06</span>→<br><span style="color:green">15,24</span></center>
+</td>
+<td><center><span style="opacity:0.5">16,18</span>→<br><span style="color:green">17,71</span></center>
+</td>
+<td><center><span style="opacity:0.5">17,94</span>→<br><span style="color:green">18,59</span></center>
+</td>
+<td><center>20</center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>转向灵活度 (度/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">42</span>→<br><span style="color:green">65</span></center>
+</td>
+<td><center><span style="opacity:0.5">51,88</span>→<br><span style="color:green">70,15</span></center>
+</td>
+<td><center><span style="opacity:0.5">71,65</span>→<br><span style="color:green">80,44</span></center>
+</td>
+<td><center><span style="opacity:0.5">80,12</span>→<br><span style="color:green">84,12</span></center>
+</td>
+<td><center>90</center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>转向加速度 (度/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">60</span>→<br><span style="color:green">70</span></center>
+</td>
+<td><center><span style="opacity:0.5">70,29</span>→<br><span style="color:green">74,12</span></center>
+</td>
+<td><center><span style="opacity:0.5">90,88</span>→<br><span style="color:red">82,35</span></center>
+</td>
+<td><center><span style="opacity:0.5">99,71</span>→<br><span style="color:red">85,29</span></center>
+</td>
+<td><center><span style="opacity:0.5">110</span>→<br><span style="color:red">90</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>抗惯性转动加速度 (度/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">160</span>→<br><span style="color:green">280</span></center>
+</td>
+<td><center><span style="opacity:0.5">176,47</span>→<br><span style="color:green">296,47</span></center>
+</td>
+<td><center><span style="opacity:0.5">209,41</span>→<br><span style="color:green">329,41</span></center>
+</td>
+<td><center><span style="opacity:0.5">223,53</span>→<br><span style="color:green">341,18</span></center>
+</td>
+<td><center><span style="opacity:0.5">240</span>→<br><span style="color:green">360</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>重量</b>
+</td>
+<td><center><span style="opacity:0.5">3 000</span>→<br><span style="color:red">1 900</span></center>
+</td>
+<td><center><span style="opacity:0.5">3 411,76</span>→<br><span style="color:red">2 291,18</span></center>
+</td>
+<td><center><span style="opacity:0.5">4 235,29</span>→<br><span style="color:red">3 073,53</span></center>
+</td>
+<td><center><span style="opacity:0.5">4 588,24</span>→<br><span style="color:red">3 352,94</span></center>
+</td>
+<td><center><span style="opacity:0.5">5 000</span>→<br><span style="color:red">3 800</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>加速度 (米/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">1 000</span>→<br><span style="color:red">850</span></center>
+</td>
+<td><center><span style="opacity:0.5">1 123,53</span>→<br><span style="color:red">963,24</span></center>
+</td>
+<td><center><span style="opacity:0.5">1 370,59</span>→<br><span style="color:red">1 189,71</span></center>
+</td>
+<td><center><span style="opacity:0.5">1 476,47</span>→<br><span style="color:red">1 270,59</span></center>
+</td>
+<td><center><span style="opacity:0.5">1 600</span>→<br><span style="color:red">1 400</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>反向加速度 (米/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">9</span>→<br><span style="color:green">11</span></center>
+</td>
+<td><center><span style="opacity:0.5">10,65</span>→<br><span style="color:green">12,65</span></center>
+</td>
+<td><center><span style="opacity:0.5">13,94</span>→<br><span style="color:green">15,94</span></center>
+</td>
+<td><center><span style="opacity:0.5">15,35</span>→<br><span style="color:green">17,12</span></center>
+</td>
+<td><center><span style="opacity:0.5">17</span>→<br><span style="color:green">19</span></center>
+</td></tr></tbody></table>
+</div></div><p><br> 
+</p><div class="btn btn-collapsed w-100 text-left text-uppercase position-relative py-2 mt-3" data-toggle="collapse" data-target="#collapseExample8">猛犸象</div><div class="collapse" id="collapseExample8"><div class="card card-body">
+<table class="wikitable mw-collapsible mw-collapsed mw-made-collapsible" id="mw-customcollapsible-myTable19" border="1" style="width: 100%;">
+<tbody><tr>
+<td width="29%" style="background:#2b2b2b">
+</td>
+<td width="13%" style="background:#2b2b2b"><center><b>М0</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М1</b></center>
+</td>
+<td width="13%" style="background:#2b2b2b"><center><b>М2</b></center>
+</td>
+<td width="17%" style="background:#2b2b2b"><center><b>М3</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><button type="button" class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" aria-expanded="false" tabindex="0"><span class="mw-collapsible-text">扩展</span></button><center><b>М3+</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>可用来自</b>
+</td>
+<td><center>一等兵</center>
+</td>
+<td><center>三级军士长</center>
+</td>
+<td><center>少校</center>
+</td>
+<td><center><span style="opacity:0.5">大元帅</span>→ 元帅</center>
+</td>
+<td><center><b>微型升级</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>修改的价格</b>
+</td>
+<td><center>400</center>
+</td>
+<td><center>3 200</center>
+</td>
+<td><center>76 700</center>
+</td>
+<td><center><span style="opacity:0.5">244 200</span>→<br><span style="color:green">228 700</span></center>
+</td>
+<td><center><span style="opacity:0.5">869 750</span>→<br><span style="color:green">776 500</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>防护 (hp)</b>
+</td>
+<td><center><span style="opacity:0.5">172,4</span>→<br><span style="color:red">1 505,88</span></center>
+</td>
+<td><center><span style="opacity:0.5">207,1</span>→<br><span style="color:red">1 817,65</span></center>
+</td>
+<td><center><span style="opacity:0.5">319,9</span>→<br><span style="color:red">2 830,88</span></center>
+</td>
+<td><center><span style="opacity:0.5">406,6</span>→<br><span style="color:red">3 376,47</span></center>
+</td>
+<td><center><span style="opacity:0.5">450</span>→<br><span style="color:red">4 000</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>最高速度 (米/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">4,059</span>→<br><span style="color:green">5,06</span></center>
+</td>
+<td><center><span style="opacity:0.5">4,177</span>→<br><span style="color:green">5,18</span></center>
+</td>
+<td><center><span style="opacity:0.5">4,559</span>→<br><span style="color:green">5,56</span></center>
+</td>
+<td><center><span style="opacity:0.5">4,853</span>→<br><span style="color:green">5,76</span></center>
+</td>
+<td><center><span style="opacity:0.5">5</span>→<br><span style="color:green">6</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>横向加速度 (米/秒²)</b>
+</td>
+<td><center>15,59</center>
+</td>
+<td><center>16,76</center>
+</td>
+<td><center>20,59</center>
+</td>
+<td><center><span style="opacity:0.5">23,53</span>→<br><span style="color:red">22,65</span></center>
+</td>
+<td><center>25</center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>转向灵活度 (度/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">40,47</span>→<br><span style="color:green">61,18</span></center>
+</td>
+<td><center><span style="opacity:0.5">45,41</span>→<br><span style="color:green">63,53</span></center>
+</td>
+<td><center><span style="opacity:0.5">61,47</span>→<br><span style="color:green">71,18</span></center>
+</td>
+<td><center><span style="opacity:0.5">73,82</span>→<br><span style="color:green">75,29</span></center>
+</td>
+<td><center>80</center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>转向加速度 (度/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">71,76</span>→<br><span style="color:red">71,18</span></center>
+</td>
+<td><center><span style="opacity:0.5">75,29</span>→<br><span style="color:red">73,53</span></center>
+</td>
+<td><center><span style="opacity:0.5">86,76</span>→<br><span style="color:red">81,18</span></center>
+</td>
+<td><center><span style="opacity:0.5">95,59</span>→<br><span style="color:red">85,29</span></center>
+</td>
+<td><center><span style="opacity:0.5">100</span>→<br><span style="color:red">90</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>抗惯性转动加速度 (度/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">152,94</span>→<br><span style="color:green">284,71</span></center>
+</td>
+<td><center><span style="opacity:0.5">158,85</span>→<br><span style="color:green">294,12</span></center>
+</td>
+<td><center><span style="opacity:0.5">177,94</span>→<br><span style="color:green">324,71</span></center>
+</td>
+<td><center><span style="opacity:0.5">192,65</span>→<br><span style="color:green">341,18</span></center>
+</td>
+<td><center><span style="opacity:0.5">200</span>→<br><span style="color:green">360</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>重量</b>
+</td>
+<td><center><span style="opacity:0.5">3 617,65</span>→<br><span style="color:red">2 117,65</span></center>
+</td>
+<td><center><span style="opacity:0.5">3 852,94</span>→<br><span style="color:red">2 352,94</span></center>
+</td>
+<td><center><span style="opacity:0.5">4 617,65</span>→<br><span style="color:red">3 117,65</span></center>
+</td>
+<td><center><span style="opacity:0.5">5 205,88</span>→<br><span style="color:red">3 529,41</span></center>
+</td>
+<td><center><span style="opacity:0.5">5 500</span>→<br><span style="color:red">4 000</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>加速度 (米/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">729,41</span>→<br><span style="color:green">935,29</span></center>
+</td>
+<td><center><span style="opacity:0.5">788,24</span>→<br><span style="color:green">1 005,88</span></center>
+</td>
+<td><center><span style="opacity:0.5">979,41</span>→<br><span style="color:green">1 235,29</span></center>
+</td>
+<td><center><span style="opacity:0.5">1 126,47</span>→<br><span style="color:green">1 358,82</span></center>
+</td>
+<td><center><span style="opacity:0.5">1 200</span>→<br><span style="color:green">1 500</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>反向加速度 (米/秒²)</b>
+</td>
+<td><center>7,29</center>
+</td>
+<td><center>7,88</center>
+</td>
+<td><center>9,79</center>
+</td>
+<td><center><span style="opacity:0.5">11,26</span>→<br><span style="color:red">10,82</span></center>
+</td>
+<td><center>12</center>
+</td></tr></tbody></table>
+</div></div><p><br>
+</p><h2><span class="mw-headline" id="Turrets">炮塔</span></h2><div class="btn btn-collapsed w-100 text-left text-uppercase position-relative py-2 mt-3" data-toggle="collapse" data-target="#collapseExample9">火焰炮</div><div class="collapse" id="collapseExample9"><div class="card card-body">
+<table class="wikitable mw-collapsible mw-collapsed mw-made-collapsible" id="mw-customcollapsible-myTable2" border="1" style="width: 100%;">
+<tbody><tr>
+<td width="30%" style="background:#2b2b2b">
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М0</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М1</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М2</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М3</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><button type="button" class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" aria-expanded="false" tabindex="0"><span class="mw-collapsible-text">扩展</span></button><center><b>М3+</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>可用来自</b>
+</td>
+<td><center>新兵</center>
+</td>
+<td><center>二级军士长</center>
+</td>
+<td><center>少校</center>
+</td>
+<td><center><span style="opacity:0.5">统帅</span>→ 元帅</center>
+</td>
+<td><center><b>微型升级</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>修改的价格</b>
+</td>
+<td><center>150</center>
+</td>
+<td><center>7 100</center>
+</td>
+<td><center>94 600</center>
+</td>
+<td><center><span style="opacity:0.5">275 000</span>→<br><span style="color:green">232 150</span></center>
+</td>
+<td><center><span style="opacity:0.5">984 500</span>→<br><span style="color:green">911 750</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>伤害 (/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">32</span>→<br><span style="color:red">280</span></center>
+</td>
+<td><center><span style="opacity:0.5">40.24</span>→<br><span style="color:red">395.29</span></center>
+</td>
+<td><center><span style="opacity:0.5">54.35</span>→<br><span style="color:green">592.94</span></center>
+</td>
+<td><center><span style="opacity:0.5">64.94</span>→<br><span style="color:green">708.24</span></center>
+</td>
+<td><center><span style="opacity:0.5">72</span>→<br><span style="color:green">840</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>重新加载 (/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">14</span>→<br><span style="color:green">6.024</span></center>
+</td>
+<td><center><span style="opacity:0.5">13.38</span>→<br><span style="color:green">6.024</span></center>
+</td>
+<td><center><span style="opacity:0.5">12.32</span>→<br><span style="color:green">6.024</span></center>
+</td>
+<td><center><span style="opacity:0.5">11.53</span>→<br><span style="color:green">6.024</span></center>
+</td>
+<td><center><span style="opacity:0.5">11</span>→<br><span style="color:green">6.024</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>旋转速度 (度/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">75.63</span>→<br><span style="color:green">90</span></center>
+</td>
+<td><center><span style="opacity:0.5">94.27</span>→<br><span style="color:green">108.53</span></center>
+</td>
+<td><center><span style="opacity:0.5">126.22</span>→<br><span style="color:green">140.29</span></center>
+</td>
+<td><center><span style="opacity:0.5">150.18</span>→<br><span style="color:green">158.82</span></center>
+</td>
+<td><center><span style="opacity:0.5">166.16</span>→<br><span style="color:green">180</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>旋转加速度 (度/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">150.69</span>→<br><span style="color:red">90</span></center>
+</td>
+<td><center><span style="opacity:0.5">168.5</span>→<br><span style="color:red">108.53</span></center>
+</td>
+<td><center><span style="opacity:0.5">199.03</span>→<br><span style="color:red">140.29</span></center>
+</td>
+<td><center><span style="opacity:0.5">221.94</span>→<br><span style="color:red">158.82</span></center>
+</td>
+<td><center><span style="opacity:0.5">237.2</span>→<br><span style="color:red">180</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>射程最小伤害 (米)</b>
+</td>
+<td><center>17</center>
+</td>
+<td><center>18.65</center>
+</td>
+<td><center>21.47</center>
+</td>
+<td><center><span style="opacity:0.5">23.59</span>→<br><span style="color:red">23.12</span></center>
+</td>
+<td><center>25</center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>射程最大伤害 (米)</b>
+</td>
+<td><center>5</center>
+</td>
+<td><center><span style="opacity:0.5">5</span>→<br><span style="color:green">6.03</span></center>
+</td>
+<td><center><span style="opacity:0.5">5</span>→<br><span style="color:green">7.79</span></center>
+</td>
+<td><center><span style="opacity:0.5">5</span>→<br><span style="color:green">8.82</span></center>
+</td>
+<td><center><span style="opacity:0.5">5</span>→<br><span style="color:green">10</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>温度极限</b>
+</td>
+<td><center>0.1</center>
+</td>
+<td><center>0.29</center>
+</td>
+<td><center>0.6</center>
+</td>
+<td><center><span style="opacity:0.5">0.84</span>→<br><span style="color:red">0.79</span></center>
+</td>
+<td><center>1</center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>加热速率</b>
+</td>
+<td><center><span style="opacity:0.5">0.4</span>→<br><span style="color:red">0.2</span></center>
+</td>
+<td><center><span style="opacity:0.5">0.4</span>→<br><span style="color:red">0.2</span></center>
+</td>
+<td><center><span style="opacity:0.5">0.4</span>→<br><span style="color:red">0.2</span></center>
+</td>
+<td><center><span style="opacity:0.5">0.4</span>→<br><span style="color:red">0.2</span></center>
+</td>
+<td><center><span style="opacity:0.5">0.4</span>→<br><span style="color:red">0.2</span></center>
+</td></tr></tbody></table>
+</div></div><p><br>
+</p><div class="btn btn-collapsed w-100 text-left text-uppercase position-relative py-2 mt-3" data-toggle="collapse" data-target="#collapseExample10">冰风暴</div><div class="collapse" id="collapseExample10"><div class="card card-body">
+<table class="wikitable mw-collapsible mw-collapsed mw-made-collapsible" id="mw-customcollapsible-myTable3" border="1" style="width: 100%;">
+<tbody><tr>
+<td width="29%" style="background:#2b2b2b">
+</td>
+<td width="13%" style="background:#2b2b2b"><center><b>М0</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М1</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М2</b></center>
+</td>
+<td width="16%" style="background:#2b2b2b"><center><b>М3</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><button type="button" class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" aria-expanded="false" tabindex="0"><span class="mw-collapsible-text">扩展</span></button><center><b>М3+</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>可用来自</b>
+</td>
+<td><center>下士</center>
+</td>
+<td><center>五级准尉</center>
+</td>
+<td><center>一级准尉</center>
+</td>
+<td><center><span style="opacity:0.5">少将</span>→ 元帅</center>
+</td>
+<td><center><b>微型升级</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>修改的价格</b>
+</td>
+<td><center>600</center>
+</td>
+<td><center>22 600</center>
+</td>
+<td><center>61 400</center>
+</td>
+<td><center><span style="opacity:0.5">171 500</span>→<br><span style="color:red">239 400</span></center>
+</td>
+<td><center><span style="opacity:0.5">802 250</span>→<br><span style="color:red">911 750</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>伤害 (/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">32.59</span>→<br><span style="color:green">329.41</span></center>
+</td>
+<td><center><span style="opacity:0.5">43.29</span>→<br><span style="color:green">444.71</span></center>
+</td>
+<td><center><span style="opacity:0.5">49.41</span>→<br><span style="color:green">510.59</span></center>
+</td>
+<td><center><span style="opacity:0.5">63.18</span>→<br><span style="color:green">708.24</span></center>
+</td>
+<td><center><span style="opacity:0.5">80</span>→<br><span style="color:green">840</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>重新加载 (/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">12.74</span>→<br><span style="color:green">8</span></center>
+</td>
+<td><center><span style="opacity:0.5">12.12</span>→<br><span style="color:green">8</span></center>
+</td>
+<td><center><span style="opacity:0.5">11.76</span>→<br><span style="color:green">8</span></center>
+</td>
+<td><center><span style="opacity:0.5">10.97</span>→<br><span style="color:green">8</span></center>
+</td>
+<td><center><span style="opacity:0.5">10</span>→<br><span style="color:green">8</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>旋转速度 (度/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">97.74</span>→<br><span style="color:green">97.94</span></center>
+</td>
+<td><center><span style="opacity:0.5">119.91</span>→<br><span style="color:red">116.47</span></center>
+</td>
+<td><center><span style="opacity:0.5">132.59</span>→<br><span style="color:red">127.06</span></center>
+</td>
+<td><center><span style="opacity:0.5">161.1</span>→<br><span style="color:red">158.82</span></center>
+</td>
+<td><center><span style="opacity:0.5">195.96</span>→<br><span style="color:red">180</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>旋转加速度 (度/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">176.04</span>→<br><span style="color:red">97.94</span></center>
+</td>
+<td><center><span style="opacity:0.5">193.73</span>→<br><span style="color:red">116.47</span></center>
+</td>
+<td><center><span style="opacity:0.5">203.84</span>→<br><span style="color:red">127.06</span></center>
+</td>
+<td><center><span style="opacity:0.5">226.59</span>→<br><span style="color:red">158.82</span></center>
+</td>
+<td><center><span style="opacity:0.5">254.39</span>→<br><span style="color:red">180</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>射程最小伤害 (米)</b>
+</td>
+<td><center>17.71</center>
+</td>
+<td><center>19.35</center>
+</td>
+<td><center>20.29</center>
+</td>
+<td><center><span style="opacity:0.5">22.41</span>→<br><span style="color:green">23.12</span></center>
+</td>
+<td><center>25</center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>射程最大伤害 (米)</b>
+</td>
+<td><center>5</center>
+</td>
+<td><center><span style="opacity:0.5">5</span>→<br><span style="color:green">6.47</span></center>
+</td>
+<td><center><span style="opacity:0.5">5</span>→<br><span style="color:green">7.06</span></center>
+</td>
+<td><center><span style="opacity:0.5">5</span>→<br><span style="color:green">8.82</span></center>
+</td>
+<td><center><span style="opacity:0.5">5</span>→<br><span style="color:green">10</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>能量消耗（每秒）</b>
+</td>
+<td><center><span style="opacity:0.5">111</span>→<br><span style="color:red">142</span></center>
+</td>
+<td><center><span style="opacity:0.5">111</span>→<br><span style="color:red">142</span></center>
+</td>
+<td><center><span style="opacity:0.5">111</span>→<br><span style="color:red">142</span></center>
+</td>
+<td><center><span style="opacity:0.5">111</span>→<br><span style="color:red">142</span></center>
+</td>
+<td><center><span style="opacity:0.5">111</span>→<br><span style="color:red">142</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>冷冻速率 (秒)</b>
+</td>
+<td><center><span style="opacity:0.5">0.6</span>→<br><span style="color:green">2.4</span></center>
+</td>
+<td><center><span style="opacity:0.5">0.6</span>→<br><span style="color:green">2.4</span></center>
+</td>
+<td><center><span style="opacity:0.5">0.6</span>→<br><span style="color:green">2.4</span></center>
+</td>
+<td><center><span style="opacity:0.5">0.6</span>→<br><span style="color:green">2.4</span></center>
+</td>
+<td><center><span style="opacity:0.5">0.6</span>→<br><span style="color:green">2.4</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>冷冻等级的底盘</b>
+</td>
+<td><center><span style="opacity:0.5">0.3</span>→<br><span style="color:green">0.1</span></center>
+</td>
+<td><center><span style="opacity:0.5">0.3</span>→<br><span style="color:green">0.1</span></center>
+</td>
+<td><center><span style="opacity:0.5">0.3</span>→<br><span style="color:green">0.1</span></center>
+</td>
+<td><center><span style="opacity:0.5">0.3</span>→<br><span style="color:green">0.1</span></center>
+</td>
+<td><center><span style="opacity:0.5">0.3</span>→<br><span style="color:green">0.1</span></center>
+</td></tr></tbody></table>
+</div></div><p><br>
+</p><div class="btn btn-collapsed w-100 text-left text-uppercase position-relative py-2 mt-3" data-toggle="collapse" data-target="#collapseExample11">磁力炮</div><div class="collapse" id="collapseExample11"><div class="card card-body">
+<table class="wikitable mw-collapsible mw-collapsed mw-made-collapsible" id="mw-customcollapsible-myTable4" border="1" style="width: 100%;">
+<tbody><tr>
+<td width="30%" style="background:#2b2b2b">
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М0</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М1</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М2</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М3</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><button type="button" class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" aria-expanded="false" tabindex="0"><span class="mw-collapsible-text">扩展</span></button><center><b>М3+</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>可用来自</b>
+</td>
+<td><center>上士</center>
+</td>
+<td><center>上士少校</center>
+</td>
+<td><center>特级准尉</center>
+</td>
+<td><center><span style="opacity:0.5">准将</span>→ 元帅</center>
+</td>
+<td><center><b>微型升级</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>修改的价格</b>
+</td>
+<td><center>1 800</center>
+</td>
+<td><center>18 600</center>
+</td>
+<td><center>68 000</center>
+</td>
+<td><center><span style="opacity:0.5">166 900</span>→<br><span style="color:red">235 600</span></center>
+</td>
+<td><center><span style="opacity:0.5">765 750</span>→<br><span style="color:red">911 750</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>治疗 (/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">30.18</span>→<br><span style="color:red">220.82</span></center>
+</td>
+<td><center><span style="opacity:0.5">35.12</span>→<br><span style="color:red">259.88</span></center>
+</td>
+<td><center><span style="opacity:0.5">42.53</span>→<br><span style="color:red">318.47</span></center>
+</td>
+<td><center><span style="opacity:0.5">51.18</span>→<br><span style="color:red">425.88</span></center>
+</td>
+<td><center><span style="opacity:0.5">66</span>→<br><span style="color:red">504</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>伤害 (/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">30.18</span>→<br><span style="color:red">270.29</span></center>
+</td>
+<td><center><span style="opacity:0.5">35.12</span>→<br><span style="color:red">318.53</span></center>
+</td>
+<td><center><span style="opacity:0.5">42.53</span>→<br><span style="color:red">390.88</span></center>
+</td>
+<td><center><span style="opacity:0.5">51.18</span>→<br><span style="color:green">523.53</span></center>
+</td>
+<td><center><span style="opacity:0.5">66</span>→<br><span style="color:red">620</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>自我治疗 (%)</b>
+</td>
+<td><center><span style="opacity:0.5">32.94</span>→<br><span style="color:red">10</span></center>
+</td>
+<td><center><span style="opacity:0.5">35.29</span>→<br><span style="color:red">10</span></center>
+</td>
+<td><center><span style="opacity:0.5">38.82</span>→<br><span style="color:red">10</span></center>
+</td>
+<td><center><span style="opacity:0.5">42.94</span>→<br><span style="color:red">10</span></center>
+</td>
+<td><center><span style="opacity:0.5">50</span>→<br><span style="color:red">10</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>重新加载 (/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">11.56</span>→<br><span style="color:green">10</span></center>
+</td>
+<td><center><span style="opacity:0.5">11.21</span>→<br><span style="color:green">10</span></center>
+</td>
+<td><center><span style="opacity:0.5">10.68</span>→<br><span style="color:green">10</span></center>
+</td>
+<td><center><span style="opacity:0.5">10.06</span>→<br><span style="color:green">10</span></center>
+</td>
+<td><center><span style="opacity:0.5">9</span>→<br><span style="color:red">10</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>旋转速度 (度/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">82.36</span>→<br><span style="color:green">103.24</span></center>
+</td>
+<td><center><span style="opacity:0.5">89.57</span>→<br><span style="color:green">113.82</span></center>
+</td>
+<td><center><span style="opacity:0.5">100.39</span>→<br><span style="color:green">129.71</span></center>
+</td>
+<td><center><span style="opacity:0.5">113.01</span>→<br><span style="color:green">158.82</span></center>
+</td>
+<td><center><span style="opacity:0.5">134.65</span>→<br><span style="color:green">180</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>旋转加速度 (度/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">153.15</span>→<br><span style="color:red">103.24</span></center>
+</td>
+<td><center><span style="opacity:0.5">162.45</span>→<br><span style="color:red">113.82</span></center>
+</td>
+<td><center><span style="opacity:0.5">176.4</span>→<br><span style="color:red">129.71</span></center>
+</td>
+<td><center><span style="opacity:0.5">192.68</span>→<br><span style="color:red">158.82</span></center>
+</td>
+<td><center><span style="opacity:0.5">220.59</span>→<br><span style="color:red">180</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>射程 (米)</b>
+</td>
+<td><center><span style="opacity:0.5">16.18</span>→<br><span style="color:red">15.74</span></center>
+</td>
+<td><center><span style="opacity:0.5">17.12</span>→<br><span style="color:red">16.32</span></center>
+</td>
+<td><center><span style="opacity:0.5">18.53</span>→<br><span style="color:red">17.21</span></center>
+</td>
+<td><center><span style="opacity:0.5">20.18</span>→<br><span style="color:red">18.82</span></center>
+</td>
+<td><center><span style="opacity:0.5">23</span>→<br><span style="color:red">20</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>能量消耗（每秒）</b>
+</td>
+<td><center><span style="opacity:0.5">142</span>→<br><span style="color:green">111</span></center>
+</td>
+<td><center><span style="opacity:0.5">142</span>→<br><span style="color:green">111</span></center>
+</td>
+<td><center><span style="opacity:0.5">142</span>→<br><span style="color:green">111</span></center>
+</td>
+<td><center><span style="opacity:0.5">142</span>→<br><span style="color:green">111</span></center>
+</td>
+<td><center><span style="opacity:0.5">142</span>→<br><span style="color:green">111</span></center>
+</td></tr></tbody></table>
+</div></div><p><br> 
+</p><div class="btn btn-collapsed w-100 text-left text-uppercase position-relative py-2 mt-3" data-toggle="collapse" data-target="#collapseExample12">滑膛炮</div><div class="collapse" id="collapseExample12"><div class="card card-body">
+<table class="wikitable mw-collapsible mw-collapsed mw-made-collapsible" id="mw-customcollapsible-myTable5" border="1" style="width: 100%;">
+<tbody><tr>
+<td width="29%" style="background:#2b2b2b">
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М0</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М1</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М2</b></center>
+</td>
+<td width="15%" style="background:#2b2b2b"><center><b>М3</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><button type="button" class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" aria-expanded="false" tabindex="0"><span class="mw-collapsible-text">扩展</span></button><center><b>М3+</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>可用来自</b>
+</td>
+<td><center>中士</center>
+</td>
+<td><center>四级准尉</center>
+</td>
+<td><center>上尉</center>
+</td>
+<td><center><span style="opacity:0.5">中将</span>→ 元帅</center>
+</td>
+<td><center><b>微型升级</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>修改的价格</b>
+</td>
+<td><center>1 000</center>
+</td>
+<td><center>37 000</center>
+</td>
+<td><center>117 100</center>
+</td>
+<td><center><span style="opacity:0.5">235 800</span>→<br><span style="color:green">223 900</span></center>
+</td>
+<td><center><span style="opacity:0.5">875 000</span>→<br><span style="color:red">911 750</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>每次射击伤害</b>
+</td>
+<td><center><span style="opacity:0.5">46.45</span>→<br><span style="color:red">441</span></center>
+</td>
+<td><center><span style="opacity:0.5">61.58</span>→<br><span style="color:red">588</span></center>
+</td>
+<td><center><span style="opacity:0.5">76.71</span>→<br><span style="color:red">735</span></center>
+</td>
+<td><center><span style="opacity:0.5">89.68</span>→<br><span style="color:green">903</span></center>
+</td>
+<td><center><span style="opacity:0.5">111.3</span>→<br><span style="color:red">1 071</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>每颗粒伤害</b>
+</td>
+<td><center><span style="opacity:0.5">2.21</span>→<br><span style="color:red">21</span></center>
+</td>
+<td><center><span style="opacity:0.5">2.93</span>→<br><span style="color:red">28</span></center>
+</td>
+<td><center><span style="opacity:0.5">3.65</span>→<br><span style="color:red">35</span></center>
+</td>
+<td><center><span style="opacity:0.5">4.27</span>→<br><span style="color:red">43</span></center>
+</td>
+<td><center><span style="opacity:0.5">5.3</span>→<br><span style="color:red">51</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>每个弹匣的伤害</b>
+</td>
+<td><center><span style="opacity:0.5">139.34</span>→<br><span style="color:red">1 323</span></center>
+</td>
+<td><center><span style="opacity:0.5">184.74</span>→<br><span style="color:red">1 764</span></center>
+</td>
+<td><center><span style="opacity:0.5">230.13</span>→<br><span style="color:red">2 205</span></center>
+</td>
+<td><center><span style="opacity:0.5">269.05</span>→<br><span style="color:green">2 709</span></center>
+</td>
+<td><center><span style="opacity:0.5">333.9</span>→<br><span style="color:red">3 213</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>每次射击的冲击力</b>
+</td>
+<td><center><span style="opacity:0.5">400.26</span>→<br><span style="color:red">351.96</span></center>
+</td>
+<td><center><span style="opacity:0.5">512.61</span>→<br><span style="color:red">416.85</span></center>
+</td>
+<td><center><span style="opacity:0.5">624.96</span>→<br><span style="color:red">481.74</span></center>
+</td>
+<td><center><span style="opacity:0.5">721.35</span>→<br><span style="color:red">561.54</span></center>
+</td>
+<td><center><span style="opacity:0.5">882</span>→<br><span style="color:red">630</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>冲击力每颗粒</b>
+</td>
+<td><center><span style="opacity:0.5">19.06</span>→<br><span style="color:red">16.76</span></center>
+</td>
+<td><center><span style="opacity:0.5">24.41</span>→<br><span style="color:red">19.85</span></center>
+</td>
+<td><center><span style="opacity:0.5">29.76</span>→<br><span style="color:red">22.94</span></center>
+</td>
+<td><center><span style="opacity:0.5">34.35</span>→<br><span style="color:red">26.47</span></center>
+</td>
+<td><center><span style="opacity:0.5">42</span>→<br><span style="color:red">30</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>后坐力</b>
+</td>
+<td><center><span style="opacity:0.5">184.12</span>→<br><span style="color:green">160.59</span></center>
+</td>
+<td><center><span style="opacity:0.5">208.82</span>→<br><span style="color:green">179.12</span></center>
+</td>
+<td><center><span style="opacity:0.5">233.53</span>→<br><span style="color:green">197.65</span></center>
+</td>
+<td><center><span style="opacity:0.5">254.71</span>→<br><span style="color:green">218.82</span></center>
+</td>
+<td><center><span style="opacity:0.5">290</span>→<br><span style="color:green">240</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>在射击之间重新装填（秒）</b>
+</td>
+<td><center><span style="opacity:0.5">2.24</span>→<br><span style="color:red">2.43</span></center>
+</td>
+<td><center><span style="opacity:0.5">2.14</span>→<br><span style="color:red">2.31</span></center>
+</td>
+<td><center><span style="opacity:0.5">2.04</span>→<br><span style="color:red">2.18</span></center>
+</td>
+<td><center><span style="opacity:0.5">1.95</span>→<br><span style="color:red">2.04</span></center>
+</td>
+<td><center><span style="opacity:0.5">1.8</span>→<br><span style="color:red">1.9</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>弹夹重装时间 (秒)</b>
+</td>
+<td><center><span style="opacity:0.5">6.27</span>→<br><span style="color:green">4.88</span></center>
+</td>
+<td><center><span style="opacity:0.5">5.69</span>→<br><span style="color:green">4.68</span></center>
+</td>
+<td><center><span style="opacity:0.5">5.12</span>→<br><span style="color:green">4.47</span></center>
+</td>
+<td><center><span style="opacity:0.5">4.62</span>→<br><span style="color:green">4.24</span></center>
+</td>
+<td><center><span style="opacity:0.5">3.8</span>→<br><span style="color:red">4</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>旋转速度 (度/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">76.85</span>→<br><span style="color:green">88.24</span></center>
+</td>
+<td><center><span style="opacity:0.5">91</span>→<br><span style="color:green">102.65</span></center>
+</td>
+<td><center><span style="opacity:0.5">105.15</span>→<br><span style="color:green">117.06</span></center>
+</td>
+<td><center><span style="opacity:0.5">117.29</span>→<br><span style="color:green">133.53</span></center>
+</td>
+<td><center><span style="opacity:0.5">137.51</span>→<br><span style="color:green">150</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>旋转加速度 (度/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">122.68</span>→<br><span style="color:red">88.24</span></center>
+</td>
+<td><center><span style="opacity:0.5">136.83</span>→<br><span style="color:red">102.65</span></center>
+</td>
+<td><center><span style="opacity:0.5">150.99</span>→<br><span style="color:red">117.06</span></center>
+</td>
+<td><center><span style="opacity:0.5">163.13</span>→<br><span style="color:red">133.53</span></center>
+</td>
+<td><center><span style="opacity:0.5">183.35</span>→<br><span style="color:red">150</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>射程最小伤害 (米)</b>
+</td>
+<td><center>52.35</center>
+</td>
+<td><center>56.47</center>
+</td>
+<td><center>60.59</center>
+</td>
+<td><center><span style="opacity:0.5">64.12</span>→<br><span style="color:green">65.29</span></center>
+</td>
+<td><center>70</center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>射程最大伤害 (米)</b>
+</td>
+<td><center><span style="opacity:0.5">47.35</span>→<br><span style="color:red">32.35</span></center>
+</td>
+<td><center><span style="opacity:0.5">51.47</span>→<br><span style="color:red">36.47</span></center>
+</td>
+<td><center><span style="opacity:0.5">55.59</span>→<br><span style="color:red">40.59</span></center>
+</td>
+<td><center><span style="opacity:0.5">59.12</span>→<br><span style="color:red">45.29</span></center>
+</td>
+<td><center><span style="opacity:0.5">65</span>→<br><span style="color:red">50</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>弱点伤害 (%)</b>
+</td>
+<td><center><span style="opacity:0.5">0</span>→<br><span style="color:green">10</span></center>
+</td>
+<td><center><span style="opacity:0.5">0</span>→<br><span style="color:green">10</span></center>
+</td>
+<td><center><span style="opacity:0.5">0</span>→<br><span style="color:green">10</span></center>
+</td>
+<td><center><span style="opacity:0.5">0</span>→<br><span style="color:green">10</span></center>
+</td>
+<td><center><span style="opacity:0.5">0</span>→<br><span style="color:green">10</span></center>
+</td></tr></tbody></table>
+</div></div><p><br> 
+</p><div class="btn btn-collapsed w-100 text-left text-uppercase position-relative py-2 mt-3" data-toggle="collapse" data-target="#collapseExample13">离子炮</div><div class="collapse" id="collapseExample13"><div class="card card-body">
+<table class="wikitable mw-collapsible mw-collapsed mw-made-collapsible" id="mw-customcollapsible-myTable6" border="1" style="width: 100%;">
+<tbody><tr>
+<td width="35%" style="background:#2b2b2b">
+</td>
+<td width="13%" style="background:#2b2b2b"><center><b>М0</b></center>
+</td>
+<td width="13%" style="background:#2b2b2b"><center><b>М1</b></center>
+</td>
+<td width="13%" style="background:#2b2b2b"><center><b>М2</b></center>
+</td>
+<td width="13%" style="background:#2b2b2b"><center><b>М3</b></center>
+</td>
+<td width="13%" style="background:#2b2b2b"><button type="button" class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" aria-expanded="false" tabindex="0"><span class="mw-collapsible-text">扩展</span></button><center><b>М3+</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>可用来自</b>
+</td>
+<td><center>新兵</center>
+</td>
+<td><center>二级准尉</center>
+</td>
+<td><center>中校</center>
+</td>
+<td><center>元帅</center>
+</td>
+<td><center><b>微型升级</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>修改的价格</b>
+</td>
+<td><center>150</center>
+</td>
+<td><center>35 100</center>
+</td>
+<td><center>132 600</center>
+</td>
+<td><center><span style="opacity:0.5">259 000</span>→<br><span style="color:green">221 150</span></center>
+</td>
+<td><center>911 750</center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>最低伤害</b>
+</td>
+<td><center><span style="opacity:0.5">6</span>→<br>60</center>
+</td>
+<td><center><span style="opacity:0.5">10.21</span>→<br><span style="color:green">109.71</span></center>
+</td>
+<td><center><span style="opacity:0.5">12.47</span>→<br><span style="color:green">136.47</span></center>
+</td>
+<td><center><span style="opacity:0.5">14.41</span>→<br><span style="color:green">159.41</span></center>
+</td>
+<td><center><span style="opacity:0.5">17</span>→<br><span style="color:green">190</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>最高伤害</b>
+</td>
+<td><center><span style="opacity:0.5">7</span>→<br><span style="color:green">80</span></center>
+</td>
+<td><center><span style="opacity:0.5">12.35</span>→<br><span style="color:green">133.53</span></center>
+</td>
+<td><center><span style="opacity:0.5">15.24</span>→<br><span style="color:green">162.35</span></center>
+</td>
+<td><center><span style="opacity:0.5">17.71</span>→<br><span style="color:green">187.06</span></center>
+</td>
+<td><center><span style="opacity:0.5">21</span>→<br><span style="color:green">220</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>冲击力</b>
+</td>
+<td><center><span style="opacity:0.5">80</span>→<br><span style="color:red">70</span></center>
+</td>
+<td><center><span style="opacity:0.5">118.24</span>→<br><span style="color:red">104.41</span></center>
+</td>
+<td><center><span style="opacity:0.5">138.82</span>→<br><span style="color:red">122.94</span></center>
+</td>
+<td><center><span style="opacity:0.5">156.47</span>→<br><span style="color:red">138.82</span></center>
+</td>
+<td><center><span style="opacity:0.5">180</span>→<br><span style="color:red">160</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>后坐力</b>
+</td>
+<td><center><span style="opacity:0.5">30</span>→<br><span style="color:green">20</span></center>
+</td>
+<td><center><span style="opacity:0.5">37.65</span>→<br><span style="color:green">23.82</span></center>
+</td>
+<td><center><span style="opacity:0.5">41.76</span>→<br><span style="color:green">25.88</span></center>
+</td>
+<td><center><span style="opacity:0.5">45.29</span>→<br><span style="color:green">27.65</span></center>
+</td>
+<td><center><span style="opacity:0.5">50</span>→<br><span style="color:green">30</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>旋转速度 (度/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">74.48</span>→<br><span style="color:green">80</span></center>
+</td>
+<td><center><span style="opacity:0.5">97.49</span>→<br><span style="color:green">106.76</span></center>
+</td>
+<td><center><span style="opacity:0.5">109.87</span>→<br><span style="color:green">121.18</span></center>
+</td>
+<td><center><span style="opacity:0.5">120.49</span>→<br><span style="color:green">133.53</span></center>
+</td>
+<td><center><span style="opacity:0.5">134.65</span>→<br><span style="color:green">150</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>旋转加速度 (度/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">143.24</span>→<br><span style="color:red">80</span></center>
+</td>
+<td><center><span style="opacity:0.5">172.82</span>→<br><span style="color:red">106.76</span></center>
+</td>
+<td><center><span style="opacity:0.5">188.74</span>→<br><span style="color:red">121.18</span></center>
+</td>
+<td><center><span style="opacity:0.5">202.39</span>→<br><span style="color:red">133.53</span></center>
+</td>
+<td><center><span style="opacity:0.5">220.59</span>→<br><span style="color:red">150</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>弱点伤害 (%)</b>
+</td>
+<td><center><span style="opacity:0.5">1</span>→<br><span style="color:green">10</span></center>
+</td>
+<td><center><span style="opacity:0.5">8.26</span>→<br><span style="color:green">10</span></center>
+</td>
+<td><center><span style="opacity:0.5">12.18</span>→<br><span style="color:red">10</span></center>
+</td>
+<td><center><span style="opacity:0.5">15.53</span>→<br><span style="color:red">10</span></center>
+</td>
+<td><center><span style="opacity:0.5">20</span>→<br><span style="color:red">10</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>重新加载 (/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">0.25</span>→<br><span style="color:red">0.350</span></center>
+</td>
+<td><center><span style="opacity:0.5">0.25</span>→<br><span style="color:red">0.312</span></center>
+</td>
+<td><center><span style="opacity:0.5">0.25</span>→<br><span style="color:red">0.291</span></center>
+</td>
+<td><center><span style="opacity:0.5">0.25</span>→<br><span style="color:red">0.274</span></center>
+</td>
+<td><center>0.25</center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>射程最大伤害 (米)</b>
+</td>
+<td><center>15</center>
+</td>
+<td><center><span style="opacity:0.5">15</span>→<br><span style="color:green">16.91</span></center>
+</td>
+<td><center><span style="opacity:0.5">15</span>→<br><span style="color:green">17.94</span></center>
+</td>
+<td><center><span style="opacity:0.5">15</span>→<br><span style="color:green">18.82</span></center>
+</td>
+<td><center><span style="opacity:0.5">15</span>→<br><span style="color:green">20</span></center>
+</td></tr></tbody></table>
+</div></div><p><br> 
+</p><div class="btn btn-collapsed w-100 text-left text-uppercase position-relative py-2 mt-3" data-toggle="collapse" data-target="#collapseExample14">火龙珠</div><div class="collapse" id="collapseExample14"><div class="card card-body">
+<table class="wikitable mw-collapsible mw-collapsed mw-made-collapsible" id="mw-customcollapsible-myTable7" border="1" style="width: 100%;">
+<tbody><tr>
+<td width="30%" style="background:#2b2b2b">
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М0</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М1</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М2</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М3</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><button type="button" class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" aria-expanded="false" tabindex="0"><span class="mw-collapsible-text">扩展</span></button><center><b>М3+</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>可用来自</b>
+</td>
+<td><center>上士</center>
+</td>
+<td><center>五级准尉</center>
+</td>
+<td><center>中尉</center>
+</td>
+<td><center><span style="opacity:0.5">统帅</span>→ 元帅</center>
+</td>
+<td><center><b>微型升级</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>修改的价格</b>
+</td>
+<td><center>1 900</center>
+</td>
+<td><center>24 300</center>
+</td>
+<td><center>89 200</center>
+</td>
+<td><center><span style="opacity:0.5">252 100</span>→<br><span style="color:green">238 600</span></center>
+</td>
+<td><center><span style="opacity:0.5">984 500</span>→<br><span style="color:green">911 750</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>最低伤害</b>
+</td>
+<td><center><span style="opacity:0.5">14.09</span>→<br><span style="color:red">129.41</span></center>
+</td>
+<td><center><span style="opacity:0.5">17.18</span>→<br><span style="color:red">158.82</span></center>
+</td>
+<td><center><span style="opacity:0.5">21.5</span>→<br><span style="color:red">200</span></center>
+</td>
+<td><center><span style="opacity:0.5">28.29</span>→<br><span style="color:red">252.94</span></center>
+</td>
+<td><center><span style="opacity:0.5">32</span>→<br><span style="color:red">300</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>最高伤害</b>
+</td>
+<td><center><span style="opacity:0.5">17.53</span>→<br><span style="color:green">178.24</span></center>
+</td>
+<td><center><span style="opacity:0.5">21.06</span>→<br><span style="color:green">216.47</span></center>
+</td>
+<td><center><span style="opacity:0.5">26</span>→<br><span style="color:green">270</span></center>
+</td>
+<td><center><span style="opacity:0.5">33.76</span>→<br><span style="color:green">338.82</span></center>
+</td>
+<td><center><span style="opacity:0.5">38</span>→<br><span style="color:green">400</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>冲击力</b>
+</td>
+<td><center><span style="opacity:0.5">137.65</span>→<br><span style="color:red">114.71</span></center>
+</td>
+<td><center><span style="opacity:0.5">155.29</span>→<br><span style="color:red">129.41</span></center>
+</td>
+<td><center><span style="opacity:0.5">180</span>→<br><span style="color:red">150</span></center>
+</td>
+<td><center><span style="opacity:0.5">218.82</span>→<br><span style="color:red">176.47</span></center>
+</td>
+<td><center><span style="opacity:0.5">240</span>→<br><span style="color:red">200</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>后坐力</b>
+</td>
+<td><center><span style="opacity:0.5">140.29</span>→<br><span style="color:green">93.24</span></center>
+</td>
+<td><center><span style="opacity:0.5">150.59</span>→<br><span style="color:green">106.47</span></center>
+</td>
+<td><center><span style="opacity:0.5">165</span>→<br><span style="color:green">125</span></center>
+</td>
+<td><center><span style="opacity:0.5">187.65</span>→<br><span style="color:green">148.82</span></center>
+</td>
+<td><center><span style="opacity:0.5">200</span>→<br><span style="color:green">170</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>重新加载 (/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">0.598</span>→<br><span style="color:red">0.671</span></center>
+</td>
+<td><center><span style="opacity:0.5">0.576</span>→<br><span style="color:red">0.641</span></center>
+</td>
+<td><center><span style="opacity:0.5">0.545</span>→<br><span style="color:red">0.600</span></center>
+</td>
+<td><center><span style="opacity:0.5">0.496</span>→<br><span style="color:red">0.547</span></center>
+</td>
+<td><center><span style="opacity:0.5">0.470</span>→<br><span style="color:red">0.500</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>每次射击能量</b>
+</td>
+<td><center><span style="opacity:0.5">149.32</span>→<br><span style="color:green">137.06</span></center>
+</td>
+<td><center><span style="opacity:0.5">145.65</span>→<br><span style="color:green">134.12</span></center>
+</td>
+<td><center><span style="opacity:0.5">140.5</span>→<br><span style="color:green">130</span></center>
+</td>
+<td><center><span style="opacity:0.5">132.41</span>→<br><span style="color:green">124.71</span></center>
+</td>
+<td><center><span style="opacity:0.5">128</span>→<br><span style="color:green">120</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>旋转速度 (度/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">74.3</span>→<br><span style="color:green">90.29</span></center>
+</td>
+<td><center><span style="opacity:0.5">85.6</span>→<br><span style="color:green">100.59</span></center>
+</td>
+<td><center><span style="opacity:0.5">101.4</span>→<br><span style="color:green">115</span></center>
+</td>
+<td><center><span style="opacity:0.5">126.3</span>→<br><span style="color:green">133.53</span></center>
+</td>
+<td><center><span style="opacity:0.5">139.8</span>→<br><span style="color:green">150</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>旋转加速度 (度/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">57.1</span>→<br><span style="color:green">90.29</span></center>
+</td>
+<td><center><span style="opacity:0.5">70.7</span>→<br><span style="color:green">100.59</span></center>
+</td>
+<td><center><span style="opacity:0.5">89.7</span>→<br><span style="color:green">115</span></center>
+</td>
+<td><center><span style="opacity:0.5">119.5</span>→<br><span style="color:green">133.53</span></center>
+</td>
+<td><center><span style="opacity:0.5">135.8</span>→<br><span style="color:green">150</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>射程最小伤害 (米)</b>
+</td>
+<td><center>74.41</center>
+</td>
+<td><center>78.82</center>
+</td>
+<td><center>85</center>
+</td>
+<td><center><span style="opacity:0.5">94.71</span>→<br><span style="color:red">92.94</span></center>
+</td>
+<td><center>100</center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>射程最大伤害 (米)</b>
+</td>
+<td><center><span style="opacity:0.5">62.94</span>→<br><span style="color:red">37.21</span></center>
+</td>
+<td><center><span style="opacity:0.5">65.88</span>→<br><span style="color:red">39.41</span></center>
+</td>
+<td><center><span style="opacity:0.5">70</span>→<br><span style="color:red">42.5</span></center>
+</td>
+<td><center><span style="opacity:0.5">76.47</span>→<br><span style="color:red">46.47</span></center>
+</td>
+<td><center><span style="opacity:0.5">80</span>→<br><span style="color:red">50</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>抛射物速度</b>
+</td>
+<td><center><span style="opacity:0.5">85.88</span>→<br><span style="color:red">74.41</span></center>
+</td>
+<td><center><span style="opacity:0.5">91.76</span>→<br><span style="color:red">78.82</span></center>
+</td>
+<td><center><span style="opacity:0.5">100</span>→<br><span style="color:red">85</span></center>
+</td>
+<td><center><span style="opacity:0.5">112.94</span>→<br><span style="color:red">92.94</span></center>
+</td>
+<td><center><span style="opacity:0.5">120</span>→<br><span style="color:red">100</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>弱点伤害 (%)</b>
+</td>
+<td><center><span style="opacity:0.5">0</span>→<br><span style="color:green">25</span></center>
+</td>
+<td><center><span style="opacity:0.5">0</span>→<br><span style="color:green">25</span></center>
+</td>
+<td><center><span style="opacity:0.5">0</span>→<br><span style="color:green">25</span></center>
+</td>
+<td><center><span style="opacity:0.5">0</span>→<br><span style="color:green">25</span></center>
+</td>
+<td><center><span style="opacity:0.5">0</span>→<br><span style="color:green">25</span></center>
+</td></tr></tbody></table>
+</div></div><p><br> 
+</p><div class="btn btn-collapsed w-100 text-left text-uppercase position-relative py-2 mt-3" data-toggle="collapse" data-target="#collapseExample15">轰天炮</div><div class="collapse" id="collapseExample15"><div class="card card-body">
+<table class="wikitable mw-collapsible mw-collapsed mw-made-collapsible" id="mw-customcollapsible-myTable8" border="1" style="width: 100%;">
+<tbody><tr>
+<td width="30%" style="background:#2b2b2b">
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М0</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М1</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М2</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М3</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><button type="button" class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" aria-expanded="false" tabindex="0"><span class="mw-collapsible-text">扩展</span></button><center><b>М3+</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>可用来自</b>
+</td>
+<td><center>新兵</center>
+</td>
+<td><center>一级军士长</center>
+</td>
+<td><center>上校</center>
+</td>
+<td><center>元帅</center>
+</td>
+<td><center><b>微型升级</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>修改的价格</b>
+</td>
+<td><center>0</center>
+</td>
+<td><center>11 000</center>
+</td>
+<td><center>114 800</center>
+</td>
+<td><center><span style="opacity:0.5">268 600</span>→<br><span style="color:green">228 200</span></center>
+</td>
+<td><center>911 750</center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>最低伤害</b>
+</td>
+<td><center><span style="opacity:0.5">16</span>→<br><span style="color:red">140</span></center>
+</td>
+<td><center><span style="opacity:0.5">22.59</span>→<br><span style="color:red">205.88</span></center>
+</td>
+<td><center><span style="opacity:0.5">33.29</span>→<br><span style="color:red">312.94</span></center>
+</td>
+<td><center><span style="opacity:0.5">37.41</span>→<br><span style="color:red">354.12</span></center>
+</td>
+<td><center><span style="opacity:0.5">44</span>→<br><span style="color:red">420</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>最高伤害</b>
+</td>
+<td><center><span style="opacity:0.5">20</span>→<br><span style="color:green">220</span></center>
+</td>
+<td><center><span style="opacity:0.5">28.47</span>→<br><span style="color:green">321.18</span></center>
+</td>
+<td><center><span style="opacity:0.5">42.24</span>→<br><span style="color:green">485.59</span></center>
+</td>
+<td><center><span style="opacity:0.5">47.53</span>→<br><span style="color:green">548.85</span></center>
+</td>
+<td><center><span style="opacity:0.5">56</span>→<br><span style="color:green">650</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>冲击力</b>
+</td>
+<td><center>150</center>
+</td>
+<td><center><span style="opacity:0.5">201.76</span>→<br><span style="color:red">192.35</span></center>
+</td>
+<td><center><span style="opacity:0.5">285.88</span>→<br><span style="color:red">261.18</span></center>
+</td>
+<td><center><span style="opacity:0.5">318.24</span>→<br><span style="color:red">287.65</span></center>
+</td>
+<td><center><span style="opacity:0.5">370</span>→<br><span style="color:red">330</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>后坐力</b>
+</td>
+<td><center><span style="opacity:0.5">110</span>→<br><span style="color:green">100</span></center>
+</td>
+<td><center><span style="opacity:0.5">142.94</span>→<br><span style="color:green">123.53</span></center>
+</td>
+<td><center><span style="opacity:0.5">196.47</span>→<br><span style="color:green">161.76</span></center>
+</td>
+<td><center><span style="opacity:0.5">217.06</span>→<br><span style="color:green">176.47</span></center>
+</td>
+<td><center><span style="opacity:0.5">250</span>→<br><span style="color:green">200</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>重新加载 (/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">2</span>→<br><span style="color:green">1.8</span></center>
+</td>
+<td><center><span style="opacity:0.5">1.835</span>→<br><span style="color:green">1.706</span></center>
+</td>
+<td><center><span style="opacity:0.5">1.568</span>→<br><span style="color:green">1.553</span></center>
+</td>
+<td><center><span style="opacity:0.5">1.465</span>→<br><span style="color:red">1.494</span></center>
+</td>
+<td><center><span style="opacity:0.5">1.3</span>→<br><span style="color:red">1.4</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>旋转速度 (度/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">57.3</span>→<br><span style="color:green">70</span></center>
+</td>
+<td><center><span style="opacity:0.5">72.66</span>→<br><span style="color:green">81.76</span></center>
+</td>
+<td><center><span style="opacity:0.5">97.64</span>→<br><span style="color:green">100.88</span></center>
+</td>
+<td><center><span style="opacity:0.5">107.25</span>→<br><span style="color:green">108.24</span></center>
+</td>
+<td><center><span style="opacity:0.5">122.61</span>→<br><span style="color:red">120</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>旋转加速度 (度/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">114.59</span>→<br><span style="color:red">70</span></center>
+</td>
+<td><center><span style="opacity:0.5">134.54</span>→<br><span style="color:red">81.76</span></center>
+</td>
+<td><center><span style="opacity:0.5">166.97</span>→<br><span style="color:red">100.88</span></center>
+</td>
+<td><center><span style="opacity:0.5">179.44</span>→<br><span style="color:red">108.24</span></center>
+</td>
+<td><center><span style="opacity:0.5">199.39</span>→<br><span style="color:red">120</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>射程最小伤害 (米)</b>
+</td>
+<td><center><span style="opacity:0.5">120</span>→<br><span style="color:red">100</span></center>
+</td>
+<td><center><span style="opacity:0.5">134.12</span>→<br><span style="color:red">109.41</span></center>
+</td>
+<td><center><span style="opacity:0.5">157.06</span>→<br><span style="color:red">124.71</span></center>
+</td>
+<td><center><span style="opacity:0.5">165.88</span>→<br><span style="color:red">130.59</span></center>
+</td>
+<td><center><span style="opacity:0.5">180</span>→<br><span style="color:red">140</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>射程最大伤害 (米)</b>
+</td>
+<td><center><span style="opacity:0.5">40</span>→<br><span style="color:green">50</span></center>
+</td>
+<td><center><span style="opacity:0.5">44.71</span>→<br><span style="color:green">54.71</span></center>
+</td>
+<td><center><span style="opacity:0.5">52.35</span>→<br><span style="color:green">62.35</span></center>
+</td>
+<td><center><span style="opacity:0.5">55.29</span>→<br><span style="color:green">65.29</span></center>
+</td>
+<td><center><span style="opacity:0.5">60</span>→<br><span style="color:green">70</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>暴击几率 (%)</b>
+</td>
+<td><center><span style="opacity:0.5">13.71</span>→<br><span style="color:green">20</span></center>
+</td>
+<td><center><span style="opacity:0.5">15.39</span>→<br><span style="color:green">20</span></center>
+</td>
+<td><center><span style="opacity:0.5">17.06</span>→<br><span style="color:green">20</span></center>
+</td>
+<td><center><span style="opacity:0.5">17.53</span>→<br><span style="color:green">20</span></center>
+</td>
+<td><center><span style="opacity:0.5">18.15</span>→<br><span style="color:green">20</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>暴击伤害 (hp)</b>
+</td>
+<td><center><span style="opacity:0.5">36</span>→<br><span style="color:red">240</span></center>
+</td>
+<td><center><span style="opacity:0.5">51.06</span>→<br><span style="color:red">350.59</span></center>
+</td>
+<td><center><span style="opacity:0.5">75.53</span>→<br><span style="color:red">530.29</span></center>
+</td>
+<td><center><span style="opacity:0.5">84.94</span>→<br><span style="color:red">599.41</span></center>
+</td>
+<td><center><span style="opacity:0.5">100</span>→<br><span style="color:red">710</span></center>
+</td></tr></tbody></table>
+</div></div><p><br> 
+</p><div class="btn btn-collapsed w-100 text-left text-uppercase position-relative py-2 mt-3" data-toggle="collapse" data-target="#collapseExample16">极速炮</div><div class="collapse" id="collapseExample16"><div class="card card-body">
+<table class="wikitable mw-collapsible mw-collapsed mw-made-collapsible" id="mw-customcollapsible-myTable9" border="1" style="width: 100%;">
+<tbody><tr>
+<td width="29%" style="background:#2b2b2b">
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М0</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М1</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М2</b></center>
+</td>
+<td width="15%" style="background:#2b2b2b"><center><b>М3</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><button type="button" class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" aria-expanded="false" tabindex="0"><span class="mw-collapsible-text">扩展</span></button><center><b>М3+</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>可用来自</b>
+</td>
+<td><center>下士</center>
+</td>
+<td><center>四级准尉</center>
+</td>
+<td><center>少尉</center>
+</td>
+<td><center><span style="opacity:0.5">陆军元帅</span>→ 元帅</center>
+</td>
+<td><center><b>微型升级</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>修改的价格</b>
+</td>
+<td><center>650</center>
+</td>
+<td><center>28 300</center>
+</td>
+<td><center>82 700</center>
+</td>
+<td><center><span style="opacity:0.5">231 000</span>→<br><span style="color:red">232 350</span></center>
+</td>
+<td><center><span style="opacity:0.5">948 000</span>→<br><span style="color:green">911 750</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>伤害 (/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">25.35</span>→<br><span style="color:red">249.71</span></center>
+</td>
+<td><center><span style="opacity:0.5">34.29</span>→<br><span style="color:green">355.59</span></center>
+</td>
+<td><center><span style="opacity:0.5">39.88</span>→<br><span style="color:green">421.76</span></center>
+</td>
+<td><center><span style="opacity:0.5">52.18</span>→<br><span style="color:green">554.12</span></center>
+</td>
+<td><center><span style="opacity:0.5">60</span>→<br><span style="color:green">660</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>温度极限</b>
+</td>
+<td><center>0.179</center>
+</td>
+<td><center>0.391</center>
+</td>
+<td><center>0.524</center>
+</td>
+<td><center><span style="opacity:0.5">0.815</span>→<br><span style="color:red">0.788</span></center>
+</td>
+<td><center>1</center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>冲击力</b>
+</td>
+<td><center><span style="opacity:0.5">115</span>→<br><span style="color:red">72.06</span></center>
+</td>
+<td><center><span style="opacity:0.5">235</span>→<br><span style="color:red">130.88</span></center>
+</td>
+<td><center><span style="opacity:0.5">310</span>→<br><span style="color:red">167.65</span></center>
+</td>
+<td><center><span style="opacity:0.5">475</span>→<br><span style="color:red">241.18</span></center>
+</td>
+<td><center><span style="opacity:0.5">580</span>→<br><span style="color:red">300</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>后坐力</b>
+</td>
+<td><center><span style="opacity:0.5">80.88</span>→<br><span style="color:green">72.06</span></center>
+</td>
+<td><center><span style="opacity:0.5">163.24</span>→<br><span style="color:green">130.88</span></center>
+</td>
+<td><center><span style="opacity:0.5">214.71</span>→<br><span style="color:green">167.65</span></center>
+</td>
+<td><center><span style="opacity:0.5">327.94</span>→<br><span style="color:green">241.18</span></center>
+</td>
+<td><center><span style="opacity:0.5">400</span>→<br><span style="color:green">300</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>加热所需时间（秒）</b>
+</td>
+<td><center>4.26</center>
+</td>
+<td><center>4.97</center>
+</td>
+<td><center>5.41</center>
+</td>
+<td><center><span style="opacity:0.5">6.38</span>→<br><span style="color:red">6.29</span></center>
+</td>
+<td><center>7</center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>旋转的桶（秒）</b>
+</td>
+<td><center><span style="opacity:0.5">1.91</span>→<br><span style="color:green">1</span></center>
+</td>
+<td><center><span style="opacity:0.5">1.68</span>→<br><span style="color:green">1</span></center>
+</td>
+<td><center><span style="opacity:0.5">1.53</span>→<br><span style="color:green">1</span></center>
+</td>
+<td><center><span style="opacity:0.5">1.21</span>→<br><span style="color:green">1</span></center>
+</td>
+<td><center>1</center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>旋转速度 (度/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">73.81</span>→<br><span style="color:green">74.41</span></center>
+</td>
+<td><center><span style="opacity:0.5">87.29</span>→<br><span style="color:red">86.18</span></center>
+</td>
+<td><center><span style="opacity:0.5">95.72</span>→<br><span style="color:red">93.53</span></center>
+</td>
+<td><center><span style="opacity:0.5">114.25</span>→<br><span style="color:red">108.24</span></center>
+</td>
+<td><center><span style="opacity:0.5">126.05</span>→<br><span style="color:red">120</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>旋转加速度 (度/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">106.16</span>→<br><span style="color:red">74.41</span></center>
+</td>
+<td><center><span style="opacity:0.5">114.25</span>→<br><span style="color:red">86.18</span></center>
+</td>
+<td><center><span style="opacity:0.5">119.31</span>→<br><span style="color:red">93.53</span></center>
+</td>
+<td><center><span style="opacity:0.5">130.43</span>→<br><span style="color:red">108.24</span></center>
+</td>
+<td><center><span style="opacity:0.5">137.51</span>→<br><span style="color:red">120</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>最小伤害射程 (米)</b>
+</td>
+<td><center><span style="opacity:0.5">127.06</span>→<br><span style="color:red">103.53</span></center>
+</td>
+<td><center><span style="opacity:0.5">145.88</span>→<br><span style="color:red">112.94</span></center>
+</td>
+<td><center><span style="opacity:0.5">157.65</span>→<br><span style="color:red">118.82</span></center>
+</td>
+<td><center><span style="opacity:0.5">183.53</span>→<br><span style="color:red">130.59</span></center>
+</td>
+<td><center><span style="opacity:0.5">200</span>→<br><span style="color:red">140</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>射程最大伤害 (米)</b>
+</td>
+<td><center><span style="opacity:0.5">31.76</span>→<br><span style="color:green">51.76</span></center>
+</td>
+<td><center><span style="opacity:0.5">36.47</span>→<br><span style="color:green">56.47</span></center>
+</td>
+<td><center><span style="opacity:0.5">39.41</span>→<br><span style="color:green">59.41</span></center>
+</td>
+<td><center><span style="opacity:0.5">45.88</span>→<br><span style="color:green">65.29</span></center>
+</td>
+<td><center><span style="opacity:0.5">50</span>→<br><span style="color:green">70</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>自加热（/秒）</b>
+</td>
+<td><center><span style="opacity:0.5">0.045</span>→<br><span style="color:red">0.25</span></center>
+</td>
+<td><center><span style="opacity:0.5">0.098</span>→<br><span style="color:red">0.25</span></center>
+</td>
+<td><center><span style="opacity:0.5">0.131</span>→<br><span style="color:red">0.25</span></center>
+</td>
+<td><center><span style="opacity:0.5">0.204</span>→<br><span style="color:red">0.25</span></center>
+</td>
+<td><center>0.25</center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>桶停止（秒）</b>
+</td>
+<td><center><span style="opacity:0.5">1.5</span>→<br><span style="color:green">1</span></center>
+</td>
+<td><center><span style="opacity:0.5">1.5</span>→<br><span style="color:green">1</span></center>
+</td>
+<td><center><span style="opacity:0.5">1.5</span>→<br><span style="color:green">1</span></center>
+</td>
+<td><center><span style="opacity:0.5">1.5</span>→<br><span style="color:green">1</span></center>
+</td>
+<td><center><span style="opacity:0.5">1.5</span>→<br><span style="color:green">1</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>弱点伤害 (%)</b>
+</td>
+<td><center><span style="opacity:0.5">25</span>→<br><span style="color:green">50</span></center>
+</td>
+<td><center><span style="opacity:0.5">25</span>→<br><span style="color:green">50</span></center>
+</td>
+<td><center><span style="opacity:0.5">25</span>→<br><span style="color:green">50</span></center>
+</td>
+<td><center><span style="opacity:0.5">25</span>→<br><span style="color:green">50</span></center>
+</td>
+<td><center><span style="opacity:0.5">25</span>→<br><span style="color:green">50</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>炮塔转向减速 (%)</b>
+</td>
+<td><center><span style="opacity:0.5">57.35</span>→<br><span style="color:green">50</span></center>
+</td>
+<td><center><span style="opacity:0.5">50.29</span>→<br><span style="color:green">50</span></center>
+</td>
+<td><center><span style="opacity:0.5">45.88</span>→<br><span style="color:red">50</span></center>
+</td>
+<td><center><span style="opacity:0.5">36.18</span>→<br><span style="color:red">50</span></center>
+</td>
+<td><center><span style="opacity:0.5">30</span>→<br><span style="color:red">50</span></center>
+</td></tr></tbody></table>
+</div></div><p><br> 
+</p><div class="btn btn-collapsed w-100 text-left text-uppercase position-relative py-2 mt-3" data-toggle="collapse" data-target="#collapseExample17">雷暴炮</div><div class="collapse" id="collapseExample17"><div class="card card-body">
+<table class="wikitable mw-collapsible mw-collapsed mw-made-collapsible" id="mw-customcollapsible-myTable10" border="1" style="width: 100%;">
+<tbody><tr>
+<td width="35%" style="background:#2b2b2b">
+</td>
+<td width="13%" style="background:#2b2b2b"><center><b>М0</b></center>
+</td>
+<td width="13%" style="background:#2b2b2b"><center><b>М1</b></center>
+</td>
+<td width="13%" style="background:#2b2b2b"><center><b>М2</b></center>
+</td>
+<td width="13%" style="background:#2b2b2b"><center><b>М3</b></center>
+</td>
+<td width="13%" style="background:#2b2b2b"><button type="button" class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" aria-expanded="false" tabindex="0"><span class="mw-collapsible-text">扩展</span></button><center><b>М3+</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>可用来自</b>
+</td>
+<td><center>一等兵</center>
+</td>
+<td><center>二级准尉</center>
+</td>
+<td><center>上尉</center>
+</td>
+<td><center><span style="opacity:0.5">准将</span>→ 元帅</center>
+</td>
+<td><center><b>微型升级</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>修改的价格</b>
+</td>
+<td><center>500</center>
+</td>
+<td><center>38 600</center>
+</td>
+<td><center>110 500</center>
+</td>
+<td><center><span style="opacity:0.5">186 200</span>→<br><span style="color:red">214 400</span></center>
+</td>
+<td><center><span style="opacity:0.5">765 750</span>→<br><span style="color:red">911 750</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>最低伤害</b>
+</td>
+<td><center><span style="opacity:0.5">26.24</span>→<br><span style="color:green">269.41</span></center>
+</td>
+<td><center><span style="opacity:0.5">44.03</span>→<br><span style="color:red">431.17</span></center>
+</td>
+<td><center><span style="opacity:0.5">52.12</span>→<br><span style="color:red">504.71</span></center>
+</td>
+<td><center><span style="opacity:0.5">58.89</span>→<br><span style="color:green">622.35</span></center>
+</td>
+<td><center><span style="opacity:0.5">78</span>→<br><span style="color:red">740</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>最高伤害</b>
+</td>
+<td><center><span style="opacity:0.5">48.82</span>→<br><span style="color:red">380</span></center>
+</td>
+<td><center><span style="opacity:0.5">69.85</span>→<br><span style="color:red">600</span></center>
+</td>
+<td><center><span style="opacity:0.5">79.41</span>→<br><span style="color:red">700</span></center>
+</td>
+<td><center><span style="opacity:0.5">87.06</span>→<br><span style="color:red">860</span></center>
+</td>
+<td><center><span style="opacity:0.5">110</span>→<br><span style="color:red">1 020</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>炮弹的冲击力</b>
+</td>
+<td><center><span style="opacity:0.5">111.76</span>→<br><span style="color:green">180.59</span></center>
+</td>
+<td><center><span style="opacity:0.5">176.47</span>→<br><span style="color:green">238.82</span></center>
+</td>
+<td><center><span style="opacity:0.5">205.88</span>→<br><span style="color:green">265.29</span></center>
+</td>
+<td><center><span style="opacity:0.5">229.41</span>→<br><span style="color:green">307.65</span></center>
+</td>
+<td><center><span style="opacity:0.5">300</span>→<br><span style="color:green">350</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>溅射的冲击力</b>
+</td>
+<td><center>223.53</center>
+</td>
+<td><center>352.94</center>
+</td>
+<td><center>411.76</center>
+</td>
+<td><center><span style="opacity:0.5">458.82</span>→<br><span style="color:green">505.88</span></center>
+</td>
+<td><center>600</center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>后坐力</b>
+</td>
+<td><center><span style="opacity:0.5">138.82</span>→<br><span style="color:green">127.65</span></center>
+</td>
+<td><center><span style="opacity:0.5">187.35</span>→<br><span style="color:green">169.71</span></center>
+</td>
+<td><center><span style="opacity:0.5">209.41</span>→<br><span style="color:green">188.82</span></center>
+</td>
+<td><center><span style="opacity:0.5">227.06</span>→<br><span style="color:green">219.41</span></center>
+</td>
+<td><center><span style="opacity:0.5">280</span>→<br><span style="color:green">250</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>重新加载 (/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">3.44</span>→<br><span style="color:green">3.059</span></center>
+</td>
+<td><center><span style="opacity:0.5">3.12</span>→<br><span style="color:green">2.832</span></center>
+</td>
+<td><center><span style="opacity:0.5">2.97</span>→<br><span style="color:green">2.729</span></center>
+</td>
+<td><center><span style="opacity:0.5">2.85</span>→<br><span style="color:green">2.565</span></center>
+</td>
+<td><center><span style="opacity:0.5">2.5</span>→<br><span style="color:green">2.4</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>旋转速度 (度/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">55.88</span>→<br><span style="color:green">72.94</span></center>
+</td>
+<td><center><span style="opacity:0.5">79.61</span>→<br><span style="color:green">89.12</span></center>
+</td>
+<td><center><span style="opacity:0.5">90.39</span>→<br><span style="color:green">96.47</span></center>
+</td>
+<td><center><span style="opacity:0.5">99.02</span>→<br><span style="color:green">108.24</span></center>
+</td>
+<td><center><span style="opacity:0.5">124.9</span>→<br><span style="color:red">120</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>旋转加速度 (度/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">90.33</span>→<br><span style="color:red">72.94</span></center>
+</td>
+<td><center><span style="opacity:0.5">114.43</span>→<br><span style="color:red">89.12</span></center>
+</td>
+<td><center><span style="opacity:0.5">125.37</span>→<br><span style="color:red">96.47</span></center>
+</td>
+<td><center><span style="opacity:0.5">134.14</span>→<br><span style="color:red">108.24</span></center>
+</td>
+<td><center><span style="opacity:0.5">160.43</span>→<br><span style="color:red">120</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>射程最小伤害 (米)</b>
+</td>
+<td><center>102.35</center>
+</td>
+<td><center>115.29</center>
+</td>
+<td><center>121.18</center>
+</td>
+<td><center><span style="opacity:0.5">125.88</span>→<br><span style="color:green">130.59</span></center>
+</td>
+<td><center>140</center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>射程最大伤害 (米)</b>
+</td>
+<td><center>51.18</center>
+</td>
+<td><center>57.65</center>
+</td>
+<td><center>60.59</center>
+</td>
+<td><center><span style="opacity:0.5">62.94</span>→<br><span style="color:green">65.29</span></center>
+</td>
+<td><center>70</center>
+</td></tr></tbody></table>
+</div></div><p><br>
+</p><div class="btn btn-collapsed w-100 text-left text-uppercase position-relative py-2 mt-3" data-toggle="collapse" data-target="#collapseExample18">激光炮</div><div class="collapse" id="collapseExample18"><div class="card card-body">
+<table class="wikitable mw-collapsible mw-collapsed mw-made-collapsible" id="mw-customcollapsible-myTable11" border="1" style="width: 100%;">
+<tbody><tr>
+<td width="35%" style="background:#2b2b2b">
+</td>
+<td width="13%" style="background:#2b2b2b"><center><b>М0</b></center>
+</td>
+<td width="13%" style="background:#2b2b2b"><center><b>М1</b></center>
+</td>
+<td width="13%" style="background:#2b2b2b"><center><b>М2</b></center>
+</td>
+<td width="13%" style="background:#2b2b2b"><center><b>М3</b></center>
+</td>
+<td width="13%" style="background:#2b2b2b"><button type="button" class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" aria-expanded="false" tabindex="0"><span class="mw-collapsible-text">扩展</span></button><center><b>М3+</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>可用来自</b>
+</td>
+<td><center>二等兵</center>
+</td>
+<td><center>三级准尉</center>
+</td>
+<td><center>中尉</center>
+</td>
+<td><center><span style="opacity:0.5">上将</span>→ 元帅</center>
+</td>
+<td><center><b>微型升级</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>修改的价格</b>
+</td>
+<td><center>250</center>
+</td>
+<td><center>31 400</center>
+</td>
+<td><center>96 100</center>
+</td>
+<td><center><span style="opacity:0.5">218 300</span>→<br><span style="color:red">226 250</span></center>
+</td>
+<td><center><span style="opacity:0.5">875 000</span>→<br><span style="color:red">911 750</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>最低伤害</b>
+</td>
+<td><center><span style="opacity:0.5">44.68</span>→<br><span style="color:red">275.88</span></center>
+</td>
+<td><center><span style="opacity:0.5">74.12</span>→<br><span style="color:red">450.59</span></center>
+</td>
+<td><center><span style="opacity:0.5">87.5</span>→<br><span style="color:red">530</span></center>
+</td>
+<td><center><span style="opacity:0.5">108.91</span>→<br><span style="color:red">672.94</span></center>
+</td>
+<td><center><span style="opacity:0.5">133</span>→<br><span style="color:red">800</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>最高伤害</b>
+</td>
+<td><center><span style="opacity:0.5">73.79</span>→<br><span style="color:red">571.18</span></center>
+</td>
+<td><center><span style="opacity:0.5">115.53</span>→<br><span style="color:red">914.12</span></center>
+</td>
+<td><center><span style="opacity:0.5">134.5</span>→<br><span style="color:red">1 070</span></center>
+</td>
+<td><center><span style="opacity:0.5">164.85</span>→<br><span style="color:red">1 350.59</span></center>
+</td>
+<td><center><span style="opacity:0.5">199</span>→<br><span style="color:red">1 600</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>冲击力</b>
+</td>
+<td><center><span style="opacity:0.5">253.53</span>→<br><span style="color:red">232.65</span></center>
+</td>
+<td><center><span style="opacity:0.5">402.35</span>→<br><span style="color:red">371.76</span></center>
+</td>
+<td><center><span style="opacity:0.5">470</span>→<br><span style="color:red">435</span></center>
+</td>
+<td><center><span style="opacity:0.5">578.24</span>→<br><span style="color:red">548.82</span></center>
+</td>
+<td><center><span style="opacity:0.5">700</span>→<br><span style="color:red">650</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>后坐力</b>
+</td>
+<td><center><span style="opacity:0.5">183.53</span>→<br><span style="color:green">154.41</span></center>
+</td>
+<td><center><span style="opacity:0.5">222.35</span>→<br><span style="color:green">202.94</span></center>
+</td>
+<td><center><span style="opacity:0.5">240</span>→<br><span style="color:green">225</span></center>
+</td>
+<td><center><span style="opacity:0.5">268.24</span>→<br><span style="color:green">264.71</span></center>
+</td>
+<td><center>300</center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>重新加载 (/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">7.538</span>→<br><span style="color:green">5.456</span></center>
+</td>
+<td><center><span style="opacity:0.5">6.859</span>→<br><span style="color:green">4.971</span></center>
+</td>
+<td><center><span style="opacity:0.5">6.55</span>→<br><span style="color:green">4.75</span></center>
+</td>
+<td><center><span style="opacity:0.5">6.056</span>→<br><span style="color:green">4.353</span></center>
+</td>
+<td><center><span style="opacity:0.5">5.5</span>→<br><span style="color:green">4</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>充电时间（秒）</b>
+</td>
+<td><center><span style="opacity:0.5">6.34</span>→<br><span style="color:green">4.356</span></center>
+</td>
+<td><center><span style="opacity:0.5">5.71</span>→<br><span style="color:green">3.871</span></center>
+</td>
+<td><center><span style="opacity:0.5">5.42</span>→<br><span style="color:green">3.65</span></center>
+</td>
+<td><center><span style="opacity:0.5">4.96</span>→<br><span style="color:green">3.253</span></center>
+</td>
+<td><center><span style="opacity:0.5">4.44</span>→<br><span style="color:green">2.9</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>延迟（秒）</b>
+</td>
+<td><center><span style="opacity:0.5">1.196</span>→<br><span style="color:green">1.1</span></center>
+</td>
+<td><center><span style="opacity:0.5">1.151</span>→<br><span style="color:green">1.1</span></center>
+</td>
+<td><center><span style="opacity:0.5">1.13</span>→<br><span style="color:green">1.1</span></center>
+</td>
+<td><center><span style="opacity:0.5">1.097</span>→<br><span style="color:red">1.1</span></center>
+</td>
+<td><center><span style="opacity:0.5">1.06</span>→<br><span style="color:red">1.1</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>旋转速度 (度/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">41.79</span>→<br><span style="color:green">60.88</span></center>
+</td>
+<td><center><span style="opacity:0.5">60.32</span>→<br><span style="color:green">70.59</span></center>
+</td>
+<td><center><span style="opacity:0.5">68.75</span>→<br><span style="color:green">75</span></center>
+</td>
+<td><center><span style="opacity:0.5">82.23</span>→<br><span style="color:green">82.94</span></center>
+</td>
+<td><center><span style="opacity:0.5">97.4</span>→<br><span style="color:red">90</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>旋转加速度 (度/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">58.58</span>→<br><span style="color:green">60.88</span></center>
+</td>
+<td><center><span style="opacity:0.5">72.66</span>→<br><span style="color:red">70.59</span></center>
+</td>
+<td><center><span style="opacity:0.5">79.07</span>→<br><span style="color:red">75</span></center>
+</td>
+<td><center><span style="opacity:0.5">89.31</span>→<br><span style="color:red">82.94</span></center>
+</td>
+<td><center><span style="opacity:0.5">100.84</span>→<br><span style="color:red">90</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>穿透启动加速度 (%)</b>
+</td>
+<td><center><span style="opacity:0.5">12.65</span>→<br><span style="color:green">51.47</span></center>
+</td>
+<td><center><span style="opacity:0.5">41.76</span>→<br><span style="color:green">67.65</span></center>
+</td>
+<td><center><span style="opacity:0.5">55</span>→<br><span style="color:green">75</span></center>
+</td>
+<td><center><span style="opacity:0.5">76.18</span>→<br><span style="color:green">88.24</span></center>
+</td>
+<td><center>100</center>
+</td></tr></tbody></table>
+</div></div><p><br> 
+</p><div class="btn btn-collapsed w-100 text-left text-uppercase position-relative py-2 mt-3" data-toggle="collapse" data-target="#collapseExample19">镭射炮</div><div class="collapse" id="collapseExample19"><div class="card card-body">
+<table class="wikitable mw-collapsible mw-collapsed mw-made-collapsible" id="mw-customcollapsible-myTable12" border="1" style="width: 100%;">
+<tbody><tr>
+<td width="28%" style="background:#2b2b2b">
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М0</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М1</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><center><b>М2</b></center>
+</td>
+<td width="16%" style="background:#2b2b2b"><center><b>М3</b></center>
+</td>
+<td width="14%" style="background:#2b2b2b"><button type="button" class="mw-collapsible-toggle mw-collapsible-toggle-default mw-collapsible-toggle-collapsed" aria-expanded="false" tabindex="0"><span class="mw-collapsible-text">扩展</span></button><center><b>М3+</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>可用来自</b>
+</td>
+<td><center>中士</center>
+</td>
+<td><center>上士少校</center>
+</td>
+<td><center>少校</center>
+</td>
+<td><center><span style="opacity:0.5">少将</span>→ 元帅</center>
+</td>
+<td><center><b>微型升级</b></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>修改的价格</b>
+</td>
+<td><center>1 200</center>
+</td>
+<td><center>17 900</center>
+</td>
+<td><center>103 600</center>
+</td>
+<td><center><span style="opacity:0.5">207 200</span>→<br><span style="color:red">231 300</span></center>
+</td>
+<td><center><span style="opacity:0.5">802 250</span>→<br><span style="color:red">911 750</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>最小伤害狙击手</b>
+</td>
+<td><center><span style="opacity:0.5">30.41</span>→<br><span style="color:red">294.12</span></center>
+</td>
+<td><center><span style="opacity:0.5">37.18</span>→<br><span style="color:red">361.76</span></center>
+</td>
+<td><center><span style="opacity:0.5">50.71</span>→<br><span style="color:red">497.06</span></center>
+</td>
+<td><center><span style="opacity:0.5">56.12</span>→<br><span style="color:green">591.76</span></center>
+</td>
+<td><center><span style="opacity:0.5">71</span>→<br><span style="color:red">700</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>最大伤害狙击手</b>
+</td>
+<td><center><span style="opacity:0.5">121.18</span>→<br><span style="color:red">988.24</span></center>
+</td>
+<td><center><span style="opacity:0.5">147.65</span>→<br><span style="color:red">1 223.53</span></center>
+</td>
+<td><center><span style="opacity:0.5">200.59</span>→<br><span style="color:red">1 694.12</span></center>
+</td>
+<td><center><span style="opacity:0.5">221.76</span>→<br><span style="color:red">2 023.53</span></center>
+</td>
+<td><center><span style="opacity:0.5">280</span>→<br><span style="color:red">2 400</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>Min 伤害游乐场</b>
+</td>
+<td><center><span style="opacity:0.5">28.06</span>→<br><span style="color:green">294.12</span></center>
+</td>
+<td><center><span style="opacity:0.5">34.38</span>→<br><span style="color:green">361.76</span></center>
+</td>
+<td><center><span style="opacity:0.5">47.03</span>→<br><span style="color:green">497.06</span></center>
+</td>
+<td><center><span style="opacity:0.5">52.09</span>→<br><span style="color:green">591.76</span></center>
+</td>
+<td><center><span style="opacity:0.5">66</span>→<br><span style="color:green">700</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>最大伤害街机</b>
+</td>
+<td><center><span style="opacity:0.5">32.76</span>→<br><span style="color:red">294.12</span></center>
+</td>
+<td><center><span style="opacity:0.5">39.97</span>→<br><span style="color:red">361.76</span></center>
+</td>
+<td><center><span style="opacity:0.5">54.38</span>→<br><span style="color:red">497.06</span></center>
+</td>
+<td><center><span style="opacity:0.5">60.15</span>→<br><span style="color:red">591.76</span></center>
+</td>
+<td><center><span style="opacity:0.5">76</span>→<br><span style="color:red">700</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>每次射击能量街机</b>
+</td>
+<td><center><span style="opacity:0.5">135.88</span>→<br><span style="color:green">111.76</span></center>
+</td>
+<td><center><span style="opacity:0.5">168.24</span>→<br><span style="color:green">126.47</span></center>
+</td>
+<td><center><span style="opacity:0.5">232.94</span>→<br><span style="color:green">155.88</span></center>
+</td>
+<td><center><span style="opacity:0.5">258.82</span>→<br><span style="color:green">176.47</span></center>
+</td>
+<td><center><span style="opacity:0.5">330</span>→<br><span style="color:green">200</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>每次射击能量狙击</b>
+</td>
+<td><center><span style="opacity:0.5">358.82</span>→<br><span style="color:green">270.59</span></center>
+</td>
+<td><center><span style="opacity:0.5">432.35</span>→<br><span style="color:green">333.82</span></center>
+</td>
+<td><center><span style="opacity:0.5">579.41</span>→<br><span style="color:green">460.29</span></center>
+</td>
+<td><center><span style="opacity:0.5">638.24</span>→<br><span style="color:green">548.82</span></center>
+</td>
+<td><center><span style="opacity:0.5">800</span>→<br><span style="color:green">650</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>后坐力</b>
+</td>
+<td><center><span style="opacity:0.5">194.12</span>→<br><span style="color:green">105.88</span></center>
+</td>
+<td><center><span style="opacity:0.5">211.76</span>→<br><span style="color:green">113.24</span></center>
+</td>
+<td><center><span style="opacity:0.5">247.06</span>→<br><span style="color:green">127.94</span></center>
+</td>
+<td><center><span style="opacity:0.5">261.18</span>→<br><span style="color:green">138.24</span></center>
+</td>
+<td><center><span style="opacity:0.5">300</span>→<br><span style="color:green">150</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>在街机射击之间充电（秒）</b>
+</td>
+<td><center><span style="opacity:0.5">3.882</span>→<br><span style="color:green">3.382</span></center>
+</td>
+<td><center><span style="opacity:0.5">3.735</span>→<br><span style="color:green">3.235</span></center>
+</td>
+<td><center><span style="opacity:0.5">3.441</span>→<br><span style="color:green">2.941</span></center>
+</td>
+<td><center><span style="opacity:0.5">3.324</span>→<br><span style="color:green">2.735</span></center>
+</td>
+<td><center><span style="opacity:0.5">3</span>→<br><span style="color:green">2.5</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>消费（/秒）</b>
+</td>
+<td><center><span style="opacity:0.5">215.69</span>→<br><span style="color:green">333.33</span></center>
+</td>
+<td><center><span style="opacity:0.5">235.29</span>→<br><span style="color:green">333.33</span></center>
+</td>
+<td><center><span style="opacity:0.5">274.51</span>→<br><span style="color:green">333.33</span></center>
+</td>
+<td><center><span style="opacity:0.5">290.2</span>→<br><span style="color:green">333.33</span></center>
+</td>
+<td><center>333.33</center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>旋转速度 (度/秒)</b>
+</td>
+<td><center><span style="opacity:0.5">53.25</span>→<br><span style="color:green">63.53</span></center>
+</td>
+<td><center><span style="opacity:0.5">62.52</span>→<br><span style="color:green">67.94</span></center>
+</td>
+<td><center><span style="opacity:0.5">81.05</span>→<br><span style="color:red">76.76</span></center>
+</td>
+<td><center><span style="opacity:0.5">88.47</span>→<br><span style="color:red">82.94</span></center>
+</td>
+<td><center><span style="opacity:0.5">108.86</span>→<br><span style="color:red">90</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>旋转加速度 (度/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">62.69</span>→<br><span style="color:green">63.53</span></center>
+</td>
+<td><center><span style="opacity:0.5">69.43</span>→<br><span style="color:red">67.94</span></center>
+</td>
+<td><center><span style="opacity:0.5">82.91</span>→<br><span style="color:red">76.76</span></center>
+</td>
+<td><center><span style="opacity:0.5">88.3</span>→<br><span style="color:red">82.94</span></center>
+</td>
+<td><center><span style="opacity:0.5">103.13</span>→<br><span style="color:red">90</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>水平瞄准速度狙击</b>
+</td>
+<td><center><span style="opacity:0.5">12.35</span>→<br><span style="color:green">22.94</span></center>
+</td>
+<td><center><span style="opacity:0.5">15.29</span>→<br><span style="color:green">26.62</span></center>
+</td>
+<td><center><span style="opacity:0.5">21.18</span>→<br><span style="color:green">33.97</span></center>
+</td>
+<td><center><span style="opacity:0.5">23.53</span>→<br><span style="color:green">39.12</span></center>
+</td>
+<td><center><span style="opacity:0.5">30</span>→<br><span style="color:green">45</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>垂直瞄准速度狙击</b>
+</td>
+<td><center><span style="opacity:0.5">6.18</span>→<br><span style="color:green">22.94</span></center>
+</td>
+<td><center><span style="opacity:0.5">7.65</span>→<br><span style="color:green">26.62</span></center>
+</td>
+<td><center><span style="opacity:0.5">10.59</span>→<br><span style="color:green">33.97</span></center>
+</td>
+<td><center><span style="opacity:0.5">11.76</span>→<br><span style="color:green">39.12</span></center>
+</td>
+<td><center><span style="opacity:0.5">15</span>→<br><span style="color:green">45</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>每次射击能量</b>
+</td>
+<td><center><span style="opacity:0.5">469.41</span>→<br><span style="color:green">388.53</span></center>
+</td>
+<td><center><span style="opacity:0.5">456.18</span>→<br><span style="color:green">392.94</span></center>
+</td>
+<td><center><span style="opacity:0.5">429.71</span>→<br><span style="color:green">401.76</span></center>
+</td>
+<td><center><span style="opacity:0.5">419.12</span>→<br><span style="color:green">407.94</span></center>
+</td>
+<td><center><span style="opacity:0.5">390</span>→<br><span style="color:red">415</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>充电</b>
+</td>
+<td><center><span style="opacity:0.5">121.18</span>→<br><span style="color:red">117.65</span></center>
+</td>
+<td><center><span style="opacity:0.5">122.65</span>→<br><span style="color:green">125.82</span></center>
+</td>
+<td><center><span style="opacity:0.5">125.59</span>→<br><span style="color:green">142.16</span></center>
+</td>
+<td><center><span style="opacity:0.5">126.76</span>→<br><span style="color:green">153.59</span></center>
+</td>
+<td><center><span style="opacity:0.5">130</span>→<br><span style="color:green">166.67</span></center>
+</td></tr>
+<tr style="display: none;">
+<td style="background:#2b2b2b"><b>狙击模式下的旋转加速度 (度/秒²)</b>
+</td>
+<td><center><span style="opacity:0.5">27</span>→<br><span style="color:green">30</span></center>
+</td>
+<td><center><span style="opacity:0.5">27</span>→<br><span style="color:green">30</span></center>
+</td>
+<td><center><span style="opacity:0.5">27</span>→<br><span style="color:green">30</span></center>
+</td>
+<td><center><span style="opacity:0.5">27</span>→<br><span style="color:green">30</span></center>
+</td>
+<td><center><span style="opacity:0.5">27</span>→<br><span style="color:green">30</span></center>
+</td></tr></tbody></table>
+</div></div><p><br>
+<br>
+<br>有关此更新的更深入分析，请查看<b><a rel="nofollow" class="external text" href="http://en.tankiforum.com/index.php?showtopic=337214">官方报纸文章</a></b>.</p><div align="right"><small>最后编辑：HelpersBot 2024年5月21日</small></div></div></div></div></div></div><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":829,"wgPageParseReport":{"limitreport":{"cputime":"0.497","walltime":"0.514","ppvisitednodes":{"value":2252,"limit":1000000},"postexpandincludesize":{"value":6782,"limit":2097152},"templateargumentsize":{"value":602,"limit":2097152},"expansiondepth":{"value":9,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%   33.985      1 -total"," 44.30%   15.056      1 Template:See_also"," 32.99%   11.211      1 Template:Other_meaning"," 17.17%    5.835     14 Template:See_also/link"," 14.93%    5.073     19 Template:BeginPrettySpoiler"," 11.62%    3.949      1 Template:LastEdit","  9.43%    3.205      1 Template:Attention","  8.45%    2.872     20 Template:EndPrettySpoiler"]},"cachereport":{"timestamp":"20250802114040","ttl":86400,"transientcontent":false}}});});</script></body></html>

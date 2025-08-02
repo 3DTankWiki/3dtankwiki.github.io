@@ -1,0 +1,765 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>终结者 - 3D坦克维基</title><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+    <meta charset="UTF-8">
+    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/DBIsSQ0s2djD_akThoRUDeHa/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-1WKYge3dK2/UTDzhSp5yz67wCBmi0z81tX6M3swiQAxIbgepbnchtTZFPr6x5sGi"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"710ae7eb2ea7fb98ef3dbee4","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Terminator","wgTitle":"Terminator","wgCurRevisionId":64528,"wgRevisionId":64528,"wgArticleId":9434,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Terminator","wgRelevantArticleId":9434,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVisualEditor":{"pageLanguageCode":"en","pageLanguageDir":"ltr",
+"pageVariantFallbacks":"en"},"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.visualEditor.desktopArticleTarget.noscript":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","ext.gadget.UTCLiveClock","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://en.tankiwiki.com/load.php?lang=en&amp;modules=ext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://en.tankiwiki.com/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <style>
+.mw-editfont-monospace{font-family:monospace,monospace}.mw-editfont-sans-serif{font-family:sans-serif}.mw-editfont-serif{font-family:serif} .mw-editfont-monospace,.mw-editfont-sans-serif,.mw-editfont-serif{  font-size:13px;  -moz-tab-size:4; tab-size:4; }.mw-editfont-monospace.oo-ui-textInputWidget,.mw-editfont-sans-serif.oo-ui-textInputWidget,.mw-editfont-serif.oo-ui-textInputWidget{font-size:inherit}.mw-editfont-monospace.oo-ui-textInputWidget > .oo-ui-inputWidget-input,.mw-editfont-sans-serif.oo-ui-textInputWidget > .oo-ui-inputWidget-input,.mw-editfont-serif.oo-ui-textInputWidget > .oo-ui-inputWidget-input{  font-size:13px}.mw-editfont-monospace.oo-ui-textInputWidget > input.oo-ui-inputWidget-input,.mw-editfont-sans-serif.oo-ui-textInputWidget > input.oo-ui-inputWidget-input,.mw-editfont-serif.oo-ui-textInputWidget > input.oo-ui-inputWidget-input{min-height:32px}
+.ve-init-mw-progressBarWidget{height:1em;overflow:hidden;margin:0 25%}.ve-init-mw-progressBarWidget-bar{height:1em;width:0} .ve-init-mw-progressBarWidget{background-color:#fff;box-sizing:border-box;height:0.875em;border:1px solid #36c;border-radius:0.875em;box-shadow:0 1px 1px rgba(0,0,0,0.15)}.ve-init-mw-progressBarWidget-bar{background-color:#36c;height:0.875em}
+#mw-teleport-target{position:absolute;z-index:450}</style>
+    <style>
+.ve-init-mw-tempWikitextEditorWidget{border:0;padding:0;color:inherit;line-height:1.5em;width:100%;-moz-tab-size:4;tab-size:4; }.ve-init-mw-tempWikitextEditorWidget:focus{outline:0;padding:0}.ve-init-mw-tempWikitextEditorWidget::selection{background:rgba(109,169,247,0.5); }</style>
+    <style>
+.ve-active .ve-init-mw-desktopArticleTarget-targetContainer #siteNotice,.ve-active .mw-indicators,.ve-active #t-print,.ve-active #t-permalink,.ve-active #p-coll-print_export,.ve-active #t-cite,.ve-active .ve-init-mw-desktopArticleTarget-editableContent,.ve-active .ve-init-mw-tempWikitextEditorWidget{display:none}.ve-deactivating .ve-ui-surface{display:none}.ve-activating{ }.ve-activating .ve-ui-surface{height:0;padding:0 !important; overflow:hidden} .ve-loading .ve-init-mw-desktopArticleTarget-targetContainer > :not(.ve-init-mw-desktopArticleTarget-toolbarPlaceholder):not(.ve-init-mw-desktopArticleTarget),.ve-loading .ve-init-mw-desktopArticleTarget-originalContent,.ve-activated:not(.ve-loading) .ve-init-mw-desktopArticleTarget-uneditableContent{pointer-events:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;opacity:0.5}.ve-activated .ve-init-mw-desktopArticleTarget-targetContainer #firstHeading{ -webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;pointer-events:auto;cursor:text}.ve-activated .ve-init-mw-desktopArticleTarget-targetContainer #firstHeading a{ pointer-events:none}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks{cursor:pointer}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks:hover{ background:#e9f2fd}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks a{opacity:1} .ve-init-mw-desktopArticleTarget-loading-overlay{z-index:2;position:absolute;width:100%;top:1em}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder{overflow:hidden;transition:height 250ms ease;height:0;padding-bottom:2px; }.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{transform:translateY(-100%);transition:transform 250ms ease}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-open .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{transform:translateY(0)}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating{transition:none}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{position:fixed;top:0;z-index:1;background:#fff} .oo-ui-element-hidden{display:none !important; } .mw-editsection{ unicode-bidi:-moz-isolate;unicode-bidi:-webkit-isolate;unicode-bidi:isolate}.mw-editsection::before{content:'\200B'}.mw-editsection a{white-space:nowrap}.mw-editsection-divider{color:#54595d} .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{height:42px;border-bottom:1px solid #c8ccd1;box-shadow:0 1px 1px 0 rgba(0,0,0,0.1)}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating,.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-open{height:42px}</style>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://en.tankiwiki.com/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta property="og:image" content="https://en.tankiwiki.com/images/en/5/5b/Icon_overdrive_juggernaut.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    <meta property="og:image" content="https://en.tankiwiki.com/images/en/5/5b/Icon_overdrive_juggernaut.png">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="800">
+    <meta property="og:image:width" content="640">
+    <meta property="og:image:height" content="640">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://en.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://en.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (en)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://en.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki Atom feed" href="https://en.tankiwiki.com/index.php?title=Special:RecentChanges&amp;feed=atom">
+    <style>#utcdate a { font-weight:bolder; font-size:120%; }</style><style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Terminator rootpage-Terminator skin-tankiblue action-view"><div id="mw-main-container"><a href="./Tanki_Online_Wiki.html" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">返回主页</a><div class="main-content"><div class="mw-body ve-init-mw-desktopArticleTarget-targetContainer" id="content" role="main"><a id="top"></a><div class="mw-body-content" id="bodyContent"><div id="siteNotice"></div><div id="mw-content-text" class="mw-content-ltr mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">终结者</h1><div class="top_navigation_buttons">
+<ul><li><div class="navigation_buttons_link"><div class="navigation_button_image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/b/bf/Back-new.png" decoding="async" loading="lazy" width="30" height="24" class="mw-file-element"></span></span></div><div class="navigation_button_text">炮塔</div><a href="./Turrets.html" title="炮塔">炮塔</a></div></li>
+<li><div class="navigation_buttons_link"><div class="navigation_button_image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/5/5b/Icon_overdrive_juggernaut.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="navigation_button_text">终结者</div><a class="mw-selflink selflink">终结者</a></div></li>
+<li><div class="navigation_buttons_link"><div class="navigation_button_image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/e/e7/Upgrades-new.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span></div><div class="navigation_button_text">终结者升级</div><a href="./Micro-upgrades_Terminator.html" title="微升级终结者">微升级终结者</a></div></li>
+<li><div class="navigation_buttons_link"><div class="navigation_button_image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/8/81/Guides-new.png" decoding="async" loading="lazy" width="24" height="21" class="mw-file-element"></span></span></div><div class="navigation_button_text">终结者指南</div><a href="./Terminator_guide.html" title="终结者指南">终结者指南</a></div></li></ul>
+</div><div class="bannermenu main-image"><div class="bannermenu-header">终结者</div><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/8/81/Terminator.png" decoding="async" loading="lazy" width="341" height="220" class="mw-file-element"></span></span></div><div class="modules_list">
+<ul><li><span class="mw-default-size" typeof="mw:File"><a href="./Firebird.html" title="火焰炮"><img src="https://en.tankiwiki.com/images/en/6/61/Turret_firebird_m3_2.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./Freeze.html" title="冰风暴"><img src="https://en.tankiwiki.com/images/en/f/f2/Turret_freeze_m3.png" decoding="async" loading="lazy" width="1533" height="781" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./Isida.html" title="磁力炮"><img src="https://en.tankiwiki.com/images/en/5/5f/Turret_isida_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./Tesla.html" title="特斯拉"><img src="https://en.tankiwiki.com/images/en/0/05/Turret_tesla_m3.png" decoding="async" loading="lazy" width="1612" height="1093" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./Hammer.html" title="滑膛炮"><img src="https://en.tankiwiki.com/images/en/b/b8/Turret_hammer_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./Twins.html" title="离子炮"><img src="https://en.tankiwiki.com/images/en/d/d3/Turret_twins_m3.png" decoding="async" loading="lazy" width="1389" height="730" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./Ricochet.html" title="火龙珠"><img src="https://en.tankiwiki.com/images/en/b/bc/Turret_ricochet_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./Smoky.html" title="轰天炮"><img src="https://en.tankiwiki.com/images/en/6/61/Turret_smoky_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./Striker.html" title="火箭炮"><img src="https://en.tankiwiki.com/images/en/4/4e/Turret_striker_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./Vulcan.html" title="极速炮"><img src="https://en.tankiwiki.com/images/en/b/b9/Vulcan_HD.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./Thunder.html" title="雷暴炮"><img src="https://en.tankiwiki.com/images/en/3/3c/Turret_thunder_m3.png" decoding="async" loading="lazy" width="2622" height="1332" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./Scorpion.html" title="蝎子"><img src="https://en.tankiwiki.com/images/en/7/7b/Turret_scorpion_m3.png" decoding="async" loading="lazy" width="2560" height="1440" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./Railgun.html" title="激光炮"><img src="https://en.tankiwiki.com/images/en/c/c9/Turret_railgun_m3.png" decoding="async" loading="lazy" width="1774" height="1185" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./Magnum.html" title="马格南"><img src="https://en.tankiwiki.com/images/en/a/ac/Turret_magnum_m3.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./Gauss.html" title="电磁炮"><img src="https://en.tankiwiki.com/images/en/4/4f/Turret_gauss_m3.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./Shaft.html" title="镭射炮"><img src="https://en.tankiwiki.com/images/en/b/b1/Turret_shaft_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size active" typeof="mw:File"><a href="./Terminator.html" title="终结者"><img src="https://en.tankiwiki.com/images/en/8/81/Terminator.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./B0-NK.html" title="B0-NK"><img src="https://en.tankiwiki.com/images/en/a/ac/Turret_bonk_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./Snowman.html" title="雪人"><img src="https://en.tankiwiki.com/images/en/e/ef/Turret_Snowman.png" decoding="async" loading="lazy" width="1288" height="884" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./Tomato_Gun.html" title="番茄炮"><img src="https://en.tankiwiki.com/images/en/3/33/Tomato_Gun.png" decoding="async" loading="lazy" width="2136" height="1626" class="mw-file-element"></a></span></li></ul>
+</div><div class="dablink"><em>另见</em>:<a href="./Juggernaut.html" title="剑圣">剑圣</a>和<a href="./Team_Juggernaut.html" title="团队剑圣">团队剑圣</a>
+</div><h3><span class="mw-headline" id="Terminator">终结者</span></h3><p>长射程炮塔。按住射击按钮将发射一阵导弹攻击目标。</p><p>超级重型炮塔专为“剑圣”底盘设计。两个增加了射速的激光炮炮塔配有重型近程火箭发射器。</p><p>不可能将其与其他底盘一起使用。根据传言，一发射击可以使炮塔关闭坦克。<br>
+</p><h3><span class="mw-headline" id="Description_in_Garage">车库中的描述</span></h3><p>终结者是一个特殊的炮塔，可以以两种不同的模式射击：</p><ul><li>短按射击按钮将射击两个配对中的一个<a href="./Railgun.html" title="激光炮">激光炮</a>交替进行，其火速比标准激光炮更高；</li>
+<li>按住射击按钮将会产生一个激光指示器，类似于那个<a href="./Striker.html" title="火箭炮">火箭炮</a>炮塔在锁定目标后会射击六枚导向型火箭。无法单独发射火箭。</li></ul><p>这个炮塔有一种独特的伤害，无法被任何防御模块降低。</p><p>这个独特的底盘无法以任何其他方式购买或永久获得。这种武器配备了<a href="./Juggernaut.html" title="剑圣">剑圣</a>底盘作为“剑圣”坦克的一部分，仅用于<a href="./Team_Juggernaut.html" title="团队剑圣">“剑圣” 战斗模式</a>有一个例外 - 独特的坦克可以被游戏的开发者用于测试和组织活动。<br>
+</p><h3><span class="mw-headline" id="Description">描述</span></h3><div class="hull_wrapper">
+<div class="hull_info_wrapper">
+<div class="hull_image">
+<p><span typeof="mw:File"><a href="./Terminator.html" title="终结者"><img src="https://en.tankiwiki.com/images/en/8/81/Terminator.png" decoding="async" loading="lazy" width="190" height="123" class="mw-file-element"></a></span>
+</p>
+</div>
+<div class="hull_info">
+<div class="hull_stats">
+<ul><li class="mw-empty-elt"></li></ul>
+<p><big><b>单一模式</b></big>
+</p>
+<div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/4/4b/SW_DamagePerSecond.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div>
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/8/86/Icon_Critical_Damage.png" decoding="async" loading="lazy" width="29" height="29" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 53%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/b/b3/Icon_Impact_Force.png" decoding="async" loading="lazy" width="29" height="29" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/f/fc/Ae5da89d.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span></div><div class="stat_label">转弯速度</div><div class="statbar"><div class="statbar_inner" style="width: 56%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/e/e5/SW_Range.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li></ul>
+<p><br>
+<big><b>导弹模式</b></big>
+</p>
+<div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/4/4b/SW_DamagePerSecond.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div>
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/8/86/Icon_Critical_Damage.png" decoding="async" loading="lazy" width="29" height="29" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 0%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/b/b3/Icon_Impact_Force.png" decoding="async" loading="lazy" width="29" height="29" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/f/fc/Ae5da89d.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span></div><div class="stat_label">转弯速度</div><div class="statbar"><div class="statbar_inner" style="width: 56%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/e/e5/SW_Range.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 33%"></div></div></div></li></ul>
+</div>
+<div class="hull_review">
+<div class="hull_review_title">玩家的意见</div>
+<div class="reviews_cards">
+<div class="review_card positive"><div class="review_card_title"><div class="review_icon"></div><span>优点</span></div><div class="review_card_description">令人难以置信的高伤害和快速的重装。在高穿透伤害的支持下，激光炮可以穿透其他坦克伤害坦克。此外，它还具有非常高的冲击力和无限的射程。替代射击模式是一阵跟踪导弹。它们可以对多个红队造成溅射伤害，或在视线之外伤害敌人。</div></div>
+<div class="review_card negative"><div class="review_card_title"><div class="review_icon"></div><span>缺点</span></div><div class="review_card_description">射击前的延迟。在飞行模式下，目标必须保持在激光视线内，直到瞄准十字准线完全锁定。火箭也有自造成巨大溅射伤害的风险。</div></div>
+</div>
+</div>
+</div>
+</div>
+</div><h3><span class="mw-headline" id="Modules">防御模块</span></h3><div class="dablink noprint"><em>主条目</em>:<b><a href="./Modules.html" title="防御模块">防御模块</a></b>
+</div><p>喜欢<a href="./Snowman.html" title="雪人">雪人</a>,<a href="./Tomato_Gun.html" title="番茄炮">番茄炮</a>和<a href="./B0-NK.html" title="B0-NK">B0-NK</a>没有防御模块可以防护终结者的普通（非暴击）攻击。</p><div class="module_cards_row">
+<div class="module_card icon_on_image">
+<div class="module_card_title">
+<p>犰狳</p>
+</div>
+<div class="module_card_image" align="center">
+<div class="profile-entity-image"><span typeof="mw:File"><a href="./Modules.html" title="防御模块"><img src="https://en.tankiwiki.com/images/en/thumb/8/89/Module_unique_preview.png/117px-Module_unique_preview.png" decoding="async" loading="lazy" width="117" height="88" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/8/89/Module_unique_preview.png/176px-Module_unique_preview.png 1.5x, https://en.tankiwiki.com/images/en/8/89/Module_unique_preview.png 2x"></a></span><div class="profile-entity-card__resistances-holder"><a href="./Modules.html" title="防御模块"><div style="display: inline-block; width: 51px; height: 51px; background-repeat:no-repeat;" class="icon-resistance_crit"></div></a></div></div>
+<div class="module_card_icon"></div>
+</div>
+<div class="module_card_description">
+<p><a href="https://en.tankiwiki.com/Modules#Module_%C2%ABArmadillo%C2%BB" title="防御模块">«犰狳» 防御模块</a>这保护了坦克免受终结者炮塔的暴击。</p>
+</div>
+</div>
+<div class="module_card icon_on_image">
+<div class="module_card_title">
+<p>光谱</p>
+</div>
+<div class="module_card_image" align="center">
+<div class="profile-entity-image"><span typeof="mw:File"><a href="./Modules.html" title="防御模块"><img src="https://en.tankiwiki.com/images/en/thumb/8/89/Module_unique_preview.png/117px-Module_unique_preview.png" decoding="async" loading="lazy" width="117" height="88" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/8/89/Module_unique_preview.png/176px-Module_unique_preview.png 1.5x, https://en.tankiwiki.com/images/en/8/89/Module_unique_preview.png 2x"></a></span><div class="profile-entity-card__resistances-holder"><a href="./Modules.html" title="防御模块"><div style="display: inline-block; width: 51px; height: 51px; background-repeat:no-repeat;" class="icon-resistance_spectrum"></div></a></div></div>
+<div class="module_card_icon"></div>
+</div>
+<div class="module_card_description">
+<p><a href="https://en.tankiwiki.com/Modules#Unique_Modules" title="防御模块">独特防御模块</a>这可以保护坦克免受所有标准炮塔的攻击。</p>
+</div>
+</div>
+</div><h3><span class="mw-headline" id="Modifications">修改</span></h3><p>终结者无法购买。它的增强等级复制了<a href="./Modifications.html" title="修改">修改等级</a>和<a href="./Upgrades.html" title="升级">微型升级</a>被获得“剑圣”护甲的玩家使用的基地。</p><div class="modificationInfoWrapper">
+<div class="modificationInfoItem">
+<div class="modificationInfoItem__info">
+<div class="modificationInfoItem__header">Mk1</div><span typeof="mw:File"><a href="https://en.tankiwiki.com/Micro-upgrades_Terminator#Micro-Upgrades_of_Terminator_Mk1" title="微升级终结者"><img src="https://en.tankiwiki.com/images/en/thumb/2/24/Upgrade_button.png/150px-Upgrade_button.png" decoding="async" loading="lazy" width="150" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/2/24/Upgrade_button.png 1.5x"></a></span>
+</div>
+<table style="text-align:center; width:100%">
+<tbody><tr>
+<td>
+</td>
+<td><span typeof="mw:File"><a href="./Recruit.html" title="新兵"><img src="https://en.tankiwiki.com/images/en/thumb/6/64/IconsNormal_01.png/85px-IconsNormal_01.png" decoding="async" loading="lazy" width="85" height="82" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/6/64/IconsNormal_01.png/128px-IconsNormal_01.png 1.5x, https://en.tankiwiki.com/images/en/thumb/6/64/IconsNormal_01.png/170px-IconsNormal_01.png 2x"></a></span>
+</td>
+<td>
+</td></tr>
+<tr>
+<td>​<br>​</td>
+<td>不出售</td>
+<td>
+</td></tr>
+<tr>
+<td>​</td>
+<td><div class="modificationInfoItem__price__info"><span></span></div>
+</td>
+<td><div class="modificationInfoItem__price__info"><span></span></div>
+</td></tr></tbody></table>
+</div>
+<div class="modificationInfoItem">
+<div class="modificationInfoItem__info">
+<div class="modificationInfoItem__header">Mk2</div><span typeof="mw:File"><a href="https://en.tankiwiki.com/Micro-upgrades_Terminator#Micro-Upgrades_of_Terminator_Mk2" title="微升级终结者"><img src="https://en.tankiwiki.com/images/en/thumb/2/24/Upgrade_button.png/150px-Upgrade_button.png" decoding="async" loading="lazy" width="150" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/2/24/Upgrade_button.png 1.5x"></a></span>
+</div>
+<table style="text-align:center; width:100%">
+<tbody><tr>
+<td>
+</td>
+<td><span typeof="mw:File"><a href="./Sergeant.html" title="上士"><img src="https://en.tankiwiki.com/images/en/thumb/5/57/IconsNormal_06.png/85px-IconsNormal_06.png" decoding="async" loading="lazy" width="85" height="82" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/5/57/IconsNormal_06.png/128px-IconsNormal_06.png 1.5x, https://en.tankiwiki.com/images/en/thumb/5/57/IconsNormal_06.png/170px-IconsNormal_06.png 2x"></a></span>
+</td>
+<td>
+</td></tr>
+<tr>
+<td>​<br>​</td>
+<td>不出售</td>
+<td>
+</td></tr>
+<tr>
+<td>​</td>
+<td><div class="modificationInfoItem__price__info"><span></span></div>
+</td>
+<td><div class="modificationInfoItem__price__info"><span></span></div>
+</td></tr></tbody></table>
+</div>
+<div class="modificationInfoItem">
+<div class="modificationInfoItem__info">
+<div class="modificationInfoItem__header">Mk3</div><span typeof="mw:File"><a href="https://en.tankiwiki.com/Micro-upgrades_Terminator#Micro-Upgrades_of_Terminator_Mk3" title="微升级终结者"><img src="https://en.tankiwiki.com/images/en/thumb/2/24/Upgrade_button.png/150px-Upgrade_button.png" decoding="async" loading="lazy" width="150" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/2/24/Upgrade_button.png 1.5x"></a></span>
+</div>
+<table style="text-align:center; width:100%">
+<tbody><tr>
+<td>
+</td>
+<td><span typeof="mw:File"><a href="./Sergeant-Major.html" title="军士长"><img src="https://en.tankiwiki.com/images/en/thumb/6/63/IconsNormal_10.png/85px-IconsNormal_10.png" decoding="async" loading="lazy" width="85" height="82" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/6/63/IconsNormal_10.png/128px-IconsNormal_10.png 1.5x, https://en.tankiwiki.com/images/en/thumb/6/63/IconsNormal_10.png/170px-IconsNormal_10.png 2x"></a></span>
+</td>
+<td>
+</td></tr>
+<tr>
+<td>​<br>​</td>
+<td>不出售</td>
+<td>
+</td></tr>
+<tr>
+<td>​</td>
+<td><div class="modificationInfoItem__price__info"><span></span></div>
+</td>
+<td><div class="modificationInfoItem__price__info"><span></span></div>
+</td></tr></tbody></table>
+</div>
+<div class="modificationInfoItem">
+<div class="modificationInfoItem__info">
+<div class="modificationInfoItem__header">Mk4</div><span typeof="mw:File"><a href="https://en.tankiwiki.com/Micro-upgrades_Terminator#Micro-Upgrades_of_Terminator_Mk4" title="微升级终结者"><img src="https://en.tankiwiki.com/images/en/thumb/2/24/Upgrade_button.png/150px-Upgrade_button.png" decoding="async" loading="lazy" width="150" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/2/24/Upgrade_button.png 1.5x"></a></span>
+</div>
+<table style="text-align:center; width:100%">
+<tbody><tr>
+<td>
+</td>
+<td><span typeof="mw:File"><a href="./Warrant_Officer_4.html" title="二级准尉"><img src="https://en.tankiwiki.com/images/en/thumb/e/e8/IconsNormal_14.png/85px-IconsNormal_14.png" decoding="async" loading="lazy" width="85" height="82" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/e/e8/IconsNormal_14.png/128px-IconsNormal_14.png 1.5x, https://en.tankiwiki.com/images/en/thumb/e/e8/IconsNormal_14.png/170px-IconsNormal_14.png 2x"></a></span>
+</td>
+<td>
+</td></tr>
+<tr>
+<td>​<br>​</td>
+<td>不出售</td>
+<td>
+</td></tr>
+<tr>
+<td>​</td>
+<td><div class="modificationInfoItem__price__info"><span></span></div>
+</td>
+<td><div class="modificationInfoItem__price__info"><span></span></div>
+</td></tr></tbody></table>
+</div>
+<div class="modificationInfoItem">
+<div class="modificationInfoItem__info">
+<div class="modificationInfoItem__header">Mk5</div><span typeof="mw:File"><a href="https://en.tankiwiki.com/Micro-upgrades_Terminator#Micro-Upgrades_of_Terminator_Mk5" title="微升级终结者"><img src="https://en.tankiwiki.com/images/en/thumb/2/24/Upgrade_button.png/150px-Upgrade_button.png" decoding="async" loading="lazy" width="150" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/2/24/Upgrade_button.png 1.5x"></a></span>
+</div>
+<table style="text-align:center; width:100%">
+<tbody><tr>
+<td>
+</td>
+<td><span typeof="mw:File"><a href="./First_Lieutenant.html" title="中尉"><img src="https://en.tankiwiki.com/images/en/thumb/7/72/IconsNormal_18.png/85px-IconsNormal_18.png" decoding="async" loading="lazy" width="85" height="82" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/72/IconsNormal_18.png/128px-IconsNormal_18.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/72/IconsNormal_18.png/170px-IconsNormal_18.png 2x"></a></span>
+</td>
+<td>
+</td></tr>
+<tr>
+<td>​<br>​</td>
+<td>不出售</td>
+<td>
+</td></tr>
+<tr>
+<td>​</td>
+<td><div class="modificationInfoItem__price__info"><span></span></div>
+</td>
+<td><div class="modificationInfoItem__price__info"><span></span></div>
+</td></tr></tbody></table>
+</div>
+<div class="modificationInfoItem">
+<div class="modificationInfoItem__info">
+<div class="modificationInfoItem__header">Mk6</div><span typeof="mw:File"><a href="https://en.tankiwiki.com/Micro-upgrades_Terminator#Micro-Upgrades_of_Terminator_Mk6" title="微升级终结者"><img src="https://en.tankiwiki.com/images/en/thumb/2/24/Upgrade_button.png/150px-Upgrade_button.png" decoding="async" loading="lazy" width="150" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/2/24/Upgrade_button.png 1.5x"></a></span>
+</div>
+<table style="text-align:center; width:100%">
+<tbody><tr>
+<td>
+</td>
+<td><span typeof="mw:File"><a href="./Colonel.html" title="上校"><img src="https://en.tankiwiki.com/images/en/thumb/7/7c/IconsNormal_22.png/85px-IconsNormal_22.png" decoding="async" loading="lazy" width="85" height="82" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/7c/IconsNormal_22.png/128px-IconsNormal_22.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/7c/IconsNormal_22.png/170px-IconsNormal_22.png 2x"></a></span>
+</td>
+<td>
+</td></tr>
+<tr>
+<td>​<br>​</td>
+<td>不出售</td>
+<td>
+</td></tr>
+<tr>
+<td>​</td>
+<td><div class="modificationInfoItem__price__info"><span></span></div>
+</td>
+<td><div class="modificationInfoItem__price__info"><span></span></div>
+</td></tr></tbody></table>
+</div>
+<div class="modificationInfoItem">
+<div class="modificationInfoItem__info">
+<div class="modificationInfoItem__header">Mk7</div><span typeof="mw:File"><a href="https://en.tankiwiki.com/Micro-upgrades_Terminator#Micro-Upgrades_of_Terminator_Mk7" title="微升级终结者"><img src="https://en.tankiwiki.com/images/en/thumb/2/24/Upgrade_button.png/150px-Upgrade_button.png" decoding="async" loading="lazy" width="150" height="40" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/2/24/Upgrade_button.png 1.5x"></a></span>
+</div>
+<table style="text-align:center; width:100%">
+<tbody><tr>
+<td>
+</td>
+<td><span typeof="mw:File"><a href="./Marshal.html" title="元帅"><img src="https://en.tankiwiki.com/images/en/thumb/0/0f/IconsNormal_27.png/85px-IconsNormal_27.png" decoding="async" loading="lazy" width="85" height="82" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/0/0f/IconsNormal_27.png/128px-IconsNormal_27.png 1.5x, https://en.tankiwiki.com/images/en/thumb/0/0f/IconsNormal_27.png/170px-IconsNormal_27.png 2x"></a></span>
+</td>
+<td>
+</td></tr>
+<tr>
+<td>​<br>​</td>
+<td>不出售</td>
+<td>
+</td></tr>
+<tr>
+<td>​</td>
+<td><div class="modificationInfoItem__price__info"><span></span></div>
+</td>
+<td><div class="modificationInfoItem__price__info"><span></span></div>
+</td></tr></tbody></table>
+</div>
+<div class="modificationInfoItem">
+<div class="modificationInfoItem__info">
+<div class="modificationInfoItem__header">最多</div>
+</div>
+<table style="text-align:center; width:100%">
+<tbody><tr>
+<td>
+</td>
+<td><span typeof="mw:File"><a href="./Marshal.html" title="元帅"><img src="https://en.tankiwiki.com/images/en/thumb/0/0f/IconsNormal_27.png/85px-IconsNormal_27.png" decoding="async" loading="lazy" width="85" height="82" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/0/0f/IconsNormal_27.png/128px-IconsNormal_27.png 1.5x, https://en.tankiwiki.com/images/en/thumb/0/0f/IconsNormal_27.png/170px-IconsNormal_27.png 2x"></a></span>
+</td>
+<td>
+</td></tr>
+<tr>
+<td>​<br>​</td>
+<td>不出售</td>
+<td>
+</td></tr>
+<tr>
+<td>​</td>
+<td><div class="modificationInfoItem__price__info"><span></span></div>
+</td>
+<td><div class="modificationInfoItem__price__info"><span></span></div>
+</td></tr></tbody></table>
+</div>
+<div class="modificationInfoItem" style="opacity:0;"></div>
+<h3><span class="mw-headline" id="Characteristics">特征</span></h3>
+<p>终结者的改装和升级等级等于使用“剑圣”坦克的玩家所用炮塔的改装和升级等级。 在下面的表格中，您可以找到完全升级改装的参数，唯一的例外是第一列是Mk1-0的统计数据。<br>
+</p>
+<div class="characteristics-table">
+<table class="wikitable-modern head-table" width="100%">
+
+<tbody><tr class="wikitable-header wikitable-title-center">
+<td style="">终结者</td>
+<td>Mk1-0</td>
+<td>Mk1</td>
+<td>Mk2</td>
+<td>Mk3</td>
+<td>Mk4</td>
+<td>Mk5</td>
+<td>Mk6</td>
+<td>Mk7</td></tr></tbody></table>
+<table class="wikitable-modern" width="100%">
+
+<tbody><tr>
+<td height="40px" class="wikitable-subheader wikitable-title-center" colspan="9">激光炮</td></tr></tbody></table>
+<table class="wikitable-modern active">
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/7/73/Icon_damage.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>
+</td>
+<td>伤害 (hp)</td>
+<td>1350</td><td>1725</td><td>2025</td><td>2325</td><td>2625</td><td>2925</td><td>3300</td><td>3600</td>
+</tr></tbody></table>
+<div class="table-note">对目标造成的一次性伤害。</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td>
+</td>
+<td>组合攻击伤害 (hp)</td>
+<td>2000</td><td>2333,33</td><td>2600</td><td>2866,67</td><td>3133,33</td><td>3400</td><td>3733,33</td><td>4000</td>
+</tr></tbody></table>
+<div class="table-note">如果自己的炮塔发射手榴弹则对敌人造成的伤害。</div>
+<table class="wikitable-modern active">
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>
+</td>
+<td>暴击伤害 (hp)</td>
+<td>3000</td><td>3833,33</td><td>4500</td><td>5166,67</td><td>5833,33</td><td>6500</td><td>7333,33</td><td>8000</td>
+</tr></tbody></table>
+<div class="table-note">一次射击对目标造成的伤害。无视任何防护防御模块，除了特殊的"犰狳"防御模块。</div>
+<table class="wikitable-modern active">
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/9/98/Icon_critical_chance.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>
+</td>
+<td>暴击伤害几率 (%)</td>
+<td>14,5</td><td>14,5</td><td>14,5</td><td>14,5</td><td>14,5</td><td>14,5</td><td>14,5</td><td>14,5</td>
+</tr></tbody></table>
+<div class="table-note">施加在敌人身上的暴击伤害的概率.</div>
+<table class="wikitable-modern active">
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/0/02/Icon_reloading.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>
+</td>
+<td>重新加载（s）</td>
+<td>2,6</td><td>2,4</td><td>2,24</td><td>2,08</td><td>1,92</td><td>1,76</td><td>1,56</td><td>1,4</td>
+</tr></tbody></table>
+<div class="table-note">炮塔为下一个射击准备所需的时间。</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td>
+</td>
+<td>投篮热身时间（秒）</td>
+<td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td>
+</tr></tbody></table>
+<div class="table-note">射击按钮按下与实际发射之间的时间间隔，称为“热身”。</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/b/bf/Icon_range.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>
+</td>
+<td>射程最大伤害 (米)</td>
+<td>90</td><td>95</td><td>99</td><td>103</td><td>107</td><td>111</td><td>116</td><td>120</td>
+</tr></tbody></table>
+<div class="table-note">炮塔造成全额伤害的射程。如果距离目标超过这个射程，伤害将线性减少，直到达到账面伤害的最低射程。</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td>
+</td>
+<td>射程最小伤害 (米)</td>
+<td>150</td><td>155</td><td>159</td><td>163</td><td>167</td><td>171</td><td>176</td><td>180</td>
+</tr></tbody></table>
+<div class="table-note">射程在此处线性伤害衰减达到极限，并造成恒定最小伤害。</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/2f/Aa368db1.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>
+</td>
+<td>弱点伤害 (%)</td>
+<td>50</td><td>50</td><td>50</td><td>50</td><td>50</td><td>50</td><td>50</td><td>50</td>
+</tr></tbody></table>
+<div class="table-note">指示在距离大于或等于最小伤害射程时，影响的街机射击伤害的百分比。</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/b/b4/Icon_penetrating_power.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>
+</td>
+<td>穿透力后的伤害百分比 (%)</td>
+<td>100</td><td>100</td><td>100</td><td>100</td><td>100</td><td>100</td><td>100</td><td>100</td>
+</tr></tbody></table>
+<div class="table-note">穿透目标后造成的伤害保留。如果同一射线上的坦克有多个，每个下一个坦克将会受到与之前坦克所受伤害百分比相等的伤害。</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/b/b3/Icon_Impact_Force.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>
+</td>
+<td>投射力（条件单位）</td>
+<td>5</td><td>6,67</td><td>8</td><td>9,33</td><td>10,67</td><td>12</td><td>13,67</td><td>15</td>
+</tr></tbody></table>
+<div class="table-note">物理弹丸撞击目标，将坦克从其职责中推开。</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td>
+</td>
+<td>后坐力 (条件单位)</td>
+<td>4</td><td>4</td><td>4</td><td>4</td><td>4</td><td>4</td><td>4</td><td>4</td>
+</tr></tbody></table>
+<div class="table-note">炮塔在开火时对自身底盘的物理影响.</div>
+<table class="wikitable-modern" width="100%">
+
+<tbody><tr>
+<td height="40px" class="wikitable-subheader wikitable-title-center" colspan="9">火箭发射器</td></tr></tbody></table>
+<div class="characteristics-table">
+<table class="wikitable-modern active">
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/7/73/Icon_damage.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>
+</td>
+<td>伤害 (hp)</td>
+<td>510</td><td>651,67</td><td>765</td><td>878,33</td><td>991,67</td><td>1105</td><td>1246,67</td><td>1360</td>
+</tr></tbody></table>
+<div class="table-note">用一枚火箭对目标造成的伤害。</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td>
+</td>
+<td>齐射伤害 (hp)</td>
+<td>3060</td><td>3910</td><td>4590</td><td>5270</td><td>5950</td><td>6630</td><td>7480</td><td>8160</td>
+</tr></tbody></table>
+<div class="table-note">如果所有弹道命中，则对目标造成的伤害是一次齐射的伤害</div>
+<table class="wikitable-modern active">
+
+<tbody><tr>
+<td>
+</td>
+<td>齐射中的火箭数量</td>
+<td>6</td><td>6</td><td>6</td><td>6</td><td>6</td><td>6</td><td>6</td><td>6</td>
+</tr></tbody></table>
+<div class="table-note">齐射中发射的火箭数量。</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td>
+</td>
+<td>在齐射（s）之间暂停</td>
+<td>0,3</td><td>0,3</td><td>0,3</td><td>0,3</td><td>0,3</td><td>0,3</td><td>0,3</td><td>0,3</td>
+</tr></tbody></table>
+<div class="table-note">在齐射中火箭发射之间的通行证时间.</div>
+<table class="wikitable-modern active">
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/0/02/Icon_reloading.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>
+</td>
+<td>在齐射(s)后重新装填</td>
+<td>2,6</td><td>2,4</td><td>2,24</td><td>2,08</td><td>1,92</td><td>1,76</td><td>1,56</td><td>1,4</td>
+</tr></tbody></table>
+<div class="table-note">炮塔在射击齐射后重新装填的时间段。</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td>
+</td>
+<td>瞄准时间 (秒)</td>
+<td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td>
+</tr></tbody></table>
+<div class="table-note">保持激光在目标上以完全锁定所需的时间。</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td>
+</td>
+<td>目标恢复时间（秒）</td>
+<td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td>
+</tr></tbody></table>
+<div class="table-note">可以在不失去任何瞄准进度的情况下恢复目标的时间段。</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td>
+</td>
+<td>初始抛射速度 (米/秒)</td>
+<td>90</td><td>90</td><td>90</td><td>90</td><td>90</td><td>90</td><td>90</td><td>90</td>
+</tr></tbody></table>
+<div class="table-note">在发射开始时，投射物在一秒内行驶的距离。</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/d/de/Icon_impact_force_%281%29.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>
+</td>
+<td>最终弹丸速度 (米/秒)</td>
+<td>60</td><td>60</td><td>60</td><td>60</td><td>60</td><td>60</td><td>60</td><td>60</td>
+</tr></tbody></table>
+<div class="table-note">在达到最终距离后，投射物在一秒内行驶的距离。初始投射物速度在此之前是线性变化的。</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td>
+</td>
+<td>角速度 (度/秒)</td>
+<td>90</td><td>90</td><td>90</td><td>90</td><td>90</td><td>90</td><td>90</td><td>90</td>
+</tr></tbody></table>
+<div class="table-note">如果目标在移动，制导火箭偏离先前航线的速度。</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td>
+</td>
+<td>投射加速时间 (秒)</td>
+<td>1,5</td><td>1,5</td><td>1,5</td><td>1,5</td><td>1,5</td><td>1,5</td><td>1,5</td><td>1,5</td>
+</tr></tbody></table>
+<div class="table-note">投射物达到最快速度所需的时间。</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td>
+</td>
+<td>投射物半径 (米)</td>
+<td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td>
+</tr></tbody></table>
+<div class="table-note">从弹丸中心到其末端的距离。如果弹丸飞过目标的距离不超过这个距离，则会造成伤害。</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/b/b3/Icon_Impact_Force.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>
+</td>
+<td>投射力（条件单位）</td>
+<td>3</td><td>4</td><td>4,8</td><td>5,6</td><td>6,4</td><td>7,2</td><td>8,2</td><td>9</td>
+</tr></tbody></table>
+<div class="table-note">物理弹丸撞击目标，将坦克从其职责中推开。</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/b/b3/Icon_Impact_Force.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>
+</td>
+<td>爆炸力（条件单位）</td>
+<td>1</td><td>1,33</td><td>1,6</td><td>1,87</td><td>2,13</td><td>2,4</td><td>2,73</td><td>3</td>
+</tr></tbody></table>
+<div class="table-note">在弹药爆炸半径内对坦克的物理冲击将坦克从其职位上推开。</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td>
+</td>
+<td>后坐力 (条件单位)</td>
+<td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td>
+</tr></tbody></table>
+<div class="table-note">炮塔在开火时对自身底盘的物理影响.</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td>
+</td>
+<td>最大爆炸伤害的半径 (米)</td>
+<td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td>
+</tr></tbody></table>
+<div class="table-note">爆炸造成全部伤害的射程。如果距离目标更远，伤害会递减，直到最小爆炸伤害的射程。</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td>
+</td>
+<td>中等爆炸伤害的半径 (米)</td>
+<td>6</td><td>6</td><td>6</td><td>6</td><td>6</td><td>6</td><td>6</td><td>6</td>
+</tr></tbody></table>
+<div class="table-note">当爆炸的距离增加时，标准模式下的伤害大多呈线性下降。在那个点之后，伤害开始以指数方式随着距离减少。</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td>
+</td>
+<td>最小爆炸伤害半径 (米)</td>
+<td>12</td><td>12</td><td>12</td><td>12</td><td>12</td><td>12</td><td>12</td><td>12</td>
+</tr></tbody></table>
+<div class="table-note">爆炸仍能造成伤害的射程。如果爆炸到目标的距离超过该射程，则不会造成伤害。</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/2f/Aa368db1.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>
+</td>
+<td>爆炸伤害百分比 (%)</td>
+<td>50</td><td>50</td><td>50</td><td>50</td><td>50</td><td>50</td><td>50</td><td>50</td>
+</tr></tbody></table>
+<div class="table-note">在中等爆炸伤害距离内对目标造成的伤害百分比。</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td>
+</td>
+<td>最小爆炸伤害百分比 (%)</td>
+<td>50</td><td>50</td><td>50</td><td>50</td><td>50</td><td>50</td><td>50</td><td>50</td>
+</tr></tbody></table>
+<div class="table-note">在最小爆炸伤害距离内对目标造成的伤害百分比。</div>
+<table class="wikitable-modern" width="100%">
+
+<tbody><tr>
+<td height="40px" class="wikitable-subheader wikitable-title-center" colspan="9">炮塔特征</td></tr></tbody></table>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td>
+</td>
+<td>敌方高亮射程（米）</td>
+<td>1050</td><td>1131,67</td><td>1190</td><td>1236,67</td><td>1283,33</td><td>1318,33</td><td>1353,33</td><td>1400</td>
+</tr></tbody></table>
+<div class="table-note">红队瞄准时保持高亮的最高射程。</div>
+<table class="wikitable-modern active">
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>
+</td>
+<td>转向灵活度 (度/秒)</td>
+<td>240</td><td>260</td><td>276</td><td>292</td><td>308</td><td>324</td><td>344</td><td>360</td>
+</tr></tbody></table>
+<div class="table-note">炮塔旋转的最快速度。</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td>
+</td>
+<td>转向加速度 (度/秒²)</td>
+<td>100</td><td>100</td><td>100</td><td>100</td><td>100</td><td>100</td><td>100</td><td>100</td>
+</tr></tbody></table>
+<div class="table-note">炮塔加速达到其最高转向灵活度的加速度。</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td>
+</td>
+<td>上方自动瞄准 (度)</td>
+<td>100</td><td>100</td><td>100</td><td>100</td><td>100</td><td>100</td><td>100</td><td>100</td>
+</tr></tbody></table>
+<div class="table-note">比炮塔瞄准平面更高的目标自动瞄准程度。</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td>
+</td>
+<td>向下自动瞄准 (度)</td>
+<td>7</td><td>7</td><td>7</td><td>7</td><td>7</td><td>7</td><td>7</td><td>7</td>
+</tr></tbody></table>
+<div class="table-note">对目标的自动瞄准程度低于炮塔瞄准的平面。</div>
+<table class="wikitable-modern">
+
+<tbody><tr>
+<td>
+</td>
+<td>水平自动瞄准 (度)</td>
+<td>10</td><td>10</td><td>10</td><td>10</td><td>10</td><td>10</td><td>10</td><td>10</td>
+</tr></tbody></table>
+<div class="table-note">炮塔瞄准的垂直平面上，目标的左侧或右侧的自动瞄准程度。</div>
+</div>
+<p><br>
+</p>
+<div class="btn btn-collapsed w-100 text-left text-uppercase position-relative py-2 mt-3" data-toggle="collapse" data-target="#collapseExample1">特征表</div><div class="collapse" id="collapseExample1"><div class="card card-body">
+<ul><li><b>普通伤害 (hp)</b>— 每次激光炮或火箭在最大伤害半径内对敌方坦克造成的伤害。</li>
+<li><b>暴击伤害 (hp)</b>— 每次激光炮的暴击射击对敌方坦克造成的伤害。</li>
+<li><b>充电时间（秒）</b>—— 武器在射击后完全充能所需的时间（以秒为单位）。</li>
+<li><b>拍摄延迟时间（秒）</b>— 激光炮在击中宇宙后发射弹丸所需的时间（以秒为单位）。</li>
+<li><b>穿透启动加速度 (%)</b>——在第一辆坦克被击中后，后方坦克所承受的伤害百分比。第一辆被击中的坦克所受到的伤害乘以这个百分比，得出第二辆坦克所承受的伤害的近似值。如果第二辆后面还有第三辆坦克，那么这个值将再乘以相同的百分比，得出的结果将是第三辆坦克所受到的伤害，如此类推。</li>
+<li><b>最大暴击几率 (%)</b>- 射击时可能的最高暴击几率。</li>
+<li><b>冲击力</b>—— 炮塔的弹丸与敌方坦克接触时的物理冲击。</li>
+<li><b>爆炸影响</b>— 火箭弹撞击点的伤害半径内对敌方坦克的物理影响。</li>
+<li><b>后坐力</b>—— 炮塔在射击时对其自身坦克的物理影响。</li>
+<li><b>炮弹重装时间 (秒)</b>— 发射火箭之间所需的暂停。无论是最后发射单枚火箭还是齐射，这段时间都保持不变。</li>
+<li><b>瞄准时间 (秒)</b>—— 针对另一辆坦克进行锁定并发射一整轮导弹所需的瞄准激光时间。如果圆形绿色瞄准线消失，但红色像箱子的瞄准线仍然活跃，则瞄准时间被暂停。如果红色像箱子的瞄准线消失，则目标丢失，瞄准时间重置。</li>
+<li><b>瞄准恢复时间（秒）</b>—— 如果由于失去目标而移除圆形绿色瞄准器，第二个红色瞄准器将保持在屏幕上的时间，以维持锁定进度。</li>
+<li><b>射程 (米)</b>— 火箭可以达到的最大距离。当火箭达到其最大射程时会发生爆炸。</li>
+<li><b>最小弹丸速度 (米/秒)</b>— 火箭发射时的初始慢速度。这在发射后迅速而稳定地增加，直到达到最高的弹道速度。</li>
+<li><b>壳体加速时间（秒）</b>达到最大弹道速度所需的时间（以秒为单位），从最小弹道速度（即发射瞬间）开始。</li>
+<li><b>最大射弹速度</b>— 一枚发射火箭可以达到的最高速度。</li>
+<li><b>壳体角速度 (度/秒)</b>— 这是齐射火箭能够改变方向以保持瞄准锁定目标的灵活度。</li>
+<li><b>火箭每齐射</b>—— 一次齐射可以发射的火箭数量。</li>
+<li><b>暂停在齐射火箭之间</b>— 在一次完整的齐射发射中，每枚火箭发射之间所需的时间。</li>
+<li><b>投射物半径 (米)</b>—— 火箭从其核心到外表面的不变半径。</li>
+<li><b>最大伤害半径（米）</b>—— 敵方受到最高伤害的射弹撞击点距离。如果与目标的距离更大，伤害会不断减少，直到最低伤害半径。</li>
+<li><b>平均溅射伤害半径 (米)</b>每一击的平均溅射伤害半径。</li>
+<li><b>平均溅射伤害 (%)</b>— 当坦克在最高伤害半径内但没有击中弹丸时，造成的正常伤害百分比。</li>
+<li><b>最低溅射伤害的半径 (米)</b>— 敌人收到最低溅射伤害的投射物冲击点的距离。如果冲击点到目标的距离更大，将不会造成溅射伤害。</li>
+<li><b>弱伤害溅射 (%)</b>—— % 或正常伤害在从弹体撞击点的距离造成，等于最低伤害半径。</li>
+<li><b>旋转速度 (度/秒)</b>——这是炮塔可以旋转的最快速度。</li>
+<li><b>旋转加速度 (度/秒²)</b>—— 炮塔达到其最高旋转速度的加速度。</li>
+<li><b>自动瞄准向上 (度)</b>— 自动瞄准将在目标位于炮塔水平面以上时影响射程的角度。</li>
+<li><b>自动瞄准向下（度）</b>— 当目标低于炮塔水平面时，自动瞄准将影响射程的角度。</li></ul>
+</div></div>
+<p><br>
+</p>
+<h3><span class="mw-headline" id="Interesting_Facts">有趣的事实</span></h3>
+<ul><li>终结者于2018年7月20日加入游戏，当时加入了“Solo 剑圣”模式。</li>
+<li>终结者具有一种独特的伤害，无法通过防御模块降低，除了“犰狳”只能保护免受暴击伤害，以及<a href="https://en.tankiwiki.com/Modules#Unique_modules" title="防御模块">光谱</a>，一个特殊防御模块。</li></ul>
+<p><br>
+</p>
+<div align="right"><small>最后编辑：Heatw4ve 2025年7月28日</small></div></div></div></div></div></div></div></div><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":756,"wgPageParseReport":{"limitreport":{"cputime":"0.322","walltime":"0.394","ppvisitednodes":{"value":2182,"limit":1000000},"postexpandincludesize":{"value":32264,"limit":2097152},"templateargumentsize":{"value":12870,"limit":2097152},"expansiondepth":{"value":10,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":3376,"limit":5000000},"timingprofile":["100.00%  115.808      1 -total"," 19.82%   22.958      1 Turrets"," 15.80%   18.293      8 Template:ModificationInfo2"," 10.39%   12.037      8 Template:Rank"," 10.09%   11.688      1 Template:See_also","  7.86%    9.106      1 Template:HullInfo","  7.22%    8.361      2 Template:Other_meaning","  7.14%    8.273      8 Template:RankHelper","  6.18%    7.160      1 Template:TurretNavigation","  6.11%    7.081      2 Template:ModuleCard/IconOnImage"]},"cachereport":{"timestamp":"20250802104927","ttl":0,"transientcontent":true}}});});</script></body></html>
