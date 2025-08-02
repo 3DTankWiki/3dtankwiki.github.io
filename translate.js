@@ -1,6 +1,6 @@
 // 引入必要的库
 const puppeteer = require('puppeteer');
-const cheerio =require('cheerio');
+const cheerio = require('cheerio');
 const { translate: googleTranslate } = require('@vitalets/google-translate-api');
 const { translate: bingTranslate } = require('bing-translate-api');
 const pluralize = require('pluralize');
@@ -8,41 +8,13 @@ const fs = require('fs');
 const path = require('path');
 
 // --- 【配置常量】 ---
-const BASE_URL ='https://en.tankiwiki.com';
-const DICTIONARY_URL = 'https://testanki1.github.io/translations.js'; 
-const IMAGE_DICT_FILE = 'image_replacements.js'; 
+const BASE_URL = 'https://en.tankiwiki.com';
+const START_PAGE = 'Tanki_Online_Wiki'; // 爬虫起始页面
+const CONCURRENCY_LIMIT = 8; // 并行处理的页面数量上限
+const DICTIONARY_URL = 'https://testanki1.github.io/translations.js';
+const IMAGE_DICT_FILE = 'image_replacements.js';
 const OUTPUT_DIR = './output';
 const EDIT_INFO_FILE = path.join(__dirname, 'last_edit_info.json');
-// --- 【修改】页面列表从本地文件名加载 ---
-const PAGE_LISTS_FILE = 'page_lists.js'; 
-
-
-// --- 【修改】从本地文件获取页面列表 ---
-function getLocalPageLists() {
-    const filePath = path.resolve(__dirname, PAGE_LISTS_FILE);
-    console.log(`正在从本地文件加载页面列表: ${filePath}`);
-
-    if (!fs.existsSync(filePath)) {
-        console.error(`❌ 页面列表文件未找到: ${PAGE_LISTS_FILE}`);
-        throw new Error(`无法获取页面列表，任务中止。`);
-    }
-
-    try {
-        const scriptContent = fs.readFileSync(filePath, 'utf-8');
-        const lists = new Function(`${scriptContent}; return pageLists;`)();
-        
-        // 验证获取的数据结构是否正确
-        if (!lists || !Array.isArray(lists.regular) || !Array.isArray(lists.forced)) {
-            throw new Error('页面列表文件数据格式错误或缺少 "regular" / "forced" 键。');
-        }
-
-        console.log(`本地页面列表加载成功。常规页面: ${lists.regular.length}, 强制页面: ${lists.forced.length}。`);
-        return lists; // 返回包含 { regular: [], forced: [] } 的对象
-    } catch (error) {
-        console.error(`❌ 加载或解析本地页面列表文件 ${PAGE_LISTS_FILE} 时出错:`, error.message);
-        throw new Error(`无法获取页面列表，任务中止。`);
-    }
-}
 
 
 // --- 1. 准备文本翻译词典 (从网络 URL) ---
@@ -76,7 +48,6 @@ async function getPreparedDictionary() {
     return { fullDictionary, sortedKeys };
 }
 
-
 // --- 准备图片替换词典 (从本地文件) ---
 function getPreparedImageDictionary() {
     const filePath = path.resolve(__dirname, IMAGE_DICT_FILE);
@@ -100,7 +71,6 @@ function getPreparedImageDictionary() {
         return new Map();
     }
 }
-
 
 // --- 2. 直接替换函数 ---
 function replaceTermsDirectly(text, fullDictionary, sortedKeys) {
@@ -140,52 +110,71 @@ async function translateTextWithEnglishCheck(textToTranslate) {
     }
 }
 
+// --- 查找页面内符合条件的链接 ---
+function findInternalLinks($) {
+    const links = new Set();
+    // 寻找所有href属性以 "/wiki/" 开头的链接，这是MediaWiki的标准格式
+    $('#mw-content-text a[href^="/wiki/"]').each((i, el) => {
+        const href = $(el).attr('href');
+        // 过滤掉包含 ":" (如 Category:, File:) 和 "#" (锚点) 的链接
+        if (href && !href.includes(':') && !href.includes('#')) {
+            // 从 "/wiki/PageName" 中提取 "PageName"
+            const pageName = href.substring('/wiki/'.length);
+            links.add(pageName);
+        }
+    });
+    return Array.from(links);
+}
+
+
 // --- 5. 翻译单个页面的核心函数 ---
-async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplacementMap, lastEditInfoState, forceTranslateList) {
+async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplacementMap, lastEditInfoState, forceTranslateList = []) {
     let pageName = '';
     try {
-        const url = new URL(sourceUrl);
-        pageName = path.basename(url.pathname);
+        pageName = path.basename(new URL(sourceUrl).pathname);
         if (!pageName || pageName === '/') pageName = 'index';
     } catch (e) {
         console.error(`无效的源 URL: ${sourceUrl}`);
-        return null;
+        return null; // 返回 null 表示严重错误
     }
     const OUTPUT_FILE = path.join(OUTPUT_DIR, `${pageName}.html`);
 
     console.log(`[${pageName}] 开始抓取页面: ${sourceUrl}`);
     const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
     const page = await browser.newPage();
-    await page.goto(sourceUrl, { waitUntil: 'networkidle0' });
-    const htmlContent = await page.content();
-    await browser.close();
+    let htmlContent;
+    try {
+        await page.goto(sourceUrl, { waitUntil: 'networkidle0' });
+        htmlContent = await page.content();
+    } catch (error) {
+        console.error(`[${pageName}] 抓取页面时发生错误: ${error.message}`);
+        await browser.close();
+        return null; // 抓取失败，返回 null
+    } finally {
+        await browser.close();
+    }
     console.log(`[${pageName}] 页面抓取成功。`);
 
     const $ = cheerio.load(htmlContent);
 
-    // --- 检查页面是否需要更新（包含强制翻译逻辑） ---
+    // --- 检查页面是否需要更新 ---
     const isForced = forceTranslateList.includes(pageName);
-    
+    const $smallTag = $('small'); 
+    const currentEditInfo = $smallTag.length > 0 ? $smallTag.text().trim() : null;
+
     if (isForced) {
         console.log(`[${pageName}] 强制翻译模式: 将忽略编辑信息检查并继续处理。`);
-    } else {
-        const $smallTag = $('small'); 
-        const currentEditInfo = $smallTag.length > 0 ? $smallTag.text().trim() : null;
-        
-        if (currentEditInfo) {
-            const previousEditInfo = lastEditInfoState[pageName];
-            if (previousEditInfo && previousEditInfo === currentEditInfo) {
-                console.log(`[${pageName}] 页面内容未更改 (最后编辑信息相同)。跳过此页面。`);
-                return null; 
-            }
-        } else {
-            console.warn(`[${pageName}] ⚠️ 未能找到 <small> 标签中的最后编辑信息。将继续处理。`);
-        }
+    } else if (currentEditInfo && lastEditInfoState[pageName] === currentEditInfo) {
+        console.log(`[${pageName}] 页面内容未更改。跳过翻译，但仍会解析链接。`);
+        return { 
+            translationResult: null,
+            rawHtml: htmlContent 
+        };
+    } else if (!currentEditInfo) {
+        console.warn(`[${pageName}] ⚠️ 未能找到最后编辑信息。将继续处理。`);
     }
-    
-    const currentEditInfoForUpdate = $('small').text().trim() || null;
 
-    // --- 资源处理 ---
+    // --- 开始翻译流程 ---
     const headElements = [];
     $('head').children('link, style, script, meta, title').each(function() {
         const $el = $(this);
@@ -206,20 +195,16 @@ async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplace
         if (src && src.startsWith('/')) { $el.attr('src', BASE_URL + src); }
         bodyEndScripts.push($.html(this));
     });
-    console.log(`[${pageName}] 资源捕获完成: ${headElements.length} 个头部元素, ${bodyEndScripts.length} 个 Body 脚本。`);
     
-    // --- 内容提取与翻译 ---
     const $contentContainer = $('<div id="wiki-content-wrapper"></div>');
     $('#firstHeading').clone().appendTo($contentContainer);
     $('#mw-content-text .mw-parser-output').children().each(function() {
         $contentContainer.append($(this).clone());
     });
     
-    // 处理“你知道吗”板块，注入客户端脚本
     const $factBoxContent = $contentContainer.find('.random-text-box > div:last-child');
     if ($factBoxContent.length > 0) {
         $factBoxContent.html('<p id="dynamic-fact-placeholder" style="margin:0;">正在加载有趣的事实...</p>');
-        console.log(`[${pageName}] 找到“你知道吗”板块并设置占位符。`);
         const factScript = `
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -248,23 +233,23 @@ async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplace
     });
 </script>`;
         bodyEndScripts.push(factScript);
-        console.log(`[${pageName}] 已准备用于客户端加载事实的脚本。`);
     }
 
     const originalTitle = $('title').text() || pageName;
-    
     const preReplacedTitle = replaceTermsDirectly(originalTitle, fullDictionary, sortedKeys);
     let translatedTitle = await translateTextWithEnglishCheck(preReplacedTitle);
     translatedTitle = translatedTitle.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3');
-    console.log(`[${pageName}] [标题] 翻译完成: "${translatedTitle}"`);
 
     $contentContainer.find('a').each(function() {
         const href = $(this).attr('href');
-        if (href?.startsWith('/')) { 
+        if (href?.startsWith('/wiki/')) {
+            const cleanPageName = path.basename(href);
+            $(this).attr('href', `./${cleanPageName}.html`); 
+        } else if (href?.startsWith('/')) {
             try { 
-                $(this).attr('href', new URL(href, BASE_URL).pathname); 
+                $(this).attr('href', new URL(href, BASE_URL).href); 
             } catch(e) { 
-                console.warn(`[${pageName}] 无效的 href: ${href}`); 
+                console.warn(`[${pageName}] 无效的外部 href: ${href}`); 
             } 
         }
     });
@@ -275,9 +260,7 @@ async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplace
         if (src) {
             const absoluteSrc = src.startsWith('/') ? BASE_URL + src : src;
             if (imageReplacementMap.has(absoluteSrc)) {
-                const newSrc = imageReplacementMap.get(absoluteSrc);
-                $el.attr('src', newSrc);
-                console.log(`[${pageName}] [图片替换] src: ${absoluteSrc} -> ${newSrc}`);
+                $el.attr('src', imageReplacementMap.get(absoluteSrc));
             } else if (src.startsWith('/')) {
                 $el.attr('src', absoluteSrc);
             }
@@ -290,9 +273,7 @@ async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplace
                 const descriptor = parts.length > 1 ? ` ${parts[1]}` : '';
                 const absoluteUrl = url.startsWith('/') ? BASE_URL + url : url;
                 if (imageReplacementMap.has(absoluteUrl)) {
-                    const newUrl = imageReplacementMap.get(absoluteUrl);
-                    console.log(`[${pageName}] [图片替换] srcset: ${absoluteUrl} -> ${newUrl}`);
-                    return newUrl + descriptor;
+                    return imageReplacementMap.get(absoluteUrl) + descriptor;
                 }
                 return (url.startsWith('/') ? absoluteUrl : url) + descriptor;
             }).join(', ');
@@ -303,14 +284,11 @@ async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplace
     const textNodes = [];
     $contentContainer.find('*:not(script,style)').addBack().contents().each(function() { 
         if (this.type === 'text' && this.data.trim()) {
-            if ($(this).parent().is('span.hotkey')) {
-                // 不做任何事，直接跳过
-            } else {
+            if (!$(this).parent().is('span.hotkey')) {
                 textNodes.push(this);
             }
         } 
     });
-    console.log(`[${pageName}] 准备处理 ${textNodes.length} 个可见文本片段...`);
 
     const textPromises = textNodes.map(node => {
         const preReplaced = replaceTermsDirectly(node.data, fullDictionary, sortedKeys);
@@ -323,13 +301,10 @@ async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplace
             node.data = translatedTexts[index].trim(); 
         } 
     });
-    console.log(`[${pageName}] 可见文本处理完成。`);
 
     const elementsWithAttributes = $contentContainer.find('[title], [alt]');
-    console.log(`[${pageName}] 准备处理 ${elementsWithAttributes.length} 个元素的属性...`);
     for (let i = 0; i < elementsWithAttributes.length; i++) {
-        const element = elementsWithAttributes[i];
-        const $element = $(element);
+        const $element = $(elementsWithAttributes[i]);
         for (const attr of ['title', 'alt']) {
             const originalValue = $element.attr(attr);
             if (originalValue) {
@@ -339,93 +314,116 @@ async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplace
             }
         }
     }
-    console.log(`[${pageName}] 属性处理完成。`);
 
-    // --- HTML 整合与构建 ---
     let finalHtmlContent = $contentContainer.html();
     finalHtmlContent = finalHtmlContent.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3');
     finalHtmlContent = finalHtmlContent.replace(/rgb\(70, 223, 17\)/g, '#76FF33');
 
     let homeButtonHtml = '';
-    const homePageFilename = 'Tanki_Online_Wiki';
-    if (pageName !== homePageFilename) {
-        homeButtonHtml = `<a href="./${homePageFilename}.html" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">返回主页</a>`;
+    if (pageName !== START_PAGE) {
+        homeButtonHtml = `<a href="./${START_PAGE}.html" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">返回主页</a>`;
     }
 
     const headContent = headElements.filter(el => !el.toLowerCase().startsWith('<title>')).join('\n    ');
     const bodyClasses = $('body').attr('class') || '';
     const finalHtml = `<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>${translatedTitle}</title>${headContent}<style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="${bodyClasses}"><div id="mw-main-container">${homeButtonHtml}<div class="main-content"><div class="mw-body ve-init-mw-desktopArticleTarget-targetContainer" id="content" role="main"><a id="top"></a><div class="mw-body-content" id="bodyContent"><div id="siteNotice"></div><div id="mw-content-text" class="mw-content-ltr mw-parser-output" lang="zh-CN" dir="ltr">${finalHtmlContent}</div></div></div></div></div>${bodyEndScripts.join('\n    ')}</body></html>`;
     
-    if (!fs.existsSync(OUTPUT_DIR)) {
-        fs.mkdirSync(OUTPUT_DIR, { recursive: true });
-    }
     fs.writeFileSync(OUTPUT_FILE, finalHtml, 'utf-8');
     console.log(`✅ [${pageName}] 翻译完成！文件已保存到: ${OUTPUT_FILE}`);
 
-    return { pageName: pageName, newEditInfo: currentEditInfoForUpdate };
+    return {
+        translationResult: { pageName: pageName, newEditInfo: currentEditInfo },
+        rawHtml: htmlContent
+    };
 }
 
-// --- 6. 主运行函数 (混合加载模式) ---
+
+// --- 6. 主运行函数 (爬虫模式) ---
 async function run() {
-    console.log("--- 翻译任务开始 ---");
+    console.log("--- 翻译任务开始 (爬虫模式) ---");
 
     try {
-        // --- 1. 同步加载本地配置 ---
-        const { regular: pagesToTranslate, forced: pagesToForceTranslate } = getLocalPageLists();
+        // --- 1. 准备所有资源 ---
         const imageReplacementMap = getPreparedImageDictionary();
-        
-        // --- 2. 异步加载网络资源 ---
         const { fullDictionary, sortedKeys } = await getPreparedDictionary();
         
-        // --- 3. 加载上次的编辑信息 ---
         let lastEditInfo = {};
         if (fs.existsSync(EDIT_INFO_FILE)) {
             try {
                 lastEditInfo = JSON.parse(fs.readFileSync(EDIT_INFO_FILE, 'utf-8'));
-                console.log(`已成功加载上次的编辑信息记录: ${EDIT_INFO_FILE}`);
+                console.log(`已成功加载上次的编辑信息记录。`);
             } catch (e) {
-                console.error(`❌ 读取或解析 ${EDIT_INFO_FILE} 时出错，将作为首次运行处理。`, e.message);
-                lastEditInfo = {};
+                console.error(`❌ 读取或解析 ${EDIT_INFO_FILE} 时出错，将作为首次运行处理。`);
             }
-        } else {
-            console.log("未找到编辑信息记录文件，将为所有页面创建新记录。");
         }
 
         if (!fs.existsSync(OUTPUT_DIR)) {
             fs.mkdirSync(OUTPUT_DIR, { recursive: true });
         }
 
-        const allPagesToProcess = [...new Set([...pagesToTranslate, ...pagesToForceTranslate])];
-        
-        console.log(`\n==================================================`);
-        console.log(`常规页面: ${pagesToTranslate.length} 个`);
-        console.log(`强制翻译页面: ${pagesToForceTranslate.length} 个`);
-        console.log(`总计处理页面 (去重后): ${allPagesToProcess.length} 个`);
-        console.log(`==================================================`);
-
-        const translationPromises = allPagesToProcess.map(pageName => {
-            const fullUrl = `${BASE_URL}/${pageName}`;
-            return translatePage(fullUrl, fullDictionary, sortedKeys, imageReplacementMap, lastEditInfo, pagesToForceTranslate)
-                .catch(error => {
-                    console.error(`❌ 处理页面 ${pageName} 时发生严重错误:`, error.message, error.stack);
-                    return null;
-                });
-        });
-
-        const results = await Promise.all(translationPromises);
-        
+        // --- 2. 初始化爬虫队列 ---
+        const pagesToProcess = new Set([START_PAGE]); // 待处理队列
+        const processedPages = new Set(); // 已处理集合
+        const newEditInfo = { ...lastEditInfo };
         let hasUpdates = false;
-        const newEditInfo = { ...lastEditInfo }; 
 
-        results.forEach(result => {
-            if (result && result.pageName && result.newEditInfo) {
-                if (newEditInfo[result.pageName] !== result.newEditInfo) {
-                    newEditInfo[result.pageName] = result.newEditInfo;
-                    hasUpdates = true;
+        console.log(`\n==================================================`);
+        console.log(`爬虫启动，起始页面: ${START_PAGE}`);
+        console.log(`并行处理上限: ${CONCURRENCY_LIMIT}`);
+        console.log(`==================================================\n`);
+
+        // --- 3. 开始爬取和处理 ---
+        while (pagesToProcess.size > 0) {
+            const batch = Array.from(pagesToProcess).slice(0, CONCURRENCY_LIMIT);
+            
+            const promises = batch.map(async (pageName) => {
+                pagesToProcess.delete(pageName);
+                processedPages.add(pageName);
+
+                // 【关键修正】构建正确的页面访问 URL
+                const fullUrl = `${BASE_URL}/${pageName}`;
+                
+                try {
+                    const processOutput = await processPage(fullUrl, fullDictionary, sortedKeys, imageReplacementMap, lastEditInfo);
+
+                    if (!processOutput) { // 如果页面处理失败
+                        return;
+                    }
+
+                    if (processOutput.translationResult) {
+                        const { pageName: pName, newEditInfo: editInfo } = processOutput.translationResult;
+                        if (pName && editInfo && newEditInfo[pName] !== editInfo) {
+                            newEditInfo[pName] = editInfo;
+                            hasUpdates = true;
+                        }
+                    }
+
+                    const $ = cheerio.load(processOutput.rawHtml);
+                    const newLinks = findInternalLinks($);
+                    
+                    if (newLinks.length > 0) {
+                        console.log(`[${pageName}] 在页面上发现 ${newLinks.length} 个新链接。`);
+                        newLinks.forEach(link => {
+                            if (!processedPages.has(link) && !pagesToProcess.has(link)) {
+                                pagesToProcess.add(link);
+                                console.log(`  -> 已添加新页面到队列: ${link}`);
+                            }
+                        });
+                    }
+                } catch (error) {
+                    console.error(`❌ 处理页面 ${pageName} 过程中发生严重错误:`, error.message);
                 }
-            }
-        });
+            });
 
+            await Promise.all(promises);
+
+            console.log(`\n--- 本批次处理完成 ---`);
+            console.log(`已处理页面总数: ${processedPages.size}`);
+            console.log(`待处理队列剩余: ${pagesToProcess.size}`);
+            console.log(`----------------------\n`);
+        }
+
+        // --- 4. 任务结束，保存更新的编辑信息 ---
         if (hasUpdates) {
             fs.writeFileSync(EDIT_INFO_FILE, JSON.stringify(newEditInfo, null, 2), 'utf-8');
             console.log(`\n✅ 最后编辑信息已更新到 ${EDIT_INFO_FILE}`);
@@ -433,12 +431,11 @@ async function run() {
             console.log("\n所有已处理页面的最后编辑信息均无变化。");
         }
 
-        console.log("\n--- 所有页面处理完毕 ---");
+        console.log("\n--- 所有可达页面处理完毕，任务结束 ---");
 
     } catch (error) {
-        // 捕获关键初始化步骤（如加载列表）中的错误
-        console.error("❌ 任务初始化失败，无法继续:", error.message);
-        process.exit(1); // 以错误码退出
+        console.error("❌ 任务初始化或执行过程中发生致命错误:", error.message, error.stack);
+        process.exit(1);
     }
 }
 
