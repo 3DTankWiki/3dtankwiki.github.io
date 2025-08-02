@@ -109,7 +109,7 @@ async function translateTextWithEnglishCheck(textToTranslate) {
     }
 }
 
-// --- 【修改】辅助函数：从链接中提取可处理的页面名称 ---
+// --- 辅助函数：从链接中提取可处理的页面名称 ---
 function getPageNameFromWikiLink(href) {
     if (!href) return null;
 
@@ -126,15 +126,12 @@ function getPageNameFromWikiLink(href) {
 
     let pathname = decodeURIComponent(url.pathname);
 
-    // 【核心修改】根据您的要求，如果链接路径是 /index.php (通常带有 ?title=... 查询)，则完全忽略该链接。
     if (pathname.endsWith('/index.php')) {
         return null;
     }
     
-    // 剩下的逻辑只处理 /PageName 这种“干净”的链接格式
     let pageName = pathname.substring(1);
 
-    // 过滤掉特殊页面、锚点和文件链接
     if (
         !pageName ||
         pageName.includes(':') ||
@@ -147,7 +144,7 @@ function getPageNameFromWikiLink(href) {
     return pageName;
 }
 
-// --- 查找页面内符合条件的链接 (此函数无需修改) ---
+// --- 查找页面内符合条件的链接 ---
 function findInternalLinks($) {
     const links = new Set();
     $('#mw-content-text a[href]').each((i, el) => {
@@ -160,7 +157,7 @@ function findInternalLinks($) {
     return Array.from(links);
 }
 
-// --- 5. 翻译单个页面的核心函数 (此函数无需修改) ---
+// --- 5. 翻译单个页面的核心函数 ---
 async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplacementMap, lastEditInfoState, forceTranslateList = []) {
     let pageName = '';
     try {
@@ -177,10 +174,13 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
     const page = await browser.newPage();
     let htmlContent;
     try {
-        await page.goto(sourceUrl, { waitUntil: 'domcontentloaded' });
-        await page.waitForSelector('#mw-content-text', { timeout: 30000 });
+        // --- 【核心修改】将两个关键步骤的超时设置为 0，表示无限等待 ---
+        await page.goto(sourceUrl, { waitUntil: 'domcontentloaded', timeout: 0 });
+        await page.waitForSelector('#mw-content-text', { timeout: 0 });
+        
         htmlContent = await page.content();
     } catch (error) {
+        // 尽管超时被禁用，但仍保留此 catch 块以处理其他潜在的抓取错误（如 DNS 查找失败）
         console.error(`[${pageName}] 抓取或等待页面内容时发生错误: ${error.message}`);
         await browser.close();
         return null;
@@ -280,7 +280,7 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
 }
 
 
-// --- 6. 主运行函数 (此函数无需修改) ---
+// --- 6. 主运行函数 ---
 async function run() {
     console.log("--- 翻译任务开始 (爬虫模式) ---");
 
