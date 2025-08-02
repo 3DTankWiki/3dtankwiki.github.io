@@ -125,7 +125,7 @@ async function translateTextWithEnglishCheck(textToTranslate) {
     }
 }
 
-// --- 5. 翻译单个页面的核心函数 (此部分无需修改) ---
+// --- 5. 翻译单个页面的核心函数 ---
 async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplacementMap) {
     let filename = '';
     try {
@@ -216,7 +216,17 @@ async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplace
         }
     });
     const textNodes = [];
-    $contentContainer.find('*:not(script,style)').addBack().contents().each(function() { if (this.type === 'text' && this.data.trim()) { textNodes.push(this); } });
+    // 【修改】在这里添加判断逻辑，跳过特定元素内的文本节点
+    $contentContainer.find('*:not(script,style)').addBack().contents().each(function() { 
+        if (this.type === 'text' && this.data.trim()) {
+            // 如果当前文本节点的父元素是 <span class="hotkey">，则不将其加入翻译列表
+            if ($(this).parent().is('span.hotkey')) {
+                // 不做任何事，直接跳过
+            } else {
+                textNodes.push(this);
+            }
+        } 
+    });
     console.log(`[${filename}] 准备处理 ${textNodes.length} 个可见文本片段...`);
     const textPromises = textNodes.map(node => {
         const preReplaced = replaceTermsDirectly(node.data, fullDictionary, sortedKeys);
