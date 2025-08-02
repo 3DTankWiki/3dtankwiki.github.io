@@ -9,12 +9,16 @@ const path = require('path');
 
 // --- 【配置常量】 ---
 const BASE_URL ='https://en.tankiwiki.com';
-const DICTIONARY_URL = 'https://testanki1.github.io/translations.js'; // 文本翻译词典 URL
-const IMAGE_DICT_URL = '/image_replacements.js'; // 【新增】图片替换词典 URL，请替换为您自己的
+
+// 【修改】文本词典使用 URL
+const DICTIONARY_URL = 'https://testanki1.github.io/translations.js'; 
+
+// 【修改】图片词典使用本地文件
+const IMAGE_DICT_FILE = 'image_replacements.js'; 
+
 const OUTPUT_DIR = './output'; // 输出文件夹
 
 // --- 【页面列表】 ---
-// 您可以在这里添加或删除需要翻译的页面名称
 const PAGES_TO_TRANSLATE = [
     'Tanki_Online_Wiki',
     'Turrets',
@@ -24,7 +28,8 @@ const PAGES_TO_TRANSLATE = [
     'Help',
 ];
 
-// --- 1. 准备文本翻译词典 ---
+// --- 1. 准备文本翻译词典 (从网络 URL) ---
+// 【修改】此函数恢复为从网络获取的异步版本
 async function getPreparedDictionary() {
     console.log(`正在从 URL 获取文本词典: ${DICTIONARY_URL}`);
     let originalDict;
@@ -56,21 +61,28 @@ async function getPreparedDictionary() {
 }
 
 
-// --- 【新增】准备图片替换词典 ---
-async function getPreparedImageDictionary() {
-    console.log(`正在从 URL 获取图片词典: ${IMAGE_DICT_URL}`);
+// --- 准备图片替换词典 (从本地文件) ---
+// 【修改】此函数保持从本地文件加载的同步版本
+function getPreparedImageDictionary() {
+    const filePath = path.resolve(__dirname, IMAGE_DICT_FILE);
+    console.log(`正在从本地文件加载图片词典: ${filePath}`);
+
+    if (!fs.existsSync(filePath)) {
+        console.warn(`⚠️ 图片词典文件未找到: ${IMAGE_DICT_FILE}。将不进行图片替换。`);
+        return new Map();
+    }
+
     try {
-        const response = await fetch(IMAGE_DICT_URL);
-        if (!response.ok) { throw new Error(`网络请求失败: ${response.status}`); }
-        const scriptContent = await response.text();
-        // 使用安全的 Function 构造函数从脚本内容中提取对象
+        const scriptContent = fs.readFileSync(filePath, 'utf-8');
         const imageDict = new Function(`${scriptContent}; return imageReplacementDict;`)();
-        const imageMap = new Map(Object.entries(imageDict));
-        console.log(`在线图片词典加载成功。共 ${imageMap.size} 条替换规则。`);
+        const imageMap = new Map(Object.entries(imageDict || {}));
+        if (imageMap.size > 0) {
+             console.log(`本地图片词典加载成功。共 ${imageMap.size} 条替换规则。`);
+        }
         return imageMap;
     } catch (error) {
-        console.warn(`⚠️ 加载或解析在线图片词典时出错。将不进行图片替换。错误: ${error.message}`);
-        return new Map(); // 在失败时返回一个空 Map
+        console.error(`❌ 加载或解析本地图片词典文件 ${IMAGE_DICT_FILE} 时出错。`, error.message);
+        return new Map();
     }
 }
 
@@ -113,8 +125,7 @@ async function translateTextWithEnglishCheck(textToTranslate) {
     }
 }
 
-// --- 5. 翻译单个页面的核心函数 (最终版) ---
-// 【修改】函数签名增加了 imageReplacementMap
+// --- 5. 翻译单个页面的核心函数 (此部分无需修改) ---
 async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplacementMap) {
     let filename = '';
     try {
@@ -137,7 +148,7 @@ async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplace
 
     const $ = cheerio.load(htmlContent);
 
-    // --- 资源处理：捕获并修正所有 CSS 和 JS 的路径 ---
+    // --- 资源处理 ---
     const headElements = [];
     $('head').children('link, style, script, meta, title').each(function() {
         const $el = $(this);
@@ -151,7 +162,6 @@ async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplace
         }
         headElements.push($.html(this));
     });
-
     const bodyEndScripts = [];
     $('body > script').each(function() {
         const $el = $(this);
@@ -159,33 +169,24 @@ async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplace
         if (src && src.startsWith('/')) { $el.attr('src', BASE_URL + src); }
         bodyEndScripts.push($.html(this));
     });
-
     console.log(`[${filename}] 资源捕获完成: ${headElements.length} 个头部元素, ${bodyEndScripts.length} 个 Body 脚本。`);
-
     // --- 内容提取与翻译 ---
     const $contentContainer = $('<div id="wiki-content-wrapper"></div>');
     $('#firstHeading').clone().appendTo($contentContainer);
     $('#mw-content-text .mw-parser-output').children().each(function() {
         $contentContainer.append($(this).clone());
     });
-    
-    // 标题翻译
     const originalTitle = $('title').text() || filename;
     const preReplacedTitle = replaceTermsDirectly(originalTitle, fullDictionary, sortedKeys);
     let translatedTitle = await translateTextWithEnglishCheck(preReplacedTitle);
     translatedTitle = translatedTitle.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3');
     console.log(`[${filename}] [标题] 翻译完成: "${translatedTitle}"`);
-
-    // 链接路径处理 (a 标签)
     $contentContainer.find('a').each(function() {
         const href = $(this).attr('href');
         if (href?.startsWith('/')) { try { $(this).attr('href', new URL(href, BASE_URL).pathname); } catch(e) { console.warn(`[${filename}] 无效的 href: ${href}`); } }
     });
-
-    // 【修改】图片路径处理和替换 (img 标签)
     $contentContainer.find('img').each(function() {
         const $el = $(this);
-        // 处理 src 属性
         let src = $el.attr('src');
         if (src) {
             const absoluteSrc = src.startsWith('/') ? BASE_URL + src : src;
@@ -194,11 +195,9 @@ async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplace
                 $el.attr('src', newSrc);
                 console.log(`[${filename}] [图片替换] src: ${absoluteSrc} -> ${newSrc}`);
             } else if (src.startsWith('/')) {
-                $el.attr('src', absoluteSrc); // 修正为绝对路径
+                $el.attr('src', absoluteSrc);
             }
         }
-        
-        // 处理 srcset 属性，这对响应式图片至关重要
         const srcset = $el.attr('srcset');
         if (srcset) {
             const newSrcset = srcset.split(',').map(s => {
@@ -206,7 +205,6 @@ async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplace
                 let url = parts[0];
                 const descriptor = parts.length > 1 ? ` ${parts[1]}` : '';
                 const absoluteUrl = url.startsWith('/') ? BASE_URL + url : url;
-
                 if (imageReplacementMap.has(absoluteUrl)) {
                     const newUrl = imageReplacementMap.get(absoluteUrl);
                     console.log(`[${filename}] [图片替换] srcset: ${absoluteUrl} -> ${newUrl}`);
@@ -217,8 +215,6 @@ async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplace
             $el.attr('srcset', newSrcset);
         }
     });
-
-    // 可见文本翻译
     const textNodes = [];
     $contentContainer.find('*:not(script,style)').addBack().contents().each(function() { if (this.type === 'text' && this.data.trim()) { textNodes.push(this); } });
     console.log(`[${filename}] 准备处理 ${textNodes.length} 个可见文本片段...`);
@@ -229,8 +225,6 @@ async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplace
     const translatedTexts = await Promise.all(textPromises);
     textNodes.forEach((node, index) => { if (translatedTexts[index]) { node.data = translatedTexts[index].trim(); } });
     console.log(`[${filename}] 可见文本处理完成。`);
-
-    // 属性文本翻译
     const elementsWithAttributes = $contentContainer.find('[title], [alt]');
     console.log(`[${filename}] 准备处理 ${elementsWithAttributes.length} 个元素的属性...`);
     for (let i = 0; i < elementsWithAttributes.length; i++) {
@@ -246,56 +240,18 @@ async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplace
         }
     }
     console.log(`[${filename}] 属性处理完成。`);
-
-
     // --- HTML 整合与构建 ---
     let finalHtmlContent = $contentContainer.html();
     finalHtmlContent = finalHtmlContent.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3');
     finalHtmlContent = finalHtmlContent.replace(/rgb\(70, 223, 17\)/g, '#76FF33');
-
     let homeButtonHtml = '';
     const homePageFilename = 'Tanki_Online_Wiki';
     if (filename !== homePageFilename) {
-        homeButtonHtml = `
-        <a href="./${homePageFilename}.html" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">
-            返回主页
-        </a>`;
+        homeButtonHtml = `<a href="./${homePageFilename}.html" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">返回主页</a>`;
     }
-
     const headContent = headElements.filter(el => !el.toLowerCase().startsWith('<title>')).join('\n    ');
     const bodyClasses = $('body').attr('class') || '';
-
-    const finalHtml = `<!DOCTYPE html>
-<html lang="zh-CN" dir="ltr">
-<head>
-    <meta charset="UTF-8">
-    <title>${translatedTitle}</title>
-    ${headContent}
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
-        body { font-family: 'Rubik', 'M PLUS 1p', sans-serif; background-color: #001926 !important; }
-        #mw-main-container { max-width: 1200px; margin: 20px auto; background-color: #001926; padding: 20px; }
-    </style>
-</head>
-<body class="${bodyClasses}">
-    <div id="mw-main-container">
-        ${homeButtonHtml}
-        <div class="main-content">
-            <div class="mw-body ve-init-mw-desktopArticleTarget-targetContainer" id="content" role="main">
-                <a id="top"></a>
-                <div class="mw-body-content" id="bodyContent">
-                    <div id="siteNotice"></div>
-                    <div id="mw-content-text" class="mw-content-ltr mw-parser-output" lang="zh-CN" dir="ltr">
-                        ${finalHtmlContent}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    ${bodyEndScripts.join('\n    ')}
-</body>
-</html>`;
-
+    const finalHtml = `<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>${translatedTitle}</title>${headContent}<style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="${bodyClasses}"><div id="mw-main-container">${homeButtonHtml}<div class="main-content"><div class="mw-body ve-init-mw-desktopArticleTarget-targetContainer" id="content" role="main"><a id="top"></a><div class="mw-body-content" id="bodyContent"><div id="siteNotice"></div><div id="mw-content-text" class="mw-content-ltr mw-parser-output" lang="zh-CN" dir="ltr">${finalHtmlContent}</div></div></div></div></div>${bodyEndScripts.join('\n    ')}</body></html>`;
     if (!fs.existsSync(OUTPUT_DIR)) {
         fs.mkdirSync(OUTPUT_DIR, { recursive: true });
     }
@@ -303,11 +259,13 @@ async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplace
     console.log(`✅ [${filename}] 翻译完成！文件已保存到: ${OUTPUT_FILE}`);
 }
 
-// --- 6. 主运行函数 (并行处理) ---
+// --- 6. 主运行函数 (混合加载模式) ---
 async function run() {
     console.log("--- 翻译任务开始 ---");
 
-    // 【修改】使用 Promise.all 并行获取两个词典
+    // 【修改】使用 Promise.all 来并行准备资源
+    // 它会等待 getPreparedDictionary (异步网络请求) 完成
+    // 同时 getPreparedImageDictionary (同步本地读取) 会立即返回值
     const [
         { fullDictionary, sortedKeys },
         imageReplacementMap
@@ -317,7 +275,7 @@ async function run() {
     ]);
 
     if (fullDictionary.size === 0) {
-        console.log("警告：文本词典为空，所有翻译将仅依赖翻译API。");
+        console.log("警告：文本词典为空或加载失败，所有翻译将仅依赖翻译API。");
     }
     if (imageReplacementMap.size === 0) {
         console.log("提示：图片替换词典为空或加载失败，将不进行图片链接替换。");
@@ -333,7 +291,6 @@ async function run() {
 
     const translationPromises = PAGES_TO_TRANSLATE.map(pageName => {
         const fullUrl = `${BASE_URL}/${pageName}`;
-        // 【修改】将获取到的 imageReplacementMap 传递给处理函数
         return translatePage(fullUrl, fullDictionary, sortedKeys, imageReplacementMap)
             .catch(error => {
                 console.error(`❌ 处理页面 ${pageName} 时发生严重错误:`, error.message, error.stack);
