@@ -1,6 +1,6 @@
 // 引入必要的库
 const puppeteer = require('puppeteer');
-const cheerio = require('cheerio');
+const cheerio =require('cheerio');
 const { translate: googleTranslate } = require('@vitalets/google-translate-api');
 const { translate: bingTranslate } = require('bing-translate-api');
 const pluralize = require('pluralize');
@@ -11,7 +11,6 @@ const path = require('path');
 const BASE_URL ='https://en.tankiwiki.com';
 const DICTIONARY_URL = 'https://testanki1.github.io/translations.js'; 
 const IMAGE_DICT_FILE = 'image_replacements.js'; 
-// 【删除】不再需要本地事实文件 const FACTS_FILE = 'facts.json'; 
 const OUTPUT_DIR = './output';
 
 // --- 【页面列表】 ---
@@ -24,7 +23,7 @@ const PAGES_TO_TRANSLATE = [
     'Help',
 ];
 
-// ... (getPreparedDictionary 和 getPreparedImageDictionary 函数保持不变) ...
+// --- 1. 准备文本翻译词典 (从网络 URL) ---
 async function getPreparedDictionary() {
     console.log(`正在从 URL 获取文本词典: ${DICTIONARY_URL}`);
     let originalDict;
@@ -55,6 +54,8 @@ async function getPreparedDictionary() {
     return { fullDictionary, sortedKeys };
 }
 
+
+// --- 准备图片替换词典 (从本地文件) ---
 function getPreparedImageDictionary() {
     const filePath = path.resolve(__dirname, IMAGE_DICT_FILE);
     console.log(`正在从本地文件加载图片词典: ${filePath}`);
@@ -117,9 +118,7 @@ async function translateTextWithEnglishCheck(textToTranslate) {
     }
 }
 
-
 // --- 5. 翻译单个页面的核心函数 ---
-// 【修改】删除 factsData 参数
 async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplacementMap) {
     let filename = '';
     try {
@@ -164,6 +163,7 @@ async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplace
         bodyEndScripts.push($.html(this));
     });
     console.log(`[${filename}] 资源捕获完成: ${headElements.length} 个头部元素, ${bodyEndScripts.length} 个 Body 脚本。`);
+    
     // --- 内容提取与翻译 ---
     const $contentContainer = $('<div id="wiki-content-wrapper"></div>');
     $('#firstHeading').clone().appendTo($contentContainer);
@@ -171,7 +171,7 @@ async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplace
         $contentContainer.append($(this).clone());
     });
     
-    // 【修改】处理“你知道吗”板块，注入客户端脚本
+    // 处理“你知道吗”板块，注入客户端脚本
     const $factBoxContent = $contentContainer.find('.random-text-box > div:last-child');
     if ($factBoxContent.length > 0) {
         // 替换为占位符，以便客户端脚本填充
@@ -215,15 +215,24 @@ async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplace
     }
 
     const originalTitle = $('title').text() || filename;
-    // ... (后续的翻译逻辑保持不变) ...
+    
+    // --- 这是之前被省略的完整代码块 ---
     const preReplacedTitle = replaceTermsDirectly(originalTitle, fullDictionary, sortedKeys);
     let translatedTitle = await translateTextWithEnglishCheck(preReplacedTitle);
     translatedTitle = translatedTitle.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3');
     console.log(`[${filename}] [标题] 翻译完成: "${translatedTitle}"`);
+
     $contentContainer.find('a').each(function() {
         const href = $(this).attr('href');
-        if (href?.startsWith('/')) { try { $(this).attr('href', new URL(href, BASE_URL).pathname); } catch(e) { console.warn(`[${filename}] 无效的 href: ${href}`); } }
+        if (href?.startsWith('/')) { 
+            try { 
+                $(this).attr('href', new URL(href, BASE_URL).pathname); 
+            } catch(e) { 
+                console.warn(`[${filename}] 无效的 href: ${href}`); 
+            } 
+        }
     });
+
     $contentContainer.find('img').each(function() {
         const $el = $(this);
         let src = $el.attr('src');
@@ -254,6 +263,7 @@ async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplace
             $el.attr('srcset', newSrcset);
         }
     });
+
     const textNodes = [];
     $contentContainer.find('*:not(script,style)').addBack().contents().each(function() { 
         if (this.type === 'text' && this.data.trim()) {
@@ -265,13 +275,20 @@ async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplace
         } 
     });
     console.log(`[${filename}] 准备处理 ${textNodes.length} 个可见文本片段...`);
+
     const textPromises = textNodes.map(node => {
         const preReplaced = replaceTermsDirectly(node.data, fullDictionary, sortedKeys);
         return translateTextWithEnglishCheck(preReplaced);
     });
     const translatedTexts = await Promise.all(textPromises);
-    textNodes.forEach((node, index) => { if (translatedTexts[index]) { node.data = translatedTexts[index].trim(); } });
+
+    textNodes.forEach((node, index) => { 
+        if (translatedTexts[index]) { 
+            node.data = translatedTexts[index].trim(); 
+        } 
+    });
     console.log(`[${filename}] 可见文本处理完成。`);
+
     const elementsWithAttributes = $contentContainer.find('[title], [alt]');
     console.log(`[${filename}] 准备处理 ${elementsWithAttributes.length} 个元素的属性...`);
     for (let i = 0; i < elementsWithAttributes.length; i++) {
@@ -287,18 +304,23 @@ async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplace
         }
     }
     console.log(`[${filename}] 属性处理完成。`);
+    // --- 省略部分结束 ---
+
     // --- HTML 整合与构建 ---
     let finalHtmlContent = $contentContainer.html();
     finalHtmlContent = finalHtmlContent.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3');
     finalHtmlContent = finalHtmlContent.replace(/rgb\(70, 223, 17\)/g, '#76FF33');
+
     let homeButtonHtml = '';
     const homePageFilename = 'Tanki_Online_Wiki';
     if (filename !== homePageFilename) {
         homeButtonHtml = `<a href="./${homePageFilename}.html" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">返回主页</a>`;
     }
+
     const headContent = headElements.filter(el => !el.toLowerCase().startsWith('<title>')).join('\n    ');
     const bodyClasses = $('body').attr('class') || '';
     const finalHtml = `<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>${translatedTitle}</title>${headContent}<style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="${bodyClasses}"><div id="mw-main-container">${homeButtonHtml}<div class="main-content"><div class="mw-body ve-init-mw-desktopArticleTarget-targetContainer" id="content" role="main"><a id="top"></a><div class="mw-body-content" id="bodyContent"><div id="siteNotice"></div><div id="mw-content-text" class="mw-content-ltr mw-parser-output" lang="zh-CN" dir="ltr">${finalHtmlContent}</div></div></div></div></div>${bodyEndScripts.join('\n    ')}</body></html>`;
+    
     if (!fs.existsSync(OUTPUT_DIR)) {
         fs.mkdirSync(OUTPUT_DIR, { recursive: true });
     }
@@ -309,8 +331,6 @@ async function translatePage(sourceUrl, fullDictionary, sortedKeys, imageReplace
 // --- 6. 主运行函数 (混合加载模式) ---
 async function run() {
     console.log("--- 翻译任务开始 ---");
-
-    // 【修改】不再需要读取本地 facts.json 文件
     
     const [
         { fullDictionary, sortedKeys },
@@ -335,7 +355,6 @@ async function run() {
     console.log(`即将并行处理 ${PAGES_TO_TRANSLATE.length} 个页面...`);
     console.log(`==================================================`);
 
-    // 【修改】调用 translatePage 时不再传递 factsData
     const translationPromises = PAGES_TO_TRANSLATE.map(pageName => {
         const fullUrl = `${BASE_URL}/${pageName}`;
         return translatePage(fullUrl, fullDictionary, sortedKeys, imageReplacementMap)
