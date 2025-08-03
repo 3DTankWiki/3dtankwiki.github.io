@@ -15,7 +15,6 @@ const DICTIONARY_URL = 'https://testanki1.github.io/translations.js';
 const IMAGE_DICT_FILE = 'image_replacements.js';
 const OUTPUT_DIR = './output';
 const EDIT_INFO_FILE = path.join(__dirname, 'last_edit_info.json');
-// [新增] 重定向地图文件的路径
 const REDIRECT_MAP_FILE = path.join(__dirname, 'redirect_map.json');
 
 // --- 1. 准备文本翻译词典 (从网络 URL) ---
@@ -179,7 +178,6 @@ function createRedirectHtml(targetPageName) {
 }
 
 // --- 5. 翻译单个页面的核心函数 ---
-// [修改] 函数签名增加了 existingRedirectMap 参数
 async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplacementMap, lastEditInfoState, existingRedirectMap, forceTranslateList = []) {
     let pageName = '';
     try {
@@ -211,37 +209,48 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
 
     const $ = cheerio.load(htmlContent);
 
-    let redirectInfo = null;
+    // [修改] 统一解析 RLCONF 配置对象
+    let rlconf = null;
     $('script').each(function() {
         const scriptContent = $(this).html();
         if (scriptContent && scriptContent.includes('RLCONF')) {
             try {
                 const match = scriptContent.match(/RLCONF\s*=\s*(\{.*?\});/);
                 if (match && match[1]) {
-                    const rlconf = JSON.parse(match[1]);
-                    if (rlconf.wgRedirectedFrom && rlconf.wgPageName !== rlconf.wgRedirectedFrom) {
-                        redirectInfo = {
-                            sourcePage: pageName,
-                            targetPage: rlconf.wgPageName
-                        };
-                        return false; 
-                    }
+                    rlconf = JSON.parse(match[1]);
+                    return false; // 找到后立即停止遍历
                 }
             } catch (e) { /* 忽略解析错误 */ }
         }
     });
 
-    if (redirectInfo) {
-        const { sourcePage, targetPage } = redirectInfo;
+    if (!rlconf) {
+        console.warn(`[${pageName}] ⚠️ 未能找到或解析RLCONF配置，将跳过此页面。`);
+        return null;
+    }
+
+    // [新增] 检查页面是否存在 (wgArticleId: 0)
+    if (rlconf.wgArticleId === 0) {
+        console.log(`[${pageName}] ❌ 页面不存在 (ArticleID: 0)。`);
+        if (fs.existsSync(OUTPUT_FILE)) {
+            fs.unlinkSync(OUTPUT_FILE);
+            console.log(`🗑️  已删除本地过时的文件: ${OUTPUT_FILE}`);
+        }
+        return null; // 停止处理此页面
+    }
+
+    // 检查是否为重定向页
+    if (rlconf.wgRedirectedFrom && rlconf.wgPageName !== rlconf.wgRedirectedFrom) {
+        const sourcePage = pageName;
+        const targetPage = rlconf.wgPageName;
         
-        // [修改] 检查已知的重定向关系
         if (existingRedirectMap[sourcePage] === targetPage) {
             console.log(`[${sourcePage}] 重定向关系 (${targetPage}) 已存在且最新，跳过文件写入。`);
             return {
                 isRedirect: true,
                 redirectTarget: targetPage,
                 rawHtml: htmlContent,
-                newRedirectInfo: null // 返回 null 表示没有新的信息需要保存
+                newRedirectInfo: null
             };
         } else {
             console.log(`[${sourcePage}] ➡️  发现新的或已更新的重定向: [${targetPage}]`);
@@ -253,25 +262,25 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
                 isRedirect: true, 
                 redirectTarget: targetPage,
                 rawHtml: htmlContent,
-                newRedirectInfo: { source: sourcePage, target: targetPage } // 返回新的关系，以便主程序更新
+                newRedirectInfo: { source: sourcePage, target: targetPage }
             };
         }
     }
     
-    // --- 以下为非重定向页面的处理逻辑，保持不变 ---
+    // [修改] 使用 Revision ID 进行变更检测
     const isForced = forceTranslateList.includes(pageName);
-    const $smallTag = $('small'); 
-    const currentEditInfo = $smallTag.length > 0 ? $smallTag.text().trim() : null;
+    const currentEditInfo = rlconf.wgCurRevisionId || rlconf.wgRevisionId || null;
 
     if (isForced) {
         console.log(`[${pageName}] 强制翻译模式: 将忽略编辑信息检查并继续处理。`);
     } else if (currentEditInfo && lastEditInfoState[pageName] === currentEditInfo) {
-        console.log(`[${pageName}] 页面内容未更改。跳过翻译，但仍会解析链接。`);
+        console.log(`[${pageName}] 页面内容未更改 (Revision ID: ${currentEditInfo})。跳过翻译，但仍会解析链接。`);
         return { translationResult: null, rawHtml: htmlContent };
     } else if (!currentEditInfo) {
-        console.warn(`[${pageName}] ⚠️ 未能找到最后编辑信息。将继续处理。`);
+        console.warn(`[${pageName}] ⚠️ 未能找到 Revision ID。将继续处理。`);
     }
 
+    // --- 以下为翻译和页面构建逻辑，保持不变 ---
     const headElements = [];
     $('head').children('link, style, script, meta, title').each(function() {
         const $el = $(this);
@@ -335,14 +344,14 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
     finalHtmlContent = finalHtmlContent.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3').replace(/rgb\(70, 223, 17\)/g, '#76FF33');
     
     let homeButtonHtml = '';
-    if (pageName !== START_PAGE) { homeButtonHtml = `<a href="./${START_PAGE}" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">返回主页</a>`; }
+    if (pageName !== START_PAGE) { homeButtonHtml = `<a href="./${START_PAGE}.html" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">返回主页</a>`; }
     
     const headContent = headElements.filter(el => !el.toLowerCase().startsWith('<title>')).join('\n    ');
     const bodyClasses = $('body').attr('class') || '';
     const finalHtml = `<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>${translatedTitle}</title>${headContent}<style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="${bodyClasses}"><div id="mw-main-container">${homeButtonHtml}<div class="main-content"><div class="mw-body ve-init-mw-desktopArticleTarget-targetContainer" id="content" role="main"><a id="top"></a><div class="mw-body-content" id="bodyContent"><div id="siteNotice"></div><div id="mw-content-text" class="mw-content-ltr mw-parser-output" lang="zh-CN" dir="ltr">${finalHtmlContent}</div></div></div></div></div>${bodyEndScripts.join('\n    ')}</body></html>`;
     
     fs.writeFileSync(OUTPUT_FILE, finalHtml, 'utf-8');
-    console.log(`✅ [${pageName}] 翻译完成！文件已保存到: ${OUTPUT_FILE}`);
+    console.log(`✅ [${pageName}] 翻译完成 (Revision ID: ${currentEditInfo})！文件已保存到: ${OUTPUT_FILE}`);
 
     return { translationResult: { pageName: pageName, newEditInfo: currentEditInfo }, rawHtml: htmlContent };
 }
@@ -361,7 +370,6 @@ async function run() {
             try { lastEditInfo = JSON.parse(fs.readFileSync(EDIT_INFO_FILE, 'utf-8')); console.log(`已成功加载上次的编辑信息记录。`); } catch (e) { console.error(`❌ 读取或解析 ${EDIT_INFO_FILE} 时出错，将作为首次运行处理。`); }
         }
 
-        // [修改] 加载重定向地图
         let redirectMap = {};
         if (fs.existsSync(REDIRECT_MAP_FILE)) {
             try {
@@ -378,7 +386,7 @@ async function run() {
         const processedPages = new Set();
         const newEditInfo = { ...lastEditInfo };
         let hasUpdates = false;
-        let hasRedirectsChanged = false; // [新增] 跟踪重定向地图是否变化
+        let hasRedirectsChanged = false;
 
         console.log(`\n==================================================`);
         console.log(`爬虫启动，起始页面: ${START_PAGE}`);
@@ -398,11 +406,11 @@ async function run() {
                 const fullUrl = `${BASE_URL}/${encodeURIComponent(pageName)}`;
                 
                 try {
-                    // [修改] 将 redirectMap 传入 processPage
                     const processOutput = await processPage(fullUrl, fullDictionary, sortedKeys, imageReplacementMap, lastEditInfo, redirectMap);
+                    
+                    // 如果页面不存在或出错，processOutput 为 null
                     if (!processOutput) { return; }
 
-                    // [修改] 更精细地处理返回结果
                     if (processOutput.newRedirectInfo) {
                         const { source, target } = processOutput.newRedirectInfo;
                         if (redirectMap[source] !== target) {
@@ -424,7 +432,8 @@ async function run() {
                             hasUpdates = true;
                         }
                     }
-
+                    
+                    // 即使是跳过的页面，也需要解析链接
                     const $ = cheerio.load(processOutput.rawHtml);
                     const newLinks = findInternalLinks($);
                     
@@ -459,7 +468,6 @@ async function run() {
             console.log("\n所有已处理页面的最后编辑信息均无变化。");
         }
 
-        // [新增] 保存更新后的重定向地图
         if (hasRedirectsChanged) {
             fs.writeFileSync(REDIRECT_MAP_FILE, JSON.stringify(redirectMap, null, 2), 'utf-8');
             console.log(`\n✅ 重定向地图已更新到 ${REDIRECT_MAP_FILE}`);
