@@ -15,6 +15,7 @@ const DICTIONARY_URL = 'https://testanki1.github.io/translations.js';
 const IMAGE_DICT_FILE = 'image_replacements.js';
 const OUTPUT_DIR = './output';
 const EDIT_INFO_FILE = path.join(__dirname, 'last_edit_info.json');
+const REDIRECT_MAP_FILE = path.join(__dirname, 'redirect_map.json');
 
 // --- 1. 准备文本翻译词典 (从网络 URL) ---
 async function getPreparedDictionary() {
@@ -65,7 +66,8 @@ function getPreparedImageDictionary() {
              console.log(`本地图片词典加载成功。共 ${imageMap.size} 条替换规则。`);
         }
         return imageMap;
-    } catch (error) {
+    } catch (error)
+    {
         console.error(`❌ 加载或解析本地图片词典文件 ${IMAGE_DICT_FILE} 时出错。`, error.message);
         return new Map();
     }
@@ -157,9 +159,9 @@ function findInternalLinks($) {
     return Array.from(links);
 }
 
-// --- [新增] 创建一个简单的HTML重定向页面 ---
+// --- 创建一个简单的HTML重定向页面 ---
 function createRedirectHtml(targetPageName) {
-    const targetUrl = `./${targetPageName}.html`; // 使用相对路径
+    const targetUrl = `./${targetPageName}.html`;
     return `<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -176,7 +178,7 @@ function createRedirectHtml(targetPageName) {
 }
 
 // --- 5. 翻译单个页面的核心函数 ---
-async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplacementMap, lastEditInfoState, forceTranslateList = []) {
+async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplacementMap, lastEditInfoState, existingRedirectMap, forceTranslateList = []) {
     let pageName = '';
     try {
         pageName = getPageNameFromWikiLink(sourceUrl) || path.basename(new URL(sourceUrl).pathname);
@@ -185,7 +187,6 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
         console.error(`无效的源 URL: ${sourceUrl}`);
         return null;
     }
-    const OUTPUT_FILE = path.join(OUTPUT_DIR, `${pageName}.html`);
 
     console.log(`[${pageName}] 开始抓取页面: ${sourceUrl}`);
     const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
@@ -207,55 +208,54 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
 
     const $ = cheerio.load(htmlContent);
 
-    // --- [修改] 重定向检测逻辑 ---
-    let redirectInfo = null;
-    $('script').each(function() {
-        const scriptContent = $(this).html();
-        if (scriptContent && scriptContent.includes('RLCONF')) {
-            try {
-                const match = scriptContent.match(/RLCONF\s*=\s*(\{.*?\});/);
-                if (match && match[1]) {
-                    const rlconf = JSON.parse(match[1]);
-                    if (rlconf.wgRedirectedFrom && rlconf.wgPageName !== rlconf.wgRedirectedFrom) {
-                        redirectInfo = {
-                            sourcePage: pageName,
-                            targetPage: rlconf.wgPageName
-                        };
-                        return false; 
-                    }
-                }
-            } catch (e) {
-                // 忽略解析错误
-            }
+    let rlconf = null;
+    const rlconfMatch = htmlContent.match(/RLCONF\s*=\s*(\{.*?\});/);
+    if (rlconfMatch && rlconfMatch[1]) {
+        try {
+            rlconf = JSON.parse(rlconfMatch[1]);
+        } catch (e) {
+            console.error(`[${pageName}] ❌ 解析RLCONF JSON时出错:`, e.message);
+            rlconf = null;
         }
-    });
-
-    if (redirectInfo) {
-        console.log(`[${redirectInfo.sourcePage}] ➡️  检测到重定向: [${redirectInfo.targetPage}]`);
-        
-        const redirectHtml = createRedirectHtml(redirectInfo.targetPage);
-        fs.writeFileSync(OUTPUT_FILE, redirectHtml, 'utf-8');
-        console.log(`✅ [${redirectInfo.sourcePage}] 已创建重定向文件: ${OUTPUT_FILE}`);
-
-        return { 
-            isRedirect: true, 
-            redirectTarget: redirectInfo.targetPage,
-            rawHtml: htmlContent
-        };
     }
-    // --- 重定向检测逻辑结束 ---
 
+    if (!rlconf) {
+        console.warn(`[${pageName}] ⚠️ 未能找到或解析RLCONF配置，将跳过此页面。`);
+        return null;
+    }
+
+    // [修改] 简化逻辑：如果页面不存在，只打印日志并跳过，不做任何删除操作
+    if (rlconf.wgArticleId === 0) {
+        console.log(`[${pageName}] ❌ 页面不存在 (ArticleID: 0)，跳过处理。`);
+        return { rawHtml: htmlContent }; // 返回原始HTML以解析链接
+    }
+
+    if (rlconf.wgRedirectedFrom && rlconf.wgPageName !== rlconf.wgRedirectedFrom) {
+        const sourcePage = pageName;
+        const targetPage = rlconf.wgPageName;
+        
+        if (existingRedirectMap[sourcePage] === targetPage) {
+            console.log(`[${sourcePage}] 重定向关系 (${targetPage}) 已存在且最新，跳过文件写入。`);
+            return { isRedirect: true, redirectTarget: targetPage, rawHtml: htmlContent, newRedirectInfo: null };
+        } else {
+            console.log(`[${sourcePage}] ➡️  发现新的或已更新的重定向: [${targetPage}]`);
+            const redirectHtml = createRedirectHtml(targetPage);
+            fs.writeFileSync(path.join(OUTPUT_DIR, `${sourcePage}.html`), redirectHtml, 'utf-8');
+            console.log(`✅ [${sourcePage}] 已创建或更新重定向文件。`);
+            return { isRedirect: true, redirectTarget: targetPage, rawHtml: htmlContent, newRedirectInfo: { source: sourcePage, target: targetPage } };
+        }
+    }
+    
     const isForced = forceTranslateList.includes(pageName);
-    const $smallTag = $('small'); 
-    const currentEditInfo = $smallTag.length > 0 ? $smallTag.text().trim() : null;
+    const currentEditInfo = rlconf.wgCurRevisionId || rlconf.wgRevisionId || null;
 
     if (isForced) {
         console.log(`[${pageName}] 强制翻译模式: 将忽略编辑信息检查并继续处理。`);
     } else if (currentEditInfo && lastEditInfoState[pageName] === currentEditInfo) {
-        console.log(`[${pageName}] 页面内容未更改。跳过翻译，但仍会解析链接。`);
+        console.log(`[${pageName}] 页面内容未更改 (Revision ID: ${currentEditInfo})。跳过翻译和文件生成。`);
         return { translationResult: null, rawHtml: htmlContent };
     } else if (!currentEditInfo) {
-        console.warn(`[${pageName}] ⚠️ 未能找到最后编辑信息。将继续处理。`);
+        console.warn(`[${pageName}] ⚠️ 未能找到 Revision ID。将继续处理。`);
     }
 
     const headElements = [];
@@ -279,7 +279,7 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
     const $factBoxContent = $contentContainer.find('.random-text-box > div:last-child');
     if ($factBoxContent.length > 0) {
         $factBoxContent.html('<p id="dynamic-fact-placeholder" style="margin:0;">正在加载有趣的事实...</p>');
-        const factScript = `<script>document.addEventListener('DOMContentLoaded', function() { const factsUrl = '/facts.json'; const placeholder = document.getElementById('dynamic-fact-placeholder'); if (placeholder) { fetch(factsUrl).then(response => { if (!response.ok) { throw new Error('网络响应错误，状态码: ' + response.status); } return response.json(); }).then(facts => { if (facts && Array.isArray(facts) && facts.length > 0) { const randomIndex = Math.floor(Math.random() * facts.length); const randomFact = facts[randomIndex].cn; placeholder.innerHTML = randomFact; } else { placeholder.innerHTML = '暂时没有可显示的事实。'; } }).catch(error => { console.error('加载或显示事实时出错:', error); placeholder.innerHTML = '加载事实失败，请稍后再试。'; }); } });</script>`;
+        const factScript = `<script>document.addEventListener('DOMContentLoaded', function() { const factsUrl = './facts.json'; const placeholder = document.getElementById('dynamic-fact-placeholder'); if (placeholder) { fetch(factsUrl).then(response => { if (!response.ok) { throw new Error('网络响应错误，状态码: ' + response.status); } return response.json(); }).then(facts => { if (facts && Array.isArray(facts) && facts.length > 0) { const randomIndex = Math.floor(Math.random() * facts.length); const randomFact = facts[randomIndex].cn; placeholder.innerHTML = randomFact; } else { placeholder.innerHTML = '暂时没有可显示的事实。'; } }).catch(error => { console.error('加载或显示事实时出错:', error); placeholder.innerHTML = '加载事实失败，请稍后再试。'; }); } });</script>`;
         bodyEndScripts.push(factScript);
     }
     const originalTitle = $('title').text() || pageName;
@@ -293,7 +293,7 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
         const internalPageName = getPageNameFromWikiLink(originalHref);
 
         if (internalPageName) {
-            $el.attr('href', `./${internalPageName}`);
+            $el.attr('href', `./${internalPageName}.html`);
         } else if (originalHref?.startsWith('/') && !originalHref.startsWith('//')) {
             try {
                 $el.attr('href', new URL(originalHref, BASE_URL).href);
@@ -321,14 +321,14 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
     finalHtmlContent = finalHtmlContent.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3').replace(/rgb\(70, 223, 17\)/g, '#76FF33');
     
     let homeButtonHtml = '';
-    if (pageName !== START_PAGE) { homeButtonHtml = `<a href="./${START_PAGE}" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">返回主页</a>`; }
+    if (pageName !== START_PAGE) { homeButtonHtml = `<a href="./${START_PAGE}.html" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">返回主页</a>`; }
     
     const headContent = headElements.filter(el => !el.toLowerCase().startsWith('<title>')).join('\n    ');
     const bodyClasses = $('body').attr('class') || '';
     const finalHtml = `<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>${translatedTitle}</title>${headContent}<style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="${bodyClasses}"><div id="mw-main-container">${homeButtonHtml}<div class="main-content"><div class="mw-body ve-init-mw-desktopArticleTarget-targetContainer" id="content" role="main"><a id="top"></a><div class="mw-body-content" id="bodyContent"><div id="siteNotice"></div><div id="mw-content-text" class="mw-content-ltr mw-parser-output" lang="zh-CN" dir="ltr">${finalHtmlContent}</div></div></div></div></div>${bodyEndScripts.join('\n    ')}</body></html>`;
     
-    fs.writeFileSync(OUTPUT_FILE, finalHtml, 'utf-8');
-    console.log(`✅ [${pageName}] 翻译完成！文件已保存到: ${OUTPUT_FILE}`);
+    fs.writeFileSync(path.join(OUTPUT_DIR, `${pageName}.html`), finalHtml, 'utf-8');
+    console.log(`✅ [${pageName}] 翻译完成 (Revision ID: ${currentEditInfo})！文件已保存到 output 目录。`);
 
     return { translationResult: { pageName: pageName, newEditInfo: currentEditInfo }, rawHtml: htmlContent };
 }
@@ -347,12 +347,23 @@ async function run() {
             try { lastEditInfo = JSON.parse(fs.readFileSync(EDIT_INFO_FILE, 'utf-8')); console.log(`已成功加载上次的编辑信息记录。`); } catch (e) { console.error(`❌ 读取或解析 ${EDIT_INFO_FILE} 时出错，将作为首次运行处理。`); }
         }
 
+        let redirectMap = {};
+        if (fs.existsSync(REDIRECT_MAP_FILE)) {
+            try {
+                redirectMap = JSON.parse(fs.readFileSync(REDIRECT_MAP_FILE, 'utf-8'));
+                console.log(`已成功加载重定向地图。`);
+            } catch (e) {
+                console.error(`❌ 读取或解析 ${REDIRECT_MAP_FILE} 时出错，将作为首次运行处理。`);
+            }
+        }
+
         if (!fs.existsSync(OUTPUT_DIR)) { fs.mkdirSync(OUTPUT_DIR, { recursive: true }); }
 
         const pagesToProcess = new Set([START_PAGE]);
         const processedPages = new Set();
         const newEditInfo = { ...lastEditInfo };
         let hasUpdates = false;
+        let hasRedirectsChanged = false;
 
         console.log(`\n==================================================`);
         console.log(`爬虫启动，起始页面: ${START_PAGE}`);
@@ -372,10 +383,18 @@ async function run() {
                 const fullUrl = `${BASE_URL}/${encodeURIComponent(pageName)}`;
                 
                 try {
-                    const processOutput = await processPage(fullUrl, fullDictionary, sortedKeys, imageReplacementMap, lastEditInfo);
+                    const processOutput = await processPage(fullUrl, fullDictionary, sortedKeys, imageReplacementMap, lastEditInfo, redirectMap);
+                    
                     if (!processOutput) { return; }
 
-                    // --- [修改] 处理 processPage 的返回结果 ---
+                    if (processOutput.newRedirectInfo) {
+                        const { source, target } = processOutput.newRedirectInfo;
+                        if (redirectMap[source] !== target) {
+                            redirectMap[source] = target;
+                            hasRedirectsChanged = true;
+                        }
+                    }
+
                     if (processOutput.isRedirect) {
                         const targetPage = processOutput.redirectTarget;
                         if (targetPage && !processedPages.has(targetPage) && !pagesToProcess.has(targetPage)) {
@@ -389,7 +408,7 @@ async function run() {
                             hasUpdates = true;
                         }
                     }
-
+                    
                     const $ = cheerio.load(processOutput.rawHtml);
                     const newLinks = findInternalLinks($);
                     
@@ -422,6 +441,13 @@ async function run() {
             console.log(`\n✅ 最后编辑信息已更新到 ${EDIT_INFO_FILE}`);
         } else {
             console.log("\n所有已处理页面的最后编辑信息均无变化。");
+        }
+
+        if (hasRedirectsChanged) {
+            fs.writeFileSync(REDIRECT_MAP_FILE, JSON.stringify(redirectMap, null, 2), 'utf-8');
+            console.log(`\n✅ 重定向地图已更新到 ${REDIRECT_MAP_FILE}`);
+        } else {
+            console.log("\n重定向地图无变化。");
         }
 
         console.log("\n--- 所有可达页面处理完毕，任务结束 ---");
