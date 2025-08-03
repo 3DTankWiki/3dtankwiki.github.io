@@ -208,21 +208,45 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
 
     const $ = cheerio.load(htmlContent);
 
+    // =======================================================================
+    // 【【【【【【【【【【【【【【【【【 最终健壮版修改 】】】】】】】】】】】】】】】】】
+    // 这个版本会先尝试解析新的 mw.config.set，如果失败，再尝试解析旧的 RLCONF。
+    // 这样无论服务器返回哪个版本，脚本都能适应。
+
     let rlconf = null;
-    const rlconfMatch = htmlContent.match(/RLCONF\s*=\s*(\{.*?\});/);
-    if (rlconfMatch && rlconfMatch[1]) {
+
+    // 1. 优先尝试解析新的 mw.config.set 格式
+    const mwConfigMatch = htmlContent.match(/mw\.config\.set\s*\(\s*(\{[\s\S]*?\})\s*\);/);
+    if (mwConfigMatch && mwConfigMatch[1]) {
         try {
-            rlconf = JSON.parse(rlconfMatch[1]);
+            rlconf = JSON.parse(mwConfigMatch[1]);
+            console.log(`[${pageName}] ✅ 成功解析 mw.config.set 配置。`);
         } catch (e) {
-            console.error(`[${pageName}] ❌ 解析RLCONF JSON时出错:`, e.message);
-            rlconf = null;
+            console.error(`[${pageName}] ❌ 解析 mw.config.set JSON 时出错:`, e.message);
         }
     }
 
+    // 2. 如果新格式解析失败，再尝试解析旧的 RLCONF 格式
     if (!rlconf) {
-        console.warn(`[${pageName}] ⚠️ 未能找到或解析RLCONF配置，将跳过此页面。`);
-        return null;
+        console.log(`[${pageName}] ⚠️ 未找到 mw.config.set，尝试回退到旧的 RLCONF 格式。`);
+        const rlconfMatch = htmlContent.match(/RLCONF\s*=\s*(\{.*?\});/);
+        if (rlconfMatch && rlconfMatch[1]) {
+            try {
+                rlconf = JSON.parse(rlconfMatch[1]);
+                console.log(`[${pageName}] ✅ 成功解析旧的 RLCONF 配置。`);
+            } catch (e) {
+                console.error(`[${pageName}] ❌ 解析 RLCONF JSON 时出错:`, e.message);
+            }
+        }
     }
+    // =======================================================================
+
+    if (!rlconf) {
+        console.warn(`[${pageName}] ⚠️ 未能找到或解析任何页面配置(mw.config 或 RLCONF)，将跳过此页面。`);
+        // 修改：即使失败，也返回原始HTML，以便主循环可以继续解析链接
+        return { rawHtml: htmlContent }; 
+    }
+
 
     // [修改] 简化逻辑：如果页面不存在，只打印日志并跳过，不做任何删除操作
     if (rlconf.wgArticleId === 0) {
@@ -409,18 +433,21 @@ async function run() {
                         }
                     }
                     
-                    const $ = cheerio.load(processOutput.rawHtml);
-                    const newLinks = findInternalLinks($);
-                    
-                    if (newLinks.length > 0) {
-                        console.log(`[${pageName}] 在页面上发现 ${newLinks.length} 个新链接: [${newLinks.join(', ')}]`);
-                        newLinks.forEach(link => {
-                            if (!processedPages.has(link) && !pagesToProcess.has(link)) {
-                                pagesToProcess.add(link);
-                            }
-                        });
-                    } else {
-                        console.log(`[${pageName}] 未在该页面上发现可处理的新链接。`);
+                    // 确保即使在处理失败的情况下也能尝试解析链接
+                    if (processOutput.rawHtml) {
+                        const $ = cheerio.load(processOutput.rawHtml);
+                        const newLinks = findInternalLinks($);
+                        
+                        if (newLinks.length > 0) {
+                            console.log(`[${pageName}] 在页面上发现 ${newLinks.length} 个新链接: [${newLinks.join(', ')}]`);
+                            newLinks.forEach(link => {
+                                if (!processedPages.has(link) && !pagesToProcess.has(link)) {
+                                    pagesToProcess.add(link);
+                                }
+                            });
+                        } else {
+                            console.log(`[${pageName}] 未在该页面上发现可处理的新链接。`);
+                        }
                     }
 
                 } catch (error) {
