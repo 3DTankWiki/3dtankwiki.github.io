@@ -1,7 +1,6 @@
 // 引入必要的库
 const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
-// const { translate: googleTranslate } = require('@vitalets/google-translate-api'); // <-- 已移除
 const { translate: bingTranslate } = require('bing-translate-api');
 const pluralize = require('pluralize');
 const fs = require('fs');
@@ -93,32 +92,50 @@ function containsEnglish(text) {
     return /[a-zA-Z]/.test(text);
 }
 
-// --- 4. 【已修改】带英文检测和重试的翻译函数 ---
+// --- 4. 【最终修复版】带英文检测、长度分割和重试的翻译函数 ---
 async function translateTextWithEnglishCheck(textToTranslate) {
     if (!textToTranslate || !textToTranslate.trim()) { return ""; }
     if (!containsEnglish(textToTranslate)) { return textToTranslate; }
 
-    for (let attempt = 1; attempt <= BING_TRANSLATE_RETRIES; attempt++) {
-        try {
-            const res = await bingTranslate(textToTranslate, 'en', 'zh-Hans', false);
-            // 翻译成功，使用可选链和逻辑或确保总能返回一个字符串
-            return res?.translation || textToTranslate;
-        } catch (bingError) {
-            console.warn(`[翻译尝试 ${attempt}/${BING_TRANSLATE_RETRIES}] ⚠️ 必应翻译失败: ${bingError.message.substring(0, 100)}`);
-            
-            if (attempt >= BING_TRANSLATE_RETRIES) {
-                // 这是最后一次尝试，记录最终失败信息
-                console.error(`❌ 必应翻译在 ${BING_TRANSLATE_RETRIES} 次尝试后仍然失败。将返回原始文本。`);
-            } else {
-                // 如果不是最后一次尝试，则等待一段时间后重试
-                console.log(`将在 ${BING_RETRY_DELAY / 1000} 秒后重试...`);
-                await new Promise(resolve => setTimeout(resolve, BING_RETRY_DELAY));
+    const MAX_LENGTH = 990; // 设置一个安全阈值，小于必应API的1000字符限制
+
+    // 1. 如果文本没有超过长度限制，直接翻译
+    if (textToTranslate.length <= MAX_LENGTH) {
+        for (let attempt = 1; attempt <= BING_TRANSLATE_RETRIES; attempt++) {
+            try {
+                const res = await bingTranslate(textToTranslate, 'en', 'zh-Hans', false);
+                return res?.translation || textToTranslate;
+            } catch (bingError) {
+                console.warn(`[翻译尝试 ${attempt}/${BING_TRANSLATE_RETRIES}] ⚠️ 必应翻译失败 (短文本): ${bingError.message.substring(0, 100)}`);
+                if (attempt >= BING_TRANSLATE_RETRIES) {
+                    console.error(`❌ 必应翻译在 ${BING_TRANSLATE_RETRIES} 次尝试后仍然失败。将返回原始文本。`);
+                } else {
+                    // 等待一段时间后重试
+                    await new Promise(resolve => setTimeout(resolve, BING_RETRY_DELAY));
+                }
             }
         }
+        return textToTranslate; // 所有重试失败后返回原文
     }
 
-    // 如果循环结束都没有成功返回，意味着所有尝试都失败了，返回原始文本
-    return textToTranslate;
+    // 2. 如果文本超长，则进行分割
+    console.log(`[文本分割] 检测到超长文本 (长度: ${textToTranslate.length})，将进行分割翻译...`);
+    // 按句子分割，以保证翻译质量。这个正则表达式会匹配一个句子及其结尾的标点和空格。
+    const sentences = textToTranslate.match(/[^.!?]+[.!?]*\s*/g) || [textToTranslate];
+    
+    const translatedSentences = [];
+    for (const sentence of sentences) {
+        if (!sentence.trim()) continue;
+
+        // 递归调用自身来翻译每个句子（这样每个句子也能享受到重试机制）
+        const translatedSentence = await translateTextWithEnglishCheck(sentence);
+        translatedSentences.push(translatedSentence);
+    }
+    
+    // 3. 拼接翻译后的结果
+    const finalResult = translatedSentences.join('');
+    console.log(`[文本分割] 超长文本翻译完成。`);
+    return finalResult;
 }
 
 
@@ -221,9 +238,6 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
 
     let rlconf = null;
     
-    // 【修正】将原有的 /RLCONF\s*=\s*(\{.*?\});/ 替换为下面的表达式
-    // 原因是：原来的 `.` 不匹配换行符，且 `*?` 会在遇到第一个 `}` 时就停止，无法处理嵌套的JSON对象。
-    // 新的 `[\s\S]*?` 可以匹配包括换行符在内的所有字符，从而正确捕获整个 RLCONF 对象。
     const rlconfMatch = htmlContent.match(/RLCONF\s*=\s*(\{[\s\S]*?\});/);
     
     if (rlconfMatch && rlconfMatch[1]) {
@@ -231,7 +245,7 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
             rlconf = JSON.parse(rlconfMatch[1]);
         } catch (e) {
             console.error(`[${pageName}] ❌ 解析RLCONF JSON时出错:`, e.message);
-            console.error(`[${pageName}] 捕获到的字符串片段:`, rlconfMatch[1].substring(0, 500)); // 打印出错的字符串片段以供调试
+            console.error(`[${pageName}] 捕获到的字符串片段:`, rlconfMatch[1].substring(0, 500));
             rlconf = null;
         }
     }
@@ -241,10 +255,9 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
         return null;
     }
 
-    // [修改] 简化逻辑：如果页面不存在，只打印日志并跳过，不做任何删除操作
     if (rlconf.wgArticleId === 0) {
         console.log(`[${pageName}] ❌ 页面不存在 (ArticleID: 0)，跳过处理。`);
-        return { rawHtml: htmlContent }; // 返回原始HTML以解析链接
+        return { rawHtml: htmlContent }; 
     }
 
     if (rlconf.wgRedirectedFrom && rlconf.wgPageName !== rlconf.wgRedirectedFrom) {
@@ -326,14 +339,29 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
     });
     const textNodes = [];
     $contentContainer.find('*:not(script,style)').addBack().contents().each(function() { if (this.type === 'text' && this.data.trim() && !$(this).parent().is('span.hotkey')) { textNodes.push(this); } });
-    const textPromises = textNodes.map(node => { const preReplaced = replaceTermsDirectly(node.data, fullDictionary, sortedKeys); return translateTextWithEnglishCheck(preReplaced); });
+    
+    // 使用 Promise.all 并行处理所有文本节点的翻译
+    const textPromises = textNodes.map(node => { 
+        const preReplaced = replaceTermsDirectly(node.data, fullDictionary, sortedKeys);
+        return translateTextWithEnglishCheck(preReplaced); 
+    });
     const translatedTexts = await Promise.all(textPromises);
     textNodes.forEach((node, index) => { if (translatedTexts[index]) { node.data = translatedTexts[index].trim(); } });
+
+    // 串行处理属性翻译，避免请求过于频繁
     const elementsWithAttributes = $contentContainer.find('[title], [alt]');
     for (let i = 0; i < elementsWithAttributes.length; i++) {
         const $element = $(elementsWithAttributes[i]);
-        for (const attr of ['title', 'alt']) { const originalValue = $element.attr(attr); if (originalValue) { const preReplaced = replaceTermsDirectly(originalValue, fullDictionary, sortedKeys); const translatedValue = await translateTextWithEnglishCheck(preReplaced); $element.attr(attr, translatedValue); } }
+        for (const attr of ['title', 'alt']) { 
+            const originalValue = $element.attr(attr); 
+            if (originalValue) { 
+                const preReplaced = replaceTermsDirectly(originalValue, fullDictionary, sortedKeys); 
+                const translatedValue = await translateTextWithEnglishCheck(preReplaced); 
+                $element.attr(attr, translatedValue); 
+            } 
+        }
     }
+    
     let finalHtmlContent = $contentContainer.html();
     finalHtmlContent = finalHtmlContent.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3').replace(/rgb\(70, 223, 17\)/g, '#76FF33');
     
