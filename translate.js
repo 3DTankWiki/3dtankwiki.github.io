@@ -91,25 +91,47 @@ function containsEnglish(text) {
     return /[a-zA-Z]/.test(text);
 }
 
-// --- 4. 带英文检测的翻译函数 ---
+// --- 4. 带英文检测和重试机制的翻译函数 ---
 async function translateTextWithEnglishCheck(textToTranslate) {
     if (!textToTranslate || !textToTranslate.trim()) { return ""; }
     if (!containsEnglish(textToTranslate)) { return textToTranslate; }
 
-    try {
-        const res = await bingTranslate(textToTranslate, 'en', 'zh-Hans', false);
-        return res?.translation || textToTranslate;
-    } catch (bingError) {
-        console.warn(`⚠️ 必应翻译失败 (回退到谷歌): ${bingError.message.substring(0, 100)}`);
+    const maxRetries = 3; // 最多重试3次
+    const delay = 1500; // 每次重试前延迟1.5秒
+
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
         try {
-            const res = await googleTranslate(textToTranslate, { from: 'en', to: 'zh-CN' });
-            return res?.text || textToTranslate;
-        } catch (googleError) {
-            console.error(`❌ 谷歌翻译也失败了。将返回原始文本。`);
-            return textToTranslate;
+            const res = await bingTranslate(textToTranslate, 'en', 'zh-Hans', false);
+            // 如果成功，直接返回结果
+            if (res?.translation) {
+                return res.translation;
+            }
+            // 如果返回结果为空，也算一种失败，进行重试
+            throw new Error("Bing returned empty translation"); 
+            
+        } catch (bingError) {
+            console.warn(`[尝试 ${attempt}/${maxRetries}] ⚠️ 必应翻译失败: ${bingError.message.substring(0, 80)}`);
+            if (attempt < maxRetries) {
+                // 如果不是最后一次尝试，就等待一会再重试
+                console.log(`...将在 ${delay / 1000} 秒后重试...`);
+                await new Promise(resolve => setTimeout(resolve, delay));
+            } else {
+                // 如果所有重试都失败了，就回退到谷歌
+                console.warn(`...必应翻译重试全部失败，回退到谷歌翻译。`);
+                try {
+                    const res = await googleTranslate(textToTranslate, { from: 'en', to: 'zh-CN' });
+                    return res?.text || textToTranslate;
+                } catch (googleError) {
+                    console.error(`❌ 谷歌翻译也失败了。将返回原始文本。`);
+                    return textToTranslate;
+                }
+            }
         }
     }
+    // 理论上不会执行到这里，但作为保险返回原始文本
+    return textToTranslate; 
 }
+
 
 // --- 辅助函数：从链接中提取可处理的页面名称 ---
 function getPageNameFromWikiLink(href) {
@@ -209,10 +231,8 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
     const $ = cheerio.load(htmlContent);
 
     // =======================================================================
-    // 【【【【【【【【【【【【【【【【【 最终健壮版修改 】】】】】】】】】】】】】】】】】
+    // 【最终健壮版修改】
     // 这个版本会先尝试解析新的 mw.config.set，如果失败，再尝试解析旧的 RLCONF。
-    // 这样无论服务器返回哪个版本，脚本都能适应。
-
     let rlconf = null;
 
     // 1. 优先尝试解析新的 mw.config.set 格式
@@ -221,6 +241,8 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
         try {
             rlconf = JSON.parse(mwConfigMatch[1]);
             console.log(`[${pageName}] ✅ 成功解析 mw.config.set 配置。`);
+            // 【调试代码】
+            console.log('--- mw.config.set 内容 ---', JSON.stringify(rlconf, null, 2), '--- END ---');
         } catch (e) {
             console.error(`[${pageName}] ❌ 解析 mw.config.set JSON 时出错:`, e.message);
         }
@@ -243,15 +265,12 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
 
     if (!rlconf) {
         console.warn(`[${pageName}] ⚠️ 未能找到或解析任何页面配置(mw.config 或 RLCONF)，将跳过此页面。`);
-        // 修改：即使失败，也返回原始HTML，以便主循环可以继续解析链接
         return { rawHtml: htmlContent }; 
     }
 
-
-    // [修改] 简化逻辑：如果页面不存在，只打印日志并跳过，不做任何删除操作
     if (rlconf.wgArticleId === 0) {
         console.log(`[${pageName}] ❌ 页面不存在 (ArticleID: 0)，跳过处理。`);
-        return { rawHtml: htmlContent }; // 返回原始HTML以解析链接
+        return { rawHtml: htmlContent };
     }
 
     if (rlconf.wgRedirectedFrom && rlconf.wgPageName !== rlconf.wgRedirectedFrom) {
@@ -333,13 +352,23 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
     });
     const textNodes = [];
     $contentContainer.find('*:not(script,style)').addBack().contents().each(function() { if (this.type === 'text' && this.data.trim() && !$(this).parent().is('span.hotkey')) { textNodes.push(this); } });
-    const textPromises = textNodes.map(node => { const preReplaced = replaceTermsDirectly(node.data, fullDictionary, sortedKeys); return translateTextWithEnglishCheck(preReplaced); });
-    const translatedTexts = await Promise.all(textPromises);
+    
+    const textsToTranslate = textNodes.map(node => replaceTermsDirectly(node.data, fullDictionary, sortedKeys));
+    const translatedTexts = await Promise.all(textsToTranslate.map(text => translateTextWithEnglishCheck(text)));
+    
     textNodes.forEach((node, index) => { if (translatedTexts[index]) { node.data = translatedTexts[index].trim(); } });
+    
     const elementsWithAttributes = $contentContainer.find('[title], [alt]');
     for (let i = 0; i < elementsWithAttributes.length; i++) {
         const $element = $(elementsWithAttributes[i]);
-        for (const attr of ['title', 'alt']) { const originalValue = $element.attr(attr); if (originalValue) { const preReplaced = replaceTermsDirectly(originalValue, fullDictionary, sortedKeys); const translatedValue = await translateTextWithEnglishCheck(preReplaced); $element.attr(attr, translatedValue); } }
+        for (const attr of ['title', 'alt']) { 
+            const originalValue = $element.attr(attr); 
+            if (originalValue) { 
+                const preReplaced = replaceTermsDirectly(originalValue, fullDictionary, sortedKeys); 
+                const translatedValue = await translateTextWithEnglishCheck(preReplaced); 
+                $element.attr(attr, translatedValue); 
+            } 
+        }
     }
     let finalHtmlContent = $contentContainer.html();
     finalHtmlContent = finalHtmlContent.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3').replace(/rgb\(70, 223, 17\)/g, '#76FF33');
@@ -433,7 +462,6 @@ async function run() {
                         }
                     }
                     
-                    // 确保即使在处理失败的情况下也能尝试解析链接
                     if (processOutput.rawHtml) {
                         const $ = cheerio.load(processOutput.rawHtml);
                         const newLinks = findInternalLinks($);
