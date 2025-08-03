@@ -9,14 +9,14 @@ const path = require('path');
 // --- 【配置常量】 ---
 const BASE_URL = 'https://en.tankiwiki.com';
 const START_PAGE = 'Tanki_Online_Wiki';
-const CONCURRENCY_LIMIT = 8;
+const CONCURRENCY_LIMIT = 32;
 const DICTIONARY_URL = 'https://testanki1.github.io/translations.js';
 const IMAGE_DICT_FILE = 'image_replacements.js';
 const OUTPUT_DIR = './output';
 const EDIT_INFO_FILE = path.join(__dirname, 'last_edit_info.json');
-const REDIRECT_MAP_FILE = path.join(__dirname, 'redirect_map.json'); // 定义重定向地图文件路径
-const BING_TRANSLATE_RETRIES = 3; // 必应翻译重试次数
-const BING_RETRY_DELAY = 1500;    // 每次重试前的延迟（毫秒）
+const REDIRECT_MAP_FILE = path.join(__dirname, 'redirect_map.json');
+const BING_TRANSLATE_RETRIES = 5;
+const BING_RETRY_DELAY = 1500;
 
 // --- 1. 准备文本翻译词典 (从网络 URL) ---
 async function getPreparedDictionary() {
@@ -53,12 +53,10 @@ async function getPreparedDictionary() {
 function getPreparedImageDictionary() {
     const filePath = path.resolve(__dirname, IMAGE_DICT_FILE);
     console.log(`正在从本地文件加载图片词典: ${filePath}`);
-
     if (!fs.existsSync(filePath)) {
         console.warn(`⚠️ 图片词典文件未找到: ${IMAGE_DICT_FILE}。将不进行图片替换。`);
         return new Map();
     }
-
     try {
         const scriptContent = fs.readFileSync(filePath, 'utf-8');
         const imageDict = new Function(`${scriptContent}; return imageReplacementDict;`)();
@@ -67,8 +65,7 @@ function getPreparedImageDictionary() {
              console.log(`本地图片词典加载成功。共 ${imageMap.size} 条替换规则。`);
         }
         return imageMap;
-    } catch (error)
-    {
+    } catch (error) {
         console.error(`❌ 加载或解析本地图片词典文件 ${IMAGE_DICT_FILE} 时出错。`, error.message);
         return new Map();
     }
@@ -79,7 +76,6 @@ function replaceTermsDirectly(text, fullDictionary, sortedKeys) {
     if (!text) return "";
     let result = text;
     for (const key of sortedKeys) {
-        // 使用更安全的正则表达式来避免由于key中包含特殊字符导致的错误
         const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         const regex = new RegExp(`\\b${escapedKey}\\b`, 'gi');
         if (regex.test(result)) {
@@ -94,14 +90,11 @@ function containsEnglish(text) {
     return /[a-zA-Z]/.test(text);
 }
 
-// --- 4. 【最终修复版】带英文检测、长度分割和重试的翻译函数 ---
+// --- 4. 带英文检测、长度分割和重试的翻译函数 ---
 async function translateTextWithEnglishCheck(textToTranslate) {
     if (!textToTranslate || !textToTranslate.trim()) { return ""; }
     if (!containsEnglish(textToTranslate)) { return textToTranslate; }
-
-    const MAX_LENGTH = 990; // 设置一个安全阈值，小于必应API的1000字符限制
-
-    // 1. 如果文本没有超过长度限制，直接翻译
+    const MAX_LENGTH = 990;
     if (textToTranslate.length <= MAX_LENGTH) {
         for (let attempt = 1; attempt <= BING_TRANSLATE_RETRIES; attempt++) {
             try {
@@ -116,59 +109,53 @@ async function translateTextWithEnglishCheck(textToTranslate) {
                 }
             }
         }
-        return textToTranslate; // 所有重试失败后返回原文
+        return textToTranslate;
     }
-
-    // 2. 如果文本超长，则进行分割
     console.log(`[文本分割] 检测到超长文本 (长度: ${textToTranslate.length})，将进行分割翻译...`);
     const sentences = textToTranslate.match(/[^.!?]+[.!?]*\s*/g) || [textToTranslate];
-    
     const translatedSentences = [];
     for (const sentence of sentences) {
         if (!sentence.trim()) continue;
         const translatedSentence = await translateTextWithEnglishCheck(sentence);
         translatedSentences.push(translatedSentence);
     }
-    
     const finalResult = translatedSentences.join('');
     console.log(`[文本分割] 超长文本翻译完成。`);
     return finalResult;
 }
 
-
-// --- 辅助函数：从链接中提取可处理的页面名称 ---
+// --- 【核心修改点】辅助函数：使用更智能的规则过滤链接 ---
 function getPageNameFromWikiLink(href) {
     if (!href) return null;
 
     let url;
     try {
-        // 使用 BASE_URL 作为基础来解析相对路径
         url = new URL(href, BASE_URL);
     } catch (e) {
-        return null; // 无效的 href
+        return null;
     }
 
-    // 确保链接是维基内部的
     if (url.hostname !== new URL(BASE_URL).hostname) {
         return null;
     }
 
-    // 从路径中提取页面名称
     let pathname = decodeURIComponent(url.pathname);
-    
-    // 过滤掉指向 /w/index.php 的链接，因为它们通常是功能性链接（如编辑、历史）
+
     if (pathname.startsWith('/w/index.php')) {
         return null;
     }
     
-    // 标准的 /wiki/PageName 格式
-    let pageName = pathname.startsWith('/wiki/') ? pathname.substring(6) : pathname.substring(1);
+    let pageName = pathname.substring(1);
 
+    // 定义我们不希望处理的页面命名空间前缀
+    const blockedPrefixes = ['Special', 'File', 'User', 'MediaWiki', 'Template', 'Help', 'Category'];
+    // 创建一个正则表达式，检查 pageName 是否以任何一个被阻止的前缀开头
+    // 例如: /^(Special|File|User|...):/i
+    const blockedPrefixRegex = new RegExp(`^(${blockedPrefixes.join('|')}):`, 'i');
 
-    // 过滤掉特殊页面、带锚点的链接和文件链接
     if (
         !pageName ||
-        pageName.includes(':') || // 如 'Special:', 'File:'
+        blockedPrefixRegex.test(pageName) || // <--- 使用新的、更智能的规则
         pageName.includes('#') ||
         /\.(css|js|png|jpg|jpeg|gif|svg|ico|php)$/i.test(pageName)
     ) {
@@ -193,26 +180,13 @@ function findInternalLinks($) {
 
 // --- 创建一个简单的HTML重定向页面 ---
 function createRedirectHtml(targetPageName) {
-    // 【修改点】这里的 targetUrl 不需要 .html 后缀
-    const targetUrl = `./${targetPageName}`; 
-    return `<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <title>正在重定向...</title>
-    <meta http-equiv="refresh" content="0; url=${targetUrl}">
-    <link rel="canonical" href="${targetUrl}">
-    <script>window.location.replace("${targetUrl}");</script>
-</head>
-<body>
-    <p>如果您的浏览器没有自动跳转，请 <a href="${targetUrl}">点击这里</a>。</p>
-</body>
-</html>`;
+    const targetUrl = `./${targetPageName}`;
+    return `<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><title>正在重定向...</title><meta http-equiv="refresh" content="0; url=${targetUrl}"><link rel="canonical" href="${targetUrl}"><script>window.location.replace("${targetUrl}");</script></head><body><p>如果您的浏览器没有自动跳转，请 <a href="${targetUrl}">点击这里</a>。</p></body></html>`;
 }
 
 // --- 5. 翻译单个页面的核心函数 ---
 async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageReplacementMap, lastEditInfoState, existingRedirectMap, forceTranslateList = []) {
-    const sourceUrl = `${BASE_URL}/wiki/${pageNameToProcess}`;
+    const sourceUrl = `${BASE_URL}/${pageNameToProcess}`;
     
     console.log(`[${pageNameToProcess}] 开始抓取页面: ${sourceUrl}`);
     const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
@@ -225,7 +199,7 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageR
     } catch (error) {
         console.error(`[${pageNameToProcess}] 抓取或等待页面内容时发生错误: ${error.message}`);
         await browser.close();
-        return null; // 返回 null 表示处理失败
+        return null;
     } finally {
         await browser.close();
     }
@@ -233,7 +207,6 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageR
 
     const $ = cheerio.load(htmlContent);
 
-    // 从页面脚本中提取 RLCONF 配置对象
     let rlconf = null;
     const rlconfMatch = htmlContent.match(/RLCONF\s*=\s*(\{[\s\S]*?\});/);
     if (rlconfMatch && rlconfMatch[1]) {
@@ -250,26 +223,22 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageR
         return null;
     }
 
-    // 检查页面是否存在
     if (rlconf.wgArticleId === 0) {
         console.log(`[${pageNameToProcess}] ❌ 页面不存在 (ArticleID: 0)，跳过处理。`);
-        return { links: [] }; // 返回空链接数组，避免处理中断
+        return { links: [] };
     }
     
-    // 处理重定向页面
     if (rlconf.wgRedirectedFrom && rlconf.wgPageName !== rlconf.wgRedirectedFrom) {
         const sourcePage = rlconf.wgRedirectedFrom;
         const targetPage = rlconf.wgPageName;
         
         console.log(`[${sourcePage}] ➡️  发现重定向: [${targetPage}]`);
         const redirectHtml = createRedirectHtml(targetPage);
-        // 注意：文件名仍保留 .html
         fs.writeFileSync(path.join(OUTPUT_DIR, `${sourcePage}.html`), redirectHtml, 'utf-8');
         console.log(`✅ [${sourcePage}] 已创建重定向文件。`);
         return { isRedirect: true, newRedirectInfo: { source: sourcePage, target: targetPage }, links: findInternalLinks($) };
     }
     
-    // 检查页面是否需要更新
     const isForced = forceTranslateList.includes(pageNameToProcess);
     const currentEditInfo = rlconf.wgCurRevisionId || rlconf.wgRevisionId || null;
 
@@ -277,7 +246,7 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageR
         console.log(`[${pageNameToProcess}] 强制翻译模式: 将忽略编辑信息检查并继续处理。`);
     } else if (currentEditInfo && lastEditInfoState[pageNameToProcess] === currentEditInfo) {
         console.log(`[${pageNameToProcess}] 页面内容未更改 (Revision ID: ${currentEditInfo})。跳过翻译。`);
-        return { links: findInternalLinks($) }; // 即使跳过翻译，也要返回链接以供爬取
+        return { links: findInternalLinks($) };
     } else if (!currentEditInfo) {
         console.warn(`[${pageNameToProcess}] ⚠️ 未能找到 Revision ID。将继续处理。`);
     }
@@ -319,7 +288,6 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageR
         const internalPageName = getPageNameFromWikiLink(originalHref);
 
         if (internalPageName) {
-            // 【修改点】移除 .html 后缀
             $el.attr('href', `./${internalPageName}`);
         } else if (originalHref?.startsWith('/') && !originalHref.startsWith('//')) {
             try {
@@ -363,7 +331,6 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageR
     
     let homeButtonHtml = '';
     if (pageNameToProcess !== START_PAGE) {
-        // 【修改点】移除返回主页按钮链接的 .html 后缀
         homeButtonHtml = `<a href="./${START_PAGE}" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">返回主页</a>`;
     }
     
@@ -371,18 +338,17 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageR
     const bodyClasses = $('body').attr('class') || '';
     const finalHtml = `<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>${translatedTitle}</title>${headContent}<style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="${bodyClasses}"><div id="mw-main-container">${homeButtonHtml}<div class="main-content"><div class="mw-body ve-init-mw-desktopArticleTarget-targetContainer" id="content" role="main"><a id="top"></a><div class="mw-body-content" id="bodyContent"><div id="siteNotice"></div><div id="mw-content-text" class="mw-content-ltr mw-parser-output" lang="zh-CN" dir="ltr">${finalHtmlContent}</div></div></div></div></div>${bodyEndScripts.join('\n    ')}</body></html>`;
     
-    // 注意：文件名仍保留 .html 后缀
     fs.writeFileSync(path.join(OUTPUT_DIR, `${pageNameToProcess}.html`), finalHtml, 'utf-8');
     console.log(`✅ [${pageNameToProcess}] 翻译完成 (Revision ID: ${currentEditInfo})！文件已保存到 output 目录。`);
 
     return { 
         translationResult: { pageName: pageNameToProcess, newEditInfo: currentEditInfo },
-        links: findInternalLinks($) // 返回页面内所有可处理的链接
+        links: findInternalLinks($)
     };
 }
 
 
-// --- 6. 【修正后的主运行函数】 ---
+// --- 6. 主运行函数 ---
 async function run() {
     console.log("--- 翻译任务开始 (爬虫模式) ---");
 
@@ -391,11 +357,9 @@ async function run() {
         console.log(`创建输出目录: ${OUTPUT_DIR}`);
     }
 
-    // 1. 加载所有必要的资源
     const imageReplacementMap = getPreparedImageDictionary();
     const { fullDictionary, sortedKeys } = await getPreparedDictionary();
     
-    // 加载上次的编辑信息
     let lastEditInfo = {};
     if (fs.existsSync(EDIT_INFO_FILE)) {
         try {
@@ -406,7 +370,6 @@ async function run() {
         }
     }
 
-    // 加载现有的重定向地图
     let redirectMap = {};
     if (fs.existsSync(REDIRECT_MAP_FILE)) {
         try {
@@ -417,15 +380,13 @@ async function run() {
         }
     }
 
-    // 2. 初始化爬取队列
     const pagesToVisit = [START_PAGE];
     const visitedPages = new Set();
-    const forceTranslateList = []; // 如果需要，可以在这里手动添加需要强制重新翻译的页面名称
+    const forceTranslateList = [];
 
     let activeTasks = 0;
     let pageIndex = 0;
 
-    // 3. 并发处理队列中的页面
     while (pageIndex < pagesToVisit.length) {
         const promises = [];
         
@@ -441,15 +402,12 @@ async function run() {
             const task = processPage(currentPageName, fullDictionary, sortedKeys, imageReplacementMap, lastEditInfo, redirectMap, forceTranslateList)
                 .then(result => {
                     if (result) {
-                        // 收集新的重定向信息
                         if (result.newRedirectInfo) {
                             redirectMap[result.newRedirectInfo.source] = result.newRedirectInfo.target;
                         }
-                        // 收集新的翻译版本信息
                         if (result.translationResult) {
                             lastEditInfo[result.translationResult.pageName] = result.translationResult.newEditInfo;
                         }
-                        // 将页面内发现的新链接添加到待访问队列
                         if (result.links && result.links.length > 0) {
                             for (const link of result.links) {
                                 if (!visitedPages.has(link) && !pagesToVisit.includes(link)) {
@@ -473,7 +431,6 @@ async function run() {
         console.log(`--- [进度] 已处理 ${visitedPages.size} / ${pagesToVisit.length} 个页面 ---`);
     }
 
-    // 4. 任务完成后，保存状态文件
     try {
         fs.writeFileSync(EDIT_INFO_FILE, JSON.stringify(lastEditInfo, null, 2), 'utf-8');
         console.log(`✅ 成功将最新的编辑信息保存到 ${EDIT_INFO_FILE}`);
@@ -487,5 +444,4 @@ async function run() {
     console.log("--- 所有页面处理完毕，任务结束！ ---");
 }
 
-// 启动程序
 run().catch(console.error);
