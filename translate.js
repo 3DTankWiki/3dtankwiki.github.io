@@ -16,6 +16,8 @@ const IMAGE_DICT_FILE = 'image_replacements.js';
 const OUTPUT_DIR = './output';
 const EDIT_INFO_FILE = path.join(__dirname, 'last_edit_info.json');
 const REDIRECT_MAP_FILE = path.join(__dirname, 'redirect_map.json');
+// [新增] 定义本次运行中被删除文件的记录文件
+const DELETED_FILES_LOG = path.join(__dirname, 'deleted-files.txt');
 
 // --- 1. 准备文本翻译词典 (从网络 URL) ---
 async function getPreparedDictionary() {
@@ -209,7 +211,6 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
 
     const $ = cheerio.load(htmlContent);
 
-    // [修改] 统一解析 RLCONF 配置对象
     let rlconf = null;
     $('script').each(function() {
         const scriptContent = $(this).html();
@@ -218,7 +219,7 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
                 const match = scriptContent.match(/RLCONF\s*=\s*(\{.*?\});/);
                 if (match && match[1]) {
                     rlconf = JSON.parse(match[1]);
-                    return false; // 找到后立即停止遍历
+                    return false;
                 }
             } catch (e) { /* 忽略解析错误 */ }
         }
@@ -229,17 +230,20 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
         return null;
     }
 
-    // [新增] 检查页面是否存在 (wgArticleId: 0)
+    // [修改] 检查页面是否存在 (wgArticleId: 0)
     if (rlconf.wgArticleId === 0) {
         console.log(`[${pageName}] ❌ 页面不存在 (ArticleID: 0)。`);
+        
+        // 将被删除的文件名追加到日志文件中
+        fs.appendFileSync(DELETED_FILES_LOG, `${pageName}.html\n`);
+        
         if (fs.existsSync(OUTPUT_FILE)) {
             fs.unlinkSync(OUTPUT_FILE);
-            console.log(`🗑️  已删除本地过时的文件: ${OUTPUT_FILE}`);
+            console.log(`🗑️  已删除本地 output 目录中的过时文件: ${OUTPUT_FILE}`);
         }
-        return null; // 停止处理此页面
+        return { pageDeleted: true, rawHtml: htmlContent };
     }
 
-    // 检查是否为重定向页
     if (rlconf.wgRedirectedFrom && rlconf.wgPageName !== rlconf.wgRedirectedFrom) {
         const sourcePage = pageName;
         const targetPage = rlconf.wgPageName;
@@ -267,20 +271,18 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
         }
     }
     
-    // [修改] 使用 Revision ID 进行变更检测
     const isForced = forceTranslateList.includes(pageName);
     const currentEditInfo = rlconf.wgCurRevisionId || rlconf.wgRevisionId || null;
 
     if (isForced) {
         console.log(`[${pageName}] 强制翻译模式: 将忽略编辑信息检查并继续处理。`);
     } else if (currentEditInfo && lastEditInfoState[pageName] === currentEditInfo) {
-        console.log(`[${pageName}] 页面内容未更改 (Revision ID: ${currentEditInfo})。跳过翻译，但仍会解析链接。`);
+        console.log(`[${pageName}] 页面内容未更改 (Revision ID: ${currentEditInfo})。跳过翻译和文件生成。`);
         return { translationResult: null, rawHtml: htmlContent };
     } else if (!currentEditInfo) {
         console.warn(`[${pageName}] ⚠️ 未能找到 Revision ID。将继续处理。`);
     }
 
-    // --- 以下为翻译和页面构建逻辑，保持不变 ---
     const headElements = [];
     $('head').children('link, style, script, meta, title').each(function() {
         const $el = $(this);
@@ -316,7 +318,7 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
         const internalPageName = getPageNameFromWikiLink(originalHref);
 
         if (internalPageName) {
-            $el.attr('href', `./${internalPageName}`);
+            $el.attr('href', `./${internalPageName}.html`);
         } else if (originalHref?.startsWith('/') && !originalHref.startsWith('//')) {
             try {
                 $el.attr('href', new URL(originalHref, BASE_URL).href);
@@ -360,6 +362,12 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
 // --- 6. 主运行函数 ---
 async function run() {
     console.log("--- 翻译任务开始 (爬虫模式) ---");
+    
+    // [修改] 每次运行时，先清空上一次的删除记录文件
+    if (fs.existsSync(DELETED_FILES_LOG)) {
+        fs.unlinkSync(DELETED_FILES_LOG);
+        console.log(`已清理旧的删除记录文件: ${DELETED_FILES_LOG}`);
+    }
 
     try {
         const imageReplacementMap = getPreparedImageDictionary();
@@ -408,7 +416,6 @@ async function run() {
                 try {
                     const processOutput = await processPage(fullUrl, fullDictionary, sortedKeys, imageReplacementMap, lastEditInfo, redirectMap);
                     
-                    // 如果页面不存在或出错，processOutput 为 null
                     if (!processOutput) { return; }
 
                     if (processOutput.newRedirectInfo) {
@@ -433,7 +440,6 @@ async function run() {
                         }
                     }
                     
-                    // 即使是跳过的页面，也需要解析链接
                     const $ = cheerio.load(processOutput.rawHtml);
                     const newLinks = findInternalLinks($);
                     
