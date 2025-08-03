@@ -16,16 +16,44 @@ jobs:
       - name: 检出仓库代码 (主分支)
         uses: actions/checkout@v4
 
-      # ... (setup-node, apt-get install rsync, yarn install, puppeteer download, etc.)
+      - name: 设置 Node.js 环境
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 安装系统依赖
+        run: |
+          sudo apt-get update
+          sudo apt-get install -yq \
+            ca-certificates fonts-liberation libasound2t64 libatk-bridge2.0-0 libatk1.0-0 \
+            libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 \
+            libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 \
+            libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 \
+            libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 \
+            libxi6 libxrandr2 libxrender1 libxss1 libxtst6 lsb-release wget xdg-utils \
+            rsync
+
+      - name: 安装 Node.js 依赖 (使用 Yarn)
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: 'true'
+        run: yarn install --frozen-lockfile
+
+      - name: 单独下载 Chromium 浏览器
+        run: npx puppeteer browsers install chrome
 
       - name: 运行翻译脚本
-        run: node translate.js
+        run: |
+          # [新增] 打印当前目录下的文件列表，用于调试
+          echo "当前工作目录下的文件列表:"
+          ls -l
+          
+          # [确保] 这里的脚本名与你仓库中的文件名完全一致
+          node translate_wiki.js
 
       - name: 提交更新后的状态文件
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "ci: 更新页面状态记录"
-          # 注意：我们不需要提交 deleted-files.txt，因为它是一次性的
           file_pattern: |
             last_edit_info.json
             redirect_map.json
@@ -33,7 +61,7 @@ jobs:
           commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
           commit_options: '--no-verify'
       
-      # --- 新的、更安全的部署逻辑 ---
+      # --- 安全部署逻辑 ---
 
       - name: 检出 gh-pages 分支到单独目录
         uses: actions/checkout@v4
@@ -43,12 +71,11 @@ jobs:
 
       - name: 从 gh-pages 中删除源站已不存在的页面
         run: |
-          # 检查删除记录文件是否存在
           if [ -f deleted-files.txt ]; then
             echo "发现需要删除的文件列表，正在处理..."
-            # 切换到 gh-pages-dir 目录，然后根据列表删除文件
-            # 使用 xargs 可以安全地处理文件名中可能包含的空格等特殊字符
-            cd gh-pages-dir && cat ../deleted-files.txt | xargs -r rm -f
+            # 使用 xargs 和 -r 选项，如果 deleted-files.txt 为空则不执行 rm
+            # 使用 -d '\n' 确保正确处理带有空格的文件名
+            xargs -r -d '\n' -a deleted-files.txt -I {} rm -f ./gh-pages-dir/{}
           else
             echo "没有需要删除的文件。"
           fi
@@ -58,7 +85,7 @@ jobs:
           # 使用 rsync 将 output 目录的内容合并到 gh-pages-dir
           # -a: 归档模式
           # -v: 显示详细过程
-          # 这里没有 --delete，所以它只会添加和更新，不会删除
+          # 这里没有 --delete，所以它只会添加和更新，不会删除未被脚本触及的文件
           rsync -av ./output/ ./gh-pages-dir/
 
       - name: 部署到 GitHub Pages
