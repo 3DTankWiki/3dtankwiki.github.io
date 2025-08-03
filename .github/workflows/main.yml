@@ -46,7 +46,7 @@ jobs:
           echo "当前工作目录下的文件列表:"
           ls -l
           # 确保此文件名与您仓库中的JS文件名完全一致
-          node translate_wiki.js
+          node translate.js
 
       - name: 提交更新后的状态文件
         uses: stefanzweifel/git-auto-commit-action@v5
