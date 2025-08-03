@@ -16,8 +16,6 @@ const IMAGE_DICT_FILE = 'image_replacements.js';
 const OUTPUT_DIR = './output';
 const EDIT_INFO_FILE = path.join(__dirname, 'last_edit_info.json');
 const REDIRECT_MAP_FILE = path.join(__dirname, 'redirect_map.json');
-// [新增] 定义本次运行中被删除文件的记录文件
-const DELETED_FILES_LOG = path.join(__dirname, 'deleted-files.txt');
 
 // --- 1. 准备文本翻译词典 (从网络 URL) ---
 async function getPreparedDictionary() {
@@ -189,7 +187,6 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
         console.error(`无效的源 URL: ${sourceUrl}`);
         return null;
     }
-    const OUTPUT_FILE = path.join(OUTPUT_DIR, `${pageName}.html`);
 
     console.log(`[${pageName}] 开始抓取页面: ${sourceUrl}`);
     const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
@@ -212,36 +209,25 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
     const $ = cheerio.load(htmlContent);
 
     let rlconf = null;
-    $('script').each(function() {
-        const scriptContent = $(this).html();
-        if (scriptContent && scriptContent.includes('RLCONF')) {
-            try {
-                const match = scriptContent.match(/RLCONF\s*=\s*(\{.*?\});/);
-                if (match && match[1]) {
-                    rlconf = JSON.parse(match[1]);
-                    return false;
-                }
-            } catch (e) { /* 忽略解析错误 */ }
+    const rlconfMatch = htmlContent.match(/RLCONF\s*=\s*(\{.*?\});/);
+    if (rlconfMatch && rlconfMatch[1]) {
+        try {
+            rlconf = JSON.parse(rlconfMatch[1]);
+        } catch (e) {
+            console.error(`[${pageName}] ❌ 解析RLCONF JSON时出错:`, e.message);
+            rlconf = null;
         }
-    });
+    }
 
     if (!rlconf) {
         console.warn(`[${pageName}] ⚠️ 未能找到或解析RLCONF配置，将跳过此页面。`);
         return null;
     }
 
-    // [修改] 检查页面是否存在 (wgArticleId: 0)
+    // [修改] 简化逻辑：如果页面不存在，只打印日志并跳过，不做任何删除操作
     if (rlconf.wgArticleId === 0) {
-        console.log(`[${pageName}] ❌ 页面不存在 (ArticleID: 0)。`);
-        
-        // 将被删除的文件名追加到日志文件中
-        fs.appendFileSync(DELETED_FILES_LOG, `${pageName}.html\n`);
-        
-        if (fs.existsSync(OUTPUT_FILE)) {
-            fs.unlinkSync(OUTPUT_FILE);
-            console.log(`🗑️  已删除本地 output 目录中的过时文件: ${OUTPUT_FILE}`);
-        }
-        return { pageDeleted: true, rawHtml: htmlContent };
+        console.log(`[${pageName}] ❌ 页面不存在 (ArticleID: 0)，跳过处理。`);
+        return { rawHtml: htmlContent }; // 返回原始HTML以解析链接
     }
 
     if (rlconf.wgRedirectedFrom && rlconf.wgPageName !== rlconf.wgRedirectedFrom) {
@@ -250,24 +236,13 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
         
         if (existingRedirectMap[sourcePage] === targetPage) {
             console.log(`[${sourcePage}] 重定向关系 (${targetPage}) 已存在且最新，跳过文件写入。`);
-            return {
-                isRedirect: true,
-                redirectTarget: targetPage,
-                rawHtml: htmlContent,
-                newRedirectInfo: null
-            };
+            return { isRedirect: true, redirectTarget: targetPage, rawHtml: htmlContent, newRedirectInfo: null };
         } else {
             console.log(`[${sourcePage}] ➡️  发现新的或已更新的重定向: [${targetPage}]`);
             const redirectHtml = createRedirectHtml(targetPage);
-            fs.writeFileSync(OUTPUT_FILE, redirectHtml, 'utf-8');
-            console.log(`✅ [${sourcePage}] 已创建或更新重定向文件: ${OUTPUT_FILE}`);
-            
-            return { 
-                isRedirect: true, 
-                redirectTarget: targetPage,
-                rawHtml: htmlContent,
-                newRedirectInfo: { source: sourcePage, target: targetPage }
-            };
+            fs.writeFileSync(path.join(OUTPUT_DIR, `${sourcePage}.html`), redirectHtml, 'utf-8');
+            console.log(`✅ [${sourcePage}] 已创建或更新重定向文件。`);
+            return { isRedirect: true, redirectTarget: targetPage, rawHtml: htmlContent, newRedirectInfo: { source: sourcePage, target: targetPage } };
         }
     }
     
@@ -304,7 +279,7 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
     const $factBoxContent = $contentContainer.find('.random-text-box > div:last-child');
     if ($factBoxContent.length > 0) {
         $factBoxContent.html('<p id="dynamic-fact-placeholder" style="margin:0;">正在加载有趣的事实...</p>');
-        const factScript = `<script>document.addEventListener('DOMContentLoaded', function() { const factsUrl = '/facts.json'; const placeholder = document.getElementById('dynamic-fact-placeholder'); if (placeholder) { fetch(factsUrl).then(response => { if (!response.ok) { throw new Error('网络响应错误，状态码: ' + response.status); } return response.json(); }).then(facts => { if (facts && Array.isArray(facts) && facts.length > 0) { const randomIndex = Math.floor(Math.random() * facts.length); const randomFact = facts[randomIndex].cn; placeholder.innerHTML = randomFact; } else { placeholder.innerHTML = '暂时没有可显示的事实。'; } }).catch(error => { console.error('加载或显示事实时出错:', error); placeholder.innerHTML = '加载事实失败，请稍后再试。'; }); } });</script>`;
+        const factScript = `<script>document.addEventListener('DOMContentLoaded', function() { const factsUrl = './facts.json'; const placeholder = document.getElementById('dynamic-fact-placeholder'); if (placeholder) { fetch(factsUrl).then(response => { if (!response.ok) { throw new Error('网络响应错误，状态码: ' + response.status); } return response.json(); }).then(facts => { if (facts && Array.isArray(facts) && facts.length > 0) { const randomIndex = Math.floor(Math.random() * facts.length); const randomFact = facts[randomIndex].cn; placeholder.innerHTML = randomFact; } else { placeholder.innerHTML = '暂时没有可显示的事实。'; } }).catch(error => { console.error('加载或显示事实时出错:', error); placeholder.innerHTML = '加载事实失败，请稍后再试。'; }); } });</script>`;
         bodyEndScripts.push(factScript);
     }
     const originalTitle = $('title').text() || pageName;
@@ -352,8 +327,8 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
     const bodyClasses = $('body').attr('class') || '';
     const finalHtml = `<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>${translatedTitle}</title>${headContent}<style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="${bodyClasses}"><div id="mw-main-container">${homeButtonHtml}<div class="main-content"><div class="mw-body ve-init-mw-desktopArticleTarget-targetContainer" id="content" role="main"><a id="top"></a><div class="mw-body-content" id="bodyContent"><div id="siteNotice"></div><div id="mw-content-text" class="mw-content-ltr mw-parser-output" lang="zh-CN" dir="ltr">${finalHtmlContent}</div></div></div></div></div>${bodyEndScripts.join('\n    ')}</body></html>`;
     
-    fs.writeFileSync(OUTPUT_FILE, finalHtml, 'utf-8');
-    console.log(`✅ [${pageName}] 翻译完成 (Revision ID: ${currentEditInfo})！文件已保存到: ${OUTPUT_FILE}`);
+    fs.writeFileSync(path.join(OUTPUT_DIR, `${pageName}.html`), finalHtml, 'utf-8');
+    console.log(`✅ [${pageName}] 翻译完成 (Revision ID: ${currentEditInfo})！文件已保存到 output 目录。`);
 
     return { translationResult: { pageName: pageName, newEditInfo: currentEditInfo }, rawHtml: htmlContent };
 }
@@ -362,12 +337,6 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
 // --- 6. 主运行函数 ---
 async function run() {
     console.log("--- 翻译任务开始 (爬虫模式) ---");
-    
-    // [修改] 每次运行时，先清空上一次的删除记录文件
-    if (fs.existsSync(DELETED_FILES_LOG)) {
-        fs.unlinkSync(DELETED_FILES_LOG);
-        console.log(`已清理旧的删除记录文件: ${DELETED_FILES_LOG}`);
-    }
 
     try {
         const imageReplacementMap = getPreparedImageDictionary();
