@@ -43,12 +43,10 @@ jobs:
 
       - name: 运行翻译脚本
         run: |
-          # [新增] 打印当前目录下的文件列表，用于调试
           echo "当前工作目录下的文件列表:"
           ls -l
-          
-          # [确保] 这里的脚本名与你仓库中的文件名完全一致
-          node translate.js
+          # 确保此文件名与您仓库中的JS文件名完全一致
+          node translate_wiki.js
 
       - name: 提交更新后的状态文件
         uses: stefanzweifel/git-auto-commit-action@v5
@@ -61,7 +59,7 @@ jobs:
           commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
           commit_options: '--no-verify'
       
-      # --- 安全部署逻辑 ---
+      # --- 增量更新部署逻辑 ---
 
       - name: 检出 gh-pages 分支到单独目录
         uses: actions/checkout@v4
@@ -69,23 +67,12 @@ jobs:
           ref: gh-pages
           path: gh-pages-dir
 
-      - name: 从 gh-pages 中删除源站已不存在的页面
-        run: |
-          if [ -f deleted-files.txt ]; then
-            echo "发现需要删除的文件列表，正在处理..."
-            # 使用 xargs 和 -r 选项，如果 deleted-files.txt 为空则不执行 rm
-            # 使用 -d '\n' 确保正确处理带有空格的文件名
-            xargs -r -d '\n' -a deleted-files.txt -I {} rm -f ./gh-pages-dir/{}
-          else
-            echo "没有需要删除的文件。"
-          fi
-
       - name: 将新构建的文件增量更新到部署目录
         run: |
           # 使用 rsync 将 output 目录的内容合并到 gh-pages-dir
           # -a: 归档模式
           # -v: 显示详细过程
-          # 这里没有 --delete，所以它只会添加和更新，不会删除未被脚本触及的文件
+          # 注意：这里没有 --delete 选项，所以它只会添加和更新文件
           rsync -av ./output/ ./gh-pages-dir/
 
       - name: 部署到 GitHub Pages
