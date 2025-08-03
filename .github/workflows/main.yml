@@ -19,7 +19,7 @@ jobs:
       # ... (setup-node, apt-get install rsync, yarn install, puppeteer download, etc.)
 
       - name: 运行翻译脚本
-        run: node translate_wiki.js
+        run: node translate.js
 
       - name: 提交更新后的状态文件
         uses: stefanzweifel/git-auto-commit-action@v5
