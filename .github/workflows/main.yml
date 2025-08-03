@@ -48,7 +48,7 @@ jobs:
           ls -l
           
           # [确保] 这里的脚本名与你仓库中的文件名完全一致
-          node translate_wiki.js
+          node translate.js
 
       - name: 提交更新后的状态文件
         uses: stefanzweifel/git-auto-commit-action@v5
