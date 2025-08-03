@@ -91,42 +91,25 @@ function containsEnglish(text) {
     return /[a-zA-Z]/.test(text);
 }
 
-// --- 4. 带英文检测和重试机制的翻译函数 ---
+// --- 4. 带英文检测的翻译函数 ---
 async function translateTextWithEnglishCheck(textToTranslate) {
     if (!textToTranslate || !textToTranslate.trim()) { return ""; }
     if (!containsEnglish(textToTranslate)) { return textToTranslate; }
 
-    const maxRetries = 3;
-    const delay = 1500;
-
-    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+        const res = await bingTranslate(textToTranslate, 'en', 'zh-Hans', false);
+        return res?.translation || textToTranslate;
+    } catch (bingError) {
+        console.warn(`⚠️ 必应翻译失败 (回退到谷歌): ${bingError.message.substring(0, 100)}`);
         try {
-            const res = await bingTranslate(textToTranslate, 'en', 'zh-Hans', false);
-            if (res?.translation) {
-                return res.translation;
-            }
-            throw new Error("Bing returned empty translation"); 
-            
-        } catch (bingError) {
-            console.warn(`[尝试 ${attempt}/${maxRetries}] ⚠️ 必应翻译失败: ${bingError.message.substring(0, 80)}`);
-            if (attempt < maxRetries) {
-                console.log(`...将在 ${delay / 1000} 秒后重试...`);
-                await new Promise(resolve => setTimeout(resolve, delay));
-            } else {
-                console.warn(`...必应翻译重试全部失败，回退到谷歌翻译。`);
-                try {
-                    const res = await googleTranslate(textToTranslate, { from: 'en', to: 'zh-CN' });
-                    return res?.text || textToTranslate;
-                } catch (googleError) {
-                    console.error(`❌ 谷歌翻译也失败了。将返回原始文本。`);
-                    return textToTranslate;
-                }
-            }
+            const res = await googleTranslate(textToTranslate, { from: 'en', to: 'zh-CN' });
+            return res?.text || textToTranslate;
+        } catch (googleError) {
+            console.error(`❌ 谷歌翻译也失败了。将返回原始文本。`);
+            return textToTranslate;
         }
     }
-    return textToTranslate; 
 }
-
 
 // --- 辅助函数：从链接中提取可处理的页面名称 ---
 function getPageNameFromWikiLink(href) {
@@ -146,8 +129,7 @@ function getPageNameFromWikiLink(href) {
     let pathname = decodeURIComponent(url.pathname);
 
     if (pathname.endsWith('/index.php')) {
-        const params = new URLSearchParams(url.search);
-        return params.get('title');
+        return null;
     }
     
     let pageName = pathname.substring(1);
@@ -226,43 +208,32 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
 
     const $ = cheerio.load(htmlContent);
 
-    let rlconf = {};
-    const mwConfigMatch = htmlContent.match(/mw\.config\.set\s*\(\s*(\{[\s\S]*?\})\s*\);/);
-    if (mwConfigMatch && mwConfigMatch[1]) {
-        try {
-            rlconf = JSON.parse(mwConfigMatch[1]);
-        } catch (e) {}
-    }
-
-    if (!rlconf.wgPageName) {
-        const rlconfMatch = htmlContent.match(/RLCONF\s*=\s*(\{.*?\});/);
-        if (rlconfMatch && rlconfMatch[1]) {
-            try {
-                const oldConf = JSON.parse(rlconfMatch[1]);
-                rlconf = { ...rlconf, ...oldConf }; // 合并两个配置
-            } catch (e) {}
-        }
-    }
-
-    if (!rlconf.wgPageName) {
-        console.warn(`[${pageName}] ⚠️ 未能找到页面配置信息，将跳过此页面。`);
-        return { rawHtml: htmlContent }; 
-    }
+    let rlconf = null;
     
-    // 【【【【【【 最终修复：从页面链接中提取 Revision ID 】】】】】】
-    let currentEditInfo = rlconf.wgCurRevisionId || rlconf.wgRevisionId || null;
-    if (!currentEditInfo) {
-        const printFooterLink = $('.printfooter a[href*="oldid="]').first().attr('href');
-        if (printFooterLink) {
-            const urlParams = new URLSearchParams(new URL(printFooterLink, BASE_URL).search);
-            currentEditInfo = urlParams.get('oldid');
-            console.log(`[${pageName}] ✅ 从页面链接中成功提取到 Revision ID: ${currentEditInfo}`);
+    // 【修正】将原有的 /RLCONF\s*=\s*(\{.*?\});/ 替换为下面的表达式
+    // 原因是：原来的 `.` 不匹配换行符，且 `*?` 会在遇到第一个 `}` 时就停止，无法处理嵌套的JSON对象。
+    // 新的 `[\s\S]*?` 可以匹配包括换行符在内的所有字符，从而正确捕获整个 RLCONF 对象。
+    const rlconfMatch = htmlContent.match(/RLCONF\s*=\s*(\{[\s\S]*?\});/);
+    
+    if (rlconfMatch && rlconfMatch[1]) {
+        try {
+            rlconf = JSON.parse(rlconfMatch[1]);
+        } catch (e) {
+            console.error(`[${pageName}] ❌ 解析RLCONF JSON时出错:`, e.message);
+            console.error(`[${pageName}] 捕获到的字符串片段:`, rlconfMatch[1].substring(0, 500)); // 打印出错的字符串片段以供调试
+            rlconf = null;
         }
     }
 
+    if (!rlconf) {
+        console.warn(`[${pageName}] ⚠️ 未能找到或解析RLCONF配置，将跳过此页面。`);
+        return null;
+    }
+
+    // [修改] 简化逻辑：如果页面不存在，只打印日志并跳过，不做任何删除操作
     if (rlconf.wgArticleId === 0) {
         console.log(`[${pageName}] ❌ 页面不存在 (ArticleID: 0)，跳过处理。`);
-        return { rawHtml: htmlContent };
+        return { rawHtml: htmlContent }; // 返回原始HTML以解析链接
     }
 
     if (rlconf.wgRedirectedFrom && rlconf.wgPageName !== rlconf.wgRedirectedFrom) {
@@ -282,6 +253,7 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
     }
     
     const isForced = forceTranslateList.includes(pageName);
+    const currentEditInfo = rlconf.wgCurRevisionId || rlconf.wgRevisionId || null;
 
     if (isForced) {
         console.log(`[${pageName}] 强制翻译模式: 将忽略编辑信息检查并继续处理。`);
@@ -343,23 +315,13 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
     });
     const textNodes = [];
     $contentContainer.find('*:not(script,style)').addBack().contents().each(function() { if (this.type === 'text' && this.data.trim() && !$(this).parent().is('span.hotkey')) { textNodes.push(this); } });
-    
-    const textsToTranslate = textNodes.map(node => replaceTermsDirectly(node.data, fullDictionary, sortedKeys));
-    const translatedTexts = await Promise.all(textsToTranslate.map(text => translateTextWithEnglishCheck(text)));
-    
+    const textPromises = textNodes.map(node => { const preReplaced = replaceTermsDirectly(node.data, fullDictionary, sortedKeys); return translateTextWithEnglishCheck(preReplaced); });
+    const translatedTexts = await Promise.all(textPromises);
     textNodes.forEach((node, index) => { if (translatedTexts[index]) { node.data = translatedTexts[index].trim(); } });
-    
     const elementsWithAttributes = $contentContainer.find('[title], [alt]');
     for (let i = 0; i < elementsWithAttributes.length; i++) {
         const $element = $(elementsWithAttributes[i]);
-        for (const attr of ['title', 'alt']) { 
-            const originalValue = $element.attr(attr); 
-            if (originalValue) { 
-                const preReplaced = replaceTermsDirectly(originalValue, fullDictionary, sortedKeys); 
-                const translatedValue = await translateTextWithEnglishCheck(preReplaced); 
-                $element.attr(attr, translatedValue); 
-            } 
-        }
+        for (const attr of ['title', 'alt']) { const originalValue = $element.attr(attr); if (originalValue) { const preReplaced = replaceTermsDirectly(originalValue, fullDictionary, sortedKeys); const translatedValue = await translateTextWithEnglishCheck(preReplaced); $element.attr(attr, translatedValue); } }
     }
     let finalHtmlContent = $contentContainer.html();
     finalHtmlContent = finalHtmlContent.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3').replace(/rgb\(70, 223, 17\)/g, '#76FF33');
@@ -453,20 +415,18 @@ async function run() {
                         }
                     }
                     
-                    if (processOutput.rawHtml) {
-                        const $ = cheerio.load(processOutput.rawHtml);
-                        const newLinks = findInternalLinks($);
-                        
-                        if (newLinks.length > 0) {
-                            console.log(`[${pageName}] 在页面上发现 ${newLinks.length} 个新链接: [${newLinks.join(', ')}]`);
-                            newLinks.forEach(link => {
-                                if (!processedPages.has(link) && !pagesToProcess.has(link)) {
-                                    pagesToProcess.add(link);
-                                }
-                            });
-                        } else {
-                            console.log(`[${pageName}] 未在该页面上发现可处理的新链接。`);
-                        }
+                    const $ = cheerio.load(processOutput.rawHtml);
+                    const newLinks = findInternalLinks($);
+                    
+                    if (newLinks.length > 0) {
+                        console.log(`[${pageName}] 在页面上发现 ${newLinks.length} 个新链接: [${newLinks.join(', ')}]`);
+                        newLinks.forEach(link => {
+                            if (!processedPages.has(link) && !pagesToProcess.has(link)) {
+                                pagesToProcess.add(link);
+                            }
+                        });
+                    } else {
+                        console.log(`[${pageName}] 未在该页面上发现可处理的新链接。`);
                     }
 
                 } catch (error) {
