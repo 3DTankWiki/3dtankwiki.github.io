@@ -1,7 +1,7 @@
 // 引入必要的库
 const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
-const { translate: googleTranslate } = require('@vitalets/google-translate-api');
+// const { translate: googleTranslate } = require('@vitalets/google-translate-api'); // <-- 已移除
 const { translate: bingTranslate } = require('bing-translate-api');
 const pluralize = require('pluralize');
 const fs = require('fs');
@@ -16,6 +16,8 @@ const IMAGE_DICT_FILE = 'image_replacements.js';
 const OUTPUT_DIR = './output';
 const EDIT_INFO_FILE = path.join(__dirname, 'last_edit_info.json');
 const REDIRECT_MAP_FILE = path.join(__dirname, 'redirect_map.json');
+const BING_TRANSLATE_RETRIES = 3; // 必应翻译重试次数
+const BING_RETRY_DELAY = 1500;    // 每次重试前的延迟（毫秒）
 
 // --- 1. 准备文本翻译词典 (从网络 URL) ---
 async function getPreparedDictionary() {
@@ -91,25 +93,34 @@ function containsEnglish(text) {
     return /[a-zA-Z]/.test(text);
 }
 
-// --- 4. 带英文检测的翻译函数 ---
+// --- 4. 【已修改】带英文检测和重试的翻译函数 ---
 async function translateTextWithEnglishCheck(textToTranslate) {
     if (!textToTranslate || !textToTranslate.trim()) { return ""; }
     if (!containsEnglish(textToTranslate)) { return textToTranslate; }
 
-    try {
-        const res = await bingTranslate(textToTranslate, 'en', 'zh-Hans', false);
-        return res?.translation || textToTranslate;
-    } catch (bingError) {
-        console.warn(`⚠️ 必应翻译失败 (回退到谷歌): ${bingError.message.substring(0, 100)}`);
+    for (let attempt = 1; attempt <= BING_TRANSLATE_RETRIES; attempt++) {
         try {
-            const res = await googleTranslate(textToTranslate, { from: 'en', to: 'zh-CN' });
-            return res?.text || textToTranslate;
-        } catch (googleError) {
-            console.error(`❌ 谷歌翻译也失败了。将返回原始文本。`);
-            return textToTranslate;
+            const res = await bingTranslate(textToTranslate, 'en', 'zh-Hans', false);
+            // 翻译成功，使用可选链和逻辑或确保总能返回一个字符串
+            return res?.translation || textToTranslate;
+        } catch (bingError) {
+            console.warn(`[翻译尝试 ${attempt}/${BING_TRANSLATE_RETRIES}] ⚠️ 必应翻译失败: ${bingError.message.substring(0, 100)}`);
+            
+            if (attempt >= BING_TRANSLATE_RETRIES) {
+                // 这是最后一次尝试，记录最终失败信息
+                console.error(`❌ 必应翻译在 ${BING_TRANSLATE_RETRIES} 次尝试后仍然失败。将返回原始文本。`);
+            } else {
+                // 如果不是最后一次尝试，则等待一段时间后重试
+                console.log(`将在 ${BING_RETRY_DELAY / 1000} 秒后重试...`);
+                await new Promise(resolve => setTimeout(resolve, BING_RETRY_DELAY));
+            }
         }
     }
+
+    // 如果循环结束都没有成功返回，意味着所有尝试都失败了，返回原始文本
+    return textToTranslate;
 }
+
 
 // --- 辅助函数：从链接中提取可处理的页面名称 ---
 function getPageNameFromWikiLink(href) {
