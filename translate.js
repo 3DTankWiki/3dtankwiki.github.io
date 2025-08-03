@@ -15,6 +15,8 @@ const DICTIONARY_URL = 'https://testanki1.github.io/translations.js';
 const IMAGE_DICT_FILE = 'image_replacements.js';
 const OUTPUT_DIR = './output';
 const EDIT_INFO_FILE = path.join(__dirname, 'last_edit_info.json');
+// [新增] 重定向地图文件的路径
+const REDIRECT_MAP_FILE = path.join(__dirname, 'redirect_map.json');
 
 // --- 1. 准备文本翻译词典 (从网络 URL) ---
 async function getPreparedDictionary() {
@@ -65,7 +67,8 @@ function getPreparedImageDictionary() {
              console.log(`本地图片词典加载成功。共 ${imageMap.size} 条替换规则。`);
         }
         return imageMap;
-    } catch (error) {
+    } catch (error)
+    {
         console.error(`❌ 加载或解析本地图片词典文件 ${IMAGE_DICT_FILE} 时出错。`, error.message);
         return new Map();
     }
@@ -89,20 +92,18 @@ function containsEnglish(text) {
     return /[a-zA-Z]/.test(text);
 }
 
-// --- 4. 带英文检测的翻译函数 (已修复) ---
+// --- 4. 带英文检测的翻译函数 ---
 async function translateTextWithEnglishCheck(textToTranslate) {
     if (!textToTranslate || !textToTranslate.trim()) { return ""; }
     if (!containsEnglish(textToTranslate)) { return textToTranslate; }
 
     try {
         const res = await bingTranslate(textToTranslate, 'en', 'zh-Hans', false);
-        // 【已修复】使用可选链和逻辑或操作符，确保即使API返回不规范，也总能得到一个字符串
         return res?.translation || textToTranslate;
     } catch (bingError) {
         console.warn(`⚠️ 必应翻译失败 (回退到谷歌): ${bingError.message.substring(0, 100)}`);
         try {
             const res = await googleTranslate(textToTranslate, { from: 'en', to: 'zh-CN' });
-            // 【已修复】同样为谷歌翻译API的返回值添加保障
             return res?.text || textToTranslate;
         } catch (googleError) {
             console.error(`❌ 谷歌翻译也失败了。将返回原始文本。`);
@@ -110,7 +111,6 @@ async function translateTextWithEnglishCheck(textToTranslate) {
         }
     }
 }
-
 
 // --- 辅助函数：从链接中提取可处理的页面名称 ---
 function getPageNameFromWikiLink(href) {
@@ -160,8 +160,27 @@ function findInternalLinks($) {
     return Array.from(links);
 }
 
+// --- 创建一个简单的HTML重定向页面 ---
+function createRedirectHtml(targetPageName) {
+    const targetUrl = `./${targetPageName}.html`;
+    return `<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>正在重定向...</title>
+    <meta http-equiv="refresh" content="0; url=${targetUrl}">
+    <link rel="canonical" href="${targetUrl}">
+    <script>window.location.replace("${targetUrl}");</script>
+</head>
+<body>
+    <p>如果您的浏览器没有自动跳转，请 <a href="${targetUrl}">点击这里</a>。</p>
+</body>
+</html>`;
+}
+
 // --- 5. 翻译单个页面的核心函数 ---
-async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplacementMap, lastEditInfoState, forceTranslateList = []) {
+// [修改] 函数签名增加了 existingRedirectMap 参数
+async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplacementMap, lastEditInfoState, existingRedirectMap, forceTranslateList = []) {
     let pageName = '';
     try {
         pageName = getPageNameFromWikiLink(sourceUrl) || path.basename(new URL(sourceUrl).pathname);
@@ -192,6 +211,54 @@ async function processPage(sourceUrl, fullDictionary, sortedKeys, imageReplaceme
 
     const $ = cheerio.load(htmlContent);
 
+    let redirectInfo = null;
+    $('script').each(function() {
+        const scriptContent = $(this).html();
+        if (scriptContent && scriptContent.includes('RLCONF')) {
+            try {
+                const match = scriptContent.match(/RLCONF\s*=\s*(\{.*?\});/);
+                if (match && match[1]) {
+                    const rlconf = JSON.parse(match[1]);
+                    if (rlconf.wgRedirectedFrom && rlconf.wgPageName !== rlconf.wgRedirectedFrom) {
+                        redirectInfo = {
+                            sourcePage: pageName,
+                            targetPage: rlconf.wgPageName
+                        };
+                        return false; 
+                    }
+                }
+            } catch (e) { /* 忽略解析错误 */ }
+        }
+    });
+
+    if (redirectInfo) {
+        const { sourcePage, targetPage } = redirectInfo;
+        
+        // [修改] 检查已知的重定向关系
+        if (existingRedirectMap[sourcePage] === targetPage) {
+            console.log(`[${sourcePage}] 重定向关系 (${targetPage}) 已存在且最新，跳过文件写入。`);
+            return {
+                isRedirect: true,
+                redirectTarget: targetPage,
+                rawHtml: htmlContent,
+                newRedirectInfo: null // 返回 null 表示没有新的信息需要保存
+            };
+        } else {
+            console.log(`[${sourcePage}] ➡️  发现新的或已更新的重定向: [${targetPage}]`);
+            const redirectHtml = createRedirectHtml(targetPage);
+            fs.writeFileSync(OUTPUT_FILE, redirectHtml, 'utf-8');
+            console.log(`✅ [${sourcePage}] 已创建或更新重定向文件: ${OUTPUT_FILE}`);
+            
+            return { 
+                isRedirect: true, 
+                redirectTarget: targetPage,
+                rawHtml: htmlContent,
+                newRedirectInfo: { source: sourcePage, target: targetPage } // 返回新的关系，以便主程序更新
+            };
+        }
+    }
+    
+    // --- 以下为非重定向页面的处理逻辑，保持不变 ---
     const isForced = forceTranslateList.includes(pageName);
     const $smallTag = $('small'); 
     const currentEditInfo = $smallTag.length > 0 ? $smallTag.text().trim() : null;
@@ -294,12 +361,24 @@ async function run() {
             try { lastEditInfo = JSON.parse(fs.readFileSync(EDIT_INFO_FILE, 'utf-8')); console.log(`已成功加载上次的编辑信息记录。`); } catch (e) { console.error(`❌ 读取或解析 ${EDIT_INFO_FILE} 时出错，将作为首次运行处理。`); }
         }
 
+        // [修改] 加载重定向地图
+        let redirectMap = {};
+        if (fs.existsSync(REDIRECT_MAP_FILE)) {
+            try {
+                redirectMap = JSON.parse(fs.readFileSync(REDIRECT_MAP_FILE, 'utf-8'));
+                console.log(`已成功加载重定向地图。`);
+            } catch (e) {
+                console.error(`❌ 读取或解析 ${REDIRECT_MAP_FILE} 时出错，将作为首次运行处理。`);
+            }
+        }
+
         if (!fs.existsSync(OUTPUT_DIR)) { fs.mkdirSync(OUTPUT_DIR, { recursive: true }); }
 
         const pagesToProcess = new Set([START_PAGE]);
         const processedPages = new Set();
         const newEditInfo = { ...lastEditInfo };
         let hasUpdates = false;
+        let hasRedirectsChanged = false; // [新增] 跟踪重定向地图是否变化
 
         console.log(`\n==================================================`);
         console.log(`爬虫启动，起始页面: ${START_PAGE}`);
@@ -319,10 +398,26 @@ async function run() {
                 const fullUrl = `${BASE_URL}/${encodeURIComponent(pageName)}`;
                 
                 try {
-                    const processOutput = await processPage(fullUrl, fullDictionary, sortedKeys, imageReplacementMap, lastEditInfo);
+                    // [修改] 将 redirectMap 传入 processPage
+                    const processOutput = await processPage(fullUrl, fullDictionary, sortedKeys, imageReplacementMap, lastEditInfo, redirectMap);
                     if (!processOutput) { return; }
 
-                    if (processOutput.translationResult) {
+                    // [修改] 更精细地处理返回结果
+                    if (processOutput.newRedirectInfo) {
+                        const { source, target } = processOutput.newRedirectInfo;
+                        if (redirectMap[source] !== target) {
+                            redirectMap[source] = target;
+                            hasRedirectsChanged = true;
+                        }
+                    }
+
+                    if (processOutput.isRedirect) {
+                        const targetPage = processOutput.redirectTarget;
+                        if (targetPage && !processedPages.has(targetPage) && !pagesToProcess.has(targetPage)) {
+                            pagesToProcess.add(targetPage);
+                            console.log(`[${pageName}] 已将重定向目标 [${targetPage}] 添加到处理队列。`);
+                        }
+                    } else if (processOutput.translationResult) {
                         const { pageName: pName, newEditInfo: editInfo } = processOutput.translationResult;
                         if (pName && editInfo && newEditInfo[pName] !== editInfo) {
                             newEditInfo[pName] = editInfo;
@@ -362,6 +457,14 @@ async function run() {
             console.log(`\n✅ 最后编辑信息已更新到 ${EDIT_INFO_FILE}`);
         } else {
             console.log("\n所有已处理页面的最后编辑信息均无变化。");
+        }
+
+        // [新增] 保存更新后的重定向地图
+        if (hasRedirectsChanged) {
+            fs.writeFileSync(REDIRECT_MAP_FILE, JSON.stringify(redirectMap, null, 2), 'utf-8');
+            console.log(`\n✅ 重定向地图已更新到 ${REDIRECT_MAP_FILE}`);
+        } else {
+            console.log("\n重定向地图无变化。");
         }
 
         console.log("\n--- 所有可达页面处理完毕，任务结束 ---");
