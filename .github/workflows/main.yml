@@ -1,84 +1,68 @@
-# .github/workflows/main.yml
 name: 翻译并部署维基页面
 
 on:
-  schedule:
-    - cron: '0 4 * * *' # 每天北京时间中午12点运行
-  workflow_dispatch:
+schedule:
+- cron: '0 4 * * *' # 每天北京时间中午12点运行
+workflow_dispatch:
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
+build-and-deploy:
+runs-on: ubuntu-latest
+permissions:
+contents: write
 
-    steps:
-      - name: 检出仓库代码 (主分支)
-        uses: actions/checkout@v4
+Generated code
+steps:
+  - name: 检出仓库代码
+    uses: actions/checkout@v4
 
-      - name: 设置 Node.js 环境
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
+  - name: 设置 Node.js 环境
+    uses: actions/setup-node@v4
+    with:
+      node-version: '20'
 
-      - name: 安装系统依赖
-        run: |
-          sudo apt-get update
-          sudo apt-get install -yq \
-            ca-certificates fonts-liberation libasound2t64 libatk-bridge2.0-0 libatk1.0-0 \
-            libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 \
-            libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 \
-            libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 \
-            libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 \
-            libxi6 libxrandr2 libxrender1 libxss1 libxtst6 lsb-release wget xdg-utils \
-            rsync
+  - name: 安装系统依赖
+    run: |
+      sudo apt-get update
+      sudo apt-get install -yq \
+        ca-certificates fonts-liberation libasound2t64 libatk-bridge2.0-0 libatk1.0-0 \
+        libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 \
+        libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 \
+        libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 \
+        libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 \
+        libxi6 libxrandr2 libxrender1 libxss1 libxtst6 lsb-release wget xdg-utils
 
-      - name: 安装 Node.js 依赖 (使用 Yarn)
-        env:
-          PUPPETEER_SKIP_DOWNLOAD: 'true'
-        run: yarn install --frozen-lockfile
+  - name: 安装 Node.js 依赖 (使用 Yarn)
+    env:
+      PUPPETEER_SKIP_DOWNLOAD: 'true'
+    run: yarn install
 
-      - name: 单独下载 Chromium 浏览器
-        run: npx puppeteer browsers install chrome
+  - name: 单独下载 Chromium 浏览器
+    run: npx puppeteer browsers install chrome
 
-      - name: 运行翻译脚本
-        run: |
-          echo "当前工作目录下的文件列表:"
-          ls -l
-          # 确保此文件名与您仓库中的JS文件名完全一致
-          node translate.js
+  - name: 运行翻译脚本
+    run: node translate.js
 
-      - name: 提交更新后的状态文件
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "ci: 更新页面状态记录"
-          file_pattern: |
-            last_edit_info.json
-            redirect_map.json
-          commit_user_name: github-actions[bot]
-          commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
-          commit_options: '--no-verify'
-      
-      # --- 增量更新部署逻辑 ---
+  # --- 【新增步骤】 ---
+  # 这个步骤会检查 last_edit_info.json 文件是否有变动
+  # 如果有，就自动将其提交回你的仓库主分支
+  - name: 提交更新后的编辑信息记录
+    uses: stefanzweifel/git-auto-commit-action@v5
+    with:
+      # 提交信息
+      commit_message: "ci: 更新页面最后编辑信息记录"
+      # 指定要提交的文件模式，这里我们只关心这一个文件
+      file_pattern: last_edit_info.json
+      # 提交者信息
+      commit_user_name: github-actions[bot]
+      commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
+      # 如果仓库中有受保护分支的规则，可能需要这个
+      commit_options: '--no-verify'
 
-      - name: 检出 gh-pages 分支到单独目录
-        uses: actions/checkout@v4
-        with:
-          ref: gh-pages
-          path: gh-pages-dir
-
-      - name: 将新构建的文件增量更新到部署目录
-        run: |
-          # 使用 rsync 将 output 目录的内容合并到 gh-pages-dir
-          # -a: 归档模式
-          # -v: 显示详细过程
-          # 注意：这里没有 --delete 选项，所以它只会添加和更新文件
-          rsync -av ./output/ ./gh-pages-dir/
-
-      - name: 部署到 GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./gh-pages-dir
-          # 保持 true，因为我们已经手动完成了所有文件操作
-          keep_files: true
+  - name: 部署到 GitHub Pages
+    uses: peaceiris/actions-gh-pages@v4
+    with:
+      github_token: ${{ secrets.GITHUB_TOKEN }}
+      publish_dir: ./output
+      # 这个设置保持不变，它只影响 gh-pages 分支
+      keep_files: true
