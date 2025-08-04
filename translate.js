@@ -431,6 +431,10 @@ async function run() {
         console.log(`--- [进度] 已处理 ${visitedPages.size} / ${pagesToVisit.length} 个页面 ---`);
     }
 
+    // --- [新增的关键日志] ---
+    console.log('即将写入 redirect_map.json，当前内存中的内容为:');
+    console.log(JSON.stringify(redirectMap, null, 2));
+
     try {
         fs.writeFileSync(EDIT_INFO_FILE, JSON.stringify(lastEditInfo, null, 2), 'utf-8');
         console.log(`✅ 成功将最新的编辑信息保存到 ${EDIT_INFO_FILE}`);
