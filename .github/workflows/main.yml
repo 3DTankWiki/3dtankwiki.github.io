@@ -80,8 +80,6 @@ jobs:
           commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
           commit_options: '--no-verify'
       
-      # --- 增量更新部署逻辑 ---
-
       - name: 检出 gh-pages 分支到单独目录
         uses: actions/checkout@v4
         with:
@@ -89,9 +87,9 @@ jobs:
           path: gh-pages-dir
 
       - name: 将新构建的文件增量更新到部署目录
+        # 根据你的要求，已移除 --delete 参数
         run: |
-          # 使用 rsync 进行增量同步。--delete 参数会删除目标目录中源目录没有的文件，保持完全同步。
-          rsync -av --delete ./output/ ./gh-pages-dir/
+          rsync -av ./output/ ./gh-pages-dir/
 
       - name: 部署到 GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
