@@ -21,8 +21,7 @@ const BING_RETRY_DELAY = 1500;
 
 
 /**
- * [最终修正版 v6] 解析 Atom Feed, 对比本地版本，获取需要更新的页面列表
- * 修正了因 XML 实体 & 导致无法解析 URL 参数的致命错误。
+ * [最终诊断版] 解析 Atom Feed, 并打印提取到的核心 XML 数据以供分析。
  * @param {object} lastEditInfo - 本地存储的版本信息
  * @returns {Promise<string[]>} - 需要更新的页面名称列表
  */
@@ -46,10 +45,20 @@ async function getPagesForUpdateMode(lastEditInfo) {
             console.log('[更新模式] 检测到浏览器渲染的XML视图，正在提取原始XML数据...');
             feedXml = xmlContainer.html();
         } else {
-            console.log('[更新模式] 未检测到浏览器视图，假定内容为原始XML Feed。');
+            console.log('[更新模式] 未检测到浏览器视图，正在尝试直接解析响应体...');
             const $body = $html('body');
-            feedXml = ($body.find('feed').length > 0 || $body.find('entry').length > 0) ? $body.html() : responseText;
+            if ($body.find('feed').length > 0 || $body.find('entry').length > 0) {
+                 feedXml = $body.html();
+            } else {
+                feedXml = responseText;
+            }
         }
+        
+        // --- [核心诊断代码] ---
+        console.log('--- [调试信息] 准备交给 Cheerio 解析的 XML 内容片段 ---');
+        console.log(feedXml ? feedXml.substring(0, 2000) : 'feedXml 为空或未定义！');
+        console.log('----------------------------------------------------');
+        // --- [核心诊断代码结束] ---
         
         feedXml = feedXml.replace(/xmlns="[^"]*"/g, '');
 
@@ -57,7 +66,7 @@ async function getPagesForUpdateMode(lastEditInfo) {
         const entries = $('entry');
 
         if (entries.length === 0) {
-            console.error('❌ [更新模式] 错误: 已加载并清理Feed，但仍然未能从中解析出任何<entry>元素。');
+            console.error('❌ [更新模式] 错误: Cheerio 未能从提供的 XML 中解析出任何<entry>元素。');
             return [];
         }
 
@@ -76,11 +85,7 @@ async function getPagesForUpdateMode(lastEditInfo) {
 
             if (title && alternateLink) {
                 try {
-                    // --- [核心修正] ---
-                    // 在解析URL之前，将 & 替换回 &
                     const correctedLink = alternateLink.replace(/&/g, '&');
-                    // --- [核心修正结束] ---
-                    
                     const url = new URL(correctedLink);
                     const newRevisionId = parseInt(url.searchParams.get('diff'), 10);
                     
@@ -139,6 +144,7 @@ async function getPagesForUpdateMode(lastEditInfo) {
         }
     }
 }
+
 
 async function getPreparedDictionary() { console.log(`正在从 URL 获取文本词典: ${DICTIONARY_URL}`); let originalDict; try { const response = await fetch(DICTIONARY_URL); if (!response.ok) { throw new Error(`网络请求失败: ${response.status}`); } const scriptContent = await response.text(); originalDict = new Function(`${scriptContent}; return replacementDict;`)(); console.log("在线文本词典加载成功。原始大小:", Object.keys(originalDict).length); } catch (error) { console.error("加载或解析在线文本词典时出错。将使用空词典。", error.message); return { fullDictionary: new Map(), sortedKeys: [] }; } const tempDict = { ...originalDict }; for (const key in originalDict) { if (Object.hasOwnProperty.call(originalDict, key)) { const pluralKey = pluralize(key); if (pluralKey !== key && !tempDict.hasOwnProperty(pluralKey)) { tempDict[pluralKey] = originalDict[key]; } } } const fullDictionary = new Map(Object.entries(tempDict)); const sortedKeys = Object.keys(tempDict).sort((a, b) => b.length - a.length); console.log(`文本词典准备完毕。总词条数 (含复数): ${fullDictionary.size}，已按长度排序。`); return { fullDictionary, sortedKeys }; }
 function getPreparedImageDictionary() { const filePath = path.resolve(__dirname, IMAGE_DICT_FILE); console.log(`正在从本地文件加载图片词典: ${filePath}`); if (!fs.existsSync(filePath)) { console.warn(`⚠️ 图片词典文件未找到: ${IMAGE_DICT_FILE}。将不进行图片替换。`); return new Map(); } try { const scriptContent = fs.readFileSync(filePath, 'utf-8'); const imageDict = new Function(`${scriptContent}; return imageReplacementDict;`)(); const imageMap = new Map(Object.entries(imageDict || {})); if (imageMap.size > 0) { console.log(`本地图片词典加载成功。共 ${imageMap.size} 条替换规则。`); } return imageMap; } catch (error) { console.error(`❌ 加载或解析本地图片词典文件 ${IMAGE_DICT_FILE} 时出错。`, error.message); return new Map(); } }
