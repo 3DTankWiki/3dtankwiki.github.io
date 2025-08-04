@@ -21,8 +21,8 @@ const BING_RETRY_DELAY = 1500;
 
 
 /**
- * [最终修正版] 解析 Atom Feed, 对比本地版本，获取需要更新的页面列表
- * 使用 Puppeteer 访问 Feed URL 以绕过机器人检测，并正确处理 XML 命名空间。
+ * [最终修正版 v2] 解析 Atom Feed, 对比本地版本，获取需要更新的页面列表
+ * 使用 Puppeteer 访问 Feed 以绕过机器人检测，并通过 .html() 正确提取被包裹的 XML 数据结构。
  * @param {object} lastEditInfo - 本地存储的版本信息
  * @returns {Promise<string[]>} - 需要更新的页面名称列表
  */
@@ -31,37 +31,30 @@ async function getPagesForUpdateMode(lastEditInfo) {
     
     let browser;
     try {
-        // --- [核心修正 1: 使用 Puppeteer 获取 Feed] ---
         console.log('[更新模式] 正在启动浏览器以获取 Feed 内容...');
         browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
         const page = await browser.newPage();
-        await page.goto(RECENT_CHANGES_FEED_URL, { waitUntil: 'networkidle2', timeout: 60000 }); // 等待网络空闲
+        await page.goto(RECENT_CHANGES_FEED_URL, { waitUntil: 'networkidle2', timeout: 60000 });
         let responseText = await page.content();
         console.log('[更新模式] 已成功通过浏览器获取 Feed 页面内容。');
-        // --- [核心修正 1 结束] ---
 
-        // 之前的逻辑保持不变，用于处理可能返回的浏览器渲染视图
         const $html = cheerio.load(responseText);
         const xmlContainer = $html('#webkit-xml-viewer-source-xml');
         let feedXml;
 
         if (xmlContainer.length > 0) {
             console.log('[更新模式] 检测到浏览器渲染的XML视图，正在提取原始XML数据...');
-            feedXml = xmlContainer.text();
+            // --- [核心修正] ---
+            // 使用 .html() 而不是 .text() 来获取包含标签的完整内部结构
+            feedXml = xmlContainer.html();
+            // --- [核心修正结束] ---
         } else {
             console.log('[更新模式] 未检测到浏览器视图，假定内容为原始XML Feed。');
-            // 如果不是浏览器渲染的视图，内容可能依然包含<html><body>等标签，需要提取纯文本
             const $body = $html('body');
-            if ($body.length > 0) {
-                feedXml = $body.text();
-            } else {
-                feedXml = responseText;
-            }
+            feedXml = $body.length > 0 ? $body.text() : responseText;
         }
         
-        // --- [核心修正 2: 移除 XML 命名空间] ---
         feedXml = feedXml.replace(/xmlns="[^"]*"/g, '');
-        // --- [核心修正 2 结束] ---
 
         const $ = cheerio.load(feedXml, { xmlMode: true, decodeEntities: false });
 
