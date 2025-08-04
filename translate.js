@@ -21,8 +21,8 @@ const BING_RETRY_DELAY = 1500;
 
 
 /**
- * [最终修正版 v3] 解析 Atom Feed, 对比本地版本，获取需要更新的页面列表
- * 使用 Puppeteer 访问 Feed 以绕过机器人检测，并通过 .html() 正确提取被包裹的 XML 数据结构。
+ * [最终修正版 v5] 解析 Atom Feed, 对比本地版本，获取需要更新的页面列表
+ * 提供对 Feed 中每一个条目的详细处理日志（跳过、待更新、已是最新）。
  * @param {object} lastEditInfo - 本地存储的版本信息
  * @returns {Promise<string[]>} - 需要更新的页面名称列表
  */
@@ -44,96 +44,83 @@ async function getPagesForUpdateMode(lastEditInfo) {
 
         if (xmlContainer.length > 0) {
             console.log('[更新模式] 检测到浏览器渲染的XML视图，正在提取原始XML数据...');
-            // --- [核心修正] ---
-            // 使用 .html() 而不是 .text() 来获取包含标签的完整内部结构
             feedXml = xmlContainer.html();
-            // --- [核心修正结束] ---
         } else {
             console.log('[更新模式] 未检测到浏览器视图，假定内容为原始XML Feed。');
             const $body = $html('body');
-            // 如果页面有body，可能XML就在里面，没有多余的包装器
-            if ($body.find('feed').length > 0 || $body.find('entry').length > 0) {
-                 feedXml = $body.html();
-            } else {
-                feedXml = responseText;
-            }
+            feedXml = ($body.find('feed').length > 0 || $body.find('entry').length > 0) ? $body.html() : responseText;
         }
         
         feedXml = feedXml.replace(/xmlns="[^"]*"/g, '');
 
         const $ = cheerio.load(feedXml, { xmlMode: true, decodeEntities: false });
+        const entries = $('entry');
 
-        if ($('entry').length === 0) {
+        if (entries.length === 0) {
             console.error('❌ [更新模式] 错误: 已加载并清理Feed，但仍然未能从中解析出任何<entry>元素。');
-            console.log('--- [调试信息] 清理后的 Feed 内容片段 ---');
-            console.log(feedXml.substring(0, 1500));
-            console.log('-----------------------------------------');
             return [];
         }
 
-        const latestUpdates = new Map();
-        console.log('--- [更新模式] 开始分析Feed中的每一个条目 ---');
+        const pagesToUpdate = new Map(); // 使用 Map 来确保每个页面只添加一次，且保留最新的版本号
+        const processedTitles = new Set(); // 用于避免重复打印“已是最新”
+        console.log(`--- [更新模式] 开始分析Feed中的 ${entries.length} 个条目 ---`);
         
-        $('entry').each((i, entry) => {
+        entries.each((i, entry) => {
             const $entry = $(entry);
             const title = $entry.find('title').first().text();
             let alternateLink = null;
-            // 使用更稳健的方式查找alternate link
             $entry.find('link').each(function() {
                 if ($(this).attr('rel') === 'alternate') {
                     alternateLink = $(this).attr('href');
-                    return false; // 找到后跳出循环
+                    return false;
                 }
             });
 
-            // --- [核心修正：添加详细日志] ---
             const blockedPrefixes = ['Special:', 'User:', 'MediaWiki:', 'Help:', 'Category:', 'File:', 'Template:'];
-            if (!title || blockedPrefixes.some(p => title.startsWith(p))) {
-                console.log(`  - 已跳过: '${title}' (原因: 命名空间被过滤)`);
-                return; // 跳过这些页面
-            }
-            // --- [核心修正结束] ---
+            if (!title || !alternateLink) return;
 
-            if (alternateLink) {
-                try {
-                    const url = new URL(alternateLink);
-                    const diff = parseInt(url.searchParams.get('diff'), 10);
-                    // 仅当该页面尚未记录，或当前diff版本更高时才记录
-                    if (diff && (!latestUpdates.has(title) || diff > latestUpdates.get(title))) {
-                        latestUpdates.set(title, diff);
-                    }
-                } catch (e) {
-                    console.warn(`  - 解析链接时出错: ${alternateLink}`, e.message);
+            if (blockedPrefixes.some(p => title.startsWith(p))) {
+                 if (!processedTitles.has(title)) {
+                    console.log(`  - [已跳过] '${title}' (原因: 命名空间被过滤)`);
+                    processedTitles.add(title);
                 }
+                return;
+            }
+
+            try {
+                const url = new URL(alternateLink);
+                const newRevisionId = parseInt(url.searchParams.get('diff'), 10);
+                if (!newRevisionId) return;
+
+                const currentRevisionId = lastEditInfo[title] || 0;
+                
+                if (newRevisionId > currentRevisionId) {
+                     if (!pagesToUpdate.has(title) || newRevisionId > pagesToUpdate.get(title)) {
+                        console.log(`  - [待更新] '${title}' (新版本: ${newRevisionId}, 本地版本: ${currentRevisionId})`);
+                        pagesToUpdate.set(title, newRevisionId);
+                     }
+                } else {
+                    if (!processedTitles.has(title)) {
+                         console.log(`  - [已是最新] '${title}' (版本: ${currentRevisionId})`);
+                         processedTitles.add(title);
+                    }
+                }
+            } catch (e) {
+                console.warn(`  - [解析错误] 无法处理链接: ${alternateLink}`, e.message);
             }
         });
         
-        console.log(`--- [更新模式] Feed分析完成，共找到 ${latestUpdates.size} 个有效页面的最新编辑 ---`);
+        console.log(`--- [更新模式] Feed分析完成 ---`);
         
-        if (latestUpdates.size === 0) {
-            console.log('[更新模式] 所有找到的条目都被过滤规则排除了。');
-            return [];
-        }
+        const finalPageList = Array.from(pagesToUpdate.keys());
 
-        console.log('--- [更新模式] 开始进行版本比较 ---');
-        const pagesToUpdate = [];
-        for (const [pageName, newRevisionId] of latestUpdates.entries()) {
-            const currentRevisionId = lastEditInfo[pageName] || 0;
-            if (newRevisionId > currentRevisionId) {
-                console.log(`  - 待更新: '${pageName}' (新版本: ${newRevisionId}, 本地版本: ${currentRevisionId})`);
-                pagesToUpdate.push(pageName);
-            } else {
-                console.log(`  - 已是最新: '${pageName}' (版本: ${currentRevisionId})`);
-            }
-        }
-        
-        if (pagesToUpdate.length > 0) {
-             console.log(`--- [更新模式] 版本比较完成，最终确定 ${pagesToUpdate.length} 个页面需要更新 ---`);
+        if (finalPageList.length > 0) {
+             console.log(`[更新模式] 最终确定 ${finalPageList.length} 个页面需要更新: ${finalPageList.join(', ')}`);
         } else {
-            console.log('--- [更新模式] 版本比较完成，所有有效页面都已是最新版本 ---');
+            console.log('[更新模式] 所有页面都已是最新版本或被过滤，无需更新。');
         }
 
-        return pagesToUpdate;
+        return finalPageList;
 
     } catch (error) {
         console.error('❌ [更新模式] 处理 Feed 时出错:', error.message);
