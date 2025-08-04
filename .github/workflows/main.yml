@@ -48,6 +48,20 @@ jobs:
           # 确保此文件名与您仓库中的JS文件名完全一致
           node translate.js
 
+      # --- [新增的调试步骤] ---
+      - name: 调试 - 检查文件和 Git 状态
+        run: |
+          echo "--- 当前目录文件列表 ---"
+          ls -laF
+          echo "---"
+          echo "--- redirect_map.json 内容 ---"
+          # 使用 cat，如果文件不存在或为空，我们会得到提示
+          cat redirect_map.json || echo "redirect_map.json 不存在或无法读取"
+          echo "---"
+          echo "--- Git 状态 ---"
+          git status
+          echo "---"
+
       - name: 提交更新后的状态文件
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
