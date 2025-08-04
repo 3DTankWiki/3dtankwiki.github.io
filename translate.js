@@ -21,7 +21,7 @@ const BING_RETRY_DELAY = 1500;
 
 
 /**
- * [最终诊断版] 解析 Atom Feed, 并打印提取到的核心 XML 数据以供分析。
+ * [最终诊断版 v7] 解析 Atom Feed, 打印每一步的提取结果以进行最终调试。
  * @param {object} lastEditInfo - 本地存储的版本信息
  * @returns {Promise<string[]>} - 需要更新的页面名称列表
  */
@@ -39,26 +39,7 @@ async function getPagesForUpdateMode(lastEditInfo) {
 
         const $html = cheerio.load(responseText);
         const xmlContainer = $html('#webkit-xml-viewer-source-xml');
-        let feedXml;
-
-        if (xmlContainer.length > 0) {
-            console.log('[更新模式] 检测到浏览器渲染的XML视图，正在提取原始XML数据...');
-            feedXml = xmlContainer.html();
-        } else {
-            console.log('[更新模式] 未检测到浏览器视图，正在尝试直接解析响应体...');
-            const $body = $html('body');
-            if ($body.find('feed').length > 0 || $body.find('entry').length > 0) {
-                 feedXml = $body.html();
-            } else {
-                feedXml = responseText;
-            }
-        }
-        
-        // --- [核心诊断代码] ---
-        console.log('--- [调试信息] 准备交给 Cheerio 解析的 XML 内容片段 ---');
-        console.log(feedXml ? feedXml.substring(0, 2000) : 'feedXml 为空或未定义！');
-        console.log('----------------------------------------------------');
-        // --- [核心诊断代码结束] ---
+        let feedXml = xmlContainer.length ? xmlContainer.html() : responseText;
         
         feedXml = feedXml.replace(/xmlns="[^"]*"/g, '');
 
@@ -71,10 +52,12 @@ async function getPagesForUpdateMode(lastEditInfo) {
         }
 
         const pagesToConsider = new Map();
+        console.log(`--- [更新模式] 开始逐一诊断 Feed 中的 ${entries.length} 个条目 ---`);
         
         entries.each((i, entry) => {
             const $entry = $(entry);
             const title = $entry.find('title').first().text();
+            
             let alternateLink = null;
             $entry.find('link').each(function() {
                 if ($(this).attr('rel') === 'alternate') {
@@ -83,28 +66,47 @@ async function getPagesForUpdateMode(lastEditInfo) {
                 }
             });
 
-            if (title && alternateLink) {
-                try {
-                    const correctedLink = alternateLink.replace(/&/g, '&');
-                    const url = new URL(correctedLink);
-                    const newRevisionId = parseInt(url.searchParams.get('diff'), 10);
-                    
-                    if (newRevisionId && (!pagesToConsider.has(title) || newRevisionId > pagesToConsider.get(title))) {
-                        pagesToConsider.set(title, newRevisionId);
-                    }
-                } catch (e) { 
-                    console.warn(`[解析警告] 无法处理链接: ${alternateLink}`, e.message);
+            console.log(`\n[条目 #${i + 1}]`);
+            console.log(`  - 原始标题: '${title}'`);
+            console.log(`  - 原始链接: '${alternateLink}'`);
+
+            if (!title || !alternateLink) {
+                console.log("  - 诊断: 缺少标题或链接，已跳过。");
+                return;
+            }
+            
+            try {
+                const correctedLink = alternateLink.replace(/&/g, '&');
+                console.log(`  - 修正后链接: '${correctedLink}'`);
+
+                const url = new URL(correctedLink);
+                const diffParam = url.searchParams.get('diff');
+                console.log(`  - 提取的 'diff' 参数: '${diffParam}'`);
+
+                const newRevisionId = parseInt(diffParam, 10);
+                console.log(`  - 解析后的版本号 (newRevisionId): ${newRevisionId}`);
+                
+                if (newRevisionId && (!pagesToConsider.has(title) || newRevisionId > pagesToConsider.get(title))) {
+                    console.log(`  - 诊断: 有效的新版本号，已记录。`);
+                    pagesToConsider.set(title, newRevisionId);
+                } else if (!newRevisionId) {
+                    console.log(`  - 诊断: 无效的版本号，已跳过。`);
+                } else {
+                    console.log(`  - 诊断: 版本号不是最新的，已忽略。`);
                 }
+            } catch (e) { 
+                console.warn(`  - 诊断: 处理链接时发生错误，已跳过。错误信息: ${e.message}`);
             }
         });
 
         if (pagesToConsider.size === 0) {
-            console.log('[更新模式] Feed 中没有找到任何有效的页面更新条目。');
+            console.log('\n--- [更新模式] 分析完成 ---');
+            console.log('[更新模式] 经过诊断，没有收集到任何有效的页面更新。请检查上面的诊断日志。');
             return [];
         }
-
+        
         const pagesToUpdate = [];
-        console.log(`--- [更新模式] 开始分析 ${pagesToConsider.size} 个独立页面的最新版本 ---`);
+        console.log(`\n--- [更新模式] 开始版本比较，共 ${pagesToConsider.size} 个独立页面 ---`);
         
         for (const [title, newRevisionId] of pagesToConsider.entries()) {
             const blockedPrefixes = ['Special:', 'User:', 'MediaWiki:', 'Help:', 'Category:', 'File:', 'Template:'];
@@ -124,7 +126,7 @@ async function getPagesForUpdateMode(lastEditInfo) {
             }
         }
         
-        console.log(`--- [更新模式] Feed分析完成 ---`);
+        console.log(`--- [更新模式] 版本比较完成 ---`);
 
         if (pagesToUpdate.length > 0) {
              console.log(`[更新模式] 最终确定 ${pagesToUpdate.length} 个页面需要更新: ${pagesToUpdate.join(', ')}`);
