@@ -187,6 +187,7 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageR
     }
 
     if (rlconf.wgRedirectedFrom && rlconf.wgPageName !== rlconf.wgRedirectedFrom) {
+        // 【核心修改】处理重定向时，确保源和目标都使用下划线格式
         const sourcePage = sanitizePageName(rlconf.wgRedirectedFrom);
         const targetPage = sanitizePageName(rlconf.wgPageName);
         console.log(`[${sourcePage}] ➡️  发现重定向: [${targetPage}]`);
@@ -219,114 +220,13 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageR
     const elementsWithAttributes = $contentContainer.find('[title], [alt]'); for (let i = 0; i < elementsWithAttributes.length; i++) { const $element = $(elementsWithAttributes[i]); for (const attr of ['title', 'alt']) { const originalValue = $element.attr(attr); if (originalValue) { const preReplaced = replaceTermsDirectly(originalValue, fullDictionary, sortedKeys); const translatedValue = await translateTextWithEnglishCheck(preReplaced); $element.attr(attr, translatedValue); } } }
     let finalHtmlContent = $contentContainer.html(); finalHtmlContent = finalHtmlContent.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3').replace(/rgb\(70, 223, 17\)/g, '#76FF33');
     let homeButtonHtml = ''; if (pageNameToProcess !== START_PAGE) { homeButtonHtml = `<a href="./${START_PAGE}" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">返回主页</a>`; }
+    const headContent = headElements.filter(el => !el.toLowerCase().startsWith('<title>')).join('\n    '); const bodyClasses = $('body').attr('class') || ''; const finalHtml = `<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>${translatedTitle}</title>${headContent}<style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="${bodyClasses}"><div id="mw-main-container">${homeButtonHtml}<div class="main-content"><div class="mw-body ve-init-mw-desktopArticleTarget-targetContainer" id="content" role="main"><a id="top"></a><div class="mw-body-content" id="bodyContent"><div id="siteNotice"></div><div id="mw-content-text" class="mw-content-ltr mw-parser-output" lang="zh-CN" dir="ltr">${finalHtmlContent}</div></div></div></div></div>${bodyEndScripts.join('\n    ')}</body></html>`;
     
-    // 【新增下拉菜单功能】 1. 定义下拉菜单所需的CSS
-    const dropdownCss = `
-        .dropdown_button_wrapper { 
-            position: relative; 
-            cursor: pointer; 
-        }
-        .dropdown_menu {
-            display: none;
-            position: absolute;
-            left: 0;
-            top: 100%; /* 定位在按钮正下方 */
-            background-color: #002a40; /* 深色主题背景 */
-            border: 1px solid #335b70;
-            border-radius: 5px;
-            padding: 10px;
-            z-index: 1000;
-            min-width: 220px; /* 保证足够宽度 */
-            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
-            margin-top: 5px; /* 与按钮留出一点间隙 */
-        }
-        /* 当菜单被激活时显示 */
-        .dropdown_menu.active {
-            display: block;
-        }
-        /* 菜单内部列表样式重置 */
-        .dropdown_menu ul { 
-            list-style: none !important; 
-            padding: 0 !important; 
-            margin: 0 !important; 
-        }
-        .dropdown_menu ul li { 
-            padding: 4px 2px !important;
-            display: flex;
-            align-items: center;
-        }
-        .dropdown_menu ul li a {
-            color: #bfe6ff; /* 亮色文字，保证可读性 */
-            text-decoration: none;
-        }
-         .dropdown_menu ul li a:hover {
-            text-decoration: underline;
-        }
-    `;
-
-    // 【新增下拉菜单功能】 2. 定义下拉菜单所需的JavaScript
-    const dropdownScript = `
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // 当点击页面任何地方时
-        document.body.addEventListener('click', function(e) {
-            // 找到所有当前已打开的菜单
-            document.querySelectorAll('.dropdown_menu.active').forEach(function(menu) {
-                // 如果点击的目标不在该菜单的父级容器(.dropdown_link)内，就关闭这个菜单
-                if (!menu.closest('.dropdown_link').contains(e.target)) {
-                    menu.classList.remove('active');
-                }
-            });
-        });
-
-        // 遍历所有下拉菜单的触发器
-        document.querySelectorAll('.dropdown_button_wrapper').forEach(function(wrapper) {
-            wrapper.addEventListener('click', function(e) {
-                e.preventDefault(); // 阻止a标签的默认跳转行为
-                e.stopPropagation(); // 阻止事件冒泡到body，防止刚打开就立即关闭
-                
-                const menu = this.querySelector('.dropdown_menu');
-                if (!menu) return;
-
-                const isCurrentlyActive = menu.classList.contains('active');
-                
-                // 先关闭所有其他已打开的菜单
-                document.querySelectorAll('.dropdown_menu.active').forEach(function(openMenu) {
-                    if (openMenu !== menu) {
-                       openMenu.classList.remove('active');
-                    }
-                });
-                
-                // 切换当前点击的菜单状态
-                menu.classList.toggle('active');
-            });
-        });
-    });
-    </script>
-    `;
-
-    const headContent = headElements.filter(el => !el.toLowerCase().startsWith('<title>')).join('\n    '); 
-    const bodyClasses = $('body').attr('class') || ''; 
-    
-    // 【新增下拉菜单功能】 3. 将CSS和JS注入到最终的HTML字符串中
-    const finalHtml = `<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>${translatedTitle}</title>${headContent}
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
-        body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}
-        #mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}
-        /* 注入下拉菜单的CSS */
-        ${dropdownCss}
-    </style>
-    </head><body class="${bodyClasses}">
-    <div id="mw-main-container">${homeButtonHtml}<div class="main-content"><div class="mw-body ve-init-mw-desktopArticleTarget-targetContainer" id="content" role="main"><a id="top"></a><div class="mw-body-content" id="bodyContent"><div id="siteNotice"></div><div id="mw-content-text" class="mw-content-ltr mw-parser-output" lang="zh-CN" dir="ltr">${finalHtmlContent}</div></div></div></div></div>
-    ${bodyEndScripts.join('\n    ')}
-    <!-- 注入下拉菜单的JS -->
-    ${dropdownScript}
-    </body></html>`;
-    
+    // 使用下划线格式的页面名保存文件
     fs.writeFileSync(path.join(OUTPUT_DIR, `${pageNameToProcess}.html`), finalHtml, 'utf-8');
     
     console.log(`✅ [${pageNameToProcess}] 翻译完成 (Revision ID: ${currentEditInfo})！文件已保存到 output 目录。`);
+    // 返回结果时，pageName 已经是下划线格式，与 lastEditInfo 的 key 保持一致
     return { translationResult: { pageName: pageNameToProcess, newEditInfo: currentEditInfo }, links: findInternalLinks($) };
 }
 
