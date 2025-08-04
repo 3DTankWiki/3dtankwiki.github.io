@@ -43,7 +43,6 @@ async function getPagesForUpdateMode(lastEditInfo) {
             const title = $entry.find('title').text();
             const link = $entry.find('link').attr('href');
 
-            // 忽略特殊页面
             const blockedPrefixes = ['Special', 'File', 'User', 'MediaWiki', 'Template', 'Help', 'Category'];
             const blockedPrefixRegex = new RegExp(`^(${blockedPrefixes.join('|')}):`, 'i');
             if (!title || blockedPrefixRegex.test(title)) {
@@ -51,10 +50,14 @@ async function getPagesForUpdateMode(lastEditInfo) {
             }
 
             if (link) {
-                const url = new URL(link);
-                const diff = parseInt(url.searchParams.get('diff'), 10);
-                if (diff && !latestUpdates.has(title)) { // 只取每个页面的最新一次更新
-                    latestUpdates.set(title, diff);
+                try {
+                    const url = new URL(link);
+                    const diff = parseInt(url.searchParams.get('diff'), 10);
+                    if (diff && !latestUpdates.has(title)) { 
+                        latestUpdates.set(title, diff);
+                    }
+                } catch (e) {
+                    console.warn(`[更新模式] 解析链接时出错: ${link}`);
                 }
             }
         });
@@ -64,38 +67,39 @@ async function getPagesForUpdateMode(lastEditInfo) {
             return [];
         }
 
-        console.log(`[更新模式] 从 Feed 中解析出 ${latestUpdates.size} 个最近编辑的页面。`);
+        console.log(`[更新模式] 从 Feed 中解析出 ${latestUpdates.size} 个最近编辑的页面。开始版本对比...`);
         
         const pagesToUpdate = [];
         for (const [pageName, newRevisionId] of latestUpdates.entries()) {
             const currentRevisionId = lastEditInfo[pageName] || 0;
             if (newRevisionId > currentRevisionId) {
-                console.log(`  - 需要更新: ${pageName} (新版本: ${newRevisionId}, 旧版本: ${currentRevisionId})`);
+                // [增强日志] 在这里添加了更详细的日志输出
+                console.log(`  - 🔴 需要更新: ${pageName} (新版本: ${newRevisionId} > 旧版本: ${currentRevisionId})`);
                 pagesToUpdate.push(pageName);
             } else {
-                console.log(`  - 已是最新: ${pageName} (版本: ${currentRevisionId})`);
+                console.log(`  - 🟢 已是最新: ${pageName} (版本: ${currentRevisionId})`);
             }
         }
         
         if (pagesToUpdate.length > 0) {
-             console.log(`[更新模式] 最终确定 ${pagesToUpdate.length} 个页面需要更新。`);
+             console.log(`\n[更新模式] 版本对比完成。最终确定 ${pagesToUpdate.length} 个页面需要更新。`);
         } else {
-            console.log('[更新模式] 所有最近编辑的页面都已是最新版本，无需更新。');
+            console.log('\n[更新模式] 版本对比完成。所有最近编辑的页面都已是最新版本，无需更新。');
         }
 
         return pagesToUpdate;
 
     } catch (error) {
         console.error('❌ [更新模式] 处理 Feed 时出错:', error.message);
-        return []; // 出错时返回空数组，避免中断整个流程
+        return [];
     }
 }
 
-// ... 此处省略未改变的函数 ...
+
+// --- 函数区 (为节约篇幅，此处省略未改变的函数) ---
 // getPreparedDictionary, getPreparedImageDictionary, replaceTermsDirectly, 
 // containsEnglish, translateTextWithEnglishCheck, getPageNameFromWikiLink, 
 // findInternalLinks, createRedirectHtml, processPage 函数都保持不变。
-// 为节约篇幅，此处不重复粘贴，请确保它们仍然存在于您的文件中。
 // --- Start of unchanged functions ---
 async function getPreparedDictionary() { console.log(`正在从 URL 获取文本词典: ${DICTIONARY_URL}`); let originalDict; try { const response = await fetch(DICTIONARY_URL); if (!response.ok) { throw new Error(`网络请求失败: ${response.status}`); } const scriptContent = await response.text(); originalDict = new Function(`${scriptContent}; return replacementDict;`)(); console.log("在线文本词典加载成功。原始大小:", Object.keys(originalDict).length); } catch (error) { console.error("加载或解析在线文本词典时出错。将使用空词典。", error.message); return { fullDictionary: new Map(), sortedKeys: [] }; } const tempDict = { ...originalDict }; for (const key in originalDict) { if (Object.hasOwnProperty.call(originalDict, key)) { const pluralKey = pluralize(key); if (pluralKey !== key && !tempDict.hasOwnProperty(pluralKey)) { tempDict[pluralKey] = originalDict[key]; } } } const fullDictionary = new Map(Object.entries(tempDict)); const sortedKeys = Object.keys(tempDict).sort((a, b) => b.length - a.length); console.log(`文本词典准备完毕。总词条数 (含复数): ${fullDictionary.size}，已按长度排序。`); return { fullDictionary, sortedKeys }; }
 function getPreparedImageDictionary() { const filePath = path.resolve(__dirname, IMAGE_DICT_FILE); console.log(`正在从本地文件加载图片词典: ${filePath}`); if (!fs.existsSync(filePath)) { console.warn(`⚠️ 图片词典文件未找到: ${IMAGE_DICT_FILE}。将不进行图片替换。`); return new Map(); } try { const scriptContent = fs.readFileSync(filePath, 'utf-8'); const imageDict = new Function(`${scriptContent}; return imageReplacementDict;`)(); const imageMap = new Map(Object.entries(imageDict || {})); if (imageMap.size > 0) { console.log(`本地图片词典加载成功。共 ${imageMap.size} 条替换规则。`); } return imageMap; } catch (error) { console.error(`❌ 加载或解析本地图片词典文件 ${IMAGE_DICT_FILE} 时出错。`, error.message); return new Map(); } }
@@ -120,7 +124,6 @@ async function run() {
     const imageReplacementMap = getPreparedImageDictionary();
     const { fullDictionary, sortedKeys } = await getPreparedDictionary();
     
-    // 加载状态文件
     let lastEditInfo = {};
     if (fs.existsSync(EDIT_INFO_FILE)) {
         try {
@@ -136,14 +139,13 @@ async function run() {
         } catch (e) { console.error(`❌ 读取或解析 ${REDIRECT_MAP_FILE} 时出错，将使用空地图开始。`); }
     }
 
-    // --- [新] 根据环境变量决定运行模式 ---
-    const runMode = process.env.RUN_MODE || 'UPDATE'; // 默认是更新模式
+    const runMode = process.env.RUN_MODE || 'UPDATE';
     let pagesToVisit = [];
     let forceTranslateList = [];
 
-    console.log(`========================================`);
-    console.log(`     当前运行模式: ${runMode}`);
-    console.log(`========================================`);
+    console.log(`\n========================================`);
+    console.log(`     当前运行模式: ${runMode.toUpperCase()}`);
+    console.log(`========================================\n`);
 
     switch (runMode.toUpperCase()) {
         case 'UPDATE':
@@ -160,7 +162,7 @@ async function run() {
                 return;
             }
             pagesToVisit = pagesEnv.split(',').map(p => p.trim()).filter(Boolean);
-            forceTranslateList = [...pagesToVisit]; // 指定的页面全部强制处理
+            forceTranslateList = [...pagesToVisit];
             console.log(`[指定模式] 将强制处理以下页面: ${pagesToVisit.join(', ')}`);
             break;
         default:
@@ -170,7 +172,8 @@ async function run() {
     }
 
     if (pagesToVisit.length === 0) {
-        console.log("没有需要处理的页面，任务提前结束。");
+        console.log("\n没有需要处理的页面，任务提前结束。");
+        console.log("--- 任务结束！ ---");
         return;
     }
 
@@ -178,7 +181,6 @@ async function run() {
     let activeTasks = 0;
     let pageIndex = 0;
 
-    // --- 主处理循环 (逻辑基本不变) ---
     while (pageIndex < pagesToVisit.length) {
         const promises = [];
         
@@ -198,7 +200,6 @@ async function run() {
                         if (result.translationResult) {
                             lastEditInfo[result.translationResult.pageName] = result.translationResult.newEditInfo;
                         }
-                        // 只有在爬虫模式下才添加新链接
                         if (runMode.toUpperCase() === 'CRAWLER' && result.links && result.links.length > 0) {
                             for (const link of result.links) {
                                 if (!visitedPages.has(link) && !pagesToVisit.includes(link)) {
@@ -222,8 +223,7 @@ async function run() {
         console.log(`--- [进度] 已处理 ${visitedPages.size} / ${pagesToVisit.length} 个页面 ---`);
     }
 
-    // --- 写入状态文件 (逻辑不变) ---
-    console.log('即将写入 redirect_map.json，当前内存中的内容为:');
+    console.log('\n即将写入 redirect_map.json，当前内存中的内容为:');
     console.log(JSON.stringify(redirectMap, null, 2));
 
     try {
