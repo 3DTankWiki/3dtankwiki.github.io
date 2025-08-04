@@ -22,32 +22,53 @@ const BING_RETRY_DELAY = 1500;
 
 /**
  * [最终修正版] 解析 Atom Feed, 对比本地版本，获取需要更新的页面列表
- * 此版本通过移除 XML 命名空间来解决 Cheerio 的解析问题。
+ * 使用 Puppeteer 访问 Feed URL 以绕过机器人检测，并正确处理 XML 命名空间。
  * @param {object} lastEditInfo - 本地存储的版本信息
  * @returns {Promise<string[]>} - 需要更新的页面名称列表
  */
 async function getPagesForUpdateMode(lastEditInfo) {
     console.log(`[更新模式] 正在从 ${RECENT_CHANGES_FEED_URL} 获取最近更新...`);
+    
+    let browser;
     try {
-        const response = await fetch(RECENT_CHANGES_FEED_URL);
-        if (!response.ok) {
-            throw new Error(`获取 Feed 失败: ${response.status}`);
+        // --- [核心修正 1: 使用 Puppeteer 获取 Feed] ---
+        console.log('[更新模式] 正在启动浏览器以获取 Feed 内容...');
+        browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+        const page = await browser.newPage();
+        await page.goto(RECENT_CHANGES_FEED_URL, { waitUntil: 'networkidle2', timeout: 60000 }); // 等待网络空闲
+        let responseText = await page.content();
+        console.log('[更新模式] 已成功通过浏览器获取 Feed 页面内容。');
+        // --- [核心修正 1 结束] ---
+
+        // 之前的逻辑保持不变，用于处理可能返回的浏览器渲染视图
+        const $html = cheerio.load(responseText);
+        const xmlContainer = $html('#webkit-xml-viewer-source-xml');
+        let feedXml;
+
+        if (xmlContainer.length > 0) {
+            console.log('[更新模式] 检测到浏览器渲染的XML视图，正在提取原始XML数据...');
+            feedXml = xmlContainer.text();
+        } else {
+            console.log('[更新模式] 未检测到浏览器视图，假定内容为原始XML Feed。');
+            // 如果不是浏览器渲染的视图，内容可能依然包含<html><body>等标签，需要提取纯文本
+            const $body = $html('body');
+            if ($body.length > 0) {
+                feedXml = $body.text();
+            } else {
+                feedXml = responseText;
+            }
         }
-        let feedXml = await response.text();
-
-        // --- [核心修正] ---
-        // 在解析之前，通过正则表达式移除所有 xmlns 属性，以避免命名空间问题。
-        // 这使得 Cheerio 可以像处理普通 HTML/XML 一样查找标签。
+        
+        // --- [核心修正 2: 移除 XML 命名空间] ---
         feedXml = feedXml.replace(/xmlns="[^"]*"/g, '');
-        // --- [核心修正结束] ---
+        // --- [核心修正 2 结束] ---
 
-        const $ = cheerio.load(feedXml, { xmlMode: true });
+        const $ = cheerio.load(feedXml, { xmlMode: true, decodeEntities: false });
 
-        // 现在这个检查应该能正确找到 entry 标签了
         if ($('entry').length === 0) {
             console.error('❌ [更新模式] 错误: 已加载并清理Feed，但仍然未能从中解析出任何<entry>元素。');
             console.log('--- [调试信息] 清理后的 Feed 内容片段 ---');
-            console.log(feedXml.substring(0, 1000)); // 打印前1000个字符用于调试
+            console.log(feedXml.substring(0, 1500));
             console.log('-----------------------------------------');
             return [];
         }
@@ -107,8 +128,14 @@ async function getPagesForUpdateMode(lastEditInfo) {
     } catch (error) {
         console.error('❌ [更新模式] 处理 Feed 时出错:', error.message);
         return [];
+    } finally {
+        if (browser) {
+            await browser.close();
+            console.log('[更新模式] 已关闭用于获取 Feed 的浏览器实例。');
+        }
     }
 }
+
 
 async function getPreparedDictionary() { console.log(`正在从 URL 获取文本词典: ${DICTIONARY_URL}`); let originalDict; try { const response = await fetch(DICTIONARY_URL); if (!response.ok) { throw new Error(`网络请求失败: ${response.status}`); } const scriptContent = await response.text(); originalDict = new Function(`${scriptContent}; return replacementDict;`)(); console.log("在线文本词典加载成功。原始大小:", Object.keys(originalDict).length); } catch (error) { console.error("加载或解析在线文本词典时出错。将使用空词典。", error.message); return { fullDictionary: new Map(), sortedKeys: [] }; } const tempDict = { ...originalDict }; for (const key in originalDict) { if (Object.hasOwnProperty.call(originalDict, key)) { const pluralKey = pluralize(key); if (pluralKey !== key && !tempDict.hasOwnProperty(pluralKey)) { tempDict[pluralKey] = originalDict[key]; } } } const fullDictionary = new Map(Object.entries(tempDict)); const sortedKeys = Object.keys(tempDict).sort((a, b) => b.length - a.length); console.log(`文本词典准备完毕。总词条数 (含复数): ${fullDictionary.size}，已按长度排序。`); return { fullDictionary, sortedKeys }; }
 function getPreparedImageDictionary() { const filePath = path.resolve(__dirname, IMAGE_DICT_FILE); console.log(`正在从本地文件加载图片词典: ${filePath}`); if (!fs.existsSync(filePath)) { console.warn(`⚠️ 图片词典文件未找到: ${IMAGE_DICT_FILE}。将不进行图片替换。`); return new Map(); } try { const scriptContent = fs.readFileSync(filePath, 'utf-8'); const imageDict = new Function(`${scriptContent}; return imageReplacementDict;`)(); const imageMap = new Map(Object.entries(imageDict || {})); if (imageMap.size > 0) { console.log(`本地图片词典加载成功。共 ${imageMap.size} 条替换规则。`); } return imageMap; } catch (error) { console.error(`❌ 加载或解析本地图片词典文件 ${IMAGE_DICT_FILE} 时出错。`, error.message); return new Map(); } }
