@@ -21,8 +21,8 @@ const BING_RETRY_DELAY = 1500;
 
 
 /**
- * [最终修正版 v5] 解析 Atom Feed, 对比本地版本，获取需要更新的页面列表
- * 提供对 Feed 中每一个条目的详细处理日志（跳过、待更新、已是最新）。
+ * [最终修正版 v6] 解析 Atom Feed, 对比本地版本，获取需要更新的页面列表
+ * 修正了因 XML 实体 & 导致无法解析 URL 参数的致命错误。
  * @param {object} lastEditInfo - 本地存储的版本信息
  * @returns {Promise<string[]>} - 需要更新的页面名称列表
  */
@@ -61,9 +61,8 @@ async function getPagesForUpdateMode(lastEditInfo) {
             return [];
         }
 
-        const pagesToConsider = new Map(); // 用于收集每个页面的最新版本号
+        const pagesToConsider = new Map();
         
-        // 第一次遍历：收集每个页面的最新版本
         entries.each((i, entry) => {
             const $entry = $(entry);
             const title = $entry.find('title').first().text();
@@ -77,20 +76,33 @@ async function getPagesForUpdateMode(lastEditInfo) {
 
             if (title && alternateLink) {
                 try {
-                    const url = new URL(alternateLink);
+                    // --- [核心修正] ---
+                    // 在解析URL之前，将 & 替换回 &
+                    const correctedLink = alternateLink.replace(/&/g, '&');
+                    // --- [核心修正结束] ---
+                    
+                    const url = new URL(correctedLink);
                     const newRevisionId = parseInt(url.searchParams.get('diff'), 10);
+                    
                     if (newRevisionId && (!pagesToConsider.has(title) || newRevisionId > pagesToConsider.get(title))) {
                         pagesToConsider.set(title, newRevisionId);
                     }
-                } catch (e) { /* 忽略解析错误 */ }
+                } catch (e) { 
+                    console.warn(`[解析警告] 无法处理链接: ${alternateLink}`, e.message);
+                }
             }
         });
+
+        if (pagesToConsider.size === 0) {
+            console.log('[更新模式] Feed 中没有找到任何有效的页面更新条目。');
+            return [];
+        }
 
         const pagesToUpdate = [];
         console.log(`--- [更新模式] 开始分析 ${pagesToConsider.size} 个独立页面的最新版本 ---`);
         
         for (const [title, newRevisionId] of pagesToConsider.entries()) {
-            const blockedPrefixes = ['Special:', 'User:', 'MediaWiki:', 'Help:', 'Category:', 'File:', 'Template:'];
+            const blockedPrefixes = ['Special:', 'User:', 'MediaWiki:', 'Help:', 'Category:']; // 您可以按需保留 File: 和 Template:
             if (blockedPrefixes.some(p => title.startsWith(p))) {
                 console.log(`  - [已跳过] '${title}' (原因: 命名空间被过滤)`);
                 continue;
@@ -112,7 +124,7 @@ async function getPagesForUpdateMode(lastEditInfo) {
         if (pagesToUpdate.length > 0) {
              console.log(`[更新模式] 最终确定 ${pagesToUpdate.length} 个页面需要更新: ${pagesToUpdate.join(', ')}`);
         } else {
-            console.log('[更新模式] 所有页面都已是最新版本或被过滤，无需更新。');
+            console.log('[更新模式] 所有有效页面都已是最新版本或被过滤，无需更新。');
         }
 
         return pagesToUpdate;
