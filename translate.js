@@ -51,7 +51,12 @@ async function getPagesForUpdateMode(lastEditInfo) {
         } else {
             console.log('[更新模式] 未检测到浏览器视图，假定内容为原始XML Feed。');
             const $body = $html('body');
-            feedXml = $body.length > 0 ? $body.text() : responseText;
+            // 如果页面有body，可能XML就在里面，没有多余的包装器
+            if ($body.find('feed').length > 0 || $body.find('entry').length > 0) {
+                 feedXml = $body.html();
+            } else {
+                feedXml = responseText;
+            }
         }
         
         feedXml = feedXml.replace(/xmlns="[^"]*"/g, '');
@@ -70,24 +75,30 @@ async function getPagesForUpdateMode(lastEditInfo) {
         
         $('entry').each((i, entry) => {
             const $entry = $(entry);
-            const title = $entry.find('title').text();
-            const link = $entry.find('link[rel="alternate"]').attr('href');
+            const title = $entry.find('title').first().text();
+            let alternateLink = null;
+            // 使用更稳健的方式查找alternate link
+            $entry.find('link').each(function() {
+                if ($(this).attr('rel') === 'alternate') {
+                    alternateLink = $(this).attr('href');
+                    return false; // 找到后跳出循环
+                }
+            });
 
-            const blockedPrefixes = ['Special', 'File', 'User', 'MediaWiki', 'Template', 'Help', 'Category'];
-            const blockedPrefixRegex = new RegExp(`^(${blockedPrefixes.join('|')}):`, 'i');
-            if (!title || blockedPrefixRegex.test(title)) {
+            const blockedPrefixes = ['Special:', 'File:', 'User:', 'MediaWiki:', 'Template:', 'Help:', 'Category:'];
+            if (!title || blockedPrefixes.some(p => title.startsWith(p))) {
                 return;
             }
 
-            if (link) {
+            if (alternateLink) {
                 try {
-                    const url = new URL(link);
+                    const url = new URL(alternateLink);
                     const diff = parseInt(url.searchParams.get('diff'), 10);
                     if (diff && !latestUpdates.has(title)) {
                         latestUpdates.set(title, diff);
                     }
                 } catch (e) {
-                    console.warn(`[更新模式] 解析链接时出错: ${link}`, e.message);
+                    console.warn(`[更新模式] 解析链接时出错: ${alternateLink}`, e.message);
                 }
             }
         });
