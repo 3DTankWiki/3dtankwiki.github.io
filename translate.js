@@ -8,7 +8,7 @@ const path = require('path');
 
 // --- 【配置常量】 ---
 const BASE_URL = 'https://en.tankiwiki.com';
-const START_PAGE = 'Tanki_Online_Wiki';
+const START_PAGE = 'Tanki_Online_Wiki'; // 起始页已是下划线格式
 const RECENT_CHANGES_FEED_URL = 'https://en.tankiwiki.com/api.php?action=feedrecentchanges&days=7&feedformat=atom&urlversion=1';
 const CONCURRENCY_LIMIT = 32;
 const DICTIONARY_URL = 'https://testanki1.github.io/translations.js';
@@ -19,11 +19,13 @@ const REDIRECT_MAP_FILE = path.join(__dirname, 'redirect_map.json');
 const BING_TRANSLATE_RETRIES = 5;
 const BING_RETRY_DELAY = 1500;
 
+// 【核心修改】全局辅助函数，用于统一页面名称格式
+const sanitizePageName = (name) => name.replaceAll(' ', '_');
 
 /**
- * [最终修正版 v7] 解析 Atom Feed, 使用正则表达式直接从链接中提取版本号。
- * @param {object} lastEditInfo - 本地存储的版本信息
- * @returns {Promise<string[]>} - 需要更新的页面名称列表
+ * [最终修正版 v8] 解析 Atom Feed, 统一将页面名称中的空格转为下划线作为内部Key。
+ * @param {object} lastEditInfo - 本地存储的版本信息 (key已是下划线格式)
+ * @returns {Promise<string[]>} - 需要更新的页面名称列表 (已是下划线格式)
  */
 async function getPagesForUpdateMode(lastEditInfo) {
     console.log(`[更新模式] 正在从 ${RECENT_CHANGES_FEED_URL} 获取最近更新...`);
@@ -55,7 +57,11 @@ async function getPagesForUpdateMode(lastEditInfo) {
         
         entries.each((i, entry) => {
             const $entry = $(entry);
-            const title = $entry.find('title').first().text();
+            const originalTitle = $entry.find('title').first().text();
+            
+            // 【核心修改】立即将从Feed获取的标题转换为内部标准格式（下划线）
+            const title = sanitizePageName(originalTitle);
+
             let alternateLink = null;
             $entry.find('link').each(function() {
                 if ($(this).attr('rel') === 'alternate') {
@@ -65,11 +71,8 @@ async function getPagesForUpdateMode(lastEditInfo) {
             });
 
             if (title && alternateLink) {
-                // --- [核心修正] ---
-                // 使用正则表达式直接从字符串中提取 diff 值，避免 URL 解析问题
                 const diffMatch = alternateLink.match(/diff=(\d+)/);
                 const newRevisionId = diffMatch && diffMatch[1] ? parseInt(diffMatch[1], 10) : null;
-                // --- [核心修正结束] ---
 
                 if (newRevisionId && (!pagesToConsider.has(title) || newRevisionId > pagesToConsider.get(title))) {
                     pagesToConsider.set(title, newRevisionId);
@@ -86,12 +89,14 @@ async function getPagesForUpdateMode(lastEditInfo) {
         console.log(`--- [更新模式] 开始分析 ${pagesToConsider.size} 个独立页面的最新版本 ---`);
         
         for (const [title, newRevisionId] of pagesToConsider.entries()) {
+            // 注意：这里的 title 已经是下划线格式了
             const blockedPrefixes = ['Special:', 'User:', 'MediaWiki:', 'Help:', 'Category:', 'File:', 'Template:'];
             if (blockedPrefixes.some(p => title.startsWith(p))) {
                 console.log(`  - [已跳过] '${title}' (原因: 命名空间被过滤)`);
                 continue;
             }
-
+            
+            // 使用下划线格式的 key 进行版本比较
             const currentRevisionId = lastEditInfo[title] || 0;
             console.log(`  - [正在比较] '${title}': Feed版本=${newRevisionId}, 本地版本=${currentRevisionId}`);
             
@@ -130,11 +135,15 @@ function getPreparedImageDictionary() { const filePath = path.resolve(__dirname,
 function replaceTermsDirectly(text, fullDictionary, sortedKeys) { if (!text) return ""; let result = text; for (const key of sortedKeys) { const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); const regex = new RegExp(`\\b${escapedKey}\\b`, 'gi'); if (regex.test(result)) { result = result.replace(regex, fullDictionary.get(key)); } } return result; }
 function containsEnglish(text) { return /[a-zA-Z]/.test(text); }
 async function translateTextWithEnglishCheck(textToTranslate) { if (!textToTranslate || !textToTranslate.trim()) { return ""; } if (!containsEnglish(textToTranslate)) { return textToTranslate; } const MAX_LENGTH = 990; if (textToTranslate.length <= MAX_LENGTH) { for (let attempt = 1; attempt <= BING_TRANSLATE_RETRIES; attempt++) { try { const res = await bingTranslate(textToTranslate, 'en', 'zh-Hans', false); return res?.translation || textToTranslate; } catch (bingError) { console.warn(`[翻译尝试 ${attempt}/${BING_TRANSLATE_RETRIES}] ⚠️ 必应翻译失败 (短文本): ${bingError.message.substring(0, 100)}`); if (attempt >= BING_TRANSLATE_RETRIES) { console.error(`❌ 必应翻译在 ${BING_TRANSLATE_RETRIES} 次尝试后仍然失败。将返回原始文本。`); } else { await new Promise(resolve => setTimeout(resolve, BING_RETRY_DELAY)); } } } return textToTranslate; } console.log(`[文本分割] 检测到超长文本 (长度: ${textToTranslate.length})，将进行分割翻译...`); const sentences = textToTranslate.match(/[^.!?]+[.!?]*\s*/g) || [textToTranslate]; const translatedSentences = []; for (const sentence of sentences) { if (!sentence.trim()) continue; const translatedSentence = await translateTextWithEnglishCheck(sentence); translatedSentences.push(translatedSentence); } const finalResult = translatedSentences.join(''); console.log(`[文本分割] 超长文本翻译完成。`); return finalResult; }
-function getPageNameFromWikiLink(href) { if (!href) return null; let url; try { url = new URL(href, BASE_URL); } catch (e) { return null; } if (url.hostname !== new URL(BASE_URL).hostname) { return null; } let pathname = decodeURIComponent(url.pathname); if (pathname.startsWith('/w/index.php')) { return null; } let pageName = pathname.substring(1); const blockedPrefixes = ['Special', 'File', 'User', 'MediaWiki', 'Template', 'Help', 'Category']; const blockedPrefixRegex = new RegExp(`^(${blockedPrefixes.join('|')}):`, 'i'); if (!pageName || blockedPrefixRegex.test(pageName) || pageName.includes('#') || /\.(css|js|png|jpg|jpeg|gif|svg|ico|php)$/i.test(pageName)) { return null; } return pageName; }
+function getPageNameFromWikiLink(href) { if (!href) return null; let url; try { url = new URL(href, BASE_URL); } catch (e) { return null; } if (url.hostname !== new URL(BASE_URL).hostname) { return null; } let pathname = decodeURIComponent(url.pathname); if (pathname.startsWith('/w/index.php')) { return null; } let pageName = pathname.substring(1); const blockedPrefixes = ['Special', 'File', 'User', 'MediaWiki', 'Template', 'Help', 'Category']; const blockedPrefixRegex = new RegExp(`^(${blockedPrefixes.join('|')}):`, 'i'); if (!pageName || blockedPrefixRegex.test(pageName) || pageName.includes('#') || /\.(css|js|png|jpg|jpeg|gif|svg|ico|php)$/i.test(pageName)) { return null; } 
+    // 【核心修改】直接返回下划线格式的页面名
+    return sanitizePageName(pageName); 
+}
 function findInternalLinks($) { const links = new Set(); $('#mw-content-text a[href]').each((i, el) => { const href = $(el).attr('href'); const pageName = getPageNameFromWikiLink(href); if (pageName) { links.add(pageName); } }); return Array.from(links); }
 function createRedirectHtml(targetPageName) { const targetUrl = `./${targetPageName}`; return `<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><title>正在重定向...</title><meta http-equiv="refresh" content="0; url=${targetUrl}"><link rel="canonical" href="${targetUrl}"><script>window.location.replace("${targetUrl}");</script></head><body><p>如果您的浏览器没有自动跳转，请 <a href="${targetUrl}">点击这里</a>。</p></body></html>`; }
 
 async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageReplacementMap, lastEditInfoState, force = false) {
+    // 假设传入的 pageNameToProcess 已经是下划线格式
     const sourceUrl = `${BASE_URL}/${pageNameToProcess}`;
     console.log(`[${pageNameToProcess}] 开始抓取页面: ${sourceUrl}`);
     const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
@@ -178,8 +187,9 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageR
     }
 
     if (rlconf.wgRedirectedFrom && rlconf.wgPageName !== rlconf.wgRedirectedFrom) {
-        const sourcePage = rlconf.wgRedirectedFrom;
-        const targetPage = rlconf.wgPageName;
+        // 【核心修改】处理重定向时，确保源和目标都使用下划线格式
+        const sourcePage = sanitizePageName(rlconf.wgRedirectedFrom);
+        const targetPage = sanitizePageName(rlconf.wgPageName);
         console.log(`[${sourcePage}] ➡️  发现重定向: [${targetPage}]`);
         const redirectHtml = createRedirectHtml(targetPage);
         fs.writeFileSync(path.join(OUTPUT_DIR, `${sourcePage}.html`), redirectHtml, 'utf-8');
@@ -211,9 +221,12 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageR
     let finalHtmlContent = $contentContainer.html(); finalHtmlContent = finalHtmlContent.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3').replace(/rgb\(70, 223, 17\)/g, '#76FF33');
     let homeButtonHtml = ''; if (pageNameToProcess !== START_PAGE) { homeButtonHtml = `<a href="./${START_PAGE}" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">返回主页</a>`; }
     const headContent = headElements.filter(el => !el.toLowerCase().startsWith('<title>')).join('\n    '); const bodyClasses = $('body').attr('class') || ''; const finalHtml = `<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>${translatedTitle}</title>${headContent}<style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="${bodyClasses}"><div id="mw-main-container">${homeButtonHtml}<div class="main-content"><div class="mw-body ve-init-mw-desktopArticleTarget-targetContainer" id="content" role="main"><a id="top"></a><div class="mw-body-content" id="bodyContent"><div id="siteNotice"></div><div id="mw-content-text" class="mw-content-ltr mw-parser-output" lang="zh-CN" dir="ltr">${finalHtmlContent}</div></div></div></div></div>${bodyEndScripts.join('\n    ')}</body></html>`;
+    
+    // 使用下划线格式的页面名保存文件
     fs.writeFileSync(path.join(OUTPUT_DIR, `${pageNameToProcess}.html`), finalHtml, 'utf-8');
     
     console.log(`✅ [${pageNameToProcess}] 翻译完成 (Revision ID: ${currentEditInfo})！文件已保存到 output 目录。`);
+    // 返回结果时，pageName 已经是下划线格式，与 lastEditInfo 的 key 保持一致
     return { translationResult: { pageName: pageNameToProcess, newEditInfo: currentEditInfo }, links: findInternalLinks($) };
 }
 
@@ -264,7 +277,8 @@ async function run() {
                 console.warn('[指定模式] 未提供 PAGES_TO_PROCESS 环境变量，任务结束。');
                 return;
             }
-            pagesToVisit = pagesEnv.split(',').map(p => p.trim()).filter(Boolean);
+            // 【核心修改】确保指定模式下输入的页面名也被转换为下划线格式
+            pagesToVisit = pagesEnv.split(',').map(p => sanitizePageName(p.trim())).filter(Boolean);
             console.log(`[指定模式] 将强制处理以下页面: ${pagesToVisit.join(', ')}`);
             break;
         default:
@@ -290,7 +304,7 @@ async function run() {
         const promises = [];
         
         while (activeTasks < CONCURRENCY_LIMIT && pageIndex < pagesToVisit.length) {
-            const currentPageName = pagesToVisit[pageIndex++];
+            const currentPageName = pagesToVisit[pageIndex++]; // 已是下划线格式
             if (visitedPages.has(currentPageName)) continue;
             
             visitedPages.add(currentPageName);
@@ -303,10 +317,11 @@ async function run() {
                             redirectMap[result.newRedirectInfo.source] = result.newRedirectInfo.target;
                         }
                         if (result.translationResult) {
+                            // 使用下划线格式的 key 更新版本信息
                             lastEditInfo[result.translationResult.pageName] = result.translationResult.newEditInfo;
                         }
                         if (runMode === 'CRAWLER' && result.links && result.links.length > 0) {
-                            for (const link of result.links) {
+                            for (const link of result.links) { // link 已是下划线格式
                                 if (!visitedPages.has(link) && !pagesToVisit.includes(link)) {
                                     pagesToVisit.push(link);
                                 }
