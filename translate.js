@@ -5,6 +5,7 @@ const { translate: bingTranslate } = require('bing-translate-api');
 const pluralize = require('pluralize');
 const fs = require('fs');
 const path = require('path');
+const { XMLParser } = require("fast-xml-parser"); // <--- [新] 引入新的XML解析库
 
 // --- 【配置常量】 ---
 const BASE_URL = 'https://en.tankiwiki.com';
@@ -22,7 +23,7 @@ const BING_RETRY_DELAY = 1500;
 // --- 模式逻辑 ---
 
 /**
- * [最终修复版] 解析 Atom Feed, 对比本地版本，获取需要更新的页面列表
+ * [最终修复版 - 使用 fast-xml-parser] 解析 Atom Feed, 对比本地版本
  * @param {object} lastEditInfo - 本地存储的版本信息
  * @returns {Promise<string[]>} - 需要更新的页面名称列表
  */
@@ -34,20 +35,34 @@ async function getPagesForUpdateMode(lastEditInfo) {
             throw new Error(`获取 Feed 失败: ${response.status}`);
         }
         const feedXml = await response.text();
-        const $ = cheerio.load(feedXml, { xmlMode: true });
+        
+        // [新] 使用 fast-xml-parser 进行解析
+        const parser = new XMLParser({ ignoreAttributes: false });
+        const jsonObj = parser.parse(feedXml);
+
+        // Atom feed 的条目通常在 feed.entry 下，可能是单个对象或数组
+        let entries = jsonObj.feed?.entry || [];
+        if (!Array.isArray(entries)) {
+            entries = [entries]; // 如果只有一个 entry，将其转为数组以便处理
+        }
 
         const latestUpdates = new Map();
         
-        // 关键修复：在所有选择器前加上 '*|' 来忽略 XML 命名空间
-        $('*|entry').each((i, entry) => {
-            const $entry = $(entry);
-            const title = $entry.find('*|title').text();
-            const link = $entry.find('*|link[rel="alternate"]').attr('href');
+        for (const entry of entries) {
+            const title = entry.title;
+            // 找到 rel="alternate" 的链接
+            const alternateLink = Array.isArray(entry.link) 
+                ? entry.link.find(l => l['@_rel'] === 'alternate') 
+                : (entry.link['@_rel'] === 'alternate' ? entry.link : null);
+            
+            if (!title || !alternateLink) continue;
+
+            const link = alternateLink['@_href'];
 
             const blockedPrefixes = ['Special', 'File', 'User', 'MediaWiki', 'Template', 'Help', 'Category'];
             const blockedPrefixRegex = new RegExp(`^(${blockedPrefixes.join('|')}):`, 'i');
-            if (!title || !link || blockedPrefixRegex.test(title)) {
-                return;
+            if (blockedPrefixRegex.test(title)) {
+                continue;
             }
 
             try {
@@ -60,10 +75,10 @@ async function getPagesForUpdateMode(lastEditInfo) {
             } catch (e) {
                  console.warn(`[更新模式] 解析链接时出错，跳过此条目: ${link}`);
             }
-        });
+        }
         
         if (latestUpdates.size === 0) {
-            console.log('[更新模式] Feed 中没有找到有效的页面更新 (检查XML解析和命名空间)。');
+            console.log('[更新模式] Feed 中没有找到有效的页面更新。');
             return [];
         }
 
@@ -91,7 +106,7 @@ async function getPagesForUpdateMode(lastEditInfo) {
         return pagesToUpdate;
 
     } catch (error) {
-        console.error('❌ [更新模式] 处理 Feed 时出错:', error.message);
+        console.error('❌ [更新模式] 处理 Feed 时出错:', error);
         return [];
     }
 }
@@ -205,38 +220,25 @@ async function translateTextWithEnglishCheck(textToTranslate) {
 // --- 辅助函数：使用更智能的规则过滤链接 ---
 function getPageNameFromWikiLink(href) {
     if (!href) return null;
-
     let url;
     try {
         url = new URL(href, BASE_URL);
     } catch (e) {
         return null;
     }
-
     if (url.hostname !== new URL(BASE_URL).hostname) {
         return null;
     }
-
     let pathname = decodeURIComponent(url.pathname);
-
     if (pathname.startsWith('/w/index.php')) {
         return null;
     }
-    
     let pageName = pathname.substring(1);
-
     const blockedPrefixes = ['Special', 'File', 'User', 'MediaWiki', 'Template', 'Help', 'Category'];
     const blockedPrefixRegex = new RegExp(`^(${blockedPrefixes.join('|')}):`, 'i');
-
-    if (
-        !pageName ||
-        blockedPrefixRegex.test(pageName) ||
-        pageName.includes('#') ||
-        /\.(css|js|png|jpg|jpeg|gif|svg|ico|php)$/i.test(pageName)
-    ) {
+    if (!pageName || blockedPrefixRegex.test(pageName) || pageName.includes('#') || /\.(css|js|png|jpg|jpeg|gif|svg|ico|php)$/i.test(pageName)) {
         return null;
     }
-
     return pageName;
 }
 
