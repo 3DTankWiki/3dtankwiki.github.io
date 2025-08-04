@@ -9,10 +9,10 @@ on:
       run_mode:
         description: '选择运行模式'
         required: true
-        default: 'UPDATE'
+        default: 'FEED'
         type: choice
         options:
-          - UPDATE     # 检查更新模式 (默认)
+          - FEED     # 检查更新模式 (默认)
           - CRAWLER    # 完整爬虫模式
           - SPECIFIED  # 指定页面模式
       pages:
@@ -56,8 +56,8 @@ jobs:
 
       - name: 运行翻译脚本
         env:
-          # 如果是手动触发，使用输入的值；如果是定时触发，则默认为 'UPDATE'
-          RUN_MODE: ${{ github.event.inputs.run_mode || 'UPDATE' }}
+          # 如果是手动触发，使用输入的值；如果是定时触发，则默认为 'FEED'
+          RUN_MODE: ${{ github.event.inputs.run_mode || 'FEED' }}
           PAGES_TO_PROCESS: ${{ github.event.inputs.pages }}
         run: |
           echo "当前工作目录下的文件列表:"
