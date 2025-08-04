@@ -66,9 +66,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "ci: 更新页面状态记录"
-          file_pattern: |
-            last_edit_info.json
-            redirect_map.json
+          file_pattern: 'last_edit_info.json redirect_map.json'
           commit_user_name: github-actions[bot]
           commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
           commit_options: '--no-verify'
