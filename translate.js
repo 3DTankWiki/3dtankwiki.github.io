@@ -30,7 +30,13 @@ const BING_RETRY_DELAY = 1500;
 async function getPagesForUpdateMode(lastEditInfo) {
     console.log(`[更新模式] 正在从 ${RECENT_CHANGES_FEED_URL} 获取最近更新...`);
     try {
-        const response = await fetch(RECENT_CHANGES_FEED_URL);
+        // 【已修复】添加 User-Agent 请求头，模拟浏览器
+        const response = await fetch(RECENT_CHANGES_FEED_URL, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
+            }
+        });
+
         if (!response.ok) {
             throw new Error(`获取 Feed 失败: ${response.status}`);
         }
@@ -124,7 +130,12 @@ async function getPreparedDictionary() {
     console.log(`正在从 URL 获取文本词典: ${DICTIONARY_URL}`);
     let originalDict;
     try {
-        const response = await fetch(DICTIONARY_URL);
+        // 【已修复】添加 User-Agent 请求头
+        const response = await fetch(DICTIONARY_URL, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
+            }
+        });
         if (!response.ok) { throw new Error(`网络请求失败: ${response.status}`); }
         const scriptContent = await response.text();
         originalDict = new Function(`${scriptContent}; return replacementDict;`)();
