@@ -19,28 +19,36 @@ const EDIT_INFO_FILE = path.join(__dirname, 'last_edit_info.json');
 const REDIRECT_MAP_FILE = path.join(__dirname, 'redirect_map.json');
 const BING_TRANSLATE_RETRIES = 5;
 const BING_RETRY_DELAY = 1500;
+const BROWSER_USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36';
+
+// --- 【新增】使用 Puppeteer 获取内容的函数，可以应对 JS 质询 ---
+async function fetchWithBrowser(url) {
+    let browser;
+    try {
+        browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+        const page = await browser.newPage();
+        await page.setUserAgent(BROWSER_USER_AGENT);
+        // 使用 networkidle0 等待 JS 质询完成
+        await page.goto(url, { waitUntil: 'networkidle0', timeout: 60000 }); 
+        const content = await page.content();
+        return content;
+    } catch (error) {
+        console.error(`❌ 使用 Puppeteer 获取 ${url} 时出错:`, error.message);
+        throw error; // 抛出错误让调用者处理
+    } finally {
+        if (browser) {
+            await browser.close();
+        }
+    }
+}
+
 
 // --- 模式逻辑 ---
-
-/**
- * [最终修复版 - 强化XML解析]
- * @param {object} lastEditInfo
- * @returns {Promise<string[]>}
- */
 async function getPagesForUpdateMode(lastEditInfo) {
     console.log(`[更新模式] 正在从 ${RECENT_CHANGES_FEED_URL} 获取最近更新...`);
     try {
-        // 【已修复】添加 User-Agent 请求头，模拟浏览器
-        const response = await fetch(RECENT_CHANGES_FEED_URL, {
-            headers: {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
-            }
-        });
-
-        if (!response.ok) {
-            throw new Error(`获取 Feed 失败: ${response.status}`);
-        }
-        const feedXml = await response.text();
+        // 【已修改】使用 Puppeteer 获取 Feed，以绕过 JS 质询
+        const feedXml = await fetchWithBrowser(RECENT_CHANGES_FEED_URL);
         
         const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "" });
         const jsonObj = parser.parse(feedXml);
@@ -52,7 +60,7 @@ async function getPagesForUpdateMode(lastEditInfo) {
         
         if (entries.length === 0) {
             console.warn("[更新模式]警告：Feed XML中未解析出任何 <entry> 标签。");
-            console.log("收到的XML内容（前500字符）:", feedXml.substring(0, 500));
+            console.log("收到的内容（前500字符）:", feedXml.substring(0, 500));
             return [];
         }
 
@@ -61,7 +69,6 @@ async function getPagesForUpdateMode(lastEditInfo) {
         for (const entry of entries) {
             const title = entry.title;
             
-            // [关键修复] 健壮地处理 link 可能是对象或数组的情况
             let alternateLink = null;
             if (Array.isArray(entry.link)) {
                 alternateLink = entry.link.find(l => l.rel === 'alternate');
@@ -130,14 +137,8 @@ async function getPreparedDictionary() {
     console.log(`正在从 URL 获取文本词典: ${DICTIONARY_URL}`);
     let originalDict;
     try {
-        // 【已修复】添加 User-Agent 请求头
-        const response = await fetch(DICTIONARY_URL, {
-            headers: {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
-            }
-        });
-        if (!response.ok) { throw new Error(`网络请求失败: ${response.status}`); }
-        const scriptContent = await response.text();
+        // 【已修改】同样使用 Puppeteer 获取词典，以防万一
+        const scriptContent = await fetchWithBrowser(DICTIONARY_URL);
         originalDict = new Function(`${scriptContent}; return replacementDict;`)();
         console.log("在线文本词典加载成功。原始大小:", Object.keys(originalDict).length);
     } catch (error) {
