@@ -21,7 +21,7 @@ const BING_RETRY_DELAY = 1500;
 
 
 /**
- * [最终修正版 v2] 解析 Atom Feed, 对比本地版本，获取需要更新的页面列表
+ * [最终修正版 v3] 解析 Atom Feed, 对比本地版本，获取需要更新的页面列表
  * 使用 Puppeteer 访问 Feed 以绕过机器人检测，并通过 .html() 正确提取被包裹的 XML 数据结构。
  * @param {object} lastEditInfo - 本地存储的版本信息
  * @returns {Promise<string[]>} - 需要更新的页面名称列表
@@ -72,6 +72,7 @@ async function getPagesForUpdateMode(lastEditInfo) {
         }
 
         const latestUpdates = new Map();
+        console.log('--- [更新模式] 开始分析Feed中的每一个条目 ---');
         
         $('entry').each((i, entry) => {
             const $entry = $(entry);
@@ -85,46 +86,51 @@ async function getPagesForUpdateMode(lastEditInfo) {
                 }
             });
 
-            const blockedPrefixes = ['Special:', 'File:', 'User:', 'MediaWiki:', 'Template:', 'Help:', 'Category:'];
+            // --- [核心修正：添加详细日志] ---
+            const blockedPrefixes = ['Special:', 'User:', 'MediaWiki:', 'Help:', 'Category:', 'File:', 'Template:'];
             if (!title || blockedPrefixes.some(p => title.startsWith(p))) {
-                return;
+                console.log(`  - 已跳过: '${title}' (原因: 命名空间被过滤)`);
+                return; // 跳过这些页面
             }
+            // --- [核心修正结束] ---
 
             if (alternateLink) {
                 try {
                     const url = new URL(alternateLink);
                     const diff = parseInt(url.searchParams.get('diff'), 10);
-                    if (diff && !latestUpdates.has(title)) {
+                    // 仅当该页面尚未记录，或当前diff版本更高时才记录
+                    if (diff && (!latestUpdates.has(title) || diff > latestUpdates.get(title))) {
                         latestUpdates.set(title, diff);
                     }
                 } catch (e) {
-                    console.warn(`[更新模式] 解析链接时出错: ${alternateLink}`, e.message);
+                    console.warn(`  - 解析链接时出错: ${alternateLink}`, e.message);
                 }
             }
         });
         
+        console.log(`--- [更新模式] Feed分析完成，共找到 ${latestUpdates.size} 个有效页面的最新编辑 ---`);
+        
         if (latestUpdates.size === 0) {
-            console.log('[更新模式] Feed 中没有找到有效的页面更新。');
+            console.log('[更新模式] 所有找到的条目都被过滤规则排除了。');
             return [];
         }
 
-        console.log(`[更新模式] 从 Feed 中解析出 ${latestUpdates.size} 个最近编辑的页面。`);
-        
+        console.log('--- [更新模式] 开始进行版本比较 ---');
         const pagesToUpdate = [];
         for (const [pageName, newRevisionId] of latestUpdates.entries()) {
             const currentRevisionId = lastEditInfo[pageName] || 0;
             if (newRevisionId > currentRevisionId) {
-                console.log(`  - 需要更新: ${pageName} (新版本: ${newRevisionId}, 本地版本: ${currentRevisionId})`);
+                console.log(`  - 待更新: '${pageName}' (新版本: ${newRevisionId}, 本地版本: ${currentRevisionId})`);
                 pagesToUpdate.push(pageName);
             } else {
-                console.log(`  - 已是最新: ${pageName} (版本: ${currentRevisionId})`);
+                console.log(`  - 已是最新: '${pageName}' (版本: ${currentRevisionId})`);
             }
         }
         
         if (pagesToUpdate.length > 0) {
-             console.log(`[更新模式] 最终确定 ${pagesToUpdate.length} 个页面需要更新。`);
+             console.log(`--- [更新模式] 版本比较完成，最终确定 ${pagesToUpdate.length} 个页面需要更新 ---`);
         } else {
-            console.log('[更新模式] 所有最近编辑的页面都已是最新版本，无需更新。');
+            console.log('--- [更新模式] 版本比较完成，所有有效页面都已是最新版本 ---');
         }
 
         return pagesToUpdate;
