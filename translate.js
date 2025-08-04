@@ -102,7 +102,7 @@ async function getPagesForUpdateMode(lastEditInfo) {
         console.log(`--- [更新模式] 开始分析 ${pagesToConsider.size} 个独立页面的最新版本 ---`);
         
         for (const [title, newRevisionId] of pagesToConsider.entries()) {
-            const blockedPrefixes = ['Special:', 'User:', 'MediaWiki:', 'Help:', 'Category:']; // 您可以按需保留 File: 和 Template:
+            const blockedPrefixes = ['Special:', 'User:', 'MediaWiki:', 'Help:', 'Category:', 'File:', 'Template:'];
             if (blockedPrefixes.some(p => title.startsWith(p))) {
                 console.log(`  - [已跳过] '${title}' (原因: 命名空间被过滤)`);
                 continue;
@@ -139,7 +139,6 @@ async function getPagesForUpdateMode(lastEditInfo) {
         }
     }
 }
-
 
 async function getPreparedDictionary() { console.log(`正在从 URL 获取文本词典: ${DICTIONARY_URL}`); let originalDict; try { const response = await fetch(DICTIONARY_URL); if (!response.ok) { throw new Error(`网络请求失败: ${response.status}`); } const scriptContent = await response.text(); originalDict = new Function(`${scriptContent}; return replacementDict;`)(); console.log("在线文本词典加载成功。原始大小:", Object.keys(originalDict).length); } catch (error) { console.error("加载或解析在线文本词典时出错。将使用空词典。", error.message); return { fullDictionary: new Map(), sortedKeys: [] }; } const tempDict = { ...originalDict }; for (const key in originalDict) { if (Object.hasOwnProperty.call(originalDict, key)) { const pluralKey = pluralize(key); if (pluralKey !== key && !tempDict.hasOwnProperty(pluralKey)) { tempDict[pluralKey] = originalDict[key]; } } } const fullDictionary = new Map(Object.entries(tempDict)); const sortedKeys = Object.keys(tempDict).sort((a, b) => b.length - a.length); console.log(`文本词典准备完毕。总词条数 (含复数): ${fullDictionary.size}，已按长度排序。`); return { fullDictionary, sortedKeys }; }
 function getPreparedImageDictionary() { const filePath = path.resolve(__dirname, IMAGE_DICT_FILE); console.log(`正在从本地文件加载图片词典: ${filePath}`); if (!fs.existsSync(filePath)) { console.warn(`⚠️ 图片词典文件未找到: ${IMAGE_DICT_FILE}。将不进行图片替换。`); return new Map(); } try { const scriptContent = fs.readFileSync(filePath, 'utf-8'); const imageDict = new Function(`${scriptContent}; return imageReplacementDict;`)(); const imageMap = new Map(Object.entries(imageDict || {})); if (imageMap.size > 0) { console.log(`本地图片词典加载成功。共 ${imageMap.size} 条替换规则。`); } return imageMap; } catch (error) { console.error(`❌ 加载或解析本地图片词典文件 ${IMAGE_DICT_FILE} 时出错。`, error.message); return new Map(); } }
