@@ -3,8 +3,21 @@ name: 翻译并部署维基页面
 
 on:
   schedule:
-    - cron: '0 4 * * *' # 每天北京时间中午12点运行
+    - cron: '0 4 * * *' # 每天北京时间中午12点运行 (默认使用 UPDATE 模式)
   workflow_dispatch:
+    inputs:
+      run_mode:
+        description: '选择运行模式'
+        required: true
+        default: 'UPDATE'
+        type: choice
+        options:
+          - UPDATE     # 检查更新模式 (默认)
+          - CRAWLER    # 完整爬虫模式
+          - SPECIFIED  # 指定页面模式
+      pages:
+        description: '指定页面列表 (仅在SPECIFIED模式下有效, 逗号分隔, 例如: Paints,Hulls)'
+        required: false
 
 jobs:
   build-and-deploy:
@@ -42,25 +55,23 @@ jobs:
         run: npx puppeteer browsers install chrome
 
       - name: 运行翻译脚本
+        env:
+          # 如果是手动触发，使用输入的值；如果是定时触发，则默认为 'UPDATE'
+          RUN_MODE: ${{ github.event.inputs.run_mode || 'UPDATE' }}
+          PAGES_TO_PROCESS: ${{ github.event.inputs.pages }}
         run: |
           echo "当前工作目录下的文件列表:"
           ls -l
-          # 确保此文件名与您仓库中的JS文件名完全一致
           node translate.js
 
-      # --- [新增的调试步骤] ---
       - name: 调试 - 检查文件和 Git 状态
         run: |
           echo "--- 当前目录文件列表 ---"
           ls -laF
-          echo "---"
           echo "--- redirect_map.json 内容 ---"
-          # 使用 cat，如果文件不存在或为空，我们会得到提示
           cat redirect_map.json || echo "redirect_map.json 不存在或无法读取"
-          echo "---"
           echo "--- Git 状态 ---"
           git status
-          echo "---"
 
       - name: 提交更新后的状态文件
         uses: stefanzweifel/git-auto-commit-action@v5
@@ -81,10 +92,6 @@ jobs:
 
       - name: 将新构建的文件增量更新到部署目录
         run: |
-          # 使用 rsync 将 output 目录的内容合并到 gh-pages-dir
-          # -a: 归档模式
-          # -v: 显示详细过程
-          # 注意：这里没有 --delete 选项，所以它只会添加和更新文件
           rsync -av ./output/ ./gh-pages-dir/
 
       - name: 部署到 GitHub Pages
@@ -92,5 +99,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./gh-pages-dir
-          # 保持 true，因为我们已经手动完成了所有文件操作
           keep_files: true
