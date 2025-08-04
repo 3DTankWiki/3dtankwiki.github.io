@@ -3,7 +3,7 @@ name: 翻译并部署维基页面
 
 on:
   schedule:
-    - cron: '0 4 * * *' # 每天北京时间中午12点运行 (默认使用 UPDATE 模式)
+    - cron: '*/30 * * * *' 
   workflow_dispatch:
     inputs:
       run_mode:
