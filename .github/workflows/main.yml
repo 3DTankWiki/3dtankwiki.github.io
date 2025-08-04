@@ -1,3 +1,4 @@
+# .github/workflows/main.yml
 name: 翻译并部署维基页面
 
 on:
@@ -55,6 +56,7 @@ jobs:
 
       - name: 运行翻译脚本
         env:
+          # 如果是手动触发，使用输入的值；如果是定时触发，则默认为 'UPDATE'
           RUN_MODE: ${{ github.event.inputs.run_mode || 'UPDATE' }}
           PAGES_TO_PROCESS: ${{ github.event.inputs.pages }}
         run: |
@@ -64,8 +66,8 @@ jobs:
 
       - name: 调试 - 检查文件和 Git 状态
         run: |
-          echo "--- output 目录文件列表 ---"
-          ls -laF ./output
+          echo "--- 当前目录文件列表 ---"
+          ls -laF
           echo "--- redirect_map.json 内容 ---"
           cat redirect_map.json || echo "redirect_map.json 不存在或无法读取"
           echo "--- Git 状态 ---"
@@ -80,6 +82,8 @@ jobs:
           commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
           commit_options: '--no-verify'
       
+      # --- 增量更新部署逻辑 ---
+
       - name: 检出 gh-pages 分支到单独目录
         uses: actions/checkout@v4
         with:
@@ -87,7 +91,6 @@ jobs:
           path: gh-pages-dir
 
       - name: 将新构建的文件增量更新到部署目录
-        # 根据你的要求，已移除 --delete 参数
         run: |
           rsync -av ./output/ ./gh-pages-dir/
 
@@ -97,6 +100,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./gh-pages-dir
           keep_files: true
-          user_name: 'github-actions[bot]'
-          user_email: '41898282+github-actions[bot]@users.noreply.github.com'
-          commit_message: "ci(deploy): 自动部署翻译后的页面"
