@@ -70,7 +70,7 @@
   "Damage": 64424,
   "Shot_Effects": 61407,
   "Skins": 64448,
-  "Paints": 64573,
+  "Paints": 64574,
   "Electromagnetic_Pulse_(EMP)": 58874,
   "Supercharge": 59905,
   "Jammer": 59277,
@@ -1458,5 +1458,12 @@
   "In_depth:_Game_Mechanics": 61406,
   "In_depth:_Event_Helpers": 59239,
   "In_depth:_Contest_Organizers": 59237,
-  "In_depth:_Reporters": 64014
+  "In_depth:_Reporters": 64014,
+  "Wiki reports": 64564,
+  "Account security": 64546,
+  "Staff Sergeant": 64568,
+  "Master Sergeant": 64569,
+  "Master Corporal": 64566,
+  "Tomato Gun": 64531,
+  "Battle Interface": 64543
 }
