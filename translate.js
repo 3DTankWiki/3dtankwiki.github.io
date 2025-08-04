@@ -22,7 +22,7 @@ const BING_RETRY_DELAY = 1500;
 // --- 模式逻辑 ---
 
 /**
- * [已修复] 解析 Atom Feed, 对比本地版本，获取需要更新的页面列表
+ * [最终修复版] 解析 Atom Feed, 对比本地版本，获取需要更新的页面列表
  * @param {object} lastEditInfo - 本地存储的版本信息
  * @returns {Promise<string[]>} - 需要更新的页面名称列表
  */
@@ -38,25 +38,22 @@ async function getPagesForUpdateMode(lastEditInfo) {
 
         const latestUpdates = new Map();
         
-        $('entry').each((i, entry) => {
+        // 关键修复：在所有选择器前加上 '*|' 来忽略 XML 命名空间
+        $('*|entry').each((i, entry) => {
             const $entry = $(entry);
-            const title = $entry.find('title').text();
-            
-            // 使用更精确的选择器找到正确的链接
-            const link = $entry.find('link[rel="alternate"]').attr('href');
+            const title = $entry.find('*|title').text();
+            const link = $entry.find('*|link[rel="alternate"]').attr('href');
 
-            // 过滤掉不应处理的页面（例如模板、文件页等）
             const blockedPrefixes = ['Special', 'File', 'User', 'MediaWiki', 'Template', 'Help', 'Category'];
             const blockedPrefixRegex = new RegExp(`^(${blockedPrefixes.join('|')}):`, 'i');
             if (!title || !link || blockedPrefixRegex.test(title)) {
-                return; // 跳过这个 entry
+                return;
             }
 
             try {
                 const url = new URL(link);
                 const diff = parseInt(url.searchParams.get('diff'), 10);
                 
-                // 确保我们只记录每个页面的最新一次编辑
                 if (diff && (!latestUpdates.has(title) || diff > latestUpdates.get(title))) {
                     latestUpdates.set(title, diff);
                 }
@@ -66,7 +63,7 @@ async function getPagesForUpdateMode(lastEditInfo) {
         });
         
         if (latestUpdates.size === 0) {
-            console.log('[更新模式] Feed 中没有找到有效的页面更新。');
+            console.log('[更新模式] Feed 中没有找到有效的页面更新 (检查XML解析和命名空间)。');
             return [];
         }
 
@@ -74,7 +71,6 @@ async function getPagesForUpdateMode(lastEditInfo) {
         
         const pagesToUpdate = [];
         for (const [pageName, newRevisionId] of latestUpdates.entries()) {
-            // 将页面名称中的空格替换为下划线，以匹配 processPage 的处理方式
             const formattedPageName = pageName.replace(/ /g, '_');
             const currentRevisionId = lastEditInfo[formattedPageName] || 0;
             
@@ -206,7 +202,7 @@ async function translateTextWithEnglishCheck(textToTranslate) {
     return finalResult;
 }
 
-// --- 【核心修改点】辅助函数：使用更智能的规则过滤链接 ---
+// --- 辅助函数：使用更智能的规则过滤链接 ---
 function getPageNameFromWikiLink(href) {
     if (!href) return null;
 
@@ -439,7 +435,6 @@ async function run() {
     const imageReplacementMap = getPreparedImageDictionary();
     const { fullDictionary, sortedKeys } = await getPreparedDictionary();
     
-    // 加载状态文件
     let lastEditInfo = {};
     if (fs.existsSync(EDIT_INFO_FILE)) {
         try {
@@ -455,8 +450,7 @@ async function run() {
         } catch (e) { console.error(`❌ 读取或解析 ${REDIRECT_MAP_FILE} 时出错，将使用空地图开始。`); }
     }
 
-    // --- [新] 根据环境变量决定运行模式 ---
-    const runMode = process.env.RUN_MODE || 'UPDATE'; // 默认是更新模式
+    const runMode = process.env.RUN_MODE || 'UPDATE';
     let pagesToVisit = [];
     let forceTranslateList = [];
 
@@ -479,7 +473,7 @@ async function run() {
                 return;
             }
             pagesToVisit = pagesEnv.split(',').map(p => p.trim()).filter(Boolean);
-            forceTranslateList = [...pagesToVisit]; // 指定的页面全部强制处理
+            forceTranslateList = [...pagesToVisit];
             console.log(`[指定模式] 将强制处理以下页面: ${pagesToVisit.join(', ')}`);
             break;
         default:
@@ -498,7 +492,6 @@ async function run() {
     let activeTasks = 0;
     let pageIndex = 0;
 
-    // --- 主处理循环 (逻辑基本不变) ---
     while (pageIndex < pagesToVisit.length) {
         const promises = [];
         
@@ -518,7 +511,6 @@ async function run() {
                         if (result.translationResult) {
                             lastEditInfo[result.translationResult.pageName] = result.translationResult.newEditInfo;
                         }
-                        // 只有在爬虫模式下才添加新链接
                         if (runMode.toUpperCase() === 'CRAWLER' && result.links && result.links.length > 0) {
                             for (const link of result.links) {
                                 if (!visitedPages.has(link) && !pagesToVisit.includes(link)) {
@@ -542,7 +534,6 @@ async function run() {
         console.log(`--- [进度] 已处理 ${visitedPages.size} / ${pagesToVisit.length} 个页面 ---`);
     }
 
-    // --- 写入状态文件 (逻辑不变) ---
     console.log('\n即将写入 redirect_map.json，当前内存中的内容为:');
     console.log(JSON.stringify(redirectMap, null, 2));
 
