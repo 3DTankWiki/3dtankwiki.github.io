@@ -27,7 +27,7 @@ const sanitizePageName = (name) => name.replaceAll(' ', '_');
  * @param {object} lastEditInfo - 本地存储的版本信息 (key已是下划线格式)
  * @returns {Promise<string[]>} - 需要更新的页面名称列表 (已是下划线格式)
  */
-async function getPagesForUpdateMode(lastEditInfo) {
+async function getPagesForFeedMode(lastEditInfo) {
     console.log(`[更新模式] 正在从 ${RECENT_CHANGES_FEED_URL} 获取最近更新...`);
     
     let browser;
@@ -256,7 +256,7 @@ async function run() {
         } catch (e) { console.error(`❌ 读取或解析 ${REDIRECT_MAP_FILE} 时出错，将使用空地图开始。`); }
     }
 
-    const runMode = (process.env.RUN_MODE || 'UPDATE').toUpperCase();
+    const runMode = (process.env.RUN_MODE || 'FEED').toUpperCase();
     let pagesToVisit = [];
     
     console.log(`========================================`);
@@ -264,8 +264,8 @@ async function run() {
     console.log(`========================================`);
 
     switch (runMode) {
-        case 'UPDATE':
-            pagesToVisit = await getPagesForUpdateMode(lastEditInfo);
+        case 'FEED':
+            pagesToVisit = await getPagesForFeedMode(lastEditInfo);
             break;
         case 'CRAWLER':
             console.log(`[爬虫模式] 从起始页 ${START_PAGE} 开始爬取。`);
@@ -282,8 +282,8 @@ async function run() {
             console.log(`[指定模式] 将强制处理以下页面: ${pagesToVisit.join(', ')}`);
             break;
         default:
-            console.error(`❌ 未知的运行模式: ${runMode}。将使用默认的 UPDATE 模式。`);
-            pagesToVisit = await getPagesForUpdateMode(lastEditInfo);
+            console.error(`❌ 未知的运行模式: ${runMode}。将使用默认的 FEED 模式。`);
+            pagesToVisit = await getPagesForFeedMode(lastEditInfo);
             break;
     }
 
@@ -298,7 +298,7 @@ async function run() {
     let activeTasks = 0;
     let pageIndex = 0;
     
-    const isForceMode = runMode === 'UPDATE' || runMode === 'SPECIFIED';
+    const isForceMode = runMode === 'FEED' || runMode === 'SPECIFIED';
 
     while (pageIndex < pagesToVisit.length) {
         const promises = [];
