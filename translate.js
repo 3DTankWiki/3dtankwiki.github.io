@@ -15,7 +15,7 @@ const { XMLParser } = require("fast-xml-parser");
 const BASE_URL = 'https://en.tankiwiki.com';
 const START_PAGE = 'Tanki_Online_Wiki';
 const RECENT_CHANGES_FEED_URL = 'https://en.tankiwiki.com/api.php?action=feedrecentchanges&days=7&feedformat=atom&urlversion=1';
-const CONCURRENCY_LIMIT = 8; // 并发数不宜过高，避免触发更严格的限制
+const CONCURRENCY_LIMIT = 8;
 const DICTIONARY_URL = 'https://testanki1.github.io/translations.js';
 const IMAGE_DICT_FILE = 'image_replacements.js';
 const OUTPUT_DIR = './output';
@@ -25,19 +25,38 @@ const BING_TRANSLATE_RETRIES = 5;
 const BING_RETRY_DELAY = 1500;
 const BROWSER_USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36';
 
-// --- 使用 Puppeteer 获取内容的函数, 现在会自动应用 stealth 插件 ---
+// --- 【核心修复】修改 fetchWithBrowser 函数 ---
+// 旧方法 page.goto() + page.content() 会获取浏览器渲染后的HTML（带有XML查看器样式）
+// 新方法使用 page.evaluate() 在浏览器上下文中执行 fetch API，直接获取原始的文本响应，
+// 这样可以完美绕过浏览器对XML/JS文件的“美化”包装，确保解析器得到纯净的数据。
 async function fetchWithBrowser(url) {
     let browser;
     try {
         browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
         const page = await browser.newPage();
         await page.setUserAgent(BROWSER_USER_AGENT);
-        // 增加超时时间，给 "stealth" 插件足够的时间来处理JS质询
-        await page.goto(url, { waitUntil: 'networkidle2', timeout: 90000 }); 
-        const content = await page.content();
-        return content;
+        
+        // 在页面上下文中执行 fetch 请求并返回文本结果
+        const data = await page.evaluate(async (fetchUrl) => {
+            try {
+                const response = await fetch(fetchUrl);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return await response.text();
+            } catch (e) {
+                // 将浏览器端的错误信息返回给Node.js端
+                return `EVALUATE_FETCH_ERROR: ${e.message}`;
+            }
+        }, url); // 将url作为参数传递给evaluate函数
+
+        if (data.startsWith('EVALUATE_FETCH_ERROR:')) {
+            throw new Error(data);
+        }
+
+        return data;
     } catch (error) {
-        console.error(`❌ 使用 Puppeteer 获取 ${url} 时出错:`, error.message);
+        console.error(`❌ 使用 Puppeteer 的 fetch 获取 ${url} 时出错:`, error.message);
         throw error;
     } finally {
         if (browser) {
@@ -46,6 +65,7 @@ async function fetchWithBrowser(url) {
     }
 }
 
+// (下方代码与上一版相同，为保持完整性而全部提供)
 
 // --- 模式逻辑 ---
 async function getPagesForUpdateMode(lastEditInfo) {
@@ -53,13 +73,6 @@ async function getPagesForUpdateMode(lastEditInfo) {
     try {
         const feedXml = await fetchWithBrowser(RECENT_CHANGES_FEED_URL);
         
-        // 增加一个检查，如果返回的还是HTML，就提前报错退出
-        if (feedXml.trim().toLowerCase().startsWith('<html>')) {
-            console.error("[更新模式] 错误：获取到的仍然是HTML页面，stealth插件可能未能绕过检测。");
-            console.log("收到的内容（前500字符）:", feedXml.substring(0, 500));
-            return []; // 返回空数组，安全退出
-        }
-
         const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "" });
         const jsonObj = parser.parse(feedXml);
 
@@ -300,11 +313,21 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageR
     
     console.log(`[${pageNameToProcess}] 开始抓取页面: ${sourceUrl}`);
     let htmlContent;
+    let browser;
     try {
-        htmlContent = await fetchWithBrowser(sourceUrl);
+        // 对于抓取完整HTML页面的情况，我们仍然使用 page.goto()
+        browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+        const page = await browser.newPage();
+        await page.setUserAgent(BROWSER_USER_AGENT);
+        await page.goto(sourceUrl, { waitUntil: 'networkidle2', timeout: 90000 });
+        htmlContent = await page.content();
     } catch (error) {
         console.error(`[${pageNameToProcess}] 抓取页面时发生严重错误: ${error.message}`);
         return null;
+    } finally {
+        if(browser) {
+            await browser.close();
+        }
     }
     console.log(`[${pageNameToProcess}] 页面抓取成功。`);
 
@@ -452,7 +475,6 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageR
         links: findInternalLinks($)
     };
 }
-
 
 // --- 6. 主运行函数 ---
 async function run() {
