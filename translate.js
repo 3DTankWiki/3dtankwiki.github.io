@@ -5,7 +5,7 @@ const { translate: bingTranslate } = require('bing-translate-api');
 const pluralize = require('pluralize');
 const fs = require('fs');
 const path = require('path');
-const { XMLParser } = require("fast-xml-parser"); // <--- [新] 引入新的XML解析库
+const { XMLParser } = require("fast-xml-parser");
 
 // --- 【配置常量】 ---
 const BASE_URL = 'https://en.tankiwiki.com';
@@ -23,9 +23,9 @@ const BING_RETRY_DELAY = 1500;
 // --- 模式逻辑 ---
 
 /**
- * [最终修复版 - 使用 fast-xml-parser] 解析 Atom Feed, 对比本地版本
- * @param {object} lastEditInfo - 本地存储的版本信息
- * @returns {Promise<string[]>} - 需要更新的页面名称列表
+ * [最终修复版 - 强化XML解析]
+ * @param {object} lastEditInfo
+ * @returns {Promise<string[]>}
  */
 async function getPagesForUpdateMode(lastEditInfo) {
     console.log(`[更新模式] 正在从 ${RECENT_CHANGES_FEED_URL} 获取最近更新...`);
@@ -36,28 +36,36 @@ async function getPagesForUpdateMode(lastEditInfo) {
         }
         const feedXml = await response.text();
         
-        // [新] 使用 fast-xml-parser 进行解析
-        const parser = new XMLParser({ ignoreAttributes: false });
+        const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "" });
         const jsonObj = parser.parse(feedXml);
 
-        // Atom feed 的条目通常在 feed.entry 下，可能是单个对象或数组
         let entries = jsonObj.feed?.entry || [];
         if (!Array.isArray(entries)) {
-            entries = [entries]; // 如果只有一个 entry，将其转为数组以便处理
+            entries = [entries];
+        }
+        
+        if (entries.length === 0) {
+            console.warn("[更新模式]警告：Feed XML中未解析出任何 <entry> 标签。");
+            console.log("收到的XML内容（前500字符）:", feedXml.substring(0, 500));
+            return [];
         }
 
         const latestUpdates = new Map();
         
         for (const entry of entries) {
             const title = entry.title;
-            // 找到 rel="alternate" 的链接
-            const alternateLink = Array.isArray(entry.link) 
-                ? entry.link.find(l => l['@_rel'] === 'alternate') 
-                : (entry.link['@_rel'] === 'alternate' ? entry.link : null);
+            
+            // [关键修复] 健壮地处理 link 可能是对象或数组的情况
+            let alternateLink = null;
+            if (Array.isArray(entry.link)) {
+                alternateLink = entry.link.find(l => l.rel === 'alternate');
+            } else if (entry.link && entry.link.rel === 'alternate') {
+                alternateLink = entry.link;
+            }
             
             if (!title || !alternateLink) continue;
 
-            const link = alternateLink['@_href'];
+            const link = alternateLink.href;
 
             const blockedPrefixes = ['Special', 'File', 'User', 'MediaWiki', 'Template', 'Help', 'Category'];
             const blockedPrefixRegex = new RegExp(`^(${blockedPrefixes.join('|')}):`, 'i');
@@ -73,7 +81,7 @@ async function getPagesForUpdateMode(lastEditInfo) {
                     latestUpdates.set(title, diff);
                 }
             } catch (e) {
-                 console.warn(`[更新模式] 解析链接时出错，跳过此条目: ${link}`);
+                 console.warn(`[更新模式] 解析链接时出错，跳过: ${link}`);
             }
         }
         
@@ -82,7 +90,7 @@ async function getPagesForUpdateMode(lastEditInfo) {
             return [];
         }
 
-        console.log(`[更新模式] 从 Feed 中解析出 ${latestUpdates.size} 个最近编辑的页面。开始版本对比...`);
+        console.log(`[更新模式] 从 Feed 中解析出 ${latestUpdates.size} 个可处理的页面。开始版本对比...`);
         
         const pagesToUpdate = [];
         for (const [pageName, newRevisionId] of latestUpdates.entries()) {
@@ -93,7 +101,7 @@ async function getPagesForUpdateMode(lastEditInfo) {
                 console.log(`  - 🔴 需要更新: ${formattedPageName} (新版本: ${newRevisionId} > 旧版本: ${currentRevisionId})`);
                 pagesToUpdate.push(formattedPageName);
             } else {
-                console.log(`  - 🟢 已是最新: ${formattedPageName} (版本: ${currentRevisionId}, Feed版本: ${newRevisionId})`);
+                console.log(`  - 🟢 已是最新: ${formattedPageName} (本地版本: ${currentRevisionId} >= Feed版本: ${newRevisionId})`);
             }
         }
         
@@ -106,7 +114,7 @@ async function getPagesForUpdateMode(lastEditInfo) {
         return pagesToUpdate;
 
     } catch (error) {
-        console.error('❌ [更新模式] 处理 Feed 时出错:', error);
+        console.error('❌ [更新模式] 处理 Feed 时发生严重错误:', error);
         return [];
     }
 }
@@ -425,7 +433,7 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageR
 }
 
 
-// --- 6. 主运行函数 (已重构) ---
+// --- 6. 主运行函数 ---
 async function run() {
     console.log("--- 翻译任务开始 ---");
 
