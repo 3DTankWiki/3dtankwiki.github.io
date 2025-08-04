@@ -108,64 +108,6 @@ async function getPagesForUpdateMode(lastEditInfo) {
         console.error('❌ [更新模式] 处理 Feed 时出错:', error.message);
         return [];
     }
-
-        const latestUpdates = new Map();
-        
-        $('entry').each((i, entry) => {
-            const $entry = $(entry);
-            const title = $entry.find('title').text();
-            const link = $entry.find('link[rel="alternate"]').attr('href');
-
-            const blockedPrefixes = ['Special', 'File', 'User', 'MediaWiki', 'Template', 'Help', 'Category'];
-            const blockedPrefixRegex = new RegExp(`^(${blockedPrefixes.join('|')}):`, 'i');
-            if (!title || blockedPrefixRegex.test(title)) {
-                return;
-            }
-
-            if (link) {
-                try {
-                    const url = new URL(link);
-                    const diff = parseInt(url.searchParams.get('diff'), 10);
-                    // 确保只记录每个页面的最新一次更新
-                    if (diff && !latestUpdates.has(title)) {
-                        latestUpdates.set(title, diff);
-                    }
-                } catch (e) {
-                    console.warn(`[更新模式] 解析链接时出错: ${link}`, e.message);
-                }
-            }
-        });
-        
-        if (latestUpdates.size === 0) {
-            console.log('[更新模式] Feed 中没有找到有效的页面更新。');
-            return [];
-        }
-
-        console.log(`[更新模式] 从 Feed 中解析出 ${latestUpdates.size} 个最近编辑的页面。`);
-        
-        const pagesToUpdate = [];
-        for (const [pageName, newRevisionId] of latestUpdates.entries()) {
-            const currentRevisionId = lastEditInfo[pageName] || 0;
-            if (newRevisionId > currentRevisionId) {
-                console.log(`  - 需要更新: ${pageName} (新版本: ${newRevisionId}, 本地版本: ${currentRevisionId})`);
-                pagesToUpdate.push(pageName);
-            } else {
-                console.log(`  - 已是最新: ${pageName} (版本: ${currentRevisionId})`);
-            }
-        }
-        
-        if (pagesToUpdate.length > 0) {
-             console.log(`[更新模式] 最终确定 ${pagesToUpdate.length} 个页面需要更新。`);
-        } else {
-            console.log('[更新模式] 所有最近编辑的页面都已是最新版本，无需更新。');
-        }
-
-        return pagesToUpdate;
-
-    } catch (error) {
-        console.error('❌ [更新模式] 处理 Feed 时出错:', error.message);
-        return [];
-    }
 }
 
 async function getPreparedDictionary() { console.log(`正在从 URL 获取文本词典: ${DICTIONARY_URL}`); let originalDict; try { const response = await fetch(DICTIONARY_URL); if (!response.ok) { throw new Error(`网络请求失败: ${response.status}`); } const scriptContent = await response.text(); originalDict = new Function(`${scriptContent}; return replacementDict;`)(); console.log("在线文本词典加载成功。原始大小:", Object.keys(originalDict).length); } catch (error) { console.error("加载或解析在线文本词典时出错。将使用空词典。", error.message); return { fullDictionary: new Map(), sortedKeys: [] }; } const tempDict = { ...originalDict }; for (const key in originalDict) { if (Object.hasOwnProperty.call(originalDict, key)) { const pluralKey = pluralize(key); if (pluralKey !== key && !tempDict.hasOwnProperty(pluralKey)) { tempDict[pluralKey] = originalDict[key]; } } } const fullDictionary = new Map(Object.entries(tempDict)); const sortedKeys = Object.keys(tempDict).sort((a, b) => b.length - a.length); console.log(`文本词典准备完毕。总词条数 (含复数): ${fullDictionary.size}，已按长度排序。`); return { fullDictionary, sortedKeys }; }
