@@ -61,10 +61,9 @@ async function getPagesForUpdateMode(lastEditInfo) {
             return [];
         }
 
-        const pagesToUpdate = new Map(); // 使用 Map 来确保每个页面只添加一次，且保留最新的版本号
-        const processedTitles = new Set(); // 用于避免重复打印“已是最新”
-        console.log(`--- [更新模式] 开始分析Feed中的 ${entries.length} 个条目 ---`);
+        const pagesToConsider = new Map(); // 用于收集每个页面的最新版本号
         
+        // 第一次遍历：收集每个页面的最新版本
         entries.each((i, entry) => {
             const $entry = $(entry);
             const title = $entry.find('title').first().text();
@@ -76,51 +75,47 @@ async function getPagesForUpdateMode(lastEditInfo) {
                 }
             });
 
-            const blockedPrefixes = ['Special:', 'User:', 'MediaWiki:', 'Help:', 'Category:', 'File:', 'Template:'];
-            if (!title || !alternateLink) return;
-
-            if (blockedPrefixes.some(p => title.startsWith(p))) {
-                 if (!processedTitles.has(title)) {
-                    console.log(`  - [已跳过] '${title}' (原因: 命名空间被过滤)`);
-                    processedTitles.add(title);
-                }
-                return;
-            }
-
-            try {
-                const url = new URL(alternateLink);
-                const newRevisionId = parseInt(url.searchParams.get('diff'), 10);
-                if (!newRevisionId) return;
-
-                const currentRevisionId = lastEditInfo[title] || 0;
-                
-                if (newRevisionId > currentRevisionId) {
-                     if (!pagesToUpdate.has(title) || newRevisionId > pagesToUpdate.get(title)) {
-                        console.log(`  - [待更新] '${title}' (新版本: ${newRevisionId}, 本地版本: ${currentRevisionId})`);
-                        pagesToUpdate.set(title, newRevisionId);
-                     }
-                } else {
-                    if (!processedTitles.has(title)) {
-                         console.log(`  - [已是最新] '${title}' (版本: ${currentRevisionId})`);
-                         processedTitles.add(title);
+            if (title && alternateLink) {
+                try {
+                    const url = new URL(alternateLink);
+                    const newRevisionId = parseInt(url.searchParams.get('diff'), 10);
+                    if (newRevisionId && (!pagesToConsider.has(title) || newRevisionId > pagesToConsider.get(title))) {
+                        pagesToConsider.set(title, newRevisionId);
                     }
-                }
-            } catch (e) {
-                console.warn(`  - [解析错误] 无法处理链接: ${alternateLink}`, e.message);
+                } catch (e) { /* 忽略解析错误 */ }
             }
         });
+
+        const pagesToUpdate = [];
+        console.log(`--- [更新模式] 开始分析 ${pagesToConsider.size} 个独立页面的最新版本 ---`);
+        
+        for (const [title, newRevisionId] of pagesToConsider.entries()) {
+            const blockedPrefixes = ['Special:', 'User:', 'MediaWiki:', 'Help:', 'Category:', 'File:', 'Template:'];
+            if (blockedPrefixes.some(p => title.startsWith(p))) {
+                console.log(`  - [已跳过] '${title}' (原因: 命名空间被过滤)`);
+                continue;
+            }
+
+            const currentRevisionId = lastEditInfo[title] || 0;
+            console.log(`  - [正在比较] '${title}': Feed版本=${newRevisionId}, 本地版本=${currentRevisionId}`);
+            
+            if (newRevisionId > currentRevisionId) {
+                console.log(`      ↳ [结论] 待更新`);
+                pagesToUpdate.push(title);
+            } else {
+                console.log(`      ↳ [结论] 已是最新`);
+            }
+        }
         
         console.log(`--- [更新模式] Feed分析完成 ---`);
-        
-        const finalPageList = Array.from(pagesToUpdate.keys());
 
-        if (finalPageList.length > 0) {
-             console.log(`[更新模式] 最终确定 ${finalPageList.length} 个页面需要更新: ${finalPageList.join(', ')}`);
+        if (pagesToUpdate.length > 0) {
+             console.log(`[更新模式] 最终确定 ${pagesToUpdate.length} 个页面需要更新: ${pagesToUpdate.join(', ')}`);
         } else {
             console.log('[更新模式] 所有页面都已是最新版本或被过滤，无需更新。');
         }
 
-        return finalPageList;
+        return pagesToUpdate;
 
     } catch (error) {
         console.error('❌ [更新模式] 处理 Feed 时出错:', error.message);
