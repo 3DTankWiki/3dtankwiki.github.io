@@ -1,5 +1,9 @@
-// 引入必要的库
-const puppeteer = require('puppeteer');
+// --- 【已修改】引入 puppeteer-extra 和 stealth 插件 ---
+// 这是解决问题的核心：增强伪装，以绕过网站的反爬虫检测
+const puppeteer = require('puppeteer-extra');
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+puppeteer.use(StealthPlugin());
+
 const cheerio = require('cheerio');
 const { translate: bingTranslate } = require('bing-translate-api');
 const pluralize = require('pluralize');
@@ -11,7 +15,7 @@ const { XMLParser } = require("fast-xml-parser");
 const BASE_URL = 'https://en.tankiwiki.com';
 const START_PAGE = 'Tanki_Online_Wiki';
 const RECENT_CHANGES_FEED_URL = 'https://en.tankiwiki.com/api.php?action=feedrecentchanges&days=7&feedformat=atom&urlversion=1';
-const CONCURRENCY_LIMIT = 32;
+const CONCURRENCY_LIMIT = 8; // 并发数不宜过高，避免触发更严格的限制
 const DICTIONARY_URL = 'https://testanki1.github.io/translations.js';
 const IMAGE_DICT_FILE = 'image_replacements.js';
 const OUTPUT_DIR = './output';
@@ -19,22 +23,22 @@ const EDIT_INFO_FILE = path.join(__dirname, 'last_edit_info.json');
 const REDIRECT_MAP_FILE = path.join(__dirname, 'redirect_map.json');
 const BING_TRANSLATE_RETRIES = 5;
 const BING_RETRY_DELAY = 1500;
-const BROWSER_USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36';
+const BROWSER_USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36';
 
-// --- 【新增】使用 Puppeteer 获取内容的函数，可以应对 JS 质询 ---
+// --- 使用 Puppeteer 获取内容的函数, 现在会自动应用 stealth 插件 ---
 async function fetchWithBrowser(url) {
     let browser;
     try {
         browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
         const page = await browser.newPage();
         await page.setUserAgent(BROWSER_USER_AGENT);
-        // 使用 networkidle0 等待 JS 质询完成
-        await page.goto(url, { waitUntil: 'networkidle0', timeout: 60000 }); 
+        // 增加超时时间，给 "stealth" 插件足够的时间来处理JS质询
+        await page.goto(url, { waitUntil: 'networkidle2', timeout: 90000 }); 
         const content = await page.content();
         return content;
     } catch (error) {
         console.error(`❌ 使用 Puppeteer 获取 ${url} 时出错:`, error.message);
-        throw error; // 抛出错误让调用者处理
+        throw error;
     } finally {
         if (browser) {
             await browser.close();
@@ -47,23 +51,29 @@ async function fetchWithBrowser(url) {
 async function getPagesForUpdateMode(lastEditInfo) {
     console.log(`[更新模式] 正在从 ${RECENT_CHANGES_FEED_URL} 获取最近更新...`);
     try {
-        // 【已修改】使用 Puppeteer 获取 Feed，以绕过 JS 质询
         const feedXml = await fetchWithBrowser(RECENT_CHANGES_FEED_URL);
         
+        // 增加一个检查，如果返回的还是HTML，就提前报错退出
+        if (feedXml.trim().toLowerCase().startsWith('<html>')) {
+            console.error("[更新模式] 错误：获取到的仍然是HTML页面，stealth插件可能未能绕过检测。");
+            console.log("收到的内容（前500字符）:", feedXml.substring(0, 500));
+            return []; // 返回空数组，安全退出
+        }
+
         const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "" });
         const jsonObj = parser.parse(feedXml);
 
-        let entries = jsonObj.feed?.entry || [];
-        if (!Array.isArray(entries)) {
-            entries = [entries];
-        }
-        
-        if (entries.length === 0) {
-            console.warn("[更新模式]警告：Feed XML中未解析出任何 <entry> 标签。");
+        let entries = jsonObj.feed?.entry;
+        if (!entries) {
+            console.warn("[更新模式] 警告：Feed XML中未解析出任何 <entry> 标签。");
             console.log("收到的内容（前500字符）:", feedXml.substring(0, 500));
             return [];
         }
 
+        if (!Array.isArray(entries)) {
+            entries = [entries];
+        }
+        
         const latestUpdates = new Map();
         
         for (const entry of entries) {
@@ -137,8 +147,11 @@ async function getPreparedDictionary() {
     console.log(`正在从 URL 获取文本词典: ${DICTIONARY_URL}`);
     let originalDict;
     try {
-        // 【已修改】同样使用 Puppeteer 获取词典，以防万一
         const scriptContent = await fetchWithBrowser(DICTIONARY_URL);
+        if (scriptContent.trim().toLowerCase().startsWith('<')) {
+            console.error("加载或解析在线文本词典时出错：收到的是HTML页面。将使用空词典。");
+            return { fullDictionary: new Map(), sortedKeys: [] };
+        }
         originalDict = new Function(`${scriptContent}; return replacementDict;`)();
         console.log("在线文本词典加载成功。原始大小:", Object.keys(originalDict).length);
     } catch (error) {
@@ -277,7 +290,7 @@ function findInternalLinks($) {
 
 // --- 创建一个简单的HTML重定向页面 ---
 function createRedirectHtml(targetPageName) {
-    const targetUrl = `./${targetPageName}`;
+    const targetUrl = `./${targetPageName}.html`; // 确保重定向到 .html 文件
     return `<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><title>正在重定向...</title><meta http-equiv="refresh" content="0; url=${targetUrl}"><link rel="canonical" href="${targetUrl}"><script>window.location.replace("${targetUrl}");</script></head><body><p>如果您的浏览器没有自动跳转，请 <a href="${targetUrl}">点击这里</a>。</p></body></html>`;
 }
 
@@ -286,19 +299,12 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageR
     const sourceUrl = `${BASE_URL}/${pageNameToProcess}`;
     
     console.log(`[${pageNameToProcess}] 开始抓取页面: ${sourceUrl}`);
-    const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
-    const page = await browser.newPage();
     let htmlContent;
     try {
-        await page.goto(sourceUrl, { waitUntil: 'domcontentloaded', timeout: 0 });
-        await page.waitForSelector('#mw-content-text', { timeout: 0 });
-        htmlContent = await page.content();
+        htmlContent = await fetchWithBrowser(sourceUrl);
     } catch (error) {
-        console.error(`[${pageNameToProcess}] 抓取或等待页面内容时发生错误: ${error.message}`);
-        await browser.close();
+        console.error(`[${pageNameToProcess}] 抓取页面时发生严重错误: ${error.message}`);
         return null;
-    } finally {
-        await browser.close();
     }
     console.log(`[${pageNameToProcess}] 页面抓取成功。`);
 
@@ -325,7 +331,10 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageR
         return { links: [] };
     }
     
-    if (rlconf.wgRedirectedFrom && rlconf.wgPageName !== rlconf.wgRedirectedFrom) {
+    const pageNameWithSpaces = rlconf.wgPageName.replace(/_/g, ' ');
+    const redirectedFromWithSpaces = rlconf.wgRedirectedFrom ? rlconf.wgRedirectedFrom.replace(/_/g, ' ') : null;
+    
+    if (redirectedFromWithSpaces && pageNameWithSpaces !== redirectedFromWithSpaces) {
         const sourcePage = rlconf.wgRedirectedFrom;
         const targetPage = rlconf.wgPageName;
         
@@ -385,7 +394,7 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageR
         const internalPageName = getPageNameFromWikiLink(originalHref);
 
         if (internalPageName) {
-            $el.attr('href', `./${internalPageName}`);
+            $el.attr('href', `./${internalPageName}.html`); // 确保链接指向 .html
         } else if (originalHref?.startsWith('/') && !originalHref.startsWith('//')) {
             try {
                 $el.attr('href', new URL(originalHref, BASE_URL).href);
@@ -428,7 +437,7 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageR
     
     let homeButtonHtml = '';
     if (pageNameToProcess !== START_PAGE) {
-        homeButtonHtml = `<a href="./${START_PAGE}" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">返回主页</a>`;
+        homeButtonHtml = `<a href="./${START_PAGE}.html" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">返回主页</a>`;
     }
     
     const headContent = headElements.filter(el => !el.toLowerCase().startsWith('<title>')).join('\n    ');
@@ -511,50 +520,53 @@ async function run() {
     }
 
     const visitedPages = new Set();
-    let activeTasks = 0;
-    let pageIndex = 0;
+    const pageQueue = [...pagesToVisit]; 
+    const activeTasks = new Set();
 
-    while (pageIndex < pagesToVisit.length) {
-        const promises = [];
-        
-        while (activeTasks < CONCURRENCY_LIMIT && pageIndex < pagesToVisit.length) {
-            const currentPageName = pagesToVisit[pageIndex++];
-            if (visitedPages.has(currentPageName)) continue;
-            
-            visitedPages.add(currentPageName);
-            activeTasks++;
-
-            const task = processPage(currentPageName, fullDictionary, sortedKeys, imageReplacementMap, lastEditInfo, forceTranslateList)
-                .then(result => {
-                    if (result) {
-                        if (result.newRedirectInfo) {
-                            redirectMap[result.newRedirectInfo.source] = result.newRedirectInfo.target;
-                        }
-                        if (result.translationResult) {
-                            lastEditInfo[result.translationResult.pageName] = result.translationResult.newEditInfo;
-                        }
-                        if (runMode.toUpperCase() === 'CRAWLER' && result.links && result.links.length > 0) {
-                            for (const link of result.links) {
-                                if (!visitedPages.has(link) && !pagesToVisit.includes(link)) {
-                                    pagesToVisit.push(link);
+    async function processQueue() {
+        while (pageQueue.length > 0 || activeTasks.size > 0) {
+            while (activeTasks.size < CONCURRENCY_LIMIT && pageQueue.length > 0) {
+                const currentPageName = pageQueue.shift();
+                if (visitedPages.has(currentPageName)) continue;
+                
+                visitedPages.add(currentPageName);
+                
+                const task = processPage(currentPageName, fullDictionary, sortedKeys, imageReplacementMap, lastEditInfo, forceTranslateList)
+                    .then(result => {
+                        if (result) {
+                            if (result.newRedirectInfo) {
+                                redirectMap[result.newRedirectInfo.source] = result.newRedirectInfo.target;
+                            }
+                            if (result.translationResult) {
+                                lastEditInfo[result.translationResult.pageName] = result.translationResult.newEditInfo;
+                            }
+                            if (runMode.toUpperCase() === 'CRAWLER' && result.links && result.links.length > 0) {
+                                for (const link of result.links) {
+                                    if (!visitedPages.has(link)) {
+                                        pageQueue.push(link);
+                                    }
                                 }
                             }
                         }
-                    }
-                })
-                .catch(err => {
-                    console.error(`处理页面 ${currentPageName} 时发生未捕获的错误:`, err);
-                })
-                .finally(() => {
-                    activeTasks--;
-                });
+                    })
+                    .catch(err => {
+                        console.error(`处理页面 ${currentPageName} 时发生未捕获的错误:`, err);
+                    })
+                    .finally(() => {
+                        activeTasks.delete(task);
+                        console.log(`--- [进度] 已处理 ${visitedPages.size} 个页面 | 队列剩余 ${pageQueue.length} | 当前并发 ${activeTasks.size} ---`);
+                    });
+                
+                activeTasks.add(task);
+            }
             
-            promises.push(task);
+            if(activeTasks.size > 0) {
+                await Promise.race(Array.from(activeTasks));
+            }
         }
-        
-        await Promise.all(promises);
-        console.log(`--- [进度] 已处理 ${visitedPages.size} / ${pagesToVisit.length} 个页面 ---`);
     }
+    
+    await processQueue();
 
     console.log('\n即将写入 redirect_map.json，当前内存中的内容为:');
     console.log(JSON.stringify(redirectMap, null, 2));
