@@ -73,14 +73,28 @@ jobs:
           echo "--- Git 状态 ---"
           git status
 
-      - name: 提交更新后的状态文件
+      # --- START: 修改部分 ---
+      - name: 提交更新 (由机器人 - 定时任务)
+        if: github.event_name == 'schedule'
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "ci: 更新页面状态记录"
           file_pattern: 'last_edit_info.json redirect_map.json'
+          # 仅在定时任务时，明确指定提交者为机器人
           commit_user_name: github-actions[bot]
           commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
           commit_options: '--no-verify'
+
+      - name: 提交更新 (由用户 - 手动触发)
+        if: github.event_name == 'workflow_dispatch'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "ci: 更新页面状态记录"
+          file_pattern: 'last_edit_info.json redirect_map.json'
+          # 当手动触发时，不指定用户和邮箱
+          # action 会自动使用发起操作的用户 (github.actor) 信息
+          commit_options: '--no-verify'
+      # --- END: 修改部分 ---
       
       # --- 增量更新部署逻辑 ---
 
