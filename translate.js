@@ -10,7 +10,7 @@ const path = require('path');
 const BASE_URL = 'https://en.tankiwiki.com';
 const START_PAGE = 'Tanki_Online_Wiki'; // 起始页已是下划线格式
 const RECENT_CHANGES_FEED_URL = 'https://en.tankiwiki.com/api.php?action=feedrecentchanges&days=7&feedformat=atom&urlversion=1';
-const CONCURRENCY_LIMIT = 32;
+const CONCURRENCY_LIMIT = 4;
 const DICTIONARY_URL = 'https://testanki1.github.io/translations.js';
 const IMAGE_DICT_FILE = 'image_replacements.js';
 const OUTPUT_DIR = './output';
