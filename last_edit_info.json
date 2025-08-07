@@ -1465,5 +1465,9 @@
   "Master Sergeant": 64569,
   "Master Corporal": 64566,
   "Tomato Gun": 64531,
-  "Battle Interface": 64543
+  "Battle Interface": 64543,
+  "Augments_for_Freeze": 64624,
+  "Augments_for_Isida": 64627,
+  "Augments_for_Firebird": 64625,
+  "Augments_for_Shaft": 64626
 }
