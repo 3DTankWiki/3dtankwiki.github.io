@@ -102,7 +102,7 @@
   "Chat": 64560,
   "Paints_«Tanki_Classic»": 63958,
   "ESports": 58852,
-  "Clan_system": 64677,
+  "Clan_system": 64678,
   "Forum": 58955,
   "Youtuber_TO_Program": 63737,
   "Museum": 59544,
@@ -1474,5 +1474,6 @@
   "Augments_for_Twins": 64667,
   "Augments_for_Ricochet": 64665,
   "Augments_for_Hammer": 64666,
-  "Augments_for_Vulcan": 64672
+  "Augments_for_Vulcan": 64672,
+  "Customer_service": 64679
 }
