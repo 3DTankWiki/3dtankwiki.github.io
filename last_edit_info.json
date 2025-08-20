@@ -1466,14 +1466,15 @@
   "Master Corporal": 64566,
   "Tomato Gun": 64531,
   "Battle Interface": 64543,
-  "Augments_for_Freeze": 64629,
+  "Augments_for_Freeze": 64695,
   "Augments_for_Isida": 64627,
-  "Augments_for_Firebird": 64625,
+  "Augments_for_Firebird": 64694,
   "Augments_for_Shaft": 64626,
   "Augments_for_Thunder": 64628,
   "Augments_for_Twins": 64667,
   "Augments_for_Ricochet": 64665,
   "Augments_for_Hammer": 64666,
   "Augments_for_Vulcan": 64672,
-  "Customer_service": 64679
+  "Customer_service": 64679,
+  "Augments_for_Tesla": 64696
 }
