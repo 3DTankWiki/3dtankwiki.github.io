@@ -232,7 +232,7 @@
   "Micro-upgrades_Shaft": 63896,
   "Titan_guide": 60011,
   "Shaft_guide": 62724,
-  "Video_Blogs": 64341,
+  "Video_Blogs": 64707,
   "Hopper_guide": 59184,
   "Micro-upgrades_Paladin": 63864,
   "Micro-upgrades_Hunter": 63866,
@@ -1476,5 +1476,6 @@
   "Augments_for_Hammer": 64666,
   "Augments_for_Vulcan": 64672,
   "Customer_service": 64679,
-  "Augments_for_Tesla": 64696
+  "Augments_for_Tesla": 64696,
+  "Wallpapers": 64705
 }
