@@ -90,7 +90,7 @@
   "Challenges": 64669,
   "Promo_Codes": 63977,
   "Containers": 64466,
-  "Gold_Box": 64657,
+  "Gold_Box": 64763,
   "Ranks": 63571,
   "Missions": 64755,
   "Tanki_Classic": 63982,
@@ -1468,15 +1468,16 @@
   "Battle Interface": 64543,
   "Augments_for_Freeze": 64695,
   "Augments_for_Isida": 64627,
-  "Augments_for_Firebird": 64694,
+  "Augments_for_Firebird": 64762,
   "Augments_for_Shaft": 64626,
   "Augments_for_Thunder": 64628,
   "Augments_for_Twins": 64667,
   "Augments_for_Ricochet": 64665,
   "Augments_for_Hammer": 64666,
-  "Augments_for_Vulcan": 64672,
+  "Augments_for_Vulcan": 64761,
   "Customer_service": 64679,
   "Augments_for_Tesla": 64696,
   "Wallpapers": 64705,
-  "Augments_for_Smoky": 64757
+  "Augments_for_Smoky": 64757,
+  "Augments_for_Scorpion": 64760
 }
