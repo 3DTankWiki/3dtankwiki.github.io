@@ -52,7 +52,7 @@
   "Drones": 64711,
   "Brutus": 64815,
   "Mechanic": 64814,
-  "Juggernaut": 64878,
+  "Juggernaut": 64886,
   "Saboteur": 64817,
   "Modules": 64710,
   "Mammoth": 64748,
@@ -1484,5 +1484,5 @@
   "Augments_for_Gauss": 64858,
   "Augments_for_Striker": 64852,
   "Forest_REMASTER": 64883,
-  "Forest_REMASTER_MM": 64882
+  "Forest_REMASTER_MM": 64884
 }
