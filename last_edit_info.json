@@ -84,7 +84,7 @@
   "Shop": 63980,
   "PRO_Battles": 64829,
   "Matchmaking_System": 64464,
-  "Maps": 64827,
+  "Maps": 64892,
   "Premium_Accounts": 63923,
   "Game_Currencies": 64872,
   "Challenges": 64813,
@@ -972,7 +972,7 @@
   "Edinburgh": 58868,
   "Desert_MM": 58801,
   "Dusseldorf": 58847,
-  "Dusseldorf_MM": 58848,
+  "Dusseldorf_MM": 64891,
   "Duality": 58843,
   "Future": 58974,
   "Garder": 58986,
@@ -1484,5 +1484,8 @@
   "Augments_for_Gauss": 64858,
   "Augments_for_Striker": 64852,
   "Forest_REMASTER": 64883,
-  "Forest_REMASTER_MM": 64884
+  "Forest_REMASTER_MM": 64884,
+  "Sandal_REMASTERED_MM": 64889,
+  "Parma_REMASTER_MM": 64890,
+  "Sandbox_REMASTERED_MM": 64888
 }
