@@ -12,7 +12,7 @@ const START_PAGE = 'Tanki_Online_Wiki'; // 起始页已是下划线格式
 const RECENT_CHANGES_FEED_URL = 'https://en.tankiwiki.com/api.php?action=feedrecentchanges&days=7&feedformat=atom&urlversion=1';
 const CONCURRENCY_LIMIT = 4;
 const DICTIONARY_URL = 'https://testanki1.github.io/translations.js';
-const IMAGE_DICT_FILE = 'image_replacements.js';
+const SOURCE_DICT_FILE = 'source_replacements.js'; // 【修改】文件名已更新
 const OUTPUT_DIR = './output';
 const EDIT_INFO_FILE = path.join(__dirname, 'last_edit_info.json');
 const REDIRECT_MAP_FILE = path.join(__dirname, 'redirect_map.json');
@@ -59,7 +59,6 @@ async function getPagesForFeedMode(lastEditInfo) {
             const $entry = $(entry);
             const originalTitle = $entry.find('title').first().text();
             
-            // 【核心修改】立即将从Feed获取的标题转换为内部标准格式（下划线）
             const title = sanitizePageName(originalTitle);
 
             let alternateLink = null;
@@ -89,14 +88,12 @@ async function getPagesForFeedMode(lastEditInfo) {
         console.log(`--- [更新模式] 开始分析 ${pagesToConsider.size} 个独立页面的最新版本 ---`);
         
         for (const [title, newRevisionId] of pagesToConsider.entries()) {
-            // 注意：这里的 title 已经是下划线格式了
             const blockedPrefixes = ['Special:', 'User:', 'MediaWiki:', 'Help:', 'Category:', 'File:', 'Template:'];
             if (blockedPrefixes.some(p => title.startsWith(p))) {
                 console.log(`  - [已跳过] '${title}' (原因: 命名空间被过滤)`);
                 continue;
             }
             
-            // 使用下划线格式的 key 进行版本比较
             const currentRevisionId = lastEditInfo[title] || 0;
             console.log(`  - [正在比较] '${title}': Feed版本=${newRevisionId}, 本地版本=${currentRevisionId}`);
             
@@ -131,19 +128,39 @@ async function getPagesForFeedMode(lastEditInfo) {
 
 
 async function getPreparedDictionary() { console.log(`正在从 URL 获取文本词典: ${DICTIONARY_URL}`); let originalDict; try { const response = await fetch(DICTIONARY_URL); if (!response.ok) { throw new Error(`网络请求失败: ${response.status}`); } const scriptContent = await response.text(); originalDict = new Function(`${scriptContent}; return replacementDict;`)(); console.log("在线文本词典加载成功。原始大小:", Object.keys(originalDict).length); } catch (error) { console.error("加载或解析在线文本词典时出错。将使用空词典。", error.message); return { fullDictionary: new Map(), sortedKeys: [] }; } const tempDict = { ...originalDict }; for (const key in originalDict) { if (Object.hasOwnProperty.call(originalDict, key)) { const pluralKey = pluralize(key); if (pluralKey !== key && !tempDict.hasOwnProperty(pluralKey)) { tempDict[pluralKey] = originalDict[key]; } } } const fullDictionary = new Map(Object.entries(tempDict)); const sortedKeys = Object.keys(tempDict).sort((a, b) => b.length - a.length); console.log(`文本词典准备完毕。总词条数 (含复数): ${fullDictionary.size}，已按长度排序。`); return { fullDictionary, sortedKeys }; }
-function getPreparedImageDictionary() { const filePath = path.resolve(__dirname, IMAGE_DICT_FILE); console.log(`正在从本地文件加载图片词典: ${filePath}`); if (!fs.existsSync(filePath)) { console.warn(`⚠️ 图片词典文件未找到: ${IMAGE_DICT_FILE}。将不进行图片替换。`); return new Map(); } try { const scriptContent = fs.readFileSync(filePath, 'utf-8'); const imageDict = new Function(`${scriptContent}; return imageReplacementDict;`)(); const imageMap = new Map(Object.entries(imageDict || {})); if (imageMap.size > 0) { console.log(`本地图片词典加载成功。共 ${imageMap.size} 条替换规则。`); } return imageMap; } catch (error) { console.error(`❌ 加载或解析本地图片词典文件 ${IMAGE_DICT_FILE} 时出错。`, error.message); return new Map(); } }
+
+// 【修改】函数名和日志已更新
+function getPreparedSourceDictionary() {
+    const filePath = path.resolve(__dirname, SOURCE_DICT_FILE);
+    console.log(`正在从本地文件加载源替换词典: ${filePath}`);
+    if (!fs.existsSync(filePath)) {
+        console.warn(`⚠️ 源替换词典文件未找到: ${SOURCE_DICT_FILE}。将不进行源替换。`);
+        return new Map();
+    }
+    try {
+        const scriptContent = fs.readFileSync(filePath, 'utf-8');
+        // 【修改】内部变量名已更新
+        const sourceDict = new Function(`${scriptContent}; return sourceReplacementDict;`)();
+        const sourceMap = new Map(Object.entries(sourceDict || {}));
+        if (sourceMap.size > 0) {
+            console.log(`本地源替换词典加载成功。共 ${sourceMap.size} 条替换规则。`);
+        }
+        return sourceMap;
+    } catch (error) {
+        console.error(`❌ 加载或解析本地源替换词典文件 ${SOURCE_DICT_FILE} 时出错。`, error.message);
+        return new Map();
+    }
+}
+
 function replaceTermsDirectly(text, fullDictionary, sortedKeys) { if (!text) return ""; let result = text; for (const key of sortedKeys) { const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); const regex = new RegExp(`\\b${escapedKey}\\b`, 'gi'); if (regex.test(result)) { result = result.replace(regex, fullDictionary.get(key)); } } return result; }
 function containsEnglish(text) { return /[a-zA-Z]/.test(text); }
 async function translateTextWithEnglishCheck(textToTranslate) { if (!textToTranslate || !textToTranslate.trim()) { return ""; } if (!containsEnglish(textToTranslate)) { return textToTranslate; } const MAX_LENGTH = 990; if (textToTranslate.length <= MAX_LENGTH) { for (let attempt = 1; attempt <= BING_TRANSLATE_RETRIES; attempt++) { try { const res = await bingTranslate(textToTranslate, 'en', 'zh-Hans', false); return res?.translation || textToTranslate; } catch (bingError) { console.warn(`[翻译尝试 ${attempt}/${BING_TRANSLATE_RETRIES}] ⚠️ 必应翻译失败 (短文本): ${bingError.message.substring(0, 100)}`); if (attempt >= BING_TRANSLATE_RETRIES) { console.error(`❌ 必应翻译在 ${BING_TRANSLATE_RETRIES} 次尝试后仍然失败。将返回原始文本。`); } else { await new Promise(resolve => setTimeout(resolve, BING_RETRY_DELAY)); } } } return textToTranslate; } console.log(`[文本分割] 检测到超长文本 (长度: ${textToTranslate.length})，将进行分割翻译...`); const sentences = textToTranslate.match(/[^.!?]+[.!?]*\s*/g) || [textToTranslate]; const translatedSentences = []; for (const sentence of sentences) { if (!sentence.trim()) continue; const translatedSentence = await translateTextWithEnglishCheck(sentence); translatedSentences.push(translatedSentence); } const finalResult = translatedSentences.join(''); console.log(`[文本分割] 超长文本翻译完成。`); return finalResult; }
-function getPageNameFromWikiLink(href) { if (!href) return null; let url; try { url = new URL(href, BASE_URL); } catch (e) { return null; } if (url.hostname !== new URL(BASE_URL).hostname) { return null; } let pathname = decodeURIComponent(url.pathname); if (pathname.startsWith('/w/index.php')) { return null; } let pageName = pathname.substring(1); const blockedPrefixes = ['Special', 'File', 'User', 'MediaWiki', 'Template', 'Help', 'Category']; const blockedPrefixRegex = new RegExp(`^(${blockedPrefixes.join('|')}):`, 'i'); if (!pageName || blockedPrefixRegex.test(pageName) || pageName.includes('#') || /\.(css|js|png|jpg|jpeg|gif|svg|ico|php)$/i.test(pageName)) { return null; } 
-    // 【核心修改】直接返回下划线格式的页面名
-    return sanitizePageName(pageName); 
-}
+function getPageNameFromWikiLink(href) { if (!href) return null; let url; try { url = new URL(href, BASE_URL); } catch (e) { return null; } if (url.hostname !== new URL(BASE_URL).hostname) { return null; } let pathname = decodeURIComponent(url.pathname); if (pathname.startsWith('/w/index.php')) { return null; } let pageName = pathname.substring(1); const blockedPrefixes = ['Special', 'File', 'User', 'MediaWiki', 'Template', 'Help', 'Category']; const blockedPrefixRegex = new RegExp(`^(${blockedPrefixes.join('|')}):`, 'i'); if (!pageName || blockedPrefixRegex.test(pageName) || pageName.includes('#') || /\.(css|js|png|jpg|jpeg|gif|svg|ico|php)$/i.test(pageName)) { return null; } return sanitizePageName(pageName); }
 function findInternalLinks($) { const links = new Set(); $('#mw-content-text a[href]').each((i, el) => { const href = $(el).attr('href'); const pageName = getPageNameFromWikiLink(href); if (pageName) { links.add(pageName); } }); return Array.from(links); }
 function createRedirectHtml(targetPageName) { const targetUrl = `./${targetPageName}`; return `<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><title>正在重定向...</title><meta http-equiv="refresh" content="0; url=${targetUrl}"><link rel="canonical" href="${targetUrl}"><script>window.location.replace("${targetUrl}");</script></head><body><p>如果您的浏览器没有自动跳转，请 <a href="${targetUrl}">点击这里</a>。</p></body></html>`; }
 
-async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageReplacementMap, lastEditInfoState, force = false) {
-    // 假设传入的 pageNameToProcess 已经是下划线格式
+// 【修改】参数名已更新
+async function processPage(pageNameToProcess, fullDictionary, sortedKeys, sourceReplacementMap, lastEditInfoState, force = false) {
     const sourceUrl = `${BASE_URL}/${pageNameToProcess}`;
     console.log(`[${pageNameToProcess}] 开始抓取页面: ${sourceUrl}`);
     const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
@@ -213,14 +230,15 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageR
     const $factBoxContent = $contentContainer.find('.random-text-box > div:last-child'); if ($factBoxContent.length > 0) { $factBoxContent.html('<p id="dynamic-fact-placeholder" style="margin:0;">正在加载有趣的事实...</p>'); const factScript = `<script>document.addEventListener('DOMContentLoaded', function() { const factsUrl = './facts.json'; const placeholder = document.getElementById('dynamic-fact-placeholder'); if (placeholder) { fetch(factsUrl).then(response => { if (!response.ok) { throw new Error('网络响应错误，状态码: ' + response.status); } return response.json(); }).then(facts => { if (facts && Array.isArray(facts) && facts.length > 0) { const randomIndex = Math.floor(Math.random() * facts.length); const randomFact = facts[randomIndex].cn; placeholder.innerHTML = randomFact; } else { placeholder.innerHTML = '暂时没有可显示的事实。'; } }).catch(error => { console.error('加载或显示事实时出错:', error); placeholder.innerHTML = '加载事实失败，请稍后再试。'; }); } });</script>`; bodyEndScripts.push(factScript); }
     const originalTitle = $('title').text() || pageNameToProcess; const preReplacedTitle = replaceTermsDirectly(originalTitle, fullDictionary, sortedKeys); let translatedTitle = await translateTextWithEnglishCheck(preReplacedTitle); translatedTitle = translatedTitle.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3'); $contentContainer.find('a').each(function() { const $el = $(this); const originalHref = $el.attr('href'); const internalPageName = getPageNameFromWikiLink(originalHref); if (internalPageName) { $el.attr('href', `./${internalPageName}`); } else if (originalHref && !originalHref.startsWith('#')) { try { $el.attr('href', new URL(originalHref, sourceUrl).href); } catch (e) { console.warn(`[${pageNameToProcess}] 转换外部链接 'a' href 时出错: ${originalHref}`); } } });
     
+    // 【修改】变量名已更新
     $contentContainer.find('img').each(function() {
         const $el = $(this);
         let src = $el.attr('src');
         if (src) {
             try {
                 const absoluteSrc = new URL(src, sourceUrl).href;
-                if (imageReplacementMap.has(absoluteSrc)) {
-                    $el.attr('src', imageReplacementMap.get(absoluteSrc));
+                if (sourceReplacementMap.has(absoluteSrc)) {
+                    $el.attr('src', sourceReplacementMap.get(absoluteSrc));
                 } else {
                     $el.attr('src', absoluteSrc);
                 }
@@ -236,8 +254,8 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageR
                 const descriptor = parts.length > 1 ? ` ${parts[1]}` : '';
                 try {
                     const absoluteUrl = new URL(urlPart, sourceUrl).href;
-                    if (imageReplacementMap.has(absoluteUrl)) {
-                        return imageReplacementMap.get(absoluteUrl) + descriptor;
+                    if (sourceReplacementMap.has(absoluteUrl)) {
+                        return sourceReplacementMap.get(absoluteUrl) + descriptor;
                     }
                     return absoluteUrl + descriptor;
                 } catch(e) {
@@ -249,20 +267,17 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageR
         }
     });
 
-    // 【修正】处理 iframe 标签，增加检查和替换逻辑
+    // 【修改】变量名已更新
     $contentContainer.find('iframe').each(function() {
         const $el = $(this);
         let src = $el.attr('src');
         if (src) {
              try {
                  const absoluteUrl = new URL(src, sourceUrl).href;
-                 // 检查映射表是否存在替换规则
-                 if (imageReplacementMap.has(absoluteUrl)) {
-                     // 如果存在，则进行替换
-                     $el.attr('src', imageReplacementMap.get(absoluteUrl));
+                 if (sourceReplacementMap.has(absoluteUrl)) {
+                     $el.attr('src', sourceReplacementMap.get(absoluteUrl));
                      console.log(`[${pageNameToProcess}] ✅ Iframe src 替换成功: ${absoluteUrl}`);
                  } else {
-                     // 如果不存在，则仅设置为绝对路径
                      $el.attr('src', absoluteUrl);
                  }
              } catch(e) {
@@ -293,7 +308,8 @@ async function run() {
         console.log(`创建输出目录: ${OUTPUT_DIR}`);
     }
 
-    const imageReplacementMap = getPreparedImageDictionary();
+    // 【修改】函数调用和变量名已更新
+    const sourceReplacementMap = getPreparedSourceDictionary();
     const { fullDictionary, sortedKeys } = await getPreparedDictionary();
     
     let lastEditInfo = {};
@@ -332,7 +348,6 @@ async function run() {
                 console.warn('[指定模式] 未提供 PAGES_TO_PROCESS 环境变量，任务结束。');
                 return;
             }
-            // 【核心修改】确保指定模式下输入的页面名也被转换为下划线格式
             pagesToVisit = pagesEnv.split(',').map(p => sanitizePageName(p.trim())).filter(Boolean);
             console.log(`[指定模式] 将强制处理以下页面: ${pagesToVisit.join(', ')}`);
             break;
@@ -359,24 +374,24 @@ async function run() {
         const promises = [];
         
         while (activeTasks < CONCURRENCY_LIMIT && pageIndex < pagesToVisit.length) {
-            const currentPageName = pagesToVisit[pageIndex++]; // 已是下划线格式
+            const currentPageName = pagesToVisit[pageIndex++];
             if (visitedPages.has(currentPageName)) continue;
             
             visitedPages.add(currentPageName);
             activeTasks++;
 
-            const task = processPage(currentPageName, fullDictionary, sortedKeys, imageReplacementMap, lastEditInfo, isForceMode)
+            // 【修改】参数名已更新
+            const task = processPage(currentPageName, fullDictionary, sortedKeys, sourceReplacementMap, lastEditInfo, isForceMode)
                 .then(result => {
                     if (result) {
                         if (result.newRedirectInfo) {
                             redirectMap[result.newRedirectInfo.source] = result.newRedirectInfo.target;
                         }
                         if (result.translationResult) {
-                            // 使用下划线格式的 key 更新版本信息
                             lastEditInfo[result.translationResult.pageName] = result.translationResult.newEditInfo;
                         }
                         if (runMode === 'CRAWLER' && result.links && result.links.length > 0) {
-                            for (const link of result.links) { // link 已是下划线格式
+                            for (const link of result.links) {
                                 if (!visitedPages.has(link) && !pagesToVisit.includes(link)) {
                                     pagesToVisit.push(link);
                                 }
