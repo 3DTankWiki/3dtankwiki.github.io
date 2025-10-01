@@ -187,7 +187,6 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageR
     }
 
     if (rlconf.wgRedirectedFrom && rlconf.wgPageName !== rlconf.wgRedirectedFrom) {
-        // 【核心修改】处理重定向时，确保源和目标都使用下划线格式
         const sourcePage = sanitizePageName(rlconf.wgRedirectedFrom);
         const targetPage = sanitizePageName(rlconf.wgPageName);
         console.log(`[${sourcePage}] ➡️  发现重定向: [${targetPage}]`);
@@ -214,7 +213,6 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageR
     const $factBoxContent = $contentContainer.find('.random-text-box > div:last-child'); if ($factBoxContent.length > 0) { $factBoxContent.html('<p id="dynamic-fact-placeholder" style="margin:0;">正在加载有趣的事实...</p>'); const factScript = `<script>document.addEventListener('DOMContentLoaded', function() { const factsUrl = './facts.json'; const placeholder = document.getElementById('dynamic-fact-placeholder'); if (placeholder) { fetch(factsUrl).then(response => { if (!response.ok) { throw new Error('网络响应错误，状态码: ' + response.status); } return response.json(); }).then(facts => { if (facts && Array.isArray(facts) && facts.length > 0) { const randomIndex = Math.floor(Math.random() * facts.length); const randomFact = facts[randomIndex].cn; placeholder.innerHTML = randomFact; } else { placeholder.innerHTML = '暂时没有可显示的事实。'; } }).catch(error => { console.error('加载或显示事实时出错:', error); placeholder.innerHTML = '加载事实失败，请稍后再试。'; }); } });</script>`; bodyEndScripts.push(factScript); }
     const originalTitle = $('title').text() || pageNameToProcess; const preReplacedTitle = replaceTermsDirectly(originalTitle, fullDictionary, sortedKeys); let translatedTitle = await translateTextWithEnglishCheck(preReplacedTitle); translatedTitle = translatedTitle.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3'); $contentContainer.find('a').each(function() { const $el = $(this); const originalHref = $el.attr('href'); const internalPageName = getPageNameFromWikiLink(originalHref); if (internalPageName) { $el.attr('href', `./${internalPageName}`); } else if (originalHref && !originalHref.startsWith('#')) { try { $el.attr('href', new URL(originalHref, sourceUrl).href); } catch (e) { console.warn(`[${pageNameToProcess}] 转换外部链接 'a' href 时出错: ${originalHref}`); } } });
     
-    // 【优化】使用更稳健的 URL 解析方式处理图片链接
     $contentContainer.find('img').each(function() {
         const $el = $(this);
         let src = $el.attr('src');
@@ -244,22 +242,29 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageR
                     return absoluteUrl + descriptor;
                 } catch(e) {
                      console.warn(`[${pageNameToProcess}] 转换 srcset URL 时出错: ${urlPart}`);
-                     return s; // 出错时返回原始值
+                     return s;
                 }
             }).join(', ');
             $el.attr('srcset', newSrcset);
         }
     });
 
-    // 【新增】处理 iframe 标签，确保其 src 链接是绝对路径
+    // 【修正】处理 iframe 标签，增加检查和替换逻辑
     $contentContainer.find('iframe').each(function() {
         const $el = $(this);
         let src = $el.attr('src');
         if (src) {
              try {
-                 // 使用 new URL 构造函数可以稳健地处理 // 开头的协议相对链接
                  const absoluteUrl = new URL(src, sourceUrl).href;
-                 $el.attr('src', absoluteUrl);
+                 // 检查映射表是否存在替换规则
+                 if (imageReplacementMap.has(absoluteUrl)) {
+                     // 如果存在，则进行替换
+                     $el.attr('src', imageReplacementMap.get(absoluteUrl));
+                     console.log(`[${pageNameToProcess}] ✅ Iframe src 替换成功: ${absoluteUrl}`);
+                 } else {
+                     // 如果不存在，则仅设置为绝对路径
+                     $el.attr('src', absoluteUrl);
+                 }
              } catch(e) {
                  console.warn(`[${pageNameToProcess}] 转换 iframe src 属性时出错: ${src}`);
              }
@@ -274,13 +279,12 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageR
     let homeButtonHtml = ''; if (pageNameToProcess !== START_PAGE) { homeButtonHtml = `<a href="./${START_PAGE}" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">返回主页</a>`; }
     const headContent = headElements.filter(el => !el.toLowerCase().startsWith('<title>')).join('\n    '); const bodyClasses = $('body').attr('class') || ''; const finalHtml = `<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>${translatedTitle}</title>${headContent}<style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="${bodyClasses}"><div id="mw-main-container">${homeButtonHtml}<div class="main-content"><div class="mw-body ve-init-mw-desktopArticleTarget-targetContainer" id="content" role="main"><a id="top"></a><div class="mw-body-content" id="bodyContent"><div id="siteNotice"></div><div id="mw-content-text" class="mw-content-ltr mw-parser-output" lang="zh-CN" dir="ltr">${finalHtmlContent}</div></div></div></div></div>${bodyEndScripts.join('\n    ')}</body></html>`;
     
-    // 使用下划线格式的页面名保存文件
     fs.writeFileSync(path.join(OUTPUT_DIR, `${pageNameToProcess}.html`), finalHtml, 'utf-8');
     
     console.log(`✅ [${pageNameToProcess}] 翻译完成 (Revision ID: ${currentEditInfo})！文件已保存到 output 目录。`);
-    // 返回结果时，pageName 已经是下划线格式，与 lastEditInfo 的 key 保持一致
     return { translationResult: { pageName: pageNameToProcess, newEditInfo: currentEditInfo }, links: findInternalLinks($) };
 }
+
 async function run() {
     console.log("--- 翻译任务开始 ---");
 
