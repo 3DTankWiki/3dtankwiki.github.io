@@ -6,5 +6,6 @@ const imageReplacementDict = {
     "https://en.tankiwiki.com/images/en/thumb/2/26/Gamepad_controls.jpg/900px-Gamepad_controls.jpg":"https://i.ibb.co/RTPdqgrs/1754475033490.jpg",
     "https://en.tankiwiki.com/images/en/thumb/2/26/Gamepad_controls.jpg/1350px-Gamepad_controls.jpg":"https://i.ibb.co/RTPdqgrs/1754475033490.jpg",
     "https://en.tankiwiki.com/images/en/thumb/2/26/Gamepad_controls.jpg/1800px-Gamepad_controls.jpg":"https://i.ibb.co/RTPdqgrs/1754475033490.jpg",
-    "https://www.youtube-nocookie.com/embed/Wm0gOM_vchI?":"https://player.bilibili.com/player.html?bvid=BV1RDn5zTEvA&p=1"
+    "https://www.youtube-nocookie.com/embed/Wm0gOM_vchI?":"https://player.bilibili.com/player.html?bvid=BV1RDn5zTEvA&p=1",
+    "trXeSeVUeAI":"BV1RDn5zTEvA"
 };
