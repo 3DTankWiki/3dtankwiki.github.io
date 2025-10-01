@@ -212,8 +212,60 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageR
     const bodyEndScripts = []; $('body > script').each(function() { const $el = $(this); const src = $el.attr('src'); if (src && src.startsWith('/')) { $el.attr('src', BASE_URL + src); } bodyEndScripts.push($.html(this)); });
     const $contentContainer = $('<div id="wiki-content-wrapper"></div>'); $('#firstHeading').clone().appendTo($contentContainer); $('#mw-content-text .mw-parser-output').children().each(function() { $contentContainer.append($(this).clone()); });
     const $factBoxContent = $contentContainer.find('.random-text-box > div:last-child'); if ($factBoxContent.length > 0) { $factBoxContent.html('<p id="dynamic-fact-placeholder" style="margin:0;">正在加载有趣的事实...</p>'); const factScript = `<script>document.addEventListener('DOMContentLoaded', function() { const factsUrl = './facts.json'; const placeholder = document.getElementById('dynamic-fact-placeholder'); if (placeholder) { fetch(factsUrl).then(response => { if (!response.ok) { throw new Error('网络响应错误，状态码: ' + response.status); } return response.json(); }).then(facts => { if (facts && Array.isArray(facts) && facts.length > 0) { const randomIndex = Math.floor(Math.random() * facts.length); const randomFact = facts[randomIndex].cn; placeholder.innerHTML = randomFact; } else { placeholder.innerHTML = '暂时没有可显示的事实。'; } }).catch(error => { console.error('加载或显示事实时出错:', error); placeholder.innerHTML = '加载事实失败，请稍后再试。'; }); } });</script>`; bodyEndScripts.push(factScript); }
-    const originalTitle = $('title').text() || pageNameToProcess; const preReplacedTitle = replaceTermsDirectly(originalTitle, fullDictionary, sortedKeys); let translatedTitle = await translateTextWithEnglishCheck(preReplacedTitle); translatedTitle = translatedTitle.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3'); $contentContainer.find('a').each(function() { const $el = $(this); const originalHref = $el.attr('href'); const internalPageName = getPageNameFromWikiLink(originalHref); if (internalPageName) { $el.attr('href', `./${internalPageName}`); } else if (originalHref?.startsWith('/') && !originalHref.startsWith('//')) { try { $el.attr('href', new URL(originalHref, BASE_URL).href); } catch (e) { console.warn(`[${pageNameToProcess}] 转换内部资源链接时出错: ${originalHref}`); } } });
-    $contentContainer.find('img').each(function() { const $el = $(this); let src = $el.attr('src'); if (src) { const absoluteSrc = src.startsWith('/') ? BASE_URL + src : src; if (imageReplacementMap.has(absoluteSrc)) { $el.attr('src', imageReplacementMap.get(absoluteSrc)); } else if (src.startsWith('/')) { $el.attr('src', absoluteSrc); } } const srcset = $el.attr('srcset'); if (srcset) { const newSrcset = srcset.split(',').map(s => { const parts = s.trim().split(/\s+/); let url = parts[0]; const descriptor = parts.length > 1 ? ` ${parts[1]}` : ''; const absoluteUrl = url.startsWith('/') ? BASE_URL + url : url; if (imageReplacementMap.has(absoluteUrl)) { return imageReplacementMap.get(absoluteUrl) + descriptor; } return (url.startsWith('/') ? absoluteUrl : url) + descriptor; }).join(', '); $el.attr('srcset', newSrcset); } });
+    const originalTitle = $('title').text() || pageNameToProcess; const preReplacedTitle = replaceTermsDirectly(originalTitle, fullDictionary, sortedKeys); let translatedTitle = await translateTextWithEnglishCheck(preReplacedTitle); translatedTitle = translatedTitle.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3'); $contentContainer.find('a').each(function() { const $el = $(this); const originalHref = $el.attr('href'); const internalPageName = getPageNameFromWikiLink(originalHref); if (internalPageName) { $el.attr('href', `./${internalPageName}`); } else if (originalHref && !originalHref.startsWith('#')) { try { $el.attr('href', new URL(originalHref, sourceUrl).href); } catch (e) { console.warn(`[${pageNameToProcess}] 转换外部链接 'a' href 时出错: ${originalHref}`); } } });
+    
+    // 【优化】使用更稳健的 URL 解析方式处理图片链接
+    $contentContainer.find('img').each(function() {
+        const $el = $(this);
+        let src = $el.attr('src');
+        if (src) {
+            try {
+                const absoluteSrc = new URL(src, sourceUrl).href;
+                if (imageReplacementMap.has(absoluteSrc)) {
+                    $el.attr('src', imageReplacementMap.get(absoluteSrc));
+                } else {
+                    $el.attr('src', absoluteSrc);
+                }
+            } catch (e) {
+                 console.warn(`[${pageNameToProcess}] 转换 img src 时出错: ${src}`);
+            }
+        }
+        const srcset = $el.attr('srcset');
+        if (srcset) {
+            const newSrcset = srcset.split(',').map(s => {
+                const parts = s.trim().split(/\s+/);
+                let urlPart = parts[0];
+                const descriptor = parts.length > 1 ? ` ${parts[1]}` : '';
+                try {
+                    const absoluteUrl = new URL(urlPart, sourceUrl).href;
+                    if (imageReplacementMap.has(absoluteUrl)) {
+                        return imageReplacementMap.get(absoluteUrl) + descriptor;
+                    }
+                    return absoluteUrl + descriptor;
+                } catch(e) {
+                     console.warn(`[${pageNameToProcess}] 转换 srcset URL 时出错: ${urlPart}`);
+                     return s; // 出错时返回原始值
+                }
+            }).join(', ');
+            $el.attr('srcset', newSrcset);
+        }
+    });
+
+    // 【新增】处理 iframe 标签，确保其 src 链接是绝对路径
+    $contentContainer.find('iframe').each(function() {
+        const $el = $(this);
+        let src = $el.attr('src');
+        if (src) {
+             try {
+                 // 使用 new URL 构造函数可以稳健地处理 // 开头的协议相对链接
+                 const absoluteUrl = new URL(src, sourceUrl).href;
+                 $el.attr('src', absoluteUrl);
+             } catch(e) {
+                 console.warn(`[${pageNameToProcess}] 转换 iframe src 属性时出错: ${src}`);
+             }
+        }
+    });
+
     const textNodes = []; $contentContainer.find('*:not(script,style)').addBack().contents().each(function() { if (this.type === 'text' && this.data.trim() && !$(this).parent().is('span.hotkey')) { textNodes.push(this); } });
     const textPromises = textNodes.map(node => { const preReplaced = replaceTermsDirectly(node.data, fullDictionary, sortedKeys); return translateTextWithEnglishCheck(preReplaced); }); const translatedTexts = await Promise.all(textPromises);
     textNodes.forEach((node, index) => { if (translatedTexts[index]) { node.data = translatedTexts[index].trim(); } });
@@ -229,7 +281,6 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, imageR
     // 返回结果时，pageName 已经是下划线格式，与 lastEditInfo 的 key 保持一致
     return { translationResult: { pageName: pageNameToProcess, newEditInfo: currentEditInfo }, links: findInternalLinks($) };
 }
-
 async function run() {
     console.log("--- 翻译任务开始 ---");
 
