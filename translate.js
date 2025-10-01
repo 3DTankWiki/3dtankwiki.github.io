@@ -322,35 +322,36 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, source
     let finalHtmlContent = $contentContainer.html(); finalHtmlContent = finalHtmlContent.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3').replace(/rgb\(70, 223, 17\)/g, '#76FF33');
     let homeButtonHtml = ''; if (pageNameToProcess !== START_PAGE) { homeButtonHtml = `<a href="./${START_PAGE}" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">返回主页</a>`; }
     
-    // --- 【新增修改】 开始：定义用于注入的Bilibili弹窗脚本 ---
+   // --- 【新增修改】 开始：定义用于注入的Bilibili弹窗脚本 (V2 - 修复冲突) ---
     const bilibiliPopupScript = `
     <script>
-    // Bilibili 弹窗逻辑 (用于替换 common.js 中的 YouTube 逻辑)
-    // 使用 DOMContentLoaded 确保页面元素和可能的 tingle.js 库已加载
+    // Bilibili 弹窗逻辑 (V2 - 修复冲突)
     document.addEventListener('DOMContentLoaded', function() {
         const videoPopups = document.querySelectorAll('.ShowYouTubePopup');
         if (videoPopups.length) {
             let modal = null;
             videoPopups.forEach(popup => {
-                // 为防止原始 common.js 的监听器也被触发，我们只处理一次
                 if (popup.dataset.biliHandled) return;
                 
-                popup.addEventListener('click', () => {
-                    // 确保 tingle.js 库已加载
+                // 【核心修改】在监听器中接收 event 对象
+                popup.addEventListener('click', (event) => {
+                    // 【核心修改】立即停止事件传播，阻止 common.js 中的原始监听器被触发
+                    event.stopImmediatePropagation(); 
+
                     if (typeof tingle === 'undefined') {
                         console.error('Tingle.js 未加载，无法打开视频弹窗。');
                         return;
                     }
                     showBilibiliModal(popup.dataset.id);
-                });
-                popup.dataset.biliHandled = 'true'; // 标记此元素已被处理
+                }, true); // 【核心修改】使用捕获阶段（true），确保我们的监听器最先执行
+
+                popup.dataset.biliHandled = 'true';
             });
 
             function showBilibiliModal(bvid) {
                 modal = new tingle.modal({
                     closeMethods: ['button', 'escape', 'overlay']
                 });
-                // 注意：这里使用 Bilibili 播放器链接，并传入 bvid
                 modal.setContent(\`
                         <div class="report-head">
                             <div class="report-title">观看视频</div>
@@ -361,7 +362,8 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, source
                             <iframe class="yt-video" width="100%" height="100%"
                                 src="https://player.bilibili.com/player.html?bvid=\${bvid}&high_quality=1&danmaku=0" 
                                 frameborder="0" 
-                                allowfullscreen>
+                                allowfullscreen="allowfullscreen"
+                                sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts">
                             </iframe>
                         </div>
                     \`);
@@ -377,9 +379,9 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, source
     });
     </script>
     `;
-    bodyEndScripts.push(bilibiliPopupScript); // 将我们的脚本添加到页面末尾
+    bodyEndScripts.push(bilibiliPopupScript);
     // --- 【新增修改】 结束：定义Bilibili弹窗脚本 ---
-
+    
     const headContent = headElements.filter(el => !el.toLowerCase().startsWith('<title>')).join('\n    '); const bodyClasses = $('body').attr('class') || ''; const finalHtml = `<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>${translatedTitle}</title>${headContent}<style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="${bodyClasses}"><div id="mw-main-container">${homeButtonHtml}<div class="main-content"><div class="mw-body ve-init-mw-desktopArticleTarget-targetContainer" id="content" role="main"><a id="top"></a><div class="mw-body-content" id="bodyContent"><div id="siteNotice"></div><div id="mw-content-text" class="mw-content-ltr mw-parser-output" lang="zh-CN" dir="ltr">${finalHtmlContent}</div></div></div></div></div>${bodyEndScripts.join('\n    ')}</body></html>`;
     
     fs.writeFileSync(path.join(OUTPUT_DIR, `${pageNameToProcess}.html`), finalHtml, 'utf-8');
