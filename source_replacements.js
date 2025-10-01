@@ -14,5 +14,5 @@ const sourceReplacementDict = {
     "https://www.youtube-nocookie.com/embed/B0aGEXzwwvk?","https://player.bilibili.com/player.html?bvid=BV1oKn5zTExU",
     "https://www.youtube-nocookie.com/embed/vKeeAq8xIhA?","https://player.bilibili.com/player.html?bvid=BV1dKn5zTEZw"
     
-    //视频 ID（例如："trXeSeVUeAI":"BV1RDn5zTEvA"）
+    //弹窗视频 ID（例如："trXeSeVUeAI":"BV1RDn5zTEvA"）
 };
