@@ -374,7 +374,7 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, source
                         <!-- 【最终版 - 核心修改】完全复制原始YouTube弹窗的布局和样式 -->
                         <div style="margin: 15px 10px 10px 10px; background: url('loading.gif') center no-repeat;">
                             <iframe class="yt-video" width="640px" height="360px"
-                                src="https://player.bilibili.com/player.html?bvid=\${bvid}&high_quality=1&danmaku=0" 
+                                src="https://player.bilibili.com/player.html?bvid=\${bvid}" 
                                 frameborder="0" 
                                 allowfullscreen="allowfullscreen"
                                 sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts">
