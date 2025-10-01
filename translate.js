@@ -322,10 +322,10 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, source
     let finalHtmlContent = $contentContainer.html(); finalHtmlContent = finalHtmlContent.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3').replace(/rgb\(70, 223, 17\)/g, '#76FF33');
     let homeButtonHtml = ''; if (pageNameToProcess !== START_PAGE) { homeButtonHtml = `<a href="./${START_PAGE}" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">返回主页</a>`; }
     
-  // --- 【新增修改】 开始：定义用于注入的Bilibili弹窗脚本 (V3 - 统一尺寸) ---
+  // --- 【新增修改】 开始：定义用于注入的Bilibili弹窗脚本 (V4 - 精确复刻) ---
     const bilibiliPopupScript = `
     <script>
-    // Bilibili 弹窗逻辑 (V3 - 统一尺寸)
+    // Bilibili 弹窗逻辑 (V4 - 精确复刻)
     document.addEventListener('DOMContentLoaded', function() {
         const videoPopups = document.querySelectorAll('.ShowYouTubePopup');
         if (videoPopups.length) {
@@ -357,9 +357,9 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, source
                             <div class="report-close"></div>
                         </div>
                         
-                        <!-- 【核心修改】这里是尺寸控制的关键 -->
-                        <div style="max-width: 640px; width: 100%; margin: 15px auto 10px; background: url('loading.gif') center no-repeat; aspect-ratio: 16 / 9;">
-                            <iframe class="yt-video" width="100%" height="100%"
+                        <!-- 【最终版 - 核心修改】完全复制原始YouTube弹窗的布局和样式 -->
+                        <div style="margin: 15px 10px 10px 10px; background: url('loading.gif') center no-repeat;">
+                            <iframe class="yt-video" width="640px" height="360px"
                                 src="https://player.bilibili.com/player.html?bvid=\${bvid}&high_quality=1&danmaku=0" 
                                 frameborder="0" 
                                 allowfullscreen="allowfullscreen"
