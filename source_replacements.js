@@ -7,7 +7,12 @@ const sourceReplacementDict = {
     "https://en.tankiwiki.com/images/en/thumb/2/26/Gamepad_controls.jpg/900px-Gamepad_controls.jpg":"https://i.ibb.co/RTPdqgrs/1754475033490.jpg",
     "https://en.tankiwiki.com/images/en/thumb/2/26/Gamepad_controls.jpg/1350px-Gamepad_controls.jpg":"https://i.ibb.co/RTPdqgrs/1754475033490.jpg",
     "https://en.tankiwiki.com/images/en/thumb/2/26/Gamepad_controls.jpg/1800px-Gamepad_controls.jpg":"https://i.ibb.co/RTPdqgrs/1754475033490.jpg",
-    "https://www.youtube-nocookie.com/embed/Wm0gOM_vchI?":"https://player.bilibili.com/player.html?bvid=BV1RDn5zTEvA&p=1"
+    "https://www.youtube-nocookie.com/embed/Wm0gOM_vchI?":"https://player.bilibili.com/player.html?bvid=BV1RDn5zTEvA",
+    "https://www.youtube-nocookie.com/embed/IHLaSiVgEtQ?":"https://player.bilibili.com/player.html?bvid=BV1oPn5zBEZ5",
+    "https://www.youtube-nocookie.com/embed/3LoNmAm3BGs?","https://player.bilibili.com/player.html?bvid=BV1ZAn5zuEet",
+    "https://www.youtube-nocookie.com/embed/VykRhEe9LpI?","https://player.bilibili.com/player.html?bvid=BV1jTn5zqEE8",
+    "https://www.youtube-nocookie.com/embed/B0aGEXzwwvk?","https://player.bilibili.com/player.html?bvid=BV1oKn5zTExU",
+    "https://www.youtube-nocookie.com/embed/vKeeAq8xIhA?","https://player.bilibili.com/player.html?bvid=BV1dKn5zTEZw"
     
-    //视频 ID（如："trXeSeVUeAI":"BV1RDn5zTEvA"）
+    //视频 ID（例如："trXeSeVUeAI":"BV1RDn5zTEvA"）
 };
