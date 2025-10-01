@@ -286,35 +286,49 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, source
         }
     });
 
-    // --- 【新增修改】 开始：替换YouTube data-id为Bilibili BVID ---
+    // --- 【新增修改 V2】 开始：替换YouTube data-id为Bilibili BVID (兼容ID和URL两种规则) ---
     console.log(`[${pageNameToProcess}] 正在查找并替换 YouTube 视频链接的 data-id...`);
     $contentContainer.find('.ShowYouTubePopup[data-id]').each(function() {
         const $el = $(this);
         const yid = $el.attr('data-id');
-        if (yid) {
+        if (!yid) return;
+
+        let replaced = false;
+
+        // 方案 A: 优先直接用视频 ID (yid) 作为 key 进行查找
+        if (sourceReplacementMap.has(yid)) {
+            const bvid = sourceReplacementMap.get(yid);
+            $el.attr('data-id', bvid);
+            console.log(`  - ✅ [data-id] (通过ID) 替换成功: ${yid} -> ${bvid}`);
+            replaced = true;
+        } 
+        // 方案 B: 如果用 ID 找不到, 再尝试构建完整的 URL 作为 key 进行查找 (兼容旧规则)
+        else {
             const youtubeUrl = `https://www.youtube.com/embed/${yid}`;
             if (sourceReplacementMap.has(youtubeUrl)) {
                 const bilibiliPlayerUrl = sourceReplacementMap.get(youtubeUrl);
                 try {
                     const url = new URL(bilibiliPlayerUrl);
-                    // 假设bilibili链接格式为 ...?bvid=BVxxxx...
-                    const bvid = url.searchParams.get('bvid'); 
+                    const bvid = url.searchParams.get('bvid');
                     if (bvid) {
                         $el.attr('data-id', bvid);
-                        console.log(`  - ✅ [data-id] 替换成功: ${yid} -> ${bvid}`);
+                        console.log(`  - ✅ [data-id] (通过URL) 替换成功: ${yid} -> ${bvid}`);
+                        replaced = true;
                     } else {
                         console.warn(`  - ⚠️ 在目标URL ${bilibiliPlayerUrl} 中未找到 BVID。`);
                     }
                 } catch (e) {
                     console.warn(`  - ⚠️ 解析Bilibili URL时出错: ${bilibiliPlayerUrl}`);
                 }
-            } else {
-                console.log(`  - [未替换] data-id="${yid}" 在源替换词典中未找到对应规则。`);
             }
         }
+        
+        if (!replaced) {
+            console.log(`  - [未替换] data-id="${yid}" 在源替换词典中未找到对应规则。`);
+        }
     });
-    // --- 【新增修改】 结束：替换 data-id ---
-
+    // --- 【新增修改 V2】 结束：替换 data-id ---
+    
     const textNodes = []; $contentContainer.find('*:not(script,style)').addBack().contents().each(function() { if (this.type === 'text' && this.data.trim() && !$(this).parent().is('span.hotkey')) { textNodes.push(this); } });
     const textPromises = textNodes.map(node => { const preReplaced = replaceTermsDirectly(node.data, fullDictionary, sortedKeys); return translateTextWithEnglishCheck(preReplaced); }); const translatedTexts = await Promise.all(textPromises);
     textNodes.forEach((node, index) => { if (translatedTexts[index]) { node.data = translatedTexts[index].trim(); } });
