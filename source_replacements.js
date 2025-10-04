@@ -27,6 +27,15 @@ const sourceReplacementDict = {
     "https://en.tankiwiki.com/images/en/thumb/a/ad/Lobby_play_button.png/170px-Lobby_play_button.png":"https://i.ibb.co/wZ5HfDZ2/2025-10-04-155414.png",
     "https://en.tankiwiki.com/images/en/thumb/a/ad/Lobby_play_button.png/255px-Lobby_play_button.png":"https://i.ibb.co/wZ5HfDZ2/2025-10-04-155414.png",
     "https://en.tankiwiki.com/images/en/a/ad/Lobby_play_button.png":"https://i.ibb.co/wZ5HfDZ2/2025-10-04-155414.png",
-    "https://en.tankiwiki.com/images/en/7/7a/Create_A_Battle_List.png":"https://i.ibb.co/VWy5L0FJ/2025-10-04-155725.png"
+    "https://en.tankiwiki.com/images/en/7/7a/Create_A_Battle_List.png":"https://i.ibb.co/VWy5L0FJ/2025-10-04-155725.png",
+    "https://en.tankiwiki.com/images/en/thumb/7/70/Interface_main_view.png/820px-Interface_main_view.png":"https://i.ibb.co/5WXqCtkt/2025-10-04-160805.png",
+    "https://en.tankiwiki.com/images/en/thumb/7/70/Interface_main_view.png/1230px-Interface_main_view.png":"https://i.ibb.co/5WXqCtkt/2025-10-04-160805.png",
+    "https://en.tankiwiki.com/images/en/thumb/7/70/Interface_main_view.png/1640px-Interface_main_view.png":"https://i.ibb.co/5WXqCtkt/2025-10-04-160805.png",
+    "https://en.tankiwiki.com/images/en/thumb/2/25/Battle_Interface2.png/820px-Battle_Interface2.png":"https://i.ibb.co/sJ1H8G56/2025-10-04-160819.png",
+    "https://en.tankiwiki.com/images/en/thumb/2/25/Battle_Interface2.png/1230px-Battle_Interface2.png":"https://i.ibb.co/sJ1H8G56/2025-10-04-160819.png",
+    "https://en.tankiwiki.com/images/en/thumb/2/25/Battle_Interface2.png/1640px-Battle_Interface2.png":"https://i.ibb.co/sJ1H8G56/2025-10-04-160819.png",
+    "https://en.tankiwiki.com/images/en/thumb/8/80/PauseMenu1.png/250px-PauseMenu1.png":"https://i.ibb.co/5yXkjwx/2025-10-04-160842.png",
+    "https://en.tankiwiki.com/images/en/thumb/8/80/PauseMenu1.png/375px-PauseMenu1.png":"https://i.ibb.co/5yXkjwx/2025-10-04-160842.png",
+    "https://en.tankiwiki.com/images/en/thumb/8/80/PauseMenu1.png/500px-PauseMenu1.png":"https://i.ibb.co/5yXkjwx/2025-10-04-160842.png"
     //弹窗视频 ID：（例如："trXeSeVUeAI":"BV1RDn5zTEvA"）
 };
