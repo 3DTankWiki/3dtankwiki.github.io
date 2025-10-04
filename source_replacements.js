@@ -23,6 +23,10 @@ const sourceReplacementDict = {
     "https://en.tankiwiki.com/images/en/thumb/6/68/MmPlayButton.png/135px-MmPlayButton.png":"https://i.ibb.co/LXmd5YjK/2025-10-04-152505.png",
     "https://en.tankiwiki.com/images/en/thumb/6/68/MmPlayButton.png/180px-MmPlayButton.png":"https://i.ibb.co/LXmd5YjK/2025-10-04-152505.png",
     "https://en.tankiwiki.com/images/en/9/9d/Bmodes.png":"https://i.ibb.co/PZFX6XX5/2025-10-04-152925.png",
-    "https://en.tankiwiki.com/images/en/8/88/Garage.png":"https://i.ibb.co/vvg757hp/2025-10-04-154643.png"
+    "https://en.tankiwiki.com/images/en/8/88/Garage.png":"https://i.ibb.co/v6ZCMmrX/2025-10-04-155948.png",
+    "https://en.tankiwiki.com/images/en/thumb/a/ad/Lobby_play_button.png/170px-Lobby_play_button.png":"https://i.ibb.co/wZ5HfDZ2/2025-10-04-155414.png",
+    "https://en.tankiwiki.com/images/en/thumb/a/ad/Lobby_play_button.png/255px-Lobby_play_button.png":"https://i.ibb.co/wZ5HfDZ2/2025-10-04-155414.png",
+    "https://en.tankiwiki.com/images/en/a/ad/Lobby_play_button.png":"https://i.ibb.co/wZ5HfDZ2/2025-10-04-155414.png",
+    "https://en.tankiwiki.com/images/en/7/7a/Create_A_Battle_List.png":"https://i.ibb.co/VWy5L0FJ/2025-10-04-155725.png"
     //弹窗视频 ID：（例如："trXeSeVUeAI":"BV1RDn5zTEvA"）
 };
