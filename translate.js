@@ -400,7 +400,16 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, source
     const textPromises = textNodes.map(node => { const preReplaced = replaceTermsDirectly(node.data, fullDictionary, sortedKeys); return translateTextWithEnglishCheck(preReplaced); }); const translatedTexts = await Promise.all(textPromises);
     textNodes.forEach((node, index) => { if (translatedTexts[index]) { node.data = translatedTexts[index].trim(); } });
     const elementsWithAttributes = $contentContainer.find('[title], [alt]'); for (let i = 0; i < elementsWithAttributes.length; i++) { const $element = $(elementsWithAttributes[i]); for (const attr of ['title', 'alt']) { const originalValue = $element.attr(attr); if (originalValue) { const preReplaced = replaceTermsDirectly(originalValue, fullDictionary, sortedKeys); const translatedValue = await translateTextWithEnglishCheck(preReplaced); $element.attr(attr, translatedValue); } } }
-    let finalHtmlContent = $contentContainer.html(); finalHtmlContent = finalHtmlContent.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3').replace(/rgb\(70, 223, 17\)/g, '#76FF33');
+    
+    let finalHtmlContent = $contentContainer.html();
+    // --- 【颜色替换修改】---
+    finalHtmlContent = finalHtmlContent.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3')
+        .replace(/#?46DF11|rgb\(70,[\s]*223,[\s]*17\)/gi, '#76FF33') // 46DF11 -> 76FF33
+        .replace(/#?00D7FF/gi, '#00D4FF')                       // 00D7FF -> 00D4FF
+        .replace(/#?(F86667|F33|FF3333)\b/gi, '#FF6666')        // F86667, F33, FF3333 -> FF6666
+        .replace(/#?(FC0|FFCC00)\b/gi, '#FFEE00')                 // FC0, FFCC00 -> FFEE00
+        .replace(/#?8C60EB/gi, '#D580FF');                      // 8C60EB -> D580FF
+
     let homeButtonHtml = ''; if (pageNameToProcess !== START_PAGE) { homeButtonHtml = `<a href="./${START_PAGE}" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">返回主页</a>`; }
     
   // --- 【新增修改】 开始：定义用于注入的Bilibili弹窗脚本 (V4 - 精确复刻) ---
