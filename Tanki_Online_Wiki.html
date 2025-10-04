@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>3D坦克维基</title><meta charset="UTF-8">
     <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
     <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
-    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"5a7045591b39e180ee92b914","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Tanki_Online_Wiki","wgTitle":"Tanki Online Wiki","wgCurRevisionId":64339,"wgRevisionId":64339,"wgArticleId":12,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Tanki_Online_Wiki","wgRelevantArticleId":12,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgIsMainPage":true,"wgVisualEditor":{"pageLanguageCode":"en",
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"349fc32cff8e165a569e8e30","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Tanki_Online_Wiki","wgTitle":"Tanki Online Wiki","wgCurRevisionId":64339,"wgRevisionId":64339,"wgArticleId":12,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Tanki_Online_Wiki","wgRelevantArticleId":12,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgIsMainPage":true,"wgVisualEditor":{"pageLanguageCode":"en",
 "pageLanguageDir":"ltr","pageVariantFallbacks":"en"},"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.inputBox.styles":"ready","mediawiki.ui.input":"ready","mediawiki.ui.checkbox":"ready","mediawiki.ui.button":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","ext.gadget.UTCLiveClock","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","skins.tankiblue.js","ext.purge"];</script>
     <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
 }];});});</script>
@@ -16,64 +16,13 @@
     <link rel="icon" href="https://en.tankiwiki.com/favicon.png">
     <link rel="search" type="application/opensearchdescription+xml" href="https://en.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (en)">
     <link rel="EditURI" type="application/rsd+xml" href="https://en.tankiwiki.com/api.php?action=rsd">
-    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki Atom feed" href="https://en.tankiwiki.com/index.php?title=Special:RecentChanges&amp;feed=atom">
-    <script src="https://en.tankiwiki.com/load.php?lang=en&amp;modules=ext.purge%7Cjquery%2Csite%7Cjquery.client%2CtextSelection%7Cmediawiki.String%2CTitle%2Capi%2Cbase%2Ccldr%2Ccookie%2CjqueryMsg%2Clanguage%2Cstorage%2Cuser%2Cutil%7Cmediawiki.editfont.styles%7Cmediawiki.libs.pluralruleparser%7Cmediawiki.page.ready%7Cskins.tankiblue.js&amp;skin=tankiblue&amp;version=1glsw"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
-        body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}
-        #mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}
-        /* 注入下拉菜单的CSS */
-        
-        .dropdown_button_wrapper { 
-            position: relative; 
-            cursor: pointer; 
-        }
-        .dropdown_menu {
-            display: none;
-            position: absolute;
-            left: 0;
-            top: 100%; /* 定位在按钮正下方 */
-            background-color: #002a40; /* 深色主题背景 */
-            border: 1px solid #335b70;
-            border-radius: 5px;
-            padding: 10px;
-            z-index: 1000;
-            min-width: 220px; /* 保证足够宽度 */
-            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
-            margin-top: 5px; /* 与按钮留出一点间隙 */
-        }
-        /* 当菜单被激活时显示 */
-        .dropdown_menu.active {
-            display: block;
-        }
-        /* 菜单内部列表样式重置 */
-        .dropdown_menu ul { 
-            list-style: none !important; 
-            padding: 0 !important; 
-            margin: 0 !important; 
-        }
-        .dropdown_menu ul li { 
-            padding: 4px 2px !important;
-            display: flex;
-            align-items: center;
-        }
-        .dropdown_menu ul li a {
-            color: #bfe6ff; /* 亮色文字，保证可读性 */
-            text-decoration: none;
-        }
-         .dropdown_menu ul li a:hover {
-            text-decoration: underline;
-        }
-    
-    </style>
-    </head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Tanki_Online_Wiki rootpage-Tanki_Online_Wiki skin-tankiblue action-view">
-    <div id="mw-main-container"><div class="main-content"><div class="mw-body ve-init-mw-desktopArticleTarget-targetContainer" id="content" role="main"><a id="top"></a><div class="mw-body-content" id="bodyContent"><div id="siteNotice"></div><div id="mw-content-text" class="mw-content-ltr mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">《3D坦克》游戏百科全书</h1><p><br>
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki Atom feed" href="https://en.tankiwiki.com/index.php?title=Special:RecentChanges&amp;feed=atom"><style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Tanki_Online_Wiki rootpage-Tanki_Online_Wiki skin-tankiblue action-view"><div id="mw-main-container"><div class="main-content"><div class="mw-body ve-init-mw-desktopArticleTarget-targetContainer" id="content" role="main"><a id="top"></a><div class="mw-body-content" id="bodyContent"><div id="siteNotice"></div><div id="mw-content-text" class="mw-content-ltr mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">《3D坦克》游戏百科全书</h1><p><br>
 </p><div class="alert success">
   <div class="icon"></div>
-  <div class="text"><b>注意！</b>感谢所有的<a href="./Wiki_reports" title="Wiki报告">坦克手们</a>谁在上个月报告了维基错误！</div>
+  <div class="text"><b>注意！</b>感谢所有人<a href="./Wiki_reports" title="Wiki报告">坦克手们</a>谁在上个月报告了维基漏洞！</div>
 </div><div class="input-group" style="margin-bottom: 30px;">
-<form name="bodySearch0.964943760157" id="bodySearch0.964943760157" class="bodySearch" action="/Special:Search"><div class="bodySearchWrap" style=""><label for="bodySearchInput0.964943760157">搜索维基</label><input name="search" class="mw-searchInput mw-ui-input mw-ui-input-inline" size="50" id="bodySearchInput0.964943760157" dir="ltr" placeholder="Search"><input type="submit" name="go" value="Try exact match" class="mw-ui-button"></div></form>
-</div><div class="banner how-play-banner" data-blank="false"><div class="text">如果你刚开始你的游戏旅程，我们为你准备了一篇文章，介绍你需要首先了解的内容。</div><div class="link">如何开始玩<a href="./How_to_start" title="如何开始">如何开始</a></div></div><div class="navigationWrapper">
+<form name="bodySearch0.468246574253" id="bodySearch0.468246574253" class="bodySearch" action="/Special:Search"><div class="bodySearchWrap" style=""><label for="bodySearchInput0.468246574253">搜索维基</label><input name="search" class="mw-searchInput mw-ui-input mw-ui-input-inline" size="50" id="bodySearchInput0.468246574253" dir="ltr" placeholder="Search"><input type="submit" name="go" value="Try exact match" class="mw-ui-button"></div></form>
+</div><div class="banner how-play-banner" data-blank="false"><div class="text">如果你刚开始游戏之旅，我们为你准备了一篇文章，介绍你首先需要了解的内容。</div><div class="link">如何开始玩<a href="./How_to_start" title="如何开始">如何开始</a></div></div><div class="navigationWrapper">
 <div class="navigationContainer">
 <div class="navigationContainerTitle">
 <p><span class="mw-default-size" typeof="mw:File"><a href="./How_to_start" title="如何开始"><img src="https://en.tankiwiki.com/images/en/1/11/How_start.png" decoding="async" loading="lazy" width="71" height="68" class="mw-file-element"></a></span>
@@ -88,10 +37,10 @@
 <li><a href="./Battle" title="战斗">战斗</a></li></ul>
 </div>
 <div style="width: 45%;">
-<ul><li><a href="./Battle_Interface" title="战斗接口">战斗接口</a></li>
+<ul><li><a href="./Battle_Interface" title="战斗界面">战斗界面</a></li>
 <li><a href="./Settings" title="设置">设置</a></li>
 <li><a href="./Account_security" title="账号安全">账号安全</a></li>
-<li><a href="./Bonus_For_Returning" title="回馈奖金">回馈奖金</a></li></ul>
+<li><a href="./Bonus_For_Returning" title="回归奖励">回归奖励</a></li></ul>
 </div>
 </div>
 </div>
@@ -107,11 +56,11 @@
 <div style="width: 55%;">
 <ul><li><a rel="nofollow" class="external text" href="https://tankionline.com/en/faq/problems">问题与解决方案</a></li>
 <li><a href="./Tech_Support" title="技术支持">联系支持服务</a></li>
-<li><a href="./Payment_instructions_for_Tanki_Online_Mobile" title="3D坦克 Mobile 的支付说明">付款说明在<br>移动设备</a></li></ul>
+<li><a href="./Payment_instructions_for_Tanki_Online_Mobile" title="3D坦克 Mobile 的支付说明">付款说明<br>至移动端</a></li></ul>
 </div>
 <div style="width: 45%;">
 <ul><li><a rel="nofollow" class="external text" href="https://tankionline.com/en/faq/">常见问题</a></li>
-<li><a href="./Questions_Answered_by_the_Developers" title="开发者解答的问题">开发人员的问题</a></li></ul>
+<li><a href="./Questions_Answered_by_the_Developers" title="开发人员回答的问题">开发者问题</a></li></ul>
 </div>
 </div>
 </div>
@@ -128,7 +77,7 @@
 <li><a href="./Modules" title="防御模块">防御模块</a></li>
 <li><div class="dropdown_link"><span class="dropdown_text"><a href="./Drones" title="无人机">无人机</a></span><div class="dropdown_button_wrapper"><div class="dropdown_button"></div><div class="dropdown_menu"><ul><li><span class="mw-default-size" typeof="mw:File"><a href="./Oracle" title="神谕者"><img src="https://en.tankiwiki.com/images/en/3/30/Drone_Driver.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></a></span><a href="./Oracle" title="神谕者">神谕者</a></li><li><span class="mw-default-size" typeof="mw:File"><a href="./Brutus" title="布鲁特斯"><img src="https://en.tankiwiki.com/images/en/e/e4/Drone_brutus.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></a></span><a href="./Brutus" title="布鲁特斯">布鲁特斯</a></li><li><span class="mw-default-size" typeof="mw:File"><a href="./Mechanic" title="机械师"><img src="https://en.tankiwiki.com/images/en/b/ba/Drone_Mechanic.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></a></span><a href="./Mechanic" title="机械师">机械师</a></li><li><span class="mw-default-size" typeof="mw:File"><a href="./Saboteur" title="破坏者"><img src="https://en.tankiwiki.com/images/en/5/52/Drone_saboteur.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></a></span><a href="./Saboteur" title="破坏者">破坏者</a></li><li><span class="mw-default-size" typeof="mw:File"><a href="./Booster" title="助推器"><img src="https://en.tankiwiki.com/images/en/1/1d/Drone_booster.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></a></span><a href="./Booster" title="助推器">助推器</a></li><li><span class="mw-default-size" typeof="mw:File"><a href="./Defender" title="守卫者"><img src="https://en.tankiwiki.com/images/en/6/61/Drone_defender.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></a></span><a href="./Defender" title="守卫者">守卫者</a></li><li><span class="mw-default-size" typeof="mw:File"><a href="./Trickster" title="魔术师"><img src="https://en.tankiwiki.com/images/en/7/71/Drone_trickster.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></a></span><a href="./Trickster" title="魔术师">魔术师</a></li><li><span class="mw-default-size" typeof="mw:File"><a href="./Hyperion" title="亥伯龙神"><img src="https://en.tankiwiki.com/images/en/0/0e/Drone_Hyperion.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></a></span><a href="./Hyperion" title="亥伯龙神">亥伯龙神</a></li><li><span class="mw-default-size" typeof="mw:File"><a href="./Crisis" title="危机"><img src="https://en.tankiwiki.com/images/en/f/f8/Drone_crisis.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></a></span><a href="./Crisis" title="危机">危机</a></li></ul></div></div></div>&amp;<a href="./Grenade" title="手榴弹">手榴弹</a></li>
 <li><a href="./Augments" title="装备改造">装备改造</a></li>
-<li><a href="./Micro-upgrades" class="mw-redirect" title="微型升级">微型升级</a>&amp;<a href="./Modifications" title="修改">修改（Mk）</a></li>
+<li><a href="./Micro-upgrades" class="mw-redirect" title="微升级">微升级</a>&amp;<a href="./Modifications" title="修改">修改 (Mk)</a></li>
 <li><a href="./Gear_Score" title="战斗力">战斗力</a></li></ul>
 <h5><span class="mw-headline" id="Appearance">外观</span></h5>
 <ul><li><a href="./Paints" title="迷彩">迷彩</a></li>
@@ -136,7 +85,7 @@
 <li><a href="./Shot_Effects" title="射击效果">射击效果</a></li></ul>
 <h5><span class="mw-headline" id="Mechanics">力学</span></h5>
 <ul><li><a href="./Damage" title="伤害">伤害</a></li>
-<li><div class="dropdown_link"><span class="dropdown_text"><a href="./Status_Effects" title="状态效果">状态效果</a></span><div class="dropdown_button_wrapper"><div class="dropdown_button"></div><div class="dropdown_menu"><ul><li><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/5/5c/Icon_Immunity.png/20px-Icon_Immunity.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/5/5c/Icon_Immunity.png/30px-Icon_Immunity.png 1.5x, https://en.tankiwiki.com/images/en/thumb/5/5c/Icon_Immunity.png/40px-Icon_Immunity.png 2x"></span></span><a href="./Spawn_Immunity" title="抵抗">免疫</a></li><li><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/8/86/Icon_Supercharge.png/20px-Icon_Supercharge.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/8/86/Icon_Supercharge.png/30px-Icon_Supercharge.png 1.5x, https://en.tankiwiki.com/images/en/thumb/8/86/Icon_Supercharge.png/40px-Icon_Supercharge.png 2x"></span></span><a href="./Supercharge" title="增压">增压</a></li><li><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/a/ad/Polarizer_Status_Icon.png/20px-Polarizer_Status_Icon.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/a/ad/Polarizer_Status_Icon.png/30px-Polarizer_Status_Icon.png 1.5x, https://en.tankiwiki.com/images/en/thumb/a/ad/Polarizer_Status_Icon.png/40px-Polarizer_Status_Icon.png 2x"></span></span><a href="./Polarizer" title="偏振器">偏振器</a></li><li><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/d/dc/Icon_Heat.png/20px-Icon_Heat.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/d/dc/Icon_Heat.png/30px-Icon_Heat.png 1.5x, https://en.tankiwiki.com/images/en/thumb/d/dc/Icon_Heat.png/40px-Icon_Heat.png 2x"></span></span><a href="./Burning" title="着火">着火</a></li><li><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/0/0a/Icon_Freeze.png/20px-Icon_Freeze.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/0/0a/Icon_Freeze.png/30px-Icon_Freeze.png 1.5x, https://en.tankiwiki.com/images/en/thumb/0/0a/Icon_Freeze.png/40px-Icon_Freeze.png 2x"></span></span><a href="./Freezing" title="冷冻">冷冻</a></li><li><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/cc/Icon_EMP.png/20px-Icon_EMP.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/cc/Icon_EMP.png/30px-Icon_EMP.png 1.5x, https://en.tankiwiki.com/images/en/thumb/c/cc/Icon_EMP.png/40px-Icon_EMP.png 2x"></span></span><a href="./Electromagnetic_Pulse_(EMP)" title="电磁脉冲 (电磁脉冲)">电磁脉冲</a></li><li><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/5/53/Icon_Stun.png/20px-Icon_Stun.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/5/53/Icon_Stun.png/30px-Icon_Stun.png 1.5x, https://en.tankiwiki.com/images/en/thumb/5/53/Icon_Stun.png/40px-Icon_Stun.png 2x"></span></span><a href="./Stun" title="眩晕">眩晕</a></li><li><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/b/b6/AP_Status.png/20px-AP_Status.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/b/b6/AP_Status.png/30px-AP_Status.png 1.5x, https://en.tankiwiki.com/images/en/thumb/b/b6/AP_Status.png/40px-AP_Status.png 2x"></span></span><a href="./Armor-Piercing_(AP)" title="护甲-穿甲">穿甲</a></li><li><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/0/01/Icon_Jammer.png/20px-Icon_Jammer.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/0/01/Icon_Jammer.png/30px-Icon_Jammer.png 1.5x, https://en.tankiwiki.com/images/en/thumb/0/01/Icon_Jammer.png/40px-Icon_Jammer.png 2x"></span></span><a href="./Jammer" title="干扰器">干扰器</a></li><li><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/d/dd/Icon_Self.png/20px-Icon_Self.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/d/dd/Icon_Self.png/30px-Icon_Self.png 1.5x, https://en.tankiwiki.com/images/en/thumb/d/dd/Icon_Self.png/40px-Icon_Self.png 2x"></span></span><a href="./Self-Destruction" title="自我毁灭">自我毁灭</a></li></ul></div></div></div></li>
+<li><div class="dropdown_link"><span class="dropdown_text"><a href="./Status_Effects" title="状态效果">状态效果</a></span><div class="dropdown_button_wrapper"><div class="dropdown_button"></div><div class="dropdown_menu"><ul><li><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/5/5c/Icon_Immunity.png/20px-Icon_Immunity.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/5/5c/Icon_Immunity.png/30px-Icon_Immunity.png 1.5x, https://en.tankiwiki.com/images/en/thumb/5/5c/Icon_Immunity.png/40px-Icon_Immunity.png 2x"></span></span><a href="./Spawn_Immunity" title="抵抗">免疫</a></li><li><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/8/86/Icon_Supercharge.png/20px-Icon_Supercharge.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/8/86/Icon_Supercharge.png/30px-Icon_Supercharge.png 1.5x, https://en.tankiwiki.com/images/en/thumb/8/86/Icon_Supercharge.png/40px-Icon_Supercharge.png 2x"></span></span><a href="./Supercharge" title="增压">增压</a></li><li><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/a/ad/Polarizer_Status_Icon.png/20px-Polarizer_Status_Icon.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/a/ad/Polarizer_Status_Icon.png/30px-Polarizer_Status_Icon.png 1.5x, https://en.tankiwiki.com/images/en/thumb/a/ad/Polarizer_Status_Icon.png/40px-Polarizer_Status_Icon.png 2x"></span></span><a href="./Polarizer" title="偏振器">偏振器</a></li><li><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/d/dc/Icon_Heat.png/20px-Icon_Heat.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/d/dc/Icon_Heat.png/30px-Icon_Heat.png 1.5x, https://en.tankiwiki.com/images/en/thumb/d/dc/Icon_Heat.png/40px-Icon_Heat.png 2x"></span></span><a href="./Burning" title="着火">着火</a></li><li><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/0/0a/Icon_Freeze.png/20px-Icon_Freeze.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/0/0a/Icon_Freeze.png/30px-Icon_Freeze.png 1.5x, https://en.tankiwiki.com/images/en/thumb/0/0a/Icon_Freeze.png/40px-Icon_Freeze.png 2x"></span></span><a href="./Freezing" title="冷冻">冷冻</a></li><li><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/cc/Icon_EMP.png/20px-Icon_EMP.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/cc/Icon_EMP.png/30px-Icon_EMP.png 1.5x, https://en.tankiwiki.com/images/en/thumb/c/cc/Icon_EMP.png/40px-Icon_EMP.png 2x"></span></span><a href="./Electromagnetic_Pulse_(EMP)" title="电磁脉冲 (电磁脉冲)">电磁脉冲</a></li><li><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/5/53/Icon_Stun.png/20px-Icon_Stun.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/5/53/Icon_Stun.png/30px-Icon_Stun.png 1.5x, https://en.tankiwiki.com/images/en/thumb/5/53/Icon_Stun.png/40px-Icon_Stun.png 2x"></span></span><a href="./Stun" title="眩晕">眩晕</a></li><li><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/b/b6/AP_Status.png/20px-AP_Status.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/b/b6/AP_Status.png/30px-AP_Status.png 1.5x, https://en.tankiwiki.com/images/en/thumb/b/b6/AP_Status.png/40px-AP_Status.png 2x"></span></span><a href="./Armor-Piercing_(AP)" title="护甲穿透">穿甲</a></li><li><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/0/01/Icon_Jammer.png/20px-Icon_Jammer.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/0/01/Icon_Jammer.png/30px-Icon_Jammer.png 1.5x, https://en.tankiwiki.com/images/en/thumb/0/01/Icon_Jammer.png/40px-Icon_Jammer.png 2x"></span></span><a href="./Jammer" title="干扰器">干扰器</a></li><li><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/d/dd/Icon_Self.png/20px-Icon_Self.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/d/dd/Icon_Self.png/30px-Icon_Self.png 1.5x, https://en.tankiwiki.com/images/en/thumb/d/dd/Icon_Self.png/40px-Icon_Self.png 2x"></span></span><a href="./Self-Destruction" title="自我毁灭">自我毁灭</a></li></ul></div></div></div></li>
 <li><a href="./Overdrive" class="mw-redirect" title="过速装置">过速装置</a></li>
 <li><a href="./Supplies" title="道具">道具</a></li></ul>
 </div>
@@ -144,21 +93,21 @@
 </p>
 <div>
 <h5><span class="mw-headline" id="Battles">战斗</span></h5>
-<ul><li><a href="./Matchmaking_System" title="匹配系统">匹配</a></li>
+<ul><li><a href="./Matchmaking_System" title="Match 系统">匹配</a></li>
 <li><a href="./PRO_Battles" title="专家战场">专家战场</a></li>
 <li><a href="./Maps" title="地图">地图</a></li>
 <li><a href="./Battle_Modes" class="mw-redirect" title="战斗模式">战斗模式</a></li></ul>
 <h5><span class="mw-headline" id="Economy">经济</span></h5>
 <ul><li><a href="./Shop" title="商店">商店</a>&amp;<a href="./Promo_Codes" title="兑换码">优惠码</a></li>
 <li><a href="./Game_Currencies" title="游戏货币">游戏货币</a></li>
-<li><a href="./Premium_Accounts" title="vip 账号">vip 账号</a></li>
+<li><a href="./Premium_Accounts" title="VIP账号">VIP账号</a></li>
 <li><a href="./Containers" title="幸运礼盒">幸运礼盒</a></li>
 <li><a href="./Gold_Box" title="金箱子">金箱子</a></li></ul>
 <h5><span class="mw-headline" id="Progress">进展</span></h5>
 <ul><li><a href="./Challenges" title="星级挑战">星级挑战</a></li>
 <li><a href="./Missions" title="任务">任务</a></li>
 <li><a href="./Ranks" title="等级">等级</a></li>
-<li><a href="./Ratings_and_Statistics" title="评分和统计数据">评分</a></li></ul>
+<li><a href="./Ratings_and_Statistics" title="评级和统计数据">评分</a></li></ul>
 </div>
 </div>
 </div><div class="navigationContainer">
@@ -170,7 +119,7 @@
 <div class="navigationContainerContent">
 <div>
 <ul><li><a href="./Tanki_Classic" title="3D坦克经典">3D坦克经典</a></li>
-<li><a href="./Paints_«Tanki_Classic»" title="迷彩 «3D坦克经典»">迷彩 «3D坦克经典»</a></li></ul>
+<li><a href="./Paints_«Tanki_Classic»" title="Camouflage «3D坦克经典»">Camouflage «3D坦克经典»</a></li></ul>
 </div>
 <p><br>
 </p>
@@ -198,7 +147,7 @@
 <ul><li><a href="./Parkour" title="跑酷">跑酷</a></li>
 <li><a href="./Forum" title="论坛">论坛</a></li>
 <li><a href="./Assistants_of_administration" title="行政助理">行政助理</a></li>
-<li><a href="./Youtuber_TO_Program" title="Youtuber TO 程序">YouTube用户 ТО</a></li>
+<li><a href="./Youtuber_TO_Program" title="YouTuber 到程序">油管博主 ТО</a></li>
 <li><a rel="nofollow" class="external text" href="https://www.youtube.com/@tankionlineint/">视频周报</a></li></ul>
 </div>
 </div>
@@ -226,7 +175,7 @@
 <div class="navigationContainerContent">
 <div>
 <ul><li><a href="./History_of_the_Game" title="游戏的历史">游戏的历史</a></li>
-<li><a href="./Medal_of_Merit" title="优异奖章">优秀奖章</a></li>
+<li><a href="./Medal_of_Merit" title="功勋奖章">功勋奖章</a></li>
 <li><a href="./Secret_Rooms" title="秘密房间">秘密房间</a></li></ul>
 </div>
 </div>
@@ -241,13 +190,12 @@
 <div class="navigationContainerContent">
 <div>
 <ul><li><a rel="nofollow" class="external text" href="https://tankionline.com/en/rules/">游戏规则</a></li>
-<li><a href="./Legal_Questions_and_Answers" title="法律问题与答案">法律问题与答案</a></li>
-<li><a rel="nofollow" class="external text" href="./Creating_Fan_Content_Guide">粉丝内容指南</a></li></ul>
+<li><a href="./Legal_Questions_and_Answers" title="法律问答">法律问答</a></li>
+<li><a rel="nofollow" class="external text" href="./Creating_Fan_Content_Guide">同人内容指南</a></li></ul>
 </div>
 </div>
 </div>
-</div><div align="right"><small>最后编辑：Squirrellover 2025年7月16日</small></div></div></div></div></div></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</div><div align="right"><small>最后编辑：Squirrellover 2025/7/16</small></div></div></div></div></div></div><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <script type="text/javascript">
     (function (m, e, t, r, i, k, a) {
@@ -279,45 +227,60 @@
     <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
     <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
     <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
-    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":358,"wgPageParseReport":{"limitreport":{"cputime":"0.175","walltime":"0.229","ppvisitednodes":{"value":245,"limit":1000000},"postexpandincludesize":{"value":4326,"limit":2097152},"templateargumentsize":{"value":3264,"limit":2097152},"expansiondepth":{"value":4,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":455,"limit":5000000},"timingprofile":["100.00%   16.870      1 -total"," 23.58%    3.978      1 Template:HowPlayBanner"," 18.86%    3.182      4 Template:DropDown/InList"," 18.61%    3.139      1 Template:Alert"," 17.70%    2.986      1 Template:LastEdit"]},"cachereport":{"timestamp":"20250804045313","ttl":86400,"transientcontent":false}}});});</script>
-    <!-- 注入下拉菜单的JS -->
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":316,"wgPageParseReport":{"limitreport":{"cputime":"0.181","walltime":"0.233","ppvisitednodes":{"value":245,"limit":1000000},"postexpandincludesize":{"value":4326,"limit":2097152},"templateargumentsize":{"value":3264,"limit":2097152},"expansiondepth":{"value":4,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":455,"limit":5000000},"timingprofile":["100.00%   13.984      1 -total"," 20.88%    2.920      1 Template:Alert"," 20.25%    2.832      1 Template:LastEdit"," 19.01%    2.658      4 Template:DropDown/InList"," 16.73%    2.340      1 Template:HowPlayBanner"]},"cachereport":{"timestamp":"20251003123627","ttl":86400,"transientcontent":false}}});});</script>
     
     <script>
+    // Bilibili 弹窗逻辑 (V4 - 精确复刻)
     document.addEventListener('DOMContentLoaded', function() {
-        // 当点击页面任何地方时
-        document.body.addEventListener('click', function(e) {
-            // 找到所有当前已打开的菜单
-            document.querySelectorAll('.dropdown_menu.active').forEach(function(menu) {
-                // 如果点击的目标不在该菜单的父级容器(.dropdown_link)内，就关闭这个菜单
-                if (!menu.closest('.dropdown_link').contains(e.target)) {
-                    menu.classList.remove('active');
-                }
-            });
-        });
-
-        // 遍历所有下拉菜单的触发器
-        document.querySelectorAll('.dropdown_button_wrapper').forEach(function(wrapper) {
-            wrapper.addEventListener('click', function(e) {
-                e.preventDefault(); // 阻止a标签的默认跳转行为
-                e.stopPropagation(); // 阻止事件冒泡到body，防止刚打开就立即关闭
+        const videoPopups = document.querySelectorAll('.ShowYouTubePopup');
+        if (videoPopups.length) {
+            let modal = null;
+            videoPopups.forEach(popup => {
+                if (popup.dataset.biliHandled) return;
                 
-                const menu = this.querySelector('.dropdown_menu');
-                if (!menu) return;
+                popup.addEventListener('click', (event) => {
+                    event.stopImmediatePropagation(); 
 
-                const isCurrentlyActive = menu.classList.contains('active');
-                
-                // 先关闭所有其他已打开的菜单
-                document.querySelectorAll('.dropdown_menu.active').forEach(function(openMenu) {
-                    if (openMenu !== menu) {
-                       openMenu.classList.remove('active');
+                    if (typeof tingle === 'undefined') {
+                        console.error('Tingle.js 未加载，无法打开视频弹窗。');
+                        return;
                     }
-                });
-                
-                // 切换当前点击的菜单状态
-                menu.classList.toggle('active');
+                    showBilibiliModal(popup.dataset.id);
+                }, true);
+
+                popup.dataset.biliHandled = 'true';
             });
-        });
+
+            function showBilibiliModal(bvid) {
+                modal = new tingle.modal({
+                    closeMethods: ['button', 'escape', 'overlay']
+                });
+                modal.setContent(`
+                        <div class="report-head">
+                            <div class="report-title">观看视频</div>
+                            <div class="report-stripes"></div>
+                            <div class="report-close"></div>
+                        </div>
+                        
+                        <!-- 【最终版 - 核心修改】完全复制原始YouTube弹窗的布局和样式 -->
+                        <div style="margin: 15px 10px 10px 10px; background: url('loading.gif') center no-repeat;">
+                            <iframe class="yt-video" width="640px" height="360px"
+                                src="https://player.bilibili.com/player.html?bvid=${bvid}" 
+                                frameborder="0" 
+                                allowfullscreen="allowfullscreen"
+                                sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts">
+                            </iframe>
+                        </div>
+                    `);
+                modal.open();
+
+                const closeButton = modal.getContent().querySelector('.report-close');
+                closeButton.addEventListener('click', () => modal.close());
+
+                const tingleClose = modal.modal.querySelector('.tingle-modal__close');
+                if (tingleClose) tingleClose.remove();
+            }
+        }
     });
     </script>
-    
     </body></html>
