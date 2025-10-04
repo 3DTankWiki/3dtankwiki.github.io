@@ -36,6 +36,7 @@ const sourceReplacementDict = {
     "https://en.tankiwiki.com/images/en/thumb/2/25/Battle_Interface2.png/1640px-Battle_Interface2.png":"https://i.ibb.co/sJ1H8G56/2025-10-04-160819.png",
     "https://en.tankiwiki.com/images/en/thumb/8/80/PauseMenu1.png/250px-PauseMenu1.png":"https://i.ibb.co/5yXkjwx/2025-10-04-160842.png",
     "https://en.tankiwiki.com/images/en/thumb/8/80/PauseMenu1.png/375px-PauseMenu1.png":"https://i.ibb.co/5yXkjwx/2025-10-04-160842.png",
-    "https://en.tankiwiki.com/images/en/thumb/8/80/PauseMenu1.png/500px-PauseMenu1.png":"https://i.ibb.co/5yXkjwx/2025-10-04-160842.png"
+    "https://en.tankiwiki.com/images/en/thumb/8/80/PauseMenu1.png/500px-PauseMenu1.png":"https://i.ibb.co/5yXkjwx/2025-10-04-160842.png",
+    "https://en.tankiwiki.com/images/en/0/04/Battle_stats_window.png":"https://i.ibb.co/PvDHjJ2L/2025-10-04-162040.png"
     //弹窗视频 ID：（例如："trXeSeVUeAI":"BV1RDn5zTEvA"）
 };
