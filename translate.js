@@ -224,14 +224,36 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, source
         console.warn(`[${pageNameToProcess}] ⚠️ 未能找到 Revision ID。将继续处理。`);
     }
 
-    const headElements = []; $('head').children('link, style, script, meta, title').each(function() { const $el = $(this); if ($el.is('link')) { const href = $el.attr('href'); if (href && href.startsWith('/')) { $el.attr('href', BASE_URL + href); } } if ($el.is('script')) { const src = $el.attr('src'); if (src && src.startsWith('/')) { $el.attr('src', BASE_URL + src); } } headElements.push($.html(this)); });
+    const headElements = [];
+    $('head').children('link, style, script, meta, title').each(function() {
+        const $el = $(this);
+        if ($el.is('link')) {
+            const href = $el.attr('href');
+            if (href && href.startsWith('/')) {
+                $el.attr('href', BASE_URL + href);
+            }
+        }
+        if ($el.is('script')) {
+            const src = $el.attr('src');
+            if (src && src.startsWith('/')) {
+                $el.attr('src', BASE_URL + src);
+            }
+        }
+        // --- 【新增修改】 开始：替换 <meta> 标签中的图片链接 ---
+        if ($el.is('meta')) {
+            const content = $el.attr('content');
+            if (content && sourceReplacementMap.has(content)) {
+                const newContent = sourceReplacementMap.get(content);
+                $el.attr('content', newContent);
+                console.log(`  - [META 替换] '${content.substring(0, 70)}...' 已替换。`);
+            }
+        }
+        // --- 【新增修改】 结束 ---
+        headElements.push($.html(this));
+    });
+
     const bodyEndScripts = []; $('body > script').each(function() { const $el = $(this); const src = $el.attr('src'); if (src && src.startsWith('/')) { $el.attr('src', BASE_URL + src); } bodyEndScripts.push($.html(this)); });
-    
-    // --- 【核心修复】直接克隆主要内容容器，而不是逐个复制其子元素，以确保DOM结构的完整性 ---
-    const $contentContainer = $('#mw-content-text .mw-parser-output').clone();
-    // 将H1标题添加到克隆容器的顶部
-    $contentContainer.prepend($('#firstHeading').clone());
-    
+    const $contentContainer = $('<div id="wiki-content-wrapper"></div>'); $('#firstHeading').clone().appendTo($contentContainer); $('#mw-content-text .mw-parser-output').children().each(function() { $contentContainer.append($(this).clone()); });
     const $factBoxContent = $contentContainer.find('.random-text-box > div:last-child'); if ($factBoxContent.length > 0) { $factBoxContent.html('<p id="dynamic-fact-placeholder" style="margin:0;">正在加载有趣的事实...</p>'); const factScript = `<script>document.addEventListener('DOMContentLoaded', function() { const factsUrl = './facts.json'; const placeholder = document.getElementById('dynamic-fact-placeholder'); if (placeholder) { fetch(factsUrl).then(response => { if (!response.ok) { throw new Error('网络响应错误，状态码: ' + response.status); } return response.json(); }).then(facts => { if (facts && Array.isArray(facts) && facts.length > 0) { const randomIndex = Math.floor(Math.random() * facts.length); const randomFact = facts[randomIndex].cn; placeholder.innerHTML = randomFact; } else { placeholder.innerHTML = '暂时没有可显示的事实。'; } }).catch(error => { console.error('加载或显示事实时出错:', error); placeholder.innerHTML = '加载事实失败，请稍后再试。'; }); } });</script>`; bodyEndScripts.push(factScript); }
     const originalTitle = $('title').text() || pageNameToProcess; const preReplacedTitle = replaceTermsDirectly(originalTitle, fullDictionary, sortedKeys); let translatedTitle = await translateTextWithEnglishCheck(preReplacedTitle); translatedTitle = translatedTitle.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3'); $contentContainer.find('a').each(function() { const $el = $(this); const originalHref = $el.attr('href'); const internalPageName = getPageNameFromWikiLink(originalHref); if (internalPageName) { $el.attr('href', `./${internalPageName}`); } else if (originalHref && !originalHref.startsWith('#')) { try { $el.attr('href', new URL(originalHref, sourceUrl).href); } catch (e) { console.warn(`[${pageNameToProcess}] 转换外部链接 'a' href 时出错: ${originalHref}`); } } });
     
