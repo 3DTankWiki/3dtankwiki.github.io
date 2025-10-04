@@ -21,6 +21,7 @@ const sourceReplacementDict = {
     "https://en.tankiwiki.com/images/en/2/2a/Challenge_Window.png":"https://i.ibb.co/0yKG07kS/2025-10-04-152000.png",
     "https://en.tankiwiki.com/images/en/thumb/6/68/MmPlayButton.png/90px-MmPlayButton.png":"https://i.ibb.co/LXmd5YjK/2025-10-04-152505.png",
     "https://en.tankiwiki.com/images/en/thumb/6/68/MmPlayButton.png/135px-MmPlayButton.png":"https://i.ibb.co/LXmd5YjK/2025-10-04-152505.png",
-    "https://en.tankiwiki.com/images/en/thumb/6/68/MmPlayButton.png/180px-MmPlayButton.png":"https://i.ibb.co/LXmd5YjK/2025-10-04-152505.png"
+    "https://en.tankiwiki.com/images/en/thumb/6/68/MmPlayButton.png/180px-MmPlayButton.png":"https://i.ibb.co/LXmd5YjK/2025-10-04-152505.png",
+    "https://en.tankiwiki.com/images/en/9/9d/Bmodes.png":"https://i.ibb.co/PZFX6XX5/2025-10-04-152925.png"
     //弹窗视频 ID：（例如："trXeSeVUeAI":"BV1RDn5zTEvA"）
 };
