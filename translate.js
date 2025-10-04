@@ -129,7 +129,6 @@ async function getPagesForFeedMode(lastEditInfo) {
 
 async function getPreparedDictionary() { console.log(`正在从 URL 获取文本词典: ${DICTIONARY_URL}`); let originalDict; try { const response = await fetch(DICTIONARY_URL); if (!response.ok) { throw new Error(`网络请求失败: ${response.status}`); } const scriptContent = await response.text(); originalDict = new Function(`${scriptContent}; return replacementDict;`)(); console.log("在线文本词典加载成功。原始大小:", Object.keys(originalDict).length); } catch (error) { console.error("加载或解析在线文本词典时出错。将使用空词典。", error.message); return { fullDictionary: new Map(), sortedKeys: [] }; } const tempDict = { ...originalDict }; for (const key in originalDict) { if (Object.hasOwnProperty.call(originalDict, key)) { const pluralKey = pluralize(key); if (pluralKey !== key && !tempDict.hasOwnProperty(pluralKey)) { tempDict[pluralKey] = originalDict[key]; } } } const fullDictionary = new Map(Object.entries(tempDict)); const sortedKeys = Object.keys(tempDict).sort((a, b) => b.length - a.length); console.log(`文本词典准备完毕。总词条数 (含复数): ${fullDictionary.size}，已按长度排序。`); return { fullDictionary, sortedKeys }; }
 
-// 【修改】函数名和日志已更新
 function getPreparedSourceDictionary() {
     const filePath = path.resolve(__dirname, SOURCE_DICT_FILE);
     console.log(`正在从本地文件加载源替换词典: ${filePath}`);
@@ -139,7 +138,6 @@ function getPreparedSourceDictionary() {
     }
     try {
         const scriptContent = fs.readFileSync(filePath, 'utf-8');
-        // 【修改】内部变量名已更新
         const sourceDict = new Function(`${scriptContent}; return sourceReplacementDict;`)();
         const sourceMap = new Map(Object.entries(sourceDict || {}));
         if (sourceMap.size > 0) {
@@ -159,43 +157,21 @@ function getPageNameFromWikiLink(href) { if (!href) return null; let url; try { 
 function findInternalLinks($) { const links = new Set(); $('#mw-content-text a[href]').each((i, el) => { const href = $(el).attr('href'); const pageName = getPageNameFromWikiLink(href); if (pageName) { links.add(pageName); } }); return Array.from(links); }
 function createRedirectHtml(targetPageName) { const targetUrl = `./${targetPageName}`; return `<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><title>正在重定向...</title><meta http-equiv="refresh" content="0; url=${targetUrl}"><link rel="canonical" href="${targetUrl}"><script>window.location.replace("${targetUrl}");</script></head><body><p>如果您的浏览器没有自动跳转，请 <a href="${targetUrl}">点击这里</a>。</p></body></html>`; }
 
-// --- 【新增修改】 开始：智能图片链接替换函数 ---
-/**
- * [新增辅助函数] 查找图片替换链接，智能处理TankiWiki的缩略图格式。
- * @param {string} url - 待检查的原始图片URL。
- * @param {Map<string, string>} replacementMap - 源替换映射表。
- * @returns {string} - 替换后的URL或原始URL（如果未找到匹配项）。
- */
 function findImageReplacement(url, replacementMap) {
     if (!url) return url;
-
-    // 1. 尝试直接匹配 (最高效，处理非图片链接和基础图片链接)
     if (replacementMap.has(url)) {
         return replacementMap.get(url);
     }
-
-    // 2. 尝试匹配缩略图格式, e.g., /.../thumb/a/ab/File.png/120px-File.png
-    // 正则表达式解析:
-    // (.*\/images\/\w{2}) - 捕获组1: 匹配并捕获基础URL部分, 如 "https://en.tankiwiki.com/images/en"
-    // \/thumb             - 匹配 "/thumb" 目录
-    // (\/.*?\.\w+)        - 捕获组2: 懒惰匹配并捕获原始文件路径, 如 "/a/ab/File.png"
-    // \/\d+px-            - 匹配尺寸指示, 如 "/120px-"
     const thumbRegex = /(.*\/images\/\w{2})\/thumb(\/.*?\.\w+)\/\d+px-.*$/i;
     const match = url.match(thumbRegex);
-
     if (match && match[1] && match[2]) {
         const reconstructedBaseUrl = match[1] + match[2];
-        // 3. 检查重构后的基础URL是否存在于映射表中
         if (replacementMap.has(reconstructedBaseUrl)) {
-            // console.log(`  - [智能替换] 缩略图 '${url.substring(url.lastIndexOf('/')-10)}' 匹配到基础规则 '${reconstructedBaseUrl}'`);
             return replacementMap.get(reconstructedBaseUrl);
         }
     }
-
-    // 4. 如果所有尝试都失败, 返回原始URL
     return url;
 }
-// --- 【新增修改】 结束：智能图片链接替换函数 ---
 
 async function processPage(pageNameToProcess, fullDictionary, sortedKeys, sourceReplacementMap, lastEditInfoState, force = false) {
     const sourceUrl = `${BASE_URL}/${pageNameToProcess}`;
@@ -266,21 +242,15 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, source
         const $el = $(this);
         if ($el.is('link')) {
             const href = $el.attr('href');
-            if (href && href.startsWith('/')) {
-                $el.attr('href', BASE_URL + href);
-            }
+            if (href && href.startsWith('/')) { $el.attr('href', BASE_URL + href); }
         }
         if ($el.is('script')) {
             const src = $el.attr('src');
-            if (src && src.startsWith('/')) {
-                $el.attr('src', BASE_URL + src);
-            }
+            if (src && src.startsWith('/')) { $el.attr('src', BASE_URL + src); }
         }
-        // --- 【新增修改】 开始：替换 <meta> 标签中的图片链接 (调用新函数) ---
         if ($el.is('meta')) {
             const content = $el.attr('content');
             if (content) {
-                // 使用新的智能替换函数
                 const newContent = findImageReplacement(content, sourceReplacementMap);
                 if (content !== newContent) {
                     $el.attr('content', newContent);
@@ -288,29 +258,23 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, source
                 }
             }
         }
-        // --- 【新增修改】 结束 ---
         headElements.push($.html(this));
     });
 
     const bodyEndScripts = []; $('body > script').each(function() { const $el = $(this); const src = $el.attr('src'); if (src && src.startsWith('/')) { $el.attr('src', BASE_URL + src); } bodyEndScripts.push($.html(this)); });
     const $contentContainer = $('<div id="wiki-content-wrapper"></div>'); $('#firstHeading').clone().appendTo($contentContainer); $('#mw-content-text .mw-parser-output').children().each(function() { $contentContainer.append($(this).clone()); });
-    const $factBoxContent = $contentContainer.find('.random-text-box > div:last-child'); if ($factBoxContent.length > 0) { $factBoxContent.html('<p id="dynamic-fact-placeholder" style="margin:0;">正在加载有趣的事实...</p>'); const factScript = `<script>document.addEventListener('DOMContentLoaded', function() { const factsUrl = './facts.json'; const placeholder = document.getElementById('dynamic-fact-placeholder'); if (placeholder) { fetch(factsUrl).then(response => { if (!response.ok) { throw new Error('网络响应错误，状态码: ' + response.status); } return response.json(); }).then(facts => { if (facts && Array.isArray(facts) && facts.length > 0) { const randomIndex = Math.floor(Math.random() * facts.length); const randomFact = facts[randomIndex].cn; placeholder.innerHTML = randomFact; } else { placeholder.innerHTML = '暂时没有可显示的事实。'; } }).catch(error => { console.error('加载或显示事实时出错:', error); placeholder.innerHTML = '加载事实失败，请稍后再试。'; }); } });</script>`; bodyEndScripts.push(factScript); }
+    const $factBoxContent = $contentContainer.find('.random-text-box > div:last-child'); if ($factBoxContent.length > 0) { $factBoxContent.html('<p id="dynamic-fact-placeholder" style="margin:0;">正在加载有趣的事实...</p>'); const factScript = `<script>document.addEventListener('DOMContentLoaded', function() { const factsUrl = './facts.json'; const placeholder = document.getElementById('dynamic-fact-placeholder'); if (placeholder) { fetch(factsUrl).then(response => { if (!response.ok) { throw new Error('网络响应错误，状态码: ' + response.status); } return response.json(); }).then(facts => { if (facts && Array.isArray(facts) && facts.length > 0) { const randomIndex = Math.floor(Math.random() * facts.length); const randomFact = facts[randomIndex].cn; placeholder.innerHTML = randomFact; } else { placeholder.innerHTML = '暂时没有可显示的事实。'; } }).catch(error => { console.error('加载或显示事实时出错:', error); placeholder.innerHTML = '加载事实失败，请稍后再试。'; }); } });<\/script>`; bodyEndScripts.push(factScript); }
     const originalTitle = $('title').text() || pageNameToProcess; const preReplacedTitle = replaceTermsDirectly(originalTitle, fullDictionary, sortedKeys); let translatedTitle = await translateTextWithEnglishCheck(preReplacedTitle); translatedTitle = translatedTitle.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3'); $contentContainer.find('a').each(function() { const $el = $(this); const originalHref = $el.attr('href'); const internalPageName = getPageNameFromWikiLink(originalHref); if (internalPageName) { $el.attr('href', `./${internalPageName}`); } else if (originalHref && !originalHref.startsWith('#')) { try { $el.attr('href', new URL(originalHref, sourceUrl).href); } catch (e) { console.warn(`[${pageNameToProcess}] 转换外部链接 'a' href 时出错: ${originalHref}`); } } });
     
-    // --- 【新增修改】 开始：图片链接处理逻辑更新 (调用新函数) ---
     $contentContainer.find('img').each(function() {
         const $el = $(this);
         let src = $el.attr('src');
         if (src) {
             try {
                 const absoluteSrc = new URL(src, sourceUrl).href;
-                // 直接调用新函数进行智能替换
                 const replacementSrc = findImageReplacement(absoluteSrc, sourceReplacementMap);
                 $el.attr('src', replacementSrc);
-
-            } catch (e) {
-                 console.warn(`[${pageNameToProcess}] 转换 img src 时出错: ${src}`);
-            }
+            } catch (e) { console.warn(`[${pageNameToProcess}] 转换 img src 时出错: ${src}`); }
         }
         const srcset = $el.attr('srcset');
         if (srcset) {
@@ -320,18 +284,13 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, source
                 const descriptor = parts.length > 1 ? ` ${parts[1]}` : '';
                 try {
                     const absoluteUrl = new URL(urlPart, sourceUrl).href;
-                    // 对 srcset 中的每个 URL 也调用新函数
                     const replacementUrl = findImageReplacement(absoluteUrl, sourceReplacementMap);
                     return replacementUrl + descriptor;
-                } catch(e) {
-                     console.warn(`[${pageNameToProcess}] 转换 srcset URL 时出错: ${urlPart}`);
-                     return s;
-                }
+                } catch(e) { console.warn(`[${pageNameToProcess}] 转换 srcset URL 时出错: ${urlPart}`); return s; }
             }).join(', ');
             $el.attr('srcset', newSrcset);
         }
     });
-    // --- 【新增修改】 结束：图片链接处理逻辑更新 ---
 
     $contentContainer.find('iframe').each(function() {
         const $el = $(this);
@@ -339,38 +298,27 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, source
         if (src) {
              try {
                  const absoluteUrl = new URL(src, sourceUrl).href;
-                 // 对 iframe 也使用相同的逻辑（虽然不太可能是缩略图，但保持一致性）
                  const replacementSrc = findImageReplacement(absoluteUrl, sourceReplacementMap);
                  if (absoluteUrl !== replacementSrc) {
                      $el.attr('src', replacementSrc);
                      console.log(`[${pageNameToProcess}] ✅ Iframe src 替换成功: ${absoluteUrl}`);
-                 } else {
-                     $el.attr('src', absoluteUrl);
-                 }
-             } catch(e) {
-                 console.warn(`[${pageNameToProcess}] 转换 iframe src 属性时出错: ${src}`);
-             }
+                 } else { $el.attr('src', absoluteUrl); }
+             } catch(e) { console.warn(`[${pageNameToProcess}] 转换 iframe src 属性时出错: ${src}`); }
         }
     });
 
-    // --- 【新增修改 V2】 开始：替换YouTube data-id为Bilibili BVID (兼容ID和URL两种规则) ---
     console.log(`[${pageNameToProcess}] 正在查找并替换 YouTube 视频链接的 data-id...`);
     $contentContainer.find('.ShowYouTubePopup[data-id]').each(function() {
         const $el = $(this);
         const yid = $el.attr('data-id');
         if (!yid) return;
-
         let replaced = false;
-
-        // 方案 A: 优先直接用视频 ID (yid) 作为 key 进行查找
         if (sourceReplacementMap.has(yid)) {
             const bvid = sourceReplacementMap.get(yid);
             $el.attr('data-id', bvid);
             console.log(`  - ✅ [data-id] (通过ID) 替换成功: ${yid} -> ${bvid}`);
             replaced = true;
-        } 
-        // 方案 B: 如果用 ID 找不到, 再尝试构建完整的 URL 作为 key 进行查找 (兼容旧规则)
-        else {
+        } else {
             const youtubeUrl = `https://www.youtube.com/embed/${yid}`;
             if (sourceReplacementMap.has(youtubeUrl)) {
                 const bilibiliPlayerUrl = sourceReplacementMap.get(youtubeUrl);
@@ -381,20 +329,12 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, source
                         $el.attr('data-id', bvid);
                         console.log(`  - ✅ [data-id] (通过URL) 替换成功: ${yid} -> ${bvid}`);
                         replaced = true;
-                    } else {
-                        console.warn(`  - ⚠️ 在目标URL ${bilibiliPlayerUrl} 中未找到 BVID。`);
-                    }
-                } catch (e) {
-                    console.warn(`  - ⚠️ 解析Bilibili URL时出错: ${bilibiliPlayerUrl}`);
-                }
+                    } else { console.warn(`  - ⚠️ 在目标URL ${bilibiliPlayerUrl} 中未找到 BVID。`); }
+                } catch (e) { console.warn(`  - ⚠️ 解析Bilibili URL时出错: ${bilibiliPlayerUrl}`); }
             }
         }
-        
-        if (!replaced) {
-            console.log(`  - [未替换] data-id="${yid}" 在源替换词典中未找到对应规则。`);
-        }
+        if (!replaced) { console.log(`  - [未替换] data-id="${yid}" 在源替换词典中未找到对应规则。`); }
     });
-    // --- 【新增修改 V2】 结束：替换 data-id ---
     
     const textNodes = []; $contentContainer.find('*:not(script,style)').addBack().contents().each(function() { if (this.type === 'text' && this.data.trim() && !$(this).parent().is('span.hotkey')) { textNodes.push(this); } });
     const textPromises = textNodes.map(node => { const preReplaced = replaceTermsDirectly(node.data, fullDictionary, sortedKeys); return translateTextWithEnglishCheck(preReplaced); }); const translatedTexts = await Promise.all(textPromises);
@@ -402,17 +342,61 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, source
     const elementsWithAttributes = $contentContainer.find('[title], [alt]'); for (let i = 0; i < elementsWithAttributes.length; i++) { const $element = $(elementsWithAttributes[i]); for (const attr of ['title', 'alt']) { const originalValue = $element.attr(attr); if (originalValue) { const preReplaced = replaceTermsDirectly(originalValue, fullDictionary, sortedKeys); const translatedValue = await translateTextWithEnglishCheck(preReplaced); $element.attr(attr, translatedValue); } } }
     
     let finalHtmlContent = $contentContainer.html();
-    // --- 【颜色替换修改】---
-    finalHtmlContent = finalHtmlContent.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3')
-        .replace(/#?46DF11|rgb\(70,[\s]*223,[\s]*17\)/gi, '#76FF33') // 46DF11 -> 76FF33
-        .replace(/#?00D7FF/gi, '#00D4FF')                       // 00D7FF -> 00D4FF
-        .replace(/#?(F86667|F33|FF3333)\b/gi, '#FF6666')        // F86667, F33, FF3333 -> FF6666
-        .replace(/#?(FC0|FFCC00)\b/gi, '#FFEE00')                 // FC0, FFCC00 -> FFEE00
-        .replace(/#?8C60EB/gi, '#D580FF');                      // 8C60EB -> D580FF
+    // 【修改】移除了服务器端的颜色替换，只保留中文之间的空格清理
+    finalHtmlContent = finalHtmlContent.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3');
 
     let homeButtonHtml = ''; if (pageNameToProcess !== START_PAGE) { homeButtonHtml = `<a href="./${START_PAGE}" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">返回主页</a>`; }
     
-  // --- 【新增修改】 开始：定义用于注入的Bilibili弹窗脚本 (V4 - 精确复刻) ---
+    // 【新增】定义用于注入的颜色替换脚本
+    const colorReplacementScript = `
+    <script>
+    // 客户端颜色替换逻辑
+    function replaceColorsInDom() {
+        // 定义替换规则
+        const replacements = [
+            { from: /#?46DF11|rgb\\(70,\\s*223,\\s*17\\)/gi, to: '#76FF33' },
+            { from: /#?00D7FF/gi, to: '#00D4FF' },
+            { from: /#?(F86667|F33|FF3333)\\b/gi, to: '#FF6666' },
+            { from: /#?(FC0|FFCC00)\\b/gi, to: '#FFEE00' },
+            { from: /#?8C60EB/gi, to: '#D580FF' }
+        ];
+
+        // 辅助函数，应用所有替换规则
+        function applyReplacements(text) {
+            if (!text) return text;
+            let newText = text;
+            for (const rule of replacements) {
+                newText = newText.replace(rule.from, rule.to);
+            }
+            return newText;
+        }
+
+        // 1. 替换所有元素的内联样式 (style attribute)
+        document.querySelectorAll('[style]').forEach(el => {
+            const originalStyle = el.getAttribute('style');
+            const newStyle = applyReplacements(originalStyle);
+            if (newStyle !== originalStyle) {
+                el.setAttribute('style', newStyle);
+            }
+        });
+
+        // 2. 替换页面内 <style> 标签中的样式规则
+        document.querySelectorAll('style').forEach(styleTag => {
+            const originalCss = styleTag.innerHTML;
+            const newCss = applyReplacements(originalCss);
+            if (newCss !== originalCss) {
+                styleTag.innerHTML = newCss;
+            }
+        });
+    }
+
+    // 在DOM加载完成后立即执行，以尽量减少颜色闪烁
+    document.addEventListener('DOMContentLoaded', replaceColorsInDom);
+    <\/script>
+    `;
+    bodyEndScripts.push(colorReplacementScript);
+
+
     const bilibiliPopupScript = `
     <script>
     // Bilibili 弹窗逻辑 (V4 - 精确复刻)
@@ -447,7 +431,6 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, source
                             <div class="report-close"></div>
                         </div>
                         
-                        <!-- 【最终版 - 核心修改】完全复制原始YouTube弹窗的布局和样式 -->
                         <div style="margin: 15px 10px 10px 10px; background: url('loading.gif') center no-repeat;">
                             <iframe class="yt-video" width="640px" height="360px"
                                 src="https://player.bilibili.com/player.html?bvid=\${bvid}" 
@@ -467,10 +450,9 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, source
             }
         }
     });
-    </script>
+    <\/script>
     `;
     bodyEndScripts.push(bilibiliPopupScript);
-    // --- 【新增修改】 结束：定义Bilibili弹窗脚本 ---
     
     const headContent = headElements.filter(el => !el.toLowerCase().startsWith('<title>')).join('\n    '); const bodyClasses = $('body').attr('class') || ''; const finalHtml = `<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>${translatedTitle}</title>${headContent}<style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="${bodyClasses}"><div id="mw-main-container">${homeButtonHtml}<div class="main-content"><div class="mw-body ve-init-mw-desktopArticleTarget-targetContainer" id="content" role="main"><a id="top"></a><div class="mw-body-content" id="bodyContent"><div id="siteNotice"></div><div id="mw-content-text" class="mw-content-ltr mw-parser-output" lang="zh-CN" dir="ltr">${finalHtmlContent}</div></div></div></div></div>${bodyEndScripts.join('\n    ')}</body></html>`;
     
@@ -488,7 +470,6 @@ async function run() {
         console.log(`创建输出目录: ${OUTPUT_DIR}`);
     }
 
-    // 【修改】函数调用和变量名已更新
     const sourceReplacementMap = getPreparedSourceDictionary();
     const { fullDictionary, sortedKeys } = await getPreparedDictionary();
     
@@ -560,7 +541,6 @@ async function run() {
             visitedPages.add(currentPageName);
             activeTasks++;
 
-            // 【修改】参数名已更新
             const task = processPage(currentPageName, fullDictionary, sortedKeys, sourceReplacementMap, lastEditInfo, isForceMode)
                 .then(result => {
                     if (result) {
