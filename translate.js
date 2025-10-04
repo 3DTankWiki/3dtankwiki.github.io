@@ -159,7 +159,44 @@ function getPageNameFromWikiLink(href) { if (!href) return null; let url; try { 
 function findInternalLinks($) { const links = new Set(); $('#mw-content-text a[href]').each((i, el) => { const href = $(el).attr('href'); const pageName = getPageNameFromWikiLink(href); if (pageName) { links.add(pageName); } }); return Array.from(links); }
 function createRedirectHtml(targetPageName) { const targetUrl = `./${targetPageName}`; return `<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><title>正在重定向...</title><meta http-equiv="refresh" content="0; url=${targetUrl}"><link rel="canonical" href="${targetUrl}"><script>window.location.replace("${targetUrl}");</script></head><body><p>如果您的浏览器没有自动跳转，请 <a href="${targetUrl}">点击这里</a>。</p></body></html>`; }
 
-// 【修改】参数名已更新
+// --- 【新增修改】 开始：智能图片链接替换函数 ---
+/**
+ * [新增辅助函数] 查找图片替换链接，智能处理TankiWiki的缩略图格式。
+ * @param {string} url - 待检查的原始图片URL。
+ * @param {Map<string, string>} replacementMap - 源替换映射表。
+ * @returns {string} - 替换后的URL或原始URL（如果未找到匹配项）。
+ */
+function findImageReplacement(url, replacementMap) {
+    if (!url) return url;
+
+    // 1. 尝试直接匹配 (最高效，处理非图片链接和基础图片链接)
+    if (replacementMap.has(url)) {
+        return replacementMap.get(url);
+    }
+
+    // 2. 尝试匹配缩略图格式, e.g., /.../thumb/a/ab/File.png/120px-File.png
+    // 正则表达式解析:
+    // (.*\/images\/\w{2}) - 捕获组1: 匹配并捕获基础URL部分, 如 "https://en.tankiwiki.com/images/en"
+    // \/thumb             - 匹配 "/thumb" 目录
+    // (\/.*?\.\w+)        - 捕获组2: 懒惰匹配并捕获原始文件路径, 如 "/a/ab/File.png"
+    // \/\d+px-            - 匹配尺寸指示, 如 "/120px-"
+    const thumbRegex = /(.*\/images\/\w{2})\/thumb(\/.*?\.\w+)\/\d+px-.*$/i;
+    const match = url.match(thumbRegex);
+
+    if (match && match[1] && match[2]) {
+        const reconstructedBaseUrl = match[1] + match[2];
+        // 3. 检查重构后的基础URL是否存在于映射表中
+        if (replacementMap.has(reconstructedBaseUrl)) {
+            // console.log(`  - [智能替换] 缩略图 '${url.substring(url.lastIndexOf('/')-10)}' 匹配到基础规则 '${reconstructedBaseUrl}'`);
+            return replacementMap.get(reconstructedBaseUrl);
+        }
+    }
+
+    // 4. 如果所有尝试都失败, 返回原始URL
+    return url;
+}
+// --- 【新增修改】 结束：智能图片链接替换函数 ---
+
 async function processPage(pageNameToProcess, fullDictionary, sortedKeys, sourceReplacementMap, lastEditInfoState, force = false) {
     const sourceUrl = `${BASE_URL}/${pageNameToProcess}`;
     console.log(`[${pageNameToProcess}] 开始抓取页面: ${sourceUrl}`);
@@ -239,13 +276,16 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, source
                 $el.attr('src', BASE_URL + src);
             }
         }
-        // --- 【新增修改】 开始：替换 <meta> 标签中的图片链接 ---
+        // --- 【新增修改】 开始：替换 <meta> 标签中的图片链接 (调用新函数) ---
         if ($el.is('meta')) {
             const content = $el.attr('content');
-            if (content && sourceReplacementMap.has(content)) {
-                const newContent = sourceReplacementMap.get(content);
-                $el.attr('content', newContent);
-                console.log(`  - [META 替换] '${content.substring(0, 70)}...' 已替换。`);
+            if (content) {
+                // 使用新的智能替换函数
+                const newContent = findImageReplacement(content, sourceReplacementMap);
+                if (content !== newContent) {
+                    $el.attr('content', newContent);
+                    console.log(`  - [META 替换] '${content.substring(0, 70)}...' 已替换。`);
+                }
             }
         }
         // --- 【新增修改】 结束 ---
@@ -257,18 +297,17 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, source
     const $factBoxContent = $contentContainer.find('.random-text-box > div:last-child'); if ($factBoxContent.length > 0) { $factBoxContent.html('<p id="dynamic-fact-placeholder" style="margin:0;">正在加载有趣的事实...</p>'); const factScript = `<script>document.addEventListener('DOMContentLoaded', function() { const factsUrl = './facts.json'; const placeholder = document.getElementById('dynamic-fact-placeholder'); if (placeholder) { fetch(factsUrl).then(response => { if (!response.ok) { throw new Error('网络响应错误，状态码: ' + response.status); } return response.json(); }).then(facts => { if (facts && Array.isArray(facts) && facts.length > 0) { const randomIndex = Math.floor(Math.random() * facts.length); const randomFact = facts[randomIndex].cn; placeholder.innerHTML = randomFact; } else { placeholder.innerHTML = '暂时没有可显示的事实。'; } }).catch(error => { console.error('加载或显示事实时出错:', error); placeholder.innerHTML = '加载事实失败，请稍后再试。'; }); } });</script>`; bodyEndScripts.push(factScript); }
     const originalTitle = $('title').text() || pageNameToProcess; const preReplacedTitle = replaceTermsDirectly(originalTitle, fullDictionary, sortedKeys); let translatedTitle = await translateTextWithEnglishCheck(preReplacedTitle); translatedTitle = translatedTitle.replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3'); $contentContainer.find('a').each(function() { const $el = $(this); const originalHref = $el.attr('href'); const internalPageName = getPageNameFromWikiLink(originalHref); if (internalPageName) { $el.attr('href', `./${internalPageName}`); } else if (originalHref && !originalHref.startsWith('#')) { try { $el.attr('href', new URL(originalHref, sourceUrl).href); } catch (e) { console.warn(`[${pageNameToProcess}] 转换外部链接 'a' href 时出错: ${originalHref}`); } } });
     
-    // 【修改】变量名已更新
+    // --- 【新增修改】 开始：图片链接处理逻辑更新 (调用新函数) ---
     $contentContainer.find('img').each(function() {
         const $el = $(this);
         let src = $el.attr('src');
         if (src) {
             try {
                 const absoluteSrc = new URL(src, sourceUrl).href;
-                if (sourceReplacementMap.has(absoluteSrc)) {
-                    $el.attr('src', sourceReplacementMap.get(absoluteSrc));
-                } else {
-                    $el.attr('src', absoluteSrc);
-                }
+                // 直接调用新函数进行智能替换
+                const replacementSrc = findImageReplacement(absoluteSrc, sourceReplacementMap);
+                $el.attr('src', replacementSrc);
+
             } catch (e) {
                  console.warn(`[${pageNameToProcess}] 转换 img src 时出错: ${src}`);
             }
@@ -281,10 +320,9 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, source
                 const descriptor = parts.length > 1 ? ` ${parts[1]}` : '';
                 try {
                     const absoluteUrl = new URL(urlPart, sourceUrl).href;
-                    if (sourceReplacementMap.has(absoluteUrl)) {
-                        return sourceReplacementMap.get(absoluteUrl) + descriptor;
-                    }
-                    return absoluteUrl + descriptor;
+                    // 对 srcset 中的每个 URL 也调用新函数
+                    const replacementUrl = findImageReplacement(absoluteUrl, sourceReplacementMap);
+                    return replacementUrl + descriptor;
                 } catch(e) {
                      console.warn(`[${pageNameToProcess}] 转换 srcset URL 时出错: ${urlPart}`);
                      return s;
@@ -293,16 +331,18 @@ async function processPage(pageNameToProcess, fullDictionary, sortedKeys, source
             $el.attr('srcset', newSrcset);
         }
     });
+    // --- 【新增修改】 结束：图片链接处理逻辑更新 ---
 
-    // 【修改】变量名已更新
     $contentContainer.find('iframe').each(function() {
         const $el = $(this);
         let src = $el.attr('src');
         if (src) {
              try {
                  const absoluteUrl = new URL(src, sourceUrl).href;
-                 if (sourceReplacementMap.has(absoluteUrl)) {
-                     $el.attr('src', sourceReplacementMap.get(absoluteUrl));
+                 // 对 iframe 也使用相同的逻辑（虽然不太可能是缩略图，但保持一致性）
+                 const replacementSrc = findImageReplacement(absoluteUrl, sourceReplacementMap);
+                 if (absoluteUrl !== replacementSrc) {
+                     $el.attr('src', replacementSrc);
                      console.log(`[${pageNameToProcess}] ✅ Iframe src 替换成功: ${absoluteUrl}`);
                  } else {
                      $el.attr('src', absoluteUrl);
