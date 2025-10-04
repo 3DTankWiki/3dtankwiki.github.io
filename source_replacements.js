@@ -1,5 +1,5 @@
 const sourceReplacementDict = {
-    //绝对链接
+    //绝对链接：
     "https://en.tankiwiki.com/images/en/thumb/0/0c/Ranks_en2.jpg/1542px-Ranks_en2.jpg":"https://i.ibb.co/5ggf1jhJ/1752753785939.jpg",
     "https://en.tankiwiki.com/images/en/thumb/0/0c/Ranks_en2.jpg/1157px-Ranks_en2.jpg":"https://i.ibb.co/5ggf1jhJ/1752753785939.jpg",
     "https://en.tankiwiki.com/images/en/thumb/0/0c/Ranks_en2.jpg/771px-Ranks_en2.jpg":"https://i.ibb.co/5ggf1jhJ/1752753785939.jpg",
@@ -14,6 +14,8 @@ const sourceReplacementDict = {
     "https://www.youtube-nocookie.com/embed/B0aGEXzwwvk?":"https://player.bilibili.com/player.html?bvid=BV1oKn5zTExU",
     "https://www.youtube-nocookie.com/embed/vKeeAq8xIhA?":"https://player.bilibili.com/player.html?bvid=BV1dKn5zTEZw",
     "https://en.tankiwiki.com/images/en/8/86/Lobbywindows.png":"https://i.ibb.co/6kjWndX/2025-10-04-100537.png",
-    "https://en.tankiwiki.com/images/en/thumb/8/86/Lobbywindows.png/1200px-Lobbywindows.png":"https://i.ibb.co/6kjWndX/2025-10-04-100537.png"
-    //弹窗视频 ID（例如："trXeSeVUeAI":"BV1RDn5zTEvA"）
+    "https://en.tankiwiki.com/images/en/thumb/8/86/Lobbywindows.png/1200px-Lobbywindows.png":"https://i.ibb.co/6kjWndX/2025-10-04-100537.png",
+    "https://en.tankiwiki.com/images/en/thumb/8/86/Lobbywindows.png/800px-Lobbywindows.png":"https://i.ibb.co/6kjWndX/2025-10-04-100537.png",
+    "https://en.tankiwiki.com/images/en/thumb/8/86/Lobbywindows.png/640px-Lobbywindows.png":"https://i.ibb.co/6kjWndX/2025-10-04-100537.png"
+    //弹窗视频 ID：（例如："trXeSeVUeAI":"BV1RDn5zTEvA"）
 };
