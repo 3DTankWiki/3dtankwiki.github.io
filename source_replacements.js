@@ -23,6 +23,7 @@ const sourceReplacementDict = {
     "https://en.tankiwiki.com/images/en/a/a7/Garage_screen.png":"https://i.ibb.co/LdmQP1wR/2025-10-04-164633.png",
     "https://en.tankiwiki.com/images/en/4/42/2FA_5.png.png":"https://i.ibb.co/5X1Mvs11/2025-10-04-175622.png",
     "https://en.tankiwiki.com/images/en/0/0f/Welcome_back_bonus.png":"https://i.ibb.co/VcSy5pDD/5-D23-Oyz-Jhb-1920x913.png",
-    "https://en.tankiwiki.com/images/en/6/6f/TOMobile_pay_example.jpg":"https://i.ibb.co/LzWF9cbN/Polish-20251004-185328500.jpg"
+    "https://en.tankiwiki.com/images/en/6/6f/TOMobile_pay_example.jpg":"https://i.ibb.co/LzWF9cbN/Polish-20251004-185328500.jpg",
+    "https://en.tankiwiki.com/images/en/a/a7/Upgrade_info_window.png":"https://i.ibb.co/1fX1XPQz/2025-10-05-102338.png"
     //弹窗视频 ID：（例如："trXeSeVUeAI":"BV1RDn5zTEvA"）
 };
