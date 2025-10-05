@@ -26,6 +26,7 @@ const sourceReplacementDict = {
     "https://en.tankiwiki.com/images/en/6/6f/TOMobile_pay_example.jpg":"https://i.ibb.co/LzWF9cbN/Polish-20251004-185328500.jpg",
     "https://en.tankiwiki.com/images/en/a/a7/Upgrade_info_window.png":"https://i.ibb.co/1fX1XPQz/2025-10-05-102338.png",
     "https://en.tankiwiki.com/images/en/4/41/Screenshot_12.jpg":"https://i.ibb.co/pvp3QmhG/2025-10-05-103408.png",
-    "https://en.tankiwiki.com/images/en/6/63/Low_GS.png":"https://i.ibb.co/jF1jmvR/2025-10-05-103826.png"
+    "https://en.tankiwiki.com/images/en/6/63/Low_GS.png":"https://i.ibb.co/jF1jmvR/2025-10-05-103826.png",
+    "https://en.tankiwiki.com/images/en/3/3d/PRO_Types.png":"https://i.ibb.co/JRVsdnLb/2025-10-05-121026.png"
     //弹窗视频 ID：（例如："trXeSeVUeAI":"BV1RDn5zTEvA"）
 };
