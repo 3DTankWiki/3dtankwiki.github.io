@@ -84,7 +84,7 @@
   "Shop": 65028,
   "PRO_Battles": 64924,
   "Matchmaking_System": 65221,
-  "Maps": 64892,
+  "Maps": 65376,
   "Premium_Accounts": 65361,
   "Game_Currencies": 64872,
   "Challenges": 65325,
@@ -1494,5 +1494,5 @@
   "Funky_Medicine": 65012,
   "Tesseract_Camo": 65010,
   "Supply_Power": 65332,
-  "Highland_REMASTER": 65375
+  "Highland_REMASTER": 65377
 }
