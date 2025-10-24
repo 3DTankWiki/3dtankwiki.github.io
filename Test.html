@@ -1,0 +1,1457 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>测试 - 3D坦克 Wiki</title><meta charset="UTF-8">
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"dc32e1fd36ecaed68a84b319","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Test","wgTitle":"Test","wgCurRevisionId":65461,"wgRevisionId":65461,"wgArticleId":7777,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Test","wgRelevantArticleId":7777,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVisualEditor":{"pageLanguageCode":"en","pageLanguageDir":"ltr","pageVariantFallbacks":"en"},
+"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.visualEditor.desktopArticleTarget.noscript":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","ext.gadget.UTCLiveClock","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://en.tankiwiki.com/load.php?lang=en&amp;modules=ext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://en.tankiwiki.com/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://en.tankiwiki.com/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://en.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://en.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (en)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://en.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki Atom feed" href="https://en.tankiwiki.com/index.php?title=Special:RecentChanges&amp;feed=atom">
+    <script src="https://en.tankiwiki.com/load.php?lang=en&amp;modules=ext.purge%7Cjquery%2Csite%7Cjquery.client%2CtextSelection%7Cmediawiki.String%2CTitle%2Capi%2Cbase%2Ccldr%2Ccookie%2CjqueryMsg%2Clanguage%2Cstorage%2Cuser%2Cutil%7Cmediawiki.editfont.styles%7Cmediawiki.libs.pluralruleparser%7Cmediawiki.page.ready%7Cskins.tankiblue.js&amp;skin=tankiblue&amp;version=1glsw"></script><style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Test rootpage-Test skin-tankiblue action-view"><div id="mw-main-container"><a href="./Tanki_Online_Wiki" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">返回主页</a><div class="main-content"><div class="mw-body ve-init-mw-desktopArticleTarget-targetContainer" id="content" role="main"><a id="top"></a><div class="mw-body-content" id="bodyContent"><div id="siteNotice"></div><div id="mw-content-text" class="mw-content-ltr mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang=""><span class="mw-page-title-main">测试</span></h1><h3><span class="mw-headline" id="Animated_Button">动画按钮</span></h3><div class="test-button-container" style="cursor: pointer;">
+  <div class="test-button-area">
+      <div><span typeof="mw:File"><a href="./Tankoins" title="坦克币"><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Tankoin.png/25px-Tankoin.png" decoding="async" loading="lazy" width="25" height="23" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/c/c7/Tankoin.png 1.5x"></a></span></div>
+  </div>
+</div><h3><span class="mw-headline" id="Data_from_google_sheet">来自 Google 表格的数据</span></h3><p><a rel="nofollow" class="external text" href="https://docs.google.com/spreadsheets/d/1b0vm68SWA7bCWptr6J9nRp9SZoSxAyjotToe_9MZuxQ/edit#gid=0">外部表</a> 
+</p><div id="dataFromSheetOutput">
+</div><h3><span class="mw-headline" id="Paints_filter">迷彩滤镜</span></h3><div id="paintsFilter">
+<div class="paintFilter paintFilter__active" data-filter="All"><span>全部</span></div>
+<div class="paintFilter" data-filter="Common"></div>
+<div class="paintFilter" data-filter="Uncommon"></div>
+<div class="paintFilter" data-filter="Rare"></div>
+<div class="paintFilter" data-filter="Epic"></div>
+<div class="paintFilter" data-filter="Legendary"></div>
+<div class="paintFilter" data-filter="Exotic"></div>
+</div><p><br>
+</p><div class="rarity-cont">
+<div class="paints-box rarity-box special" data-rarity="Exotic">
+  <div class="linkElem rarity-edge-paints rarity-edge special" data-url="/Container" title="稀有度：特殊"></div>
+  <div class="paints-prize paints-prize-none">
+    <div class="paints-prize-icon paints-prize-icon-none"></div></div>
+  <div class="paints-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/f/f1/Coloring_fire.png" decoding="async" loading="lazy" width="166" height="106" class="mw-file-element"></span></span></div>
+  <div class="paints-rank"></div>
+  <div class="paints-name"><b>火焰</b></div>
+  <div class="paints-description"><div>火具有破坏性，不可阻挡，总是在移动，就像那些轻易更换位置的管理员一样，从聊天到论坛再到私信。他们无处不在。</div></div>
+</div>
+<div class="paints-box rarity-box rare" data-rarity="Rare">
+  <div class="linkElem rarity-edge-paints rarity-edge rare" data-url="/Container" title="稀有度：珍奇"></div>
+  <div class="paints-prize paints-prize-cry">
+    <div class="paints-prize-icon paints-prize-icon-cry"></div>75 000</div>
+  <div class="paints-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/9/9a/Coloring_safari.png" decoding="async" loading="lazy" width="163" height="105" class="mw-file-element"></span></span></div>
+  <div class="paints-rank"><span typeof="mw:File"><a href="./Ranks" title="等级"><img src="https://en.tankiwiki.com/images/en/thumb/5/53/IconsNormal_07.png/66px-IconsNormal_07.png" decoding="async" loading="lazy" width="66" height="64" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/5/53/IconsNormal_07.png/99px-IconsNormal_07.png 1.5x, https://en.tankiwiki.com/images/en/thumb/5/53/IconsNormal_07.png/132px-IconsNormal_07.png 2x"></a></span></div>
+  <div class="paints-name"><b>萨法里</b></div>
+  <div class="paints-description"><div>由热爱狩猎探险的人设计，这款迷彩图案将坦克伪装成无害的斑马，使其非常适合狩猎非洲掠食动物，也适合对坦克一无所知的人。</div></div>
+</div>
+<div class="paints-box rarity-box epic" data-rarity="Epic">
+  <div class="linkElem rarity-edge-paints rarity-edge epic" data-url="/Container" title="稀有度：史诗"></div>
+  <div class="paints-prize paints-prize-coins">
+    <div class="paints-prize-icon paints-prize-icon-coins"></div>1 000</div>
+  <div class="paints-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/7/79/Coloring_liquid_metal.png" decoding="async" loading="lazy" width="166" height="106" class="mw-file-element"></span></span></div>
+  <div class="paints-rank"></div>
+  <div class="paints-name"><b>液态金属</b></div>
+  <div class="paints-description"><div>这种迷彩的应用需要熟练工匠的稳健手法。一种特殊的银合金按照秘密配方制备，并加热到最佳温度以获得完美的稠度。然后，工匠将其倒在坦克的表面，并吹气使液体均匀地覆盖表面，形成薄而均匀、美观的涂层。</div></div>
+</div>
+<div class="paints-box rarity-box epic" data-rarity="Epic">
+  <div class="linkElem rarity-edge-paints rarity-edge epic" data-url="/Container" title="稀有度：史诗"></div>
+  <div class="paints-prize paints-prize-euro">
+    <div class="paints-prize-icon paints-prize-icon-euro"></div>15.99 €</div>
+  <div class="paints-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/2/2d/Paint_lilac_petals.png" decoding="async" loading="lazy" width="166" height="106" class="mw-file-element"></span></span></div>
+  <div class="paints-rank"></div>
+  <div class="paints-name"><b>丁香花瓣</b></div>
+  <div class="paints-description"><div>一种看似精致的迷彩，适合想要在致命的同时也能保持帅气的坦克手。</div></div>
+</div>
+<div class="paints-box rarity-box legendary" data-rarity="Legendary">
+  <div class="linkElem rarity-edge-paints rarity-edge legendary" data-url="/Container" title="稀有度：传奇"></div>
+  <div class="paints-prize paints-prize-stars">
+    <div class="paints-prize-icon paints-prize-icon-stars"></div>700</div>
+  <div class="paints-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/a/a3/Paint_Fall_leaves.png" decoding="async" loading="lazy" width="166" height="106" class="mw-file-element"></span></span></div>
+  <div class="paints-rank"></div>
+  <div class="paints-name"><b>秋叶</b></div>
+  <div class="paints-description"><div>枫叶构成了这种迷彩，它们将永久保持美丽的形状，并在你心中激发美妙的心情。一年中的任何时候，你的坦克都会呈现金色，而这种迷彩也非常适合作为黑色森林的伪装。</div></div>
+</div>
+<div class="paints-box rarity-box special" data-rarity="Rare">
+  <div class="linkElem rarity-edge-paints rarity-edge special" data-url="/Container" title="稀有度：特殊"></div>
+  <div class="paints-prize paints-prize-none">
+    <div class="paints-prize-icon paints-prize-icon-none"></div></div>
+  <div class="paints-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/9/9b/Germany.png" decoding="async" loading="lazy" width="166" height="106" class="mw-file-element"></span></span></div>
+  <div class="paints-rank"></div>
+  <div class="paints-name"><b>德国</b></div>
+  <div class="paints-description"><div>德国迷彩适用于所有等级。</div></div>
+</div>
+</div><p><br>
+</p><hr><p><br>
+</p><table width="100%" align="center">
+
+<tbody><tr>
+<td style="border-top: solid 5px rgb( 255, 105, 180)" width="10%;"><b>特殊</b>
+</td>
+<td style="border-top: solid 5px rgb(255, 83, 9)" width="10%;"><b>异国情调</b>
+</td>
+<td style="border-top: solid 5px rgb(255, 188, 9)" width="10%;"><b>传奇</b>
+</td>
+<td style="border-top: solid 5px rgb(173, 135, 255)" width="10%;"><b>史诗</b>
+</td>
+<td style="border-top: solid 5px rgb(22, 185, 255)" width="10%;"><b>珍奇</b>
+</td>
+<td style="border-top: solid 5px rgb(191, 255, 86)" width="10%;"><b>稀有</b>
+</td>
+<td style="border-top: solid 5px rgba(255, 255, 255, 0.5)" width="10%;"><b>普通</b>
+</td></tr>
+</tbody></table><p><br><br>
+</p><div class="skins-box rarity-box exotic">
+  <div class="rarity-head">
+    <div class="skins-item">火龙珠 XT</div>
+    <div class="linkElem rarity-edge exotic" data-url="/Container" title="稀有度: 异国情调"></div>
+  </div>
+  <div class="skins-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/5/51/RicochetXT.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span></div>
+  <div class="skins-description">火龙珠 XT 被设计成鳄鱼的嘴巴形状，拥有锋利而又长的牙齿，这会让你的红队在未来世界的战斗中对接近你产生犹豫。</div>
+</div><p><br><br>
+<br><br>
+</p><div class="challenge-container">
+  <div class="challenge-header">星级挑战</div>
+  <div class="challenge-content">
+    <div class="challenge-head">
+      <div class="challenge-head-step">步骤</div>
+      <div class="challenge-head-normal"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/7/7b/Challenges_SilverPass.png/100px-Challenges_SilverPass.png" decoding="async" loading="lazy" width="100" height="62" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/7/7b/Challenges_SilverPass.png 1.5x"></span></span></div>
+      <div class="challenge-head-battlepass"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/1/12/Challenges_BattlePass.png/100px-Challenges_BattlePass.png" decoding="async" loading="lazy" width="100" height="62" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/1/12/Challenges_BattlePass.png 1.5x"></span></span></div>
+    </div>
+    <div class="challenge-steps">
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="1">一级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="5">+5 [5]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Crystals" title="水晶"><img src="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/100px-Crystals5.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/151px-Crystals5.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/200px-Crystals5.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">水晶</div>
+    <div class="challenge-step-itemcount">x3000</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Container" title="幸运礼盒"><img src="https://en.tankiwiki.com/images/en/thumb/6/6d/Container_preview.png/121px-Container_preview.png" decoding="async" loading="lazy" width="121" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/6/6d/Container_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">幸运礼盒</div>
+    <div class="challenge-step-itemcount">x3</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="2">二级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="11">+6 [11]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Repair_Kit" title="维修工具"><img src="https://en.tankiwiki.com/images/en/thumb/b/b5/Inventory_first_aid.png/116px-Inventory_first_aid.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/b/b5/Inventory_first_aid.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">维修工具</div>
+    <div class="challenge-step-itemcount">x10</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Crystals" title="水晶"><img src="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/100px-Crystals5.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/151px-Crystals5.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/200px-Crystals5.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">水晶</div>
+    <div class="challenge-step-itemcount">x5000</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="3">第三级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="17">+6 [17]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Double_Damage" title="双倍伤害"><img src="https://en.tankiwiki.com/images/en/thumb/b/be/Inventory_double_power.png/116px-Inventory_double_power.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/b/be/Inventory_double_power.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">双倍伤害</div>
+    <div class="challenge-step-itemcount">x30</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Repair_Kit" title="维修工具"><img src="https://en.tankiwiki.com/images/en/thumb/b/b5/Inventory_first_aid.png/116px-Inventory_first_aid.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/b/b5/Inventory_first_aid.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">维修工具</div>
+    <div class="challenge-step-itemcount">x20</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="4">第四级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="24">+7 [24]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Double_Damage" title="双倍伤害"><img src="https://en.tankiwiki.com/images/en/thumb/5/55/Inventory_double_armor.png/116px-Inventory_double_armor.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/5/55/Inventory_double_armor.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">双倍伤害</div>
+    <div class="challenge-step-itemcount">x30</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Lifesaver" title="救星"><img src="https://en.tankiwiki.com/images/en/thumb/7/7d/Paint_Lifesaver.png/127px-Paint_Lifesaver.png" decoding="async" loading="lazy" width="127" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/7/7d/Paint_Lifesaver.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">救星</div>
+    <div class="challenge-step-itemcount">x1</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="5">第5级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="31">+7 [31]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Speed_Boost" title="速度提升"><img src="https://en.tankiwiki.com/images/en/thumb/1/12/Inventory_nitro.png/116px-Inventory_nitro.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/1/12/Inventory_nitro.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">速度提升</div>
+    <div class="challenge-step-itemcount">x30</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Double_Damage" title="双倍伤害"><img src="https://en.tankiwiki.com/images/en/thumb/b/be/Inventory_double_power.png/116px-Inventory_double_power.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/b/be/Inventory_double_power.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">双倍伤害</div>
+    <div class="challenge-step-itemcount">x50</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="6">第六级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="39">+8 [39]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Container" title="幸运礼盒"><img src="https://en.tankiwiki.com/images/en/thumb/6/6d/Container_preview.png/121px-Container_preview.png" decoding="async" loading="lazy" width="121" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/6/6d/Container_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">幸运礼盒</div>
+    <div class="challenge-step-itemcount">x1</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Container" title="幸运礼盒"><img src="https://en.tankiwiki.com/images/en/thumb/6/6d/Container_preview.png/121px-Container_preview.png" decoding="async" loading="lazy" width="121" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/6/6d/Container_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">幸运礼盒</div>
+    <div class="challenge-step-itemcount">x3</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="7">第7级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="48">+9 [48]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Mine" title="地雷"><img src="https://en.tankiwiki.com/images/en/thumb/e/eb/Inventory_mine.png/100px-Inventory_mine.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/e/eb/Inventory_mine.png/151px-Inventory_mine.png 1.5x, https://en.tankiwiki.com/images/en/thumb/e/eb/Inventory_mine.png/200px-Inventory_mine.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">地雷</div>
+    <div class="challenge-step-itemcount">x30</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Double_Damage" title="双倍伤害"><img src="https://en.tankiwiki.com/images/en/thumb/5/55/Inventory_double_armor.png/116px-Inventory_double_armor.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/5/55/Inventory_double_armor.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">双倍伤害</div>
+    <div class="challenge-step-itemcount">x50</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="8">第8级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="57">+9 [57]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Crystals" title="水晶"><img src="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/100px-Crystals5.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/151px-Crystals5.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/200px-Crystals5.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">水晶</div>
+    <div class="challenge-step-itemcount">x3000</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Crystals" title="水晶"><img src="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/100px-Crystals5.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/151px-Crystals5.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/200px-Crystals5.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">水晶</div>
+    <div class="challenge-step-itemcount">x7000</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="9">第九级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="67">+10 [67]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Repair_Kit" title="维修工具"><img src="https://en.tankiwiki.com/images/en/thumb/b/b5/Inventory_first_aid.png/116px-Inventory_first_aid.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/b/b5/Inventory_first_aid.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">维修工具</div>
+    <div class="challenge-step-itemcount">x10</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Speed_Boost" title="速度提升"><img src="https://en.tankiwiki.com/images/en/thumb/1/12/Inventory_nitro.png/116px-Inventory_nitro.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/1/12/Inventory_nitro.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">速度提升</div>
+    <div class="challenge-step-itemcount">x50</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="10">第10级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="77">+10 [77]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Double_Damage" title="双倍伤害"><img src="https://en.tankiwiki.com/images/en/thumb/b/be/Inventory_double_power.png/116px-Inventory_double_power.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/b/be/Inventory_double_power.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">双倍伤害</div>
+    <div class="challenge-step-itemcount">x30</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Mine" title="地雷"><img src="https://en.tankiwiki.com/images/en/thumb/e/eb/Inventory_mine.png/100px-Inventory_mine.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/e/eb/Inventory_mine.png/151px-Inventory_mine.png 1.5x, https://en.tankiwiki.com/images/en/thumb/e/eb/Inventory_mine.png/200px-Inventory_mine.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">地雷</div>
+    <div class="challenge-step-itemcount">x50</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="11">第11级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="88">+11 [88]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Double_Damage" title="双倍伤害"><img src="https://en.tankiwiki.com/images/en/thumb/5/55/Inventory_double_armor.png/116px-Inventory_double_armor.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/5/55/Inventory_double_armor.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">双倍伤害</div>
+    <div class="challenge-step-itemcount">x30</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Crystals" title="水晶"><img src="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/100px-Crystals5.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/151px-Crystals5.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/200px-Crystals5.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">水晶</div>
+    <div class="challenge-step-itemcount">x5000</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="12">第12级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="99">+11 [99]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Container" title="幸运礼盒"><img src="https://en.tankiwiki.com/images/en/thumb/6/6d/Container_preview.png/121px-Container_preview.png" decoding="async" loading="lazy" width="121" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/6/6d/Container_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">幸运礼盒</div>
+    <div class="challenge-step-itemcount">x1</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Container" title="幸运礼盒"><img src="https://en.tankiwiki.com/images/en/thumb/6/6d/Container_preview.png/121px-Container_preview.png" decoding="async" loading="lazy" width="121" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/6/6d/Container_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">幸运礼盒</div>
+    <div class="challenge-step-itemcount">x3</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="13">第13级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="111">+12 [111]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Battery" title="电池"><img src="https://en.tankiwiki.com/images/en/thumb/f/f5/Supply_battery_preview.png/116px-Supply_battery_preview.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/f/f5/Supply_battery_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">电池</div>
+    <div class="challenge-step-itemcount">x30</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Battery" title="电池"><img src="https://en.tankiwiki.com/images/en/thumb/f/f5/Supply_battery_preview.png/116px-Supply_battery_preview.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/f/f5/Supply_battery_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">电池</div>
+    <div class="challenge-step-itemcount">x50</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="14">第14级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="124">+13 [124]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Speed_Boost" title="速度提升"><img src="https://en.tankiwiki.com/images/en/thumb/1/12/Inventory_nitro.png/116px-Inventory_nitro.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/1/12/Inventory_nitro.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">速度提升</div>
+    <div class="challenge-step-itemcount">x30</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Repair_Kit" title="维修工具"><img src="https://en.tankiwiki.com/images/en/thumb/b/b5/Inventory_first_aid.png/116px-Inventory_first_aid.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/b/b5/Inventory_first_aid.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">维修工具</div>
+    <div class="challenge-step-itemcount">x20</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="15">第15级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="137">+13 [137]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Double_Damage" title="双倍伤害"><img src="https://en.tankiwiki.com/images/en/thumb/b/be/Inventory_double_power.png/116px-Inventory_double_power.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/b/be/Inventory_double_power.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">双倍伤害</div>
+    <div class="challenge-step-itemcount">x30</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Supplies_x100" title="道具 x100"><img src="https://en.tankiwiki.com/images/en/thumb/d/d4/Kit_supplies_100_small.png/120px-Kit_supplies_100_small.png" decoding="async" loading="lazy" width="120" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/d/d4/Kit_supplies_100_small.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">道具 x100</div>
+    <div class="challenge-step-itemcount">x100</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="16">第16级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="151">+14 [151]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Mine" title="地雷"><img src="https://en.tankiwiki.com/images/en/thumb/e/eb/Inventory_mine.png/100px-Inventory_mine.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/e/eb/Inventory_mine.png/151px-Inventory_mine.png 1.5x, https://en.tankiwiki.com/images/en/thumb/e/eb/Inventory_mine.png/200px-Inventory_mine.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">地雷</div>
+    <div class="challenge-step-itemcount">x30</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Crystals" title="水晶"><img src="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/100px-Crystals5.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/151px-Crystals5.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/200px-Crystals5.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">水晶</div>
+    <div class="challenge-step-itemcount">x7000</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="17">第17级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="165">+14 [165]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Tankoins" title="坦克币"><img src="https://en.tankiwiki.com/images/en/thumb/e/ed/Tankoins_4.png/100px-Tankoins_4.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/e/ed/Tankoins_4.png/151px-Tankoins_4.png 1.5x, https://en.tankiwiki.com/images/en/thumb/e/ed/Tankoins_4.png/200px-Tankoins_4.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">坦克币</div>
+    <div class="challenge-step-itemcount">x10</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Double_Damage" title="双倍伤害"><img src="https://en.tankiwiki.com/images/en/thumb/b/be/Inventory_double_power.png/116px-Inventory_double_power.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/b/be/Inventory_double_power.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">双倍伤害</div>
+    <div class="challenge-step-itemcount">x50</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="18">第18级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="180">+15 [180]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Crystals" title="水晶"><img src="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/100px-Crystals5.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/151px-Crystals5.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/200px-Crystals5.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">水晶</div>
+    <div class="challenge-step-itemcount">x3000</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Repair_Kit" title="维修工具"><img src="https://en.tankiwiki.com/images/en/thumb/b/b5/Inventory_first_aid.png/116px-Inventory_first_aid.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/b/b5/Inventory_first_aid.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">维修工具</div>
+    <div class="challenge-step-itemcount">x20</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="19">第19级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="196">+16 [196]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Container" title="幸运礼盒"><img src="https://en.tankiwiki.com/images/en/thumb/6/6d/Container_preview.png/121px-Container_preview.png" decoding="async" loading="lazy" width="121" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/6/6d/Container_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">幸运礼盒</div>
+    <div class="challenge-step-itemcount">x1</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Container" title="幸运礼盒"><img src="https://en.tankiwiki.com/images/en/thumb/6/6d/Container_preview.png/121px-Container_preview.png" decoding="async" loading="lazy" width="121" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/6/6d/Container_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">幸运礼盒</div>
+    <div class="challenge-step-itemcount">x3</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="20">第20级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="212">+16 [212]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Repair_Kit" title="维修工具"><img src="https://en.tankiwiki.com/images/en/thumb/b/b5/Inventory_first_aid.png/116px-Inventory_first_aid.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/b/b5/Inventory_first_aid.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">维修工具</div>
+    <div class="challenge-step-itemcount">x10</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Double_Damage" title="双倍伤害"><img src="https://en.tankiwiki.com/images/en/thumb/5/55/Inventory_double_armor.png/116px-Inventory_double_armor.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/5/55/Inventory_double_armor.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">双倍伤害</div>
+    <div class="challenge-step-itemcount">x50</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="21">第21级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="229">+17 [229]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Gold_Box" title="金箱子"><img src="https://en.tankiwiki.com/images/en/thumb/d/dd/Goldboxsupply.png/116px-Goldboxsupply.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/d/dd/Goldboxsupply.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">金箱子</div>
+    <div class="challenge-step-itemcount">x3</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Not_a_Lantern" title="不是灯笼"><img src="https://en.tankiwiki.com/images/en/thumb/c/cc/Paint_Not_a_lantern.png/118px-Paint_Not_a_lantern.png" decoding="async" loading="lazy" width="118" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/c/cc/Paint_Not_a_lantern.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">不是灯笼</div>
+    <div class="challenge-step-itemcount">x1</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="22">第22级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="246">+17 [246]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Double_Damage" title="双倍伤害"><img src="https://en.tankiwiki.com/images/en/thumb/b/be/Inventory_double_power.png/116px-Inventory_double_power.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/b/be/Inventory_double_power.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">双倍伤害</div>
+    <div class="challenge-step-itemcount">x30</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Speed_Boost" title="速度提升"><img src="https://en.tankiwiki.com/images/en/thumb/1/12/Inventory_nitro.png/116px-Inventory_nitro.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/1/12/Inventory_nitro.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">速度提升</div>
+    <div class="challenge-step-itemcount">x50</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="23">第23级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="264">+18 [264]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Repair_Kit" title="维修工具"><img src="https://en.tankiwiki.com/images/en/thumb/b/b5/Inventory_first_aid.png/116px-Inventory_first_aid.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/b/b5/Inventory_first_aid.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">维修工具</div>
+    <div class="challenge-step-itemcount">x10</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Crystals" title="水晶"><img src="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/100px-Crystals5.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/151px-Crystals5.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/200px-Crystals5.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">水晶</div>
+    <div class="challenge-step-itemcount">x15000</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="24">第24级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="283">+19 [283]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Double_Damage" title="双倍伤害"><img src="https://en.tankiwiki.com/images/en/thumb/5/55/Inventory_double_armor.png/116px-Inventory_double_armor.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/5/55/Inventory_double_armor.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">双倍伤害</div>
+    <div class="challenge-step-itemcount">x30</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Mine" title="地雷"><img src="https://en.tankiwiki.com/images/en/thumb/e/eb/Inventory_mine.png/100px-Inventory_mine.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/e/eb/Inventory_mine.png/151px-Inventory_mine.png 1.5x, https://en.tankiwiki.com/images/en/thumb/e/eb/Inventory_mine.png/200px-Inventory_mine.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">地雷</div>
+    <div class="challenge-step-itemcount">x50</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="25">第25级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="302">+19 [302]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Speed_Boost" title="速度提升"><img src="https://en.tankiwiki.com/images/en/thumb/1/12/Inventory_nitro.png/116px-Inventory_nitro.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/1/12/Inventory_nitro.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">速度提升</div>
+    <div class="challenge-step-itemcount">x30</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Repair_Kit" title="维修工具"><img src="https://en.tankiwiki.com/images/en/thumb/b/b5/Inventory_first_aid.png/116px-Inventory_first_aid.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/b/b5/Inventory_first_aid.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">维修工具</div>
+    <div class="challenge-step-itemcount">x20</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="26">第26级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="322">+20 [322]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Container" title="幸运礼盒"><img src="https://en.tankiwiki.com/images/en/thumb/6/6d/Container_preview.png/121px-Container_preview.png" decoding="async" loading="lazy" width="121" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/6/6d/Container_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">幸运礼盒</div>
+    <div class="challenge-step-itemcount">x1</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Container" title="幸运礼盒"><img src="https://en.tankiwiki.com/images/en/thumb/6/6d/Container_preview.png/121px-Container_preview.png" decoding="async" loading="lazy" width="121" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/6/6d/Container_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">幸运礼盒</div>
+    <div class="challenge-step-itemcount">x3</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="27">第27级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="342">+20 [342]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Tankoins" title="坦克币"><img src="https://en.tankiwiki.com/images/en/thumb/e/ed/Tankoins_4.png/100px-Tankoins_4.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/e/ed/Tankoins_4.png/151px-Tankoins_4.png 1.5x, https://en.tankiwiki.com/images/en/thumb/e/ed/Tankoins_4.png/200px-Tankoins_4.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">坦克币</div>
+    <div class="challenge-step-itemcount">x10</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Crystals" title="水晶"><img src="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/100px-Crystals5.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/151px-Crystals5.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/200px-Crystals5.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">水晶</div>
+    <div class="challenge-step-itemcount">x15000</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="28">第28级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="363">+21 [363]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Crystals" title="水晶"><img src="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/100px-Crystals5.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/151px-Crystals5.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/200px-Crystals5.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">水晶</div>
+    <div class="challenge-step-itemcount">x5000</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Nanosuit_Armor" title="Nanosuit 装甲"><img src="https://en.tankiwiki.com/images/en/thumb/3/3e/Paint_Nanosuit_Armor.png/118px-Paint_Nanosuit_Armor.png" decoding="async" loading="lazy" width="118" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/3e/Paint_Nanosuit_Armor.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">Nanosuit 装甲</div>
+    <div class="challenge-step-itemcount">x1</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="29">第29级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="384">+21 [384]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Battery" title="电池"><img src="https://en.tankiwiki.com/images/en/thumb/f/f5/Supply_battery_preview.png/116px-Supply_battery_preview.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/f/f5/Supply_battery_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">电池</div>
+    <div class="challenge-step-itemcount">x30</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Battery" title="电池"><img src="https://en.tankiwiki.com/images/en/thumb/f/f5/Supply_battery_preview.png/116px-Supply_battery_preview.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/f/f5/Supply_battery_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">电池</div>
+    <div class="challenge-step-itemcount">x50</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="30">第30级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="406">+22 [406]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Mine" title="地雷"><img src="https://en.tankiwiki.com/images/en/thumb/e/eb/Inventory_mine.png/100px-Inventory_mine.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/e/eb/Inventory_mine.png/151px-Inventory_mine.png 1.5x, https://en.tankiwiki.com/images/en/thumb/e/eb/Inventory_mine.png/200px-Inventory_mine.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">地雷</div>
+    <div class="challenge-step-itemcount">x30</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Crystals" title="水晶"><img src="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/100px-Crystals5.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/151px-Crystals5.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/200px-Crystals5.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">水晶</div>
+    <div class="challenge-step-itemcount">x5000</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="31">第31级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="429">+23 [429]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Crystals" title="水晶"><img src="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/100px-Crystals5.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/151px-Crystals5.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/200px-Crystals5.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">水晶</div>
+    <div class="challenge-step-itemcount">x3000</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Repair_Kit" title="维修工具"><img src="https://en.tankiwiki.com/images/en/thumb/b/b5/Inventory_first_aid.png/116px-Inventory_first_aid.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/b/b5/Inventory_first_aid.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">维修工具</div>
+    <div class="challenge-step-itemcount">x20</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="32">32级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="452">+23 [452]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Container" title="幸运礼盒"><img src="https://en.tankiwiki.com/images/en/thumb/6/6d/Container_preview.png/121px-Container_preview.png" decoding="async" loading="lazy" width="121" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/6/6d/Container_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">幸运礼盒</div>
+    <div class="challenge-step-itemcount">x1</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Container" title="幸运礼盒"><img src="https://en.tankiwiki.com/images/en/thumb/6/6d/Container_preview.png/121px-Container_preview.png" decoding="async" loading="lazy" width="121" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/6/6d/Container_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">幸运礼盒</div>
+    <div class="challenge-step-itemcount">x3</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="33">第33级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="476">+24 [476]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Double_Damage" title="双倍伤害"><img src="https://en.tankiwiki.com/images/en/thumb/5/55/Inventory_double_armor.png/116px-Inventory_double_armor.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/5/55/Inventory_double_armor.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">双倍伤害</div>
+    <div class="challenge-step-itemcount">x30</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Gold_Box" title="金箱子"><img src="https://en.tankiwiki.com/images/en/thumb/d/dd/Goldboxsupply.png/116px-Goldboxsupply.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/d/dd/Goldboxsupply.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">金箱子</div>
+    <div class="challenge-step-itemcount">x5</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="34">第34级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="500">+24 [500]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Repair_Kit" title="维修工具"><img src="https://en.tankiwiki.com/images/en/thumb/b/b5/Inventory_first_aid.png/116px-Inventory_first_aid.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/b/b5/Inventory_first_aid.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">维修工具</div>
+    <div class="challenge-step-itemcount">x10</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Double_Damage" title="双倍伤害"><img src="https://en.tankiwiki.com/images/en/thumb/b/be/Inventory_double_power.png/116px-Inventory_double_power.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/b/be/Inventory_double_power.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">双倍伤害</div>
+    <div class="challenge-step-itemcount">x50</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="35">第35级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="525">+25 [525]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Gold_Box" title="金箱子"><img src="https://en.tankiwiki.com/images/en/thumb/d/dd/Goldboxsupply.png/116px-Goldboxsupply.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/d/dd/Goldboxsupply.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">金箱子</div>
+    <div class="challenge-step-itemcount">x3</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Crimson" title="深红色"><img src="https://en.tankiwiki.com/images/en/thumb/0/02/Shot_effect_Magnum_Crimson.png/75px-Shot_effect_Magnum_Crimson.png" decoding="async" loading="lazy" width="75" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/0/02/Shot_effect_Magnum_Crimson.png/113px-Shot_effect_Magnum_Crimson.png 1.5x, https://en.tankiwiki.com/images/en/thumb/0/02/Shot_effect_Magnum_Crimson.png/150px-Shot_effect_Magnum_Crimson.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">深红色</div>
+    <div class="challenge-step-itemcount">x1</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="36">第36级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="550">+25 [550]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Tankoins" title="坦克币"><img src="https://en.tankiwiki.com/images/en/thumb/e/ed/Tankoins_4.png/100px-Tankoins_4.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/e/ed/Tankoins_4.png/151px-Tankoins_4.png 1.5x, https://en.tankiwiki.com/images/en/thumb/e/ed/Tankoins_4.png/200px-Tankoins_4.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">坦克币</div>
+    <div class="challenge-step-itemcount">x10</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Crystals" title="水晶"><img src="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/100px-Crystals5.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/151px-Crystals5.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/200px-Crystals5.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">水晶</div>
+    <div class="challenge-step-itemcount">x7000</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="37">第37级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="576">+26 [576]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Double_Damage" title="双倍伤害"><img src="https://en.tankiwiki.com/images/en/thumb/b/be/Inventory_double_power.png/116px-Inventory_double_power.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/b/be/Inventory_double_power.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">双倍伤害</div>
+    <div class="challenge-step-itemcount">x30</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Double_Damage" title="双倍伤害"><img src="https://en.tankiwiki.com/images/en/thumb/5/55/Inventory_double_armor.png/116px-Inventory_double_armor.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/5/55/Inventory_double_armor.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">双倍伤害</div>
+    <div class="challenge-step-itemcount">x50</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="38">第38级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="602">+26 [602]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Double_Damage" title="双倍伤害"><img src="https://en.tankiwiki.com/images/en/thumb/5/55/Inventory_double_armor.png/116px-Inventory_double_armor.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/5/55/Inventory_double_armor.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">双倍伤害</div>
+    <div class="challenge-step-itemcount">x30</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Repair_Kit" title="维修工具"><img src="https://en.tankiwiki.com/images/en/thumb/b/b5/Inventory_first_aid.png/116px-Inventory_first_aid.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/b/b5/Inventory_first_aid.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">维修工具</div>
+    <div class="challenge-step-itemcount">x20</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="39">第39级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="629">+27 [629]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Container" title="幸运礼盒"><img src="https://en.tankiwiki.com/images/en/thumb/6/6d/Container_preview.png/121px-Container_preview.png" decoding="async" loading="lazy" width="121" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/6/6d/Container_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">幸运礼盒</div>
+    <div class="challenge-step-itemcount">x1</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Container" title="幸运礼盒"><img src="https://en.tankiwiki.com/images/en/thumb/6/6d/Container_preview.png/121px-Container_preview.png" decoding="async" loading="lazy" width="121" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/6/6d/Container_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">幸运礼盒</div>
+    <div class="challenge-step-itemcount">x3</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="40">第40级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="656">+27 [656]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Crystals" title="水晶"><img src="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/100px-Crystals5.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/151px-Crystals5.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/200px-Crystals5.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">水晶</div>
+    <div class="challenge-step-itemcount">x5000</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Electro_Sheep" title="电子羊"><img src="https://en.tankiwiki.com/images/en/thumb/d/de/Paint_Electric_Sheep.png/118px-Paint_Electric_Sheep.png" decoding="async" loading="lazy" width="118" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/d/de/Paint_Electric_Sheep.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">电子羊</div>
+    <div class="challenge-step-itemcount">x1</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="41">第41级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="684">+28 [684]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Speed_Boost" title="速度提升"><img src="https://en.tankiwiki.com/images/en/thumb/1/12/Inventory_nitro.png/116px-Inventory_nitro.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/1/12/Inventory_nitro.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">速度提升</div>
+    <div class="challenge-step-itemcount">x30</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Gold_Box" title="金箱子"><img src="https://en.tankiwiki.com/images/en/thumb/d/dd/Goldboxsupply.png/116px-Goldboxsupply.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/d/dd/Goldboxsupply.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">金箱子</div>
+    <div class="challenge-step-itemcount">x5</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="42">第42级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="713">+29 [713]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Mine" title="地雷"><img src="https://en.tankiwiki.com/images/en/thumb/e/eb/Inventory_mine.png/100px-Inventory_mine.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/e/eb/Inventory_mine.png/151px-Inventory_mine.png 1.5x, https://en.tankiwiki.com/images/en/thumb/e/eb/Inventory_mine.png/200px-Inventory_mine.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">地雷</div>
+    <div class="challenge-step-itemcount">x30</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Crystals" title="水晶"><img src="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/100px-Crystals5.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/151px-Crystals5.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/200px-Crystals5.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">水晶</div>
+    <div class="challenge-step-itemcount">x15000</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="43">第43级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="742">+29 [742]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Space" title="宇宙"><img src="https://en.tankiwiki.com/images/en/thumb/2/27/Space.png/128px-Space.png" decoding="async" loading="lazy" width="128" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/2/27/Space.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">宇宙</div>
+    <div class="challenge-step-itemcount">x1</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./And_Roll" title="滚动"><img src="https://en.tankiwiki.com/images/en/thumb/3/36/Paint_And_Roll.png/127px-Paint_And_Roll.png" decoding="async" loading="lazy" width="127" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/36/Paint_And_Roll.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">滚动</div>
+    <div class="challenge-step-itemcount">x1</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="44">第44级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="772">+30 [772]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Speed_Boost" title="速度提升"><img src="https://en.tankiwiki.com/images/en/thumb/1/12/Inventory_nitro.png/116px-Inventory_nitro.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/1/12/Inventory_nitro.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">速度提升</div>
+    <div class="challenge-step-itemcount">x30</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Crystals" title="水晶"><img src="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/100px-Crystals5.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/151px-Crystals5.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/200px-Crystals5.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">水晶</div>
+    <div class="challenge-step-itemcount">x7000</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="45">第45级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="802">+30 [802]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Tankoins" title="坦克币"><img src="https://en.tankiwiki.com/images/en/thumb/e/ed/Tankoins_4.png/100px-Tankoins_4.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/e/ed/Tankoins_4.png/151px-Tankoins_4.png 1.5x, https://en.tankiwiki.com/images/en/thumb/e/ed/Tankoins_4.png/200px-Tankoins_4.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">坦克币</div>
+    <div class="challenge-step-itemcount">x10</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Repair_Kit" title="维修工具"><img src="https://en.tankiwiki.com/images/en/thumb/b/b5/Inventory_first_aid.png/116px-Inventory_first_aid.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/b/b5/Inventory_first_aid.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">维修工具</div>
+    <div class="challenge-step-itemcount">x20</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="46">第46级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="833">+31 [833]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Container" title="幸运礼盒"><img src="https://en.tankiwiki.com/images/en/thumb/6/6d/Container_preview.png/121px-Container_preview.png" decoding="async" loading="lazy" width="121" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/6/6d/Container_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">幸运礼盒</div>
+    <div class="challenge-step-itemcount">x1</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Container" title="幸运礼盒"><img src="https://en.tankiwiki.com/images/en/thumb/6/6d/Container_preview.png/121px-Container_preview.png" decoding="async" loading="lazy" width="121" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/6/6d/Container_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">幸运礼盒</div>
+    <div class="challenge-step-itemcount">x3</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="47">第47级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="864">+31 [864]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Crystals" title="水晶"><img src="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/100px-Crystals5.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/151px-Crystals5.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/200px-Crystals5.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">水晶</div>
+    <div class="challenge-step-itemcount">x3000</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Crystals" title="水晶"><img src="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/100px-Crystals5.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/151px-Crystals5.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/200px-Crystals5.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">水晶</div>
+    <div class="challenge-step-itemcount">x15000</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="48">第48级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="896">+32 [896]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Stained_Glass" title="彩色玻璃"><img src="https://en.tankiwiki.com/images/en/thumb/8/87/Paint_stained_glass.png/118px-Paint_stained_glass.png" decoding="async" loading="lazy" width="118" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/8/87/Paint_stained_glass.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">彩色玻璃</div>
+    <div class="challenge-step-itemcount">x1</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Wonderbird" title="奇鸟"><img src="https://en.tankiwiki.com/images/en/thumb/c/c7/Paint_Wonderbird.png/127px-Paint_Wonderbird.png" decoding="async" loading="lazy" width="127" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/c/c7/Paint_Wonderbird.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">奇鸟</div>
+    <div class="challenge-step-itemcount">x1</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="49">第49级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="929">+33 [929]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Mine" title="地雷"><img src="https://en.tankiwiki.com/images/en/thumb/e/eb/Inventory_mine.png/100px-Inventory_mine.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/e/eb/Inventory_mine.png/151px-Inventory_mine.png 1.5x, https://en.tankiwiki.com/images/en/thumb/e/eb/Inventory_mine.png/200px-Inventory_mine.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">地雷</div>
+    <div class="challenge-step-itemcount">x30</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Speed_Boost" title="速度提升"><img src="https://en.tankiwiki.com/images/en/thumb/1/12/Inventory_nitro.png/116px-Inventory_nitro.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/1/12/Inventory_nitro.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">速度提升</div>
+    <div class="challenge-step-itemcount">x50</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="50">第50级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="962">+33 [962]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Crystals" title="水晶"><img src="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/100px-Crystals5.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/151px-Crystals5.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/200px-Crystals5.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">水晶</div>
+    <div class="challenge-step-itemcount">x5000</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Supplies_x100" title="道具 x100"><img src="https://en.tankiwiki.com/images/en/thumb/d/d4/Kit_supplies_100_small.png/120px-Kit_supplies_100_small.png" decoding="async" loading="lazy" width="120" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/d/d4/Kit_supplies_100_small.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">道具 x100</div>
+    <div class="challenge-step-itemcount">x100</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="51">第51级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="996">+34 [996]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"></div>
+    <div class="challenge-step-itemname"></div>
+    <div class="challenge-step-itemcount"></div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Mine" title="地雷"><img src="https://en.tankiwiki.com/images/en/thumb/e/eb/Inventory_mine.png/100px-Inventory_mine.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/e/eb/Inventory_mine.png/151px-Inventory_mine.png 1.5x, https://en.tankiwiki.com/images/en/thumb/e/eb/Inventory_mine.png/200px-Inventory_mine.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">地雷</div>
+    <div class="challenge-step-itemcount">x50</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="52">第52级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="1030">+34 [1030]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"></div>
+    <div class="challenge-step-itemname"></div>
+    <div class="challenge-step-itemcount"></div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Repair_Kit" title="维修工具"><img src="https://en.tankiwiki.com/images/en/thumb/b/b5/Inventory_first_aid.png/116px-Inventory_first_aid.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/b/b5/Inventory_first_aid.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">维修工具</div>
+    <div class="challenge-step-itemcount">x20</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="53">第53级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="1065">+35 [1065]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Container" title="幸运礼盒"><img src="https://en.tankiwiki.com/images/en/thumb/6/6d/Container_preview.png/121px-Container_preview.png" decoding="async" loading="lazy" width="121" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/6/6d/Container_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">幸运礼盒</div>
+    <div class="challenge-step-itemcount">x1</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Container" title="幸运礼盒"><img src="https://en.tankiwiki.com/images/en/thumb/6/6d/Container_preview.png/121px-Container_preview.png" decoding="async" loading="lazy" width="121" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/6/6d/Container_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">幸运礼盒</div>
+    <div class="challenge-step-itemcount">x3</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="54">第54级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="1101">+36 [1101]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Tankoins" title="坦克币"><img src="https://en.tankiwiki.com/images/en/thumb/e/ed/Tankoins_4.png/100px-Tankoins_4.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/e/ed/Tankoins_4.png/151px-Tankoins_4.png 1.5x, https://en.tankiwiki.com/images/en/thumb/e/ed/Tankoins_4.png/200px-Tankoins_4.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">坦克币</div>
+    <div class="challenge-step-itemcount">x10</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Crystals" title="水晶"><img src="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/100px-Crystals5.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/151px-Crystals5.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/200px-Crystals5.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">水晶</div>
+    <div class="challenge-step-itemcount">x5000</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="55">第55级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="1137">+36 [1137]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Battery" title="电池"><img src="https://en.tankiwiki.com/images/en/thumb/f/f5/Supply_battery_preview.png/116px-Supply_battery_preview.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/f/f5/Supply_battery_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">电池</div>
+    <div class="challenge-step-itemcount">x30</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Battery" title="电池"><img src="https://en.tankiwiki.com/images/en/thumb/f/f5/Supply_battery_preview.png/116px-Supply_battery_preview.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/f/f5/Supply_battery_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">电池</div>
+    <div class="challenge-step-itemcount">x50</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="56">第56级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="1174">+37 [1174]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Electrohive" title="电蜂"><img src="https://en.tankiwiki.com/images/en/thumb/d/d7/Paint_Electrohive.png/118px-Paint_Electrohive.png" decoding="async" loading="lazy" width="118" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/d/d7/Paint_Electrohive.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">电蜂</div>
+    <div class="challenge-step-itemcount">x1</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Premium_Account" title="VIP账号"><img src="https://en.tankiwiki.com/images/en/thumb/c/cf/Premium_item.png/75px-Premium_item.png" decoding="async" loading="lazy" width="75" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/cf/Premium_item.png/113px-Premium_item.png 1.5x, https://en.tankiwiki.com/images/en/thumb/c/cf/Premium_item.png/150px-Premium_item.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">VIP账号</div>
+    <div class="challenge-step-itemcount">x1</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="57">第57级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="1211">+37 [1211]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"></div>
+    <div class="challenge-step-itemname"></div>
+    <div class="challenge-step-itemcount"></div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Gold_Box" title="金箱子"><img src="https://en.tankiwiki.com/images/en/thumb/d/dd/Goldboxsupply.png/116px-Goldboxsupply.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/d/dd/Goldboxsupply.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">金箱子</div>
+    <div class="challenge-step-itemcount">x5</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="58">第58级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="1249">+38 [1249]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"></div>
+    <div class="challenge-step-itemname"></div>
+    <div class="challenge-step-itemcount"></div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Repair_Kit" title="维修工具"><img src="https://en.tankiwiki.com/images/en/thumb/b/b5/Inventory_first_aid.png/116px-Inventory_first_aid.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/b/b5/Inventory_first_aid.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">维修工具</div>
+    <div class="challenge-step-itemcount">x20</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="59">第59级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="1288">+39 [1288]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Container" title="幸运礼盒"><img src="https://en.tankiwiki.com/images/en/thumb/6/6d/Container_preview.png/121px-Container_preview.png" decoding="async" loading="lazy" width="121" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/6/6d/Container_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">幸运礼盒</div>
+    <div class="challenge-step-itemcount">x1</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Container" title="幸运礼盒"><img src="https://en.tankiwiki.com/images/en/thumb/6/6d/Container_preview.png/121px-Container_preview.png" decoding="async" loading="lazy" width="121" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/6/6d/Container_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">幸运礼盒</div>
+    <div class="challenge-step-itemcount">x4</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="60">60级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="1327">+39 [1327]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Battery" title="电池"><img src="https://en.tankiwiki.com/images/en/thumb/f/f5/Supply_battery_preview.png/116px-Supply_battery_preview.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/f/f5/Supply_battery_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">电池</div>
+    <div class="challenge-step-itemcount">x30</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Battery" title="电池"><img src="https://en.tankiwiki.com/images/en/thumb/f/f5/Supply_battery_preview.png/116px-Supply_battery_preview.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/f/f5/Supply_battery_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">电池</div>
+    <div class="challenge-step-itemcount">x100</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="61">第61级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="1367">+40 [1367]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Tankoins" title="坦克币"><img src="https://en.tankiwiki.com/images/en/thumb/e/ed/Tankoins_4.png/100px-Tankoins_4.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/e/ed/Tankoins_4.png/151px-Tankoins_4.png 1.5x, https://en.tankiwiki.com/images/en/thumb/e/ed/Tankoins_4.png/200px-Tankoins_4.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">坦克币</div>
+    <div class="challenge-step-itemcount">x10</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Double_Damage" title="双倍伤害"><img src="https://en.tankiwiki.com/images/en/thumb/b/be/Inventory_double_power.png/116px-Inventory_double_power.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/b/be/Inventory_double_power.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">双倍伤害</div>
+    <div class="challenge-step-itemcount">x50</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="62">第62级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="1407">+40 [1407]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Crystals" title="水晶"><img src="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/100px-Crystals5.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/151px-Crystals5.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/200px-Crystals5.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">水晶</div>
+    <div class="challenge-step-itemcount">x3000</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Repair_Kit" title="维修工具"><img src="https://en.tankiwiki.com/images/en/thumb/b/b5/Inventory_first_aid.png/116px-Inventory_first_aid.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/b/b5/Inventory_first_aid.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">维修工具</div>
+    <div class="challenge-step-itemcount">x100</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="63">第63级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="1448">+41 [1448]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"></div>
+    <div class="challenge-step-itemname"></div>
+    <div class="challenge-step-itemcount"></div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Double_Damage" title="双倍伤害"><img src="https://en.tankiwiki.com/images/en/thumb/5/55/Inventory_double_armor.png/116px-Inventory_double_armor.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/5/55/Inventory_double_armor.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">双倍伤害</div>
+    <div class="challenge-step-itemcount">x50</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="64">第64级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="1489">+41 [1489]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Battery" title="电池"><img src="https://en.tankiwiki.com/images/en/thumb/f/f5/Supply_battery_preview.png/116px-Supply_battery_preview.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/f/f5/Supply_battery_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">电池</div>
+    <div class="challenge-step-itemcount">x30</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Container" title="幸运礼盒"><img src="https://en.tankiwiki.com/images/en/thumb/6/6d/Container_preview.png/121px-Container_preview.png" decoding="async" loading="lazy" width="121" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/6/6d/Container_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">幸运礼盒</div>
+    <div class="challenge-step-itemcount">x5</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="65">第65级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="1531">+42 [1531]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Crystals" title="水晶"><img src="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/100px-Crystals5.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/151px-Crystals5.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/200px-Crystals5.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">水晶</div>
+    <div class="challenge-step-itemcount">x5000</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Battery" title="电池"><img src="https://en.tankiwiki.com/images/en/thumb/f/f5/Supply_battery_preview.png/116px-Supply_battery_preview.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/f/f5/Supply_battery_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">电池</div>
+    <div class="challenge-step-itemcount">x100</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="66">第66级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="1574">+43 [1574]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"></div>
+    <div class="challenge-step-itemname"></div>
+    <div class="challenge-step-itemcount"></div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Speed_Boost" title="速度提升"><img src="https://en.tankiwiki.com/images/en/thumb/1/12/Inventory_nitro.png/116px-Inventory_nitro.png" decoding="async" loading="lazy" width="116" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/1/12/Inventory_nitro.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">速度提升</div>
+    <div class="challenge-step-itemcount">x50</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="67">第67级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="1617">+43 [1617]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"></div>
+    <div class="challenge-step-itemname"></div>
+    <div class="challenge-step-itemcount"></div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Crystals" title="水晶"><img src="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/100px-Crystals5.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/151px-Crystals5.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/200px-Crystals5.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">水晶</div>
+    <div class="challenge-step-itemcount">x5000</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="68">第68级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="1661">+44 [1661]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Tankoins" title="坦克币"><img src="https://en.tankiwiki.com/images/en/thumb/e/ed/Tankoins_4.png/100px-Tankoins_4.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/e/ed/Tankoins_4.png/151px-Tankoins_4.png 1.5x, https://en.tankiwiki.com/images/en/thumb/e/ed/Tankoins_4.png/200px-Tankoins_4.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">坦克币</div>
+    <div class="challenge-step-itemcount">x10</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Crystals" title="水晶"><img src="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/100px-Crystals5.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/151px-Crystals5.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/200px-Crystals5.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">水晶</div>
+    <div class="challenge-step-itemcount">x7000</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="69">第69级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="1705">+44 [1705]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Crystals" title="水晶"><img src="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/100px-Crystals5.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/151px-Crystals5.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/200px-Crystals5.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">水晶</div>
+    <div class="challenge-step-itemcount">x10000</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Crystals" title="水晶"><img src="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/100px-Crystals5.png" decoding="async" loading="lazy" width="100" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/151px-Crystals5.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/74/Crystals5.png/200px-Crystals5.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">水晶</div>
+    <div class="challenge-step-itemcount">x15000</div>
+  </div>
+</div>
+<div class="challenge-step">
+  <div class="challenge-step-head">
+    <div class="challenge-step-number" data-tier="70">第70级</div>
+    <div class="challenge-star"></div><div class="challenge-step-stars" data-total-stars="1750">+45 [1750]</div>
+  </div>
+  <div class="challenge-step-normal">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Container_XT" title="幸运礼盒 XT"><img src="https://en.tankiwiki.com/images/en/thumb/a/aa/Container_skins_preview.png/121px-Container_skins_preview.png" decoding="async" loading="lazy" width="121" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/a/aa/Container_skins_preview.png 1.5x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">幸运礼盒 XT</div>
+    <div class="challenge-step-itemcount">x1</div>
+  </div>
+  <div class="challenge-step-battlepass">
+    <div class="challenge-step-item"><figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="./Skin_Hunter_Prime" title="皮肤猎人中甲青春"><img src="https://en.tankiwiki.com/images/en/thumb/8/88/Skin_hunter_prime.png/123px-Skin_hunter_prime.png" decoding="async" loading="lazy" width="123" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/8/88/Skin_hunter_prime.png/185px-Skin_hunter_prime.png 1.5x, https://en.tankiwiki.com/images/en/thumb/8/88/Skin_hunter_prime.png/246px-Skin_hunter_prime.png 2x"></a><figcaption></figcaption></figure></div>
+    <div class="challenge-step-itemname">皮肤猎人中甲青春</div>
+    <div class="challenge-step-itemcount">x1</div>
+  </div>
+</div>
+    </div>
+  </div>
+</div><p><br><br>
+</p><div style="width: 100%; background: rgba(0, 0, 0, 0) radial-gradient(463.12px at 50% 43.45%, rgb(74, 74, 91) 0%, rgb(50, 54, 62) 100%) repeat scroll 0% 0%; display: flex; align-items: center; color: white; border-left: 5px solid silver; margin: 7.5px 0 7.5px 0; min-height: 45px;">
+  <div style="margin: 7.5px 10px 7.5px 15px;"><b>3D坦克</b>是第一<a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Adobe_Flash">基于闪存的</a>在线 3D 动作游戏。它获得了多项知名奖项，包括<b>今日网站</b>在<a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Favourite_Website_Awards">最喜爱的网站奖</a>,<b>最佳无发行商游戏</b>和<b>最佳科技</b>在<a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Russian_Game_Developers_Conference">克里 2009</a>,<b>最佳科技</b>在2009年俄罗斯闪电奖上，和<b>俄罗斯互联网最佳游戏</b>在<a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Runet_Prize">鲁内特奖</a>在2013年和2014年。<br><br>全世界成千上万的玩家已经加入<b>3D坦克</b>要做同样的操作，只需前往<a rel="nofollow" class="external text" href="http://tankionline.com/">tankionline.com</a>开始玩吧！对于使用安卓智能手机或平板电脑的用户，您可以从以下位置下载游戏的手机版本<a rel="nofollow" class="external text" href="https://play.google.com/store/apps/details?id=com.tankionline.mobile.production">谷歌应用商店</a>.<br><figure class="mw-halign-center" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/3/35/WikiLogo.png/100px-WikiLogo.png" decoding="async" loading="lazy" width="100" height="91" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/3/35/WikiLogo.png/150px-WikiLogo.png 1.5x, https://en.tankiwiki.com/images/en/thumb/3/35/WikiLogo.png/200px-WikiLogo.png 2x"></span><figcaption></figcaption></figure><br>在本维基百科的页面上，你将找到大量关于游戏的有用信息，发现许多有趣的事实，并从经验丰富的玩家那里获得建议。百科全书的内容由我们的经验丰富的人员不断更新和改进。<a href="./Wiki_Editors" title="维基编辑">编辑</a>维基百科旨在用于信息查询和查看当前游戏活动，仅供参考。它不用于商业目的或广告。<br><br>如果您对维基有任何建议或想法，请直接在维基页面内报告，或通过以下方式与我们联系<a rel="nofollow" class="external text" href="http://en.tankiforum.com/index.php?showtopic=291454">维基中心</a>!</div>
+</div><p><br><br>
+</p><h3><span class="mw-headline" id="Page_Preview">页面预览</span></h3><ul><li><a href="./3D_models" title="3D 模型">3D 模型</a></li>
+<li><a href="./Abstract_Lines" title="抽象线条">抽象线条</a></li>
+<li><a href="./Acid" title="酸">酸</a></li>
+<li><a href="./Africa" title="非洲">非洲</a></li>
+<li><a href="./Alien" title="外星人">外星人</a></li>
+<li><a href="./Alien_Regeneration" title="外星人再生">外星人再生</a></li>
+<li><a href="./All_You_Need_Is" class="mw-redirect" title="你所需要的就是">你所需要的就是</a></li>
+<li><a href="./And_Roll" title="滚动">滚动</a></li>
+<li><a href="./Aramid" title="芳纶">芳纶</a></li>
+<li><a href="./Argentina" title="阿根廷">阿根廷</a></li>
+<li><a href="./Best_Artworks_of_the_Month" title="本月最佳艺术作品">本月最佳艺术作品</a></li></ul><p>*页面预览在此以下无法使用</p><ul><li><a href="./Medal_of_Merit" title="功勋奖章">功勋奖章</a></li>
+<li><a href="./Secret_Rooms" title="秘密房间">秘密房间</a></li>
+<li><a href="./Other_Maps" title="其他地图">其他地图</a></li>
+<li><a href="./Fan_Art" title="同人画">同人画</a></li>
+<li><a href="./Contests" title="比赛">比赛</a></li>
+<li><a href="./Creative_League" title="创意联盟">创意联盟</a></li>
+<li><a rel="nofollow" class="external text" href="http://help.tankionline.com/">帮助网站</a></li>
+<li><a href="./Frequently_Asked_Questions" title="常见问题">常见问题</a></li>
+<li><a href="./Which_browser_to_choose" title="选择哪个浏览器">浏览器推荐</a></li>
+<li><a href="./Chat" title="聊天">聊天</a>&amp;<a href="./Forum" title="论坛">论坛</a></li>
+<li><a href="./Press" title="按">按</a>&amp;<a href="./Video_Blogs" title="视频日志">视频日志</a></li>
+<li><a href="./War" title="战争">战争</a></li>
+<li><a href="./Broadcasts_and_Livestreams" title="广播和直播">广播和直播</a></li>
+<li><a href="./Social_networks" title="社交网络">社交网络</a></li>
+<li><a href="./Gifts" title="礼物">礼物</a></li>
+<li><a href="./Dictionary_for_players" title="玩家的词典">玩家的词典</a></li></ul><h3><span class="mw-headline" id="YouTube_Popup">YouTube 弹出窗口</span></h3><div title="点击打开视频" class="ShowYouTubePopup" style="width:22pxpx;" data-id="hyz_QjPvuzA"><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/4/46/YT-icon.png/22px-YT-icon.png" decoding="async" loading="lazy" width="22" height="15" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/4/46/YT-icon.png/33px-YT-icon.png 1.5x, https://en.tankiwiki.com/images/en/thumb/4/46/YT-icon.png/44px-YT-icon.png 2x"></span></span></div><p><br>
+</p><h2><span class="mw-headline" id="Surprises">惊喜</span></h2><div class="surprise tree" title="TNK00-00000-ADJIO-2H4JC-LKJAH"></div><div class="surprise gift" title="TNK00-00000-ADJIO-DOIAJ-IDAJD"></div><table class="wikitable" style="width:100%;border-collapse:collapse;font-family:Segoe UI, Roboto, Arial, sans-serif;font-size:14px;color:#fff;table-layout:fixed;border:1px solid rgba(0,0,0,0.06);">
+<tbody><tr>
+<th style="background:#0f4b78;color:#fff;padding:12px 14px;border-bottom:2px solid rgba(0,0,0,0.08);text-align:left;font-weight:800;width:35%;">问题</th>
+<th style="background:#0f4b78;color:#fff;padding:12px 14px;border-bottom:2px solid rgba(0,0,0,0.08);text-align:left;font-weight:800;width:65%;">回答</th></tr>
+<tr>
+<td style="border-left:6px solid #548bc9;padding:12px 14px;vertical-align:top;white-space:normal;word-break:break-word;background:transparent;color:#fff;">
+<p><span style="font-weight:700;color:#fff;">❓ 问：</span> <i>为什么在激活优惠码时会出现错误？</i>
+</p>
+</td>
+<td style="border-left:6px solid #51b949;padding:12px 14px;vertical-align:top;white-space:normal;word-break:break-word;background:transparent;color:#fff;">
+<p><span style="font-weight:700;color:#fff;">✔ A:</span>这意味着你是一个活跃的玩家。你不能使用这样的促销码成为推荐人——只能邀请玩家。</p>
+</td></tr>
+<tr>
+<td style="border-left:6px solid #548bc9;padding:12px 14px;vertical-align:top;white-space:normal;word-break:break-word;background:transparent;color:#fff;">
+<p><span style="font-weight:700;color:#fff;">❓ 问：</span> <i>我会因为被邀请的玩家的真钱购买而获得奖金吗？</i>
+</p>
+</td>
+<td style="border-left:6px solid #51b949;padding:12px 14px;vertical-align:top;white-space:normal;word-break:break-word;background:transparent;color:#fff;">
+<p><span style="font-weight:700;color:#fff;">✔ A:</span>在这个活动中没有这种可能性。如果你希望在未来世界活动中加入这种机制，我们可以将请求转发给开发团队进行考虑。</p>
+</td></tr>
+<tr>
+<td style="border-left:6px solid #548bc9;padding:12px 14px;vertical-align:top;white-space:normal;word-break:break-word;background:transparent;color:#fff;">
+<p><span style="font-weight:700;color:#fff;">❓ 问：</span> <i>创建该活动的备用账号是否被允许，还是会违反活动规则？</i>
+</p>
+</td>
+<td style="border-left:6px solid #51b949;padding:12px 14px;vertical-align:top;white-space:normal;word-break:break-word;background:transparent;color:#fff;">
+<p><span style="font-weight:700;color:#fff;">✔ A:</span>是的——你可以创建备用账号，并尽情玩耍。根据本次活动的现行规则，你这样做不会被封禁。</p>
+</td></tr>
+<tr>
+<td style="border-left:6px solid #548bc9;padding:12px 14px;vertical-align:top;white-space:normal;word-break:break-word;background:transparent;color:#fff;">
+<p><span style="font-weight:700;color:#fff;">❓ 问：</span> <i>为什么我在任务部分没有“邀请好友”类别？</i>
+</p>
+</td>
+<td style="border-left:6px solid #51b949;padding:12px 14px;vertical-align:top;white-space:normal;word-break:break-word;background:transparent;color:#fff;">
+<p><span style="font-weight:700;color:#fff;">✔ A:</span>这表明你不符合邀请新玩家的条件。你仍然很可能可以使用别人的促销码，但在满足条件之前，你无法自己创建邀请。</p>
+</td></tr>
+<tr>
+<td style="border-left:6px solid #548bc9;padding:12px 14px;vertical-align:top;white-space:normal;word-break:break-word;background:transparent;color:#fff;">
+<p><span style="font-weight:700;color:#fff;">❓ 问：</span> <i>为什么我邀请新的玩家会获得相同的奖励，但对以前不活跃的玩家也会获得相同的奖励？</i>
+</p>
+</td>
+<td style="border-left:6px solid #51b949;padding:12px 14px;vertical-align:top;white-space:normal;word-break:break-word;background:transparent;color:#fff;">
+<p><span style="font-weight:700;color:#fff;">✔ A:</span>这些是当前活动的规则。在未来世界，我们可能会针对新玩家和回归玩家开展不同的活动，并提供不同的奖励。</p>
+</td></tr></tbody></table><p><br>
+</p><p><br>
+</p><div align="right"><small>最后编辑: Sabry 2025年10月24日</small></div></div></div></div></div></div><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":346,"wgPageParseReport":{"limitreport":{"cputime":"0.380","walltime":"0.386","ppvisitednodes":{"value":3965,"limit":1000000},"postexpandincludesize":{"value":63586,"limit":2097152},"templateargumentsize":{"value":9967,"limit":2097152},"expansiondepth":{"value":4,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":36,"limit":5000000},"timingprofile":["100.00%   42.851      1 -total"," 56.35%   24.145     70 Template:Step","  9.16%    3.927      6 Template:Paints","  5.52%    2.366      1 Template:YouTubePopup","  4.50%    1.930      1 Template:LastEdit","  4.13%    1.771      1 Template:TestAnimatedButton","  3.89%    1.665      1 Template:Skins"]},"cachereport":{"timestamp":"20251024181314","ttl":86400,"transientcontent":false}}});});</script>
+    
+    <script>
+    // 客户端颜色替换逻辑
+    function replaceColorsInDom() {
+        // 定义替换规则
+        const replacements = [
+            { from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' },
+            { from: /#?00D7FF/gi, to: '#00D4FF' },
+            { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' },
+            { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' },
+            { from: /#?8C60EB/gi, to: '#D580FF' }
+        ];
+
+        // 辅助函数，应用所有替换规则
+        function applyReplacements(text) {
+            if (!text) return text;
+            let newText = text;
+            for (const rule of replacements) {
+                newText = newText.replace(rule.from, rule.to);
+            }
+            return newText;
+        }
+
+        // 1. 替换所有元素的内联样式 (style attribute)
+        document.querySelectorAll('[style]').forEach(el => {
+            const originalStyle = el.getAttribute('style');
+            const newStyle = applyReplacements(originalStyle);
+            if (newStyle !== originalStyle) {
+                el.setAttribute('style', newStyle);
+            }
+        });
+
+        // 2. 替换页面内 <style> 标签中的样式规则
+        document.querySelectorAll('style').forEach(styleTag => {
+            const originalCss = styleTag.innerHTML;
+            const newCss = applyReplacements(originalCss);
+            if (newCss !== originalCss) {
+                styleTag.innerHTML = newCss;
+            }
+        });
+    }
+
+    // 在DOM加载完成后立即执行，以尽量减少颜色闪烁
+    document.addEventListener('DOMContentLoaded', replaceColorsInDom);
+    </script>
+    
+    
+    <script>
+    // Bilibili 弹窗逻辑 (V4 - 精确复刻)
+    document.addEventListener('DOMContentLoaded', function() {
+        const videoPopups = document.querySelectorAll('.ShowYouTubePopup');
+        if (videoPopups.length) {
+            let modal = null;
+            videoPopups.forEach(popup => {
+                if (popup.dataset.biliHandled) return;
+                
+                popup.addEventListener('click', (event) => {
+                    event.stopImmediatePropagation(); 
+
+                    if (typeof tingle === 'undefined') {
+                        console.error('Tingle.js 未加载，无法打开视频弹窗。');
+                        return;
+                    }
+                    showBilibiliModal(popup.dataset.id);
+                }, true);
+
+                popup.dataset.biliHandled = 'true';
+            });
+
+            function showBilibiliModal(bvid) {
+                modal = new tingle.modal({
+                    closeMethods: ['button', 'escape', 'overlay']
+                });
+                modal.setContent(`
+                        <div class="report-head">
+                            <div class="report-title">观看视频</div>
+                            <div class="report-stripes"></div>
+                            <div class="report-close"></div>
+                        </div>
+                        
+                        <div style="margin: 15px 10px 10px 10px; background: url('loading.gif') center no-repeat;">
+                            <iframe class="yt-video" width="640px" height="360px"
+                                src="https://player.bilibili.com/player.html?bvid=${bvid}" 
+                                frameborder="0" 
+                                allowfullscreen="allowfullscreen"
+                                sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts">
+                            </iframe>
+                        </div>
+                    `);
+                modal.open();
+
+                const closeButton = modal.getContent().querySelector('.report-close');
+                closeButton.addEventListener('click', () => modal.close());
+
+                const tingleClose = modal.modal.querySelector('.tingle-modal__close');
+                if (tingleClose) tingleClose.remove();
+            }
+        }
+    });
+    </script>
+    </body></html>
