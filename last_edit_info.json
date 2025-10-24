@@ -70,7 +70,7 @@
   "Damage": 65416,
   "Shot_Effects": 61407,
   "Skins": 65433,
-  "Paints": 65069,
+  "Paints": 65454,
   "Electromagnetic_Pulse_(EMP)": 58874,
   "Supercharge": 65050,
   "Jammer": 65326,
@@ -1496,5 +1496,6 @@
   "Supply_Power": 65332,
   "Highland_REMASTER": 65377,
   "Positions": 65405,
-  "Tanki_Meetups": 65427
+  "Tanki_Meetups": 65427,
+  "Mucus": 65455
 }
