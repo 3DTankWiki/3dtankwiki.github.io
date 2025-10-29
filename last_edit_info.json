@@ -118,7 +118,7 @@
   "Experience": 63288,
   "Secret_Rooms": 64938,
   "Warrant_Officer_1": 65091,
-  "Private": 65313,
+  "Private": 65530,
   "Gefreiter": 65314,
   "Tankoins": 62676,
   "Passes": 64991,
@@ -216,7 +216,7 @@
   "Thunder_guide": 65264,
   "Gauss_guide": 65268,
   "Micro-upgrades_Gauss": 65237,
-  "Recruit": 65312,
+  "Recruit": 65529,
   "Micro-upgrades_Hornet": 65243,
   "Hornet_guide": 65274,
   "Micro-upgrades_Snowman": 65241,
@@ -1498,5 +1498,6 @@
   "Positions": 65405,
   "Tanki_Meetups": 65427,
   "Mucus": 65455,
-  "Test": 65461
+  "Test": 65461,
+  "Ping": 65528
 }
