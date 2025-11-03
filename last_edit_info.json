@@ -15,7 +15,7 @@
   "Bonus_For_Returning": 62649,
   "Account_security": 65095,
   "Game_mechanics": 65349,
-  "Questions_Answered_by_the_Developers": 65621,
+  "Questions_Answered_by_the_Developers": 65631,
   "Turrets": 65426,
   "Freeze": 65176,
   "Isida": 65177,
@@ -93,7 +93,7 @@
   "Gold_Box": 65381,
   "Ranks": 64837,
   "Missions": 64780,
-  "Tanki_Classic": 65622,
+  "Tanki_Classic": 65630,
   "Referral_System": 65305,
   "Groups": 64479,
   "Friends_system": 64309,
@@ -1498,6 +1498,6 @@
   "Positions": 65405,
   "Tanki_Meetups": 65427,
   "Mucus": 65455,
-  "Test": 65461,
+  "Test": 65628,
   "Ping": 65528
 }
