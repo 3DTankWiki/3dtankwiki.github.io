@@ -130,7 +130,7 @@
   "Changing_Equipment": 58703,
   "Discounts": 65879,
   "Team_Deathmatch": 62511,
-  "Battle_modes": 65901,
+  "Battle_modes": 65920,
   "Upgrades": 65760,
   "Radar_Field": 60440,
   "Twitch_Drops": 64656,
@@ -1500,5 +1500,6 @@
   "Mucus": 65455,
   "Test": 65628,
   "Ping": 65528,
-  "Helpers_of_the_game": 65759
+  "Helpers_of_the_game": 65759,
+  "TestTemplate": 65927
 }
