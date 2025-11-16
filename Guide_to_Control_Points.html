@@ -1,22 +1,12 @@
-<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>Guide to 控制点 - 3D坦克 Wiki</title><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
-    <meta charset="UTF-8">
-    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/DBIsSQ0s2djD_akThoRUDeHa/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-1WKYge3dK2/UTDzhSp5yz67wCBmi0z81tX6M3swiQAxIbgepbnchtTZFPr6x5sGi"></script>
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>控制点指南 - 3D坦克维基</title><meta charset="UTF-8">
     <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
     <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
-    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"6c934123a7ecc6c08e0494de","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Guide_to_Control_Points","wgTitle":"Guide to Control Points","wgCurRevisionId":59051,"wgRevisionId":59051,"wgArticleId":1462,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Guide_to_Control_Points","wgRelevantArticleId":1462,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVisualEditor":{"pageLanguageCode":"en",
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"62b69ef78da3b49ed9bb3cdb","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Guide_to_Control_Points","wgTitle":"Guide to Control Points","wgCurRevisionId":65935,"wgRevisionId":65935,"wgArticleId":1462,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Guide_to_Control_Points","wgRelevantArticleId":1462,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVisualEditor":{"pageLanguageCode":"en",
 "pageLanguageDir":"ltr","pageVariantFallbacks":"en"},"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.visualEditor.desktopArticleTarget.noscript":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","ext.gadget.UTCLiveClock","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","skins.tankiblue.js","ext.purge"];</script>
     <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
 }];});});</script>
     <link rel="stylesheet" href="https://en.tankiwiki.com/load.php?lang=en&amp;modules=ext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
     <script async="" src="https://en.tankiwiki.com/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
-    <style>
-.mw-editfont-monospace{font-family:monospace,monospace}.mw-editfont-sans-serif{font-family:sans-serif}.mw-editfont-serif{font-family:serif} .mw-editfont-monospace,.mw-editfont-sans-serif,.mw-editfont-serif{  font-size:13px;  -moz-tab-size:4; tab-size:4; }.mw-editfont-monospace.oo-ui-textInputWidget,.mw-editfont-sans-serif.oo-ui-textInputWidget,.mw-editfont-serif.oo-ui-textInputWidget{font-size:inherit}.mw-editfont-monospace.oo-ui-textInputWidget > .oo-ui-inputWidget-input,.mw-editfont-sans-serif.oo-ui-textInputWidget > .oo-ui-inputWidget-input,.mw-editfont-serif.oo-ui-textInputWidget > .oo-ui-inputWidget-input{  font-size:13px}.mw-editfont-monospace.oo-ui-textInputWidget > input.oo-ui-inputWidget-input,.mw-editfont-sans-serif.oo-ui-textInputWidget > input.oo-ui-inputWidget-input,.mw-editfont-serif.oo-ui-textInputWidget > input.oo-ui-inputWidget-input{min-height:32px}
-.ve-init-mw-progressBarWidget{height:1em;overflow:hidden;margin:0 25%}.ve-init-mw-progressBarWidget-bar{height:1em;width:0} .ve-init-mw-progressBarWidget{background-color:#fff;box-sizing:border-box;height:0.875em;border:1px solid #36c;border-radius:0.875em;box-shadow:0 1px 1px rgba(0,0,0,0.15)}.ve-init-mw-progressBarWidget-bar{background-color:#36c;height:0.875em}
-#mw-teleport-target{position:absolute;z-index:450}</style>
-    <style>
-.ve-init-mw-tempWikitextEditorWidget{border:0;padding:0;color:inherit;line-height:1.5em;width:100%;-moz-tab-size:4;tab-size:4; }.ve-init-mw-tempWikitextEditorWidget:focus{outline:0;padding:0}.ve-init-mw-tempWikitextEditorWidget::selection{background:rgba(109,169,247,0.5); }</style>
-    <style>
-.ve-active .ve-init-mw-desktopArticleTarget-targetContainer #siteNotice,.ve-active .mw-indicators,.ve-active #t-print,.ve-active #t-permalink,.ve-active #p-coll-print_export,.ve-active #t-cite,.ve-active .ve-init-mw-desktopArticleTarget-editableContent,.ve-active .ve-init-mw-tempWikitextEditorWidget{display:none}.ve-deactivating .ve-ui-surface{display:none}.ve-activating{ }.ve-activating .ve-ui-surface{height:0;padding:0 !important; overflow:hidden} .ve-loading .ve-init-mw-desktopArticleTarget-targetContainer > :not(.ve-init-mw-desktopArticleTarget-toolbarPlaceholder):not(.ve-init-mw-desktopArticleTarget),.ve-loading .ve-init-mw-desktopArticleTarget-originalContent,.ve-activated:not(.ve-loading) .ve-init-mw-desktopArticleTarget-uneditableContent{pointer-events:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;opacity:0.5}.ve-activated .ve-init-mw-desktopArticleTarget-targetContainer #firstHeading{ -webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;pointer-events:auto;cursor:text}.ve-activated .ve-init-mw-desktopArticleTarget-targetContainer #firstHeading a{ pointer-events:none}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks{cursor:pointer}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks:hover{ background:#e9f2fd}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks a{opacity:1} .ve-init-mw-desktopArticleTarget-loading-overlay{z-index:2;position:absolute;width:100%;top:1em}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder{overflow:hidden;transition:height 250ms ease;height:0;padding-bottom:2px; }.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{transform:translateY(-100%);transition:transform 250ms ease}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-open .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{transform:translateY(0)}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating{transition:none}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{position:fixed;top:0;z-index:1;background:#fff} .oo-ui-element-hidden{display:none !important; } .mw-editsection{ unicode-bidi:-moz-isolate;unicode-bidi:-webkit-isolate;unicode-bidi:isolate}.mw-editsection::before{content:'\200B'}.mw-editsection a{white-space:nowrap}.mw-editsection-divider{color:#54595d} .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{height:42px;border-bottom:1px solid #c8ccd1;box-shadow:0 1px 1px 0 rgba(0,0,0,0.1)}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating,.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-open{height:42px}</style>
     <meta name="ResourceLoaderDynamicStyles" content="">
     <link rel="stylesheet" href="https://en.tankiwiki.com/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
     <meta name="generator" content="MediaWiki 1.42.3">
@@ -27,9 +17,9 @@
     <link rel="search" type="application/opensearchdescription+xml" href="https://en.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (en)">
     <link rel="EditURI" type="application/rsd+xml" href="https://en.tankiwiki.com/api.php?action=rsd">
     <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki Atom feed" href="https://en.tankiwiki.com/index.php?title=Special:RecentChanges&amp;feed=atom">
-    <style>#utcdate a { font-weight:bolder; font-size:120%; }</style><style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Guide_to_Control_Points rootpage-Guide_to_Control_Points skin-tankiblue action-view"><div id="mw-main-container"><a href="./Tanki_Online_Wiki" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">返回主页</a><div class="main-content"><div class="mw-body ve-init-mw-desktopArticleTarget-targetContainer" id="content" role="main"><a id="top"></a><div class="mw-body-content" id="bodyContent"><div id="siteNotice"></div><div id="mw-content-text" class="mw-content-ltr mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang=""><span class="mw-page-title-main">Guide to 控制点</span></h1><div class="dablink"><em>see also</em>:<a href="./Advice_from_experienced_players" title="来自经验丰富的玩家的建议">Advice from experienced 玩家</a>
+    <script src="https://en.tankiwiki.com/load.php?lang=en&amp;modules=ext.purge%7Cjquery%2Csite%7Cjquery.client%2CtextSelection%7Cmediawiki.String%2CTitle%2Capi%2Cbase%2Ccldr%2Ccookie%2CjqueryMsg%2Clanguage%2Cstorage%2Cuser%2Cutil%7Cmediawiki.editfont.styles%7Cmediawiki.libs.pluralruleparser%7Cmediawiki.page.ready%7Cskins.tankiblue.js&amp;skin=tankiblue&amp;version=ubdfc"></script><style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Guide_to_Control_Points rootpage-Guide_to_Control_Points skin-tankiblue action-view"><div id="mw-main-container"><a href="./Tanki_Online_Wiki" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; font-family: 'Rubik', 'M PLUS 1p', sans-serif; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onmouseover="this.style.backgroundColor='#a8c0e0'; this.style.transform='scale(1.03)';" onmouseout="this.style.backgroundColor='#BFD5FF'; this.style.transform='scale(1)';">返回主页</a><div class="main-content"><div class="mw-body ve-init-mw-desktopArticleTarget-targetContainer" id="content" role="main"><a id="top"></a><div class="mw-body-content" id="bodyContent"><div id="siteNotice"></div><div id="mw-content-text" class="mw-content-ltr mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang=""><span class="mw-page-title-main">控制点指南</span></h1><div class="dablink"><em>另见</em>:<a href="./Advice_from_experienced_players" title="有经验玩家的建议">有经验玩家的建议</a>
 </div><p><br>
-</p><h3><span class="mw-headline" id="Introduction">介绍</span></h3><p>A 模式 that is quickly gaining popularity in 3D坦克, capture points can be found on many 服务器 and are probably second only to 互夺军旗 in terms of number of games. Let's get right into it!</p><h3><span class="mw-headline" id="Scoring">Scoring</span></h3><p>As usual, we will begin by looking at how you can earn points, as this is essential for knowing how to get the most points possible.</p><p>As with the 其他团队模式, points for kills are distributed equally by the 玩家 that did 伤害 to that 坦克 in the last ten seconds. This means that kill-stealing has little value, and you should aim to 射击 as fast as possible.</p><p>As well as the normal (治疗, killing), you can also get points for capturing the point in this 模式, and the number of points available is proportional to the number of 玩家 on the enemy 团队. It also is affected by the amount of time you have actually been there to capture the point - two 玩家 will receive different amounts of points if they have been at the point capturing for different amounts of time. Note that points are only given for a complete capture/uncapture of a point. This means that if your 团队 is likely to win already, it might actually be a good idea to let the 红队 to completely uncapture or capture the point before you go in and recapture the point. This way, you will get more points! Of course, this is only if your 团队 is going to win - you are likely to lose one or two points this way!</p><p>The game can be won by either having the most capture points after the time ends, or by reaching the capture point goal first. The number of points given by one capture point is about one point every ten seconds, or six points per minute. This means that you can quite easily work out the 最高 number of points you can earn in the remaining time: (number of capture points)*(time remaining in minutes)*6. This can be used to decide whether the game is worth fighting for or not. For example, if your 团队 is 60 points behind on a 多边形控制点 where there is only one capture point, and there are just 10 minutes left, you will need to hold the point for the whole 10 minutes to even have a 几率 of catching them up. So, if the enemy are even half decent, it is unlikely you will win and so it may not be worth going drugs-模式-on and trying to be a hero.</p><h3><span class="mw-headline" id="Roles">Roles</span></h3><p>Now, let's take a look at the main roles you can play in this 模式.</p><h4><span class="mw-headline" id="Capturing_Points">Capturing Points</span></h4><p>The primary one in many games is the force that captures the point. Without it, you can't hope to win!</p><p>Now, the 底盘 you want to use is largely 地图 dependent. You have to make a judgement on whether the extra 速度 of health is going to be more useful. For example, on smaller 地图 like 小岛 or 竞技场, the time difference of reaching the point for a 维京 and 猛犸象 will not be significant, but with 猛犸象, you will be able to survive while there for much longer. But on a larger 地图 like 运动场, the enormous difference in time that it will take you to reach the points with your 猛犸象 is a significant disadvantage.</p><p>Another aspect that is more important for this 模式 than 其他 is your 启动加速度 and 重量, which will affect how easily you can push 其他 off the point, and also how difficult it will be for 其他 to push you off. Often you don't need to kill the enemy 坦克 before capturing the point if you can push them off first!</p><p>至于武器，您可能会在与红队的较短射程内，红队也会试图控制这个点。这使得激光炮这样的武器变得很糟糕——您无法发挥出武器的潜力。在较小的游戏中，团队可能只有四人，您可能会偏好能够造成短促高伤害的武器，这样可以让您快速击败红队，并在他们重生期间进行充能，比如火焰炮或者Rico。在较大的游戏中，您可能更倾向于像离子炮这样的武器，它能够造成更多持续的伤害，因为您可能会面临不断涌向点的多个红队。</p><p>你的迷彩选择也应该与可能面临的武器匹配。像Rock或Zeus这样的短射程防护在很多情况下是不错的选择，但这绝对不是永远的最佳选择！</p><h4><span class="mw-headline" id="Support">Support</span></h4><p>The 其他 main role I think there exists is support. That is providing covering fire and helping to attack 红队 who are reaching the point and while they are at the point itself.</p><p>In smaller 地图, and smaller games, there is not much room for many in supporting roles. But in larger 地图 and games especially, this is a very important role to fill. If left unchecked, a good supporting 玩家 can completely turn the tide in the 团队's favour.</p><p>理想的情况下，你希望能够从射程造成伤害，这样红队就无法同时赶往目标和攻击你。因此，较长射程的武器是更好的选择，比如轰天炮和雷暴炮。我犹豫是否建议在上将使用激光炮和镭射炮，因为它们缺乏轰天炮和雷暴炮能够达到的持续伤害，但话虽如此，它们在某些地图上，比如运动场，仍然可以是好的选择。</p><p>在轰天炮和雷暴炮中，雷暴炮拥有造成溅射的能力，这相比于轰天炮是一个令人难以置信的优势，尤其是在大型团队控制点上。这使得用户能够潜在地造成多倍的伤害，尤其是因为红队会在占领点聚集。这额外的支持可以让你在这一控制点的战斗中占据更有利的位置。</p><p>至于底盘，额外的生命值并不总是必要的，实际上，拥有更好的机动性和速度来避免试图追击你的红队可能更有用。大多数底盘在这种辅助角色中都是可用的。</p><p>在迷彩方面，识别你最大的威胁，并选择能保护你的迷彩。通常，这个威胁是支持玩家的敌人，因此像Clay这样的长射程迷彩将是完美的选择。</p><div align="right"><small>最后编辑：HelpersBot 2024年5月21日</small></div></div></div></div></div></div><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</p><h3><span class="mw-headline" id="Introduction">介绍</span></h3><p>一种模式在3D坦克中迅速流行起来，据说在许多服务器上都可以找到据点，游戏数量可能仅次于夺旗模式。让我们直接开始吧！</p><h3><span class="mw-headline" id="Scoring">得分</span></h3><p>像往常一样，我们将首先看看你如何获得积分，因为这是了解如何获得最多积分的关键。</p><p>与其他团队模式一样，击杀积分由在过去十秒内对该坦克造成伤害的玩家平均分配。这意味着抢人头的价值不大，你应该尽可能快地射击。</p><p>除了正常的（治疗、击杀）之外，你还可以通过在这个模式中占领据点来获得积分，且可获得的积分数量与敌方团队的玩家人数成正比。积分还会受到你实际占据据点时间的影响——如果两个玩家占据据点的时间不同，他们获得的积分也会不同。请注意，积分只会在据点完全被占领或解放时才会给予。这意味着如果你的团队已经很可能获胜，实际上可能是个好主意，让敌方先完全占领或解放据点，再去重新占领据点。这样，你会获得更多的积分！当然，这仅在你的团队将获胜的情况下适用——否则很可能会因此少获得一两分！</p><p>游戏可以通过两种方式获胜：在时间结束时拥有最多的占领点，或者先达到占领点目标。每个占领点给的分数大约是每十秒一点，也就是每分钟六点。这意味着你可以很容易地计算出在剩余时间内你最多能获得的分数：(占领点数量) * (剩余时间分钟数) * 6。这可以用来判断是否值得继续争夺游戏。例如，如果你的团队在一个只有一个占领点的多边形控制点落后60分，而只剩下10分钟，你将需要守住这个点整整10分钟才有可能追赶上对手。所以，如果敌人哪怕只是一半厉害，你赢的可能性很小，因此可能不值得冒险模式上去尝试成为英雄。</p><h3><span class="mw-headline" id="Roles">角色</span></h3><p>现在，让我们来看看你可以在这个模式中扮演的主要角色。</p><h4><span class="mw-headline" id="Capturing_Points">捕捉点</span></h4><p>在许多游戏中，主要的力量是占领据点的部队。没有它，你根本不可能获胜！</p><p>现在，你想使用的底盘在很大程度上取决于地图。你必须判断额外的生命值速度是否会更有用。例如，在较小的地图上，如小岛或竞技场，维京和猛犸象到达据点的时间差异不会很大，但使用猛犸象，你可以在那里生存更久。但在较大的地图上，比如运动场，用猛犸象到达据点所需的巨大时间差就是一个显著的劣势。</p><p>对于这个模式来说，比其他更重要的另一个方面是你的启动加速度和重量，这将影响你推动其他离开据点的难易程度，以及其他推动你离开据点的难易程度。通常，如果你能先把敌方坦克推开，在占领据点之前并不一定需要将其击杀！</p><p>至于武器，你在与红队交战时很可能处于近距离，他们同样会试图到达目标点。这使得像激光炮这样的武器效果很差——你无法发挥武器的最大潜力。在较小的游戏中，每个团队可能只有四人，你可能会偏向使用能够造成短时间高伤害的武器，这样可以快速击败红队并在他们复活时重新充能，比如Firebir或Rico。在较大的游戏中，你可能会更喜欢像离子炮这样的武器，它可以造成更持续的伤害，因为你可能会面对多波不断涌入目标点的红队。</p><p>你的迷彩选择也应该与可能面对的武器匹配。短射程防护的装备，比如岩石（Rock）或者宙斯（Zeus），在很多情况下是不错的选择，但这绝对不总是最佳选择！</p><h4><span class="mw-headline" id="Support">支持</span></h4><p>我认为另一个主要角色是支援。也就是提供掩护射击，并帮助攻击正在接近目标点的红队，以及在他们到达目标点时继续支援。</p><p>在较小的地图和较小的游戏中，支持角色的空间不大。但在较大的地图和游戏中，尤其如此，这是一个非常重要的角色。如果不加限制，一个优秀的支持玩家可以完全扭转团队的局势。</p><p>理想情况下，你希望从射程上进行伤害，这样红队就无法同时朝目标前进并攻击你。因此，射程更长的武器是更好的选择，比如轰天炮和雷暴炮。我对在上将使用激光炮和镭射炮有些犹豫，因为它们缺乏轰天炮和雷暴炮能够达到的持续伤害，但话虽如此，它们在某些地图上仍然可以表现良好，比如运动场。</p><p>在轰天炮和雷暴炮中，Thundercano 可以造成溅射伤害，相比轰天炮这是一个巨大的优势，尤其是在大型团队控制点。这使得使用者有潜力造成更多的伤害，尤其是在红队聚集在占领点时。这额外的支援可以将占领点的战斗转向有利于你的一方。</p><p>至于底盘，额外的耐久并不总是必要的，实际上，拥有更多的机动性和速度可能更有用，以躲避试图追击你的红队。大多数底盘都可以在这个支援角色中使用。</p><p>从迷彩的角度来看，识别你最大的威胁，并选择一种能保护你免受该威胁的迷彩。通常，这个威胁是支援玩家的敌人，所以像 Clay 这样射程很长的迷彩会非常合适。</p><div align="right"><small>最后编辑：Myojin 2025/11/15</small></div></div></div></div></div></div><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <script type="text/javascript">
     (function (m, e, t, r, i, k, a) {
@@ -60,4 +50,105 @@
     <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
     <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
     <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
-    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":513,"wgPageParseReport":{"limitreport":{"cputime":"0.016","walltime":"0.026","ppvisitednodes":{"value":135,"limit":1000000},"postexpandincludesize":{"value":344,"limit":2097152},"templateargumentsize":{"value":148,"limit":2097152},"expansiondepth":{"value":8,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%   18.319      1 -total"," 77.84%   14.259      1 Template:See_also"," 50.64%    9.276      1 Template:Other_meaning"," 25.11%    4.600     14 Template:See_also/link"," 20.97%    3.842      1 Template:LastEdit"]},"cachereport":{"timestamp":"20250803052108","ttl":86400,"transientcontent":false}}});});</script></body></html>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":318,"wgPageParseReport":{"limitreport":{"cputime":"0.013","walltime":"0.016","ppvisitednodes":{"value":135,"limit":1000000},"postexpandincludesize":{"value":335,"limit":2097152},"templateargumentsize":{"value":148,"limit":2097152},"expansiondepth":{"value":8,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%   10.509      1 -total"," 81.18%    8.531      1 Template:See_also"," 55.52%    5.834      1 Template:Other_meaning"," 27.10%    2.847     14 Template:See_also/link"," 17.61%    1.851      1 Template:LastEdit"]},"cachereport":{"timestamp":"20251115233858","ttl":86400,"transientcontent":false}}});});</script>
+    
+    <script>
+    // 客户端颜色替换逻辑
+    function replaceColorsInDom() {
+        // 定义替换规则
+        const replacements = [
+            { from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' },
+            { from: /#?00D7FF/gi, to: '#00D4FF' },
+            { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' },
+            { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' },
+            { from: /#?8C60EB/gi, to: '#D580FF' }
+        ];
+
+        // 辅助函数，应用所有替换规则
+        function applyReplacements(text) {
+            if (!text) return text;
+            let newText = text;
+            for (const rule of replacements) {
+                newText = newText.replace(rule.from, rule.to);
+            }
+            return newText;
+        }
+
+        // 1. 替换所有元素的内联样式 (style attribute)
+        document.querySelectorAll('[style]').forEach(el => {
+            const originalStyle = el.getAttribute('style');
+            const newStyle = applyReplacements(originalStyle);
+            if (newStyle !== originalStyle) {
+                el.setAttribute('style', newStyle);
+            }
+        });
+
+        // 2. 替换页面内 <style> 标签中的样式规则
+        document.querySelectorAll('style').forEach(styleTag => {
+            const originalCss = styleTag.innerHTML;
+            const newCss = applyReplacements(originalCss);
+            if (newCss !== originalCss) {
+                styleTag.innerHTML = newCss;
+            }
+        });
+    }
+
+    // 在DOM加载完成后立即执行，以尽量减少颜色闪烁
+    document.addEventListener('DOMContentLoaded', replaceColorsInDom);
+    </script>
+    
+    
+    <script>
+    // Bilibili 弹窗逻辑 (V4 - 精确复刻)
+    document.addEventListener('DOMContentLoaded', function() {
+        const videoPopups = document.querySelectorAll('.ShowYouTubePopup');
+        if (videoPopups.length) {
+            let modal = null;
+            videoPopups.forEach(popup => {
+                if (popup.dataset.biliHandled) return;
+                
+                popup.addEventListener('click', (event) => {
+                    event.stopImmediatePropagation(); 
+
+                    if (typeof tingle === 'undefined') {
+                        console.error('Tingle.js 未加载，无法打开视频弹窗。');
+                        return;
+                    }
+                    showBilibiliModal(popup.dataset.id);
+                }, true);
+
+                popup.dataset.biliHandled = 'true';
+            });
+
+            function showBilibiliModal(bvid) {
+                modal = new tingle.modal({
+                    closeMethods: ['button', 'escape', 'overlay']
+                });
+                modal.setContent(`
+                        <div class="report-head">
+                            <div class="report-title">观看视频</div>
+                            <div class="report-stripes"></div>
+                            <div class="report-close"></div>
+                        </div>
+                        
+                        <div style="margin: 15px 10px 10px 10px; background: url('loading.gif') center no-repeat;">
+                            <iframe class="yt-video" width="640px" height="360px"
+                                src="https://player.bilibili.com/player.html?bvid=${bvid}" 
+                                frameborder="0" 
+                                allowfullscreen="allowfullscreen"
+                                sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts">
+                            </iframe>
+                        </div>
+                    `);
+                modal.open();
+
+                const closeButton = modal.getContent().querySelector('.report-close');
+                closeButton.addEventListener('click', () => modal.close());
+
+                const tingleClose = modal.modal.querySelector('.tingle-modal__close');
+                if (tingleClose) tingleClose.remove();
+            }
+        }
+    });
+    </script>
+    </body></html>
