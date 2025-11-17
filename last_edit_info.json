@@ -1061,7 +1061,7 @@
   "Speed_Boost": 59860,
   "StarLadder": 59877,
   "Broadcasts_and_Livestreams": 58652,
-  "Social_networks": 59839,
+  "Social_networks": 66002,
   "Nuclear_Energy_Supply": 59584,
   "Gifts": 59005,
   "Wild_Jungle": 60116,
@@ -1502,5 +1502,5 @@
   "Ping": 65528,
   "Helpers_of_the_game": 65759,
   "TestTemplate": 65927,
-  "Voice_Communication": 65998
+  "Voice_Communication": 66001
 }
