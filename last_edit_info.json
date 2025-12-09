@@ -37,12 +37,12 @@
   "Snowman": 66244,
   "Terminator": 65189,
   "Hulls": 66276,
-  "Hornet": 66266,
-  "Wasp": 66265,
+  "Hornet": 66283,
+  "Wasp": 66280,
   "Shaft": 65213,
   "Crusader": 66268,
   "Titan": 66272,
-  "Hopper": 66264,
+  "Hopper": 66281,
   "Paladin": 66270,
   "Hunter": 66269,
   "Viking": 66267,
@@ -1503,5 +1503,5 @@
   "Helpers_of_the_game": 65759,
   "TestTemplate": 65927,
   "Voice_Communication": 66001,
-  "Augments_for_Hulls": 66279
+  "Augments_for_Hulls": 66282
 }
