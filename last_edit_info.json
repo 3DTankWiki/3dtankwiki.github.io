@@ -62,7 +62,7 @@
   "Defender": 63715,
   "Booster": 63717,
   "Hyperion": 64439,
-  "Augments": 66228,
+  "Augments": 66278,
   "Gear_Score": 64896,
   "Status_Effects": 66248,
   "Spawn_Immunity": 65367,
@@ -1502,5 +1502,6 @@
   "Ping": 65528,
   "Helpers_of_the_game": 65759,
   "TestTemplate": 65927,
-  "Voice_Communication": 66001
+  "Voice_Communication": 66001,
+  "Augments_for_Hulls": 66279
 }
