@@ -275,7 +275,7 @@
   "Generalissimo": 65554,
   "Acid": 58472,
   "Lord": 59335,
-  "Sidlob": 65442,
+  "Sidlob": 66343,
   "Bronze": 58653,
   "Micro-upgrades_Mammoth": 66145,
   "Special_Events": 59854,
@@ -1503,5 +1503,6 @@
   "Helpers_of_the_game": 65759,
   "TestTemplate": 65927,
   "Voice_Communication": 66001,
-  "Augments_for_Hulls": 66282
+  "Augments_for_Hulls": 66282,
+  "Best_Artworks_of_the_Month": 66342
 }
