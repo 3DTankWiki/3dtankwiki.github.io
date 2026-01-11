@@ -70,7 +70,7 @@
   "Damage": 65416,
   "Shot_Effects": 66587,
   "Skins": 66507,
-  "Paints": 66649,
+  "Paints": 66675,
   "Electromagnetic_Pulse_(EMP)": 65776,
   "Supercharge": 65050,
   "Jammer": 65799,
@@ -1508,5 +1508,12 @@
   "Speed_Art": 66344,
   "Cross_MM_REMASTERED": 66352,
   "Design_Suggestions": 66642,
-  "Best_Helper_of_2025": 66648
+  "Best_Helper_of_2025": 66648,
+  "Tempest": 66682,
+  "White_Towers": 66683,
+  "Skyfall": 66681,
+  "Monolith": 66680,
+  "Homies": 66678,
+  "Lovesick_(4)": 66679,
+  "Cuties": 66677
 }
