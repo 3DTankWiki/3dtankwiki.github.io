@@ -70,7 +70,7 @@
   "Damage": 65416,
   "Shot_Effects": 66587,
   "Skins": 66507,
-  "Paints": 66675,
+  "Paints": 66733,
   "Electromagnetic_Pulse_(EMP)": 65776,
   "Supercharge": 65050,
   "Jammer": 65799,
@@ -1516,5 +1516,6 @@
   "Homies": 66678,
   "Lovesick_(4)": 66679,
   "Cuties": 66677,
-  "Spirit_(3)": 66684
+  "Spirit_(3)": 66684,
+  "Viscum": 66732
 }
