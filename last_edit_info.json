@@ -84,7 +84,7 @@
   "Shop": 65028,
   "PRO_Battles": 64924,
   "Matchmaking_System": 65221,
-  "Maps": 66738,
+  "Maps": 66925,
   "Premium_Accounts": 66903,
   "Game_Currencies": 66742,
   "Challenges": 66906,
@@ -1518,5 +1518,6 @@
   "Cuties": 66677,
   "Spirit_(3)": 66684,
   "Viscum": 66732,
-  "Challenges_Archive_2026": 66907
+  "Challenges_Archive_2026": 66907,
+  "Boombox_MM": 66924
 }
