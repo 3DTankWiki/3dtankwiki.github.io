@@ -1372,7 +1372,7 @@
   "Videos": 60067,
   "Artwork_Contest_\"Your_Tanki_Online\"": 58540,
   "Head_Administrators": 64036,
-  "Developers": 66249,
+  "Developers": 67007,
   "Content_Helpers": 63150,
   "Video_Guides": 60066,
   "Other": 59599,
@@ -1522,5 +1522,6 @@
   "Boombox_MM": 66924,
   "Increased_Armor": 66943,
   "Medic": 67003,
-  "Micro-upgrades_Medic": 67004
+  "Micro-upgrades_Medic": 67004,
+  "YouTuber_Battle": 67006
 }
