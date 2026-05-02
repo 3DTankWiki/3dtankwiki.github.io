@@ -143,7 +143,7 @@ async function translateBatchWithGemini(tasksObj, dictStr) {
 
     const results = { ...tasksObj };
     // 【修改点 1】：缩小批次大小，防止一波发送过多 Token 瞬间击穿限制
-    const batchSize = 5; 
+    const batchSize = 3; 
     
     const dictPrompt = dictStr ? `
 3. 【术语表要求】：请严格遵守以下提供的《翻译专有名词词库》。只要原文出现了词库中的英文，必须统一翻译为对应的中文：
@@ -212,8 +212,8 @@ ${JSON.stringify(batchObj, null, 2)}`;
                             waitTime = (waitSeconds + 2) * 1000; // 精准提取秒数，并加上2秒缓冲以防万一
                             console.log(`⏳ 触发 API 配额限制 (TPM/RPM满载)！脚本将进入深度休眠，精准等待 ${Math.ceil(waitTime/1000)} 秒后复活...`);
                         } else {
-                            waitTime = 128000; // 匹配不到秒数，那直接暴力等 128 秒跨越两分钟
-                            console.log(`⏳ 触发 API 配额限制！未检测到惩罚时长，强制默认休眠 128 秒...`);
+                            waitTime = 64000; // 匹配不到秒数，那直接暴力等 64 秒跨越一分钟
+                            console.log(`⏳ 触发 API 配额限制！未检测到惩罚时长，强制默认休眠 64 秒...`);
                         }
                     }
                     
