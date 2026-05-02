@@ -212,8 +212,8 @@ ${JSON.stringify(batchObj, null, 2)}`;
                             waitTime = (waitSeconds + 2) * 1000; // 精准提取秒数，并加上2秒缓冲以防万一
                             console.log(`⏳ 触发 API 配额限制 (TPM/RPM满载)！脚本将进入深度休眠，精准等待 ${Math.ceil(waitTime/1000)} 秒后复活...`);
                         } else {
-                            waitTime = 62000; // 匹配不到秒数，那直接暴力等 62 秒跨越一分钟
-                            console.log(`⏳ 触发 API 配额限制！未检测到惩罚时长，强制默认休眠 62 秒...`);
+                            waitTime = 128000; // 匹配不到秒数，那直接暴力等 128 秒跨越两分钟
+                            console.log(`⏳ 触发 API 配额限制！未检测到惩罚时长，强制默认休眠 128 秒...`);
                         }
                     }
                     
