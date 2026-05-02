@@ -144,7 +144,7 @@ async function translateBatchWithGemini(tasksObj, dictStr) {
     const results = { ...tasksObj };
     
     // 【修改点 1】：不再按固定数量划分，而是按字符总长度划分，使每批次内容大小大致相同
-    const TARGET_BATCH_CHARS = 3500; // // 适配 250K TPM 配额，最佳平衡输出限制与翻译质量
+    const TARGET_BATCH_CHARS = 10000; // 设定每个批次的目标字符数（约合 1000~1500 Tokens）
     const batches =[];
     let currentBatch = {};
     let currentCharCount = 0;
@@ -366,27 +366,58 @@ async function processPage(pageNameToProcess, sourceReplacementMap, dictStr, las
     const tasksObj = {};
     if (containsEnglish(translatedTitle)) tasksObj['title_0'] = translatedTitle;
     
-    const $topLevelElements = $contentContainer.children();
-    $topLevelElements.each((i, el) => {
-        const outerHtml = $.html(el);
-        if (containsEnglish(outerHtml)) {
-            tasksObj[`chunk_${i}`] = outerHtml;
-        }
-    });
+    // ======= 修改点开始：智能递归拆分超大块 =======
+    let chunkIndex = 0;
+    
+    function extractChunksToTranslate($parent) {
+        $parent.children().each((_, el) => {
+            const $el = $(el);
+            const outerHtml = $.html($el);
+            
+            // 如果不包含英文，直接跳过，节省资源
+            if (!containsEnglish(outerHtml)) return;
 
-    console.log(`[${pageNameToProcess}] 发送给 AI ${Object.keys(tasksObj).length} 个带标签的完整 HTML 块...`);
+            // 核心逻辑：如果这个 HTML 块非常大（> 8000 字符），并且里面还有子元素
+            // 就不要把它当成一个整体，而是继续往深处拆分它的子节点！
+            if (outerHtml.length > 8000 && $el.children().length > 0) {
+                extractChunksToTranslate($el);
+            } else {
+                // 大小安全，打上临时标记并提取
+                const chunkId = `chunk_${chunkIndex++}`;
+                $el.attr('data-translate-id', chunkId); // 注入一个临时 ID，方便翻译完塞回来
+                tasksObj[chunkId] = $.html($el);
+            }
+        });
+    }
+
+    // 从内容主容器开始往下挖
+    extractChunksToTranslate($contentContainer);
+    
+    const actualChunkCount = Object.keys(tasksObj).length - (tasksObj['title_0'] ? 1 : 0);
+    console.log(`[${pageNameToProcess}] 经深度拆分后，提取出 ${actualChunkCount} 个安全大小的 HTML 块...`);
+    // ======= 修改点结束 =======
+
     const translatedResults = await translateBatchWithGemini(tasksObj, dictStr);
 
     if (translatedResults['title_0']) {
         translatedTitle = formatTypography(translatedResults['title_0']);
     }
     
-    $topLevelElements.each((i, el) => {
-        if (translatedResults[`chunk_${i}`]) {
-            $(el).replaceWith(translatedResults[`chunk_${i}`]);
+    // ======= 修改点开始：根据临时 ID 精准替换翻译内容 =======
+    Object.keys(translatedResults).forEach(key => {
+        if (key.startsWith('chunk_') && translatedResults[key]) {
+            // 找回刚才打上了特定标记的节点
+            const $target = $contentContainer.find(`[data-translate-id="${key}"]`);
+            if ($target.length) {
+                $target.replaceWith(translatedResults[key]);
+            }
         }
     });
-    
+
+    // 打扫战场：如果 AI 原样返回了没有翻译的文本，清理掉多余的临时属性
+    $contentContainer.find('[data-translate-id]').removeAttr('data-translate-id');
+    // ======= 修改点结束 =======
+
     let finalHtmlContent = $contentContainer.html();
     finalHtmlContent = formatTypography(finalHtmlContent);
 
