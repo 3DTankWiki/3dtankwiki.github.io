@@ -112,19 +112,16 @@ function formatTypography(htmlStr) {
     let res = htmlStr;
 
     // 0. 中文语境下的标点符号转换 (处理冒号、逗号、句号及其后多余的空格/&nbsp;)
-    // 匹配规则：汉字 +[可选的闭合标签如</em>] + [可选空格或&nbsp;] + 半角标点 + [可选空格或&nbsp;]
     res = res.replace(/([\u4e00-\u9fa5])(<\/[a-zA-Z0-9]+>)?(?:\s|&nbsp;)*:(?:\s|&nbsp;)*/g, '$1$2：');
     res = res.replace(/([\u4e00-\u9fa5])(<\/[a-zA-Z0-9]+>)?(?:\s|&nbsp;)*,(?:\s|&nbsp;)*/g, '$1$2，');
     res = res.replace(/([\u4e00-\u9fa5])(<\/[a-zA-Z0-9]+>)?(?:\s|&nbsp;)*\.(?:\s|&nbsp;)*/g, '$1$2。');
 
-    // 1. 去除纯汉字与纯汉字之间的所有空格和 &nbsp; (执行两次防多空格遗漏)
+    // 1. 去除纯汉字与纯汉字之间的所有空格和 &nbsp; 
     res = res.replace(/([\u4e00-\u9fa5])(?:\s|&nbsp;)+([\u4e00-\u9fa5])/g, '$1$2');
     res = res.replace(/([\u4e00-\u9fa5])(?:\s|&nbsp;)+([\u4e00-\u9fa5])/g, '$1$2'); 
     
-    // 2. 穿透 HTML 标签的无用空格清除 (兼容包含 &nbsp; 的情况)
-    // 缝合前缀：汉字 + 多余空格/&nbsp; + 标签
+    // 2. 穿透 HTML 标签的无用空格清除
     res = res.replace(/([\u4e00-\u9fa5])(?:\s|&nbsp;)+(<[^>]+>)/g, '$1$2');
-    // 缝合后缀：标签 + 多余空格/&nbsp; + 汉字
     res = res.replace(/(<[^>]+>)(?:\s|&nbsp;)+([\u4e00-\u9fa5])/g, '$1$2');
 
     // 3. 纯文本内：英文字母/数字 与 汉字 之间强制增加空格
@@ -164,7 +161,7 @@ ${dictStr}
         const batchObj = {};
         batchKeys.forEach(k => batchObj[k] = tasksObj[k]);
 
-        // 【修改】彻底完善针对特殊字符和标点的提示词
+        // 【修改】彻底防范数字小数点被乱改的问题，隔离数值的翻译
         const prompt = `你是一个专业的《Tanki Online》（3D坦克）游戏维基本地化翻译引擎。
 请将以下 JSON 对象中的值（包含完整 HTML 标签的代码块）翻译为简体中文。
 
@@ -172,11 +169,11 @@ ${dictStr}
 1. JSON的键名（Key）绝对不可更改。只翻译键值（Value）。
 2. 键值是包含完整 HTML 结构的字符串，你【必须原样保留】所有的 HTML 标签、类名、ID、内联样式和内部属性！绝对不能破坏 DOM 结构或遗漏任何标签！
 ${dictPrompt}
-4. 【盘古之白排版与标点规范 - 极其重要】：
-   - 中文语境下，请将原文的英文标点（如半角冒号":"、逗号","、句号"."等）转换为对应的全角中文标点（"："、"，"、"。"）。
-   - 中文字符与中文字符之间【绝对不要加空格或 &nbsp; 实体】，即使它们被 HTML 标签隔开！比如输出必须是 "为了用<a href="...">红宝石</a>购买"，决不能是 "为了用 <a>红宝石</a> 购买" 或是 "温度</a>&nbsp;和"！
+4. 【盘古之白排版规范 - 极其重要】：
+   - 中文字符与中文字符之间【绝对不要加空格或 &nbsp; 实体】，即使它们被 HTML 标签隔开！比如输出必须是 "为了用<a href="...">红宝石</a>购买"，决不能出现空格！
    - 【英文/数字】与【中文汉字】的交界处，请加上一个半角空格！
-5. 除了词库中的术语，其余部分请结合上下文翻译得专业流畅。
+   - 【严禁修改数值代码】：原文中的数值（如 187.5、205.5 等）必须【绝对原样保留】！绝对不要把数字中的小数点（.）改写成逗号（,），也绝对不要在数字中间随意加空格！
+5. 除了词库中的术语，其余部分请结合上下文翻译得专业流畅。如果是普通句子末尾的英文标点，请翻译为中文标点；如果是数字内的标点或HTML代码，请原样保留。
 6. 绝对不要使用 Markdown 代码块包裹输出！直接输出合法的、可被 JSON.parse() 解析的纯 JSON 格式！
 
 待翻译 HTML 块的 JSON：
@@ -186,7 +183,7 @@ ${JSON.stringify(batchObj, null, 2)}`;
         for (let attempt = 1; attempt <= 3; attempt++) {
             try {
                 const response = await geminiModel.generateContent({
-                    contents:[{ role: "user", parts: [{ text: prompt }] }],
+                    contents:[{ role: "user", parts:[{ text: prompt }] }],
                     generationConfig: { temperature: 0.1 } 
                 });
                 let text = response.response.text();
