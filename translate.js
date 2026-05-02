@@ -10,8 +10,8 @@ const BASE_URL = 'https://en.tankiwiki.com';
 const START_PAGE = 'Tanki_Online_Wiki';
 const RECENT_CHANGES_FEED_URL = 'https://en.tankiwiki.com/api.php?action=feedrecentchanges&days=7&feedformat=atom&urlversion=1';
 const CONCURRENCY_LIMIT = 1; 
-// 【移除】DICTIONARY_URL 已经被移除
-const SOURCE_DICT_FILE = 'source_replacements.js'; // 仅用于替换外链、图片、视频ID
+const DICTIONARY_URL = 'https://testanki1.github.io/translations.js'; // 【恢复】在线翻译字典
+const SOURCE_DICT_FILE = 'source_replacements.js'; // 本地链接、图片替换
 const OUTPUT_DIR = './output';
 const EDIT_INFO_FILE = path.join(__dirname, 'last_edit_info.json');
 const REDIRECT_MAP_FILE = path.join(__dirname, 'redirect_map.json');
@@ -22,12 +22,12 @@ const geminiModel = genAI.getGenerativeModel({ model: "gemini-3.1-flash-lite-pre
 
 const sanitizePageName = (name) => name.replaceAll(' ', '_');
 
-// [获取页面的逻辑]
+// [获取 Feed 页面的逻辑]
 async function getPagesForFeedMode(lastEditInfo) {
     console.log(`[更新模式] 正在从 ${RECENT_CHANGES_FEED_URL} 获取最近更新...`);
     let browser;
     try {
-        browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+        browser = await puppeteer.launch({ headless: true, args:['--no-sandbox', '--disable-setuid-sandbox'] });
         const page = await browser.newPage();
         await page.goto(RECENT_CHANGES_FEED_URL, { waitUntil: 'networkidle2', timeout: 60000 });
         let responseText = await page.content();
@@ -39,7 +39,6 @@ async function getPagesForFeedMode(lastEditInfo) {
 
         const $ = cheerio.load(feedXml, { xmlMode: true, decodeEntities: false });
         const entries = $('entry');
-
         if (entries.length === 0) return[];
 
         const pagesToConsider = new Map();
@@ -65,9 +64,7 @@ async function getPagesForFeedMode(lastEditInfo) {
             if (blockedPrefixes.some(p => title.startsWith(p))) continue;
             
             const currentRevisionId = lastEditInfo[title] || 0;
-            if (newRevisionId > currentRevisionId) {
-                pagesToUpdate.push(title);
-            }
+            if (newRevisionId > currentRevisionId) pagesToUpdate.push(title);
         }
         return pagesToUpdate;
     } catch (error) {
@@ -78,7 +75,27 @@ async function getPagesForFeedMode(lastEditInfo) {
     }
 }
 
-// 获取链接/图片/视频替换字典（不改变文本，只改资源引用）
+// 【新增】拉取在线词典，并转化为供 AI 阅读的字符串格式
+async function getOnlineDictionaryString() {
+    console.log(`正在从 URL 获取专有名词翻译词典: ${DICTIONARY_URL}`); 
+    try { 
+        const response = await fetch(DICTIONARY_URL); 
+        if (!response.ok) throw new Error(`网络请求失败: ${response.status}`); 
+        const scriptContent = await response.text(); 
+        const dictObj = new Function(`${scriptContent}; return replacementDict;`)(); 
+        
+        let dictStr = "";
+        for (const [en, zh] of Object.entries(dictObj)) {
+            dictStr += `${en} -> ${zh}\n`;
+        }
+        console.log(`✅ 成功加载翻译词典，包含 ${Object.keys(dictObj).length} 个词条，将作为指令发送给 AI。`);
+        return dictStr;
+    } catch (error) { 
+        console.warn(`⚠️ 获取在线词典失败，将不使用专有词库提示AI: ${error.message}`);
+        return ""; 
+    } 
+}
+
 function getPreparedSourceDictionary() {
     const filePath = path.resolve(__dirname, SOURCE_DICT_FILE);
     if (!fs.existsSync(filePath)) return new Map();
@@ -91,8 +108,8 @@ function getPreparedSourceDictionary() {
 
 function containsEnglish(text) { return /[a-zA-Z]/.test(text); }
 
-// 【核心修改】直接翻译纯净的 HTML 区块
-async function translateBatchWithGemini(tasksObj) {
+// 【核心修改】将完整 HTML 和 翻译字典 一起投喂给 Gemini
+async function translateBatchWithGemini(tasksObj, dictStr) {
     const keys = Object.keys(tasksObj);
     if (keys.length === 0) return {};
     if (!process.env.GEMINI_API_KEY) {
@@ -101,22 +118,33 @@ async function translateBatchWithGemini(tasksObj) {
     }
 
     const results = { ...tasksObj };
-    const batchSize = 25; // 每批次 25 个区块
+    const batchSize = 10; // 由于这次发送的是巨大的完整 HTML 块，批次调小以防止超过 AI 输出上限
     
+    // 构造词典提示语
+    const dictPrompt = dictStr ? `
+3. 【术语表要求】：请严格遵守以下提供的《翻译专有名词词库》。只要原文出现了词库中的英文（不论单复数形式），必须统一翻译为对应的中文：
+--- 词库开始 ---
+${dictStr}
+--- 词库结束 ---
+` : "3. 请根据《Tanki Online》（3D坦克）的游戏语境进行翻译，保证专业术语准确。";
+
     for (let i = 0; i < keys.length; i += batchSize) {
         const batchKeys = keys.slice(i, i + batchSize);
         const batchObj = {};
         batchKeys.forEach(k => batchObj[k] = tasksObj[k]);
 
-        // 【修改】重新设计了 Prompt，要求 AI 参考游戏语境，不再提“中英夹杂”
-        const prompt = `你是一个专业的游戏维基本地化引擎。请将以下 JSON 对象中的值（带有 HTML 标签的英文本）翻译为简体中文。
+        // 指令：保留 HTML 结构并严格执行词典
+        const prompt = `你是一个专业的《Tanki Online》（3D坦克）游戏维基本地化翻译引擎。
+请将以下 JSON 对象中的值（包含完整 HTML 标签的代码块）翻译为简体中文。
+
 【极端重要的要求】：
 1. JSON的键名（Key）绝对不可更改。只翻译键值（Value）。
-2. 键值可能是带有 HTML 标签（如 <a>, <span>, <b> 等）的字符串，你【必须原样保留】所有的 HTML 标签和其内部属性，不能破坏或遗漏 DOM 结构。
-3. 请根据《Tanki Online》（3D坦克）的游戏语境进行翻译，保证专业术语准确，语句通顺流畅。
-4. 绝对不要使用 Markdown 代码块包裹输出！直接输出合法的、可被 JSON.parse() 解析的纯 JSON 格式！
+2. 键值是包含完整 HTML 结构的字符串，你【必须原样保留】所有的 HTML 标签、类名、ID、内联样式和内部属性（如 href, src, class 等）！绝对不能破坏 DOM 结构或遗漏任何标签！
+${dictPrompt}
+4. 除了词库中的术语，其余部分请结合上下文翻译得专业、通顺流畅。如果是纯粹的标点符号或无需翻译的代码，请原样保留。
+5. 绝对不要使用 Markdown 代码块包裹输出！直接输出合法的、可被 JSON.parse() 解析的纯 JSON 格式！
 
-待翻译 JSON：
+待翻译 HTML 块的 JSON：
 ${JSON.stringify(batchObj, null, 2)}`;
 
         let batchResult = null;
@@ -124,7 +152,7 @@ ${JSON.stringify(batchObj, null, 2)}`;
             try {
                 const response = await geminiModel.generateContent({
                     contents:[{ role: "user", parts: [{ text: prompt }] }],
-                    generationConfig: { temperature: 0.1 } // 低温度保证翻译的确定性
+                    generationConfig: { temperature: 0.1 } // 极低温度保证结构不乱、严格遵守词典
                 });
                 let text = response.response.text();
                 
@@ -147,7 +175,7 @@ ${JSON.stringify(batchObj, null, 2)}`;
         if (batchResult) {
             batchKeys.forEach(k => { if (batchResult[k]) results[k] = batchResult[k]; });
         } else {
-            console.warn(`⚠️ 该批次彻底失败，回退为原内容。`);
+            console.warn(`⚠️ 该批次彻底失败，回退为原始 HTML。`);
         }
 
         if (i + batchSize < keys.length) await new Promise(r => setTimeout(r, 4000)); 
@@ -188,24 +216,7 @@ function findImageReplacement(url, replacementMap) {
     return url;
 }
 
-const inlineTags = new Set(['a', 'abbr', 'acronym', 'b', 'bdo', 'big', 'br', 'cite', 'code', 'dfn', 'em', 'i', 'img', 'kbd', 'q', 'samp', 'small', 'span', 'strong', 'sub', 'sup', 'time', 'tt', 'var', 'del', 'ins', 'mark', 'ruby', 'rt', 'rp']);
-function isLeafBlock(el, $) {
-    let onlyInline = true;
-    let hasText = false;
-    $(el).contents().each(function() {
-        if (this.type === 'text') {
-            if (this.data.trim() !== '') hasText = true;
-        } else if (this.type === 'tag') {
-            if (!inlineTags.has(this.name.toLowerCase())) {
-                onlyInline = false;
-                return false;
-            }
-        }
-    });
-    return onlyInline && hasText;
-}
-
-async function processPage(pageNameToProcess, sourceReplacementMap, lastEditInfoState, force = false) {
+async function processPage(pageNameToProcess, sourceReplacementMap, dictStr, lastEditInfoState, force = false) {
     const sourceUrl = `${BASE_URL}/${pageNameToProcess}`;
     console.log(`[${pageNameToProcess}] 开始抓取页面...`);
     const browser = await puppeteer.launch({ headless: true, args:['--no-sandbox', '--disable-setuid-sandbox'] });
@@ -245,6 +256,7 @@ async function processPage(pageNameToProcess, sourceReplacementMap, lastEditInfo
     });
 
     const bodyEndScripts =[]; $('body > script').each(function() { const $el = $(this); if ($el.attr('src')?.startsWith('/')) $el.attr('src', BASE_URL + $el.attr('src')); bodyEndScripts.push($.html(this)); });
+    
     const $contentContainer = $('<div id="wiki-content-wrapper"></div>'); 
     $('#firstHeading').clone().appendTo($contentContainer); 
     $('#mw-content-text .mw-parser-output').children().each(function() { $contentContainer.append($(this).clone()); });
@@ -255,6 +267,7 @@ async function processPage(pageNameToProcess, sourceReplacementMap, lastEditInfo
         bodyEndScripts.push(`<script>document.addEventListener('DOMContentLoaded', function() { fetch('./facts.json').then(r=>r.json()).then(f=>{ document.getElementById('dynamic-fact-placeholder').innerHTML = f[Math.floor(Math.random() * f.length)].cn; }).catch(()=>{}); });<\/script>`); 
     }
 
+    // 处理内部链接、图片、视频（使用本地 replacement 逻辑）
     $contentContainer.find('a').each(function() { 
         const $el = $(this); const href = $el.attr('href'); const internalName = getPageNameFromWikiLink(href); 
         if (internalName) $el.attr('href', `./${internalName}`); 
@@ -280,71 +293,34 @@ async function processPage(pageNameToProcess, sourceReplacementMap, lastEditInfo
         }
     });
     
-    // 【修改】获取标题（不再用本地词典预替换）
     let translatedTitle = $('title').text() || pageNameToProcess;
 
-    // 【阶段 1】：包裹孤立文本。解决那些散落在块级元素外面的零碎文字
-    $contentContainer.find('*:not(script,style)').each(function() {
-        if (!isLeafBlock(this, $)) {
-            $(this).contents().each(function() {
-                if (this.type === 'text' && this.data.trim() !== '') {
-                    $(this).wrap('<span class="gemini-loose-text"></span>');
-                }
-            });
-        }
-    });
-
-    // 【阶段 2】：寻找叶子翻译块（连同 HTML 一起提取）
-    const translatableBlocks =[];
-    function traverseAndCollect(el) {
-        if (el.type !== 'tag') return;
-        const tag = el.name.toLowerCase();
-        if (['script', 'style', 'code', 'pre'].includes(tag)) return;
-        
-        if (isLeafBlock(el, $)) {
-            translatableBlocks.push(el);
-            return; 
-        }
-        $(el).children().each(function() { traverseAndCollect(this); });
-    }
-    
-    const wrapper = $('<div id="translate-wrapper"></div>').append($contentContainer.contents());
-    traverseAndCollect(wrapper[0]);
-    $contentContainer.empty().append(wrapper.contents());
-
-    const attrNodes = [];
-    $contentContainer.find('[title], [alt]').each(function() { attrNodes.push(this); });
-
-    // 【阶段 3】：组装键值对 JSON 对象并发送 AI
+    // 【全新设计】：将整个内容区分为顶层的 HTML 块（如整个 <table>, <div>, <p> 等等）
+    // 这样既能保证 100% 的上下文标签和属性不受损，又不会因为单个 JSON 太庞大导致截断失败
     const tasksObj = {};
     if (containsEnglish(translatedTitle)) tasksObj['title_0'] = translatedTitle;
     
-    translatableBlocks.forEach((node, i) => {
-        const html = $(node).html();
-        if (containsEnglish(html)) tasksObj[`block_${i}`] = html;
+    const $topLevelElements = $contentContainer.children();
+    $topLevelElements.each((i, el) => {
+        // 提取每一个顶层元素的完整 HTML (OuterHTML)
+        const outerHtml = $.html(el);
+        if (containsEnglish(outerHtml)) {
+            tasksObj[`chunk_${i}`] = outerHtml;
+        }
     });
 
-    attrNodes.forEach((node, i) => {
-        ['title', 'alt'].forEach(attr => {
-            let val = $(node).attr(attr);
-            if (val && containsEnglish(val)) tasksObj[`attr_${attr}_${i}`] = val;
-        });
-    });
+    console.log(`[${pageNameToProcess}] 发送给 AI ${Object.keys(tasksObj).length} 个带标签的完整 HTML 块...`);
+    // 将 HTML 和 字典 传给 AI
+    const translatedResults = await translateBatchWithGemini(tasksObj, dictStr);
 
-    console.log(`[${pageNameToProcess}] 发送给 Gemini ${Object.keys(tasksObj).length} 个纯净文本块进行翻译...`);
-    const translatedResults = await translateBatchWithGemini(tasksObj);
-
-    // 【阶段 4】：将 AI 返回的结果合并回去
+    // 将 AI 翻译好的带有标签的 HTML 替换回 DOM 树
     if (translatedResults['title_0']) translatedTitle = translatedResults['title_0'].replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3');
     
-    translatableBlocks.forEach((node, i) => {
-        if (translatedResults[`block_${i}`]) $(node).html(translatedResults[`block_${i}`]);
-    });
-
-    attrNodes.forEach((node, i) => {
-        ['title', 'alt'].forEach(attr => {
-            if (translatedResults[`attr_${attr}_${i}`]) $(node).attr(attr, translatedResults[`attr_${attr}_${i}`]);
-        });
+    $topLevelElements.each((i, el) => {
+        if (translatedResults[`chunk_${i}`]) {
+            // 直接将翻译好的完整 HTML 结构塞入对应的位置
+            $(el).replaceWith(translatedResults[`chunk_${i}`]);
+        }
     });
     
     let finalHtmlContent = $contentContainer.html().replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3');
@@ -366,11 +342,13 @@ async function processPage(pageNameToProcess, sourceReplacementMap, lastEditInfo
 }
 
 async function run() {
-    console.log("--- 翻译任务开始 (AI完全接管纯净模式) ---");
+    console.log("--- 翻译任务开始 (整块HTML + 词典级Prompt 模式) ---");
     if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR);
 
-    // 仅保留对外链、图片的映射字典，不再请求在线的翻译文本字典
     const sourceReplacementMap = getPreparedSourceDictionary();
+    
+    // 【修改】获取字典字符串，准备发给 AI 提示词
+    const dictStr = await getOnlineDictionaryString();
     
     let lastEditInfo = {}, redirectMap = {};
     if (fs.existsSync(EDIT_INFO_FILE)) try { lastEditInfo = JSON.parse(fs.readFileSync(EDIT_INFO_FILE, 'utf-8')); } catch (e) {}
@@ -402,7 +380,8 @@ async function run() {
             visitedPages.add(currentPageName);
             activeTasks++;
 
-            const task = processPage(currentPageName, sourceReplacementMap, lastEditInfo, isForceMode)
+            // 传入 dictStr
+            const task = processPage(currentPageName, sourceReplacementMap, dictStr, lastEditInfo, isForceMode)
                 .then(result => {
                     if (result) {
                         if (result.newRedirectInfo) redirectMap[result.newRedirectInfo.source] = result.newRedirectInfo.target;
