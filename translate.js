@@ -106,34 +106,35 @@ function getPreparedSourceDictionary() {
 
 function containsEnglish(text) { return /[a-zA-Z]/.test(text); }
 
-// === 【究极版】全能排版格式化工具 ===
+// === 【最终形态】排版格式化工具（处理标点与实体空格） ===
 function formatTypography(htmlStr) {
     if (!htmlStr) return htmlStr;
     let res = htmlStr;
 
-    // 1. 去除纯汉字与纯汉字之间的所有空格（循环替换防止多空格遗漏）
-    res = res.replace(/([\u4e00-\u9fa5])\s+([\u4e00-\u9fa5])/g, '$1$2');
-    res = res.replace(/([\u4e00-\u9fa5])\s+([\u4e00-\u9fa5])/g, '$1$2');
-    
-    // 2. 穿透 HTML 标签的无用空格清除 (解决你截图中的：用 <a>红宝石</a> 购买)
-    // 缝合前缀：汉字 + 多余空格 + 标签 (例如 "用 <a" 变成 "用<a")
-    res = res.replace(/([\u4e00-\u9fa5])\s+(<[^>]+>)/g, '$1$2');
-    // 缝合后缀：标签 + 多余空格 + 汉字 (例如 "</a> 购买" 变成 "</a>购买")
-    res = res.replace(/(<[^>]+>)\s+([\u4e00-\u9fa5])/g, '$1$2');
+    // 0. 中文语境下的标点符号转换 (处理冒号、逗号、句号及其后多余的空格/&nbsp;)
+    // 匹配规则：汉字 +[可选的闭合标签如</em>] + [可选空格或&nbsp;] + 半角标点 + [可选空格或&nbsp;]
+    res = res.replace(/([\u4e00-\u9fa5])(<\/[a-zA-Z0-9]+>)?(?:\s|&nbsp;)*:(?:\s|&nbsp;)*/g, '$1$2：');
+    res = res.replace(/([\u4e00-\u9fa5])(<\/[a-zA-Z0-9]+>)?(?:\s|&nbsp;)*,(?:\s|&nbsp;)*/g, '$1$2，');
+    res = res.replace(/([\u4e00-\u9fa5])(<\/[a-zA-Z0-9]+>)?(?:\s|&nbsp;)*\.(?:\s|&nbsp;)*/g, '$1$2。');
 
-    // 3. 纯文本内：英文字母/数字 与 汉字 之间强制增加空格 (例如 for火焰炮 -> for 火焰炮)
+    // 1. 去除纯汉字与纯汉字之间的所有空格和 &nbsp; (执行两次防多空格遗漏)
+    res = res.replace(/([\u4e00-\u9fa5])(?:\s|&nbsp;)+([\u4e00-\u9fa5])/g, '$1$2');
+    res = res.replace(/([\u4e00-\u9fa5])(?:\s|&nbsp;)+([\u4e00-\u9fa5])/g, '$1$2'); 
+    
+    // 2. 穿透 HTML 标签的无用空格清除 (兼容包含 &nbsp; 的情况)
+    // 缝合前缀：汉字 + 多余空格/&nbsp; + 标签
+    res = res.replace(/([\u4e00-\u9fa5])(?:\s|&nbsp;)+(<[^>]+>)/g, '$1$2');
+    // 缝合后缀：标签 + 多余空格/&nbsp; + 汉字
+    res = res.replace(/(<[^>]+>)(?:\s|&nbsp;)+([\u4e00-\u9fa5])/g, '$1$2');
+
+    // 3. 纯文本内：英文字母/数字 与 汉字 之间强制增加空格
     res = res.replace(/([a-zA-Z0-9])([\u4e00-\u9fa5])/g, '$1 $2');
     res = res.replace(/([\u4e00-\u9fa5])([a-zA-Z0-9])/g, '$1 $2');
 
-    // 4. 跨越 HTML 标签时的中英文缝隙弥补 (确保上一步清掉后，必要的英文间隔依然存在)
-    // 英文/数字 + 闭合标签 + 汉字 (例如 Tank</span>坦克 -> Tank</span> 坦克)
+    // 4. 跨越 HTML 标签时的中英文缝隙弥补
     res = res.replace(/([a-zA-Z0-9])(<\/[a-zA-Z0-9]+>)([\u4e00-\u9fa5])/g, '$1$2 $3');
-    // 汉字 + 闭合标签 + 英文/数字 (例如 坦克</span>Tank -> 坦克</span> Tank)
     res = res.replace(/([\u4e00-\u9fa5])(<\/[a-zA-Z0-9]+>)([a-zA-Z0-9])/g, '$1$2 $3');
-    
-    // 英文/数字 + 开始标签 + 汉字 (例如 for<a>火焰炮 -> for <a>火焰炮)
     res = res.replace(/([a-zA-Z0-9])(<[a-zA-Z0-9]+[^>]*>)([\u4e00-\u9fa5])/g, '$1 $2$3');
-    // 汉字 + 开始标签 + 英文/数字 (例如 坦克<a>Tank -> 坦克 <a>Tank)
     res = res.replace(/([\u4e00-\u9fa5])(<[a-zA-Z0-9]+[^>]*>)([a-zA-Z0-9])/g, '$1 $2$3');
 
     return res;
@@ -163,7 +164,7 @@ ${dictStr}
         const batchObj = {};
         batchKeys.forEach(k => batchObj[k] = tasksObj[k]);
 
-        // 【修改】升级 Prompt：明确告诫 AI 不要保留被 HTML 分割的中文空格
+        // 【修改】彻底完善针对特殊字符和标点的提示词
         const prompt = `你是一个专业的《Tanki Online》（3D坦克）游戏维基本地化翻译引擎。
 请将以下 JSON 对象中的值（包含完整 HTML 标签的代码块）翻译为简体中文。
 
@@ -171,10 +172,11 @@ ${dictStr}
 1. JSON的键名（Key）绝对不可更改。只翻译键值（Value）。
 2. 键值是包含完整 HTML 结构的字符串，你【必须原样保留】所有的 HTML 标签、类名、ID、内联样式和内部属性！绝对不能破坏 DOM 结构或遗漏任何标签！
 ${dictPrompt}
-4. 【盘古之白排版规范 - 极其重要】：
-   - 中文字符与中文字符之间【绝对不要加空格】，即使它们被 HTML 标签隔开！比如输出必须是 "为了用<a href="...">红宝石</a>购买"，决不能是 "为了用 <a>红宝石</a> 购买"！
+4. 【盘古之白排版与标点规范 - 极其重要】：
+   - 中文语境下，请将原文的英文标点（如半角冒号":"、逗号","、句号"."等）转换为对应的全角中文标点（"："、"，"、"。"）。
+   - 中文字符与中文字符之间【绝对不要加空格或 &nbsp; 实体】，即使它们被 HTML 标签隔开！比如输出必须是 "为了用<a href="...">红宝石</a>购买"，决不能是 "为了用 <a>红宝石</a> 购买" 或是 "温度</a>&nbsp;和"！
    - 【英文/数字】与【中文汉字】的交界处，请加上一个半角空格！
-5. 除了词库中的术语，其余部分请结合上下文翻译得专业流畅。如果是纯粹的标点或代码，请原样保留。
+5. 除了词库中的术语，其余部分请结合上下文翻译得专业流畅。
 6. 绝对不要使用 Markdown 代码块包裹输出！直接输出合法的、可被 JSON.parse() 解析的纯 JSON 格式！
 
 待翻译 HTML 块的 JSON：
@@ -351,7 +353,6 @@ async function processPage(pageNameToProcess, sourceReplacementMap, dictStr, las
         }
     });
     
-    // 【修改】获取整页重组后的 HTML 代码，执行最后一道全局排版过滤网
     let finalHtmlContent = $contentContainer.html();
     finalHtmlContent = formatTypography(finalHtmlContent);
 
