@@ -106,29 +106,24 @@ function getPreparedSourceDictionary() {
 
 function containsEnglish(text) { return /[a-zA-Z]/.test(text); }
 
-// === 【最终形态】排版格式化工具（处理标点与实体空格） ===
+// === 排版格式化工具 ===
 function formatTypography(htmlStr) {
     if (!htmlStr) return htmlStr;
     let res = htmlStr;
 
-    // 0. 中文语境下的标点符号转换 (处理冒号、逗号、句号及其后多余的空格/&nbsp;)
     res = res.replace(/([\u4e00-\u9fa5])(<\/[a-zA-Z0-9]+>)?(?:\s|&nbsp;)*:(?:\s|&nbsp;)*/g, '$1$2：');
     res = res.replace(/([\u4e00-\u9fa5])(<\/[a-zA-Z0-9]+>)?(?:\s|&nbsp;)*,(?:\s|&nbsp;)*/g, '$1$2，');
     res = res.replace(/([\u4e00-\u9fa5])(<\/[a-zA-Z0-9]+>)?(?:\s|&nbsp;)*\.(?:\s|&nbsp;)*/g, '$1$2。');
 
-    // 1. 去除纯汉字与纯汉字之间的所有空格和 &nbsp; 
     res = res.replace(/([\u4e00-\u9fa5])(?:\s|&nbsp;)+([\u4e00-\u9fa5])/g, '$1$2');
     res = res.replace(/([\u4e00-\u9fa5])(?:\s|&nbsp;)+([\u4e00-\u9fa5])/g, '$1$2'); 
     
-    // 2. 穿透 HTML 标签的无用空格清除
     res = res.replace(/([\u4e00-\u9fa5])(?:\s|&nbsp;)+(<[^>]+>)/g, '$1$2');
     res = res.replace(/(<[^>]+>)(?:\s|&nbsp;)+([\u4e00-\u9fa5])/g, '$1$2');
 
-    // 3. 纯文本内：英文字母/数字 与 汉字 之间强制增加空格
     res = res.replace(/([a-zA-Z0-9])([\u4e00-\u9fa5])/g, '$1 $2');
     res = res.replace(/([\u4e00-\u9fa5])([a-zA-Z0-9])/g, '$1 $2');
 
-    // 4. 跨越 HTML 标签时的中英文缝隙弥补
     res = res.replace(/([a-zA-Z0-9])(<\/[a-zA-Z0-9]+>)([\u4e00-\u9fa5])/g, '$1$2 $3');
     res = res.replace(/([\u4e00-\u9fa5])(<\/[a-zA-Z0-9]+>)([a-zA-Z0-9])/g, '$1$2 $3');
     res = res.replace(/([a-zA-Z0-9])(<[a-zA-Z0-9]+[^>]*>)([\u4e00-\u9fa5])/g, '$1 $2$3');
@@ -137,7 +132,7 @@ function formatTypography(htmlStr) {
     return res;
 }
 
-// 【将完整 HTML 和 翻译字典 一起投喂给 Gemini】
+// 【将完整 HTML 和 翻译字典 一起投喂给 Gemini - 加入智能限速】
 async function translateBatchWithGemini(tasksObj, dictStr) {
     const keys = Object.keys(tasksObj);
     if (keys.length === 0) return {};
@@ -147,7 +142,8 @@ async function translateBatchWithGemini(tasksObj, dictStr) {
     }
 
     const results = { ...tasksObj };
-    const batchSize = 10; 
+    // 【修改点 1】：缩小批次大小，防止一波发送过多 Token 瞬间击穿限制
+    const batchSize = 5; 
     
     const dictPrompt = dictStr ? `
 3. 【术语表要求】：请严格遵守以下提供的《翻译专有名词词库》。只要原文出现了词库中的英文，必须统一翻译为对应的中文：
@@ -161,7 +157,6 @@ ${dictStr}
         const batchObj = {};
         batchKeys.forEach(k => batchObj[k] = tasksObj[k]);
 
-        // 【修改】彻底防范数字小数点被乱改的问题，隔离数值的翻译
         const prompt = `你是一个专业的《Tanki Online》（3D坦克）游戏维基本地化翻译引擎。
 请将以下 JSON 对象中的值（包含完整 HTML 标签的代码块）翻译为简体中文。
 
@@ -180,7 +175,10 @@ ${dictPrompt}
 ${JSON.stringify(batchObj, null, 2)}`;
 
         let batchResult = null;
-        for (let attempt = 1; attempt <= 3; attempt++) {
+        // 【修改点 2】：增加重试次数，赋予脚本更高的忍耐度
+        const maxRetries = 5;
+        
+        for (let attempt = 1; attempt <= maxRetries; attempt++) {
             try {
                 const response = await geminiModel.generateContent({
                     contents:[{ role: "user", parts:[{ text: prompt }] }],
@@ -199,18 +197,40 @@ ${JSON.stringify(batchObj, null, 2)}`;
                     }
                 }
             } catch (err) {
-                console.warn(`[Gemini 翻译尝试 ${attempt}/3] 失败: ${err.message}`);
+                const errMsg = err.message || "";
+                console.warn(`[Gemini 翻译尝试 ${attempt}/${maxRetries}] 失败: ${errMsg.substring(0, 150)}...`);
+                
+                // 【修改点 3】：智能判断 429 报错，并精准提取惩罚时间进行挂起休眠
+                if (attempt < maxRetries) {
+                    let waitTime = 3000; // 默认普通错误等 3 秒
+                    
+                    if (errMsg.includes('429') || errMsg.includes('Quota exceeded')) {
+                        // 尝试利用正则匹配系统提示的重试秒数: "Please retry in 40.016s"
+                        const retryMatch = errMsg.match(/retry in (\d+(?:\.\d+)?)\s*s/i);
+                        if (retryMatch && retryMatch[1]) {
+                            const waitSeconds = parseFloat(retryMatch[1]);
+                            waitTime = (waitSeconds + 2) * 1000; // 精准提取秒数，并加上2秒缓冲以防万一
+                            console.log(`⏳ 触发 API 配额限制 (TPM/RPM满载)！脚本将进入深度休眠，精准等待 ${Math.ceil(waitTime/1000)} 秒后复活...`);
+                        } else {
+                            waitTime = 62000; // 匹配不到秒数，那直接暴力等 62 秒跨越一分钟
+                            console.log(`⏳ 触发 API 配额限制！未检测到惩罚时长，强制默认休眠 62 秒...`);
+                        }
+                    }
+                    
+                    await new Promise(r => setTimeout(r, waitTime));
+                }
             }
-            if (!batchResult && attempt < 3) await new Promise(r => setTimeout(r, 2000));
         }
 
         if (batchResult) {
             batchKeys.forEach(k => { if (batchResult[k]) results[k] = batchResult[k]; });
+            console.log(`✅ 成功翻译批次:[${i+1} ~ ${Math.min(i+batchSize, keys.length)}] / ${keys.length}`);
         } else {
-            console.warn(`⚠️ 该批次彻底失败，回退为原始 HTML。`);
+            console.warn(`⚠️ 该批次在 ${maxRetries} 次尝试后仍彻底失败，回退为原始 HTML。`);
         }
 
-        if (i + batchSize < keys.length) await new Promise(r => setTimeout(r, 4000)); 
+        // 平滑流控：批次成功后也基础延时 5 秒，拉平 Token 消耗曲线
+        if (i + batchSize < keys.length) await new Promise(r => setTimeout(r, 5000)); 
     }
     
     return results;
