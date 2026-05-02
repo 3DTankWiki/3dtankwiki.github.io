@@ -144,7 +144,7 @@ async function translateBatchWithGemini(tasksObj, dictStr) {
     const results = { ...tasksObj };
     
     // 【修改点 1】：不再按固定数量划分，而是按字符总长度划分，使每批次内容大小大致相同
-    const TARGET_BATCH_CHARS = 3500; // 设定每个批次的目标字符数（约合 1000~1500 Tokens）
+    const TARGET_BATCH_CHARS = 10000; // // 适配 250K TPM 配额，最佳平衡输出限制与翻译质量
     const batches =[];
     let currentBatch = {};
     let currentCharCount = 0;
