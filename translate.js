@@ -142,9 +142,29 @@ async function translateBatchWithGemini(tasksObj, dictStr) {
     }
 
     const results = { ...tasksObj };
-    // 【修改点 1】：缩小批次大小，防止一波发送过多 Token 瞬间击穿限制
-    const batchSize = 3; 
     
+    // 【修改点 1】：不再按固定数量划分，而是按字符总长度划分，使每批次内容大小大致相同
+    const TARGET_BATCH_CHARS = 3500; // 设定每个批次的目标字符数（约合 1000~1500 Tokens）
+    const batches =[];
+    let currentBatch = {};
+    let currentCharCount = 0;
+
+    for (const key of keys) {
+        const itemLength = tasksObj[key].length;
+        // 如果当前批次非空，且加上当前项后超出目标大小，则封存当前批次，开启下一个
+        if (currentCharCount > 0 && (currentCharCount + itemLength) > TARGET_BATCH_CHARS) {
+            batches.push(currentBatch);
+            currentBatch = {};
+            currentCharCount = 0;
+        }
+        currentBatch[key] = tasksObj[key];
+        currentCharCount += itemLength;
+    }
+    // 将最后剩余的内容推入批次
+    if (Object.keys(currentBatch).length > 0) {
+        batches.push(currentBatch);
+    }
+
     const dictPrompt = dictStr ? `
 3. 【术语表要求】：请严格遵守以下提供的《翻译专有名词词库》。只要原文出现了词库中的英文，必须统一翻译为对应的中文：
 --- 词库开始 ---
@@ -152,10 +172,10 @@ ${dictStr}
 --- 词库结束 ---
 ` : "3. 请根据《Tanki Online》（3D坦克）的游戏语境进行翻译，保证专业术语准确。";
 
-    for (let i = 0; i < keys.length; i += batchSize) {
-        const batchKeys = keys.slice(i, i + batchSize);
-        const batchObj = {};
-        batchKeys.forEach(k => batchObj[k] = tasksObj[k]);
+    // 【修改点 2】：遍历动态计算好的批次
+    for (let i = 0; i < batches.length; i++) {
+        const batchObj = batches[i];
+        const batchKeys = Object.keys(batchObj);
 
         const prompt = `你是一个专业的《Tanki Online》（3D坦克）游戏维基本地化翻译引擎。
 请将以下 JSON 对象中的值（包含完整 HTML 标签的代码块）翻译为简体中文。
@@ -175,7 +195,6 @@ ${dictPrompt}
 ${JSON.stringify(batchObj, null, 2)}`;
 
         let batchResult = null;
-        // 【修改点 2】：增加重试次数，赋予脚本更高的忍耐度
         const maxRetries = 5;
         
         for (let attempt = 1; attempt <= maxRetries; attempt++) {
@@ -200,19 +219,17 @@ ${JSON.stringify(batchObj, null, 2)}`;
                 const errMsg = err.message || "";
                 console.warn(`[Gemini 翻译尝试 ${attempt}/${maxRetries}] 失败: ${errMsg.substring(0, 150)}...`);
                 
-                // 【修改点 3】：智能判断 429 报错，并精准提取惩罚时间进行挂起休眠
                 if (attempt < maxRetries) {
-                    let waitTime = 3000; // 默认普通错误等 3 秒
+                    let waitTime = 3000; 
                     
                     if (errMsg.includes('429') || errMsg.includes('Quota exceeded')) {
-                        // 尝试利用正则匹配系统提示的重试秒数: "Please retry in 40.016s"
                         const retryMatch = errMsg.match(/retry in (\d+(?:\.\d+)?)\s*s/i);
                         if (retryMatch && retryMatch[1]) {
                             const waitSeconds = parseFloat(retryMatch[1]);
-                            waitTime = (waitSeconds + 2) * 1000; // 精准提取秒数，并加上2秒缓冲以防万一
-                            console.log(`⏳ 触发 API 配额限制 (TPM/RPM满载)！脚本将进入深度休眠，精准等待 ${Math.ceil(waitTime/1000)} 秒后复活...`);
+                            waitTime = (waitSeconds + 2) * 1000; 
+                            console.log(`⏳ 触发 API 配额限制 (TPM/RPM满载)！脚本将精准等待 ${Math.ceil(waitTime/1000)} 秒后复活...`);
                         } else {
-                            waitTime = 64000; // 匹配不到秒数，那直接暴力等 64 秒跨越一分钟
+                            waitTime = 64000; 
                             console.log(`⏳ 触发 API 配额限制！未检测到惩罚时长，强制默认休眠 64 秒...`);
                         }
                     }
@@ -224,13 +241,13 @@ ${JSON.stringify(batchObj, null, 2)}`;
 
         if (batchResult) {
             batchKeys.forEach(k => { if (batchResult[k]) results[k] = batchResult[k]; });
-            console.log(`✅ 成功翻译批次:[${i+1} ~ ${Math.min(i+batchSize, keys.length)}] / ${keys.length}`);
+            console.log(`✅ 成功翻译批次:[${i + 1} / ${batches.length}] (包含 ${batchKeys.length} 个HTML块)`);
         } else {
             console.warn(`⚠️ 该批次在 ${maxRetries} 次尝试后仍彻底失败，回退为原始 HTML。`);
         }
 
         // 平滑流控：批次成功后也基础延时 5 秒，拉平 Token 消耗曲线
-        if (i + batchSize < keys.length) await new Promise(r => setTimeout(r, 5000)); 
+        if (i + 1 < batches.length) await new Promise(r => setTimeout(r, 5000)); 
     }
     
     return results;
