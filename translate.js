@@ -22,7 +22,6 @@ const geminiModel = genAI.getGenerativeModel({ model: "gemini-3.1-flash-lite-pre
 
 const sanitizePageName = (name) => name.replaceAll(' ', '_');
 
-// [获取 Feed 页面的逻辑]
 async function getPagesForFeedMode(lastEditInfo) {
     console.log(`[更新模式] 正在从 ${RECENT_CHANGES_FEED_URL} 获取最近更新...`);
     let browser;
@@ -87,7 +86,7 @@ async function getOnlineDictionaryString() {
         for (const [en, zh] of Object.entries(dictObj)) {
             dictStr += `${en} -> ${zh}\n`;
         }
-        console.log(`✅ 成功加载翻译词典，包含 ${Object.keys(dictObj).length} 个词条，将作为指令发送给 AI。`);
+        console.log(`✅ 成功加载翻译词典，将作为指令发送给 AI。`);
         return dictStr;
     } catch (error) { 
         console.warn(`⚠️ 获取在线词典失败，将不使用专有词库提示AI: ${error.message}`);
@@ -107,27 +106,34 @@ function getPreparedSourceDictionary() {
 
 function containsEnglish(text) { return /[a-zA-Z]/.test(text); }
 
-// === 【新增】全能排版格式化工具 ===
+// === 【究极版】全能排版格式化工具 ===
 function formatTypography(htmlStr) {
     if (!htmlStr) return htmlStr;
     let res = htmlStr;
 
-    // 1. 彻底去除纯汉字与纯汉字之间的所有空格和换行符
-    res = res.replace(/([\u4e00-\u9fa5])[\s]+(?=[\u4e00-\u9fa5])/g, '$1');
+    // 1. 去除纯汉字与纯汉字之间的所有空格（循环替换防止多空格遗漏）
+    res = res.replace(/([\u4e00-\u9fa5])\s+([\u4e00-\u9fa5])/g, '$1$2');
+    res = res.replace(/([\u4e00-\u9fa5])\s+([\u4e00-\u9fa5])/g, '$1$2');
     
-    // 2. 纯文本内：英文字母/数字 与 汉字 之间强制增加空格 (双向匹配)
+    // 2. 穿透 HTML 标签的无用空格清除 (解决你截图中的：用 <a>红宝石</a> 购买)
+    // 缝合前缀：汉字 + 多余空格 + 标签 (例如 "用 <a" 变成 "用<a")
+    res = res.replace(/([\u4e00-\u9fa5])\s+(<[^>]+>)/g, '$1$2');
+    // 缝合后缀：标签 + 多余空格 + 汉字 (例如 "</a> 购买" 变成 "</a>购买")
+    res = res.replace(/(<[^>]+>)\s+([\u4e00-\u9fa5])/g, '$1$2');
+
+    // 3. 纯文本内：英文字母/数字 与 汉字 之间强制增加空格 (例如 for火焰炮 -> for 火焰炮)
     res = res.replace(/([a-zA-Z0-9])([\u4e00-\u9fa5])/g, '$1 $2');
     res = res.replace(/([\u4e00-\u9fa5])([a-zA-Z0-9])/g, '$1 $2');
 
-    // 3. 跨越 HTML 标签时的中英文缝隙弥补 
-    // 处理情况A：前面是闭合标签里的英文/数字，后面是标签外的汉字 (例如 <span>100</span>个 -> <span>100</span> 个)
+    // 4. 跨越 HTML 标签时的中英文缝隙弥补 (确保上一步清掉后，必要的英文间隔依然存在)
+    // 英文/数字 + 闭合标签 + 汉字 (例如 Tank</span>坦克 -> Tank</span> 坦克)
     res = res.replace(/([a-zA-Z0-9])(<\/[a-zA-Z0-9]+>)([\u4e00-\u9fa5])/g, '$1$2 $3');
-    // 处理情况B：前面是标签外汉字，后面是闭合标签里的英文/数字 (几乎无此情况，但防漏)
+    // 汉字 + 闭合标签 + 英文/数字 (例如 坦克</span>Tank -> 坦克</span> Tank)
     res = res.replace(/([\u4e00-\u9fa5])(<\/[a-zA-Z0-9]+>)([a-zA-Z0-9])/g, '$1$2 $3');
     
-    // 处理情况C：前面是英数字，紧接着是标签包裹的汉字 (例如 for<a href="">火焰炮 -> for <a href="">火焰炮)
+    // 英文/数字 + 开始标签 + 汉字 (例如 for<a>火焰炮 -> for <a>火焰炮)
     res = res.replace(/([a-zA-Z0-9])(<[a-zA-Z0-9]+[^>]*>)([\u4e00-\u9fa5])/g, '$1 $2$3');
-    // 处理情况D：前面是汉字，紧接着是标签包裹的英数字 (例如 坦克<span class="en">Tank -> 坦克 <span class="en">Tank)
+    // 汉字 + 开始标签 + 英文/数字 (例如 坦克<a>Tank -> 坦克 <a>Tank)
     res = res.replace(/([\u4e00-\u9fa5])(<[a-zA-Z0-9]+[^>]*>)([a-zA-Z0-9])/g, '$1 $2$3');
 
     return res;
@@ -157,18 +163,18 @@ ${dictStr}
         const batchObj = {};
         batchKeys.forEach(k => batchObj[k] = tasksObj[k]);
 
-        // 【修改】强化了 Prompt 中关于“盘古之白”排版的要求
+        // 【修改】升级 Prompt：明确告诫 AI 不要保留被 HTML 分割的中文空格
         const prompt = `你是一个专业的《Tanki Online》（3D坦克）游戏维基本地化翻译引擎。
 请将以下 JSON 对象中的值（包含完整 HTML 标签的代码块）翻译为简体中文。
 
 【极端重要的要求】：
 1. JSON的键名（Key）绝对不可更改。只翻译键值（Value）。
-2. 键值是包含完整 HTML 结构的字符串，你【必须原样保留】所有的 HTML 标签、类名、ID、内联样式和内部属性（如 href, src, class 等）！绝对不能破坏 DOM 结构或遗漏任何标签！
+2. 键值是包含完整 HTML 结构的字符串，你【必须原样保留】所有的 HTML 标签、类名、ID、内联样式和内部属性！绝对不能破坏 DOM 结构或遗漏任何标签！
 ${dictPrompt}
-4. 【极其重要的排版规范】：
-   - 中文汉字与汉字之间【绝对不要有任何空格】。
-   - 【英文单词/字母/数字】与【中文汉字】之间，必须强制加上一个半角空格（例如必须输出："Tank 坦克 123"、"装备改造 for 火焰炮"）。
-5. 除了词库中的术语，其余部分请结合上下文翻译得专业、通顺流畅。如果是纯粹的标点符号或无需翻译的代码，请原样保留。
+4. 【盘古之白排版规范 - 极其重要】：
+   - 中文字符与中文字符之间【绝对不要加空格】，即使它们被 HTML 标签隔开！比如输出必须是 "为了用<a href="...">红宝石</a>购买"，决不能是 "为了用 <a>红宝石</a> 购买"！
+   - 【英文/数字】与【中文汉字】的交界处，请加上一个半角空格！
+5. 除了词库中的术语，其余部分请结合上下文翻译得专业流畅。如果是纯粹的标点或代码，请原样保留。
 6. 绝对不要使用 Markdown 代码块包裹输出！直接输出合法的、可被 JSON.parse() 解析的纯 JSON 格式！
 
 待翻译 HTML 块的 JSON：
@@ -294,7 +300,6 @@ async function processPage(pageNameToProcess, sourceReplacementMap, dictStr, las
         bodyEndScripts.push(`<script>document.addEventListener('DOMContentLoaded', function() { fetch('./facts.json').then(r=>r.json()).then(f=>{ document.getElementById('dynamic-fact-placeholder').innerHTML = f[Math.floor(Math.random() * f.length)].cn; }).catch(()=>{}); });<\/script>`); 
     }
 
-    // 处理内部链接、图片、视频
     $contentContainer.find('a').each(function() { 
         const $el = $(this); const href = $el.attr('href'); const internalName = getPageNameFromWikiLink(href); 
         if (internalName) $el.attr('href', `./${internalName}`); 
@@ -336,7 +341,6 @@ async function processPage(pageNameToProcess, sourceReplacementMap, dictStr, las
     console.log(`[${pageNameToProcess}] 发送给 AI ${Object.keys(tasksObj).length} 个带标签的完整 HTML 块...`);
     const translatedResults = await translateBatchWithGemini(tasksObj, dictStr);
 
-    // 【修改】执行后处理排版过滤
     if (translatedResults['title_0']) {
         translatedTitle = formatTypography(translatedResults['title_0']);
     }
@@ -347,7 +351,7 @@ async function processPage(pageNameToProcess, sourceReplacementMap, dictStr, las
         }
     });
     
-    // 【修改】获取翻译完成后组装的最终 HTML，执行一次整体强制规范排版！
+    // 【修改】获取整页重组后的 HTML 代码，执行最后一道全局排版过滤网
     let finalHtmlContent = $contentContainer.html();
     finalHtmlContent = formatTypography(finalHtmlContent);
 
