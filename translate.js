@@ -10,8 +10,8 @@ const BASE_URL = 'https://en.tankiwiki.com';
 const START_PAGE = 'Tanki_Online_Wiki';
 const RECENT_CHANGES_FEED_URL = 'https://en.tankiwiki.com/api.php?action=feedrecentchanges&days=7&feedformat=atom&urlversion=1';
 const CONCURRENCY_LIMIT = 1; 
-const DICTIONARY_URL = 'https://testanki1.github.io/translations.js'; // 【恢复】在线翻译字典
-const SOURCE_DICT_FILE = 'source_replacements.js'; // 本地链接、图片替换
+const DICTIONARY_URL = 'https://testanki1.github.io/translations.js'; 
+const SOURCE_DICT_FILE = 'source_replacements.js'; 
 const OUTPUT_DIR = './output';
 const EDIT_INFO_FILE = path.join(__dirname, 'last_edit_info.json');
 const REDIRECT_MAP_FILE = path.join(__dirname, 'redirect_map.json');
@@ -59,7 +59,7 @@ async function getPagesForFeedMode(lastEditInfo) {
         });
 
         const pagesToUpdate = [];
-        for (const [title, newRevisionId] of pagesToConsider.entries()) {
+        for (const[title, newRevisionId] of pagesToConsider.entries()) {
             const blockedPrefixes =['Special:', 'User:', 'MediaWiki:', 'Help:', 'Category:', 'File:', 'Template:'];
             if (blockedPrefixes.some(p => title.startsWith(p))) continue;
             
@@ -75,7 +75,6 @@ async function getPagesForFeedMode(lastEditInfo) {
     }
 }
 
-// 【新增】拉取在线词典，并转化为供 AI 阅读的字符串格式
 async function getOnlineDictionaryString() {
     console.log(`正在从 URL 获取专有名词翻译词典: ${DICTIONARY_URL}`); 
     try { 
@@ -108,7 +107,33 @@ function getPreparedSourceDictionary() {
 
 function containsEnglish(text) { return /[a-zA-Z]/.test(text); }
 
-// 【核心修改】将完整 HTML 和 翻译字典 一起投喂给 Gemini
+// === 【新增】全能排版格式化工具 ===
+function formatTypography(htmlStr) {
+    if (!htmlStr) return htmlStr;
+    let res = htmlStr;
+
+    // 1. 彻底去除纯汉字与纯汉字之间的所有空格和换行符
+    res = res.replace(/([\u4e00-\u9fa5])[\s]+(?=[\u4e00-\u9fa5])/g, '$1');
+    
+    // 2. 纯文本内：英文字母/数字 与 汉字 之间强制增加空格 (双向匹配)
+    res = res.replace(/([a-zA-Z0-9])([\u4e00-\u9fa5])/g, '$1 $2');
+    res = res.replace(/([\u4e00-\u9fa5])([a-zA-Z0-9])/g, '$1 $2');
+
+    // 3. 跨越 HTML 标签时的中英文缝隙弥补 
+    // 处理情况A：前面是闭合标签里的英文/数字，后面是标签外的汉字 (例如 <span>100</span>个 -> <span>100</span> 个)
+    res = res.replace(/([a-zA-Z0-9])(<\/[a-zA-Z0-9]+>)([\u4e00-\u9fa5])/g, '$1$2 $3');
+    // 处理情况B：前面是标签外汉字，后面是闭合标签里的英文/数字 (几乎无此情况，但防漏)
+    res = res.replace(/([\u4e00-\u9fa5])(<\/[a-zA-Z0-9]+>)([a-zA-Z0-9])/g, '$1$2 $3');
+    
+    // 处理情况C：前面是英数字，紧接着是标签包裹的汉字 (例如 for<a href="">火焰炮 -> for <a href="">火焰炮)
+    res = res.replace(/([a-zA-Z0-9])(<[a-zA-Z0-9]+[^>]*>)([\u4e00-\u9fa5])/g, '$1 $2$3');
+    // 处理情况D：前面是汉字，紧接着是标签包裹的英数字 (例如 坦克<span class="en">Tank -> 坦克 <span class="en">Tank)
+    res = res.replace(/([\u4e00-\u9fa5])(<[a-zA-Z0-9]+[^>]*>)([a-zA-Z0-9])/g, '$1 $2$3');
+
+    return res;
+}
+
+// 【将完整 HTML 和 翻译字典 一起投喂给 Gemini】
 async function translateBatchWithGemini(tasksObj, dictStr) {
     const keys = Object.keys(tasksObj);
     if (keys.length === 0) return {};
@@ -118,11 +143,10 @@ async function translateBatchWithGemini(tasksObj, dictStr) {
     }
 
     const results = { ...tasksObj };
-    const batchSize = 10; // 由于这次发送的是巨大的完整 HTML 块，批次调小以防止超过 AI 输出上限
+    const batchSize = 10; 
     
-    // 构造词典提示语
     const dictPrompt = dictStr ? `
-3. 【术语表要求】：请严格遵守以下提供的《翻译专有名词词库》。只要原文出现了词库中的英文（不论单复数形式），必须统一翻译为对应的中文：
+3. 【术语表要求】：请严格遵守以下提供的《翻译专有名词词库》。只要原文出现了词库中的英文，必须统一翻译为对应的中文：
 --- 词库开始 ---
 ${dictStr}
 --- 词库结束 ---
@@ -133,7 +157,7 @@ ${dictStr}
         const batchObj = {};
         batchKeys.forEach(k => batchObj[k] = tasksObj[k]);
 
-        // 指令：保留 HTML 结构并严格执行词典
+        // 【修改】强化了 Prompt 中关于“盘古之白”排版的要求
         const prompt = `你是一个专业的《Tanki Online》（3D坦克）游戏维基本地化翻译引擎。
 请将以下 JSON 对象中的值（包含完整 HTML 标签的代码块）翻译为简体中文。
 
@@ -141,8 +165,11 @@ ${dictStr}
 1. JSON的键名（Key）绝对不可更改。只翻译键值（Value）。
 2. 键值是包含完整 HTML 结构的字符串，你【必须原样保留】所有的 HTML 标签、类名、ID、内联样式和内部属性（如 href, src, class 等）！绝对不能破坏 DOM 结构或遗漏任何标签！
 ${dictPrompt}
-4. 除了词库中的术语，其余部分请结合上下文翻译得专业、通顺流畅。如果是纯粹的标点符号或无需翻译的代码，请原样保留。
-5. 绝对不要使用 Markdown 代码块包裹输出！直接输出合法的、可被 JSON.parse() 解析的纯 JSON 格式！
+4. 【极其重要的排版规范】：
+   - 中文汉字与汉字之间【绝对不要有任何空格】。
+   - 【英文单词/字母/数字】与【中文汉字】之间，必须强制加上一个半角空格（例如必须输出："Tank 坦克 123"、"装备改造 for 火焰炮"）。
+5. 除了词库中的术语，其余部分请结合上下文翻译得专业、通顺流畅。如果是纯粹的标点符号或无需翻译的代码，请原样保留。
+6. 绝对不要使用 Markdown 代码块包裹输出！直接输出合法的、可被 JSON.parse() 解析的纯 JSON 格式！
 
 待翻译 HTML 块的 JSON：
 ${JSON.stringify(batchObj, null, 2)}`;
@@ -152,7 +179,7 @@ ${JSON.stringify(batchObj, null, 2)}`;
             try {
                 const response = await geminiModel.generateContent({
                     contents:[{ role: "user", parts: [{ text: prompt }] }],
-                    generationConfig: { temperature: 0.1 } // 极低温度保证结构不乱、严格遵守词典
+                    generationConfig: { temperature: 0.1 } 
                 });
                 let text = response.response.text();
                 
@@ -267,7 +294,7 @@ async function processPage(pageNameToProcess, sourceReplacementMap, dictStr, las
         bodyEndScripts.push(`<script>document.addEventListener('DOMContentLoaded', function() { fetch('./facts.json').then(r=>r.json()).then(f=>{ document.getElementById('dynamic-fact-placeholder').innerHTML = f[Math.floor(Math.random() * f.length)].cn; }).catch(()=>{}); });<\/script>`); 
     }
 
-    // 处理内部链接、图片、视频（使用本地 replacement 逻辑）
+    // 处理内部链接、图片、视频
     $contentContainer.find('a').each(function() { 
         const $el = $(this); const href = $el.attr('href'); const internalName = getPageNameFromWikiLink(href); 
         if (internalName) $el.attr('href', `./${internalName}`); 
@@ -295,14 +322,11 @@ async function processPage(pageNameToProcess, sourceReplacementMap, dictStr, las
     
     let translatedTitle = $('title').text() || pageNameToProcess;
 
-    // 【全新设计】：将整个内容区分为顶层的 HTML 块（如整个 <table>, <div>, <p> 等等）
-    // 这样既能保证 100% 的上下文标签和属性不受损，又不会因为单个 JSON 太庞大导致截断失败
     const tasksObj = {};
     if (containsEnglish(translatedTitle)) tasksObj['title_0'] = translatedTitle;
     
     const $topLevelElements = $contentContainer.children();
     $topLevelElements.each((i, el) => {
-        // 提取每一个顶层元素的完整 HTML (OuterHTML)
         const outerHtml = $.html(el);
         if (containsEnglish(outerHtml)) {
             tasksObj[`chunk_${i}`] = outerHtml;
@@ -310,20 +334,22 @@ async function processPage(pageNameToProcess, sourceReplacementMap, dictStr, las
     });
 
     console.log(`[${pageNameToProcess}] 发送给 AI ${Object.keys(tasksObj).length} 个带标签的完整 HTML 块...`);
-    // 将 HTML 和 字典 传给 AI
     const translatedResults = await translateBatchWithGemini(tasksObj, dictStr);
 
-    // 将 AI 翻译好的带有标签的 HTML 替换回 DOM 树
-    if (translatedResults['title_0']) translatedTitle = translatedResults['title_0'].replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3');
+    // 【修改】执行后处理排版过滤
+    if (translatedResults['title_0']) {
+        translatedTitle = formatTypography(translatedResults['title_0']);
+    }
     
     $topLevelElements.each((i, el) => {
         if (translatedResults[`chunk_${i}`]) {
-            // 直接将翻译好的完整 HTML 结构塞入对应的位置
             $(el).replaceWith(translatedResults[`chunk_${i}`]);
         }
     });
     
-    let finalHtmlContent = $contentContainer.html().replace(/([\u4e00-\u9fa5])([\s_]+)([\u4e00-\u9fa5])/g, '$1$3');
+    // 【修改】获取翻译完成后组装的最终 HTML，执行一次整体强制规范排版！
+    let finalHtmlContent = $contentContainer.html();
+    finalHtmlContent = formatTypography(finalHtmlContent);
 
     let homeButtonHtml = pageNameToProcess !== START_PAGE ? `<a href="./${START_PAGE}" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">返回主页</a>` : '';
     
@@ -342,12 +368,10 @@ async function processPage(pageNameToProcess, sourceReplacementMap, dictStr, las
 }
 
 async function run() {
-    console.log("--- 翻译任务开始 (整块HTML + 词典级Prompt 模式) ---");
+    console.log("--- 翻译任务开始 ---");
     if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR);
 
     const sourceReplacementMap = getPreparedSourceDictionary();
-    
-    // 【修改】获取字典字符串，准备发给 AI 提示词
     const dictStr = await getOnlineDictionaryString();
     
     let lastEditInfo = {}, redirectMap = {};
@@ -380,7 +404,6 @@ async function run() {
             visitedPages.add(currentPageName);
             activeTasks++;
 
-            // 传入 dictStr
             const task = processPage(currentPageName, sourceReplacementMap, dictStr, lastEditInfo, isForceMode)
                 .then(result => {
                     if (result) {
