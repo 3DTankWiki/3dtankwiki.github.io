@@ -116,7 +116,6 @@ function formatTypography(htmlStr) {
     return res;
 }
 
-// 【核心翻译模块，现在支持处理超大 JSON】
 async function translateBatchWithGemini(tasksObj, dictStr) {
     const keys = Object.keys(tasksObj);
     if (keys.length === 0) return {};
@@ -124,7 +123,6 @@ async function translateBatchWithGemini(tasksObj, dictStr) {
 
     const results = { ...tasksObj };
     
-    // 内部批次拆分逻辑：如果收到的 tasksObj 本身就很大，在这里拆成多个请求
     const batches =[];
     let currentBatch = {};
     let currentCharCount = 0;
@@ -213,7 +211,6 @@ function findImageReplacement(url, replacementMap) {
     return url;
 }
 
-// 【页面处理核心：抓取、拆分、并根据大小决定是“入池”还是“立即处理”】
 async function processPage(pageNameToProcess, sourceReplacementMap, dictStr, lastEditInfoState, force = false) {
     const sourceUrl = `${BASE_URL}/${pageNameToProcess}`;
     console.log(`[${pageNameToProcess}] 正在抓取页面...`);
@@ -274,7 +271,7 @@ async function processPage(pageNameToProcess, sourceReplacementMap, dictStr, las
     let totalCharCount = 0;
 
     if (containsEnglish(originalTitle)) {
-        tasksObj['title_0'] = originalTitle;
+        tasksObj[`${pageNameToProcess}___title_0`] = originalTitle;
         totalCharCount += originalTitle.length;
     }
     
@@ -290,28 +287,31 @@ async function processPage(pageNameToProcess, sourceReplacementMap, dictStr, las
             } else {
                 const chunkId = `chunk_${chunkIndex++}`;
                 $el.attr('data-translate-id', chunkId);
-                tasksObj[chunkId] = outerHtml;
+                tasksObj[`${pageNameToProcess}___${chunkId}`] = outerHtml;
                 totalCharCount += outerHtml.length;
             }
         });
     }
     extractChunksToTranslate($contentContainer);
 
-    // --- 【混合策略的核心决策点】 ---
     if (totalCharCount >= TARGET_BATCH_CHARS) {
         console.log(`[${pageNameToProcess}] 页面过大 (${totalCharCount} 字符)，将立即单独处理...`);
         
         const translatedResults = await translateBatchWithGemini(tasksObj, dictStr);
 
         let translatedTitle = originalTitle;
-        if (translatedResults['title_0']) {
-            translatedTitle = formatTypography(translatedResults['title_0']);
+        if (translatedResults[`${pageNameToProcess}___title_0`]) {
+            translatedTitle = formatTypography(translatedResults[`${pageNameToProcess}___title_0`]);
         }
     
         Object.keys(translatedResults).forEach(key => {
-            if (key.startsWith('chunk_') && translatedResults[key]) {
-                const $target = $contentContainer.find(`[data-translate-id="${key}"]`);
-                if ($target.length) $target.replaceWith(translatedResults[key]);
+            const keyPrefix = `${pageNameToProcess}___`;
+            if (key.startsWith(keyPrefix) && translatedResults[key]) {
+                const chunkId = key.substring(keyPrefix.length);
+                if (chunkId.startsWith('chunk_')) {
+                    const $target = $contentContainer.find(`[data-translate-id="${chunkId}"]`);
+                    if ($target.length) $target.replaceWith(translatedResults[key]);
+                }
             }
         });
         $contentContainer.find('[data-translate-id]').removeAttr('data-translate-id');
@@ -342,7 +342,6 @@ async function processPage(pageNameToProcess, sourceReplacementMap, dictStr, las
     }
 }
 
-// 【主控逻辑】
 async function run() {
     console.log("--- 翻译任务开始 ---");
     if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR);
@@ -370,7 +369,6 @@ async function run() {
     const isForceMode = runMode === 'FEED' || runMode === 'SPECIFIED';
     let pageIndex = 0;
 
-    // 全局累积池 (只用于存放小页面)
     let globalTasksPool = {};
     let pendingPagesData =[];
     let poolCharCount = 0;
@@ -380,7 +378,6 @@ async function run() {
         if (visitedPages.has(currentPageName)) continue;
         visitedPages.add(currentPageName);
 
-        // 注意：现在 processPage 会自己决定是入池还是立即处理
         const result = await processPage(currentPageName, sourceReplacementMap, dictStr, lastEditInfo, isForceMode);
         
         if (result) {
@@ -394,10 +391,10 @@ async function run() {
                 case 'cached':
                     console.log(`💤 [${currentPageName}] 内容无更新，跳过。`);
                     break;
-                case 'processed_immediately': // 大页面被立即处理了
+                case 'processed_immediately':
                     if (result.newEditInfo) lastEditInfo[currentPageName] = result.newEditInfo;
                     break;
-                case 'pooled': // 小页面入池
+                case 'pooled':
                     Object.assign(globalTasksPool, result.tasks);
                     poolCharCount += result.charCount;
                     pendingPagesData.push(result.pageData);
@@ -406,7 +403,6 @@ async function run() {
         }
 
         const isLastPage = pageIndex === pagesToVisit.length;
-        // 检查池子是否需要“发车”
         if (poolCharCount >= TARGET_BATCH_CHARS || (isLastPage && poolCharCount > 0)) {
             console.log(`\n==============================================`);
             console.log(`📦 【触发合并发车】累积字符数: ${poolCharCount}，包含 ${pendingPagesData.length} 个小页面！`);
@@ -417,15 +413,21 @@ async function run() {
             for (const pageData of pendingPagesData) {
                 const { pageName, containerHtml, headElements, bodyEndScripts, originalTitle, currentEditInfo, bodyClass } = pageData;
                 let finalTitle = originalTitle;
-                if (translatedResults[`title_0`]) finalTitle = formatTypography(translatedResults[`title_0`]);
+                if (translatedResults[`${pageName}___title_0`]) {
+                    finalTitle = formatTypography(translatedResults[`${pageName}___title_0`]);
+                }
                 
                 const $ = cheerio.load(containerHtml, null, false);
                 const $contentContainer = $('body').children().first();
 
                 Object.keys(translatedResults).forEach(key => {
-                    if (key.startsWith('chunk_') && translatedResults[key]) {
-                        const $target = $contentContainer.find(`[data-translate-id="${key}"]`);
-                        if ($target.length) $target.replaceWith(translatedResults[key]);
+                    const keyPrefix = `${pageName}___`;
+                    if (key.startsWith(keyPrefix) && translatedResults[key]) {
+                        const chunkId = key.substring(keyPrefix.length);
+                        if(chunkId.startsWith('chunk_')) {
+                            const $target = $contentContainer.find(`[data-translate-id="${chunkId}"]`);
+                            if ($target.length) $target.replaceWith(translatedResults[key]);
+                        }
                     }
                 });
                 $contentContainer.find('[data-translate-id]').removeAttr('data-translate-id');
@@ -439,7 +441,6 @@ async function run() {
                 if (currentEditInfo) lastEditInfo[pageName] = currentEditInfo;
             }
 
-            // 清空池子
             globalTasksPool = {};
             pendingPagesData =[];
             poolCharCount = 0;
@@ -452,4 +453,4 @@ async function run() {
     console.log("--- 所有页面处理完毕，任务结束！ ---");
 }
 
-run().catch(console.error);console.error);
+run().catch(console.error);
