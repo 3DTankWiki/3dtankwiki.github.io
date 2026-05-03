@@ -144,7 +144,7 @@ async function translateBatchWithGemini(tasksObj, dictStr) {
     const results = { ...tasksObj };
     
     // 按字符总长度划分批次
-    const TARGET_BATCH_CHARS = 80000; 
+    const TARGET_BATCH_CHARS = 160000; 
     const batches =[];
     let currentBatch = {};
     let currentCharCount = 0;
