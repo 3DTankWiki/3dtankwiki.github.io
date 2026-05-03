@@ -17,6 +17,11 @@ const OUTPUT_DIR = './output';
 const EDIT_INFO_FILE = path.join(__dirname, 'last_edit_info.json');
 const REDIRECT_MAP_FILE = path.join(__dirname, 'redirect_map.json');
 
+// 【新增】超时保护相关常量 (避免被 GitHub Actions 6小时强杀)
+const MAX_EXECUTION_TIME_MINUTES = parseInt(process.env.MAX_EXECUTION_TIME || '345', 10); // 默认 5小时45分钟
+const MAX_EXECUTION_TIME_MS = MAX_EXECUTION_TIME_MINUTES * 60 * 1000;
+const SCRIPT_START_TIME = Date.now();
+
 // 初始化 Gemini 客户端
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 const geminiModel = genAI.getGenerativeModel({ model: "gemini-3.1-flash-lite-preview" });
@@ -182,7 +187,7 @@ ${dictStr}
 3. 【精确翻译可见属性】：请务必翻译 HTML 标签中用于显示的属性（如 \`title="..."\`、\`alt="..."\`、\`placeholder="..."\` 等，例如 \`title="First appeared: ..."\` 必须翻译为中文）。但是对于 \`href\`、\`src\`、\`id\`、\`class\`、\`style\`、\`data-*\` 等功能性属性，【必须原样保留，绝对不能改】！
 ${dictPrompt}
 5. 【盘古之白排版规范 - 极其重要】：
-   - 中文字符与中文字符之间【绝对不要加空格或 &nbsp; 实体】，即使它们被 HTML 标签隔开！比如输出必须是 "为了用<a href="...">红宝石</a>购买"，决不能出现空格！
+   - 中文字符与中文字符之间【绝对不要加空格或 &nbsp; 实体】，即使它们被 HTML 标签隔开！比如输出必须是 "为了用<a href="...">红宝石</a>购买"，决构不能出现空格！
    - 【英文/数字】与【中文汉字】的交界处，请加上一个半角空格！
    - 【严禁修改数值代码】：原文中的数值（如 187.5、205.5 等）必须【绝对原样保留】！绝对不要把数字中的小数点（.）改写成逗号（,），也绝对不要在数字中间随意加空格！
 6. 除了词库中的术语，其余部分请结合上下文翻译得专业流畅。如果是普通句子末尾的英文标点，请翻译为中文标点；如果是数字内的标点或HTML代码，请原样保留。
@@ -520,6 +525,12 @@ async function run() {
     };
 
     while (pageIndex < pagesToVisit.length) {
+        // 【新增】判断运行时间是否超过安全阈值
+        if (Date.now() - SCRIPT_START_TIME > MAX_EXECUTION_TIME_MS) {
+            console.log(`\n⏳ 运行时间已达安全上限 (${MAX_EXECUTION_TIME_MINUTES} 分钟)，触发超时保护！主动退出以保存当前进度...`);
+            break; 
+        }
+
         const promises = new Array();
         
         while (activeTasks < CONCURRENCY_LIMIT && pageIndex < pagesToVisit.length) {
@@ -580,19 +591,20 @@ async function run() {
                 }
             }
         }
+    }
 
-        // 如果全部页面都抓取完毕，池子里还有残余的零星散碎，最后全发掉
-        if (pageIndex >= pagesToVisit.length && pendingPreparedPages.length > 0) {
-            console.log(`\n🏁 爬虫列队已空，正在清理池内最后的遗留碎片...`);
-            await flushGlobalTranslation();
-        }
+    // 【新增】将最后一次清理池子的逻辑移动到主循环外部
+    // 这样不论是自然完成还是因为超时强行跳出循环，都会执行这步，不会丢失进度。
+    if (pendingPreparedPages.length > 0) {
+        console.log(`\n🏁 主循环已结束 (抓取完毕或超时保护退出)，正在清理池内最后的遗留碎片...`);
+        await flushGlobalTranslation();
     }
 
     try {
         fs.writeFileSync(EDIT_INFO_FILE, JSON.stringify(lastEditInfo, null, 2), 'utf-8');
         fs.writeFileSync(REDIRECT_MAP_FILE, JSON.stringify(redirectMap, null, 2), 'utf-8');
     } catch (e) {}
-    console.log("--- 所有页面处理完毕，任务结束！ ---");
+    console.log("--- 进程执行完毕，任务安全结束！ ---");
 }
 
 run().catch(console.error);
