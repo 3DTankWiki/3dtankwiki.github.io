@@ -10,7 +10,7 @@ const BASE_URL = 'https://en.tankiwiki.com';
 const START_PAGE = 'Tanki_Online_Wiki';
 const RECENT_CHANGES_FEED_URL = 'https://en.tankiwiki.com/api.php?action=feedrecentchanges&days=7&feedformat=atom&urlversion=1';
 const CONCURRENCY_LIMIT = 1; 
-const PAGE_BATCH_LIMIT = 10; // 🚀 【新增】每积攒多少个页面后，进行一次合并翻译请求
+const TARGET_BATCH_CHARS = 160000; // 🚀 【核心】全局唯一合并阈值：积攒满多少字符后触发一次大批量机翻
 const DICTIONARY_URL = 'https://testanki1.github.io/translations.js'; 
 const SOURCE_DICT_FILE = 'source_replacements.js'; 
 const OUTPUT_DIR = './output';
@@ -68,7 +68,7 @@ async function getPagesForFeedMode(lastEditInfo) {
         }
         return pagesToUpdate;
     } catch (error) {
-        console.error('❌ [更新模式] 出错:', error.message);
+        console.error('❌[更新模式] 出错:', error.message);
         return new Array();
     } finally {
         if (browser) await browser.close();
@@ -144,8 +144,7 @@ async function translateBatchWithGemini(tasksObj, dictStr) {
 
     const results = { ...tasksObj };
     
-    // 依然以 160,000 字符为一批次拆分超大全量JSON，最大化利用每次请求！
-    const TARGET_BATCH_CHARS = 160000; 
+    // 如果累积发来的字符数超标，这里会自动二次拆片兜底，确保极度安全
     const batches = new Array();
     let currentBatch = {};
     let currentCharCount = 0;
@@ -389,7 +388,7 @@ async function preparePage(pageNameToProcess, sourceReplacementMap, lastEditInfo
     extractChunksToTranslate($contentContainer);
     
     const actualChunkCount = Object.keys(tasksObj).length - (tasksObj['title_0'] ? 1 : 0);
-    console.log(`[${pageNameToProcess}] 经拆分提取出 ${actualChunkCount} 个待翻译 HTML 块，已加入队列。`);
+    console.log(`[${pageNameToProcess}] 经拆分提取出 ${actualChunkCount} 个待翻译 HTML 块，已加入积攒队列。`);
 
     return { 
         status: 'prepared',
@@ -441,11 +440,11 @@ function finalizePage(preparedData, translatedResultsForPage) {
     const finalHtml = `<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>${translatedTitle}</title>${headContent}<style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="${bodyClass}"><div id="mw-main-container">${homeButtonHtml}<div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr">${finalHtmlContent}</div></div></div></div></div>${bodyEndScripts.join('\n    ')}</body></html>`;
     
     fs.writeFileSync(path.join(OUTPUT_DIR, `${pageNameToProcess}.html`), finalHtml, 'utf-8');
-    console.log(`✨ [${pageNameToProcess}] 渲染及保存完成！`);
+    console.log(`✨[${pageNameToProcess}] 渲染及保存完成！`);
 }
 
 async function run() {
-    console.log("--- 翻译任务开始 (增强队列模式) ---");
+    console.log("--- 翻译任务开始 (纯字符上限触发模式) ---");
     if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR);
 
     const sourceReplacementMap = getPreparedSourceDictionary();
@@ -494,7 +493,7 @@ async function run() {
                     if (!result) return;
                     if (result.status === 'prepared') {
                         pendingPreparedPages.push(result);
-                        for (const[key, htmlChunk] of Object.entries(result.tasksObj)) {
+                        for (const [key, htmlChunk] of Object.entries(result.tasksObj)) {
                             const numericKey = `id_${globalKeyCounter++}`;
                             globalTasksObj[numericKey] = htmlChunk;
                             globalKeyMap[numericKey] = { pageName: currentPageName, localKey: key };
@@ -506,15 +505,15 @@ async function run() {
                             if (!visitedPages.has(link) && !pagesToVisit.includes(link)) pagesToVisit.push(link);
                         }
                     }
-                }).catch(err => console.error(`处理页面准备出错 [${currentPageName}]:`, err)).finally(() => activeTasks--);
+                }).catch(err => console.error(`处理页面准备出错[${currentPageName}]:`, err)).finally(() => activeTasks--);
             promises.push(task);
         }
         await Promise.all(promises);
 
-        // 🎯 触发合并翻译的时机：达到了页面积攒数量 或 列队内所有页面已被抽取完毕
-        if (pendingPreparedPages.length >= PAGE_BATCH_LIMIT || pageIndex >= pagesToVisit.length) {
+        // 🎯 触发合并翻译的时机：达到了字符数阈值 或 列队内所有页面已被抽取完毕
+        if (accumulatedChars >= TARGET_BATCH_CHARS || pageIndex >= pagesToVisit.length) {
             if (pendingPreparedPages.length > 0) {
-                console.log(`\n🚀【触发全局合并翻译】: 积攒了 ${pendingPreparedPages.length} 个页面，总计 ${Object.keys(globalTasksObj).length} 个任务块，总字符数 ~${accumulatedChars}`);
+                console.log(`\n🚀【触发全局合并翻译】: 积攒字符数已达标 (~${accumulatedChars} 字符)，包含了 ${pendingPreparedPages.length} 个页面中的 ${Object.keys(globalTasksObj).length} 个任务块！`);
                 
                 let globalTranslated = {};
                 if (Object.keys(globalTasksObj).length > 0) {
@@ -547,7 +546,7 @@ async function run() {
                     }
                 }
 
-                // 扫除批次缓存，准备下一批
+                // 扫除批次缓存，清空容积准备下一批
                 pendingPreparedPages = new Array();
                 globalTasksObj = {};
                 globalKeyMap = {};
