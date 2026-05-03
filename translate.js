@@ -18,7 +18,7 @@ const REDIRECT_MAP_FILE = path.join(__dirname, 'redirect_map.json');
 
 // 初始化 Gemini 客户端
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
-let geminiModel; // 将模型实例改为变量，推迟到 run() 中动态赋值
+const geminiModel = genAI.getGenerativeModel({ model: "gemini-3.1-flash-lite-preview" });
 
 const sanitizePageName = (name) => name.replaceAll(' ', '_');
 
@@ -143,14 +143,15 @@ async function translateBatchWithGemini(tasksObj, dictStr) {
 
     const results = { ...tasksObj };
     
-    // 按字符总长度划分批次
-    const TARGET_BATCH_CHARS = 160000; 
+    // 【修改点 1】：不再按固定数量划分，而是按字符总长度划分，使每批次内容大小大致相同
+    const TARGET_BATCH_CHARS = 160000; // 设定每个批次的目标字符数
     const batches =[];
     let currentBatch = {};
     let currentCharCount = 0;
 
     for (const key of keys) {
         const itemLength = tasksObj[key].length;
+        // 如果当前批次非空，且加上当前项后超出目标大小，则封存当前批次，开启下一个
         if (currentCharCount > 0 && (currentCharCount + itemLength) > TARGET_BATCH_CHARS) {
             batches.push(currentBatch);
             currentBatch = {};
@@ -159,10 +160,12 @@ async function translateBatchWithGemini(tasksObj, dictStr) {
         currentBatch[key] = tasksObj[key];
         currentCharCount += itemLength;
     }
+    // 将最后剩余的内容推入批次
     if (Object.keys(currentBatch).length > 0) {
         batches.push(currentBatch);
     }
 
+    // 【修改点 1】：调整了 dictPrompt 的序号为 4，适配新的规则排版
     const dictPrompt = dictStr ? `
 4. 【术语表要求】：请严格遵守以下提供的《翻译专有名词词库》。只要原文出现了词库中的英文，必须统一翻译为对应的中文：
 --- 词库开始 ---
@@ -170,10 +173,12 @@ ${dictStr}
 --- 词库结束 ---
 ` : "4. 请根据《Tanki Online》（3D坦克）的游戏语境进行翻译，保证专业术语准确。";
 
+    // 【修改点 2】：遍历动态计算好的批次
     for (let i = 0; i < batches.length; i++) {
         const batchObj = batches[i];
         const batchKeys = Object.keys(batchObj);
 
+        // 【核心修改】：重写了 Prompt，明确了标签移动规则和属性翻译规则
         const prompt = `你是一个专业的《Tanki Online》（3D坦克）游戏 Wiki 本地化翻译引擎。
 请将以下 JSON 对象中的值（包含完整 HTML 标签的代码块）翻译为简体中文。
 
@@ -197,7 +202,6 @@ ${JSON.stringify(batchObj, null, 2)}`;
         
         for (let attempt = 1; attempt <= maxRetries; attempt++) {
             try {
-                // 使用动态指定的模型 geminiModel 进行请求
                 const response = await geminiModel.generateContent({
                     contents:[{ role: "user", parts:[{ text: prompt }] }],
                     generationConfig: { temperature: 0.1 } 
@@ -245,6 +249,7 @@ ${JSON.stringify(batchObj, null, 2)}`;
             console.warn(`⚠️ 该批次在 ${maxRetries} 次尝试后仍彻底失败，回退为原始 HTML。`);
         }
 
+        // 平滑流控：批次成功后也基础延时 5 秒，拉平 Token 消耗曲线
         if (i + 1 < batches.length) await new Promise(r => setTimeout(r, 5000)); 
     }
     
@@ -364,28 +369,36 @@ async function processPage(pageNameToProcess, sourceReplacementMap, dictStr, las
     const tasksObj = {};
     if (containsEnglish(translatedTitle)) tasksObj['title_0'] = translatedTitle;
     
+    // ======= 修改点开始：智能递归拆分超大块 =======
     let chunkIndex = 0;
+    
     function extractChunksToTranslate($parent) {
         $parent.children().each((_, el) => {
             const $el = $(el);
             const outerHtml = $.html($el);
             
+            // 如果不包含英文，直接跳过，节省资源
             if (!containsEnglish(outerHtml)) return;
 
+            // 核心逻辑：如果这个 HTML 块非常大（> 8000 字符），并且里面还有子元素
+            // 就不要把它当成一个整体，而是继续往深处拆分它的子节点！
             if (outerHtml.length > 8000 && $el.children().length > 0) {
                 extractChunksToTranslate($el);
             } else {
+                // 大小安全，打上临时标记并提取
                 const chunkId = `chunk_${chunkIndex++}`;
-                $el.attr('data-translate-id', chunkId);
+                $el.attr('data-translate-id', chunkId); // 注入一个临时 ID，方便翻译完塞回来
                 tasksObj[chunkId] = $.html($el);
             }
         });
     }
 
+    // 从内容主容器开始往下挖
     extractChunksToTranslate($contentContainer);
     
     const actualChunkCount = Object.keys(tasksObj).length - (tasksObj['title_0'] ? 1 : 0);
     console.log(`[${pageNameToProcess}] 经深度拆分后，提取出 ${actualChunkCount} 个安全大小的 HTML 块...`);
+    // ======= 修改点结束 =======
 
     const translatedResults = await translateBatchWithGemini(tasksObj, dictStr);
 
@@ -393,8 +406,10 @@ async function processPage(pageNameToProcess, sourceReplacementMap, dictStr, las
         translatedTitle = formatTypography(translatedResults['title_0']);
     }
     
+    // ======= 修改点开始：根据临时 ID 精准替换翻译内容 =======
     Object.keys(translatedResults).forEach(key => {
         if (key.startsWith('chunk_') && translatedResults[key]) {
+            // 找回刚才打上了特定标记的节点
             const $target = $contentContainer.find(`[data-translate-id="${key}"]`);
             if ($target.length) {
                 $target.replaceWith(translatedResults[key]);
@@ -402,7 +417,9 @@ async function processPage(pageNameToProcess, sourceReplacementMap, dictStr, las
         }
     });
 
+    // 打扫战场：如果 AI 原样返回了没有翻译的文本，清理掉多余的临时属性
     $contentContainer.find('[data-translate-id]').removeAttr('data-translate-id');
+    // ======= 修改点结束 =======
 
     let finalHtmlContent = $contentContainer.html();
     finalHtmlContent = formatTypography(finalHtmlContent);
@@ -435,12 +452,6 @@ async function run() {
     if (fs.existsSync(REDIRECT_MAP_FILE)) try { redirectMap = JSON.parse(fs.readFileSync(REDIRECT_MAP_FILE, 'utf-8')); } catch (e) {}
 
     const runMode = (process.env.RUN_MODE || 'FEED').toUpperCase();
-    
-    // 【修改点】动态判定并设置模型
-    const aiModelName = runMode === 'CRAWLER' ? 'gemma-4-31b-it' : 'gemini-3.1-flash-lite-preview';
-    geminiModel = genAI.getGenerativeModel({ model: aiModelName });
-    console.log(`⚙️ 当前运行模式为[${runMode}]，分配 AI 模型: ${aiModelName}`);
-
     let pagesToVisit =[];
 
     switch (runMode) {
