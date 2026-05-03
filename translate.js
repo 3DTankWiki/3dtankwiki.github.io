@@ -10,7 +10,7 @@ const BASE_URL = 'https://en.tankiwiki.com';
 const START_PAGE = 'Tanki_Online_Wiki';
 const RECENT_CHANGES_FEED_URL = 'https://en.tankiwiki.com/api.php?action=feedrecentchanges&days=7&feedformat=atom&urlversion=1';
 const CONCURRENCY_LIMIT = 1; 
-const TARGET_BATCH_CHARS = 160000; // 🚀 【核心】全局唯一合并阈值：积攒满多少字符后触发一次大批量机翻
+const TARGET_BATCH_CHARS = 160000; // 🚀 【核心】全局唯一合并阈值：坚守此红线
 const DICTIONARY_URL = 'https://testanki1.github.io/translations.js'; 
 const SOURCE_DICT_FILE = 'source_replacements.js'; 
 const OUTPUT_DIR = './output';
@@ -133,7 +133,7 @@ function formatTypography(htmlStr) {
     return res;
 }
 
-// 【将合并后的海量 HTML 和 翻译字典 一起投喂给 Gemini - 智能拆分】
+// 【底层兜底翻译：若单页大于阈值，依然会自动分片给 AI】
 async function translateBatchWithGemini(tasksObj, dictStr) {
     const keys = Object.keys(tasksObj);
     if (keys.length === 0) return {};
@@ -144,7 +144,6 @@ async function translateBatchWithGemini(tasksObj, dictStr) {
 
     const results = { ...tasksObj };
     
-    // 如果累积发来的字符数超标，这里会自动二次拆片兜底，确保极度安全
     const batches = new Array();
     let currentBatch = {};
     let currentCharCount = 0;
@@ -239,7 +238,7 @@ ${JSON.stringify(batchObj, null, 2)}`;
 
         if (batchResult) {
             batchKeys.forEach(k => { if (batchResult[k]) results[k] = batchResult[k]; });
-            console.log(`✅ 成功翻译发往 AI 的超大合并批次:[${i + 1} / ${batches.length}] (包含 ${batchKeys.length} 个HTML块，本次负载 ~${batches[i].charCount} 字符)`);
+            console.log(`✅ 成功翻译发往 AI 的合并批次:[${i + 1} / ${batches.length}] (包含 ${batchKeys.length} 个HTML块，本次负载 ~${batches[i].charCount} 字符)`);
         } else {
             console.warn(`⚠️ 该合并批次在 ${maxRetries} 次尝试后仍失败，回退为原始 HTML。`);
         }
@@ -388,8 +387,6 @@ async function preparePage(pageNameToProcess, sourceReplacementMap, lastEditInfo
     extractChunksToTranslate($contentContainer);
     
     const actualChunkCount = Object.keys(tasksObj).length - (tasksObj['title_0'] ? 1 : 0);
-    console.log(`[${pageNameToProcess}] 经拆分提取出 ${actualChunkCount} 个待翻译 HTML 块，已加入积攒队列。`);
-
     return { 
         status: 'prepared',
         pageNameToProcess, 
@@ -444,7 +441,7 @@ function finalizePage(preparedData, translatedResultsForPage) {
 }
 
 async function run() {
-    console.log("--- 翻译任务开始 (纯字符上限触发模式) ---");
+    console.log("--- 翻译任务开始 (精准防超载装箱模式) ---");
     if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR);
 
     const sourceReplacementMap = getPreparedSourceDictionary();
@@ -471,12 +468,56 @@ async function run() {
     let activeTasks = 0, pageIndex = 0;
     const isForceMode = runMode === 'FEED' || runMode === 'SPECIFIED';
 
-    // 🚀 --- 全局积攒批次存储 ---
+    // 🚀 --- 全局积攒批次池 ---
     let pendingPreparedPages = new Array();
     let globalTasksObj = {};
     let globalKeyMap = {}; // 记录数字短ID到具体页面与块的映射
     let globalKeyCounter = 0;
     let accumulatedChars = 0;
+
+    // 【封装独立翻译触发器】
+    const flushGlobalTranslation = async () => {
+        if (pendingPreparedPages.length === 0) return;
+        console.log(`\n🚀【触发全局合并翻译】: 当前池内共有 ${pendingPreparedPages.length} 个页面，总字符数 ~${accumulatedChars}！`);
+        
+        let globalTranslated = {};
+        if (Object.keys(globalTasksObj).length > 0) {
+            globalTranslated = await translateBatchWithGemini(globalTasksObj, dictStr);
+        } else {
+            console.log("⚠️ 积攒的页面中没有提取到任何需要翻译的英文块。");
+        }
+
+        // 拆包并分发翻译结果，恢复到各自页面的 DOM 中
+        const pageTranslatedResultsMap = {};
+        for (const [numericKey, transHtml] of Object.entries(globalTranslated)) {
+            const mapping = globalKeyMap[numericKey];
+            if (mapping) {
+                const { pageName, localKey } = mapping;
+                if (!pageTranslatedResultsMap[pageName]) pageTranslatedResultsMap[pageName] = {};
+                pageTranslatedResultsMap[pageName][localKey] = transHtml;
+            }
+        }
+
+        for (const preparedData of pendingPreparedPages) {
+            const pageName = preparedData.pageNameToProcess;
+            const pageResults = pageTranslatedResultsMap[pageName] || {};
+            try {
+                finalizePage(preparedData, pageResults);
+                if (preparedData.currentEditInfo) {
+                    lastEditInfo[pageName] = preparedData.currentEditInfo;
+                }
+            } catch (err) {
+                console.error(`保存页面出错 [${pageName}]:`, err);
+            }
+        }
+
+        // 扫除批次缓存，清空容积准备下一批
+        pendingPreparedPages = new Array();
+        globalTasksObj = {};
+        globalKeyMap = {};
+        globalKeyCounter = 0;
+        accumulatedChars = 0;
+    };
 
     while (pageIndex < pagesToVisit.length) {
         const promises = new Array();
@@ -489,70 +530,61 @@ async function run() {
             activeTasks++;
 
             const task = preparePage(currentPageName, sourceReplacementMap, lastEditInfo, isForceMode)
-                .then(result => {
-                    if (!result) return;
-                    if (result.status === 'prepared') {
-                        pendingPreparedPages.push(result);
-                        for (const [key, htmlChunk] of Object.entries(result.tasksObj)) {
-                            const numericKey = `id_${globalKeyCounter++}`;
-                            globalTasksObj[numericKey] = htmlChunk;
-                            globalKeyMap[numericKey] = { pageName: currentPageName, localKey: key };
-                            accumulatedChars += htmlChunk.length;
-                        }
-                    }
-                    if (runMode === 'CRAWLER' && result.links) {
-                        for (const link of result.links) {
-                            if (!visitedPages.has(link) && !pagesToVisit.includes(link)) pagesToVisit.push(link);
-                        }
-                    }
-                }).catch(err => console.error(`处理页面准备出错[${currentPageName}]:`, err)).finally(() => activeTasks--);
+                .catch(err => {
+                    console.error(`处理页面准备出错[${currentPageName}]:`, err);
+                    return null;
+                })
+                .finally(() => activeTasks--);
             promises.push(task);
         }
-        await Promise.all(promises);
+        
+        const results = await Promise.all(promises);
 
-        // 🎯 触发合并翻译的时机：达到了字符数阈值 或 列队内所有页面已被抽取完毕
-        if (accumulatedChars >= TARGET_BATCH_CHARS || pageIndex >= pagesToVisit.length) {
-            if (pendingPreparedPages.length > 0) {
-                console.log(`\n🚀【触发全局合并翻译】: 积攒字符数已达标 (~${accumulatedChars} 字符)，包含了 ${pendingPreparedPages.length} 个页面中的 ${Object.keys(globalTasksObj).length} 个任务块！`);
+        for (const result of results) {
+            if (!result) continue;
+            
+            if (result.status === 'prepared') {
+                let newPageChars = 0;
+                for (const htmlChunk of Object.values(result.tasksObj)) {
+                    newPageChars += htmlChunk.length;
+                }
                 
-                let globalTranslated = {};
-                if (Object.keys(globalTasksObj).length > 0) {
-                    globalTranslated = await translateBatchWithGemini(globalTasksObj, dictStr);
-                } else {
-                    console.log("⚠️ 积攒的页面中没有提取到任何需要翻译的英文块。");
+                const actualChunkCount = Object.keys(result.tasksObj).length - (result.tasksObj['title_0'] ? 1 : 0);
+                console.log(`[${result.pageNameToProcess}] 解析到 ${actualChunkCount} 个待翻区块，共计约 ${newPageChars} 字符。`);
+
+                // 🚦 1. 预判：如果装入这个页面会导致破阈值，并且当前池子不是空的，赶紧先把旧货发掉！
+                if (accumulatedChars > 0 && (accumulatedChars + newPageChars) > TARGET_BATCH_CHARS) {
+                    console.log(`\n🚧[防超载装箱] 新页面加入将导致总字数(${accumulatedChars + newPageChars})突破红线(${TARGET_BATCH_CHARS})！提前清仓...`);
+                    await flushGlobalTranslation();
                 }
 
-                // 拆包并分发翻译结果，恢复到各自页面的 DOM 中
-                const pageTranslatedResultsMap = {};
-                for (const[numericKey, transHtml] of Object.entries(globalTranslated)) {
-                    const mapping = globalKeyMap[numericKey];
-                    if (mapping) {
-                        const { pageName, localKey } = mapping;
-                        if (!pageTranslatedResultsMap[pageName]) pageTranslatedResultsMap[pageName] = {};
-                        pageTranslatedResultsMap[pageName][localKey] = transHtml;
-                    }
+                // 2. 将此页面装入池子
+                pendingPreparedPages.push(result);
+                for (const[key, htmlChunk] of Object.entries(result.tasksObj)) {
+                    const numericKey = `id_${globalKeyCounter++}`;
+                    globalTasksObj[numericKey] = htmlChunk;
+                    globalKeyMap[numericKey] = { pageName: result.pageNameToProcess, localKey: key };
+                    accumulatedChars += htmlChunk.length;
                 }
 
-                for (const preparedData of pendingPreparedPages) {
-                    const pageName = preparedData.pageNameToProcess;
-                    const pageResults = pageTranslatedResultsMap[pageName] || {};
-                    try {
-                        finalizePage(preparedData, pageResults);
-                        if (preparedData.currentEditInfo) {
-                            lastEditInfo[pageName] = preparedData.currentEditInfo;
-                        }
-                    } catch (err) {
-                        console.error(`保存页面出错 [${pageName}]:`, err);
-                    }
+                // 🚦 3. 即时裁决：如果刚装进去的页面本身极其巨大（直接导致总字符 ≥ 阈值），立刻清仓！
+                if (accumulatedChars >= TARGET_BATCH_CHARS) {
+                    console.log(`\n🚧 [到达阀门] 当前池字数达标/超标 (${accumulatedChars})，立即触发翻译下水！`);
+                    await flushGlobalTranslation();
                 }
-
-                // 扫除批次缓存，清空容积准备下一批
-                pendingPreparedPages = new Array();
-                globalTasksObj = {};
-                globalKeyMap = {};
-                globalKeyCounter = 0;
-                accumulatedChars = 0;
             }
+
+            if (runMode === 'CRAWLER' && result.links) {
+                for (const link of result.links) {
+                    if (!visitedPages.has(link) && !pagesToVisit.includes(link)) pagesToVisit.push(link);
+                }
+            }
+        }
+
+        // 如果全部页面都抓取完毕，池子里还有残余的零星散碎，最后全发掉
+        if (pageIndex >= pagesToVisit.length && pendingPreparedPages.length > 0) {
+            console.log(`\n🏁 爬虫列队已空，正在清理池内最后的遗留碎片...`);
+            await flushGlobalTranslation();
         }
     }
 
