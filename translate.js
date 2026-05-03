@@ -5,20 +5,21 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 const fs = require('fs');
 const path = require('path');
 
-// --- 【配置常量】 ---
 const BASE_URL = 'https://en.tankiwiki.com';
 const START_PAGE = 'Tanki_Online_Wiki';
 const RECENT_CHANGES_FEED_URL = 'https://en.tankiwiki.com/api.php?action=feedrecentchanges&days=7&feedformat=atom&urlversion=1';
-const CONCURRENCY_LIMIT = 1; 
 const DICTIONARY_URL = 'https://testanki1.github.io/translations.js'; 
 const SOURCE_DICT_FILE = 'source_replacements.js'; 
 const OUTPUT_DIR = './output';
 const EDIT_INFO_FILE = path.join(__dirname, 'last_edit_info.json');
 const REDIRECT_MAP_FILE = path.join(__dirname, 'redirect_map.json');
 
-// 初始化 Gemini 客户端
+// 合并页面的字符数阈值（约等于 160k 字符时发车）
+const TARGET_BATCH_CHARS = 160000; 
+
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
-const geminiModel = genAI.getGenerativeModel({ model: "gemini-3.1-flash-lite-preview" });
+const aiModelName = "gemini-3.1-flash-lite-preview";
+const geminiModel = genAI.getGenerativeModel({ model: aiModelName });
 
 const sanitizePageName = (name) => name.replaceAll(' ', '_');
 
@@ -38,7 +39,7 @@ async function getPagesForFeedMode(lastEditInfo) {
 
         const $ = cheerio.load(feedXml, { xmlMode: true, decodeEntities: false });
         const entries = $('entry');
-        if (entries.length === 0) return[];
+        if (entries.length === 0) return new Array();
 
         const pagesToConsider = new Map();
         entries.each((i, entry) => {
@@ -57,7 +58,7 @@ async function getPagesForFeedMode(lastEditInfo) {
             }
         });
 
-        const pagesToUpdate = [];
+        const pagesToUpdate = new Array();
         for (const[title, newRevisionId] of pagesToConsider.entries()) {
             const blockedPrefixes =['Special:', 'User:', 'MediaWiki:', 'Help:', 'Category:', 'File:', 'Template:'];
             if (blockedPrefixes.some(p => title.startsWith(p))) continue;
@@ -68,14 +69,13 @@ async function getPagesForFeedMode(lastEditInfo) {
         return pagesToUpdate;
     } catch (error) {
         console.error('❌ [更新模式] 出错:', error.message);
-        return[];
+        return new Array();
     } finally {
         if (browser) await browser.close();
     }
 }
 
 async function getOnlineDictionaryString() {
-    console.log(`正在从 URL 获取专有名词翻译词典: ${DICTIONARY_URL}`); 
     try { 
         const response = await fetch(DICTIONARY_URL); 
         if (!response.ok) throw new Error(`网络请求失败: ${response.status}`); 
@@ -83,15 +83,9 @@ async function getOnlineDictionaryString() {
         const dictObj = new Function(`${scriptContent}; return replacementDict;`)(); 
         
         let dictStr = "";
-        for (const [en, zh] of Object.entries(dictObj)) {
-            dictStr += `${en} -> ${zh}\n`;
-        }
-        console.log(`✅ 成功加载翻译词典，将作为指令发送给 AI。`);
+        for (const [en, zh] of Object.entries(dictObj)) dictStr += `${en} -> ${zh}\n`;
         return dictStr;
-    } catch (error) { 
-        console.warn(`⚠️ 获取在线词典失败，将不使用专有词库提示AI: ${error.message}`);
-        return ""; 
-    } 
+    } catch (error) { return ""; } 
 }
 
 function getPreparedSourceDictionary() {
@@ -106,153 +100,95 @@ function getPreparedSourceDictionary() {
 
 function containsEnglish(text) { return /[a-zA-Z]/.test(text); }
 
-// === 排版格式化工具 ===
 function formatTypography(htmlStr) {
     if (!htmlStr) return htmlStr;
     let res = htmlStr;
-
     res = res.replace(/([\u4e00-\u9fa5])(<\/[a-zA-Z0-9]+>)?(?:\s|&nbsp;)*:(?:\s|&nbsp;)*/g, '$1$2：');
     res = res.replace(/([\u4e00-\u9fa5])(<\/[a-zA-Z0-9]+>)?(?:\s|&nbsp;)*,(?:\s|&nbsp;)*/g, '$1$2，');
     res = res.replace(/([\u4e00-\u9fa5])(<\/[a-zA-Z0-9]+>)?(?:\s|&nbsp;)*\.(?:\s|&nbsp;)*/g, '$1$2。');
-
     res = res.replace(/([\u4e00-\u9fa5])(?:\s|&nbsp;)+([\u4e00-\u9fa5])/g, '$1$2');
     res = res.replace(/([\u4e00-\u9fa5])(?:\s|&nbsp;)+([\u4e00-\u9fa5])/g, '$1$2'); 
-    
     res = res.replace(/([\u4e00-\u9fa5])(?:\s|&nbsp;)+(<[^>]+>)/g, '$1$2');
     res = res.replace(/(<[^>]+>)(?:\s|&nbsp;)+([\u4e00-\u9fa5])/g, '$1$2');
-
     res = res.replace(/([a-zA-Z0-9])([\u4e00-\u9fa5])/g, '$1 $2');
     res = res.replace(/([\u4e00-\u9fa5])([a-zA-Z0-9])/g, '$1 $2');
-
     res = res.replace(/([a-zA-Z0-9])(<\/[a-zA-Z0-9]+>)([\u4e00-\u9fa5])/g, '$1$2 $3');
     res = res.replace(/([\u4e00-\u9fa5])(<\/[a-zA-Z0-9]+>)([a-zA-Z0-9])/g, '$1$2 $3');
     res = res.replace(/([a-zA-Z0-9])(<[a-zA-Z0-9]+[^>]*>)([\u4e00-\u9fa5])/g, '$1 $2$3');
     res = res.replace(/([\u4e00-\u9fa5])(<[a-zA-Z0-9]+[^>]*>)([a-zA-Z0-9])/g, '$1 $2$3');
-
     return res;
 }
 
-// 【将完整 HTML 和 翻译字典 一起投喂给 Gemini - 加入智能限速】
+// 【将所有累积的页面合并数据，发送给 Gemini】
 async function translateBatchWithGemini(tasksObj, dictStr) {
     const keys = Object.keys(tasksObj);
     if (keys.length === 0) return {};
-    if (!process.env.GEMINI_API_KEY) {
-        console.warn("⚠️ 未配置 GEMINI_API_KEY，跳过机翻。");
-        return tasksObj;
-    }
+    if (!process.env.GEMINI_API_KEY) return tasksObj;
 
     const results = { ...tasksObj };
-    
-    // 【修改点 1】：不再按固定数量划分，而是按字符总长度划分，使每批次内容大小大致相同
-    const TARGET_BATCH_CHARS = 160000; // 设定每个批次的目标字符数
-    const batches =[];
-    let currentBatch = {};
+    const batches = new Array(); 
+    let currentBatch = {}; 
     let currentCharCount = 0;
 
     for (const key of keys) {
         const itemLength = tasksObj[key].length;
-        // 如果当前批次非空，且加上当前项后超出目标大小，则封存当前批次，开启下一个
         if (currentCharCount > 0 && (currentCharCount + itemLength) > TARGET_BATCH_CHARS) {
-            batches.push(currentBatch);
-            currentBatch = {};
-            currentCharCount = 0;
+            batches.push(currentBatch); currentBatch = {}; currentCharCount = 0;
         }
-        currentBatch[key] = tasksObj[key];
-        currentCharCount += itemLength;
+        currentBatch[key] = tasksObj[key]; currentCharCount += itemLength;
     }
-    // 将最后剩余的内容推入批次
-    if (Object.keys(currentBatch).length > 0) {
-        batches.push(currentBatch);
-    }
+    if (Object.keys(currentBatch).length > 0) batches.push(currentBatch);
 
-    // 【修改点 1】：调整了 dictPrompt 的序号为 4，适配新的规则排版
     const dictPrompt = dictStr ? `
-4. 【术语表要求】：请严格遵守以下提供的《翻译专有名词词库》。只要原文出现了词库中的英文，必须统一翻译为对应的中文：
---- 词库开始 ---
+4. 【术语表】：严格遵守以下词库：
+---
 ${dictStr}
---- 词库结束 ---
-` : "4. 请根据《Tanki Online》（3D坦克）的游戏语境进行翻译，保证专业术语准确。";
+---
+` : "4. 请根据《Tanki Online》的游戏语境进行翻译，保证专业术语准确。";
 
-    // 【修改点 2】：遍历动态计算好的批次
     for (let i = 0; i < batches.length; i++) {
-        const batchObj = batches[i];
-        const batchKeys = Object.keys(batchObj);
+        const batchObj = batches[i]; const batchKeys = Object.keys(batchObj);
+        console.log(`🚀 发送超大合并请求包[${i + 1}/${batches.length}]... (打包了 ${batchKeys.length} 个HTML块)`);
 
-        // 【核心修改】：重写了 Prompt，明确了标签移动规则和属性翻译规则
-        const prompt = `你是一个专业的《Tanki Online》（3D坦克）游戏 Wiki 本地化翻译引擎。
-请将以下 JSON 对象中的值（包含完整 HTML 标签的代码块）翻译为简体中文。
-
-【极端重要的要求】：
-1. JSON的键名（Key）绝对不可更改。只翻译键值（Value）。
-2. 【保留所有标签，严防吞标签】：你必须原样保留所有的 HTML 标签！如果因为中英文语序不同（比如英文是 A for B，中文是 B 的 A），【必须带着完整的 HTML 标签一起移动位置】！例如原文 \`Augments for <a href="/Scorpion">Scorpion</a>\` 必须翻译为 \`<a href="/Scorpion">蝎子</a>的装备改造\`，绝对不许弄丢或删除 \`<a>\` 等任何标签！
-3. 【精确翻译可见属性】：请务必翻译 HTML 标签中用于显示的属性（如 \`title="..."\`、\`alt="..."\`、\`placeholder="..."\` 等，例如 \`title="First appeared: ..."\` 必须翻译为中文）。但是对于 \`href\`、\`src\`、\`id\`、\`class\`、\`style\`、\`data-*\` 等功能性属性，【必须原样保留，绝对不能改】！
+        const prompt = `你是一个专业的《Tanki Online》游戏Wiki翻译引擎。请将以下JSON对象中的值翻译为简体中文。
+要求：
+1. 键名（Key）绝对不可更改。只翻译键值（Value）。
+2. 原样保留所有 HTML 标签！如因语序变动，必须带着完整标签移动！
+3. 仅翻译如 title="..." 等显示属性，href、src、id、class 必须原样保留。
 ${dictPrompt}
-5. 【盘古之白排版规范 - 极其重要】：
-   - 中文字符与中文字符之间【绝对不要加空格或 &nbsp; 实体】，即使它们被 HTML 标签隔开！比如输出必须是 "为了用<a href="...">红宝石</a>购买"，决不能出现空格！
-   - 【英文/数字】与【中文汉字】的交界处，请加上一个半角空格！
-   - 【严禁修改数值代码】：原文中的数值（如 187.5、205.5 等）必须【绝对原样保留】！绝对不要把数字中的小数点（.）改写成逗号（,），也绝对不要在数字中间随意加空格！
-6. 除了词库中的术语，其余部分请结合上下文翻译得专业流畅。如果是普通句子末尾的英文标点，请翻译为中文标点；如果是数字内的标点或HTML代码，请原样保留。
-7. 绝对不要使用 Markdown 代码块包裹输出！直接输出合法的、可被 JSON.parse() 解析的纯 JSON 格式！
+5. 中文字符间不可加空格；中英文交界处加半角空格；数值原样保留。
+直接输出可被 JSON.parse() 解析的纯 JSON 格式！
 
-待翻译 HTML 块的 JSON：
+待翻译：
 ${JSON.stringify(batchObj, null, 2)}`;
 
         let batchResult = null;
-        const maxRetries = 5;
-        
-        for (let attempt = 1; attempt <= maxRetries; attempt++) {
+        for (let attempt = 1; attempt <= 5; attempt++) {
             try {
-                const response = await geminiModel.generateContent({
-                    contents:[{ role: "user", parts:[{ text: prompt }] }],
+                // 模型调用
+                const response = await geminiModel.generateContent({ 
+                    contents: new Array({ role: "user", parts: new Array({ text: prompt }) }), 
                     generationConfig: { temperature: 0.1 } 
                 });
                 let text = response.response.text();
-                
                 text = text.replace(/^```(json)?\s*/i, '').replace(/\s*```$/i, '').trim();
-                
                 const jsonMatch = text.match(/\{[\s\S]*\}/);
                 if (jsonMatch) {
                     const parsed = JSON.parse(jsonMatch[0]);
-                    if (typeof parsed === 'object' && !Array.isArray(parsed)) {
-                        batchResult = parsed;
-                        break;
-                    }
+                    if (typeof parsed === 'object' && !Array.isArray(parsed)) { batchResult = parsed; break; }
                 }
             } catch (err) {
-                const errMsg = err.message || "";
-                console.warn(`[Gemini 翻译尝试 ${attempt}/${maxRetries}] 失败: ${errMsg.substring(0, 150)}...`);
-                
-                if (attempt < maxRetries) {
-                    let waitTime = 3000; 
-                    
-                    if (errMsg.includes('429') || errMsg.includes('Quota exceeded')) {
-                        const retryMatch = errMsg.match(/retry in (\d+(?:\.\d+)?)\s*s/i);
-                        if (retryMatch && retryMatch[1]) {
-                            const waitSeconds = parseFloat(retryMatch[1]);
-                            waitTime = (waitSeconds + 2) * 1000; 
-                            console.log(`⏳ 触发 API 配额限制 (TPM/RPM满载)！脚本将精准等待 ${Math.ceil(waitTime/1000)} 秒后复活...`);
-                        } else {
-                            waitTime = 64000; 
-                            console.log(`⏳ 触发 API 配额限制！未检测到惩罚时长，强制默认休眠 64 秒...`);
-                        }
-                    }
-                    
-                    await new Promise(r => setTimeout(r, waitTime));
-                }
+                console.warn(`⚠️[包尝试 ${attempt}/5] 失败: ${err.message.substring(0, 100)}`);
+                if (attempt < 5) await new Promise(r => setTimeout(r, (err.message.includes('429') ? 64000 : 3000)));
             }
         }
 
         if (batchResult) {
             batchKeys.forEach(k => { if (batchResult[k]) results[k] = batchResult[k]; });
-            console.log(`✅ 成功翻译批次:[${i + 1} / ${batches.length}] (包含 ${batchKeys.length} 个HTML块)`);
-        } else {
-            console.warn(`⚠️ 该批次在 ${maxRetries} 次尝试后仍彻底失败，回退为原始 HTML。`);
+            console.log(`✅ 请求包处理成功！`);
         }
-
-        // 平滑流控：批次成功后也基础延时 5 秒，拉平 Token 消耗曲线
         if (i + 1 < batches.length) await new Promise(r => setTimeout(r, 5000)); 
     }
-    
     return results;
 }
 
@@ -262,35 +198,26 @@ function getPageNameFromWikiLink(href) {
     let pathname = decodeURIComponent(url.pathname); if (pathname.startsWith('/w/index.php')) return null; 
     let pageName = pathname.substring(1); 
     const blockedPrefixes =['Special', 'File', 'User', 'MediaWiki', 'Template', 'Help', 'Category']; 
-    const blockedPrefixRegex = new RegExp(`^(${blockedPrefixes.join('|')}):`, 'i'); 
-    if (!pageName || blockedPrefixRegex.test(pageName) || pageName.includes('#') || /\.(css|js|png|jpg|jpeg|gif|svg|ico|php)$/i.test(pageName)) return null; 
+    if (!pageName || new RegExp(`^(${blockedPrefixes.join('|')}):`, 'i').test(pageName) || pageName.includes('#') || /\.(css|js|png|jpg|jpeg|gif|svg|ico|php)$/i.test(pageName)) return null; 
     return sanitizePageName(pageName); 
 }
 
 function findInternalLinks($) { 
-    const links = new Set(); 
-    $('#mw-content-text a[href]').each((i, el) => { 
-        const pageName = getPageNameFromWikiLink($(el).attr('href')); 
-        if (pageName) links.add(pageName); 
-    }); 
+    const links = new Set(); $('#mw-content-text a[href]').each((i, el) => { const pn = getPageNameFromWikiLink($(el).attr('href')); if (pn) links.add(pn); }); 
     return Array.from(links); 
 }
 
 function findImageReplacement(url, replacementMap) {
-    if (!url) return url;
-    if (replacementMap.has(url)) return replacementMap.get(url);
-    const thumbRegex = /(.*\/images\/\w{2})\/thumb(\/.*?\.\w+)\/\d+px-.*$/i;
-    const match = url.match(thumbRegex);
-    if (match && match[1] && match[2]) {
-        const reconstructedBaseUrl = match[1] + match[2];
-        if (replacementMap.has(reconstructedBaseUrl)) return replacementMap.get(reconstructedBaseUrl);
-    }
+    if (!url) return url; if (replacementMap.has(url)) return replacementMap.get(url);
+    const match = url.match(/(.*\/images\/\w{2})\/thumb(\/.*?\.\w+)\/\d+px-.*$/i);
+    if (match && match[1] && match[2] && replacementMap.has(match[1] + match[2])) return replacementMap.get(match[1] + match[2]);
     return url;
 }
 
-async function processPage(pageNameToProcess, sourceReplacementMap, dictStr, lastEditInfoState, force = false) {
+// 【阶段 1：只抓取页面，拆分数据入池，不马上翻译】
+async function extractPageData(pageNameToProcess, sourceReplacementMap, lastEditInfoState, force = false) {
     const sourceUrl = `${BASE_URL}/${pageNameToProcess}`;
-    console.log(`[${pageNameToProcess}] 开始抓取页面...`);
+    console.log(`[${pageNameToProcess}] 正在抓取页面结构...`);
     const browser = await puppeteer.launch({ headless: true, args:['--no-sandbox', '--disable-setuid-sandbox'] });
     const page = await browser.newPage();
     let htmlContent;
@@ -300,7 +227,7 @@ async function processPage(pageNameToProcess, sourceReplacementMap, dictStr, las
         await page.waitForSelector('#mw-content-text', { timeout: 0 });
         htmlContent = await page.content();
     } catch (error) {
-        console.error(`抓取失败: ${error.message}`);
+        console.error(`❌[${pageNameToProcess}] 抓取失败: ${error.message}`);
         await browser.close();
         return null;
     } finally {
@@ -312,13 +239,13 @@ async function processPage(pageNameToProcess, sourceReplacementMap, dictStr, las
     const rlconfMatch = htmlContent.match(/RLCONF\s*=\s*(\{[\s\S]*?\});/);
     if (rlconfMatch && rlconfMatch[1]) { try { rlconf = JSON.parse(rlconfMatch[1]); } catch (e) { rlconf = null; } }
 
-    if (!rlconf || rlconf.wgArticleId === 0) return { links:[] };
+    if (!rlconf || rlconf.wgArticleId === 0) return { status: 'cached', links: new Array() };
     const currentEditInfo = rlconf.wgCurRevisionId || rlconf.wgRevisionId || null;
     if (!force && currentEditInfo && lastEditInfoState[pageNameToProcess] === currentEditInfo) {
-        return { links: findInternalLinks($) };
+        return { status: 'cached', links: findInternalLinks($) };
     }
 
-    const headElements =[];
+    const headElements = new Array();
     $('head').children('link, style, script, meta, title').each(function() {
         const $el = $(this);
         if ($el.is('link') && $el.attr('href')?.startsWith('/')) $el.attr('href', BASE_URL + $el.attr('href'));
@@ -327,8 +254,12 @@ async function processPage(pageNameToProcess, sourceReplacementMap, dictStr, las
         headElements.push($.html(this));
     });
 
-    const bodyEndScripts =[]; $('body > script').each(function() { const $el = $(this); if ($el.attr('src')?.startsWith('/')) $el.attr('src', BASE_URL + $el.attr('src')); bodyEndScripts.push($.html(this)); });
+    const bodyEndScripts = new Array(); 
+    $('body > script').each(function() { const $el = $(this); if ($el.attr('src')?.startsWith('/')) $el.attr('src', BASE_URL + $el.attr('src')); bodyEndScripts.push($.html(this)); });
     
+    bodyEndScripts.push(`<script>function replaceColorsInDom() { const replacements =[{ from: /#?46DF11|rgb\\(70,\\s*223,\\s*17\\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }]; function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);<\/script>`);
+    bodyEndScripts.push(`<script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods:['button', 'escape', 'overlay'] }); modal.setContent(\`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=\${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>\`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });<\/script>`);
+
     const $contentContainer = $('<div id="wiki-content-wrapper"></div>'); 
     $('#firstHeading').clone().appendTo($contentContainer); 
     $('#mw-content-text .mw-parser-output').children().each(function() { $contentContainer.append($(this).clone()); });
@@ -348,111 +279,111 @@ async function processPage(pageNameToProcess, sourceReplacementMap, dictStr, las
     $contentContainer.find('img, iframe').each(function() {
         const $el = $(this); let src = $el.attr('src');
         if (src) try { $el.attr('src', findImageReplacement(new URL(src, sourceUrl).href, sourceReplacementMap)); } catch (e) {}
-        if ($el.is('img') && $el.attr('srcset')) {
-            $el.attr('srcset', $el.attr('srcset').split(',').map(s => {
-                const parts = s.trim().split(/\s+/);
-                try { return findImageReplacement(new URL(parts[0], sourceUrl).href, sourceReplacementMap) + (parts[1] ? ` ${parts[1]}` : ''); } catch(e) { return s; }
-            }).join(', '));
-        }
     });
-
     $contentContainer.find('.ShowYouTubePopup[data-id]').each(function() {
         const $el = $(this); const yid = $el.attr('data-id'); if (!yid) return;
         if (sourceReplacementMap.has(yid)) $el.attr('data-id', sourceReplacementMap.get(yid));
-        else if (sourceReplacementMap.has(`https://www.youtube.com/embed/${yid}`)) {
-            try { $el.attr('data-id', new URL(sourceReplacementMap.get(`https://www.youtube.com/embed/${yid}`)).searchParams.get('bvid') || yid); } catch (e) {}
-        }
     });
     
-    let translatedTitle = $('title').text() || pageNameToProcess;
-
+    let originalTitle = $('title').text() || pageNameToProcess;
+    
+    // 给每一个块附加上当前页面名称前缀，防止冲突
+    const prefix = `PAGE_${pageNameToProcess}___`;
     const tasksObj = {};
-    if (containsEnglish(translatedTitle)) tasksObj['title_0'] = translatedTitle;
+    let charCount = 0;
+
+    if (containsEnglish(originalTitle)) {
+        tasksObj[`${prefix}title`] = originalTitle;
+        charCount += originalTitle.length;
+    }
     
-    // ======= 修改点开始：智能递归拆分超大块 =======
     let chunkIndex = 0;
-    
     function extractChunksToTranslate($parent) {
         $parent.children().each((_, el) => {
             const $el = $(el);
             const outerHtml = $.html($el);
-            
-            // 如果不包含英文，直接跳过，节省资源
             if (!containsEnglish(outerHtml)) return;
 
-            // 核心逻辑：如果这个 HTML 块非常大（> 8000 字符），并且里面还有子元素
-            // 就不要把它当成一个整体，而是继续往深处拆分它的子节点！
             if (outerHtml.length > 8000 && $el.children().length > 0) {
                 extractChunksToTranslate($el);
             } else {
-                // 大小安全，打上临时标记并提取
                 const chunkId = `chunk_${chunkIndex++}`;
-                $el.attr('data-translate-id', chunkId); // 注入一个临时 ID，方便翻译完塞回来
-                tasksObj[chunkId] = $.html($el);
+                $el.attr('data-translate-id', chunkId);
+                tasksObj[`${prefix}${chunkId}`] = outerHtml;
+                charCount += outerHtml.length;
             }
         });
     }
 
-    // 从内容主容器开始往下挖
     extractChunksToTranslate($contentContainer);
     
-    const actualChunkCount = Object.keys(tasksObj).length - (tasksObj['title_0'] ? 1 : 0);
-    console.log(`[${pageNameToProcess}] 经深度拆分后，提取出 ${actualChunkCount} 个安全大小的 HTML 块...`);
-    // ======= 修改点结束 =======
+    console.log(`[${pageNameToProcess}] 解析入池成功。 (约 ${charCount} 字符)`);
 
-    const translatedResults = await translateBatchWithGemini(tasksObj, dictStr);
+    return { 
+        status: 'extracted',
+        tasks: tasksObj,
+        charCount: charCount,
+        links: findInternalLinks($),
+        pageData: {
+            pageName: pageNameToProcess,
+            containerHtml: $contentContainer.html(),
+            headElements,
+            bodyEndScripts,
+            originalTitle,
+            currentEditInfo,
+            bodyClass: $('body').attr('class') || ''
+        }
+    };
+}
 
-    if (translatedResults['title_0']) {
-        translatedTitle = formatTypography(translatedResults['title_0']);
+// 【阶段 2：用翻译完的数据将页面重构拼装】
+function buildAndSavePage(pageData, translatedResults) {
+    const { pageName, containerHtml, headElements, bodyEndScripts, originalTitle, currentEditInfo, bodyClass } = pageData;
+    const prefix = `PAGE_${pageName}___`;
+
+    let finalTitle = originalTitle;
+    if (translatedResults[`${prefix}title`]) {
+        finalTitle = formatTypography(translatedResults[`${prefix}title`]);
     }
-    
-    // ======= 修改点开始：根据临时 ID 精准替换翻译内容 =======
+
+    const $ = cheerio.load('<body></body>');
+    const $contentContainer = $('<div id="wiki-content-wrapper"></div>');
+    $contentContainer.html(containerHtml);
+
     Object.keys(translatedResults).forEach(key => {
-        if (key.startsWith('chunk_') && translatedResults[key]) {
-            // 找回刚才打上了特定标记的节点
-            const $target = $contentContainer.find(`[data-translate-id="${key}"]`);
-            if ($target.length) {
-                $target.replaceWith(translatedResults[key]);
-            }
+        if (key.startsWith(`${prefix}chunk_`) && translatedResults[key]) {
+            const originalChunkId = key.replace(prefix, '');
+            const $target = $contentContainer.find(`[data-translate-id="${originalChunkId}"]`);
+            if ($target.length) $target.replaceWith(translatedResults[key]);
         }
     });
 
-    // 打扫战场：如果 AI 原样返回了没有翻译的文本，清理掉多余的临时属性
     $contentContainer.find('[data-translate-id]').removeAttr('data-translate-id');
-    // ======= 修改点结束 =======
 
-    let finalHtmlContent = $contentContainer.html();
-    finalHtmlContent = formatTypography(finalHtmlContent);
-
-    let homeButtonHtml = pageNameToProcess !== START_PAGE ? `<a href="./${START_PAGE}" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">返回主页</a>` : '';
-    
-    const colorReplacementScript = `<script>function replaceColorsInDom() { const replacements =[{ from: /#?46DF11|rgb\\(70,\\s*223,\\s*17\\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }]; function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);<\/script>`;
-    bodyEndScripts.push(colorReplacementScript);
-
-    const bilibiliPopupScript = `<script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods:['button', 'escape', 'overlay'] }); modal.setContent(\`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=\${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>\`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });<\/script>`;
-    bodyEndScripts.push(bilibiliPopupScript);
-    
+    let finalHtmlContent = formatTypography($contentContainer.html());
+    let homeButtonHtml = pageName !== START_PAGE ? `<a href="./${START_PAGE}" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">返回主页</a>` : '';
     const headContent = headElements.filter(el => !el.toLowerCase().startsWith('<title>')).join('\n    '); 
-    const finalHtml = `<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>${translatedTitle}</title>${headContent}<style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="${$('body').attr('class') || ''}"><div id="mw-main-container">${homeButtonHtml}<div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr">${finalHtmlContent}</div></div></div></div></div>${bodyEndScripts.join('\n    ')}</body></html>`;
     
-    fs.writeFileSync(path.join(OUTPUT_DIR, `${pageNameToProcess}.html`), finalHtml, 'utf-8');
-    console.log(`✅ [${pageNameToProcess}] 翻译完成！`);
-    return { translationResult: { pageName: pageNameToProcess, newEditInfo: currentEditInfo }, links: findInternalLinks($) };
+    const finalHtml = `<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>${finalTitle}</title>${headContent}<style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="${bodyClass}"><div id="mw-main-container">${homeButtonHtml}<div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr">${finalHtmlContent}</div></div></div></div></div>${bodyEndScripts.join('\n    ')}</body></html>`;
+    
+    fs.writeFileSync(path.join(OUTPUT_DIR, `${pageName}.html`), finalHtml, 'utf-8');
+    console.log(`✅[${pageName}] HTML 重构并保存完成！`);
+    return currentEditInfo;
 }
 
+// 【主控逻辑】
 async function run() {
-    console.log("--- 翻译任务开始 ---");
+    console.log(`--- 翻译任务开始 (AI模型: ${aiModelName}) ---`);
     if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR);
 
     const sourceReplacementMap = getPreparedSourceDictionary();
     const dictStr = await getOnlineDictionaryString();
     
-    let lastEditInfo = {}, redirectMap = {};
+    let lastEditInfo = {};
     if (fs.existsSync(EDIT_INFO_FILE)) try { lastEditInfo = JSON.parse(fs.readFileSync(EDIT_INFO_FILE, 'utf-8')); } catch (e) {}
-    if (fs.existsSync(REDIRECT_MAP_FILE)) try { redirectMap = JSON.parse(fs.readFileSync(REDIRECT_MAP_FILE, 'utf-8')); } catch (e) {}
 
     const runMode = (process.env.RUN_MODE || 'FEED').toUpperCase();
-    let pagesToVisit =[];
+    let pagesToVisit = new Array();
 
     switch (runMode) {
         case 'FEED': pagesToVisit = await getPagesForFeedMode(lastEditInfo); break;
@@ -465,37 +396,64 @@ async function run() {
     if (pagesToVisit.length === 0) return console.log("没有需要处理的页面，任务提前结束。");
     
     const visitedPages = new Set();
-    let activeTasks = 0, pageIndex = 0;
     const isForceMode = runMode === 'FEED' || runMode === 'SPECIFIED';
+    let pageIndex = 0;
+
+    // 创建全局池
+    let globalTasksPool = {};
+    let pendingPagesData = new Array();
+    let poolCharCount = 0;
 
     while (pageIndex < pagesToVisit.length) {
-        const promises =[];
-        while (activeTasks < CONCURRENCY_LIMIT && pageIndex < pagesToVisit.length) {
-            const currentPageName = pagesToVisit[pageIndex++];
-            if (visitedPages.has(currentPageName)) continue;
-            
-            visitedPages.add(currentPageName);
-            activeTasks++;
+        const currentPageName = pagesToVisit[pageIndex++];
+        if (visitedPages.has(currentPageName)) continue;
+        visitedPages.add(currentPageName);
 
-            const task = processPage(currentPageName, sourceReplacementMap, dictStr, lastEditInfo, isForceMode)
-                .then(result => {
-                    if (result) {
-                        if (result.newRedirectInfo) redirectMap[result.newRedirectInfo.source] = result.newRedirectInfo.target;
-                        if (result.translationResult) lastEditInfo[result.translationResult.pageName] = result.translationResult.newEditInfo;
-                        if (runMode === 'CRAWLER' && result.links) {
-                            for (const link of result.links) if (!visitedPages.has(link) && !pagesToVisit.includes(link)) pagesToVisit.push(link);
-                        }
-                    }
-                }).catch(err => console.error(`处理页面出错:`, err)).finally(() => activeTasks--);
-            promises.push(task);
+        const result = await extractPageData(currentPageName, sourceReplacementMap, lastEditInfo, isForceMode);
+        
+        if (result) {
+            if (runMode === 'CRAWLER' && result.links) {
+                for (const link of result.links) {
+                    if (!visitedPages.has(link) && !pagesToVisit.includes(link)) pagesToVisit.push(link);
+                }
+            }
+
+            if (result.status === 'cached') {
+                console.log(`💤 [${currentPageName}] 缓存未变跳过。`);
+            } else if (result.status === 'extracted') {
+                Object.assign(globalTasksPool, result.tasks);
+                poolCharCount += result.charCount;
+                pendingPagesData.push(result.pageData);
+            }
         }
-        await Promise.all(promises);
+
+        const isLastPage = pageIndex === pagesToVisit.length;
+        // 如果池子满了，或者所有页面都抓完了，发车！
+        if (poolCharCount >= TARGET_BATCH_CHARS || isLastPage) {
+            if (Object.keys(globalTasksPool).length > 0) {
+                console.log(`\n==============================================`);
+                console.log(`📦 【触发合并发车】累积字符: ${poolCharCount}，包含页面数: ${pendingPagesData.length}`);
+                console.log(`==============================================\n`);
+
+                const translatedResults = await translateBatchWithGemini(globalTasksPool, dictStr);
+
+                for (const pageData of pendingPagesData) {
+                    const newEditInfo = buildAndSavePage(pageData, translatedResults);
+                    if (newEditInfo) lastEditInfo[pageData.pageName] = newEditInfo;
+                }
+
+                // 清空重置池子状态，并及时存档
+                globalTasksPool = {};
+                pendingPagesData = new Array();
+                poolCharCount = 0;
+
+                try {
+                    fs.writeFileSync(EDIT_INFO_FILE, JSON.stringify(lastEditInfo, null, 2), 'utf-8');
+                } catch (e) {}
+            }
+        }
     }
 
-    try {
-        fs.writeFileSync(EDIT_INFO_FILE, JSON.stringify(lastEditInfo, null, 2), 'utf-8');
-        fs.writeFileSync(REDIRECT_MAP_FILE, JSON.stringify(redirectMap, null, 2), 'utf-8');
-    } catch (e) {}
     console.log("--- 所有页面处理完毕，任务结束！ ---");
 }
 
