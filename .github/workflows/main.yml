@@ -64,6 +64,8 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           RUN_MODE: ${{ github.event.inputs.run_mode || 'FEED' }}
           PAGES_TO_PROCESS: ${{ github.event.inputs.pages }}
+          # 【新增】设置最大执行时间为 345 分钟 (即5小时45分钟，预留15分钟给后续提交流程和收尾翻译)
+          MAX_EXECUTION_TIME: 345
         run: |
           echo "当前工作目录下的文件列表:"
           ls -l
