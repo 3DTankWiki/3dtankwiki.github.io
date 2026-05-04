@@ -1555,5 +1555,7 @@
   "Test": 67224,
   "I_lost_crystals/exp/items_from_my_account": 59225,
   "Augments/Hammer": 67209,
-  "Augments/Hulls": 67205
+  "Augments/Hulls": 67205,
+  "Autopilot": 66571,
+  "I_can’t_enter_the_game/the_game_doesn't_load": 64429
 }
