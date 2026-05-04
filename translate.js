@@ -15,7 +15,6 @@ const DICTIONARY_URL = 'https://testanki1.github.io/translations.js';
 const SOURCE_DICT_FILE = 'source_replacements.js'; 
 const OUTPUT_DIR = './output';
 const EDIT_INFO_FILE = path.join(__dirname, 'last_edit_info.json');
-const REDIRECT_MAP_FILE = path.join(__dirname, 'redirect_map.json');
 
 // 【新增】超时保护相关常量 (避免被 GitHub Actions 6小时强杀)
 const MAX_EXECUTION_TIME_MINUTES = parseInt(process.env.MAX_EXECUTION_TIME || '345', 10); // 默认 5小时45分钟
@@ -312,6 +311,29 @@ async function preparePage(pageNameToProcess, sourceReplacementMap, lastEditInfo
     if (rlconfMatch && rlconfMatch[1]) { try { rlconf = JSON.parse(rlconfMatch[1]); } catch (e) { rlconf = null; } }
 
     if (!rlconf || rlconf.wgArticleId === 0) return { status: 'skipped', links: new Array() };
+
+    // 🚀 --- 【新增：原生重定向检测】 ---
+    if (rlconf.wgInternalRedirectTargetUrl || rlconf.wgRedirectedFrom) {
+        // wgInternalRedirectTargetUrl 一般形如 "/Supplies#Boosted_Damage"
+        let targetUrl = rlconf.wgInternalRedirectTargetUrl;
+        
+        if (targetUrl && targetUrl.startsWith('/')) {
+            targetUrl = targetUrl.substring(1); // 掐头去斜杠 -> "Supplies#Boosted_Damage"
+        } else if (!targetUrl && rlconf.wgPageName) {
+            targetUrl = rlconf.wgPageName; // 兜底策略
+        }
+
+        // 校验剔除锚点后的基础页面名是否与当前抓取的不同，不同则认定为跳转页面
+        if (targetUrl && sanitizePageName(targetUrl.split('#')[0]) !== pageNameToProcess) {
+            console.log(`🔀 [${pageNameToProcess}] 探测到纯重定向跳转 -> ${targetUrl}`);
+            return {
+                status: 'client_redirect',
+                pageNameToProcess,
+                targetUrl // 例如 "Supplies#Boosted_Damage"
+            };
+        }
+    }
+
     const currentEditInfo = rlconf.wgCurRevisionId || rlconf.wgRevisionId || null;
     if (!force && currentEditInfo && lastEditInfoState[pageNameToProcess] === currentEditInfo) {
         console.log(`[${pageNameToProcess}] 页面未修改，跳过翻译。`);
@@ -452,9 +474,8 @@ async function run() {
     const sourceReplacementMap = getPreparedSourceDictionary();
     const dictStr = await getOnlineDictionaryString();
     
-    let lastEditInfo = {}, redirectMap = {};
+    let lastEditInfo = {};
     if (fs.existsSync(EDIT_INFO_FILE)) try { lastEditInfo = JSON.parse(fs.readFileSync(EDIT_INFO_FILE, 'utf-8')); } catch (e) {}
-    if (fs.existsSync(REDIRECT_MAP_FILE)) try { redirectMap = JSON.parse(fs.readFileSync(REDIRECT_MAP_FILE, 'utf-8')); } catch (e) {}
 
     const runMode = (process.env.RUN_MODE || 'FEED').toUpperCase();
     let pagesToVisit = new Array();
@@ -525,7 +546,7 @@ async function run() {
     };
 
     while (pageIndex < pagesToVisit.length) {
-        // 【新增】判断运行时间是否超过安全阈值
+        // 判断运行时间是否超过安全阈值
         if (Date.now() - SCRIPT_START_TIME > MAX_EXECUTION_TIME_MS) {
             console.log(`\n⏳ 运行时间已达安全上限 (${MAX_EXECUTION_TIME_MINUTES} 分钟)，触发超时保护！主动退出以保存当前进度...`);
             break; 
@@ -554,6 +575,36 @@ async function run() {
         for (const result of results) {
             if (!result) continue;
             
+            // 🚀 --- 【处理跳转页面，生成极其轻量的静态重定向 HTML】 ---
+            if (result.status === 'client_redirect') {
+                const redirectHtml = `<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0; url=./${result.targetUrl}">
+    <title>正在跳转...</title>
+    <!-- 使用 replace 防止后退按钮卡死在跳转页 -->
+    <script>window.location.replace("./${result.targetUrl}");</script>
+</head>
+<body style="background-color: #001926; color: white; font-family: sans-serif; text-align: center; padding-top: 50px;">
+    <p>正在前往目标页面...<br>如果没有自动跳转，请 <a href="./${result.targetUrl}" style="color: #76FF33;">点击这里</a>。</p>
+</body>
+</html>`;
+                
+                fs.writeFileSync(path.join(OUTPUT_DIR, `${result.pageNameToProcess}.html`), redirectHtml, 'utf-8');
+                console.log(`✨[${result.pageNameToProcess}] 已生成静态跳转页 (指向 -> ./${result.targetUrl})`);
+                
+                // 将被重定向到的真正主体条目（去除锚点部分）入队
+                const baseTarget = sanitizePageName(result.targetUrl.split('#')[0]);
+                if (runMode === 'CRAWLER' && !visitedPages.has(baseTarget) && !pagesToVisit.includes(baseTarget)) {
+                    pagesToVisit.push(baseTarget);
+                    console.log(`💡 真实的重定向目标[${baseTarget}] 已加入待爬取队列。`);
+                }
+                
+                continue; // 终结当前流程，跳过翻译装箱！
+            }
+            // -------------------------------------------------------------
+
             if (result.status === 'prepared') {
                 let newPageChars = 0;
                 for (const htmlChunk of Object.values(result.tasksObj)) {
@@ -563,7 +614,7 @@ async function run() {
                 const actualChunkCount = Object.keys(result.tasksObj).length - (result.tasksObj['title_0'] ? 1 : 0);
                 console.log(`[${result.pageNameToProcess}] 解析到 ${actualChunkCount} 个待翻区块，共计约 ${newPageChars} 字符。`);
 
-                // 🚦 1. 预判：如果装入这个页面会导致破阈值，并且当前池子不是空的，赶紧先把旧货发掉！
+                // 1. 预判：如果装入这个页面会导致破阈值，并且当前池子不是空的，赶紧先把旧货发掉！
                 if (accumulatedChars > 0 && (accumulatedChars + newPageChars) > TARGET_BATCH_CHARS) {
                     console.log(`\n🚧[防超载装箱] 新页面加入将导致总字数(${accumulatedChars + newPageChars})突破红线(${TARGET_BATCH_CHARS})！提前清仓...`);
                     await flushGlobalTranslation();
@@ -578,9 +629,9 @@ async function run() {
                     accumulatedChars += htmlChunk.length;
                 }
 
-                // 🚦 3. 即时裁决：如果刚装进去的页面本身极其巨大（直接导致总字符 ≥ 阈值），立刻清仓！
+                // 3. 即时裁决：如果刚装进去的页面本身极其巨大（直接导致总字符 ≥ 阈值），立刻清仓！
                 if (accumulatedChars >= TARGET_BATCH_CHARS) {
-                    console.log(`\n🚧 [到达阀门] 当前池字数达标/超标 (${accumulatedChars})，立即触发翻译下水！`);
+                    console.log(`\n🚧[到达阀门] 当前池字数达标/超标 (${accumulatedChars})，立即触发翻译下水！`);
                     await flushGlobalTranslation();
                 }
             }
@@ -593,8 +644,6 @@ async function run() {
         }
     }
 
-    // 【新增】将最后一次清理池子的逻辑移动到主循环外部
-    // 这样不论是自然完成还是因为超时强行跳出循环，都会执行这步，不会丢失进度。
     if (pendingPreparedPages.length > 0) {
         console.log(`\n🏁 主循环已结束 (抓取完毕或超时保护退出)，正在清理池内最后的遗留碎片...`);
         await flushGlobalTranslation();
@@ -602,7 +651,6 @@ async function run() {
 
     try {
         fs.writeFileSync(EDIT_INFO_FILE, JSON.stringify(lastEditInfo, null, 2), 'utf-8');
-        fs.writeFileSync(REDIRECT_MAP_FILE, JSON.stringify(redirectMap, null, 2), 'utf-8');
     } catch (e) {}
     console.log("--- 进程执行完毕，任务安全结束！ ---");
 }
