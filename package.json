@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@google/generative-ai": "^0.2.0",
+    "@google/generative-ai": "latest",
     "cheerio": "^1.0.0-rc.12",
     "puppeteer": "^22.10.0"
   }
