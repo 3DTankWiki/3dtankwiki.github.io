@@ -9,8 +9,8 @@ const path = require('path');
 const BASE_URL = 'https://en.tankiwiki.com';
 const START_PAGE = 'Tanki_Online_Wiki';
 const RECENT_CHANGES_FEED_URL = 'https://en.tankiwiki.com/api.php?action=feedrecentchanges&days=7&feedformat=atom&urlversion=1';
-const CONCURRENCY_LIMIT = 1; 
-const TARGET_BATCH_CHARS = 160000; // 🚀 【核心】全局唯一合并阈值：坚守此红线
+const CONCURRENCY_LIMIT = 32; // 🚀 【核心】修改为 32，实现多标签页极速并发抓取
+const TARGET_BATCH_CHARS = 160000; // 🚀 全局唯一合并阈值：坚守此红线
 const DICTIONARY_URL = 'https://testanki1.github.io/translations.js'; 
 const SOURCE_DICT_FILE = 'source_replacements.js'; 
 const OUTPUT_DIR = './output';
@@ -206,7 +206,7 @@ ${JSON.stringify(batchObj, null, 2)}`;
                 });
                 let text = response.response.text();
                 
-                text = text.replace(/^```(json)?\s*/i, '').replace(/\s*```$/i, '').trim();
+                text = text.replace(/^```(json)?\s*/i, '').replace(/\s*清洁*/i, '').trim();
                 
                 const jsonMatch = text.match(/\{[\s\S]*\}/);
                 if (jsonMatch) {
@@ -285,24 +285,23 @@ function findImageReplacement(url, replacementMap) {
     return url;
 }
 
-// 【步骤 1】: 抓取并准备页面数据，提取翻译块，但不直接翻译
-async function preparePage(pageNameToProcess, sourceReplacementMap, lastEditInfoState, force = false) {
+// 【步骤 1】: 抓取并准备页面数据，提取翻译块，但不直接翻译 (🚀 注意：引入 browser 参数)
+async function preparePage(pageNameToProcess, sourceReplacementMap, lastEditInfoState, force = false, browser) {
     const sourceUrl = `${BASE_URL}/${pageNameToProcess}`;
     console.log(`[${pageNameToProcess}] 开始抓取页面...`);
-    const browser = await puppeteer.launch({ headless: true, args: new Array('--no-sandbox', '--disable-setuid-sandbox') });
-    const page = await browser.newPage();
+    let page;
     let htmlContent;
 
     try {
+        page = await browser.newPage(); // 🚀 复用全局浏览器，只开新标签页
         await page.goto(sourceUrl, { waitUntil: 'domcontentloaded', timeout: 0 });
         await page.waitForSelector('#mw-content-text', { timeout: 0 });
         htmlContent = await page.content();
     } catch (error) {
         console.error(`❌ [${pageNameToProcess}] 抓取失败: ${error.message}`);
-        await browser.close();
         return null;
     } finally {
-        await browser.close();
+        if (page) await page.close(); // 🚀 抓完立刻关闭标签页释放内存，绝对不关整个浏览器
     }
     
     const $ = cheerio.load(htmlContent);
@@ -312,7 +311,7 @@ async function preparePage(pageNameToProcess, sourceReplacementMap, lastEditInfo
 
     if (!rlconf || rlconf.wgArticleId === 0) return { status: 'skipped', links: new Array() };
 
-    // 🚀 --- 【新增：原生重定向检测优化版】 ---
+    // 🚀 --- 【原生重定向检测优化版】 ---
     if (rlconf.wgInternalRedirectTargetUrl || rlconf.wgRedirectedFrom || (rlconf.wgPageName && sanitizePageName(rlconf.wgPageName) !== pageNameToProcess)) {
         
         // 1. 获取绝对干净的基础条目名 (例如 "Overdrives" 或 "Supplies")
@@ -475,7 +474,7 @@ function finalizePage(preparedData, translatedResultsForPage) {
 }
 
 async function run() {
-    console.log("--- 翻译任务开始 (精准防超载装箱模式) ---");
+    console.log("--- 翻译任务开始 (精准防超载装箱模式 + 单体浏览器多标签页超高并发) ---");
     if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR);
 
     const sourceReplacementMap = getPreparedSourceDictionary();
@@ -500,6 +499,10 @@ async function run() {
     const visitedPages = new Set();
     let activeTasks = 0, pageIndex = 0;
     const isForceMode = runMode === 'FEED' || runMode === 'SPECIFIED';
+
+    // 🌐 --- 启动全局单一共享浏览器，极大节省内存开销 ---
+    console.log(`🌐 正在启动全局共享浏览器 (并发限制: ${CONCURRENCY_LIMIT} 标签页)...`);
+    const globalBrowser = await puppeteer.launch({ headless: true, args: new Array('--no-sandbox', '--disable-setuid-sandbox') });
 
     // 🚀 --- 全局积攒批次池 ---
     let pendingPreparedPages = new Array();
@@ -540,7 +543,7 @@ async function run() {
                     lastEditInfo[pageName] = preparedData.currentEditInfo;
                 }
             } catch (err) {
-                console.error(`保存页面出错 [${pageName}]:`, err);
+                console.error(`保存页面出错[${pageName}]:`, err);
             }
         }
 
@@ -568,7 +571,8 @@ async function run() {
             visitedPages.add(currentPageName);
             activeTasks++;
 
-            const task = preparePage(currentPageName, sourceReplacementMap, lastEditInfo, isForceMode)
+            // 🚀 传入 globalBrowser，在同一个浏览器实例中新建独立标签页
+            const task = preparePage(currentPageName, sourceReplacementMap, lastEditInfo, isForceMode, globalBrowser)
                 .catch(err => {
                     console.error(`处理页面准备出错[${currentPageName}]:`, err);
                     return null;
@@ -659,6 +663,12 @@ async function run() {
     try {
         fs.writeFileSync(EDIT_INFO_FILE, JSON.stringify(lastEditInfo, null, 2), 'utf-8');
     } catch (e) {}
+
+    // 🚀 --- 【最后记得关闭浏览器】 ---
+    if (globalBrowser) {
+        await globalBrowser.close();
+    }
+    
     console.log("--- 进程执行完毕，任务安全结束！ ---");
 }
 
