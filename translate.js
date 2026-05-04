@@ -166,31 +166,35 @@ async function translateBatchWithGemini(tasksObj, dictStr) {
         batches.push({ obj: currentBatch, charCount: currentCharCount });
     }
 
+    // 🚀【修复核心点】：在 prompt 中增加了第3条“核心红线”，并对词库的要求发出了警告！
     const dictPrompt = dictStr ? `
-4. 【术语表要求】：请严格遵守以下提供的《翻译专有名词词库》。只要原文出现了词库中的英文，必须统一翻译为对应的中文：
+5. 【术语表要求】：请严格遵守以下提供的《翻译专有名词词库》。只要原文出现了词库中的英文，必须统一翻译为对应的中文：
+（⚠️警告：仅限替换文本！如果原文中该英文词汇没有被超链接包裹，你翻译成中文时也绝对不能把它变成超链接！）
 --- 词库开始 ---
 ${dictStr}
 --- 词库结束 ---
-` : "4. 请根据《Tanki Online》（3D坦克）的游戏语境进行翻译，保证专业术语准确。";
+` : "5. 请根据《Tanki Online》（3D坦克）的游戏语境进行翻译，保证专业术语准确。";
 
     for (let i = 0; i < batches.length; i++) {
         const batchObj = batches[i].obj;
         const batchKeys = Object.keys(batchObj);
 
+        // 🚀【修复核心点】：全面强化禁止 AI 自主添加 <a> 标签的禁令
         const prompt = `你是一个专业的《Tanki Online》（3D坦克）游戏 Wiki 本地化翻译引擎。
 请将以下 JSON 对象中的值（包含完整 HTML 标签的代码块）翻译为简体中文。
 
 【极端重要的要求】：
 1. JSON的键名（Key）绝对不可更改。只翻译键值（Value）。
-2. 【保留所有标签，严防吞标签】：你必须原样保留所有的 HTML 标签！如果因为中英文语序不同（比如英文是 A for B，中文是 B 的 A），【必须带着完整的 HTML 标签一起移动位置】！例如原文 \`Augments for <a href="/Scorpion">Scorpion</a>\` 必须翻译为 \`<a href="/Scorpion">蝎子</a>的装备改造\`，绝对不许弄丢或删除 \`<a>\` 等任何标签！
-3. 【精确翻译可见属性】：请务必翻译 HTML 标签中用于显示的属性（如 \`title="..."\`、\`alt="..."\`、\`placeholder="..."\` 等，例如 \`title="First appeared: ..."\` 必须翻译为中文）。但是对于 \`href\`、\`src\`、\`id\`、\`class\`、\`style\`、\`data-*\` 等功能性属性，【必须原样保留，绝对不能改】！
+2. 【保留所有原标签，严防吞标签】：你必须原样保留所有的 HTML 标签！如果因为中英文语序不同（比如英文是 A for B，中文是 B 的 A），【必须带着完整的 HTML 标签一起移动位置】！例如原文 \`Augments for <a href="/Scorpion">Scorpion</a>\` 必须翻译为 \`<a href="/Scorpion">蝎子</a>的装备改造\`，绝对不许弄丢或删除 \`<a>\` 等任何标签！
+3. 【⚠️严禁无中生有加链接（核心红线）】：绝对不允许在翻译时自行增加原文没有的 \`<a>\` 超链接或其他 HTML 标签！如果原英文词汇只是普通纯文本（没有被 \`<a>\` 等标签包裹），你翻译成中文时也必须是普通纯文本，【绝对禁止】为了强调术语而自作聪明把它变成超链接或为其添加样式！
+4. 【精确翻译可见属性】：请务必翻译 HTML 标签中用于显示的属性（如 \`title="..."\`、\`alt="..."\`、\`placeholder="..."\` 等，例如 \`title="First appeared: ..."\` 必须翻译为中文）。但是对于 \`href\`、\`src\`、\`id\`、\`class\`、\`style\`、\`data-*\` 等功能性属性，【必须原样保留，绝对不能改】！
 ${dictPrompt}
-5. 【盘古之白排版规范 - 极其重要】：
-   - 中文字符与中文字符之间【绝对不要加空格或 &nbsp; 实体】，即使它们被 HTML 标签隔开！比如输出必须是 "为了用<a href="...">红宝石</a>购买"，决构不能出现空格！
+6. 【盘古之白排版规范 - 极其重要】：
+   - 中文字符与中文字符之间【绝对不要加空格或 &nbsp; 实体】，即使它们被 HTML 标签隔开！比如输出必须是 "为了用<a href="...">红宝石</a>购买"，绝对不能出现空格！
    - 【英文/数字】与【中文汉字】的交界处，请加上一个半角空格！
    - 【严禁修改数值代码】：原文中的数值（如 187.5、205.5 等）必须【绝对原样保留】！绝对不要把数字中的小数点（.）改写成逗号（,），也绝对不要在数字中间随意加空格！
-6. 除了词库中的术语，其余部分请结合上下文翻译得专业流畅。如果是普通句子末尾的英文标点，请翻译为中文标点；如果是数字内的标点或HTML代码，请原样保留。
-7. 绝对不要使用 Markdown 代码块包裹输出！直接输出合法的、可被 JSON.parse() 解析的纯 JSON 格式！
+7. 除了词库中的术语，其余部分请结合上下文翻译得专业流畅。如果是普通句子末尾的英文标点，请翻译为中文标点；如果是数字内的标点或HTML代码，请原样保留。
+8. 绝对不要使用 Markdown 代码块包裹输出！直接输出合法的、可被 JSON.parse() 解析的纯 JSON 格式！
 
 待翻译 HTML 块的 JSON：
 ${JSON.stringify(batchObj, null, 2)}`;
@@ -202,7 +206,7 @@ ${JSON.stringify(batchObj, null, 2)}`;
             try {
                 const response = await geminiModel.generateContent({
                     contents: new Array({ role: "user", parts: new Array({ text: prompt }) }),
-                    generationConfig: { temperature: 0.1 } 
+                    generationConfig: { temperature: 0.05 }  // 将温度再稍微调低一点，约束其创造性，让其更老实听话
                 });
                 let text = response.response.text();
                 
