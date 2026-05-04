@@ -370,15 +370,21 @@ async function preparePage(pageNameToProcess, sourceReplacementMap, lastEditInfo
     $('#firstHeading').clone().appendTo($contentContainer); 
     $('#mw-content-text .mw-parser-output').children().each(function() { $contentContainer.append($(this).clone()); });
     
+    // 计算当前页面的目录层级深度，用于生成正确的相对路径前缀
+    const depth = (pageNameToProcess.match(/\//g) ||[]).length;
+    const relPrefix = depth === 0 ? './' : '../'.repeat(depth);
+
     const $factBoxContent = $contentContainer.find('.random-text-box > div:last-child'); 
     if ($factBoxContent.length > 0) { 
         $factBoxContent.html('<p id="dynamic-fact-placeholder" style="margin:0;">正在加载有趣的事实...</p>'); 
-        bodyEndScripts.push(`<script>document.addEventListener('DOMContentLoaded', function() { fetch('./facts.json').then(r=>r.json()).then(f=>{ document.getElementById('dynamic-fact-placeholder').innerHTML = f[Math.floor(Math.random() * f.length)].cn; }).catch(()=>{}); });<\/script>`); 
+        // 动态引入 relPrefix，确保子目录也能正确读取到根目录的 facts.json
+        bodyEndScripts.push(`<script>document.addEventListener('DOMContentLoaded', function() { fetch('${relPrefix}facts.json').then(r=>r.json()).then(f=>{ document.getElementById('dynamic-fact-placeholder').innerHTML = f[Math.floor(Math.random() * f.length)].cn; }).catch(()=>{}); });<\/script>`); 
     }
 
     $contentContainer.find('a').each(function() { 
         const $el = $(this); const href = $el.attr('href'); const internalName = getPageNameFromWikiLink(href); 
-        if (internalName) $el.attr('href', `./${internalName}`); 
+        // 使用相对层级前缀替换写死的 ./
+        if (internalName) $el.attr('href', `${relPrefix}${internalName}`); 
         else if (href && !href.startsWith('#')) try { $el.attr('href', new URL(href, sourceUrl).href); } catch (e) {} 
     });
     
@@ -462,7 +468,10 @@ function finalizePage(preparedData, translatedResultsForPage) {
     let finalHtmlContent = $contentContainer.html();
     finalHtmlContent = formatTypography(finalHtmlContent);
 
-    let homeButtonHtml = pageNameToProcess !== START_PAGE ? `<a href="./${START_PAGE}" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">返回主页</a>` : '';
+    // 动态计算“返回主页”按钮的正确层级退回路径
+    const depth = (pageNameToProcess.match(/\//g) ||[]).length;
+    const relPrefix = depth === 0 ? './' : '../'.repeat(depth);
+    let homeButtonHtml = pageNameToProcess !== START_PAGE ? `<a href="${relPrefix}${START_PAGE}" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">返回主页</a>` : '';
     
     const colorReplacementScript = `<script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\\(70,\\s*223,\\s*17\\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);<\/script>`;
     bodyEndScripts.push(colorReplacementScript);
@@ -473,7 +482,13 @@ function finalizePage(preparedData, translatedResultsForPage) {
     const headContent = headElements.filter(el => !el.toLowerCase().startsWith('<title>')).join('\n    '); 
     const finalHtml = `<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>${translatedTitle}</title>${headContent}<style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="${bodyClass}"><div id="mw-main-container">${homeButtonHtml}<div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr">${finalHtmlContent}</div></div></div></div></div>${bodyEndScripts.join('\n    ')}</body></html>`;
     
-    fs.writeFileSync(path.join(OUTPUT_DIR, `${pageNameToProcess}.html`), finalHtml, 'utf-8');
+    // 核心修复点：若有父目录，自动递归创建
+    const outputPath = path.join(OUTPUT_DIR, `${pageNameToProcess}.html`);
+    const outputDir = path.dirname(outputPath);
+    if (!fs.existsSync(outputDir)) {
+        fs.mkdirSync(outputDir, { recursive: true });
+    }
+    fs.writeFileSync(outputPath, finalHtml, 'utf-8');
     console.log(`✨[${pageNameToProcess}] 渲染及保存完成！`);
 }
 
@@ -592,22 +607,31 @@ async function run() {
             
             // 🚀 --- 【处理跳转页面，生成极其轻量的静态重定向 HTML】 ---
             if (result.status === 'client_redirect') {
+                const depth = (result.pageNameToProcess.match(/\//g) ||[]).length;
+                const relPrefix = depth === 0 ? './' : '../'.repeat(depth);
+
                 const redirectHtml = `<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=./${result.targetUrl}">
+    <meta http-equiv="refresh" content="0; url=${relPrefix}${result.targetUrl}">
     <title>正在跳转...</title>
     <!-- 使用 replace 防止后退按钮卡死在跳转页 -->
-    <script>window.location.replace("./${result.targetUrl}");</script>
+    <script>window.location.replace("${relPrefix}${result.targetUrl}");</script>
 </head>
 <body style="background-color: #001926; color: white; font-family: sans-serif; text-align: center; padding-top: 50px;">
-    <p>正在前往目标页面...<br>如果没有自动跳转，请 <a href="./${result.targetUrl}" style="color: #76FF33;">点击这里</a>。</p>
+    <p>正在前往目标页面...<br>如果没有自动跳转，请 <a href="${relPrefix}${result.targetUrl}" style="color: #76FF33;">点击这里</a>。</p>
 </body>
 </html>`;
                 
-                fs.writeFileSync(path.join(OUTPUT_DIR, `${result.pageNameToProcess}.html`), redirectHtml, 'utf-8');
-                console.log(`✨[${result.pageNameToProcess}] 已生成静态跳转页 (指向 -> ./${result.targetUrl})`);
+                // 核心修复：即使重定向页存在于子级目录中，也能安全写入
+                const outputPath = path.join(OUTPUT_DIR, `${result.pageNameToProcess}.html`);
+                const outputDir = path.dirname(outputPath);
+                if (!fs.existsSync(outputDir)) {
+                    fs.mkdirSync(outputDir, { recursive: true });
+                }
+                fs.writeFileSync(outputPath, redirectHtml, 'utf-8');
+                console.log(`✨[${result.pageNameToProcess}] 已生成静态跳转页 (指向 -> ${relPrefix}${result.targetUrl})`);
                 
                 // 将被重定向到的真正主体条目（去除锚点部分）入队
                 const baseTarget = sanitizePageName(result.targetUrl.split('#')[0]);
