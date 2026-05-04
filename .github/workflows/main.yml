@@ -46,10 +46,11 @@ jobs:
             libxi6 libxrandr2 libxrender1 libxss1 libxtst6 lsb-release wget xdg-utils \
             rsync
 
-      - name: 安装 Node.js 依赖 (使用 npm)
+      - name: 安装 Node.js 依赖 (无锁文件模式)
         env:
           PUPPETEER_SKIP_DOWNLOAD: 'true'
-        run: npm ci
+        # 【修改说明】直接使用 npm install，它会读取 package.json 并自动下载最新版
+        run: npm install
 
       - name: 单独下载 Chromium 浏览器
         run: npx puppeteer browsers install chrome
