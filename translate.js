@@ -200,7 +200,7 @@ ${dictPrompt}
 ${JSON.stringify(batchObj, null, 2)}`;
 
         let batchResult = null;
-        const maxRetries = 5;
+        const maxRetries = 10;
         
         for (let attempt = 1; attempt <= maxRetries; attempt++) {
             try {
