@@ -1,5 +1,5 @@
 # .github/workflows/main.yml
-name: 翻译并部署维基页面
+name: 翻译并部署 Wiki 页面
 
 on:
   schedule:
@@ -75,8 +75,6 @@ jobs:
         run: |
           echo "--- 当前目录文件列表 ---"
           ls -laF
-          echo "--- redirect_map.json 内容 ---"
-          cat redirect_map.json || echo "redirect_map.json 不存在或无法读取"
           echo "--- Git 状态 ---"
           git status
 
@@ -85,7 +83,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "ci: 更新页面状态记录"
-          file_pattern: 'last_edit_info.json redirect_map.json'
+          file_pattern: 'last_edit_info.json'
           commit_user_name: github-actions[bot]
           commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
           commit_options: '--no-verify'
@@ -95,7 +93,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "ci: 更新页面状态记录"
-          file_pattern: 'last_edit_info.json redirect_map.json'
+          file_pattern: 'last_edit_info.json'
           commit_options: '--no-verify'
       
       - name: 检出 gh-pages 分支到单独目录
