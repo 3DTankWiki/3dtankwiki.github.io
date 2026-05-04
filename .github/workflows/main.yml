@@ -18,6 +18,9 @@ on:
       pages:
         description: '指定页面列表 (仅在SPECIFIED模式下有效, 逗号分隔, 例如: Paints,Hulls)'
         required: false
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
   
 jobs:
   build-and-deploy:
