@@ -18,9 +18,6 @@ on:
       pages:
         description: '指定页面列表 (仅在SPECIFIED模式下有效, 逗号分隔, 例如: Paints,Hulls)'
         required: false
-
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
   
 jobs:
   build-and-deploy:
@@ -86,7 +83,7 @@ jobs:
             echo "没有需要提交的更新"
           else
             # 还原你原本使用的 --no-verify 参数
-            if[ "${{ github.event_name }}" = "schedule" ]; then
+            if [ "${{ github.event_name }}" = "schedule" ]; then
               git commit --no-verify -m "ci: 更新页面状态记录 (定时任务)"
             else
               git commit --no-verify -m "ci: 更新页面状态记录 (手动触发)"
