@@ -46,25 +46,19 @@ jobs:
             libxi6 libxrandr2 libxrender1 libxss1 libxtst6 lsb-release wget xdg-utils \
             rsync
 
-      - name: 安装 Node.js 依赖 (使用 Yarn)
+      - name: 安装 Node.js 依赖 (使用 npm)
         env:
           PUPPETEER_SKIP_DOWNLOAD: 'true'
-        # 【修改】在此动态安装新的 Gemini 依赖并移除无效的 Bing API
-        run: |
-          yarn install --frozen-lockfile
-          yarn add @google/generative-ai
-          yarn remove bing-translate-api || true
+        run: npm ci
 
       - name: 单独下载 Chromium 浏览器
         run: npx puppeteer browsers install chrome
 
       - name: 运行翻译脚本
         env:
-          # 【新增】将你在 GitHub 设置里配好的 Secret 映射到容器内部
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           RUN_MODE: ${{ github.event.inputs.run_mode || 'FEED' }}
           PAGES_TO_PROCESS: ${{ github.event.inputs.pages }}
-          # 【新增】设置最大执行时间为 345 分钟 (即5小时45分钟，预留15分钟给后续提交流程和收尾翻译)
           MAX_EXECUTION_TIME: 345
         run: |
           echo "当前工作目录下的文件列表:"
