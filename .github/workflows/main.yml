@@ -12,7 +12,7 @@ on:
         default: 'FEED'
         type: choice
         options:
-          - FEED       # 检查更新模式 (默认)
+          - FEED       # 追踪更新模式 (默认)
           - CRAWLER    # 完整爬虫模式
           - SPECIFIED  # 指定页面模式
       pages:
