@@ -312,24 +312,31 @@ async function preparePage(pageNameToProcess, sourceReplacementMap, lastEditInfo
 
     if (!rlconf || rlconf.wgArticleId === 0) return { status: 'skipped', links: new Array() };
 
-    // 🚀 --- 【新增：原生重定向检测】 ---
-    if (rlconf.wgInternalRedirectTargetUrl || rlconf.wgRedirectedFrom) {
-        // wgInternalRedirectTargetUrl 一般形如 "/Supplies#Boosted_Damage"
-        let targetUrl = rlconf.wgInternalRedirectTargetUrl;
+    // 🚀 --- 【新增：原生重定向检测优化版】 ---
+    if (rlconf.wgInternalRedirectTargetUrl || rlconf.wgRedirectedFrom || (rlconf.wgPageName && sanitizePageName(rlconf.wgPageName) !== pageNameToProcess)) {
         
-        if (targetUrl && targetUrl.startsWith('/')) {
-            targetUrl = targetUrl.substring(1); // 掐头去斜杠 -> "Supplies#Boosted_Damage"
-        } else if (!targetUrl && rlconf.wgPageName) {
-            targetUrl = rlconf.wgPageName; // 兜底策略
+        // 1. 获取绝对干净的基础条目名 (例如 "Overdrives" 或 "Supplies")
+        let baseTarget = rlconf.wgPageName || pageNameToProcess;
+        let hash = '';
+
+        // 2. 如果原始重定向 URL 中带有锚点(#)，把它精准提取出来
+        if (rlconf.wgInternalRedirectTargetUrl) {
+            const hashIndex = rlconf.wgInternalRedirectTargetUrl.indexOf('#');
+            if (hashIndex !== -1) {
+                hash = rlconf.wgInternalRedirectTargetUrl.substring(hashIndex);
+            }
         }
 
-        // 校验剔除锚点后的基础页面名是否与当前抓取的不同，不同则认定为跳转页面
-        if (targetUrl && sanitizePageName(targetUrl.split('#')[0]) !== pageNameToProcess) {
-            console.log(`🔀 [${pageNameToProcess}] 探测到纯重定向跳转 -> ${targetUrl}`);
+        // 3. 组装最终完美的跳转目标 (例如 "Overdrives" 或 "Supplies#Boosted_Damage")
+        let finalTargetUrl = sanitizePageName(baseTarget) + hash;
+
+        // 4. 判断基础页面名是否发生了变化，如果变了说明确实触发了重定向
+        if (sanitizePageName(baseTarget) !== pageNameToProcess) {
+            console.log(`🔀 [${pageNameToProcess}] 探测到纯重定向跳转 -> ${finalTargetUrl}`);
             return {
                 status: 'client_redirect',
                 pageNameToProcess,
-                targetUrl // 例如 "Supplies#Boosted_Damage"
+                targetUrl: finalTargetUrl 
             };
         }
     }
