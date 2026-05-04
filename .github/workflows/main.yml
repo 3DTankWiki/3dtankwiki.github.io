@@ -101,7 +101,7 @@ jobs:
           rsync -av ./output/ ./gh-pages-dir/
 
       - name: 部署到 GitHub Pages
-        uses: peaceiris/actions-gh-pages@main
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./gh-pages-dir
