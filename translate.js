@@ -258,13 +258,25 @@ ${JSON.stringify(batchObj, null, 2)}`;
 }
 
 function getPageNameFromWikiLink(href) { 
-    if (!href) return null; let url; try { url = new URL(href, BASE_URL); } catch (e) { return null; } 
+    if (!href) return null; 
+    let url; 
+    try { url = new URL(href, BASE_URL); } catch (e) { return null; } 
     if (url.hostname !== new URL(BASE_URL).hostname) return null; 
-    let pathname = decodeURIComponent(url.pathname); if (pathname.startsWith('/w/index.php')) return null; 
+    
+    let pathname = decodeURIComponent(url.pathname); 
+    if (pathname.startsWith('/w/index.php')) return null; 
+    
     let pageName = pathname.substring(1); 
     const blockedPrefixes = new Array('Special', 'File', 'User', 'MediaWiki', 'Template', 'Help', 'Category'); 
     const blockedPrefixRegex = new RegExp(`^(${blockedPrefixes.join('|')}):`, 'i'); 
-    if (!pageName || blockedPrefixRegex.test(pageName) || pageName.includes('#') || /\.(css|js|png|jpg|jpeg|gif|svg|ico|php)$/i.test(pageName)) return null; 
+    
+    // 🚀 核心修复：屏蔽常见资源/附件后缀，并直接拦截 images 目录
+    const isResourceFile = /\.(css|js|png|jpg|jpeg|gif|svg|ico|php|zip|rar|7z|pdf|doc|docx|xls|xlsx|txt|csv|mp3|mp4|webm|avi)$/i.test(pageName);
+    
+    if (!pageName || blockedPrefixRegex.test(pageName) || pageName.includes('#') || isResourceFile || pageName.startsWith('images/')) {
+        return null; // 返回 null 后，DOM 转换逻辑会自动将它变成带域名的绝对路径
+    }
+    
     return sanitizePageName(pageName); 
 }
 
