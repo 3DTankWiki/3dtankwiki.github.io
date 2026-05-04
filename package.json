@@ -1,7 +1,7 @@
 {
   "name": "tanki-wiki-translator",
   "version": "1.0.0",
-  "description": "抓取并翻译 3D 坦克维基页面。",
+  "description": "抓取并翻译 3D 坦克 Wiki 页面。",
   "main": "translate.js",
   "scripts": {
     "start": "node translate.js"
