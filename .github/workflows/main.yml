@@ -29,10 +29,10 @@ jobs:
       - name: 检出仓库代码 (主分支)
         uses: actions/checkout@v4
 
-      - name: 设置 Node.js 环境
+      - name: 设置 Node.js 环境 (动态使用最新LTS版)
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '*'
 
       - name: 安装系统依赖
         run: |
@@ -49,7 +49,6 @@ jobs:
       - name: 安装 Node.js 依赖 (无锁文件模式)
         env:
           PUPPETEER_SKIP_DOWNLOAD: 'true'
-        # 【修改说明】直接使用 npm install，它会读取 package.json 并自动下载最新版
         run: npm install
 
       - name: 单独下载 Chromium 浏览器
