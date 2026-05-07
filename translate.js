@@ -23,7 +23,7 @@ const SCRIPT_START_TIME = Date.now();
 
 // 初始化 Gemini 客户端
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
-const geminiModel = genAI.getGenerativeModel({ model: "gemini-3.1-flash-lite-preview" });
+const geminiModel = genAI.getGenerativeModel({ model: "gemini-3.1-flash-lite" });
 
 const sanitizePageName = (name) => name.replaceAll(' ', '_');
 
