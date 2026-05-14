@@ -23,7 +23,7 @@
   "Augments_for_Twins": 67213,
   "Augments_for_Tesla": 67212,
   "Tanki_Online_Wiki": 67233,
-  "Wiki_reports": 67235,
+  "Wiki_reports": 67266,
   "How_to_start": 62501,
   "Lobby": 65100,
   "Garage": 66260,
@@ -169,7 +169,7 @@
   "Warrant_Officer_1": 66049,
   "Gefreiter": 65549,
   "Changing_Equipment": 58703,
-  "Changing_equipment_in_battle": 66175,
+  "Changing_equipment_in_battle": 67260,
   "Discounts": 65879,
   "Overdrives": 66859,
   "Problems_with_Keyboard": 59678,
@@ -1542,7 +1542,7 @@
   "Leprotanki": 59311,
   "Tanki_Rating": 62660,
   "Tanki_Online_Tools": 65081,
-  "Custom_Camera_Settings": 65480,
+  "Custom_Camera_Settings": 67264,
   "How_to_take_a_screenshot?": 59213,
   "How_to_enter_the_game_via_Google_Plus": 59197,
   "How_to_upload_a_video_to_YouTube": 59214,
@@ -1559,5 +1559,7 @@
   "Autopilot": 66571,
   "I_can’t_enter_the_game/the_game_doesn't_load": 64429,
   "Designers_Team": 67256,
-  "AvatarsNew": 67241
+  "AvatarsNew": 67241,
+  "Best_Artworks_of_the_Month": 67265,
+  "ESports_Discord_Server_Guide": 67263
 }
