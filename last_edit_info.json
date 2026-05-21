@@ -156,7 +156,7 @@
   "Secret_Rooms": 64938,
   "About_the_game": 65371,
   "Legal_Questions_and_Answers": 59308,
-  "Creating_Fan_Content_Guide": 64161,
+  "Creating_Fan_Content_Guide": 67293,
   "How_To_Start:_Chapter_2": 64056,
   "How_To_Start:_Chapter_3": 64458,
   "How_To_Start:_Chapter_4": 62493,
@@ -1564,5 +1564,7 @@
   "ESports_Discord_Server_Guide": 67263,
   "Augments/Tsunami": 67269,
   "DictionaryNew": 67271,
-  "Mobile_Wallpapers": 67276
+  "Mobile_Wallpapers": 67276,
+  "Mip-Mapping": 67294,
+  "What_Is_PM_and_How_to_Write_There": 67292
 }
