@@ -1,7 +1,9 @@
-<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>智能冷却和可预测掉落 - 3D 坦克 Wiki</title><meta charset="UTF-8">
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>智能道具冷却与可预测掉落 - 3D 坦克 Wiki</title><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+    <meta charset="UTF-8">
+    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/MerVUtRoajKEbP7pLiGXkL28/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-m1PC1ygjfLmGwsDY9jhFKKTk4uAMPEO34ag12kE5Ljsj7EXMzvB24pLZaON7S8Ds"></script>
     <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
     <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
-    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"b779e81ede8ba787d0c2c106","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Smart_Cooldowns_and_Predictable_Drops","wgTitle":"Smart Cooldowns and Predictable Drops","wgCurRevisionId":59829,"wgRevisionId":59829,"wgArticleId":1385,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Smart_Cooldowns_and_Predictable_Drops","wgRelevantArticleId":1385,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"e2ce1fd09c117f37eb2cc2b7","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Smart_Cooldowns_and_Predictable_Drops","wgTitle":"Smart Cooldowns and Predictable Drops","wgCurRevisionId":67502,"wgRevisionId":67502,"wgArticleId":1385,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Smart_Cooldowns_and_Predictable_Drops","wgRelevantArticleId":1385,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],
 "wgVisualEditor":{"pageLanguageCode":"en","pageLanguageDir":"ltr","pageVariantFallbacks":"en"},"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.visualEditor.desktopArticleTarget.noscript":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","mediawiki.toc","ext.gadget.UTCLiveClock","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","skins.tankiblue.js","ext.purge"];</script>
     <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
 }];});});</script>
@@ -25,69 +27,104 @@
     <link rel="search" type="application/opensearchdescription+xml" href="https://en.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (en)">
     <link rel="EditURI" type="application/rsd+xml" href="https://en.tankiwiki.com/api.php?action=rsd">
     <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki Atom feed" href="https://en.tankiwiki.com/index.php?title=Special:RecentChanges&amp;feed=atom">
-    <script src="https://en.tankiwiki.com/load.php?lang=en&amp;modules=ext.gadget.UTCLiveClock&amp;skin=tankiblue&amp;version=g0y7o"></script>
-    <script src="https://en.tankiwiki.com/load.php?lang=en&amp;modules=ext.visualEditor.core.utils.parsing%7Cext.visualEditor.desktopArticleTarget.init%7Cext.visualEditor.progressBarWidget%2CsupportCheck%2CtargetLoader%2CtempWikitextEditorWidget%2Ctrack%2Cve&amp;skin=tankiblue&amp;version=frddf"></script>
-    <script src="https://en.tankiwiki.com/load.php?lang=en&amp;modules=ext.purge%7Cjquery%2Csite%7Cjquery.client%2CtextSelection%7Cmediawiki.String%2CTitle%2Capi%2Cbase%2Ccldr%2Ccookie%2CjqueryMsg%2Clanguage%2Cstorage%2Ctoc%2Cuser%2Cutil%7Cmediawiki.editfont.styles%7Cmediawiki.libs.pluralruleparser%7Cmediawiki.page.ready%7Cskins.tankiblue.js&amp;skin=tankiblue&amp;version=1vdnf"></script><style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Smart_Cooldowns_and_Predictable_Drops rootpage-Smart_Cooldowns_and_Predictable_Drops skin-tankiblue action-view"><div id="mw-main-container"><a href="./Tanki_Online_Wiki" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">返回主页</a><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang=""><span class="mw-page-title-main">智能冷却和可预测掉落</span></h1><div class="random-text-box" style="float:right; margin: 0px 10px 10px 10px; padding:10px; border: 1px solid rgba(125,157,186,.4); border-radius: 6px; background: rgba(26,50,68,.4); width:20em;">
-<div style="font-size:105%; line-height:120%; padding:0.5em; background: rgba(26,50,68,.4);"><span style="float:left"><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/8/81/User_icon.png" decoding="async" loading="lazy" width="16" height="16" class="mw-file-element"></span></span></span>&nbsp;&nbsp;<b>你知道吗。..</b>
-</div>
-<div style="font-size: 95%; padding-top:10px"><p id="dynamic-fact-placeholder" style="margin:0;">正在加载有趣的事实。..</p></div>
-</div><div class="dablink"><em>另请参阅</em>：<a href="./Advice_from_experienced_players" title="Advice from experienced players">资深玩家建议</a>
-</div><p><br>
-</p><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">目录</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
-<ul>
-<li class="toclevel-1 tocsection-1"><a href="#Introduction_and_History"><span class="tocnumber">1</span> <span class="toctext">简介与历史</span></a>
-<ul>
-<li class="toclevel-2 tocsection-2"><a href="#Yes,_crystals_used_to_drop_from_the_sky"><span class="tocnumber">1.1</span> <span class="toctext"><b>是的，水晶曾经从天而降</b></span></a></li>
-<li class="toclevel-2 tocsection-3"><a href="#Gold_Box_Experiments"><span class="tocnumber">1.2</span> <span class="toctext"><b>金箱子实验</b></span></a></li>
-</ul>
-</li>
-<li class="toclevel-1 tocsection-4"><a href="#Overview"><span class="tocnumber">2</span> <span class="toctext">概述</span></a></li>
-<li class="toclevel-1 tocsection-5"><a href="#Before_the_Update"><span class="tocnumber">3</span> <span class="toctext">更新前</span></a></li>
-<li class="toclevel-1 tocsection-6"><a href="#After_the_Update_(Brief)"><span class="tocnumber">4</span> <span class="toctext">更新后（简述）</span></a>
-<ul>
-<li class="toclevel-2 tocsection-7"><a href="#Smart_Cooldowns"><span class="tocnumber">4.1</span> <span class="toctext"><b>智能冷却</b></span></a></li>
-<li class="toclevel-2 tocsection-8"><a href="#Predictable_Drops"><span class="tocnumber">4.2</span> <span class="toctext"><b>可预测掉落</b></span></a></li>
-</ul>
-</li>
-<li class="toclevel-1 tocsection-9"><a href="#Detailed_breakdown_of_smart_cooldowns"><span class="tocnumber">5</span> <span class="toctext">智能冷却详细分解</span></a></li>
-<li class="toclevel-1 tocsection-10"><a href="#Strategies_and_Execution"><span class="tocnumber">6</span> <span class="toctext">策略与执行</span></a></li>
-</ul>
-</div><p><br>
+    <style>#utcdate a { font-weight:bolder; font-size:120%; }</style><style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Smart_Cooldowns_and_Predictable_Drops rootpage-Smart_Cooldowns_and_Predictable_Drops skin-tankiblue action-view"><div id="mw-main-container"><a href="./Tanki_Online_Wiki" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">返回主页</a><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang=""><span class="mw-page-title-main">智能道具冷却与可预测掉落</span></h1><div class="dablink"><em>另请参阅</em>：<a href="./Advice_from_experienced_players" title="Advice from experienced players">经验丰富玩家的建议</a>
+</div><p><br><br>
+</p><p><br>
 </p><div class="alert warning">
   <div class="icon"></div>
-  <div class="text"><b>注意！</b>这是一篇历史文章，其中的大部分信息已过时，不再适用于今天的游戏玩法。</div>
-</div><h3><span class="mw-headline" id="Introduction_and_History">简介与历史</span></h3><p>智能冷却和可预测掉落分别于 2014 年 9 月 29 日和 11 月 18 日引入。随着智能冷却的引入，玩家车库中的所有道具都翻了一番，此举旨在让玩家在不浪费道具的情况下适应新系统。有趣的是，这两个更新都没有受到英语社区的好评，并且在各自的开发者线程上实际上有负面评价。
-</p><h4><span id="Yes.2C_crystals_used_to_drop_from_the_sky"></span><span class="mw-headline" id="Yes,_crystals_used_to_drop_from_the_sky"><b>是的，水晶曾经从天而降</b></span></h4><p>最初，可预测掉落还包括水晶箱子的掉落点（此后已从游戏中移除）。水晶箱子可能包含 1、5、10、20 或 100 个水晶，具体取决于战斗奖励的增加率。然而，这导致了团队战斗中破坏者（Saboteurs）和水晶收集者的急剧增加，导致游戏质量急剧下降。因此，根据玩家反馈，水晶掉落及其相应的可预测掉落标志已从游戏中完全移除，任何本应作为箱子掉落的水晶现在都已添加到战斗奖励中。
-</p><h4><span class="mw-headline" id="Gold_Box_Experiments"><b>金箱子实验</b></span></h4><figure class="mw-halign-right" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/0/09/Gold_droped.png/200px-Gold_droped.png" decoding="async" loading="lazy" width="200" height="200" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/0/09/Gold_droped.png/300px-Gold_droped.png 1.5x, https://en.tankiwiki.com/images/en/thumb/0/09/Gold_droped.png/400px-Gold_droped.png 2x"></span><figcaption></figcaption></figure><p>自更新以来，金箱子及其通知也有一些显著变化。起初，金箱子在金箱子通知后的随机时间掉落。金箱子掉落的位置由带有独特金箱子标志的可预测掉落点标记。因此，玩家知道金箱子会在哪里掉落，但不知道什么时候掉落。玩家反馈促使开发者多次将此随机间隔更改为警报声和金箱子掉落之间的固定间隔。这些间隔从 1 分钟、20 秒到警报声后立即掉落不等。最终，开发者决定在通知后 30 秒掉落金箱子，这是将游戏玩法干扰降至最低并为每个人提供公平机会捕捉金箱子的理想时机。金箱子现在也有了更多的潜在掉落点，在警报声后，当坦克靠近掉落点时会显示出来。
-</p><h3><span class="mw-headline" id="Overview">概述</span></h3><p>本指南将尝试解释这些功能背后的逻辑和机制，并提供有关其正确利用的关键想法和提示。这将鼓励在每场比赛中采取更具战术性的方法，并允许在节省车库道具的同时，为最能将地图道具与车库道具互补的坦克手提供优势。
-</p><h3><span class="mw-headline" id="Before_the_Update">更新前</span></h3><p>更新前，掉落点和在这些点掉落的道具分布不均匀，多个道具经常掉落在同一个点。
-这意味着玩家拾取这些道具主要基于运气，玩家经常忽视这些道具，未能将这些道具及其各自的掉落点视为游戏不可或缺的一部分。
-此外，从地图上拾取的道具仅持续 30 秒（仅适用于伤害提升、护甲提升和速度提升）。另一方面，车库道具持续 1 整分钟，玩家可以一次激活所有道具。道具的冷却时间在效果上是局部的，这意味着激活一个道具不会影响其他道具的冷却时间。在一段时间内未被拾取的道具掉落最终会闪烁并消失。
-鉴于这种情况，某些玩家倾向于仅依赖车库道具，许多坦克手开始哀叹被“嗑药者”毁掉的游戏的普遍存在。
-</p><h3><span id="After_the_Update_.28Brief.29"></span><span class="mw-headline" id="After_the_Update_(Brief)">更新后（简述）</span></h3><h4><span class="mw-headline" id="Smart_Cooldowns"><b>智能冷却</b></span></h4><p>道具（仅适用于伤害提升、护甲提升和速度提升）现在每个持续 30 秒，无论它们是从地图上拾取的还是车库道具。这强调了地图中掉落的道具。激活一个道具会使其他一些道具进入冷却状态，这意味着并非所有道具都可以同时激活。这鼓励了地图道具和掉落箱的使用。
-</p><h4><span class="mw-headline" id="Predictable_Drops"><b>可预测掉落</b></span></h4><p>掉落点和在那里掉落的相应道具现在是固定的，每个特定点只掉落 1 个特定道具。
-</p><p>玩家现在可以在地面上看到可预测的掉落点。
-</p><p>更不用说，道具掉落不再过期。它们会留在原地，直到被玩家拾取。
-这意味着，玩家现在可以将这些掉落点纳入他们的游戏玩法中。
-</p><p>例如，在互夺军旗比赛中，玩家可以规划路线，将速度提升和护甲提升掉落点纳入敌方基地。在抢到敌方旗子后，他可以在逃跑途中选择有维修工具掉落点的路线。团队在比赛中对道具掉落点的有效控制通常决定了战斗结果。同样，在死亡混战比赛中，控制道具掉落点使玩家占据上风。这种使用地图道具的优势通过智能冷却的引入得到了进一步加强。
-</p><p>伤害提升可以由玩家从他的车库道具中激活。记住，如果你不拿这些道具掉落，你的对手就会拿走。另一方面，如果附近有队友且周围没有对手，拿走你需要的东西，把剩下的留给你的队友，特别是如果他们能比你更好地利用这些道具。
-</p><h3><span class="mw-headline" id="Detailed_breakdown_of_smart_cooldowns">智能冷却详细分解</span></h3><p><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/0/09/100px-Bonus_double_armor.png/75px-100px-Bonus_double_armor.png" decoding="async" loading="lazy" width="75" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/0/09/100px-Bonus_double_armor.png/113px-100px-Bonus_double_armor.png 1.5x, https://en.tankiwiki.com/images/en/thumb/0/09/100px-Bonus_double_armor.png/150px-100px-Bonus_double_armor.png 2x"></span></span> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/6/6a/100px-Bonus_double_power.png/75px-100px-Bonus_double_power.png" decoding="async" loading="lazy" width="75" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/6/6a/100px-Bonus_double_power.png/113px-100px-Bonus_double_power.png 1.5x, https://en.tankiwiki.com/images/en/thumb/6/6a/100px-Bonus_double_power.png/150px-100px-Bonus_double_power.png 2x"></span></span>
+  <div class="text"><b>注意！</b>这是一篇历史文章。本文中的大部分信息已过时，不再与当今的游戏玩法相关。</div>
+</div><p><br>
+</p><h3><span class="mw-headline" id="A_Guide_to_Smart_Cooldowns_and_Predictable_Drops">智能道具冷却与可预测掉落指南</span></h3><p>智能道具冷却和可预测掉落是 2014 年在 3D 坦克中引入的两个主要游戏系统。智能道具冷却改变了道具之间的交互方式，而可预测掉落改变了道具在地图上的出现方式。
+</p><p>虽然本文具有历史意义，且大部分信息不再与现代游戏玩法相关，但这些系统在当时对战斗方式产生了重大影响。它们鼓励玩家更仔细地思考路线、道具时机、地图控制以及如何将车库道具与地图掉落结合起来。
+</p><p>本指南解释了这些系统的历史、运作方式以及玩家如何战略性地使用它们。
+</p><div class="toclimit-3"><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">目录</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#A_Guide_to_Smart_Cooldowns_and_Predictable_Drops"><span class="tocnumber">1</span> <span class="toctext">智能道具冷却与可预测掉落指南</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Introduction_and_History"><span class="tocnumber">2</span> <span class="toctext">介绍与历史</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Crystal_Drops"><span class="tocnumber">3</span> <span class="toctext">水晶掉落</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Gold_Box_Experiments"><span class="tocnumber">4</span> <span class="toctext">金箱子实验</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Overview"><span class="tocnumber">5</span> <span class="toctext">概述</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Before_the_Update"><span class="tocnumber">6</span> <span class="toctext">更新前</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#After_the_Update"><span class="tocnumber">7</span> <span class="toctext">更新后</span></a>
+<ul>
+<li class="toclevel-2 tocsection-8"><a href="#Smart_Cooldowns"><span class="tocnumber">7.1</span> <span class="toctext">智能道具冷却</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Predictable_Drops"><span class="tocnumber">7.2</span> <span class="toctext">可预测掉落</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="#Smart_Cooldown_Breakdown"><span class="tocnumber">8</span> <span class="toctext">智能道具冷却细分</span></a>
+<ul>
+<li class="toclevel-2 tocsection-11"><a href="#Boosted_Armor_and_Boosted_Damage"><span class="tocnumber">8.1</span> <span class="toctext">护甲提升与伤害提升</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#Speed_Boost"><span class="tocnumber">8.2</span> <span class="toctext">速度提升</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#Mines_and_Repair_Kits"><span class="tocnumber">8.3</span> <span class="toctext">地雷与维修工具</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Repair_Kit"><span class="tocnumber">8.4</span> <span class="toctext">维修工具</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-15"><a href="#Strategies_and_Execution"><span class="tocnumber">9</span> <span class="toctext">策略与执行</span></a></li>
+<li class="toclevel-1 tocsection-16"><a href="#Using_Map_Supplies_Effectively"><span class="tocnumber">10</span> <span class="toctext">有效利用地图道具</span></a></li>
+<li class="toclevel-1 tocsection-17"><a href="#Conclusion"><span class="tocnumber">11</span> <span class="toctext">结论</span></a></li>
+</ul>
+</div>
+</div><h3><span class="mw-headline" id="Introduction_and_History">介绍与历史</span></h3><p>智能道具冷却于 2014 年 9 月 29 日引入，而可预测掉落于 2014 年 11 月 18 日引入。
+</p><p>当智能道具冷却添加时，玩家车库中的所有道具都翻倍了。这样做是为了帮助玩家适应新系统，而不会感到他们现有的道具被浪费了。
+</p><p>有趣的是，这两次更新在当时的大部分英语社区中都反响不佳。这些更新的开发者主题帖收到了负面评价，主要是因为这些变化强烈影响了玩家在战斗中使用道具的方式。
+</p><h3><span class="mw-headline" id="Crystal_Drops">水晶掉落</span></h3><p>在水晶箱子被移除之前，水晶会在战斗中从天而降。这些水晶箱子可能包含 1、5、10、20 或 100 个水晶，具体取决于战斗奖励增加的速度。
+</p><p>起初，可预测掉落也包括水晶箱子掉落点。然而，这在团队战斗中造成了问题。许多玩家开始专注于收集水晶而不是帮助他们的团队，一些不活跃或破坏性的玩家进入战斗只是为了收集掉落物。
+</p><p>结果，游戏质量下降。由于玩家的反馈，水晶掉落及其可预测掉落标志最终被移除。本应作为箱子出现的水晶被直接添加到了战斗奖励中。
+</p><h3><span class="mw-headline" id="Gold_Box_Experiments">金箱子实验</span></h3><figure class="mw-halign-right" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/0/09/Gold_droped.png/200px-Gold_droped.png" decoding="async" loading="lazy" width="200" height="200" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/0/09/Gold_droped.png/300px-Gold_droped.png 1.5x, https://en.tankiwiki.com/images/en/thumb/0/09/Gold_droped.png/400px-Gold_droped.png 2x"></span><figcaption></figcaption></figure><p>金箱子在可预测掉落更新后也发生了几次变化。
+</p><p>起初，金箱子在金箱子通知后的随机时间掉落。位置由带有独特金箱子标志的可预测掉落点标记，因此玩家知道金箱子会出现在哪里，但不知道它具体何时落下。
+</p><p>根据反馈，开发人员测试了警报声与实际掉落之间的几个固定间隔。这些间隔包括一分钟、20 秒，甚至警报声后的立即掉落。
+</p><p>最终，系统确定为金箱子在通知后 30 秒掉落。此计时旨在减少游戏干扰，同时仍给玩家一个公平的机会到达掉落点。
+</p><p>金箱子也获得了更多可能的掉落点。当坦克足够靠近掉落点时，这些掉落点会在警报声后显示出来。
+</p><h3><span class="mw-headline" id="Overview">概述</span></h3><p>智能道具冷却和可预测掉落的目的是使战斗更具战术性。
+</p><p>在这些系统之前，道具通常不可预测地出现，许多玩家完全忽略了地图道具。更新后，玩家可以围绕道具位置规划路线，并利用地图控制来获得优势。
+</p><p>了解掉落位置的玩家可以节省车库道具，在正确的时间拾取地图道具，并更有效地控制重要区域。这使得道具意识成为战斗策略的重要组成部分。
+</p><h3><span class="mw-headline" id="Before_the_Update">更新前</span></h3><p>在可预测掉落之前，道具掉落点分布不均匀。多个道具可能掉落在同一个点，玩家无法可靠地围绕它们进行规划。
+</p><p>因此，拾取道具通常取决于运气。许多玩家并不把道具掉落视为战斗的重要部分。
+</p><p>地图道具的工作方式也与车库道具不同。从地图上拾取的伤害提升、护甲提升和速度提升仅持续 30 秒，而车库道具持续整整一分钟。玩家还可以同时激活所有道具，因为冷却时间彼此独立。
+</p><p>在地图上停留时间过长的道具掉落最终会闪烁并消失。
+</p><p>结果，许多玩家主要依赖车库道具。这导致了关于战斗被大量使用道具的玩家（社区通常称为“药罐子”）主导的抱怨。
+</p><h3><span class="mw-headline" id="After_the_Update">更新后</span></h3><p>更新改变了道具时机和道具位置。
+</p><h4><span class="mw-headline" id="Smart_Cooldowns">智能道具冷却</span></h4><p>智能道具冷却使道具使用更具限制性且更具战略性。
+</p><p>伤害提升、护甲提升和速度提升持续 30 秒，无论它们来自地图还是玩家的车库。
+</p><p>激活一个道具可能会使其他道具进入冷却状态。这意味着玩家不能再在没有无人机或其他机制的特殊帮助下，自由地同时激活每一个道具。
+</p><p>这一变化鼓励玩家更频繁地使用地图道具，并仔细考虑激活车库道具的顺序。
+</p><h4><span class="mw-headline" id="Predictable_Drops">可预测掉落</span></h4><p>可预测掉落使地图道具出现在固定点。
+</p><p>每个掉落点都有一个特定的道具与之关联，玩家可以在地面上看到可预测掉落标记。道具掉落也不再在被闲置后消失。它们会留在原地直到被拾取。
+</p><p>这使得围绕道具规划路线成为可能。
+</p><p>例如，在互夺军旗战斗中，玩家可以规划一条攻击路线，其中包括前往敌方基地的路上的速度提升和护甲提升掉落。夺旗后，他们可以通过有维修工具掉落的路线返回，以增加生存机会。
+</p><p>在死亡混战中，控制重要的道具掉落点可以给玩家带来比对手大的优势。
+</p><p>核心思想很简单：如果你不拿有用的道具，你的对手可能会拿。然而，如果队友在附近且没有敌人，最好只拿你需要的东西，把有用的道具留给能从中受益更多的队友。
+</p><h3><span class="mw-headline" id="Smart_Cooldown_Breakdown">智能道具冷却细分</span></h3><p>以下细分描述了历史上的智能道具冷却系统是如何运作的。
+</p><h4><span class="mw-headline" id="Boosted_Armor_and_Boosted_Damage">护甲提升与伤害提升</span></h4><p><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/0/09/100px-Bonus_double_armor.png/75px-100px-Bonus_double_armor.png" decoding="async" loading="lazy" width="75" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/0/09/100px-Bonus_double_armor.png/113px-100px-Bonus_double_armor.png 1.5x, https://en.tankiwiki.com/images/en/thumb/0/09/100px-Bonus_double_armor.png/150px-100px-Bonus_double_armor.png 2x"></span></span> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/6/6a/100px-Bonus_double_power.png/75px-100px-Bonus_double_power.png" decoding="async" loading="lazy" width="75" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/6/6a/100px-Bonus_double_power.png/113px-100px-Bonus_double_power.png 1.5x, https://en.tankiwiki.com/images/en/thumb/6/6a/100px-Bonus_double_power.png/150px-100px-Bonus_double_power.png 2x"></span></span>
 </p><ul><li>持续 30 秒。</li>
-<li>使彼此进入 10 秒冷却时间</li>
-<li>使速度提升进入 5 秒冷却时间</li>
-<li>效果结束后 30 秒可重新激活</li></ul><p><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/9/98/100px-Bonus_nitro.png/75px-100px-Bonus_nitro.png" decoding="async" loading="lazy" width="75" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/9/98/100px-Bonus_nitro.png/113px-100px-Bonus_nitro.png 1.5x, https://en.tankiwiki.com/images/en/thumb/9/98/100px-Bonus_nitro.png/150px-100px-Bonus_nitro.png 2x"></span></span>
-</p><ul><li>使护甲提升和伤害提升进入 5 秒冷却时间</li>
-<li>效果结束后 30 秒可重新激活</li></ul><p><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/0/0a/MineNewLook.png/70px-MineNewLook.png" decoding="async" loading="lazy" width="70" height="45" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/0/0a/MineNewLook.png/105px-MineNewLook.png 1.5x, https://en.tankiwiki.com/images/en/0/0a/MineNewLook.png 2x"></span></span> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/e/e5/100px-Bonus_first_aid.png/75px-100px-Bonus_first_aid.png" decoding="async" loading="lazy" width="75" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/e/e5/100px-Bonus_first_aid.png/113px-100px-Bonus_first_aid.png 1.5x, https://en.tankiwiki.com/images/en/thumb/e/e5/100px-Bonus_first_aid.png/150px-100px-Bonus_first_aid.png 2x"></span></span>
-</p><ul><li>使速度提升、护甲提升和伤害提升进入 5 秒冷却时间</li>
-<li>每 30 秒可使用一次</li></ul><p><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/e/e5/100px-Bonus_first_aid.png/75px-100px-Bonus_first_aid.png" decoding="async" loading="lazy" width="75" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/e/e5/100px-Bonus_first_aid.png/113px-100px-Bonus_first_aid.png 1.5x, https://en.tankiwiki.com/images/en/thumb/e/e5/100px-Bonus_first_aid.png/150px-100px-Bonus_first_aid.png 2x"></span></span>
-</p><ul><li>使护甲提升和伤害提升进入 5 秒冷却时间</li>
-<li>效果结束后 30 秒可重新激活</li></ul><p>这个新系统意味着玩家现在必须仔细规划激活车库道具的顺序。此外，如果没有无人机的帮助，现在不可能同时激活伤害提升、护甲提升和速度提升车库道具。
-</p><h3><span class="mw-headline" id="Strategies_and_Execution">策略与执行</span></h3><p>现在我们知道了智能道具的基本操作和可预测掉落的本质，我们将深入探讨几种利用这些功能的方法和策略，以创造更具战术性的游戏玩法，并让你在坦克手同伴中占据优势。
-</p><p>还记得更新前那些似乎喜欢无穷无尽的道具储备的烦人坦克手吗？现在你可以像他们一样玩，而不必把你的车库道具浪费掉。你所要做的就是注意你的周围环境和可预测掉落点的位置。
-</p><p>例如在城镇 3C 互夺军旗中，这些是各自可预测掉落的位置。
-<span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/4/49/Serpuhov1.jpg" decoding="async" loading="lazy" width="1415" height="895" class="mw-file-element"></span></span>
-</p><p><br>显然，一个人应该规划经过尽可能多掉落点的路线。我建议在前往敌方基地的途中选择一条有护甲提升和速度提升掉落点的路线。这是成功夺旗需要激活/拾取的 2 个基本道具。如果两个道具都可以从地面拾取，请随意激活伤害提升并轰鸣着走向成功。在返回基地的途中，选择一条有尽可能多维修工具掉落点的路线。这与你车库中的维修工具相结合，将使你的坦克几乎无敌，即使你使用的是轻型坦克。
-</p><div align="right"><small>最后编辑：HelpersBot 2024 年 5 月 21 日</small></div></div></div></div></div></div><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<li>使彼此进入 10 秒冷却时间。</li>
+<li>使速度提升进入 5 秒冷却时间。</li>
+<li>效果结束后 30 秒可重新激活。</li></ul><h4><span class="mw-headline" id="Speed_Boost">速度提升</span></h4><p><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/9/98/100px-Bonus_nitro.png/75px-100px-Bonus_nitro.png" decoding="async" loading="lazy" width="75" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/9/98/100px-Bonus_nitro.png/113px-100px-Bonus_nitro.png 1.5x, https://en.tankiwiki.com/images/en/thumb/9/98/100px-Bonus_nitro.png/150px-100px-Bonus_nitro.png 2x"></span></span>
+</p><ul><li>使护甲提升和伤害提升进入 5 秒冷却时间。</li>
+<li>效果结束后 30 秒可重新激活。</li></ul><h4><span class="mw-headline" id="Mines_and_Repair_Kits">地雷与维修工具</span></h4><p><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/0/0a/MineNewLook.png/70px-MineNewLook.png" decoding="async" loading="lazy" width="70" height="45" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/0/0a/MineNewLook.png/105px-MineNewLook.png 1.5x, https://en.tankiwiki.com/images/en/0/0a/MineNewLook.png 2x"></span></span> <span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/e/e5/100px-Bonus_first_aid.png/75px-100px-Bonus_first_aid.png" decoding="async" loading="lazy" width="75" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/e/e5/100px-Bonus_first_aid.png/113px-100px-Bonus_first_aid.png 1.5x, https://en.tankiwiki.com/images/en/thumb/e/e5/100px-Bonus_first_aid.png/150px-100px-Bonus_first_aid.png 2x"></span></span>
+</p><ul><li>使速度提升、护甲提升和伤害提升进入 5 秒冷却时间。</li>
+<li>每 30 秒可使用一次。</li></ul><h4><span class="mw-headline" id="Repair_Kit">维修工具</span></h4><p><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/e/e5/100px-Bonus_first_aid.png/75px-100px-Bonus_first_aid.png" decoding="async" loading="lazy" width="75" height="75" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/e/e5/100px-Bonus_first_aid.png/113px-100px-Bonus_first_aid.png 1.5x, https://en.tankiwiki.com/images/en/thumb/e/e5/100px-Bonus_first_aid.png/150px-100px-Bonus_first_aid.png 2x"></span></span>
+</p><ul><li>使护甲提升和伤害提升进入 5 秒冷却时间。</li>
+<li>效果结束后 30 秒可重新激活。</li></ul><p>该系统意味着玩家必须仔细规划道具激活的顺序。除非有无人机等其他机制帮助绕过限制，否则仅使用车库道具就不可能同时激活伤害提升、护甲提升和速度提升。
+</p><h3><span class="mw-headline" id="Strategies_and_Execution">策略与执行</span></h3><p>一旦玩家理解了智能道具冷却和可预测掉落，他们就可以利用它们获得战术优势。
+</p><p>最重要的技能是地图意识。了解道具出现位置的玩家可以更有效地规划攻击、逃跑和防御路线。
+</p><p>例如，在互夺军旗战斗中，玩家可以研究可预测掉落位置，并规划通过最有用的道具的路线。
+</p><p><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/4/49/Serpuhov1.jpg" decoding="async" loading="lazy" width="1415" height="895" class="mw-file-element"></span></span>
+</p><p>一条强大的夺旗路线可能包括前往敌方基地的路上的护甲提升和速度提升掉落。这两个道具对于在接近时生存并在夺旗后快速逃跑特别有用。
+</p><p>如果两个道具都能从地图上拾取，玩家就可以从车库激活伤害提升，并带着所有需要的优势进行攻击。
+</p><p>在返回路线上，维修工具掉落特别有价值。将地图维修工具与车库维修工具结合起来，可以使轻型底盘在携带旗帜时更难被摧毁。
+</p><h3><span class="mw-headline" id="Using_Map_Supplies_Effectively">有效利用地图道具</span></h3><p>地图道具在被视为战斗计划的一部分而非随机奖励时最有用。
+</p><p>有效利用地图道具包括：
+</p><ul><li>规划通过速度提升和护甲提升掉落的夺旗路线。</li>
+<li>通过有维修工具的区域返回。</li>
+<li>在死亡混战中控制重要的道具点。</li>
+<li>拒绝敌人获取关键道具。</li>
+<li>通过先使用地图道具来节省车库道具。</li>
+<li>当队友能更好地利用道具时，将道具留给他们。</li></ul><p>控制道具位置的团队通常会获得重大优势，因为他们可以战斗更久、更安全地逃跑，并消耗更少的车库道具。
+</p><h3><span class="mw-headline" id="Conclusion">结论</span></h3><p>智能道具冷却和可预测掉落改变了玩家在 3D 坦克中处理道具的方式。玩家不再是同时激活所有道具或希望找到随机掉落，而是必须规划路线、控制地图资源并更仔细地选择道具时机。
+</p><p>虽然本文具有历史意义，且大部分信息已过时，但这些系统很重要，因为它们鼓励了更具战术性的游戏玩法，并使地图意识变得更有价值。
+</p><p>了解它们的工作原理为 3D 坦克的战斗系统如何随时间演变提供了有用的背景。
+</p><div align="right"><small>最后编辑：Sabry 2026 年 6 月 16 日</small></div></div></div></div></div></div><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <script type="text/javascript">
     (function (m, e, t, r, i, k, a) {
@@ -118,7 +155,6 @@
     <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
     <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
     <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
-    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":412,"wgPageParseReport":{"limitreport":{"cputime":"0.086","walltime":"0.126","ppvisitednodes":{"value":182,"limit":1000000},"postexpandincludesize":{"value":1066,"limit":2097152},"templateargumentsize":{"value":297,"limit":2097152},"expansiondepth":{"value":8,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":576,"limit":5000000},"timingprofile":["100.00%   20.127      1 -total"," 52.18%   10.502      1 Template:See_also"," 35.68%    7.182      1 Template:Other_meaning"," 19.05%    3.835      1 Template:RandomText"," 17.37%    3.496     14 Template:See_also/link"," 13.59%    2.736      1 Template:LastEdit"," 13.38%    2.692      1 Template:Alert"]},"cachereport":{"timestamp":"20260504065309","ttl":0,"transientcontent":true}}});});</script>
-    <script>document.addEventListener('DOMContentLoaded', function() { fetch('./facts.json').then(r=>r.json()).then(f=>{ document.getElementById('dynamic-fact-placeholder').innerHTML = f[Math.floor(Math.random() * f.length)].cn; }).catch(()=>{}); });</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":588,"wgPageParseReport":{"limitreport":{"cputime":"0.033","walltime":"0.041","ppvisitednodes":{"value":193,"limit":1000000},"postexpandincludesize":{"value":561,"limit":2097152},"templateargumentsize":{"value":297,"limit":2097152},"expansiondepth":{"value":8,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%   12.674      1 -total"," 69.00%    8.745      1 Template:See_also"," 47.26%    5.990      1 Template:Other_meaning"," 23.11%    2.929     14 Template:See_also/link"," 15.09%    1.912      1 Template:LastEdit"," 13.45%    1.705      1 Template:Alert"]},"cachereport":{"timestamp":"20260616034250","ttl":86400,"transientcontent":false}}});});</script>
     <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
     <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script></body></html>
