@@ -91,7 +91,7 @@
   "Tsar": 67512,
   "Micro-upgrades": 65760,
   "Modifications": 65493,
-  "Paints": 67473,
+  "Paints": 67748,
   "Skins": 67014,
   "Shot_Effects": 66587,
   "Damage": 67442,
@@ -1575,5 +1575,6 @@
   "Music": 67507,
   "Etiquette_in_battles": 67681,
   "New_Year_Marathon": 67696,
-  "Checking_port_availability": 67694
+  "Checking_port_availability": 67694,
+  "Office": 67747
 }
