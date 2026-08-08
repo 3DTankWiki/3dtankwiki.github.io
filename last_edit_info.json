@@ -131,7 +131,7 @@
   "Challenges": 67809,
   "Shards": 65844,
   "Premium_Accounts": 67010,
-  "Passes": 67805,
+  "Passes": 67812,
   "Containers": 67708,
   "Gold_Box": 67197,
   "Missions": 66262,
@@ -205,7 +205,7 @@
   "Tsunami": 67660,
   "Micro-upgrades_Firebird": 66552,
   "Firebird_guide": 67444,
-  "Early_Access": 67806,
+  "Early_Access": 67813,
   "Corporal": 65743,
   "Sergeant": 66046,
   "Master_Sergeant": 66047,
@@ -1552,7 +1552,7 @@
   "Translators,_Proofreaders_and_Game_Translators": 67251,
   "Posting_a_YouTube_video_in_the_forum": 60254,
   "How_To_Publish_Videos_from_YouTube_on_the_Forum": 60253,
-  "Test": 67697,
+  "Test": 67817,
   "I_lost_crystals/exp/items_from_my_account": 59225,
   "Augments/Hammer": 67553,
   "Augments/Hulls": 67205,
@@ -1582,5 +1582,7 @@
   "Augments/Smoky": 67795,
   "Augments/Scorpion": 67794,
   "Augments/Shaft": 67802,
-  "Parkour_Clubs": 67803
+  "Parkour_Clubs": 67803,
+  "Early_Access2": 67815,
+  "Passes2": 67814
 }
