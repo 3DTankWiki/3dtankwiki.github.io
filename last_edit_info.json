@@ -1552,7 +1552,7 @@
   "Translators,_Proofreaders_and_Game_Translators": 67251,
   "Posting_a_YouTube_video_in_the_forum": 60254,
   "How_To_Publish_Videos_from_YouTube_on_the_Forum": 60253,
-  "Test": 67853,
+  "Test": 67870,
   "I_lost_crystals/exp/items_from_my_account": 59225,
   "Augments/Hammer": 67859,
   "Augments/Hulls": 67849,
@@ -1603,5 +1603,9 @@
   "Battle_Interface2": 67829,
   "Augments/Firebird": 67828,
   "Battle2": 67827,
-  "Tank_Controls2": 67826
+  "Tank_Controls2": 67826,
+  "Hulls2": 67869,
+  "Turrets2": 67868,
+  "Payment_instructions_for_Tanki_Online_Mobile2": 67863,
+  "Tech_Support2": 67861
 }
