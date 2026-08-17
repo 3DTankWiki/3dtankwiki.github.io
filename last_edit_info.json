@@ -71,7 +71,7 @@
   "Mammoth": 67124,
   "Juggernaut": 66341,
   "Modules": 67368,
-  "Drones": 65348,
+  "Drones": 67942,
   "Oracle": 64816,
   "Brutus": 64980,
   "Mechanic": 67441,
@@ -1641,5 +1641,8 @@
   "Twins2": 67889,
   "Hammer2": 67888,
   "Tesla2": 67887,
-  "Isida2": 67885
+  "Isida2": 67885,
+  "Grenade2": 67944,
+  "Drones2": 67943,
+  "Modules2": 67940
 }
