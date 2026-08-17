@@ -1552,7 +1552,7 @@
   "Translators,_Proofreaders_and_Game_Translators": 67251,
   "Posting_a_YouTube_video_in_the_forum": 60254,
   "How_To_Publish_Videos_from_YouTube_on_the_Forum": 60253,
-  "Test": 67920,
+  "Test": 67947,
   "I_lost_crystals/exp/items_from_my_account": 59225,
   "Augments/Hammer": 67859,
   "Augments/Hulls": 67849,
@@ -1644,5 +1644,7 @@
   "Isida2": 67885,
   "Grenade2": 67944,
   "Drones2": 67943,
-  "Modules2": 67940
+  "Modules2": 67940,
+  "Brutus2": 67946,
+  "Oracle2": 67945
 }
