@@ -8,8 +8,10 @@ const path = require('path');
 // --- 【配置常量】 ---
 // 🇷🇺 源站：俄语版 Tanki Online Wiki
 const BASE_URL = 'https://ru.tankiwiki.com';
-// 俄语站主页的规范标题（Заглавная_страница 是它的重定向）
-const START_PAGE = 'Энциклопедия_игры_«Танки_Онлайн»';
+// 俄语站主页的真实页面名：标题显示为西里尔，但 wgPageName / URL 用的是拉丁转写，
+// 必须与 gh-pages 上生成的文件名 Enciklopediya_igry_«Tanki_Onlayn».html 完全一致，
+// 否则主页自己也会被判定成“非主页”而多出一个返回主页按钮。
+const START_PAGE = 'Enciklopediya_igry_«Tanki_Onlayn»';
 const RECENT_CHANGES_FEED_URL = `${BASE_URL}/api.php?action=feedrecentchanges&days=7&feedformat=atom&urlversion=1`;
 const CONCURRENCY_LIMIT = 32; // 🚀 【核心】修改为 32，实现多标签页极速并发抓取
 const TARGET_BATCH_CHARS = 100000; // 🚀 全局唯一合并阈值：坚守此红线
@@ -19,12 +21,19 @@ const OUTPUT_DIR = './output';
 
 // --- 【站点声明与外观】 ---
 // 「最后编辑」作者旁边追加的 AI 翻译说明
-const AI_NOTE_HTML = '<span class="ai-translate-note" style="color:#8FB8D8;">（由 AI 自动翻译）</span>';
+const AI_NOTE_HTML = '<span class="ai-translate-note" style="color:#8FB8D8;">（本页面由 AI 自动翻译）</span>';
 // 页脚免责声明：true = 所有页面都加；false = 只在主页加
 const FOOTER_ON_ALL_PAGES = true;
 const SITE_FOOTER_HTML = `<footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
 <p style="margin:0;"><strong style="color:#BFD5FF;">本站为玩家社区自建的非官方 Wiki 镜像。</strong></p>
 </footer>`;
+
+// 「返回主页」按钮：照搬 tankionline.com 皮肤预览页右下角的翻页按钮
+// (skins-resources/assets/index.css → .layout .skin-preview-wrapper .buttons .button)
+//   常态：.125rem 半透明白边 + .5rem 圆角 + 由角落发散的 rgba(191,213,255,.15) 径向渐变，箭头 #bfd5ff
+//   悬停：边框与 outline 变 #bfd5ff、::before 渐变淡入、箭头位移 10% 并变纯白
+// 箭头 path 直接取自 tankionline 皮肤预览页的 React bundle（skins-resources/assets/index.js）
+const HOME_BUTTON_SVG = '<svg viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 0H13.5L25.5 12L24 13.5L13.5 24H18L30 12L18 0ZM24 13.5L21 10.5H0L3 13.5H24Z" fill="#BFD5FF"/></svg>';
 
 // 【修复 A】源站 ResourceLoader 的 startup 模块里写死了 mw.loader.addSource({"local":"/load.php"})，
 // 这是相对路径，在 GitHub Pages 上会解析成 https://<你的域名>/load.php → 404，
@@ -110,7 +119,88 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
     margin-right: 0 !important;
 }
 
-/* 5. 移动端：源站容器 padding + 我们的 20px 叠加后两侧空太多，正文被挤成窄条 */
+/* 5. 皮肤脚本 skins.tankiblue.js 会往 #mw-content-text 末尾插一条「发现错别字？Ctrl+Enter」
+      的俄语提示条和一个「报告错误」标签页。它按网址里有没有 'en'/'de' 来判断语言，
+      我们的域名两者都不含 → 一律显示俄语；且报错会提交到俄站编辑组，对镜像站没意义，直接隐藏。 */
+#custom-report-footer,
+.vectorTabs.customReport,
+.customReport { display: none !important; }
+
+/* 6. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐
+      （数值全部来自对官网实际渲染的 getComputedStyle 取样，根字号 13px 换算成 px 写死）
+        常态 141.375x78 / border 1px rgba(255,255,255,.25) / radius 6.5px
+              背景 radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15), transparent)
+              箭头 24.375x24 fill #BFD5FF
+        悬停 border #BFD5FF + outline 1px #BFD5FF / ::before 渐变 opacity 0→1
+              箭头 fill #fff 且位移 translate(10%)（约 2.44px）
+        全部过渡 all .15s ease
+      ⚠️ 手机是触屏，没有 :hover。所以下面额外加了 :active / :focus-visible，
+        让点按时也能看到同样的动效，另有 @media (hover:none) 的常驻高亮兜底。 */
+.home-back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 141.375px;
+    height: 78px;
+    margin: 0 0 25px 0;
+    padding: 0;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 6.5px;
+    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%);
+    outline: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: all .15s ease;
+}
+.home-back-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(100% 100% at 0% 0%, rgba(191,213,255,.25) 0%, rgba(191,213,255,.15) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all .15s ease;
+}
+.home-back-btn svg {
+    width: 24.375px;
+    height: 24px;
+    object-fit: contain;
+    transform: rotate(180deg);            /* prev：箭头指向左 */
+    transition: all .15s ease;
+}
+.home-back-btn svg path { fill: #BFD5FF; transition: all .15s ease; }
+
+.home-back-btn:hover,
+.home-back-btn:active,
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF; border-color: #BFD5FF; }
+.home-back-btn:hover::before,
+.home-back-btn:active::before,
+.home-back-btn:focus-visible::before { opacity: 1; }
+.home-back-btn:hover svg,
+.home-back-btn:active svg,
+.home-back-btn:focus-visible svg { transform: rotate(180deg) translate(10%); }
+.home-back-btn:hover svg path,
+.home-back-btn:active svg path,
+.home-back-btn:focus-visible svg path { fill: #fff; }
+
+/* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
+@media (hover: none) {
+    .home-back-btn { border-color: rgba(191,213,255,.55); }
+    .home-back-btn svg path { fill: #CFE0FF; }
+}
+/* 窄屏适当缩小，保持官网比例 141.375:78 */
+@media (max-width: 480px) {
+    .home-back-btn { width: 106px; height: 58.5px; }
+    .home-back-btn svg { width: 20px; height: 19.7px; }
+}
+
+/* 7. 移动端：源站容器 padding + 我们的 20px 叠加后两侧空太多，正文被挤成窄条 */
 @media (max-width: 768px) {
     #mw-main-container { padding: 10px; margin: 8px auto; }
     /* 主页那些写死 width:55% / 45% 的分栏在窄屏下强制单列 */
@@ -124,7 +214,7 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
     #mw-main-container { padding: 6px; margin: 4px auto; }
 }
 
-/* 6. 防止宽表格 / 大图撑破版心产生横向滚动 */
+/* 8. 防止宽表格 / 大图撑破版心产生横向滚动 */
 #mw-content-text img { max-width: 100%; height: auto; }
 #mw-content-text table { max-width: 100%; }
 
@@ -642,7 +732,9 @@ function finalizePage(preparedData, translatedResultsForPage) {
     // 动态计算“返回主页”按钮的正确层级退回路径
     const depth = (pageNameToProcess.match(/\//g) ||[]).length;
     const relPrefix = depth === 0 ? './' : '../'.repeat(depth);
-    let homeButtonHtml = pageNameToProcess !== START_PAGE ? `<a href="${relPrefix}${encodeURIComponent(START_PAGE)}" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">返回主页</a>` : '';
+    let homeButtonHtml = pageNameToProcess !== START_PAGE
+        ? `<a class="home-back-btn" href="${relPrefix}${encodeURIComponent(START_PAGE)}" title="返回主页" aria-label="返回主页">${HOME_BUTTON_SVG}</a>`
+        : '';
     
     const colorReplacementScript = `<script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\\(70,\\s*223,\\s*17\\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);<\/script>`;
     bodyEndScripts.push(colorReplacementScript);
