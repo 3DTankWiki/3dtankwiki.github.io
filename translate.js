@@ -15,7 +15,9 @@ const START_PAGE = 'Enciklopediya_igry_«Tanki_Onlayn»';
 const RECENT_CHANGES_FEED_URL = `${BASE_URL}/api.php?action=feedrecentchanges&days=7&feedformat=atom&urlversion=1`;
 const CONCURRENCY_LIMIT = 32; // 🚀 【核心】修改为 32，实现多标签页极速并发抓取
 const TARGET_BATCH_CHARS = 100000; // 🚀 全局唯一合并阈值：坚守此红线
-const DICTIONARY_URL = 'https://testanki1.github.io/translations.js'; 
+// 术语词库：优先读仓库根目录的 translations.js（俄语 -> 中文），读不到再退回远程
+const DICTIONARY_FILE = 'translations.js';
+const DICTIONARY_URL = 'https://testanki1.github.io/translations.js'; // 兜底用（英文 -> 中文）
 const SOURCE_DICT_FILE = 'source_replacements.js'; 
 const OUTPUT_DIR = './output';
 
@@ -309,24 +311,47 @@ async function getPagesForFeedMode(lastEditInfo) {
     }
 }
 
-async function getOnlineDictionaryString() {
-    console.log(`正在从 URL 获取专有名词翻译词典: ${DICTIONARY_URL}`); 
-    try { 
-        const response = await fetch(DICTIONARY_URL); 
-        if (!response.ok) throw new Error(`网络请求失败: ${response.status}`); 
-        const scriptContent = await response.text(); 
-        const dictObj = new Function(`${scriptContent}; return replacementDict;`)(); 
-        
-        let dictStr = "";
-        for (const [en, zh] of Object.entries(dictObj)) {
-            dictStr += `${en} -> ${zh}\n`;
+function dictObjToString(dictObj) {
+    let dictStr = "";
+    for (const [src, zh] of Object.entries(dictObj)) {
+        dictStr += `${src} -> ${zh}\n`;
+    }
+    return dictStr;
+}
+
+async function getDictionaryString() {
+    // ① 优先：仓库根目录的本地词库 translations.js
+    const localPath = path.resolve(__dirname, DICTIONARY_FILE);
+    if (fs.existsSync(localPath)) {
+        try {
+            const scriptContent = fs.readFileSync(localPath, 'utf-8');
+            const dictObj = new Function(`${scriptContent}; return replacementDict;`)();
+            const count = Object.keys(dictObj || {}).length;
+            if (count > 0) {
+                console.log(`✅ 已加载本地术语词库 ${DICTIONARY_FILE}（${count} 条），将作为指令发送给 AI。`);
+                return dictObjToString(dictObj);
+            }
+            console.warn(`⚠️ ${DICTIONARY_FILE} 解析出来是空的，改用远程词库。`);
+        } catch (error) {
+            console.warn(`⚠️ 本地词库 ${DICTIONARY_FILE} 解析失败（${error.message}），改用远程词库。`);
         }
-        console.log(`✅ 成功加载翻译词典，将作为指令发送给 AI。`);
-        return dictStr;
-    } catch (error) { 
-        console.warn(`⚠️ 获取在线词典失败，将不使用专有词库提示AI: ${error.message}`);
-        return ""; 
-    } 
+    } else {
+        console.warn(`⚠️ 未找到本地词库 ${DICTIONARY_FILE}，改用远程词库。`);
+    }
+
+    // ② 兜底：远程词库
+    console.log(`正在从 URL 获取专有名词翻译词典: ${DICTIONARY_URL}`);
+    try {
+        const response = await fetch(DICTIONARY_URL);
+        if (!response.ok) throw new Error(`网络请求失败: ${response.status}`);
+        const scriptContent = await response.text();
+        const dictObj = new Function(`${scriptContent}; return replacementDict;`)();
+        console.log(`✅ 成功加载远程翻译词典。`);
+        return dictObjToString(dictObj);
+    } catch (error) {
+        console.warn(`⚠️ 获取远程词典也失败，将不使用专有词库提示AI: ${error.message}`);
+        return "";
+    }
 }
 
 function getPreparedSourceDictionary() {
@@ -401,8 +426,8 @@ async function translateBatchWithGemini(tasksObj, dictStr) {
 
     // 🚀【修复核心点】：在 prompt 中增加了第3条“核心红线”，并对词库的要求发出了警告！
     const dictPrompt = dictStr ? `
-5. 【术语表要求】：请严格遵守以下提供的《翻译专有名词词库》。词库以「英文 -> 中文」给出，而原文是俄语：请自行把俄语原文中与词库英文条目**同义**的术语，统一翻译为词库指定的中文（词库里某个英文条目在俄语中的对应说法，也必须译成同一个中文词）：
-（⚠️警告：仅限替换文本！如果原文中该词汇没有被超链接包裹，你翻译成中文时也绝对不能把它变成超链接！）
+5. 【术语表要求】：请严格遵守以下提供的《翻译专有名词词库》。只要原文出现了词库中的俄文，必须统一翻译为对应的中文：
+（⚠️警告：仅限替换文本！如果原文中该俄文词汇没有被超链接包裹，你翻译成中文时也绝对不能把它变成超链接！）
 --- 词库开始 ---
 ${dictStr}
 --- 词库结束 ---
@@ -414,19 +439,19 @@ ${dictStr}
 
         // 🚀【修复核心点】：全面强化禁止 AI 自主添加 <a> 标签的禁令
         const prompt = `你是一个专业的《Tanki Online》（3D坦克）游戏 Wiki 本地化翻译引擎。
-请将以下 JSON 对象中的值（俄语原文，包含完整 HTML 标签的代码块）翻译为简体中文。
+请将以下 JSON 对象中的值（包含完整 HTML 标签的代码块）翻译为简体中文。
 
 【极端重要的要求】：
 1. JSON的键名（Key）绝对不可更改。只翻译键值（Value）。
-2. 【保留所有原标签，严防吞标签】：你必须原样保留所有的 HTML 标签！如果因为原文与中文语序不同（比如英文是 A for B，中文是 B 的 A），【必须带着完整的 HTML 标签一起移动位置】！例如原文 \`Augments for <a href="/Scorpion">Scorpion</a>\` 必须翻译为 \`<a href="/Scorpion">蝎子</a>的装备改造\`，绝对不许弄丢或删除 \`<a>\` 等任何标签！
-3. 【⚠️严禁无中生有加链接（核心红线）】：绝对不允许在翻译时自行增加原文没有的 \`<a>\` 超链接或其他 HTML 标签！如果原文词汇只是普通纯文本（没有被 \`<a>\` 等标签包裹），你翻译成中文时也必须是普通纯文本，【绝对禁止】为了强调术语而自作聪明把它变成超链接或为其添加样式！
-4. 【精确翻译可见属性】：请务必翻译 HTML 标签中用于显示的属性（如 \`title="..."\`、\`alt="..."\`、\`placeholder="..."\` 等，例如 \`title="First appeared: ..."\` 必须翻译为中文）。但是对于 \`href\`、\`src\`、\`id\`、\`class\`、\`style\`、\`data-*\` 等功能性属性，【必须原样保留，绝对不能改】！
+2. 【保留所有原标签，严防吞标签】：你必须原样保留所有的 HTML 标签！如果因为中俄文语序不同（比如俄文是 A для B，中文是 B 的 A），【必须带着完整的 HTML 标签一起移动位置】！例如原文 \`Улучшения для <a href="/Skorpion">Скорпиона</a>\` 必须翻译为 \`<a href="/Scorpion">蝎子</a>的装备改造\`，绝对不许弄丢或删除 \`<a>\` 等任何标签！
+3. 【⚠️严禁无中生有加链接（核心红线）】：绝对不允许在翻译时自行增加原文没有的 \`<a>\` 超链接或其他 HTML 标签！如果原俄文词汇只是普通纯文本（没有被 \`<a>\` 等标签包裹），你翻译成中文时也必须是普通纯文本，【绝对禁止】为了强调术语而自作聪明把它变成超链接或为其添加样式！
+4. 【精确翻译可见属性】：请务必翻译 HTML 标签中用于显示的属性（如 \`title="..."\`、\`alt="..."\`、\`placeholder="..."\` 等，例如 \`title="Впервые появился: ..."\` 必须翻译为中文）。但是对于 \`href\`、\`src\`、\`id\`、\`class\`、\`style\`、\`data-*\` 等功能性属性，【必须原样保留，绝对不能改】！
 ${dictPrompt}
 6. 【盘古之白排版规范 - 极其重要】：
    - 中文字符与中文字符之间【绝对不要加空格或 &nbsp; 实体】，即使它们被 HTML 标签隔开！比如输出必须是 "为了用<a href="...">红宝石</a>购买"，绝对不能出现空格！
-   - 【英文/数字】与【中文汉字】的交界处，请加上一个半角空格！
+   - 【俄文/英文/数字】与【中文汉字】的交界处，请加上一个半角空格！
    - 【严禁修改数值代码】：原文中的数值（如 187.5、205.5 等）必须【绝对原样保留】！绝对不要把数字中的小数点（.）改写成逗号（,），也绝对不要在数字中间随意加空格！
-7. 除了词库中的术语，其余部分请结合上下文翻译得专业流畅。如果是普通句子末尾的西文标点，请翻译为中文标点；如果是数字内的标点或HTML代码，请原样保留。
+7. 除了词库中的术语，其余部分请结合上下文翻译得专业流畅。如果是普通句子末尾的俄文标点，请翻译为中文标点；如果是数字内的标点或HTML代码，请原样保留。
 8. 绝对不要使用 Markdown 代码块包裹输出！直接输出合法的、可被 JSON.parse() 解析的纯 JSON 格式！
 
 待翻译 HTML 块的 JSON：
@@ -761,7 +786,7 @@ async function run() {
     if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR);
 
     const sourceReplacementMap = getPreparedSourceDictionary();
-    const dictStr = await getOnlineDictionaryString();
+    const dictStr = await getDictionaryString();
     
     let lastEditInfo = {};
     if (fs.existsSync(EDIT_INFO_FILE)) try { lastEditInfo = JSON.parse(fs.readFileSync(EDIT_INFO_FILE, 'utf-8')); } catch (e) {}
