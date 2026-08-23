@@ -1,4 +1,3 @@
-# .github/workflows/main.yml
 name: 翻译并部署 Wiki 页面
 
 on:
@@ -16,12 +15,17 @@ on:
           - CRAWLER    # 完整爬虫模式
           - SPECIFIED  # 指定页面模式
       pages:
-        description: '指定页面列表 (仅在SPECIFIED模式下有效, 逗号分隔, 例如: Paints,Hulls)'
+        description: '指定页面列表 (仅在SPECIFIED模式下有效, 逗号分隔, 例如: Устройства,Корпуса)'
         required: false
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-  
+
+# 🔒 全局串行锁：定时任务(每30分钟)与手动任务不再并行，避免两个 job 同时 push 造成 non-fast-forward
+concurrency:
+  group: wiki-translate-deploy
+  cancel-in-progress: false
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -31,6 +35,8 @@ jobs:
     steps:
       - name: 检出仓库代码 (主分支)
         uses: actions/checkout@main
+        with:
+          fetch-depth: 0   # rebase 需要完整历史，浅克隆会失败
 
       - name: 设置 Node.js 环境
         uses: actions/setup-node@main
@@ -72,48 +78,79 @@ jobs:
         run: |
           echo "--- 当前目录文件列表 ---"
           ls -laF
+          echo "--- 产物目录 ---"
+          ls -laF ./output || echo "(无 output 目录)"
           echo "--- Git 状态 ---"
           git status
+
+      # ⚠️ 顺序调整：先部署页面，再回写进度记录。
+      # 否则一旦进度记录写成功、部署失败，这些页面会被永久标记为“已翻译”，再也不会重新生成。
+      - name: 检出 gh-pages 分支到单独目录
+        uses: actions/checkout@main
+        with:
+          ref: gh-pages
+          path: gh-pages-dir
+          fetch-depth: 0
+
+      - name: 增量部署到 gh-pages 分支
+        run: |
+          if [ ! -d ./output ] || [ -z "$(ls -A ./output)" ]; then
+            echo "本次没有生成任何页面，跳过部署。"
+            exit 0
+          fi
+
+          rsync -av ./output/ ./gh-pages-dir/
+
+          cd gh-pages-dir
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add .
+          if git diff --staged --quiet; then
+            echo "没有新的页面变更需要部署"
+            exit 0
+          fi
+          git commit -m "deploy: 更新 GitHub Pages 翻译页面"
+
+          # 🔁 带重试的推送：远端若被其它 run 抢先，rebase 后重试
+          for i in 1 2 3 4 5; do
+            if git push origin gh-pages; then
+              echo "✅ gh-pages 推送成功"
+              exit 0
+            fi
+            echo "⚠️ 第 $i 次推送被拒绝，正在 rebase 远端最新提交后重试..."
+            git pull --rebase --autostash origin gh-pages
+            sleep $(( (RANDOM % 10) + 5 ))
+          done
+          echo "❌ gh-pages 连续 5 次推送失败"
+          exit 1
 
       - name: 提交上次编辑记录更新到主分支
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add last_edit_info.json
-          
-          # 检查是否有文件变更
+
           if git diff --staged --quiet; then
             echo "没有需要提交的更新"
+            exit 0
+          fi
+
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            git commit --no-verify -m "ci: 更新页面状态记录 (定时任务)"
           else
-            # 还原你原本使用的 --no-verify 参数
-            if [ "${{ github.event_name }}" = "schedule" ]; then
-              git commit --no-verify -m "ci: 更新页面状态记录 (定时任务)"
-            else
-              git commit --no-verify -m "ci: 更新页面状态记录 (手动触发)"
+            git commit --no-verify -m "ci: 更新页面状态记录 (手动触发)"
+          fi
+
+          # 🔁 带重试的推送：这正是本次报错 (! [rejected] fetch first) 的修复点
+          for i in 1 2 3 4 5; do
+            if git push origin HEAD:main; then
+              echo "✅ main 推送成功"
+              exit 0
             fi
-            git push origin HEAD
-          fi
-
-      - name: 检出 gh-pages 分支到单独目录
-        uses: actions/checkout@main
-        with:
-          ref: gh-pages
-          path: gh-pages-dir
-
-      - name: 增量部署到 gh-pages 分支
-        run: |
-          # 1. 将新构建的文件增量覆盖进去
-          rsync -av ./output/ ./gh-pages-dir/
-          
-          # 2. 进入 gh-pages 目录提交并推送
-          cd gh-pages-dir
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          
-          git add .
-          if git diff --staged --quiet; then
-            echo "没有新的页面变更需要部署"
-          else
-            git commit -m "deploy: 更新 GitHub Pages 翻译页面"
-            git push origin gh-pages
-          fi
+            echo "⚠️ 第 $i 次推送被拒绝，正在 rebase 远端最新提交后重试..."
+            git pull --rebase --autostash origin main
+            sleep $(( (RANDOM % 10) + 5 ))
+          done
+          echo "❌ main 连续 5 次推送失败"
+          exit 1
