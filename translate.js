@@ -6,9 +6,11 @@ const fs = require('fs');
 const path = require('path');
 
 // --- 【配置常量】 ---
-const BASE_URL = 'https://en.tankiwiki.com';
-const START_PAGE = 'Tanki_Online_Wiki';
-const RECENT_CHANGES_FEED_URL = 'https://en.tankiwiki.com/api.php?action=feedrecentchanges&days=7&feedformat=atom&urlversion=1';
+// 🇷🇺 源站：俄语版 Tanki Online Wiki
+const BASE_URL = 'https://ru.tankiwiki.com';
+// 俄语站主页的规范标题（Заглавная_страница 是它的重定向）
+const START_PAGE = 'Энциклопедия_игры_«Танки_Онлайн»';
+const RECENT_CHANGES_FEED_URL = `${BASE_URL}/api.php?action=feedrecentchanges&days=7&feedformat=atom&urlversion=1`;
 const CONCURRENCY_LIMIT = 32; // 🚀 【核心】修改为 32，实现多标签页极速并发抓取
 const TARGET_BATCH_CHARS = 100000; // 🚀 全局唯一合并阈值：坚守此红线
 const DICTIONARY_URL = 'https://testanki1.github.io/translations.js'; 
@@ -26,6 +28,14 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 const geminiModel = genAI.getGenerativeModel({ model: "gemini-flash-lite-latest" });
 
 const sanitizePageName = (name) => name.replaceAll(' ', '_');
+
+// 需要屏蔽的命名空间（俄站链接里英文规范名和俄语本地化名两种写法都可能出现）
+const NS_BLOCKLIST = new Array(
+    'Special', 'File', 'Image', 'User', 'MediaWiki', 'Template', 'Help', 'Category', 'Talk',
+    'Служебная', 'Файл', 'Изображение', 'Участник', 'Участница', 'Шаблон',
+    'Справка', 'Категория', 'Обсуждение', 'Обсуждение_участника', 'Обсуждение_участницы',
+    'Обсуждение_файла', 'Обсуждение_шаблона', 'Обсуждение_категории', 'МедиаВики'
+);
 
 async function getPagesForFeedMode(lastEditInfo) {
     console.log(`[更新模式] 正在从 ${RECENT_CHANGES_FEED_URL} 获取最近更新...`);
@@ -64,7 +74,7 @@ async function getPagesForFeedMode(lastEditInfo) {
 
         const pagesToUpdate = new Array();
         for (const [title, newRevisionId] of pagesToConsider.entries()) {
-            const blockedPrefixes = new Array('Special:', 'User:', 'MediaWiki:', 'Help:', 'Category:', 'File:', 'Template:');
+            const blockedPrefixes = NS_BLOCKLIST.map(p => p + ':');
             if (blockedPrefixes.some(p => title.startsWith(p))) continue;
             
             const currentRevisionId = lastEditInfo[title] || 0;
@@ -109,7 +119,9 @@ function getPreparedSourceDictionary() {
     } catch (error) { return new Map(); }
 }
 
-function containsEnglish(text) { return /[a-zA-Z]/.test(text); }
+// 检测文本中是否还有未翻译的原文字符：必须包含西里尔字母，
+// 否则俄语正文会被判定为“无需翻译”而整页跳过（拉丁字母一并检测，覆盖 Wasp 等原样保留的词）
+function containsSourceText(text) { return /[\u0400-\u04FFa-zA-Z]/.test(text); }
 
 // === 排版格式化工具 ===
 function formatTypography(htmlStr) {
@@ -126,13 +138,14 @@ function formatTypography(htmlStr) {
     res = res.replace(/([\u4e00-\u9fa5])(?:\s|&nbsp;)+(<[^>]+>)/g, '$1$2');
     res = res.replace(/(<[^>]+>)(?:\s|&nbsp;)+([\u4e00-\u9fa5])/g, '$1$2');
 
-    res = res.replace(/([a-zA-Z0-9])([\u4e00-\u9fa5])/g, '$1 $2');
-    res = res.replace(/([\u4e00-\u9fa5])([a-zA-Z0-9])/g, '$1 $2');
+    // 盘古之白：西文/数字/西里尔字母 与 汉字 之间加空格
+    res = res.replace(/([a-zA-Z0-9\u0400-\u04FF])([\u4e00-\u9fa5])/g, '$1 $2');
+    res = res.replace(/([\u4e00-\u9fa5])([a-zA-Z0-9\u0400-\u04FF])/g, '$1 $2');
 
-    res = res.replace(/([a-zA-Z0-9])(<\/[a-zA-Z0-9]+>)([\u4e00-\u9fa5])/g, '$1$2 $3');
-    res = res.replace(/([\u4e00-\u9fa5])(<\/[a-zA-Z0-9]+>)([a-zA-Z0-9])/g, '$1$2 $3');
-    res = res.replace(/([a-zA-Z0-9])(<[a-zA-Z0-9]+[^>]*>)([\u4e00-\u9fa5])/g, '$1 $2$3');
-    res = res.replace(/([\u4e00-\u9fa5])(<[a-zA-Z0-9]+[^>]*>)([a-zA-Z0-9])/g, '$1 $2$3');
+    res = res.replace(/([a-zA-Z0-9\u0400-\u04FF])(<\/[a-zA-Z0-9]+>)([\u4e00-\u9fa5])/g, '$1$2 $3');
+    res = res.replace(/([\u4e00-\u9fa5])(<\/[a-zA-Z0-9]+>)([a-zA-Z0-9\u0400-\u04FF])/g, '$1$2 $3');
+    res = res.replace(/([a-zA-Z0-9\u0400-\u04FF])(<[a-zA-Z0-9]+[^>]*>)([\u4e00-\u9fa5])/g, '$1 $2$3');
+    res = res.replace(/([\u4e00-\u9fa5])(<[a-zA-Z0-9]+[^>]*>)([a-zA-Z0-9\u0400-\u04FF])/g, '$1 $2$3');
 
     return res;
 }
@@ -168,8 +181,8 @@ async function translateBatchWithGemini(tasksObj, dictStr) {
 
     // 🚀【修复核心点】：在 prompt 中增加了第3条“核心红线”，并对词库的要求发出了警告！
     const dictPrompt = dictStr ? `
-5. 【术语表要求】：请严格遵守以下提供的《翻译专有名词词库》。只要原文出现了词库中的英文，必须统一翻译为对应的中文：
-（⚠️警告：仅限替换文本！如果原文中该英文词汇没有被超链接包裹，你翻译成中文时也绝对不能把它变成超链接！）
+5. 【术语表要求】：请严格遵守以下提供的《翻译专有名词词库》。词库以「英文 -> 中文」给出，而原文是俄语：请自行把俄语原文中与词库英文条目**同义**的术语，统一翻译为词库指定的中文（词库里某个英文条目在俄语中的对应说法，也必须译成同一个中文词）：
+（⚠️警告：仅限替换文本！如果原文中该词汇没有被超链接包裹，你翻译成中文时也绝对不能把它变成超链接！）
 --- 词库开始 ---
 ${dictStr}
 --- 词库结束 ---
@@ -181,19 +194,19 @@ ${dictStr}
 
         // 🚀【修复核心点】：全面强化禁止 AI 自主添加 <a> 标签的禁令
         const prompt = `你是一个专业的《Tanki Online》（3D坦克）游戏 Wiki 本地化翻译引擎。
-请将以下 JSON 对象中的值（包含完整 HTML 标签的代码块）翻译为简体中文。
+请将以下 JSON 对象中的值（俄语原文，包含完整 HTML 标签的代码块）翻译为简体中文。
 
 【极端重要的要求】：
 1. JSON的键名（Key）绝对不可更改。只翻译键值（Value）。
-2. 【保留所有原标签，严防吞标签】：你必须原样保留所有的 HTML 标签！如果因为中英文语序不同（比如英文是 A for B，中文是 B 的 A），【必须带着完整的 HTML 标签一起移动位置】！例如原文 \`Augments for <a href="/Scorpion">Scorpion</a>\` 必须翻译为 \`<a href="/Scorpion">蝎子</a>的装备改造\`，绝对不许弄丢或删除 \`<a>\` 等任何标签！
-3. 【⚠️严禁无中生有加链接（核心红线）】：绝对不允许在翻译时自行增加原文没有的 \`<a>\` 超链接或其他 HTML 标签！如果原英文词汇只是普通纯文本（没有被 \`<a>\` 等标签包裹），你翻译成中文时也必须是普通纯文本，【绝对禁止】为了强调术语而自作聪明把它变成超链接或为其添加样式！
+2. 【保留所有原标签，严防吞标签】：你必须原样保留所有的 HTML 标签！如果因为原文与中文语序不同（比如英文是 A for B，中文是 B 的 A），【必须带着完整的 HTML 标签一起移动位置】！例如原文 \`Augments for <a href="/Scorpion">Scorpion</a>\` 必须翻译为 \`<a href="/Scorpion">蝎子</a>的装备改造\`，绝对不许弄丢或删除 \`<a>\` 等任何标签！
+3. 【⚠️严禁无中生有加链接（核心红线）】：绝对不允许在翻译时自行增加原文没有的 \`<a>\` 超链接或其他 HTML 标签！如果原文词汇只是普通纯文本（没有被 \`<a>\` 等标签包裹），你翻译成中文时也必须是普通纯文本，【绝对禁止】为了强调术语而自作聪明把它变成超链接或为其添加样式！
 4. 【精确翻译可见属性】：请务必翻译 HTML 标签中用于显示的属性（如 \`title="..."\`、\`alt="..."\`、\`placeholder="..."\` 等，例如 \`title="First appeared: ..."\` 必须翻译为中文）。但是对于 \`href\`、\`src\`、\`id\`、\`class\`、\`style\`、\`data-*\` 等功能性属性，【必须原样保留，绝对不能改】！
 ${dictPrompt}
 6. 【盘古之白排版规范 - 极其重要】：
    - 中文字符与中文字符之间【绝对不要加空格或 &nbsp; 实体】，即使它们被 HTML 标签隔开！比如输出必须是 "为了用<a href="...">红宝石</a>购买"，绝对不能出现空格！
    - 【英文/数字】与【中文汉字】的交界处，请加上一个半角空格！
    - 【严禁修改数值代码】：原文中的数值（如 187.5、205.5 等）必须【绝对原样保留】！绝对不要把数字中的小数点（.）改写成逗号（,），也绝对不要在数字中间随意加空格！
-7. 除了词库中的术语，其余部分请结合上下文翻译得专业流畅。如果是普通句子末尾的英文标点，请翻译为中文标点；如果是数字内的标点或HTML代码，请原样保留。
+7. 除了词库中的术语，其余部分请结合上下文翻译得专业流畅。如果是普通句子末尾的西文标点，请翻译为中文标点；如果是数字内的标点或HTML代码，请原样保留。
 8. 绝对不要使用 Markdown 代码块包裹输出！直接输出合法的、可被 JSON.parse() 解析的纯 JSON 格式！
 
 待翻译 HTML 块的 JSON：
@@ -267,7 +280,7 @@ function getPageNameFromWikiLink(href) {
     if (pathname.startsWith('/w/index.php')) return null; 
     
     let pageName = pathname.substring(1); 
-    const blockedPrefixes = new Array('Special', 'File', 'User', 'MediaWiki', 'Template', 'Help', 'Category'); 
+    const blockedPrefixes = NS_BLOCKLIST; 
     const blockedPrefixRegex = new RegExp(`^(${blockedPrefixes.join('|')}):`, 'i'); 
     
     // 🚀 核心修复：屏蔽常见资源/附件后缀，并直接拦截 images 目录
@@ -396,7 +409,7 @@ async function preparePage(pageNameToProcess, sourceReplacementMap, lastEditInfo
     $contentContainer.find('a').each(function() { 
         const $el = $(this); const href = $el.attr('href'); const internalName = getPageNameFromWikiLink(href); 
         // 使用相对层级前缀替换写死的 ./
-        if (internalName) $el.attr('href', `${relPrefix}${internalName}`); 
+        if (internalName) $el.attr('href', `${relPrefix}${encodeURIComponent(internalName).replace(/%2F/gi, '/')}`); 
         else if (href && !href.startsWith('#')) try { $el.attr('href', new URL(href, sourceUrl).href); } catch (e) {} 
     });
     
@@ -422,14 +435,14 @@ async function preparePage(pageNameToProcess, sourceReplacementMap, lastEditInfo
     let translatedTitle = $('title').text() || pageNameToProcess;
 
     const tasksObj = {};
-    if (containsEnglish(translatedTitle)) tasksObj['title_0'] = translatedTitle;
+    if (containsSourceText(translatedTitle)) tasksObj['title_0'] = translatedTitle;
     
     let chunkIndex = 0;
     function extractChunksToTranslate($parent) {
         $parent.children().each((_, el) => {
             const $el = $(el);
             const outerHtml = $.html($el);
-            if (!containsEnglish(outerHtml)) return;
+            if (!containsSourceText(outerHtml)) return;
             if (outerHtml.length > 8000 && $el.children().length > 0) {
                 extractChunksToTranslate($el);
             } else {
@@ -483,7 +496,7 @@ function finalizePage(preparedData, translatedResultsForPage) {
     // 动态计算“返回主页”按钮的正确层级退回路径
     const depth = (pageNameToProcess.match(/\//g) ||[]).length;
     const relPrefix = depth === 0 ? './' : '../'.repeat(depth);
-    let homeButtonHtml = pageNameToProcess !== START_PAGE ? `<a href="${relPrefix}${START_PAGE}" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">返回主页</a>` : '';
+    let homeButtonHtml = pageNameToProcess !== START_PAGE ? `<a href="${relPrefix}${encodeURIComponent(START_PAGE)}" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">返回主页</a>` : '';
     
     const colorReplacementScript = `<script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\\(70,\\s*223,\\s*17\\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);<\/script>`;
     bodyEndScripts.push(colorReplacementScript);
@@ -551,7 +564,7 @@ async function run() {
         if (Object.keys(globalTasksObj).length > 0) {
             globalTranslated = await translateBatchWithGemini(globalTasksObj, dictStr);
         } else {
-            console.log("⚠️ 积攒的页面中没有提取到任何需要翻译的英文块。");
+            console.log("⚠️ 积攒的页面中没有提取到任何需要翻译的源语言文本块。");
         }
 
         // 拆包并分发翻译结果，恢复到各自页面的 DOM 中
@@ -626,13 +639,13 @@ async function run() {
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=${relPrefix}${result.targetUrl}">
+    <meta http-equiv="refresh" content="0; url=${relPrefix}${encodeURI(result.targetUrl)}">
     <title>正在跳转...</title>
     <!-- 使用 replace 防止后退按钮卡死在跳转页 -->
-    <script>window.location.replace("${relPrefix}${result.targetUrl}");</script>
+    <script>window.location.replace("${relPrefix}${encodeURI(result.targetUrl)}");</script>
 </head>
 <body style="background-color: #001926; color: white; font-family: sans-serif; text-align: center; padding-top: 50px;">
-    <p>正在前往目标页面...<br>如果没有自动跳转，请 <a href="${relPrefix}${result.targetUrl}" style="color: #76FF33;">点击这里</a>。</p>
+    <p>正在前往目标页面...<br>如果没有自动跳转，请 <a href="${relPrefix}${encodeURI(result.targetUrl)}" style="color: #76FF33;">点击这里</a>。</p>
 </body>
 </html>`;
                 
