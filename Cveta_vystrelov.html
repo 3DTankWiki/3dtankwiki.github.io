@@ -1,0 +1,1398 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>(function(){
+  var BASE = 'https://ru.tankiwiki.com';
+  function fix(v){ return (typeof v === 'string' && v.charAt(0) === '/' && v.indexOf('//') !== 0) ? BASE + v : v; }
+  ['HTMLScriptElement','HTMLLinkElement'].forEach(function(tag){
+    var proto = window[tag] && window[tag].prototype;
+    var prop  = tag === 'HTMLScriptElement' ? 'src' : 'href';
+    if (!proto) return;
+    var d = Object.getOwnPropertyDescriptor(proto, prop);
+    if (!d || !d.set) return;
+    Object.defineProperty(proto, prop, {
+      configurable: true,
+      get: function(){ return d.get.call(this); },
+      set: function(v){ d.set.call(this, fix(v)); }
+    });
+  });
+  var of = window.fetch;
+  if (of) window.fetch = function(u, o){ return of.call(this, (typeof u === 'string' ? fix(u) : u), o); };
+  var ox = window.XMLHttpRequest && XMLHttpRequest.prototype.open;
+  if (ox) XMLHttpRequest.prototype.open = function(m, u){
+    var a = Array.prototype.slice.call(arguments); a[1] = fix(u); return ox.apply(this, a);
+  };
+})();</script><title>射击颜色 — 3D 坦克 Wiki</title><meta charset="UTF-8">
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgRequestId":"7a9f8b43e420cd2511db20ae","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Cveta_vystrelov","wgTitle":"Cveta vystrelov","wgCurRevisionId":301844,"wgRevisionId":301844,"wgArticleId":10888,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"ru","wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgRelevantPageName":"Cveta_vystrelov","wgRelevantArticleId":10888,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],
+"wgRestrictionMove":[],"wgVisualEditor":{"pageLanguageCode":"ru","pageLanguageDir":"ltr","pageVariantFallbacks":"ru"},"wgFlaggedRevsParams":{"tags":{"accuracy":{"levels":3}}},"wgStableRevisionId":301844,"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.flaggedRevs.icons":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.flaggedRevs.basic":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.flaggedRevs.advanced","skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=ext.flaggedRevs.basic%2Cicons%7Cext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/0/08/Shot_effects_banner.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/0/08/Shot_effects_banner.png">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="400">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/thumb/0/08/Shot_effects_banner.png/640px-Shot_effects_banner.png">
+    <meta property="og:image:width" content="640">
+    <meta property="og:image:height" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://ru.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://ru.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (ru)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://ru.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki&nbsp;— Atom-лента" href="https://ru.tankiwiki.com/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom"><style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
+
+/* 1. 只去掉源站皮肤的背景大图，保留底色；不要用 background 简写，否则会连带清掉皮肤别的背景设定 */
+html, body {
+    background-image: none !important;
+    background-color: #001926 !important;
+}
+/* 2. 让底色铺满视口，内容很短时下方不再露白 */
+html { min-height: 100%; }
+body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif; }
+
+/* 3. 版心容器 */
+#mw-main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #001926;
+}
+
+/* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
+      【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
+#mw-main-container .main-content,
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content,
+#mw-main-container #mw-content-text {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: auto !important;
+    flex-basis: auto !important;   /* 皮肤写了 .main-content{flex:0 0 75%} */
+    float: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* 5. 皮肤脚本 skins.tankiblue.js 会往 #mw-content-text 末尾插一条「发现错别字？Ctrl+Enter」
+      的俄语提示条和一个「报告错误」标签页。它按网址里有没有 'en'/'de' 来判断语言，
+      我们的域名两者都不含 → 一律显示俄语；且报错会提交到俄站编辑组，对镜像站没意义，直接隐藏。 */
+#custom-report-footer,
+.vectorTabs.customReport,
+.customReport { display: none !important; }
+
+/* 6. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐
+      （数值全部来自对官网实际渲染的 getComputedStyle 取样，根字号 13px 换算成 px 写死）
+        常态 141.375x78 / border 1px rgba(255,255,255,.25) / radius 6.5px
+              背景 radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15), transparent)
+              箭头 24.375x24 fill #BFD5FF
+        悬停 border #BFD5FF + outline 1px #BFD5FF / ::before 渐变 opacity 0→1
+              箭头 fill #fff 且位移 translate(10%)（约 2.44px）
+        全部过渡 all .15s ease
+      ⚠️ 手机是触屏，没有 :hover。所以下面额外加了 :active / :focus-visible，
+        让点按时也能看到同样的动效，另有 @media (hover:none) 的常驻高亮兜底。 */
+.home-back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 141.375px;
+    height: 78px;
+    margin: 0 0 25px 0;
+    padding: 0;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 6.5px;
+    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%);
+    outline: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: all .15s ease;
+}
+.home-back-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(100% 100% at 0% 0%, rgba(191,213,255,.25) 0%, rgba(191,213,255,.15) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all .15s ease;
+}
+.home-back-btn svg {
+    width: 24.375px;
+    height: 24px;
+    object-fit: contain;
+    transform: rotate(180deg);            /* prev：箭头指向左 */
+    transition: all .15s ease;
+}
+.home-back-btn svg path { fill: #BFD5FF; transition: all .15s ease; }
+
+.home-back-btn:hover,
+.home-back-btn:active,
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF; border-color: #BFD5FF; }
+.home-back-btn:hover::before,
+.home-back-btn:active::before,
+.home-back-btn:focus-visible::before { opacity: 1; }
+.home-back-btn:hover svg,
+.home-back-btn:active svg,
+.home-back-btn:focus-visible svg { transform: rotate(180deg) translate(10%); }
+.home-back-btn:hover svg path,
+.home-back-btn:active svg path,
+.home-back-btn:focus-visible svg path { fill: #fff; }
+
+/* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
+@media (hover: none) {
+    .home-back-btn { border-color: rgba(191,213,255,.55); }
+    .home-back-btn svg path { fill: #CFE0FF; }
+}
+/* 窄屏适当缩小，保持官网比例 141.375:78 */
+@media (max-width: 480px) {
+    .home-back-btn { width: 106px; height: 58.5px; }
+    .home-back-btn svg { width: 20px; height: 19.7px; }
+}
+
+/* 7. 移动端：源站容器 padding + 我们的 20px 叠加后两侧空太多，正文被挤成窄条 */
+@media (max-width: 768px) {
+    #mw-main-container { padding: 10px; margin: 8px auto; }
+    /* 主页那些写死 width:55% / 45% 的分栏在窄屏下强制单列 */
+    #mw-content-text .navigationContainerContent > div,
+    #mw-content-text [style*="width: 55%"],
+    #mw-content-text [style*="width:55%"],
+    #mw-content-text [style*="width: 45%"],
+    #mw-content-text [style*="width:45%"] { width: 100% !important; }
+}
+@media (max-width: 480px) {
+    #mw-main-container { padding: 6px; margin: 4px auto; }
+}
+
+/* 8. 防止宽表格 / 大图撑破版心产生横向滚动 */
+#mw-content-text img { max-width: 100%; height: auto; }
+#mw-content-text table { max-width: 100%; }
+
+/* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
+   只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+*/
+</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Cveta_vystrelov rootpage-Cveta_vystrelov skin-tankiblue action-view"><div id="skin-chrome-stub" aria-hidden="true" style="display:none !important;">
+<a class="problem" href="#"></a>
+<div class="close-wrapper"></div>
+<div class="support-block-popup"><div class="close-modal-support"></div></div>
+<div class="youtube-popup"><iframe title="stub"></iframe></div>
+<div class="video-button"></div>
+<div class="header-search"></div>
+<div class="search-dialog"></div>
+<div class="search-popup"><div class="close-wrapper"></div><div class="close-modal-search"></div></div>
+<div class="news-popup"></div>
+<div class="sales-block-header"></div>
+<div class="navbar-main"></div>
+<div class="main-navbar"></div>
+</div><div id="mw-main-container"><a class="home-back-btn" href="./Enciklopediya_igry_%C2%ABTanki_Onlayn%C2%BB" title="返回主页" aria-label="返回主页"><svg viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 0H13.5L25.5 12L24 13.5L13.5 24H18L30 12L18 0ZM24 13.5L21 10.5H0L3 13.5H24Z" fill="#BFD5FF"/></svg></a><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">射击颜色</h1><p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/0/08/Shot_effect_banner.png" decoding="async" loading="lazy" width="800" height="400" class="mw-file-element"></span></span></p><div class="dablink"><em>参见：</em> <a href="./%D0%9F%D1%83%D1%88%D0%BA%D0%B8" class="mw-redirect" title="Пушки">炮塔</a>、<a href="./%D0%A1%D0%BA%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Скины">皮肤</a>和<a href="./%D0%A3%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0" class="mw-redirect" title="Устройства">装备改造</a>
+</div><p><b>射击颜色</b>允许定制炮塔的射击颜色。它们可以安装在任何等级下对应炮塔的任何型号上。射击颜色仅具有装饰意义。
+</p><h2><span id=".D0.9E.D0.B1.D1.89.D0.B0.D1.8F_.D0.B8.D0.BD.D1.84.D0.BE.D1.80.D0.BC.D0.B0.D1.86.D0.B8.D1.80"></span><span class="mw-headline" id="Общая_информация">通用信息</span></h2><ul><li>通常，射击颜色只能从<a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры">幸运礼盒</a>中获得。
+<ul><li>射击颜色也可能包含在特价优惠、<a href="./%D0%A7%D0%B5%D0%BB%D0%BB%D0%B5%D0%BD%D0%B4%D0%B6%D0%B8" class="mw-redirect" title="Челленджи">星级挑战</a>奖励以及各种竞赛和活动的奖品中。</li></ul></li>
+<li>如果玩家获得了射击颜色，但没有可以安装它的<a href="./%D0%9F%D1%83%D1%88%D0%BA%D0%B8" class="mw-redirect" title="Пушки">炮塔</a>本身，该射击颜色将保存在<a href="./%D0%93%D0%B0%D1%80%D0%B0%D0%B6" class="mw-redirect" title="Гараж">车库</a>中。当玩家拥有所需的武器时，他将能够把先前获得的射击颜色安装到该武器上。</li>
+<li>要应用射击颜色，请选择炮塔并在信息窗口中安装所需的射击颜色。</li>
+<li>射击颜色可以与<a href="./%D0%A3%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0" class="mw-redirect" title="Устройства">装备改造</a>和<a href="./%D0%A1%D0%BA%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Скины">皮肤</a>一起安装到炮塔上。</li>
+<li>每个炮塔都有一个标准射击颜色，在所有<a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="Улучшения">升级</a>上都是相同的。</li></ul><h2><span id=".D0.A1.D0.BF.D0.B8.D1.81.D0.BE.D0.BA_.D1.86.D0.B2.D0.B5.D1.82.D0.BE.D0.B2_.D0.B2.D1.8B.D1.81.D1.82.D1.80.D0.B5.D0.BB.D0.BE.D0.B2"></span><span class="mw-headline" id="Список_цветов_выстрелов">射击颜色列表</span></h2><div class="mapContainer">
+<div class="mapAbout is-active" data-content="firebird">
+    <div class="top">
+      <div class="switcher" style="width:100%; display:flex; flex-wrap:wrap; justify-content:center; gap:8px 6px; margin:0 auto">
+        <div class="activeSwitcher" data-open-block="firebird">火焰炮</div>
+        <div data-open-block="freeze">冰风暴</div>
+        <div data-open-block="isida">磁力炮</div>
+        <div data-open-block="hammer">滑膛炮</div>
+        <div data-open-block="twins">离子炮</div>
+        <div data-open-block="ricochet">火龙珠</div>
+        <div data-open-block="vulcan">极速炮</div>
+        <div data-open-block="striker">火箭炮</div>
+        <div data-open-block="magnum">马格南</div>
+        <div data-open-block="railgun">激光炮</div>
+        <div data-open-block="gauss">电磁炮</div>
+        <div data-open-block="shaft">镭射炮</div>
+        <div title="点击打开视频" class="ShowYouTubePopup" style="width:30pxpx;" data-id="trXeSeVUeAI"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/30px-YT-icon.png" decoding="async" loading="lazy" width="30" height="21" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/45px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/60px-YT-icon.png 2x"></span></span></div>
+      </div>
+    </div>
+    <div class="bottom">
+<div class="module_cards_row effect_cards_row">
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/f/fa/Shot_effect_Firebird_Crimson.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>深红</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/61/Turret_firebird_m3_2.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>深红色的射击携带着愤怒，将如雷鸣般降临在你的敌人身上。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/3b/Shot_effect_Firebird_Magma.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>岩浆</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/61/Turret_firebird_m3_2.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>有火焰颜色的迷彩吗？现在你需要一个炽热的射击颜色。它来了。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/9/9e/Shot_effect_Firebird_Black.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>黑色</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/61/Turret_firebird_m3_2.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>这些射击将敌方坦克变成完全相同的黑炭。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/35/Shot_effect_Firebird_Pink.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>粉色</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/61/Turret_firebird_m3_2.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>粉色是多汁牛排的颜色。用你的射击把敌人烤熟吧！
+</p>
+</div>
+</div>
+</div>
+    </div>
+  </div>
+<div class="mapAbout" data-content="freeze">
+    <div class="top">
+      <div class="switcher" style="width:100%; display:flex; flex-wrap:wrap; justify-content:center; gap:8px 6px; margin:0 auto">
+        <div data-open-block="firebird">火焰炮</div>
+        <div class="activeSwitcher" data-open-block="freeze">冰风暴</div>
+        <div data-open-block="isida">磁力炮</div>
+        <div data-open-block="hammer">滑膛炮</div>
+        <div data-open-block="twins">离子炮</div>
+        <div data-open-block="ricochet">火龙珠</div>
+        <div data-open-block="vulcan">极速炮</div>
+        <div data-open-block="striker">火箭炮</div>
+        <div data-open-block="magnum">马格南</div>
+        <div data-open-block="railgun">激光炮</div>
+        <div data-open-block="gauss">电磁炮</div>
+        <div data-open-block="shaft">镭射炮</div>
+        <div title="点击打开视频" class="ShowYouTubePopup" style="width:30pxpx;" data-id="hyz_QjPvuzA"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/30px-YT-icon.png" decoding="async" loading="lazy" width="30" height="21" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/45px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/60px-YT-icon.png 2x"></span></span></div>
+      </div>
+    </div>
+    <div class="bottom">
+<div class="module_cards_row effect_cards_row">
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/d4/Shot_effect_Freeze_DarkMoon.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>黑月</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/f/f2/Turret_freeze_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>黑月通常被认为是不祥之兆。你在战场上的存在将成为敌人即将战败的预兆。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/3e/Shot_effect_Freeze_Toxic.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>剧毒</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/f/f2/Turret_freeze_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>有毒物质非常危险，但这正合你意。用你的射击毒害敌人，将战场变成一个有毒的训练场。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeofmw:file"=""><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/3c/Shot_effect_Freeze_Cold.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></span></div>
+<p>严寒</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/f/f2/Turret_freeze_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>在敌人感受到你射击带来的刺骨寒意之前，就让他们瑟瑟发抖吧。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/f/ff/Shot_effect_Freeze_Snow.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>雪花</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/f/f2/Turret_freeze_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>“打雪仗”听起来像是一个孩子的游戏……抛开游戏不谈：像雪崩一样向敌人倾泻而下吧。
+</p>
+</div>
+</div>
+</div>
+    </div>
+  </div>
+<div class="mapAbout" data-content="isida">
+    <div class="top">
+      <div class="switcher" style="width:100%; display:flex; flex-wrap:wrap; justify-content:center; gap:8px 6px; margin:0 auto">
+        <div data-open-block="firebird">火焰炮</div>
+        <div data-open-block="freeze">冰风暴</div>
+        <div class="activeSwitcher" data-open-block="isida">磁力炮</div>
+        <div data-open-block="hammer">滑膛炮</div>
+        <div data-open-block="twins">离子炮</div>
+        <div data-open-block="ricochet">火龙珠</div>
+        <div data-open-block="vulcan">极速炮</div>
+        <div data-open-block="striker">火箭炮</div>
+        <div data-open-block="magnum">马格南</div>
+        <div data-open-block="railgun">激光炮</div>
+        <div data-open-block="gauss">电磁炮</div>
+        <div data-open-block="shaft">镭射炮</div>
+        <div title="点击打开视频" class="ShowYouTubePopup" style="width:30pxpx;" data-id="bbdb2rLRvfk"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/30px-YT-icon.png" decoding="async" loading="lazy" width="30" height="21" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/45px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/60px-YT-icon.png 2x"></span></span></div>
+      </div>
+    </div>
+    <div class="bottom">
+<div class="module_cards_row effect_cards_row">
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/1/11/Shot_effect_Isida_Sun.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>阳光</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/5/5f/Turret_isida_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>太阳带来光明与温暖。但对于最轻率的人，它也能将其化为灰烬。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/be/Shot_effect_Isida_Fire.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>烈焰</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/5/5f/Turret_isida_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>当这些射击的火舌触及你的对手时，他们就会明白自己严重犯错了，不该低估你。
+</p>
+</div>
+</div>
+</div>
+    </div>
+  </div>
+<div class="mapAbout" data-content="hammer">
+    <div class="top">
+      <div class="switcher" style="width:100%; display:flex; flex-wrap:wrap; justify-content:center; gap:8px 6px; margin:0 auto">
+        <div data-open-block="firebird">火焰炮</div>
+        <div data-open-block="freeze">冰风暴</div>
+        <div data-open-block="isida">磁力炮</div>
+        <div class="activeSwitcher" data-open-block="hammer">滑膛炮</div>
+        <div data-open-block="twins">离子炮</div>
+        <div data-open-block="ricochet">火龙珠</div>
+        <div data-open-block="vulcan">极速炮</div>
+        <div data-open-block="striker">火箭炮</div>
+        <div data-open-block="magnum">马格南</div>
+        <div data-open-block="railgun">激光炮</div>
+        <div data-open-block="gauss">电磁炮</div>
+        <div data-open-block="shaft">镭射炮</div>
+        <div title="点击打开视频" class="ShowYouTubePopup" style="width:30pxpx;" data-id="FMf9mJ3ojSU"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/30px-YT-icon.png" decoding="async" loading="lazy" width="30" height="21" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/45px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/60px-YT-icon.png 2x"></span></span></div>
+      </div>
+    </div>
+    <div class="bottom">
+<div class="module_cards_row effect_cards_row">
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/0/00/Shot_effect_Hammer_Aqua.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>水流</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/b8/Turret_hammer_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>拉丁语中的“Aqua”意为“水”。这种透明的流体不仅是生命的源泉：高压水流具有毁灭性的力量。..
+</p>
+</div>
+<div class="module_card_full_description">拉丁语中的“Aqua”意为“水”。这种透明的流体不仅是生命的源泉：高压水流具有毁灭性的力量。</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/9/97/Shot_effect_Hammer_Magma.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>岩浆</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/b8/Turret_hammer_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>有火焰颜色的迷彩吗？现在你需要一个炽热的射击颜色。它来了。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/63/Shot_effect_Hammer_Void.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>虚空</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/b8/Turret_hammer_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>当你把敌人的坦克炸成碎片后，剩下的东西用“虚空”来形容再合适不过了。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/3e/Shot_effect_Hammer_Toxic.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>剧毒</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/b8/Turret_hammer_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>有毒物质非常危险，但这正合你意。用你的射击毒害敌人，将战场变成一个有毒的训练场。
+</p>
+</div>
+</div>
+</div>
+<div class="module_cards_row effect_cards_row">
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/7a/Shot_effect_Hammer_Eclipse.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>日食</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/b8/Turret_hammer_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>正如月亮在日食时与太阳融为一体一样，你的炮弹也能穿透敌人的装甲。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/a8/Shot_effect_Hammer_Blue.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>蓝色</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/b8/Turret_hammer_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>蓝色是淤青的颜色，在你命中敌人后，这些淤青将留在敌人的自尊心上。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/5/5e/Shot_effect_Hammer_Blood.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>血色</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/b8/Turret_hammer_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>你无法让坦克流血，但这个射击颜色是一个极佳的替代品。
+</p>
+</div>
+</div>
+</div>
+    </div>
+  </div>
+<div class="mapAbout" data-content="twins">
+    <div class="top">
+      <div class="switcher" style="width:100%; display:flex; flex-wrap:wrap; justify-content:center; gap:8px 6px; margin:0 auto">
+        <div data-open-block="firebird">火焰炮</div>
+        <div data-open-block="freeze">冰风暴</div>
+        <div data-open-block="isida">磁力炮</div>
+        <div data-open-block="hammer">滑膛炮</div>
+        <div class="activeSwitcher" data-open-block="twins">离子炮</div>
+        <div data-open-block="ricochet">火龙珠</div>
+        <div data-open-block="vulcan">极速炮</div>
+        <div data-open-block="striker">火箭炮</div>
+        <div data-open-block="magnum">马格南</div>
+        <div data-open-block="railgun">激光炮</div>
+        <div data-open-block="gauss">电磁炮</div>
+        <div data-open-block="shaft">镭射炮</div>
+        <div title="点击打开视频" class="ShowYouTubePopup" style="width:30pxpx;" data-id="RZmAY6f8qeM"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/30px-YT-icon.png" decoding="async" loading="lazy" width="30" height="21" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/45px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/60px-YT-icon.png 2x"></span></span></div>
+      </div>
+    </div>
+    <div class="bottom">
+<div class="module_cards_row effect_cards_row">
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/79/Shot_effect_Twins_Sky.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>天空</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/d3/Turret_twins_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>即使是坍塌的天空，也没有你那无可逃避的致命射击来得危险。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/60/Shot_effect_Twins_Gold.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>黄金</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/d3/Turret_twins_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>由闪闪发光的金条般炮弹构成的致命暴雨——这正是你的对手们应得的。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/0/0e/Shot_effect_Twins_DarkMoon.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>黑月</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/d3/Turret_twins_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>黑月通常被认为是不祥之兆。你在战场上的存在将成为敌人即将战败的预兆。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/71/Shot_effect_Twins_Violet.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>紫罗兰</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/d3/Turret_twins_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>你射击时带有威胁的颜色，不言自明地向对手表明你不是在开玩笑。
+</p>
+</div>
+</div>
+</div>
+<div class="module_cards_row effect_cards_row">
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/1/14/Shot_effect_Twins_Coral.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>珊瑚礁</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/d3/Turret_twins_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>珊瑚的美丽背后隐藏着刀刃般锋利的边缘。你的射击也将如此。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/30/Shot_effect_Twins_Electric.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>放电</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/d3/Turret_twins_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>让你的对手知道，在战场上与你相遇会让他们大受震撼。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/ab/Shot_effect_Twins_Blaster.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>爆能枪</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/d3/Turret_twins_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>星系间爆能枪的绿色光束将造成毁灭性的打击，在其前进的道路上不留任何活口。
+</p>
+</div>
+</div>
+</div>
+    </div>
+  </div>
+<div class="mapAbout" data-content="ricochet">
+    <div class="top">
+      <div class="switcher" style="width:100%; display:flex; flex-wrap:wrap; justify-content:center; gap:8px 6px; margin:0 auto">
+        <div data-open-block="firebird">火焰炮</div>
+        <div data-open-block="freeze">冰风暴</div>
+        <div data-open-block="isida">磁力炮</div>
+        <div data-open-block="hammer">滑膛炮</div>
+        <div data-open-block="twins">离子炮</div>
+        <div class="activeSwitcher" data-open-block="ricochet">火龙珠</div>
+        <div data-open-block="vulcan">极速炮</div>
+        <div data-open-block="striker">火箭炮</div>
+        <div data-open-block="magnum">马格南</div>
+        <div data-open-block="railgun">激光炮</div>
+        <div data-open-block="gauss">电磁炮</div>
+        <div data-open-block="shaft">镭射炮</div>
+        <div title="点击打开视频" class="ShowYouTubePopup" style="width:30pxpx;" data-id="_N_u2two2ak"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/30px-YT-icon.png" decoding="async" loading="lazy" width="30" height="21" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/45px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/60px-YT-icon.png 2x"></span></span></div>
+      </div>
+    </div>
+    <div class="bottom">
+<div class="module_cards_row effect_cards_row">
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/9/90/Shot_effect_Ricochet_Smoke.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>烟雾</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bc/Turret_ricochet_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>俗话说，无风不起浪。向你的敌人展示，他们对战斗胜利的梦想将在这些烟雾中灰飞烟灭。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/4/4b/Shot_effect_Ricochet_Gold.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>黄金</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bc/Turret_ricochet_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>由闪闪发光的金条般炮弹构成的致命暴雨——这正是你的对手们应得的。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/5/5a/Shot_effect_Ricochet_Magma.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>岩浆</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bc/Turret_ricochet_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>有火焰颜色的迷彩吗？现在你需要一个炽热的射击颜色。它来了。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/5/59/Shot_effect_Ricochet_Crimson.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>深红</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bc/Turret_ricochet_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>深红色的射击携带着愤怒，将如雷鸣般降临在你的敌人身上。
+</p>
+</div>
+</div>
+</div>
+<div class="module_cards_row effect_cards_row">
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/b6/Shot_effect_Ricochet_Violet.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>紫罗兰</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bc/Turret_ricochet_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>你射击时带有威胁的颜色，不言自明地向对手表明你不是在开玩笑。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/e4/Shot_effect_Ricochet_Toxic.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>剧毒</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bc/Turret_ricochet_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>有毒物质非常危险，但这正合你意。用你的射击毒害敌人，将战场变成一个有毒的训练场。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/e3/Shot_effect_Ricochet_Electric.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>放电</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bc/Turret_ricochet_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>让你的对手知道，在战场上与你相遇会让他们大受震撼。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/4/4e/Shot_effect_Ricochet_Aqua.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>水流</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bc/Turret_ricochet_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>拉丁语中的“Aqua”意为“水”。这种透明的流体不仅是生命的源泉：高压水流具有毁灭。.....
+</p>
+</div>
+<div class="module_card_full_description">拉丁语中的“Aqua”意为“水”。这种透明的流体不仅是生命的源泉：高压水流具有毁灭性的力量。</div>
+</div>
+</div>
+<div class="module_cards_row effect_cards_row">
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/4/41/Effect_laser.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>爆能枪</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bc/Turret_ricochet_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>星系间爆能枪的红色光束将造成毁灭性的打击，在其前进的道路上不留任何活口。
+</p>
+</div>
+</div>
+</div>
+    </div>
+  </div>
+<div class="mapAbout" data-content="striker">
+    <div class="top">
+      <div class="switcher" style="width:100%; display:flex; flex-wrap:wrap; justify-content:center; gap:8px 6px; margin:0 auto">
+        <div data-open-block="firebird">火焰炮</div>
+        <div data-open-block="freeze">冰风暴</div>
+        <div data-open-block="isida">磁力炮</div>
+        <div data-open-block="hammer">滑膛炮</div>
+        <div data-open-block="twins">离子炮</div>
+        <div data-open-block="ricochet">火龙珠</div>
+        <div data-open-block="vulcan">极速炮</div>
+        <div class="activeSwitcher" data-open-block="striker">火箭炮</div>
+        <div data-open-block="magnum">马格南</div>
+        <div data-open-block="railgun">激光炮</div>
+        <div data-open-block="gauss">电磁炮</div>
+        <div data-open-block="shaft">镭射炮</div>
+        <div title="点击打开视频" class="ShowYouTubePopup" style="width:30pxpx;" data-id="4AsJJF47GtM"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/30px-YT-icon.png" decoding="async" loading="lazy" width="30" height="21" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/45px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/60px-YT-icon.png 2x"></span></span></div>
+      </div>
+    </div>
+    <div class="bottom">
+<div class="module_cards_row effect_cards_row">
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/f/f9/Shot_effect_Striker_Toxic.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>剧毒</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/4/4e/Turret_striker_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>有毒物质非常危险，但这正合你意。用你的射击毒害敌人，将战场变成一个有毒的训练场。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/e1/Shot_effect_Striker_Crimson.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>深红</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/4/4e/Turret_striker_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>深红色的射击携带着愤怒，将如雷鸣般降临在你的敌人身上。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/0/08/Shot_effect_Striker_Blue.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>蓝色</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/4/4e/Turret_striker_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>蓝色是淤青的颜色，在你命中敌人后，这些淤青将留在敌人的自尊心上。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/5/55/Shot_effect_Striker_Violet.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>紫罗兰</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/4/4e/Turret_striker_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>你射击时带有威胁的颜色，不言自明地向对手表明你不是在开玩笑。
+</p>
+</div>
+</div>
+</div>
+    </div>
+  </div>
+<div class="mapAbout" data-content="vulcan">
+    <div class="top">
+      <div class="switcher" style="width:100%; display:flex; flex-wrap:wrap; justify-content:center; gap:8px 6px; margin:0 auto">
+        <div data-open-block="firebird">火焰炮</div>
+        <div data-open-block="freeze">冰风暴</div>
+        <div data-open-block="isida">磁力炮</div>
+        <div data-open-block="hammer">滑膛炮</div>
+        <div data-open-block="twins">离子炮</div>
+        <div data-open-block="ricochet">火龙珠</div>
+        <div class="activeSwitcher" data-open-block="vulcan">极速炮</div>
+        <div data-open-block="striker">火箭炮</div>
+        <div data-open-block="magnum">马格南</div>
+        <div data-open-block="railgun">激光炮</div>
+        <div data-open-block="gauss">电磁炮</div>
+        <div data-open-block="shaft">镭射炮</div>
+      </div>
+    </div>
+    <div class="bottom">
+<div class="module_cards_row effect_cards_row">
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Shot_effect_Vulcan_Red.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>神秘红</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/64/Turret_minigun_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>为什么叫“神秘红”？因为它是那些难以捉摸、超凡脱俗、震撼人心的红色色调之一，令人惊叹。而且。..
+</p>
+</div>
+<div class="module_card_full_description">为什么叫“神秘红”？因为它是那些难以捉摸、超凡脱俗、震撼人心的红色色调之一，令人惊叹。而且听起来很酷。</div>
+</div>
+</div>
+    </div>
+  </div>
+<div class="mapAbout" data-content="railgun">
+    <div class="top">
+      <div class="switcher" style="width:100%; display:flex; flex-wrap:wrap; justify-content:center; gap:8px 6px; margin:0 auto">
+        <div data-open-block="firebird">火焰炮</div>
+        <div data-open-block="freeze">冰风暴</div>
+        <div data-open-block="isida">磁力炮</div>
+        <div data-open-block="hammer">滑膛炮</div>
+        <div data-open-block="twins">离子炮</div>
+        <div data-open-block="ricochet">火龙珠</div>
+        <div data-open-block="vulcan">极速炮</div>
+        <div data-open-block="striker">火箭炮</div>
+        <div data-open-block="magnum">马格南</div>
+        <div class="activeSwitcher" data-open-block="railgun">激光炮</div>
+        <div data-open-block="gauss">电磁炮</div>
+        <div data-open-block="shaft">镭射炮</div>
+        <div title="点击打开视频" class="ShowYouTubePopup" style="width:30pxpx;" data-id="u0YoiaCQBjw"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/30px-YT-icon.png" decoding="async" loading="lazy" width="30" height="21" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/45px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/60px-YT-icon.png 2x"></span></span></div>
+      </div>
+    </div>
+    <div class="bottom">
+<div class="module_cards_row effect_cards_row">
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/9/9c/Shot_effect_Railgun_Gold.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>黄金</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/c9/Turret_railgun_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>由闪闪发光的金条般炮弹构成的致命暴雨——这正是你的对手们应得的。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/a7/Shot_effect_Railgun_Blue.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>蓝色</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/c9/Turret_railgun_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>蓝色是淤青的颜色，在你命中敌人后，这些淤青将留在敌人的自尊心上。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/33/Shot_effect_Railgun_Green.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>绿色</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/c9/Turret_railgun_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>绿色是温和与平静的颜色。你的射击既不温和也不平静。注意到其中的讽刺意味了吗？
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/27/Shot_effect_Railgun_Blood.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>血色</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/c9/Turret_railgun_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>你无法让坦克流血，但这个射击颜色是一个极佳的替代品。
+</p>
+</div>
+</div>
+</div>
+<div class="module_cards_row effect_cards_row">
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/21/Shot_effect_Railgun_Snow.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>雪花</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/c9/Turret_railgun_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>“打雪仗”听起来像是一个孩子的游戏……抛开游戏不谈：像雪崩一样向敌人倾泻而下吧。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/1/19/Shot_effect_Railgun_Violet.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>紫罗兰</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/c9/Turret_railgun_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>你射击时带有威胁的颜色，不言自明地向对手表明你不是在开玩笑。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/5/57/Shot_effect_Railgun_Darkness.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>黑暗</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/c9/Turret_railgun_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>当你的敌人意识到黑暗本身正在追捕他们时，一切都为时已晚。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/ef/Shot_effect_Railgun_Magic.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>魔法</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/c9/Turret_railgun_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>世界上总该有一点魔法的空间。这次射击中使用的稀有金属的不可思议组合，创造出完美的。..
+</p>
+</div>
+<div class="module_card_full_description">世界上总该有一点魔法的空间。这次射击中使用的稀有金属的不可思议组合，创造出完全魔幻的射击曳光弹。它将成为你独特的个人签名，长久地留在空中以及敌人的想象中。</div>
+</div>
+</div>
+    </div>
+  </div>
+<div class="mapAbout" data-content="magnum">
+    <div class="top">
+      <div class="switcher" style="width:100%; display:flex; flex-wrap:wrap; justify-content:center; gap:8px 6px; margin:0 auto">
+        <div data-open-block="firebird">火焰炮</div>
+        <div data-open-block="freeze">冰风暴</div>
+        <div data-open-block="isida">磁力炮</div>
+        <div data-open-block="hammer">滑膛炮</div>
+        <div data-open-block="twins">离子炮</div>
+        <div data-open-block="ricochet">火龙珠</div>
+        <div data-open-block="vulcan">极速炮</div>
+        <div data-open-block="striker">火箭炮</div>
+        <div class="activeSwitcher" data-open-block="magnum">马格南</div>
+        <div data-open-block="railgun">激光炮</div>
+        <div data-open-block="gauss">电磁炮</div>
+        <div data-open-block="shaft">镭射炮</div>
+        <div title="点击打开视频" class="ShowYouTubePopup" style="width:30pxpx;" data-id="z9157cu0j14"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/30px-YT-icon.png" decoding="async" loading="lazy" width="30" height="21" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/45px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/60px-YT-icon.png 2x"></span></span></div>
+      </div>
+    </div>
+    <div class="bottom">
+<div class="module_cards_row effect_cards_row">
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/0/02/Shot_effect_Magnum_Crimson.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>深红</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/ac/Turret_magnum_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>深红色的射击携带着愤怒，将如雷鸣般降临在你的敌人身上。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/0/08/Shot_effect_Magnum_Blue.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>蓝色</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/ac/Turret_magnum_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>蓝色是淤青的颜色，在你命中敌人后，这些淤青将留在敌人的自尊心上。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/87/Shot_effect_Magnum_Eclipse.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>日食</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/ac/Turret_magnum_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>正如月亮在日食时与太阳融为一体一样，你的炮弹也能穿透敌人的装甲。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/79/Shot_effect_Magnum_Toxic.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>剧毒</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/ac/Turret_magnum_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>有毒物质非常危险，但这正合你意。用你的射击毒害敌人，将战场变成一个有毒的训练场。
+</p>
+</div>
+</div>
+</div>
+<div class="module_cards_row effect_cards_row">
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/8c/Shot_effect_Magnum_Violet.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>紫罗兰</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/ac/Turret_magnum_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>你射击时带有威胁的颜色，不言自明地向对手表明你不是在开玩笑。
+</p>
+</div>
+</div>
+</div>
+    </div>
+  </div>
+<div class="mapAbout" data-content="gauss">
+    <div class="top">
+      <div class="switcher" style="width:100%; display:flex; flex-wrap:wrap; justify-content:center; gap:8px 6px; margin:0 auto">
+        <div data-open-block="firebird">火焰炮</div>
+        <div data-open-block="freeze">冰风暴</div>
+        <div data-open-block="isida">磁力炮</div>
+        <div data-open-block="hammer">滑膛炮</div>
+        <div data-open-block="twins">离子炮</div>
+        <div data-open-block="ricochet">火龙珠</div>
+        <div data-open-block="vulcan">极速炮</div>
+        <div data-open-block="striker">火箭炮</div>
+        <div data-open-block="magnum">马格南</div>
+        <div data-open-block="railgun">激光炮</div>
+        <div class="activeSwitcher" data-open-block="gauss">电磁炮</div>
+        <div data-open-block="shaft">镭射炮</div>
+      </div>
+    </div>
+    <div class="bottom">
+<div class="module_cards_row effect_cards_row">
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/8d/Shot_effect_Gauss_Violent.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>狂暴</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/4/4f/Turret_gauss_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>这种射击颜色与电磁炮严厉的性格以及它在敌人坦克装甲上留下的凹痕相得益彰。
+</p>
+</div>
+</div>
+</div>
+    </div>
+  </div>
+<div class="mapAbout" data-content="shaft">
+    <div class="top">
+      <div class="switcher" style="width:100%; display:flex; flex-wrap:wrap; justify-content:center; gap:8px 6px; margin:0 auto">
+        <div data-open-block="firebird">火焰炮</div>
+        <div data-open-block="freeze">冰风暴</div>
+        <div data-open-block="isida">磁力炮</div>
+        <div data-open-block="hammer">滑膛炮</div>
+        <div data-open-block="twins">离子炮</div>
+        <div data-open-block="ricochet">火龙珠</div>
+        <div data-open-block="vulcan">极速炮</div>
+        <div data-open-block="striker">火箭炮</div>
+        <div data-open-block="magnum">马格南</div>
+        <div data-open-block="railgun">激光炮</div>
+        <div data-open-block="gauss">电磁炮</div>
+        <div class="activeSwitcher" data-open-block="shaft">镭射炮</div>
+        <div title="点击打开视频" class="ShowYouTubePopup" style="width:30pxpx;" data-id="yklDmE0OGE4"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/30px-YT-icon.png" decoding="async" loading="lazy" width="30" height="21" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/45px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/60px-YT-icon.png 2x"></span></span></div>
+      </div>
+    </div>
+    <div class="bottom">
+<div class="module_cards_row effect_cards_row">
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6d/Shot_effect_Shaft_Eclipse.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>日食</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/7b/Turret_shaft_m3_2.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>正如月亮在日食时与太阳融为一体一样，你的炮弹也能穿透敌人的装甲。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/76/Shot_effect_Shaft_Noon.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>正午</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/7b/Turret_shaft_m3_2.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>就像正午刺眼的阳光一样，你的射击让人无可躲藏。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/7c/Shot_effect_Shaft_Green.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>绿色</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/7b/Turret_shaft_m3_2.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>绿色是温和与平静的颜色。你的射击既不温和也不平静。注意到其中的讽刺意味了吗？
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/ba/Shot_effect_Shaft_Aqua.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>水流</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/7b/Turret_shaft_m3_2.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>拉丁语中的“Aqua”意为“水”。这种透明的流体不仅是生命的源泉：高压水流具有毁灭。.....
+</p>
+</div>
+<div class="module_card_full_description">拉丁语中的“Aqua”意为“水”。这种透明的流体不仅是生命的源泉：高压水流具有毁灭性的力量。</div>
+</div>
+</div>
+<div class="module_cards_row effect_cards_row">
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/3f/Shot_effect_Shaft_Blue.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>蓝色</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/7b/Turret_shaft_m3_2.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>蓝色是淤青的颜色，在你命中敌人后，这些淤青将留在敌人的自尊心上。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/0/05/Shot_effect_Shaft_Blood.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>血色</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/7b/Turret_shaft_m3_2.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>你无法让坦克流血，但这个射击颜色是一个极佳的替代品。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/66/Shot_effect_Shaft_Violet.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>紫罗兰</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/7b/Turret_shaft_m3_2.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>你射击时带有威胁的颜色，不言自明地向对手表明你不是在开玩笑。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/80/Shot_effect_Shaft_Void.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>虚空</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/7b/Turret_shaft_m3_2.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>当你把敌人的坦克炸成碎片后，剩下的东西用“虚空”来形容再合适不过了。
+</p>
+</div>
+</div>
+</div>
+<div class="module_cards_row effect_cards_row">
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/89/Shot_effect_Shaft_Magma.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>岩浆</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/7b/Turret_shaft_m3_2.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>有火焰颜色的迷彩吗？现在你需要一个炽热的射击颜色。它来了。
+</p>
+</div>
+</div>
+</div>
+    </div>
+  </div>
+</div><div align="right"><small>最后编辑：02/11/2025 Devise <span class="ai-translate-note" style="color:#8FB8D8;">（本页面由 AI 自动翻译）</span></small></div></div></div></div></div></div><footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
+<p style="margin:0;"><strong style="color:#BFD5FF;">本站为玩家社区自建的非官方 Wiki 镜像。</strong></p>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":300,"wgPageParseReport":{"limitreport":{"cputime":"0.413","walltime":"0.455","ppvisitednodes":{"value":3008,"limit":1000000},"postexpandincludesize":{"value":132227,"limit":4194304},"templateargumentsize":{"value":78959,"limit":4194304},"expansiondepth":{"value":9,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%   91.411      1 -total"," 73.04%   66.763     12 Шаблон:ShoteffectSwitcher"," 33.43%   30.555     61 Шаблон:ModuleCard"," 19.49%   17.813      1 Шаблон:See_also"," 12.85%   11.742      1 Шаблон:Другое_значение","  8.83%    8.074     10 Шаблон:YouTubePopup","  6.27%    5.731     14 Шаблон:См._также/link","  5.51%    5.036      1 Шаблон:LastEdit"]},"cachereport":{"timestamp":"20260823232147","ttl":86400,"transientcontent":false}}});});</script>
+    <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script></body></html>

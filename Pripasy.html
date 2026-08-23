@@ -1,0 +1,554 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>(function(){
+  var BASE = 'https://ru.tankiwiki.com';
+  function fix(v){ return (typeof v === 'string' && v.charAt(0) === '/' && v.indexOf('//') !== 0) ? BASE + v : v; }
+  ['HTMLScriptElement','HTMLLinkElement'].forEach(function(tag){
+    var proto = window[tag] && window[tag].prototype;
+    var prop  = tag === 'HTMLScriptElement' ? 'src' : 'href';
+    if (!proto) return;
+    var d = Object.getOwnPropertyDescriptor(proto, prop);
+    if (!d || !d.set) return;
+    Object.defineProperty(proto, prop, {
+      configurable: true,
+      get: function(){ return d.get.call(this); },
+      set: function(v){ d.set.call(this, fix(v)); }
+    });
+  });
+  var of = window.fetch;
+  if (of) window.fetch = function(u, o){ return of.call(this, (typeof u === 'string' ? fix(u) : u), o); };
+  var ox = window.XMLHttpRequest && XMLHttpRequest.prototype.open;
+  if (ox) XMLHttpRequest.prototype.open = function(m, u){
+    var a = Array.prototype.slice.call(arguments); a[1] = fix(u); return ox.apply(this, a);
+  };
+})();</script><title>道具 — 3D 坦克 Wiki</title><meta charset="UTF-8">
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgRequestId":"49dc69558c87ca6cfbb2ab02","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Pripasy","wgTitle":"Pripasy","wgCurRevisionId":302756,"wgRevisionId":302756,"wgArticleId":101,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Геймплей"],"wgPageViewLanguage":"ru","wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgRelevantPageName":"Pripasy","wgRelevantArticleId":101,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],
+"wgVisualEditor":{"pageLanguageCode":"ru","pageLanguageDir":"ltr","pageVariantFallbacks":"ru"},"wgFlaggedRevsParams":{"tags":{"accuracy":{"levels":3}}},"wgStableRevisionId":302756,"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.flaggedRevs.icons":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.flaggedRevs.basic":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","mediawiki.toc","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.flaggedRevs.advanced","skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=ext.flaggedRevs.basic%2Cicons%7Cext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/b/b7/Pripasi.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/b/b7/Pripasi.png">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="400">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/thumb/b/b7/Pripasi.png/640px-Pripasi.png">
+    <meta property="og:image:width" content="640">
+    <meta property="og:image:height" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://ru.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://ru.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (ru)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://ru.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki&nbsp;— Atom-лента" href="https://ru.tankiwiki.com/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom"><style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
+
+/* 1. 只去掉源站皮肤的背景大图，保留底色；不要用 background 简写，否则会连带清掉皮肤别的背景设定 */
+html, body {
+    background-image: none !important;
+    background-color: #001926 !important;
+}
+/* 2. 让底色铺满视口，内容很短时下方不再露白 */
+html { min-height: 100%; }
+body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif; }
+
+/* 3. 版心容器 */
+#mw-main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #001926;
+}
+
+/* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
+      【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
+#mw-main-container .main-content,
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content,
+#mw-main-container #mw-content-text {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: auto !important;
+    flex-basis: auto !important;   /* 皮肤写了 .main-content{flex:0 0 75%} */
+    float: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* 5. 皮肤脚本 skins.tankiblue.js 会往 #mw-content-text 末尾插一条「发现错别字？Ctrl+Enter」
+      的俄语提示条和一个「报告错误」标签页。它按网址里有没有 'en'/'de' 来判断语言，
+      我们的域名两者都不含 → 一律显示俄语；且报错会提交到俄站编辑组，对镜像站没意义，直接隐藏。 */
+#custom-report-footer,
+.vectorTabs.customReport,
+.customReport { display: none !important; }
+
+/* 6. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐
+      （数值全部来自对官网实际渲染的 getComputedStyle 取样，根字号 13px 换算成 px 写死）
+        常态 141.375x78 / border 1px rgba(255,255,255,.25) / radius 6.5px
+              背景 radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15), transparent)
+              箭头 24.375x24 fill #BFD5FF
+        悬停 border #BFD5FF + outline 1px #BFD5FF / ::before 渐变 opacity 0→1
+              箭头 fill #fff 且位移 translate(10%)（约 2.44px）
+        全部过渡 all .15s ease
+      ⚠️ 手机是触屏，没有 :hover。所以下面额外加了 :active / :focus-visible，
+        让点按时也能看到同样的动效，另有 @media (hover:none) 的常驻高亮兜底。 */
+.home-back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 141.375px;
+    height: 78px;
+    margin: 0 0 25px 0;
+    padding: 0;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 6.5px;
+    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%);
+    outline: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: all .15s ease;
+}
+.home-back-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(100% 100% at 0% 0%, rgba(191,213,255,.25) 0%, rgba(191,213,255,.15) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all .15s ease;
+}
+.home-back-btn svg {
+    width: 24.375px;
+    height: 24px;
+    object-fit: contain;
+    transform: rotate(180deg);            /* prev：箭头指向左 */
+    transition: all .15s ease;
+}
+.home-back-btn svg path { fill: #BFD5FF; transition: all .15s ease; }
+
+.home-back-btn:hover,
+.home-back-btn:active,
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF; border-color: #BFD5FF; }
+.home-back-btn:hover::before,
+.home-back-btn:active::before,
+.home-back-btn:focus-visible::before { opacity: 1; }
+.home-back-btn:hover svg,
+.home-back-btn:active svg,
+.home-back-btn:focus-visible svg { transform: rotate(180deg) translate(10%); }
+.home-back-btn:hover svg path,
+.home-back-btn:active svg path,
+.home-back-btn:focus-visible svg path { fill: #fff; }
+
+/* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
+@media (hover: none) {
+    .home-back-btn { border-color: rgba(191,213,255,.55); }
+    .home-back-btn svg path { fill: #CFE0FF; }
+}
+/* 窄屏适当缩小，保持官网比例 141.375:78 */
+@media (max-width: 480px) {
+    .home-back-btn { width: 106px; height: 58.5px; }
+    .home-back-btn svg { width: 20px; height: 19.7px; }
+}
+
+/* 7. 移动端：源站容器 padding + 我们的 20px 叠加后两侧空太多，正文被挤成窄条 */
+@media (max-width: 768px) {
+    #mw-main-container { padding: 10px; margin: 8px auto; }
+    /* 主页那些写死 width:55% / 45% 的分栏在窄屏下强制单列 */
+    #mw-content-text .navigationContainerContent > div,
+    #mw-content-text [style*="width: 55%"],
+    #mw-content-text [style*="width:55%"],
+    #mw-content-text [style*="width: 45%"],
+    #mw-content-text [style*="width:45%"] { width: 100% !important; }
+}
+@media (max-width: 480px) {
+    #mw-main-container { padding: 6px; margin: 4px auto; }
+}
+
+/* 8. 防止宽表格 / 大图撑破版心产生横向滚动 */
+#mw-content-text img { max-width: 100%; height: auto; }
+#mw-content-text table { max-width: 100%; }
+
+/* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
+   只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+*/
+</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Pripasy rootpage-Pripasy skin-tankiblue action-view"><div id="skin-chrome-stub" aria-hidden="true" style="display:none !important;">
+<a class="problem" href="#"></a>
+<div class="close-wrapper"></div>
+<div class="support-block-popup"><div class="close-modal-support"></div></div>
+<div class="youtube-popup"><iframe title="stub"></iframe></div>
+<div class="video-button"></div>
+<div class="header-search"></div>
+<div class="search-dialog"></div>
+<div class="search-popup"><div class="close-wrapper"></div><div class="close-modal-search"></div></div>
+<div class="news-popup"></div>
+<div class="sales-block-header"></div>
+<div class="navbar-main"></div>
+<div class="main-navbar"></div>
+</div><div id="mw-main-container"><a class="home-back-btn" href="./Enciklopediya_igry_%C2%ABTanki_Onlayn%C2%BB" title="返回主页" aria-label="返回主页"><svg viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 0H13.5L25.5 12L24 13.5L13.5 24H18L30 12L18 0ZM24 13.5L21 10.5H0L3 13.5H24Z" fill="#BFD5FF"/></svg></a><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">道具</h1><p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/b7/Pripasi.png" decoding="async" loading="lazy" width="800" height="400" class="mw-file-element"></span></span>
+</p><div class="dablink"><em>参见：</em> <a href="./%D0%9E%D0%B2%D0%B5%D1%80%D0%B4%D1%80%D0%B0%D0%B9%D0%B2%D1%8b" class="mw-redirect" title="Овердрайвы">终极技能</a>与<a href="./%D0%94%D1%80%D0%BE%D0%BD%D1%8B" class="mw-redirect" title="Дроны">无人机</a>
+</div><p><b>道具</b>或<b>消耗品</b>是可在战斗中消耗的物品。其中一些可以临时增强你的坦克的某项属性。例如，你可以在一段时间内加速坦克、为<a href="./%D0%9E%D0%B2%D0%B5%D1%80%D0%B4%D1%80%D0%B0%D0%B9%D0%B2" class="mw-redirect" title="Овердрайв">终极技能</a>充能、投放<a href="./%D0%97%D0%BE%D0%BB%D0%BE%D1%82%D0%BE%D0%B9_%D1%8F%D1%89%D0%B8%D0%BA" class="mw-redirect" title="Золотой ящик">金箱子</a>或投掷<a href="./%D0%93%D1%80%D0%B0%D0%BD%D0%B0%D1%82%D1%8B" class="mw-redirect" title="Гранаты">手榴弹</a>。
+</p><p>在战斗中，现有道具的数量及其当前状态会显示在屏幕底部的专用面板上。每种道具都有其专属的生效和结束音效，以及可使用的视觉特效。激活道具的<b>默认</b>按键为 <span class="hotkey">1</span>、<span class="hotkey">2</span>、<span class="hotkey">3</span>、<span class="hotkey">4</span>、<span class="hotkey">5</span> 和 <span class="hotkey">6</span>，其中核能使用 <span class="hotkey">Shift</span> 键，手榴弹使用 <span class="hotkey">F</span> 键。
+</p><p id="Дроп">此外，道具还会在战斗中直接从空中掉落到指定位置（空投区）。坦克手通常称这些道具为<b><a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">空投</a></b>（源自英文 <i>drop</i>，意为掉落）。拾取的道具会立即生效，无法在车库中囤积或保存。如果你在激活道具的同时或稍后（但在激活道具效果结束之前）拾取了相同的空投道具，则道具效果将会延长。道具的刷新频率为 84 秒（前提是拾取了道具）。</p><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"><div class="toctitle" lang="ru" dir="ltr"><h2 id="mw-toc-heading">目录</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Как_получить_припасы"><span class="tocnumber">1</span> <span class="toctext">如何获得道具</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Припасы"><span class="tocnumber">2</span> <span class="toctext">道具</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Ремкомплект"><span class="tocnumber">2.1</span> <span class="toctext">维修工具</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Повышенная_защита"><span class="tocnumber">2.2</span> <span class="toctext">护甲提升</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Повышенный_урон"><span class="tocnumber">2.3</span> <span class="toctext">伤害提升</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Ускорение"><span class="tocnumber">2.4</span> <span class="toctext">速度提升</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Мина"><span class="tocnumber">2.5</span> <span class="toctext">地雷</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Граната"><span class="tocnumber">2.6</span> <span class="toctext">手榴弹</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Золотой_ящик"><span class="tocnumber">2.7</span> <span class="toctext">金箱子</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Ядерная_энергия"><span class="tocnumber">2.8</span> <span class="toctext">核能</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Кристаллы"><span class="tocnumber">2.9</span> <span class="toctext">水晶</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-12"><a href="#Зависимые_кулдауны"><span class="tocnumber">3</span> <span class="toctext">道具冷却联动</span></a></li>
+<li class="toclevel-1 tocsection-13"><a href="#Автоматическая_активация_припасов"><span class="tocnumber">4</span> <span class="toctext">道具自动激活</span></a></li>
+<li class="toclevel-1 tocsection-14"><a href="#Особенности_работы_дропа_и_дроп-зон"><span class="tocnumber">5</span> <span class="toctext">空投与空投区机制特点</span></a></li>
+<li class="toclevel-1 tocsection-15"><a href="#Интересные_факты"><span class="tocnumber">6</span> <span class="toctext">趣闻</span></a></li>
+</ul>
+</div><h2><span id=".D0.9A.D0.B0.D0.BA_.D0.BF.D0.BE.D0.BB.D1.83.D1.87.D0.B8.D1.82.D1.8C_.D0.BF.D1.80.D0.B8.D0.BF.D0.B0.D1.81.D1.8B"></span><span class="mw-headline" id="Как_получить_припасы">如何获得道具</span></h2><table class="wikitable-modern white-table">
+
+<tbody><tr class="wikitable-header">
+<td width="220px">
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><a href="#Ремкомплект" title=""><img src="https://ru.tankiwiki.com/images/ru/2/25/Icon_repair_kit_supply.png" decoding="async" loading="lazy" width="29" height="29" class="mw-file-element"></a></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><a href="#Повышенная_защита" title=""><img src="https://ru.tankiwiki.com/images/ru/8/85/Icon_double_armor_supply.png" decoding="async" loading="lazy" width="29" height="29" class="mw-file-element"></a></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><a href="#Повышенный_урон" title=""><img src="https://ru.tankiwiki.com/images/ru/d/dc/Icon_double_damage_supply.png" decoding="async" loading="lazy" width="29" height="29" class="mw-file-element"></a></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><a href="#Ускорение" title=""><img src="https://ru.tankiwiki.com/images/ru/5/55/Icon_speed_boost_supply.png" decoding="async" loading="lazy" width="29" height="29" class="mw-file-element"></a></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><a href="#Мина" title=""><img src="https://ru.tankiwiki.com/images/ru/2/28/Icon_mine_supply.png" decoding="async" loading="lazy" width="29" height="29" class="mw-file-element"></a></span>
+</td>
+<td><span typeof="mw:File"><a href="#Граната" title=""><img src="https://ru.tankiwiki.com/images/ru/thumb/5/5e/Grenade_icon.png/29px-Grenade_icon.png" decoding="async" loading="lazy" width="29" height="29" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/5e/Grenade_icon.png/44px-Grenade_icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/5e/Grenade_icon.png/58px-Grenade_icon.png 2x"></a></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><a href="#Золотой_ящик" title=""><img src="https://ru.tankiwiki.com/images/ru/4/49/Icon_gold_box_supply.png" decoding="async" loading="lazy" width="27" height="27" class="mw-file-element"></a></span>
+</td>
+<td><span typeof="mw:File"><a href="#Ядерная_энергия" title=""><img src="https://ru.tankiwiki.com/images/ru/7/7d/Energy_icon.png" decoding="async" loading="lazy" width="29" height="29" class="mw-file-element"></a></span>
+</td></tr>
+<tr>
+<td>普通幸运礼盒和稀有幸运礼盒</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/ee/Minus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/ee/Minus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td></tr>
+<tr>
+<td>在<a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры">车库</a>中购买</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/ee/Minus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td></tr>
+<tr>
+<td>在<a href="./%D0%9C%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD" class="mw-redirect" title="Магазин">展示柜</a>中购买</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/ee/Minus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/ee/Minus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td></tr>
+<tr>
+<td>新手<a href="./%D0%9C%D0%B8%D1%81%D1%81%D0%B8%D0%B8" class="mw-redirect" title="Миссии">任务</a>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/ee/Minus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/ee/Minus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td></tr>
+<tr>
+<td>激活<a href="./%D0%9F%D1%80%D0%BE%D0%BC%D0%BE%D0%BA%D0%BE%D0%B4%D1%8B" class="mw-redirect" title="Промокоды">兑换码</a>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/ee/Minus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/ee/Minus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td></tr>
+<tr>
+<td>完成<a href="./%D0%A7%D0%B5%D0%BB%D0%BB%D0%B5%D0%BD%D0%B4%D0%B6%D0%B8" class="mw-redirect" title="Челленджи">星级挑战</a>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/ee/Minus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td></tr>
+<tr>
+<td><a href="./%D0%9A%D0%BE%D0%BD%D0%BA%D1%83%D1%80%D1%81%D1%8B" class="mw-redirect" title="Конкурсы">比赛</a>和<a href="./%D0%9C%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD" class="mw-redirect" title="Магазин">商店</a>中的特价优惠</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Plus.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>
+</td></tr></tbody></table><h2><span id=".D0.9F.D1.80.D0.B8.D0.BF.D0.B0.D1.81.D1.8B"></span><span class="mw-headline" id="Припасы">道具</span></h2><h3><span id=".D0.A0.D0.B5.D0.BC.D0.BA.D0.BE.D0.BC.D0.BF.D0.BB.D0.B5.D0.BA.D1.80"></span><span class="mw-headline" id="Ремкомплект"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/25/Icon_repair_kit_supply.png" decoding="async" loading="lazy" width="29" height="29" class="mw-file-element"></span></span>维修工具</span></h3><div class="supply-info">
+<div class="supply-info-table">
+<ul><li><div class="header-card"><div class="card-heading">效果</div><div class="card-content">立即恢复 500 点护甲，除所有生效的<a href="./%D0%A1%D1%82%D0%B0%D1%82%D1%83%D1%81-%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%D1%8B" class="mw-redirect" title="Статус-эффекты">状态效果</a>，并在 0.6 秒内免疫再次施加。此外，在 6 秒内额外恢复 4 500 点护甲。</div></div></li>
+<li><div class="header-card"><div class="card-heading">最低等级</div><div class="card-content"><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9C%D0%B0%D1%81%D1%82%D0%B5%D1%80-%D1%81%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" title="Мастер-сержант"><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6b/IconsNormal_08.png/28px-IconsNormal_08.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/6b/IconsNormal_08.png/42px-IconsNormal_08.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/6b/IconsNormal_08.png/56px-IconsNormal_08.png 2x"></a></span> <a href="./%D0%9C%D0%B0%D1%81%D1%82%D0%B5%D1%80-%D1%81%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" class="mw-redirect" title="Мастер-сержант">二级军士长</a></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">价格</div><div class="card-content"><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">150</span></a></div></div></li>
+<li><div class="header-card"><div class="card-heading">冷却与持续时间 (s)</div><div class="card-content"><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/80/Supply_working_time.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>6</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/a8/Rk.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>14</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/9/92/Da_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>5</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/f/f5/Dd_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>5</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2e/Sb_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Mine_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/8f/Gb_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div></div></div></li></ul>
+</div>
+<div class="supply-views-table">
+<ul><li><div class="header-card"><div class="card-heading">道具面板外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2d/Supply_repair_kit_transparent.png" decoding="async" loading="lazy" width="88" height="88" class="mw-file-element"></span></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">车库外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/b5/Inventory_first_aid.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></span></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">战斗外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/d6/Bonus_first_aid.png" decoding="async" loading="lazy" width="686" height="686" class="mw-file-element"></span></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">空投区外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/61/Repair_kit_drop.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div></div></li></ul>
+</div>
+</div><p><br>如果坦克受到任何类型的伤害（包括地雷和着火伤害），额外恢复将停止。一旦坦克的护甲完全恢复，维修工具便会停止工作。
+</p><p>对于“<a href="./%D0%94%D0%B6%D0%B0%D0%B3%D0%B3%D0%B5%D1%80%D0%BD%D0%B0%D1%83%D1%82" class="mw-redirect" title="Джаггернаут">剑圣</a>”，维修工具箱提供 4 000 点护甲，并在坦克受到任何伤害之前，以每次 150 点的步进继续提供。所有其他道具箱均恢复 3 000 点护甲。
+</p><h3><span id=".D0.9F.D0.BE.D0.B2.D1.8B.D1.88.D0.B5.D0.BD.D0.BD.D0.B0.D1.8F_.D0.B7.D0.B0.D1.89.D0.B8.D1.82.D0.B0"></span><span class="mw-headline" id="Повышенная_защита"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/85/Icon_double_armor_supply.png" decoding="async" loading="lazy" width="29" height="29" class="mw-file-element"></span></span>护甲提升</span></h3><div class="supply-info">
+<div class="supply-info-table">
+<ul><li><div class="header-card"><div class="card-heading">效果</div><div class="card-content">减少任何类型的受到的伤害，但<a href="./%D0%A3%D1%80%D0%BE%D0%BD" class="mw-redirect" title="Урон">混乱伤害</a>除外。</div></div></li>
+<li><div class="header-card"><div class="card-heading">最低等级</div><div class="card-content"><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%95%D1%84%D1%80%D0%B5%D0%B9%D1%82%D0%BE%D1%80" title="Ефрейтор"><img src="https://ru.tankiwiki.com/images/ru/thumb/2/20/IconsNormal_03.png/28px-IconsNormal_03.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/20/IconsNormal_03.png/42px-IconsNormal_03.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/2/20/IconsNormal_03.png/56px-IconsNormal_03.png 2x"></a></span> <a href="./%D0%95%D1%84%D1%80%D0%B5%D0%B9%D1%82%D0%BE%D1%80" class="mw-redirect" title="Ефрейтор">一等兵</a></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">价格</div><div class="card-content"><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">50</span></a></div></div></li>
+<li><div class="header-card"><div class="card-heading">冷却与持续时间 (s)</div><div class="card-content"><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/80/Supply_working_time.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>45</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/a8/Rk.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/9/92/Da_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>15</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/f/f5/Dd_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>5</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2e/Sb_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>5</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Mine_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/8f/Gb_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div></div></div></li></ul>
+</div>
+<div class="supply-views-table">
+<ul><li><div class="header-card"><div class="card-heading">道具面板外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/20/Supply_double_armor_transparent.png" decoding="async" loading="lazy" width="88" height="88" class="mw-file-element"></span></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">车库外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/5/55/Inventory_double_armor.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></span></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">战斗外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/5/5a/Bonus_double_armor.png" decoding="async" loading="lazy" width="686" height="686" class="mw-file-element"></span></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">空投区外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/22/Double_armor_drop.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div></div></li></ul>
+</div>
+</div><p><br>敌人造成的伤害默认降低 33%。可以通过升级已装备的<a href="./%D0%94%D1%80%D0%BE%D0%BD%D1%8b" class="mw-redirect" title="Дроны">无人机</a>来增强道具的效果。满级无人机可将护甲提升的效果增强至 50%。 
+</p><h3><span id=".D0.9F.D0.BE.D0.B2.D1.8B.D1.88.D0.B5.D0.BD.D0.BD.D1.8B.D0.B9_.D1.83.D1.80.D0.BE.D0.BD"></span><span class="mw-headline" id="Повышенный_урон"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/dc/Icon_double_damage_supply.png" decoding="async" loading="lazy" width="29" height="29" class="mw-file-element"></span></span>伤害提升</span></h3><div class="supply-info">
+<div class="supply-info-table">
+<ul><li><div class="header-card"><div class="card-heading">效果</div><div class="card-content">增加玩家造成的任何伤害。</div></div></li>
+<li><div class="header-card"><div class="card-heading">最低等级</div><div class="card-content"><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9A%D0%B0%D0%BF%D1%80%D0%B0%D0%BB" title="Капрал"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d6/IconsNormal_04.png/28px-IconsNormal_04.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d6/IconsNormal_04.png/42px-IconsNormal_04.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d6/IconsNormal_04.png/56px-IconsNormal_04.png 2x"></a></span> <a href="./%D0%9A%D0%B0%D0%BF%D1%80%D0%B0%D0%BB" class="mw-redirect" title="Капрал">下士</a></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">价格</div><div class="card-content"><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">50</span></a></div></div></li>
+<li><div class="header-card"><div class="card-heading">冷却与持续时间 (s)</div><div class="card-content"><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/80/Supply_working_time.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>45</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/a8/Rk.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/9/92/Da_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>5</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/f/f5/Dd_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>15</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2e/Sb_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>5</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Mine_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/8f/Gb_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div></div></div></li></ul>
+</div>
+<div class="supply-views-table">
+<ul><li><div class="header-card"><div class="card-heading">道具面板外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/0/03/Supply_double_damage_transparent.png" decoding="async" loading="lazy" width="88" height="88" class="mw-file-element"></span></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">车库外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/be/Inventory_double_power.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></span></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">战斗外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/64/Bonus_double_power.png" decoding="async" loading="lazy" width="686" height="686" class="mw-file-element"></span></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">空投区外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/28/Double_power_drop.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div></div></li></ul>
+</div>
+</div><p><br>玩家造成的伤害默认增加 50%。可以通过升级已装备的<a href="./%D0%94%D1%80%D0%BE%D0%BD%D1%8b" class="mw-redirect" title="Дроны">无人机</a>来增强道具的效果。满级无人机可将伤害提升的效果增强至 100%。
+</p><h3><span id=".D0.A3.D1.81.D0.BA.D0.BE.D1.80.D0.B5.D0.BD.D0.B8.D0.B5"></span><span class="mw-headline" id="Ускорение"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/5/55/Icon_speed_boost_supply.png" decoding="async" loading="lazy" width="29" height="29" class="mw-file-element"></span></span>速度提升</span></h3><div class="supply-info">
+<div class="supply-info-table">
+<ul><li><div class="header-card"><div class="card-heading">效果</div><div class="card-content">增加你的坦克的最高速度以及炮塔的最大旋转速度。</div></div></li>
+<li><div class="header-card"><div class="card-heading">最低等级</div><div class="card-content"><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9C%D0%B0%D1%81%D1%82%D0%B5%D1%80-%D0%BA%D0%B0%D0%BF%D1%80%D0%B0%D0%BB" title="Мастер-капрал"><img src="https://ru.tankiwiki.com/images/ru/thumb/5/51/IconsNormal_05.png/28px-IconsNormal_05.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/51/IconsNormal_05.png/42px-IconsNormal_05.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/51/IconsNormal_05.png/56px-IconsNormal_05.png 2x"></a></span> <a href="./%D0%9C%D0%B0%D1%81%D1%82%D0%B5%D1%80-%D0%BA%D0%B0%D0%BF%D1%80%D0%B0%D0%BB" class="mw-redirect" title="Мастер-капрал">中士</a></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">价格</div><div class="card-content"><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8b" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">50</span></a></div></div></li>
+<li><div class="header-card"><div class="card-heading">冷却与持续时间 (s)</div><div class="card-content"><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/80/Supply_working_time.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>45</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/a8/Rk.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/9/92/Da_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>5</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/f/f5/Dd_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>5</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2e/Sb_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>15</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Mine_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/8f/Gb_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div></div></div></li></ul>
+</div>
+<div class="supply-views-table">
+<ul><li><div class="header-card"><div class="card-heading">道具面板外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/9/93/Supply_speed_boost_transparent.png" decoding="async" loading="lazy" width="88" height="88" class="mw-file-element"></span></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">车库外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/1/12/Inventory_nitro.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></span></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">战斗外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/75/Bonus_nitro.png" decoding="async" loading="lazy" width="686" height="686" class="mw-file-element"></span></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">空投区外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/8a/Nitro_drop.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div></div></li></ul>
+</div>
+</div><p><br>坦克最高速度和炮塔旋转速度增加 40%，这与已装备的<a href="./%D0%94%D1%80%D0%BE%D0%BD%D1%8b" class="mw-redirect" title="Дроны">无人机</a>的升级程度无关（“<a href="./%D0%9E%D1%80%D0%B0%D0%BA%D1%83%D0%BB" class="mw-redirect" title="Оракул">神谕者</a>”、“<a href="./%D0%9B%D0%BE%D0%B2%D0%BA%D0%B0%D1%87" class="mw-redirect" title="Ловкач">欺诈者</a>”和“<a href="./%D0%9A%D1%80%D0%B8%D0%B7%D0%B8%D1%81" class="mw-redirect" title="Кризис">危机</a>”除外，这些无人机会影响坦克的最高速度和炮塔旋转速度，速度取决于具体无人机的升级程度）。
+</p><h3><span id=".D0.9C.D0.B8.D0.BD.D0.B0"></span><span class="mw-headline" id="Мина"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/28/Icon_mine_supply.png" decoding="async" loading="lazy" width="29" height="29" class="mw-file-element"></span></span>地雷</span></h3><div class="supply-info">
+<div class="supply-info-table">
+<ul><li><div class="header-card"><div class="card-heading">效果</div><div class="card-content">在战场上放置一颗地雷。</div></div></li>
+<li><div class="header-card"><div class="card-heading">最低等级</div><div class="card-content"><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%A8%D1%82%D0%B0%D0%B1-%D1%81%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" title="Штаб-сержант"><img src="https://ru.tankiwiki.com/images/ru/thumb/5/53/IconsNormal_07.png/28px-IconsNormal_07.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/53/IconsNormal_07.png/42px-IconsNormal_07.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/53/IconsNormal_07.png/56px-IconsNormal_07.png 2x"></a></span> <a href="./%D0%A8%D1%82%D0%B0%D0%B1-%D1%81%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" class="mw-redirect" title="Штаб-сержант">三级军士长</a></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">价格</div><div class="card-content"><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">50</span></a></div></div></li>
+<li><div class="header-card"><div class="card-heading">冷却与持续时间 (s)</div><div class="card-content"><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/80/Supply_working_time.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>0,05</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/a8/Rk.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/9/92/Da_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>5</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/f/f5/Dd_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>5</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2e/Sb_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Mine_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>30</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/8f/Gb_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div></div></div></li></ul>
+</div>
+<div class="supply-views-table">
+<ul><li><div class="header-card"><div class="card-heading">道具面板外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/b4/Supply_mine_transparent.png" decoding="async" loading="lazy" width="88" height="88" class="mw-file-element"></span></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">车库外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/eb/Inventory_mine.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></span></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">战斗外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/63/Mine_low_01.png" decoding="async" loading="lazy" width="1280" height="720" class="mw-file-element"></span></span><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/ef/Mine_low_02.png" decoding="async" loading="lazy" width="1280" height="720" class="mw-file-element"></span></span><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6c/Mine_low_03.png" decoding="async" loading="lazy" width="1280" height="720" class="mw-file-element"></span></span></div></div></li></ul>
+</div>
+</div><p><br>踩到地雷的敌方坦克将损失至少 1 500 点生命值 (hp)。地雷有 10% 的几率造成暴击伤害（忽略“蜘蛛”防护模块的效果），数值等于 2 000 hp。如果地雷的主人被摧毁、离开战斗或战斗结束，地雷将失效，但在使用特定装备改造时地雷可以保持激活状态。地雷也可以通过<a href="./%D0%93%D1%80%D0%B0%D0%BD%D0%B0%D1%82%D0%B0" class="mw-redirect" title="Граната">手榴弹</a>和某些<a href="./%D0%9E%D0%B2%D0%B5%D1%80%D0%B4%D1%80%D0%B0%D0%B9%D0%B2%D1%8b" class="mw-redirect" title="Овердрайвы">终极技能</a>来解除。
+</p><p>在团队对战中，地雷会显示为团队颜色，并且不会对队友做出反应。队友的地雷在任何距离都可见，而敌人的地雷只有在坦克距离它们不超过 15 米（三个<a href="./%D0%9F%D1%80%D0%BE%D0%BF" class="mw-redirect" title="Проп">道具模型</a>）时才可见。在 <a href="./CP" class="mw-redirect" title="CP">CP</a>、<a href="./SGE" class="mw-redirect" title="SGE">SGE</a>、<a href="./RGB" class="mw-redirect" title="RGB">RGB</a>、<a href="./CTF" class="mw-redirect" title="CTF">CTF</a> 和 <a href="./ASL" class="mw-redirect" title="ASL">ASL</a> 模式中，无法在控制点上及控制点周围的小范围内放置地雷。地图上最多同时存在 10 000 颗地雷。超过此数值时将无法放置地雷，也不会消耗道具。
+</p><h3><span id=".D0.93.D1.80.D0.B0.D0.BD.D0.B0.D1.82.D0.B0"></span><span class="mw-headline" id="Граната"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/5/5e/Grenade_icon.png/25px-Grenade_icon.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/5e/Grenade_icon.png/38px-Grenade_icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/5e/Grenade_icon.png/50px-Grenade_icon.png 2x"></span></span> <a href="./%D0%93%D1%80%D0%B0%D0%BD%D0%B0%D1%82%D0%B0" class="mw-redirect" title="Граната">手榴弹</a></span></h3><div class="supply-info">
+<div class="supply-info-table">
+<ul><li><div class="header-card"><div class="card-heading">效果</div><div class="card-content">对特定伤害半径内的所有敌方坦克造成<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/4f/Icon_grenade_kill.png/25px-Icon_grenade_kill.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/4f/Icon_grenade_kill.png/38px-Icon_grenade_kill.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/4f/Icon_grenade_kill.png/50px-Icon_grenade_kill.png 2x"></span></span> <a href="./%D0%A3%D1%80%D0%BE%D0%BD" class="mw-redirect" title="Урон">混乱伤害</a>。 </div></div></li>
+<li><div class="header-card"><div class="card-heading">最低等级</div><div class="card-content"><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9D%D0%BE%D0%B2%D0%BE%D0%B1%D1%80%D0%B0%D0%BD%D0%B5%D1%86" title="Новобранец"><img src="https://ru.tankiwiki.com/images/ru/thumb/6/64/IconsNormal_01.png/28px-IconsNormal_01.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/64/IconsNormal_01.png/42px-IconsNormal_01.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/64/IconsNormal_01.png/56px-IconsNormal_01.png 2x"></a></span> <a href="./%D0%9D%D0%BE%D0%B2%D0%BE%D0%B1%D1%80%D0%B0%D0%BD%D0%B5%D1%86" class="mw-redirect" title="Новобранец">新兵</a></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">价格</div><div class="card-content"><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">1 250</span></a></div></div></li>
+<li><div class="header-card"><div class="card-heading">冷却与持续时间 (s)</div><div class="card-content"><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/80/Supply_working_time.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>50</div>* <div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/a8/Rk.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/9/92/Da_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/f/f5/Dd_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2e/Sb_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Mine_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/8f/Gb_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div></div></div></li></ul>
+</div>
+<div class="supply-views-table">
+<ul><li><div class="header-card"><div class="card-heading">道具面板外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/de/Supply_grenade_transparent.png" decoding="async" loading="lazy" width="88" height="88" class="mw-file-element"></span></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">车库外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/c6/Standard_grenades.png" decoding="async" loading="lazy" width="1199" height="917" class="mw-file-element"></span></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">战斗外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/c5/Bomb_Grenade_1.png" decoding="async" loading="lazy" width="510" height="600" class="mw-file-element"></span></span></div></div></li></ul>
+</div>
+</div><p><br>
+<a href="./%D0%93%D1%80%D0%B0%D0%BD%D0%B0%D1%82%D0%B0" class="mw-redirect" title="Граната">手榴弹</a>具有特殊的物理交互机制。例如，它会从地图上的所有静止物体上弹开：墙壁、房屋屋顶、地表岩石。
+</p><p>投掷手榴弹有两种方式：点击或按住 <span class="hotkey">F</span> 键。按住时可以看到手榴弹的飞行轨迹。
+</p><h3><span id=".D0.97.D0.BE.D0.BB.D0.BE.D1.82.D0.BE.D0.B9_.D1.8F.D1.89.D0.B8.D0.BA"></span><span class="mw-headline" id="Золотой_ящик"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/4/49/Icon_gold_box_supply.png" decoding="async" loading="lazy" width="27" height="27" class="mw-file-element"></span></span> <a href="./%D0%97%D0%BE%D0%BB%D0%BE%D1%82%D0%BE%D0%B9_%D1%8F%D1%89%D0%B8%D0%BA" class="mw-redirect" title="Золотой ящик">金箱子</a></span></h3><div class="supply-info">
+<div class="supply-info-table">
+<ul><li><div class="header-card"><div class="card-heading">效果</div><div class="card-content">在地图的随机位置投放一个标准金箱子。</div></div></li>
+<li><div class="header-card"><div class="card-heading">最低等级</div><div class="card-content"><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_1" title="Уорэнт-офицер 1"><img src="https://ru.tankiwiki.com/images/ru/thumb/3/39/IconsNormal_11.png/28px-IconsNormal_11.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/39/IconsNormal_11.png/42px-IconsNormal_11.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/3/39/IconsNormal_11.png/56px-IconsNormal_11.png 2x"></a></span> <a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_1" class="mw-redirect" title="Уорэнт-офицер 1">五级准尉</a></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">价格</div><div class="card-content"><a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8b" class="mw-redirect" title="Рубины"><span class="rubies-modern">150</span></a></div></div></li>
+<li><div class="header-card"><div class="card-heading">冷却与持续时间 (s)</div><div class="card-content"><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/a8/Rk.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/9/92/Da_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/f/f5/Dd_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2e/Sb_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Mine_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/8f/Gb_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>5</div></div></div></li></ul>
+</div>
+<div class="supply-views-table">
+<ul><li><div class="header-card"><div class="card-heading">道具面板外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/b9/Supply_gold_box_transparent.png" decoding="async" loading="lazy" width="88" height="88" class="mw-file-element"></span></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">车库外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/d1/Bonus_goldbox.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></span></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">战斗外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/8e/Box_g.png" decoding="async" loading="lazy" width="686" height="686" class="mw-file-element"></span></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">空投区外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/0/09/Gold_droped.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div></div></li></ul>
+</div>
+</div><p><br>金箱子道具总是包含<a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">1 000</span></a>，但与系统投放的金箱子不同，没有经验值。它的材质在活动和节日期间可能会发生变化。
+</p><p>可以在<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/9/91/Settings.png/25px-Settings.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/9/91/Settings.png/38px-Settings.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/9/91/Settings.png/50px-Settings.png 2x"></span></span><a href="./%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B8" class="mw-redirect" title="Настройки">设置</a>中关闭显示是你投放的金箱子提示。捕获的金箱子道具与普通金箱子一样计入<a href="./%D0%A0%D0%B5%D0%B9%D1%82%D0%B8%D0%BD%D0%B3%D0%B8" class="mw-redirect" title="Рейтинги">统计</a>数据。
+</p><p>在关闭了<span class="battle-option"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/2/2a/Icon_supplies.png/18px-Icon_supplies.png" decoding="async" loading="lazy" width="18" height="18" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/2a/Icon_supplies.png/27px-Icon_supplies.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/2/2a/Icon_supplies.png/36px-Icon_supplies.png 2x"></span></span> <span>道具</span></span>或<span class="battle-option"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/2/25/Icon_gold_boxes.png/18px-Icon_gold_boxes.png" decoding="async" loading="lazy" width="18" height="18" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/25/Icon_gold_boxes.png/27px-Icon_gold_boxes.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/2/25/Icon_gold_boxes.png/36px-Icon_gold_boxes.png 2x"></span></span> <span>金箱子</span></span>选项的战斗中无法投放金箱子，但可以在<a href="./%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D0%BD%D1%8B%D0%B5_%D0%B1%D0%B8%D1%82%D0%B2%D1%8B" class="mw-redirect" title="Форматные битвы">“跑酷”模式</a>中投放。金箱子会在警报发出 10 秒后落下。
+</p><h3><span id=".D0.AF.D0.B4.D0.B5.D1.80.D0.BD.D0.B0.D1.8F_.D1.8D.D0.BD.D0.B5.D1.80.D0.B3.D0.B8.D1.89"></span><span class="mw-headline" id="Ядерная_энергия"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/7d/Energy_icon.png/25px-Energy_icon.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/7d/Energy_icon.png 1.5x"></span></span>核能</span></h3><div class="supply-info">
+<div class="supply-info-table">
+<ul><li><div class="header-card"><div class="card-heading">效果</div><div class="card-content">完全充能<a href="./%D0%9E%D0%B2%D0%B5%D1%80%D0%B4%D1%80%D0%B0%D0%B9%D0%B2" class="mw-redirect" title="Овердрайв">终极技能</a>。</div></div></li>
+<li><div class="header-card"><div class="card-heading">最低等级</div><div class="card-content"><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9D%D0%BE%D0%B2%D0%BE%D0%B1%D1%80%D0%B0%D0%BD%D0%B5%D1%86" title="Новобранец"><img src="https://ru.tankiwiki.com/images/ru/thumb/6/64/IconsNormal_01.png/28px-IconsNormal_01.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/64/IconsNormal_01.png/42px-IconsNormal_01.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/64/IconsNormal_01.png/56px-IconsNormal_01.png 2x"></a></span> <a href="./%D0%9D%D0%BE%D0%B2%D0%BE%D0%B1%D1%80%D0%B0%D0%BD%D0%B5%D1%86" class="mw-redirect" title="Новобранец">新兵</a></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">价格</div><div class="card-content">不出售</div></div></li>
+<li><div class="header-card"><div class="card-heading">冷却与持续时间 (s)</div><div class="card-content"><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/80/Supply_working_time.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element"></span></span>15</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/a8/Rk.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/9/92/Da_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/f/f5/Dd_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2e/Sb_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Mine_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div><div class="icon-description"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/8f/Gb_cd.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element"></span></span>0</div></div></div></li></ul>
+</div>
+<div class="supply-views-table">
+<ul><li><div class="header-card"><div class="card-heading">道具面板外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/df/Supply_nuclear_energy_transparent.png" decoding="async" loading="lazy" width="88" height="88" class="mw-file-element"></span></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">车库外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/9/92/Battery_single.png" decoding="async" loading="lazy" width="1332" height="1116" class="mw-file-element"></span></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">战斗外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/38/Energy_drop.png" decoding="async" loading="lazy" width="686" height="686" class="mw-file-element"></span></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">空投区外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/89/Energy_droped.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div></div></li></ul>
+</div>
+</div><p><br>该道具使用时可为终极技能充能。使用时需按住终极技能激活键 <span class="hotkey">Shift</span>。使用自己的道具后，该消耗品进入 15 秒的冷却时间。激活后，坦克会在短时间内处于<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/64/Icon_jammer.png/18px-Icon_jammer.png" decoding="async" loading="lazy" width="18" height="18" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/64/Icon_jammer.png/27px-Icon_jammer.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/64/Icon_jammer.png/36px-Icon_jammer.png 2x"></span></span> “<a href="./%D0%9F%D0%BE%D0%B4%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5" class="mw-redirect" title="Подавление">干扰器</a>”状态效果下。
+</p><p>它也会以空投形式掉落在地图上。“核能”的空投区仅存在于匹配<a href="./%D0%9C%D0%B0%D1%82%D1%87%D0%BC%D0%B5%D0%B9%D0%BA%D0%B8%D0%BD%D0%B3" class="mw-redirect" title="Матчмейкинг">地图</a>中。“核能”被认为是非常宝贵的奖励，因为额外的终极技能充能在战斗中可能起到关键作用。
+</p><h3><span id=".D0.9A.D1.80.D0.B8.D1.81.D1.82.D0.B0.D0.BB.D0.BB.D1.8B"></span><span class="mw-headline" id="Кристаллы"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/ed/Crystal_small.png/25px-Crystal_small.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/ed/Crystal_small.png/38px-Crystal_small.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/ed/Crystal_small.png/50px-Crystal_small.png 2x"></span></span> <a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы">水晶</a></span></h3><div class="supply-info">
+<div class="supply-info-table">
+<ul><li><div class="header-card"><div class="card-heading">效果</div><div class="card-content">增加<a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">10</span></a>和<a href="./%D0%9E%D0%BF%D1%8B%D1%82" class="mw-redirect" title="Опыт"><span class="exp-modern"><b>10</b></span></a></div></div></li>
+<li><div class="header-card"><div class="card-heading">最低等级</div><div class="card-content"><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9D%D0%BE%D0%B2%D0%BE%D0%B1%D1%80%D0%B0%D0%BD%D0%B5%D1%86" title="Новобранец"><img src="https://ru.tankiwiki.com/images/ru/thumb/6/64/IconsNormal_01.png/28px-IconsNormal_01.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/64/IconsNormal_01.png/42px-IconsNormal_01.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/64/IconsNormal_01.png/56px-IconsNormal_01.png 2x"></a></span> <a href="./%D0%9D%D0%BE%D0%B2%D0%BE%D0%B1%D1%80%D0%B0%D0%BD%D0%B5%D1%86" class="mw-redirect" title="Новобранец">新兵</a></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">最高等级</div><div class="card-content"><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9A%D0%B0%D0%BF%D1%80%D0%B0%D0%BB" title="Капрал"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d6/IconsNormal_04.png/28px-IconsNormal_04.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d6/IconsNormal_04.png/42px-IconsNormal_04.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d6/IconsNormal_04.png/56px-IconsNormal_04.png 2x"></a></span> <a href="./%D0%9A%D0%B0%D0%BF%D1%80%D0%B0%D0%BB" class="mw-redirect" title="Капрал">下士</a></span></div></div></li></ul>
+</div>
+<div class="supply-views-table">
+<ul><li><div class="header-card"><div class="card-heading">战斗外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/1/17/Crystal_drop.png" decoding="async" loading="lazy" width="686" height="686" class="mw-file-element"></span></span></div></div></li>
+<li><div class="header-card"><div class="card-heading">空投区外观</div><div class="card-content"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/8e/Crystal_droped.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div></div></li></ul>
+</div>
+</div><p><br>水晶箱子仅在匹配对战中且仅在指定的等级范围内掉落。
+</p><h2><span id=".D0.97.D0.B0.D0.B2.D0.B8.D1.81.D0.B8.D0.BC.D1.8B.D0.B5_.D0.BA.D1.83.D0.BB.D0.B4.D0.B0.D1.83.D0.BD.D1.8B"></span><span class="mw-headline" id="Зависимые_кулдауны">道具冷却联动</span></h2><p>道具冷却联动是指当某个道具被激活时，在一段时间内无法激活其他道具的时间间隔。
+</p><p>例如，如果激活了“伤害提升”，则“护甲提升”将在 5 秒后才能激活。坦克的复活会重置道具的冷却时间和重新装载。拾取的空投不会影响冷却时间。
+</p><p>可以通过佩戴以下两个无人机之一来消除道具冷却联动：“<a href="./%D0%93%D0%B8%D0%BF%D0%B5%D1%80%D0%B8%D0%BE%D0%BD" class="mw-redirect" title="Гиперион">亥伯龙神</a>”或“<a href="./%D0%9A%D1%80%D0%B8%D0%B7%D0%B8%D1%81" class="mw-redirect" title="Кризис">危机</a>”。
+</p><p>在<a href="./%D0%9C%D0%B0%D1%82%D1%87%D0%BC%D0%B5%D0%B9%D0%BA%D0%B8%D0%BD%D0%B3" class="mw-redirect" title="Матчмейкинг">匹配</a>对战中，“智能道具冷却”选项默认开启。在<a href="./PRO-%D0%B1%D0%B8%D1%82%D0%B2%D1%8B" class="mw-redirect" title="PRO-битвы">玩家创建的专家战场</a>中，此选项默认关闭，这使玩家能够一次性激活所有道具。
+</p><h2><span id=".D0.90.D0.B2.D1.82.D0.BE.D0.BC.D0.B0.D1.82.D0.B8.D1.87.D0.B5.D1.81.D0.BA.D0.B0.D1.8F_.D0.B0.D0.BA.D1.82.D0.B8.D0.B2.D0.B0.D1.86.D0.B8.D1.8F_.D0.BF.D1.80.D0.B8.D0.BF.D0.B0.D1.81.D0.BE.D0.B2"></span><span class="mw-headline" id="Автоматическая_активация_припасов">道具自动激活</span></h2><p>您可以选择在道具效果持续时间结束或冷却时间结束后<b>自动</b>激活的道具。为此，您需要点击所需道具的开启按钮。一旦其持续时间或冷却时间结束，该道具将立即被激活。此外，当坦克生命值低于 25% 时，系统会自动激活<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/2/25/Icon_repair_kit_supply.png/20px-Icon_repair_kit_supply.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/25/Icon_repair_kit_supply.png 1.5x"></span></span> “维修工具”道具。
+</p><ul><li>再次点击激活按钮可以取消道具的自动激活。</li>
+<li>点击相应的激活按钮可以更改下一个将自动激活的道具。</li>
+<li>您可以通过游戏<a href="./%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B8" class="mw-redirect" title="Настройки">设置</a>中的相应功能关闭道具自动激活。但当使用危机和神谕者无人机时，此功能通常不可用。</li></ul><h2><span id=".D0.9E.D1.81.D0.BE.D0.B1.D0.B5.D0.BD.D0.BD.D0.BE.D1.81.D1.82.D0.B8_.D1.80.D0.B0.D0.B1.D0.BE.D1.82.D1.8B_.D0.B4.D1.80.D0.BE.D0.BF.D0.B0_.D0.B8_.D0.B4.D1.80.D0.BE.D0.BF-.D0.B7.D0.BE.D0.BD"></span><span class="mw-headline" id="Особенности_работы_дропа_и_дроп-зон">空投与空投区机制特点</span></h2><ul><li>箱子会留在地图上，直到有人捡起它们。然而，过去并非总是如此，如果无人捡起，箱子曾经会在空中直接消失。</li>
+<li>战斗结束时，所有箱子都会从地图中移除。</li>
+<li>如果使用“<a href="./%D0%97%D0%BE%D0%BB%D0%BE%D1%82%D0%BE%D0%B9_%D1%8F%D1%89%D0%B8%D0%BA" class="mw-redirect" title="Золотой ящик">金箱子</a>”道具，它会在警报发出整整 10 秒后落下。</li></ul><h2><span id=".D0.98.D0.BD.D1.82.D0.B5.D1.80.D0.B5.D1.81.D0.BD.D1.8B.D0.B5_.D1.84.D0.B0.D0.BA.D1.82.D1.8B"></span><span class="mw-headline" id="Интересные_факты">趣闻</span></h2><div class="img__container" style="float:right;clear:right;width:95px;"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/c/c1/Cookie_Mine.png/95px-Cookie_Mine.png" decoding="async" loading="lazy" width="95" height="61" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/c1/Cookie_Mine.png/143px-Cookie_Mine.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/c/c1/Cookie_Mine.png 2x"></span></span><br>饼干地雷</div><ul><li>在 2016 年和 2017 年的愚人节期间，道具的持续时间被延长至 5 分钟。</li>
+<li>在 2020 年和 2021 年的新年庆祝活动期间，地雷被替换成了饼干。在之后的几年里，地雷也开始被替换成饼干。</li>
+<li>地雷使用数量的记录保持者是玩家 <a rel="nofollow" class="external text" href="https://ratings.tankionline.com/ru/user/CashOut">CashOut</a>，他使用了超过 26 000 000 个地雷！</li></ul><div align="right"><small>最后编辑：03/04/2026 Devise <span class="ai-translate-note" style="color:#8FB8D8;">（本页面由 AI 自动翻译）</span></small></div></div></div></div></div></div><footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
+<p style="margin:0;"><strong style="color:#BFD5FF;">本站为玩家社区自建的非官方 Wiki 镜像。</strong></p>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":335,"wgPageParseReport":{"limitreport":{"cputime":"0.484","walltime":"0.925","ppvisitednodes":{"value":1783,"limit":1000000},"postexpandincludesize":{"value":38640,"limit":4194304},"templateargumentsize":{"value":26465,"limit":4194304},"expansiondepth":{"value":9,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%   61.363      1 -total"," 57.98%   35.577      9 Шаблон:SupplyDescription"," 44.05%   27.031     67 Шаблон:SupplyDescription/ContentItem"," 22.91%   14.057      1 Шаблон:See_also"," 14.49%    8.891      1 Шаблон:Другое_значение","  8.39%    5.149     55 Шаблон:IconDescription","  7.31%    4.485     10 Шаблон:Rank","  7.12%    4.368     14 Шаблон:См._также/link","  5.49%    3.371     10 Шаблон:Hotkey","  5.48%    3.362      1 Шаблон:LastEdit"]},"cachereport":{"timestamp":"20260823172253","ttl":86400,"transientcontent":false}}});});</script>
+    <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script></body></html>

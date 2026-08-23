@@ -1,0 +1,477 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>(function(){
+  var BASE = 'https://ru.tankiwiki.com';
+  function fix(v){ return (typeof v === 'string' && v.charAt(0) === '/' && v.indexOf('//') !== 0) ? BASE + v : v; }
+  ['HTMLScriptElement','HTMLLinkElement'].forEach(function(tag){
+    var proto = window[tag] && window[tag].prototype;
+    var prop  = tag === 'HTMLScriptElement' ? 'src' : 'href';
+    if (!proto) return;
+    var d = Object.getOwnPropertyDescriptor(proto, prop);
+    if (!d || !d.set) return;
+    Object.defineProperty(proto, prop, {
+      configurable: true,
+      get: function(){ return d.get.call(this); },
+      set: function(v){ d.set.call(this, fix(v)); }
+    });
+  });
+  var of = window.fetch;
+  if (of) window.fetch = function(u, o){ return of.call(this, (typeof u === 'string' ? fix(u) : u), o); };
+  var ox = window.XMLHttpRequest && XMLHttpRequest.prototype.open;
+  if (ox) XMLHttpRequest.prototype.open = function(m, u){
+    var a = Array.prototype.slice.call(arguments); a[1] = fix(u); return ox.apply(this, a);
+  };
+})();</script><title>模块 — 3D 坦克 Wiki</title><meta charset="UTF-8">
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgRequestId":"b9d960cec73bdcb646edc7fb","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Moduli","wgTitle":"Moduli","wgCurRevisionId":302885,"wgRevisionId":302885,"wgArticleId":8614,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"ru","wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgRelevantPageName":"Moduli","wgRelevantArticleId":8614,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVisualEditor":{
+"pageLanguageCode":"ru","pageLanguageDir":"ltr","pageVariantFallbacks":"ru"},"wgFlaggedRevsParams":{"tags":{"accuracy":{"levels":3}}},"wgStableRevisionId":302885,"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.flaggedRevs.icons":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.flaggedRevs.basic":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","mediawiki.toc","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.flaggedRevs.advanced","skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=ext.flaggedRevs.basic%2Cicons%7Cext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/8/84/Modules_banner.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/8/84/Modules_banner.png">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="400">
+    <meta property="og:image:width" content="640">
+    <meta property="og:image:height" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://ru.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://ru.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (ru)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://ru.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki&nbsp;— Atom-лента" href="https://ru.tankiwiki.com/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom"><style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
+
+/* 1. 只去掉源站皮肤的背景大图，保留底色；不要用 background 简写，否则会连带清掉皮肤别的背景设定 */
+html, body {
+    background-image: none !important;
+    background-color: #001926 !important;
+}
+/* 2. 让底色铺满视口，内容很短时下方不再露白 */
+html { min-height: 100%; }
+body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif; }
+
+/* 3. 版心容器 */
+#mw-main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #001926;
+}
+
+/* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
+      【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
+#mw-main-container .main-content,
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content,
+#mw-main-container #mw-content-text {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: auto !important;
+    flex-basis: auto !important;   /* 皮肤写了 .main-content{flex:0 0 75%} */
+    float: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* 5. 皮肤脚本 skins.tankiblue.js 会往 #mw-content-text 末尾插一条「发现错别字？Ctrl+Enter」
+      的俄语提示条和一个「报告错误」标签页。它按网址里有没有 'en'/'de' 来判断语言，
+      我们的域名两者都不含 → 一律显示俄语；且报错会提交到俄站编辑组，对镜像站没意义，直接隐藏。 */
+#custom-report-footer,
+.vectorTabs.customReport,
+.customReport { display: none !important; }
+
+/* 6. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐
+      （数值全部来自对官网实际渲染的 getComputedStyle 取样，根字号 13px 换算成 px 写死）
+        常态 141.375x78 / border 1px rgba(255,255,255,.25) / radius 6.5px
+              背景 radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15), transparent)
+              箭头 24.375x24 fill #BFD5FF
+        悬停 border #BFD5FF + outline 1px #BFD5FF / ::before 渐变 opacity 0→1
+              箭头 fill #fff 且位移 translate(10%)（约 2.44px）
+        全部过渡 all .15s ease
+      ⚠️ 手机是触屏，没有 :hover。所以下面额外加了 :active / :focus-visible，
+        让点按时也能看到同样的动效，另有 @media (hover:none) 的常驻高亮兜底。 */
+.home-back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 141.375px;
+    height: 78px;
+    margin: 0 0 25px 0;
+    padding: 0;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 6.5px;
+    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%);
+    outline: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: all .15s ease;
+}
+.home-back-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(100% 100% at 0% 0%, rgba(191,213,255,.25) 0%, rgba(191,213,255,.15) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all .15s ease;
+}
+.home-back-btn svg {
+    width: 24.375px;
+    height: 24px;
+    object-fit: contain;
+    transform: rotate(180deg);            /* prev：箭头指向左 */
+    transition: all .15s ease;
+}
+.home-back-btn svg path { fill: #BFD5FF; transition: all .15s ease; }
+
+.home-back-btn:hover,
+.home-back-btn:active,
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF; border-color: #BFD5FF; }
+.home-back-btn:hover::before,
+.home-back-btn:active::before,
+.home-back-btn:focus-visible::before { opacity: 1; }
+.home-back-btn:hover svg,
+.home-back-btn:active svg,
+.home-back-btn:focus-visible svg { transform: rotate(180deg) translate(10%); }
+.home-back-btn:hover svg path,
+.home-back-btn:active svg path,
+.home-back-btn:focus-visible svg path { fill: #fff; }
+
+/* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
+@media (hover: none) {
+    .home-back-btn { border-color: rgba(191,213,255,.55); }
+    .home-back-btn svg path { fill: #CFE0FF; }
+}
+/* 窄屏适当缩小，保持官网比例 141.375:78 */
+@media (max-width: 480px) {
+    .home-back-btn { width: 106px; height: 58.5px; }
+    .home-back-btn svg { width: 20px; height: 19.7px; }
+}
+
+/* 7. 移动端：源站容器 padding + 我们的 20px 叠加后两侧空太多，正文被挤成窄条 */
+@media (max-width: 768px) {
+    #mw-main-container { padding: 10px; margin: 8px auto; }
+    /* 主页那些写死 width:55% / 45% 的分栏在窄屏下强制单列 */
+    #mw-content-text .navigationContainerContent > div,
+    #mw-content-text [style*="width: 55%"],
+    #mw-content-text [style*="width:55%"],
+    #mw-content-text [style*="width: 45%"],
+    #mw-content-text [style*="width:45%"] { width: 100% !important; }
+}
+@media (max-width: 480px) {
+    #mw-main-container { padding: 6px; margin: 4px auto; }
+}
+
+/* 8. 防止宽表格 / 大图撑破版心产生横向滚动 */
+#mw-content-text img { max-width: 100%; height: auto; }
+#mw-content-text table { max-width: 100%; }
+
+/* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
+   只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+*/
+</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Moduli rootpage-Moduli skin-tankiblue action-view"><div id="skin-chrome-stub" aria-hidden="true" style="display:none !important;">
+<a class="problem" href="#"></a>
+<div class="close-wrapper"></div>
+<div class="support-block-popup"><div class="close-modal-support"></div></div>
+<div class="youtube-popup"><iframe title="stub"></iframe></div>
+<div class="video-button"></div>
+<div class="header-search"></div>
+<div class="search-dialog"></div>
+<div class="search-popup"><div class="close-wrapper"></div><div class="close-modal-search"></div></div>
+<div class="news-popup"></div>
+<div class="sales-block-header"></div>
+<div class="navbar-main"></div>
+<div class="main-navbar"></div>
+</div><div id="mw-main-container"><a class="home-back-btn" href="./Enciklopediya_igry_%C2%ABTanki_Onlayn%C2%BB" title="返回主页" aria-label="返回主页"><svg viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 0H13.5L25.5 12L24 13.5L13.5 24H18L30 12L18 0ZM24 13.5L21 10.5H0L3 13.5H24Z" fill="#BFD5FF"/></svg></a><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">模块</h1><figure class="mw-halign-center" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/84/Modules_banner.png" decoding="async" loading="lazy" width="450" height="225" class="mw-file-element"></span><figcaption></figcaption></figure><div class="dablink"><em>参见：</em> <a href="./%D0%90%D1%80%D1%85%D0%B8%D0%B2%D0%BD%D1%8B%D0%B5_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B8" class="mw-redirect" title="Архивные модули">历史模块</a>和<a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B5%D0%B9" class="mw-redirect" title="Улучшения модулей">模块升级</a>
+</div><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"><div class="toctitle" lang="ru" dir="ltr"><h2 id="mw-toc-heading">目录</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Общая_информация"><span class="tocnumber">1</span> <span class="toctext">基本信息</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Слоты"><span class="tocnumber">2</span> <span class="toctext">槽位</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Установка_и_снятие_модулей"><span class="tocnumber">3</span> <span class="toctext">装备和卸下模块</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Виды_модулей"><span class="tocnumber">4</span> <span class="toctext">模块类型</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Классические_модули"><span class="tocnumber">4.1</span> <span class="toctext">经典模块</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Модуль_«Броненосец»"><span class="tocnumber">4.2</span> <span class="toctext">“犰狳” 模块</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Уникальные_модули"><span class="tocnumber">4.3</span> <span class="toctext">独特模块</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-8"><a href="#Улучшение_модулей"><span class="tocnumber">5</span> <span class="toctext">模块升级</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#Интересные_факты"><span class="tocnumber">6</span> <span class="toctext">趣闻</span></a></li>
+</ul>
+</div><h2><span id=".D0.9E.D0.B1.D1.89.D0.B0.D1.8F_.D0.B8.D0.BD.D1.84.D0.BE.D1.80.D0.BC.D0.B0.D1.86.D0.B8.D1.8F"></span><span class="mw-headline" id="Общая_информация">基本信息</span></h2><p><b>模块</b>是坦克的特殊部件，旨在保护战斗载具免受敌方炮塔、已部署地雷或暴击伤害。它们可在车库中从<span class="rank-mini"><span typeof="mw:File"><a href="./%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D0%BB" title="Генерал"><img src="https://ru.tankiwiki.com/images/ru/thumb/0/04/IconsNormal_26.png/30px-IconsNormal_26.png" decoding="async" loading="lazy" width="30" height="29" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/0/04/IconsNormal_26.png/45px-IconsNormal_26.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/0/04/IconsNormal_26.png/60px-IconsNormal_26.png 2x"></a></span></span> <a href="./%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D0%BB" class="mw-redirect" title="Генерал">上将</a>和<span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%BE%D1%80" title="Командор"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/db/IconsNormal_29.png/30px-IconsNormal_29.png" decoding="async" loading="lazy" width="30" height="29" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/db/IconsNormal_29.png/45px-IconsNormal_29.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/db/IconsNormal_29.png/60px-IconsNormal_29.png 2x"></a></span></span> <a href="./%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%BE%D1%80" class="mw-redirect" title="Командор">统帅</a>等级开始解锁。
+</p><p>防御模块的作用是降低来自相应炮塔的伤害，而不是按指定百分比增加底盘血量。模块不能防御<a href="./%D0%A1%D1%82%D0%B0%D1%82%D1%83%D1%81-%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%D1%8B" class="mw-redirect" title="Статус-эффекты">状态效果</a>，但可以通过为底盘装备<a href="./%D0%A3%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0" class="mw-redirect" title="Устройства">装备改造</a>来抵御它们。
+</p><p>在视觉上，模块不会在坦克上显示，但是，如果按住 <span class="hotkey">Tab</span> 键并将鼠标光标悬停在玩家身上，则可以看到他正在使用什么防御。此外，敌人在战斗中使用的所有模块都会显示在战斗统计窗口的底部。
+</p><h2><span id=".D0.A1.D0.BB.D0.BE.D1.82.D1.8B"></span><span class="mw-headline" id="Слоты">槽位</span></h2><p>自注册游戏起，默认仅提供 1 个用于安装防御模块的槽位。从<span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9D%D0%BE%D0%B2%D0%BE%D0%B1%D1%80%D0%B0%D0%BD%D0%B5%D1%86" title="Новобранец"><img src="https://ru.tankiwiki.com/images/ru/thumb/6/64/IconsNormal_01.png/28px-IconsNormal_01.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/64/IconsNormal_01.png/42px-IconsNormal_01.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/64/IconsNormal_01.png/56px-IconsNormal_01.png 2x"></a></span> <a href="./%D0%9D%D0%BE%D0%B2%D0%BE%D0%B1%D1%80%D0%B0%D0%BD%D0%B5%D1%86" class="mw-redirect" title="Новобранец">新兵</a></span>等级开始，玩家可以购买新槽位。它们的数量上限为 4 个。
+</p><p><b><span style="font-size: 130%">模块槽位价格表</span></b>
+</p><table class="wikitable-modern first-column-center" width="100%">
+
+<tbody><tr class="wikitable-header wikitable-title-center">
+<td style="">1 号槽位</td>
+<td>2 号槽位</td>
+<td>3 号槽位</td>
+<td>4 号槽位</td></tr>
+<tr>
+<td>—
+</td>
+<td><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">5 000</span></a>
+</td>
+<td><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">50 000</span></a>
+</td>
+<td><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">500 000</span></a>
+</td></tr></tbody></table><h2><span id=".D0.A3.D1.81.D1.82.D0.B0.D0.BD.D0.BE.D0.B2.D0.BA.D0.B0_.D0.B8_.D1.81.D0.BD.D1.8F.D1.82.D0.B8.D0.B5_.D0.BC.D0.BE.D0.B4.D1.83.D0.BB.D0.B5.D0.B9"></span><span class="mw-headline" id="Установка_и_снятие_модулей">装备和卸下模块</span></h2><div class="dablink"><em>参见：</em> <a href="./%D0%9F%D0%B5%D1%80%D0%B5%D0%BE%D0%B4%D0%B5%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5_%D0%B2_%D0%B1%D0%B8%D1%82%D0%B2%D0%B5" class="mw-redirect" title="Переодевание в битве">战斗中更换装备</a>
+</div><div class="img__container" style="float:right;clear:right;width:240px;"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/5/50/Garage_Module.png/240px-Garage_Module.png" decoding="async" loading="lazy" width="240" height="78" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/5/50/Garage_Module.png 1.5x"></span></span><br>车库中的模块</div><p>坦克最多可同时装备 4 个模块，可按任意顺序和组合进行搭配。已装备模块的先后顺序无关紧要。
+</p><p>为此，你需要选择所需的模块并点击“装备”，或者点击左侧标题为“防御”的窗口中的四个空槽位之一。卸下模块同样简单：点击“卸下”按钮或点击已被特定模块占用的槽位即可。
+</p><h2><span id=".D0.92.D0.B8.D0.B4.D1.82_.D0.BC.D0.BE.D0.B4.D1.83.D0.BB.D0.B5.D0.B9"></span><span class="mw-headline" id="Виды_модулей">模块类型</span></h2><h4><span id=".D0.9A.D0.BB.D0.B0.D1.81.D1.81.D0.B8.D1.87.D0.B5.D1.81.D0.BA.D0.B8.D0.B5_.D0.BC.D0.BE.D0.B4.D1.83.D0.BB.D0.B8"></span><span class="mw-headline" id="Классические_модули">经典模块</span></h4><div class="img__container" style="float:right;clear:right;width:120pxpx;"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/3/36/Module_m3_preview.png/120px-Module_m3_preview.png" decoding="async" loading="lazy" width="120" height="90" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/36/Module_m3_preview.png/180px-Module_m3_preview.png 1.5x, https://ru.tankiwiki.com/images/ru/3/36/Module_m3_preview.png 2x"></span></span><br>经典模块外观</div><p>游戏中存在针对玩家可用的每种炮塔提供防御的模块。除“犰狳”防御模块（可在车库中从<span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%BE%D1%80" title="Командор"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/db/IconsNormal_29.png/30px-IconsNormal_29.png" decoding="async" loading="lazy" width="30" height="29" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/db/IconsNormal_29.png/45px-IconsNormal_29.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/db/IconsNormal_29.png/60px-IconsNormal_29.png 2x"></a></span></span> <a href="./%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%BE%D1%80" class="mw-redirect" title="Командор">统帅</a>等级起以<a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">275 000</span></a>购买）以及“蜘蛛”模块（从<span class="rank-mini"><span typeof="mw:File"><a href="./%D0%A1%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82-%D0%BC%D0%B0%D0%B9%D0%BE%D1%80" title="Сержант-майор"><img src="https://ru.tankiwiki.com/images/ru/thumb/6/63/IconsNormal_10.png/30px-IconsNormal_10.png" decoding="async" loading="lazy" width="30" height="29" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/63/IconsNormal_10.png/45px-IconsNormal_10.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/63/IconsNormal_10.png/60px-IconsNormal_10.png 2x"></a></span></span> <a href="./%D0%A1%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82-%D0%BC%D0%B0%D0%B9%D0%BE%D1%80" class="mw-redirect" title="Сержант-майор">军士长</a>等级解锁，售价<a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">5 000</span></a>）外，所有其他模块均可在车库中从<span class="rank-mini"><span typeof="mw:File"><a href="./%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D0%BB" title="Генерал"><img src="https://ru.tankiwiki.com/images/ru/thumb/0/04/IconsNormal_26.png/30px-IconsNormal_26.png" decoding="async" loading="lazy" width="30" height="29" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/0/04/IconsNormal_26.png/45px-IconsNormal_26.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/0/04/IconsNormal_26.png/60px-IconsNormal_26.png 2x"></a></span></span> <a href="./%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D0%BB" class="mw-redirect" title="Генерал">上将</a>等级起以<a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">55 000</span></a>购买。
+</p><p>每个标准模块仅提供对单一类型伤害的防御：
+</p><ul><li>其中一个炮塔</li>
+<li>地雷</li></ul><table class="wikitable-modern white-table default" style="width:100%; text-align:left; padding-left:10px">
+
+<tbody><tr class="wikitable-header wikitable-title-center">
+<td>名称</td>
+<td style="text-align:left; width:150px">防御</td>
+<td>名称</td>
+<td style="text-align:left; width:150px">防御</td>
+<td>名称</td>
+<td style="text-align:left; width:150px">防御</td></tr>
+<tr style="text-align:left;">
+<td>狐狸</td>
+<td style="text-align:left"><span typeof="mw:File"><a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%82" title="Огнемёт"><img src="https://ru.tankiwiki.com/images/ru/thumb/6/65/Icon_modul_Firebird.png/37px-Icon_modul_Firebird.png" decoding="async" loading="lazy" width="37" height="37" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/65/Icon_modul_Firebird.png/56px-Icon_modul_Firebird.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/65/Icon_modul_Firebird.png/74px-Icon_modul_Firebird.png 2x"></a></span> <a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%82" class="mw-redirect" title="Огнемёт">火焰炮</a>
+</td>
+<td>狮</td>
+<td style="text-align:left"><span typeof="mw:File"><a href="./%D0%A0%D0%B8%D0%BA%D0%BE%D1%88%D0%B5%D1%82" title="Рикошет"><img src="https://ru.tankiwiki.com/images/ru/thumb/b/bc/Icon_modul_Ricochet.png/37px-Icon_modul_Ricochet.png" decoding="async" loading="lazy" width="37" height="37" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/bc/Icon_modul_Ricochet.png/56px-Icon_modul_Ricochet.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/bc/Icon_modul_Ricochet.png/74px-Icon_modul_Ricochet.png 2x"></a></span> <a href="./%D0%A0%D0%B8%D0%BA%D0%BE%D1%88%D0%B5%D1%82" class="mw-redirect" title="Рикошет">火龙珠</a>
+</td>
+<td>狮鹫</td>
+<td style="text-align:left"><span typeof="mw:File"><a href="./%D0%A1%D0%BA%D0%BE%D1%80%D0%BF%D0%B8%D0%BE%D0%BD" title="Скорпион"><img src="https://ru.tankiwiki.com/images/ru/thumb/8/84/Icon_modul_Scorpion.png/37px-Icon_modul_Scorpion.png" decoding="async" loading="lazy" width="37" height="37" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/8/84/Icon_modul_Scorpion.png/56px-Icon_modul_Scorpion.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/8/84/Icon_modul_Scorpion.png/74px-Icon_modul_Scorpion.png 2x"></a></span> <a href="./%D0%A1%D0%BA%D0%BE%D1%80%D0%BF%D0%B8%D0%BE%D0%BD" class="mw-redirect" title="Скорпион">蝎子</a>
+</td></tr>
+<tr>
+<td>獾</td>
+<td style="text-align:left"><span typeof="mw:File"><a href="./%D0%A4%D1%80%D0%B8%D0%B7" title="Фриз"><img src="https://ru.tankiwiki.com/images/ru/thumb/4/49/Icon_modul_Freeze.png/37px-Icon_modul_Freeze.png" decoding="async" loading="lazy" width="37" height="37" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/49/Icon_modul_Freeze.png/56px-Icon_modul_Freeze.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/49/Icon_modul_Freeze.png/74px-Icon_modul_Freeze.png 2x"></a></span> <a href="./%D0%A4%D1%80%D0%B8%D0%B7" class="mw-redirect" title="Фриз">冰风暴</a>
+</td>
+<td>海豚</td>
+<td style="text-align:left"><span typeof="mw:File"><a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" title="Смоки"><img src="https://ru.tankiwiki.com/images/ru/thumb/3/30/Icon_modul_Smoky.png/37px-Icon_modul_Smoky.png" decoding="async" loading="lazy" width="37" height="37" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/30/Icon_modul_Smoky.png/56px-Icon_modul_Smoky.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/3/30/Icon_modul_Smoky.png/74px-Icon_modul_Smoky.png 2x"></a></span> <a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" class="mw-redirect" title="Смоки">轰天炮</a>
+</td>
+<td>猎鹰</td>
+<td style="text-align:left"><span typeof="mw:File"><a href="./%D0%A0%D0%B5%D0%BB%D1%8C%D1%81%D0%B0" title="Рельса"><img src="https://ru.tankiwiki.com/images/ru/thumb/7/70/Icon_modul_Railgun.png/37px-Icon_modul_Railgun.png" decoding="async" loading="lazy" width="37" height="37" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/70/Icon_modul_Railgun.png/56px-Icon_modul_Railgun.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/70/Icon_modul_Railgun.png/74px-Icon_modul_Railgun.png 2x"></a></span> <a href="./%D0%A0%D0%B5%D0%BB%D1%8C%D1%81%D0%B0" class="mw-redirect" title="Рельса">激光炮</a>
+</td></tr>
+<tr>
+<td>山猫</td>
+<td style="text-align:left"><span typeof="mw:File"><a href="./%D0%98%D0%B7%D0%B8%D0%B4%D0%B0" title="Изида"><img src="https://ru.tankiwiki.com/images/ru/thumb/b/ba/Icon_modul_Isida.png/37px-Icon_modul_Isida.png" decoding="async" loading="lazy" width="37" height="37" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/ba/Icon_modul_Isida.png/56px-Icon_modul_Isida.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/ba/Icon_modul_Isida.png/74px-Icon_modul_Isida.png 2x"></a></span> <a href="./%D0%98%D0%B7%D0%B8%D0%B4%D0%B0" class="mw-redirect" title="Изида">磁力炮</a>
+</td>
+<td>虎鲸</td>
+<td style="text-align:left"><span typeof="mw:File"><a href="./%D0%A1%D1%82%D1%80%D0%B0%D0%B9%D0%BA%D0%B5%D1%80" title="Страйкер"><img src="https://ru.tankiwiki.com/images/ru/thumb/5/5b/Icon_modul_Striker.png/37px-Icon_modul_Striker.png" decoding="async" loading="lazy" width="37" height="37" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/5b/Icon_modul_Striker.png/56px-Icon_modul_Striker.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/5b/Icon_modul_Striker.png/74px-Icon_modul_Striker.png 2x"></a></span> <a href="./%D0%A1%D1%82%D1%80%D0%B0%D0%B9%D0%BA%D0%B5%D1%80" class="mw-redirect" title="Страйкер">火箭炮</a>
+</td>
+<td>灰熊</td>
+<td style="text-align:left"><span typeof="mw:File"><a href="./%D0%9C%D0%B0%D0%B3%D0%BD%D1%83%D0%BC" title="Магнум"><img src="https://ru.tankiwiki.com/images/ru/thumb/5/54/Icon_modul_Magnum.png/37px-Icon_modul_Magnum.png" decoding="async" loading="lazy" width="37" height="37" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/54/Icon_modul_Magnum.png/56px-Icon_modul_Magnum.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/54/Icon_modul_Magnum.png/74px-Icon_modul_Magnum.png 2x"></a></span> <a href="./%D0%9C%D0%B0%D0%B3%D0%BD%D1%83%D0%BC" class="mw-redirect" title="Магнум">马格南</a>
+</td></tr>
+<tr>
+<td>鼬</td>
+<td style="text-align:left"><span typeof="mw:File"><a href="./%D0%A2%D0%B5%D1%81%D0%BB%D0%B0" title="Тесла"><img src="https://ru.tankiwiki.com/images/ru/thumb/b/bf/Icon_modul_Tesla.png/37px-Icon_modul_Tesla.png" decoding="async" loading="lazy" width="37" height="37" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/bf/Icon_modul_Tesla.png/56px-Icon_modul_Tesla.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/bf/Icon_modul_Tesla.png/74px-Icon_modul_Tesla.png 2x"></a></span> <a href="./%D0%A2%D0%B5%D1%81%D0%BB%D0%B0" class="mw-redirect" title="Тесла">特斯拉</a>
+</td>
+<td>鲨鱼</td>
+<td style="text-align:left"><span typeof="mw:File"><a href="./%D0%92%D1%83%D0%BB%D0%BA%D0%B0%D0%BD" title="Вулкан"><img src="https://ru.tankiwiki.com/images/ru/thumb/2/2c/Icon_modul_Vulcan.png/37px-Icon_modul_Vulcan.png" decoding="async" loading="lazy" width="37" height="37" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/2c/Icon_modul_Vulcan.png/56px-Icon_modul_Vulcan.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/2/2c/Icon_modul_Vulcan.png/74px-Icon_modul_Vulcan.png 2x"></a></span> <a href="./%D0%92%D1%83%D0%BB%D0%BA%D0%B0%D0%BD" class="mw-redirect" title="Вулкан">极速炮</a>
+</td>
+<td>猫头鹰</td>
+<td style="text-align:left"><span typeof="mw:File"><a href="./%D0%93%D0%B0%D1%83%D1%81%D1%81" title="Гаусс"><img src="https://ru.tankiwiki.com/images/ru/thumb/8/86/Icon_modul_Gauss.png/37px-Icon_modul_Gauss.png" decoding="async" loading="lazy" width="37" height="37" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/8/86/Icon_modul_Gauss.png/56px-Icon_modul_Gauss.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/8/86/Icon_modul_Gauss.png/74px-Icon_modul_Gauss.png 2x"></a></span> <a href="./%D0%93%D0%B0%D1%83%D1%81%D1%81" class="mw-redirect" title="Гаусс">电磁炮</a>
+</td></tr>
+<tr>
+<td>狼</td>
+<td style="text-align:left"><span typeof="mw:File"><a href="./%D0%9C%D0%BE%D0%BB%D0%BE%D1%82" title="Молот"><img src="https://ru.tankiwiki.com/images/ru/thumb/4/45/Icon_modul_Hammer.png/37px-Icon_modul_Hammer.png" decoding="async" loading="lazy" width="37" height="37" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/45/Icon_modul_Hammer.png/56px-Icon_modul_Hammer.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/45/Icon_modul_Hammer.png/74px-Icon_modul_Hammer.png 2x"></a></span> <a href="./%D0%9C%D0%BE%D0%BB%D0%BE%D1%82" class="mw-redirect" title="Молот">滑膛炮</a>
+</td>
+<td>雷暴炮</td>
+<td style="text-align:left"><span typeof="mw:File"><a href="./%D0%93%D1%80%D0%BE%D0%BC" title="Гром"><img src="https://ru.tankiwiki.com/images/ru/thumb/1/11/Icon_modul_Thunder.png/37px-Icon_modul_Thunder.png" decoding="async" loading="lazy" width="37" height="37" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/1/11/Icon_modul_Thunder.png/56px-Icon_modul_Thunder.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/1/11/Icon_modul_Thunder.png/74px-Icon_modul_Thunder.png 2x"></a></span> <a href="./%D0%93%D1%80%D0%BE%D0%BC" class="mw-redirect" title="Гром">雷暴炮</a>
+</td>
+<td>鹰</td>
+<td style="text-align:left"><span typeof="mw:File"><a href="./%D0%A8%D0%B0%D1%84%D1%82" title="Шафт"><img src="https://ru.tankiwiki.com/images/ru/thumb/1/19/Icon_modul_Shaft.png/37px-Icon_modul_Shaft.png" decoding="async" loading="lazy" width="37" height="37" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/1/19/Icon_modul_Shaft.png/56px-Icon_modul_Shaft.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/1/19/Icon_modul_Shaft.png/74px-Icon_modul_Shaft.png 2x"></a></span> <a href="./%D0%A8%D0%B0%D1%84%D1%82" class="mw-redirect" title="Шафт">镭射炮</a>
+</td></tr>
+<tr>
+<td>黑豹</td>
+<td style="text-align:left"><span typeof="mw:File"><a href="./%D0%A2%D0%B2%D0%B8%D0%BD%D1%81" title="Твинс"><img src="https://ru.tankiwiki.com/images/ru/thumb/b/b7/Icon_modul_Twins.png/37px-Icon_modul_Twins.png" decoding="async" loading="lazy" width="37" height="37" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/b7/Icon_modul_Twins.png/56px-Icon_modul_Twins.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/b7/Icon_modul_Twins.png/74px-Icon_modul_Twins.png 2x"></a></span> <a href="./%D0%A2%D0%B2%D0%B8%D0%BD%D1%81" class="mw-redirect" title="Твинс">离子炮</a>
+</td>
+<td>乌鸦</td>
+<td style="text-align:left"><span typeof="mw:File"><a href="./%D0%A6%D1%83%D0%BD%D0%B0%D0%BC%D0%B8" title="Цунами"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/de/Icon_modul_Tsunami.png/37px-Icon_modul_Tsunami.png" decoding="async" loading="lazy" width="37" height="37" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/de/Icon_modul_Tsunami.png/56px-Icon_modul_Tsunami.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/de/Icon_modul_Tsunami.png/74px-Icon_modul_Tsunami.png 2x"></a></span> <a href="./%D0%A6%D1%83%D0%BD%D0%B0%D0%BC%D0%B8" class="mw-redirect" title="Цунами">海啸</a>
+</td>
+<td>蜘蛛</td>
+<td style="text-align:left"><span typeof="mw:File"><a href="./%D0%9C%D0%B8%D0%BD%D0%B0" title="Мина"><img src="https://ru.tankiwiki.com/images/ru/thumb/c/c4/Icon_modul_Mine.png/37px-Icon_modul_Mine.png" decoding="async" loading="lazy" width="37" height="37" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/c4/Icon_modul_Mine.png/56px-Icon_modul_Mine.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/c/c4/Icon_modul_Mine.png/74px-Icon_modul_Mine.png 2x"></a></span> <a href="./%D0%9C%D0%B8%D0%BD%D0%B0" class="mw-redirect" title="Мина">地雷</a>
+</td></tr></tbody></table><p><br>
+</p><h4><span id=".D0.9C.D0.BE.D0.B4.D1.83.D0.BB.D1.8C_.C2.AB.D0.91.D1.80.D0.BE.D0.BD.D0.B5.D0.BD.D0.BE.D1.81.D0.B5.D1.86.C2.BB"></span><span class="mw-headline" id="Модуль_«Броненосец»">“犰狳” 模块</span></h4><div style="position: relative; float: right;"><div style="position: relative; display: inline-block; min-height:6.688rem; width:fit-content; display:flex; justify-content:center; align-items:center">
+<p><span typeof="mw:File"><a href="./%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D0%B8" title="Модули"><img src="https://ru.tankiwiki.com/images/ru/thumb/3/36/Module_m3_preview.png/117px-Module_m3_preview.png" decoding="async" loading="lazy" width="117" height="88" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/36/Module_m3_preview.png/176px-Module_m3_preview.png 1.5x, https://ru.tankiwiki.com/images/ru/3/36/Module_m3_preview.png 2x"></a></span>
+</p>
+<div style="position: absolute; top: 42%; left: 50%; transform:translate(-50%, -50%); width: 51px; height: 51px;">
+<p><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D0%B8" title="Модули"><img src="https://ru.tankiwiki.com/images/ru/2/20/Icon_modul_Crit.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span>
+</p>
+</div></div></div><p><b>犰狳</b>是一个特殊模块，可防御<a href="./%D0%A3%D1%80%D0%BE%D0%BD" class="mw-redirect" title="Урон">暴击伤害</a>，从<span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%BE%D1%80" title="Командор"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/db/IconsNormal_29.png/30px-IconsNormal_29.png" decoding="async" loading="lazy" width="30" height="29" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/db/IconsNormal_29.png/45px-IconsNormal_29.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/db/IconsNormal_29.png/60px-IconsNormal_29.png 2x"></a></span></span> <a href="./%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%BE%D1%80" class="mw-redirect" title="Командор">统帅</a>等级起解锁。可以通过在车库中花费<a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">275 000</span></a>购买，或者通过参与主题活动（例如：“<a rel="nofollow" class="external text" href="http://ru.tankiforum.com/topic/312237/">坦克基金</a>”）来获得。
+</p><ul><li>减少来自任何炮塔（包括玩家无法获得的特殊炮塔）和地雷的暴击伤害输入</li><li>升级总成本大大超过经典模块的相应指标</li><li>犰狳模块可以像普通模块一样安装，与其他三个模块并排使用</li></ul><h4><span id=".D0.A3.D0.BD.D0.B8.D0.BA.D0.B0.D0.BB.D1.8C.D0.BD.D1.8B.D0.B5_.D0.BC.D0.BE.D0.B4.D1.83.D0.BB.D0.B8"></span><span class="mw-headline" id="Уникальные_модули">独特模块</span></h4><div style="position: relative; float: right;"><div style="position: relative; display: inline-block; min-height:6.688rem; width:fit-content; display:flex; justify-content:center; align-items:center">
+<p><span typeof="mw:File"><a href="./%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D0%B8" title="Модули"><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6a/Module_gold_preview.png/117px-Module_gold_preview.png" decoding="async" loading="lazy" width="117" height="88" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/6a/Module_gold_preview.png/176px-Module_gold_preview.png 1.5x, https://ru.tankiwiki.com/images/ru/6/6a/Module_gold_preview.png 2x"></a></span>
+</p>
+<div style="position: absolute; top: 42%; left: 50%; transform:translate(-50%, -50%); width: 51px; height: 51px;">
+<p><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D0%B8" title="Модули"><img src="https://ru.tankiwiki.com/images/ru/c/c1/Icon_modul_Spectrum.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span>
+</p>
+</div></div></div><p>独特模块随奖励迷彩一起发放或作为活动奖品颁发，同时对所有炮塔（玩家无法获得的特殊炮塔除外）、地雷和暴击伤害具有防御能力。
+</p><p>只有杰出的<a href="./%D0%9A%D0%B8%D0%B1%D0%B5%D1%80%D1%81%D0%BF%D0%BE%D1%80%D1%82" class="mw-redirect" title="Киберспорт">电子竞技</a>选手才能获得独特模块奖励，此外还可以在开发人员和<a href="./%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D0%BD%D0%B8%D0%BA%D0%B8_%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D0%B8" class="mw-redirect" title="Помощники администрации">管理员助手</a>的账号中找到它们。此外，这些模块由<a href="./%D0%9C%D0%B0%D1%82%D1%87%D0%BC%D0%B5%D0%B9%D0%BA%D0%B8%D0%BD%D0%B3" class="mw-redirect" title="Матчмейкинг">匹配</a>战斗中的<a href="./%D0%9C%D0%B0%D1%82%D1%87%D0%BC%D0%B5%D0%B9%D0%BA%D0%B8%D0%BD%D0%B3" class="mw-redirect" title="Матчмейкинг">机器人</a>使用。
+</p><p>装备后，这些模块将占用所有可用的防御槽位，并且不能与普通模块一起使用。“光谱”模块最初仅提供 5% 的防御力，但可以花费少量的水晶<a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="Улучшения">升级</a>到对应的最高防御力。
+</p><p><b>获取奖励独特模块的规则：</b>
+</p><table class="wikitable-modern first-column-center" style="width:100%">
+
+<tbody><tr class="wikitable-header wikitable-title-center">
+<td style="width:10%">名称</td>
+<td style="width:20%">MAX 防御 %
+</td>
+<td style="width:70%">描述</td></tr>
+<tr>
+<td><b>光谱 A</b>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Ultra_resist.png/20px-Ultra_resist.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Ultra_resist.png/30px-Ultra_resist.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Ultra_resist.png/40px-Ultra_resist.png 2x"></span></span> <span style="color:#e1e602"><b>30%</b></span>
+</td>
+<td style="text-align:left;">授予<a href="./%D0%A7%D0%B5%D0%BC%D0%BF%D0%B8%D0%BE%D0%BD" class="mw-redirect" title="Чемпион">冠军</a>迷彩所有者</td></tr>
+<tr>
+<td><b>光谱 M</b>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Ultra_resist.png/20px-Ultra_resist.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Ultra_resist.png/30px-Ultra_resist.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Ultra_resist.png/40px-Ultra_resist.png 2x"></span></span> <span style="color:#e1e602"><b>25%</b></span>
+</td>
+<td style="text-align:left;">授予<a href="./%D0%A1%D0%B5%D1%80%D0%B5%D0%B1%D1%80%D0%BE" class="mw-redirect" title="Серебро">白银</a>迷彩所有者</td></tr>
+<tr>
+<td><b>光谱 B</b>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Ultra_resist.png/20px-Ultra_resist.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Ultra_resist.png/30px-Ultra_resist.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Ultra_resist.png/40px-Ultra_resist.png 2x"></span></span> <span style="color:#e1e602"><b>20%</b></span>
+</td>
+<td style="text-align:left;">授予<a href="./%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D0%BD%D0%B8%D0%BA" class="mw-redirect" title="Помощник">助手</a>、<a href="./%D0%98%D0%BC%D0%BF%D1%83%D0%BB%D1%8C%D1%81" class="mw-redirect" title="Импульс">脉冲</a>、<a href="./%D0%9A%D0%B8%D1%81%D0%BB%D0%BE%D1%82%D0%B0" class="mw-redirect" title="Кислота">酸雨</a>、<a href="./%D0%9F%D1%80%D0%B8%D0%B7%D0%BC%D0%B0" class="mw-redirect" title="Призма">棱镜</a>和<a href="./%D0%91%D1%80%D0%BE%D0%BD%D0%B7%D0%B0" class="mw-redirect" title="Бронза">青铜</a>迷彩所有者</td></tr>
+<tr>
+<td><b>光谱 C</b>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Ultra_resist.png/20px-Ultra_resist.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Ultra_resist.png/30px-Ultra_resist.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Ultra_resist.png/40px-Ultra_resist.png 2x"></span></span> <span style="color:#e1e602"><b>15%</b></span>
+</td>
+<td style="text-align:left;">在某些锦标赛和比赛中获胜即可获得。
+</td></tr></tbody></table><p><br>
+<b>机器人模块：</b>
+</p><table class="wikitable-modern first-column-center">
+
+<tbody><tr class="wikitable-header">
+<td style="width:13%">等级</td>
+<td style="width:17%">防御 %
+</td>
+<td>战斗中机器人模块的等级<span title="每个匹配战斗都会以特定等级创建。战斗中玩家的等级可能会发生变化。" class="hint i"></span>
+</td></tr>
+<tr>
+<td><b>机器人 1</b>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Ultra_resist.png/20px-Ultra_resist.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Ultra_resist.png/30px-Ultra_resist.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Ultra_resist.png/40px-Ultra_resist.png 2x"></span></span> <span style="color:#e1e602"><b>10%</b></span>
+</td>
+<td style="text-align:left;"><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%95%D1%84%D1%80%D0%B5%D0%B9%D1%82%D0%BE%D1%80" title="Ефрейтор"><img src="https://ru.tankiwiki.com/images/ru/thumb/2/20/IconsNormal_03.png/30px-IconsNormal_03.png" decoding="async" loading="lazy" width="30" height="29" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/20/IconsNormal_03.png/45px-IconsNormal_03.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/2/20/IconsNormal_03.png/60px-IconsNormal_03.png 2x"></a></span></span> <a href="./%D0%95%D1%84%D1%80%D0%B5%D0%B9%D1%82%D0%BE%D1%80" class="mw-redirect" title="Ефрейтор">一等兵</a> <span title="在达到一等兵等级之前，机器人的防御力为 10%。" class="hint i"></span>
+</td></tr>
+<tr>
+<td><b>机器人 2</b>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Ultra_resist.png/20px-Ultra_resist.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Ultra_resist.png/30px-Ultra_resist.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Ultra_resist.png/40px-Ultra_resist.png 2x"></span></span> <span style="color:#e1e602"><b>50%</b></span>
+</td>
+<td style="text-align:left;"><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D0%BB%D0%B8%D1%81%D1%81%D1%83%D0%BC%D1%83%D1%81" title="Генералиссимус"><img src="https://ru.tankiwiki.com/images/ru/thumb/e/eb/IconsNormal_30.png/30px-IconsNormal_30.png" decoding="async" loading="lazy" width="30" height="29" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/eb/IconsNormal_30.png/45px-IconsNormal_30.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/eb/IconsNormal_30.png/60px-IconsNormal_30.png 2x"></a></span></span> <a href="./%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D0%BB%D0%B8%D1%81%D1%81%D1%83%D0%BC%D1%83%D1%81" class="mw-redirect" title="Генералиссимус">大元帅</a> <span title="从一等兵等级到大元帅，机器人的防御力为 50%。" class="hint i"></span>
+</td></tr>
+<tr>
+<td><b>机器人 3</b>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Ultra_resist.png/20px-Ultra_resist.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Ultra_resist.png/30px-Ultra_resist.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Ultra_resist.png/40px-Ultra_resist.png 2x"></span></span> <span style="color:#e1e602"><b>50%</b></span>
+</td>
+<td style="text-align:left;"><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9B%D0%B5%D0%B3%D0%B5%D0%BD%D0%B4%D0%B0" title="Легенда"><img src="https://ru.tankiwiki.com/images/ru/thumb/5/55/IconsNormal_31.png/30px-IconsNormal_31.png" decoding="async" loading="lazy" width="30" height="29" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/55/IconsNormal_31.png/45px-IconsNormal_31.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/55/IconsNormal_31.png/60px-IconsNormal_31.png 2x"></a></span></span> <a href="./%D0%9B%D0%B5%D0%B3%D0%B5%D0%BD%D0%B4%D0%B0" class="mw-redirect" title="Легенда">传奇</a> <span title="从传奇等级开始，机器人的防御力为 50%。" class="hint i"></span>
+</td></tr></tbody></table><p><br>
+<b>其他独特模块：</b>
+</p><table class="wikitable-modern first-column-center" style="width:100%">
+
+<tbody><tr class="wikitable-header wikitable-title-center">
+<td style="width:10%">名称</td>
+<td style="width:15%">防御 %
+</td>
+<td style="width:75%">描述</td></tr>
+<tr>
+<td><b>恶魔</b>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Ultra_resist.png/20px-Ultra_resist.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Ultra_resist.png/30px-Ultra_resist.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Ultra_resist.png/40px-Ultra_resist.png 2x"></span></span> <span style="color:#e1e602"><b>95%</b></span>
+</td>
+<td style="text-align:left;">用于举办特殊活动的防御，发放给组织者</td></tr>
+<tr>
+<td><b>领主</b>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Ultra_resist.png/20px-Ultra_resist.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Ultra_resist.png/30px-Ultra_resist.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Ultra_resist.png/40px-Ultra_resist.png 2x"></span></span> <span style="color:#e1e602"><b>50%</b></span>
+</td>
+<td style="text-align:left;">该模块由昵称为 <b>sidlob</b> 的玩家拥有，他是<a href="./%D0%92%D0%BB%D0%B0%D1%81%D1%82%D0%B5%D0%BB%D0%B8%D0%BD" class="mw-redirect" title="Властелин">主宰</a>迷彩的唯一拥有者。
+</td></tr></tbody></table><h2><span id=".D0.A3.D0.BB.D1.83.D1.87.D1.88.D0.B5.D0.BD.D0.B8.D0.B5_.D0.BC.D0.BE.D0.B4.D1.83.D0.BB.D0.B5.D0.B9"></span><span class="mw-headline" id="Улучшение_модулей">模块升级</span></h2><div class="dablink"><em>参见：</em> <a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B5%D0%B9" class="mw-redirect" title="Улучшения модулей">模块升级</a>
+</div><p>每个新购买的模块仅提供 5% 的防御力。为了提高防御百分比，可以对模块进行<a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="Улучшения">升级</a>。完全升级的模块拥有<span style="color:#e1e602"><b>50%</b></span>的防御力以及特殊标志（MAX）。
+</p><h2><span id=".D0.98.D0.BD.D1.82.D0.B5.D1.80.D0.B5.D1.81.D0.BD.D1.8B.D0.BE_.D1.84.D0.B0.D0.BA.D1.82.D1.8B"></span><span class="mw-headline" id="Интересные_факты">趣闻</span></h2><ul><li>随着<a rel="nofollow" class="external text" href="http://ru.tankiforum.com/topic/278948/">版本 621</a> 的发布，所有经典模块的改装外观均已统一。在此版本之前，它们的外观如下：</li></ul><table align="center" width="98%" style="text-align:center">
+<tbody><tr>
+<td width="14%"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6b/Module_m0_preview.png/100px-Module_m0_preview.png" decoding="async" loading="lazy" width="100" height="96" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/6/6b/Module_m0_preview.png 1.5x"></span></span>
+</td>
+<td width="14%"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/be/Module_m1_preview.png/100px-Module_m1_preview.png" decoding="async" loading="lazy" width="100" height="96" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/b/be/Module_m1_preview.png 1.5x"></span></span>
+</td>
+<td width="14%"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/be/Module_m1_preview.png/100px-Module_m1_preview.png" decoding="async" loading="lazy" width="100" height="96" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/b/be/Module_m1_preview.png 1.5x"></span></span>
+</td>
+<td width="14%"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/0/06/Module_m2_preview.png/100px-Module_m2_preview.png" decoding="async" loading="lazy" width="100" height="96" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/0/06/Module_m2_preview.png 1.5x"></span></span>
+</td>
+<td width="14%"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/0/06/Module_m2_preview.png/100px-Module_m2_preview.png" decoding="async" loading="lazy" width="100" height="96" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/0/06/Module_m2_preview.png 1.5x"></span></span>
+</td>
+<td width="14%"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/0/06/Module_m2_preview.png/100px-Module_m2_preview.png" decoding="async" loading="lazy" width="100" height="96" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/0/06/Module_m2_preview.png 1.5x"></span></span>
+</td>
+<td width="14%"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/a/a3/Module_m3_old_preview.png/100px-Module_m3_old_preview.png" decoding="async" loading="lazy" width="100" height="96" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/a/a3/Module_m3_old_preview.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>Mk1 模块</td>
+<td>Mk2 模块</td>
+<td>Mk3 模块</td>
+<td>Mk4 模块</td>
+<td>Mk5 模块</td>
+<td>Mk6 模块</td>
+<td>Mk7 模块</td></tr></tbody></table><ul><li>2021 年 3 月 26 日，游戏加入了一个具备暴击伤害防御的新模块“犰狳”。</li>
+<li>随着<a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/318420/">版本 730</a> 的发布，模块改装（MK1-MK7）已被移除。在此更新之前，所有模块在低等级时即可使用。</li>
+<li>随着<a rel="nofollow" class="external text" href="http://ru.tankiforum.com/topic/321059/">版本 757</a> 的发布，“光谱”防御模块现在的初始防御值为 5%，并且需要升级到 15%-20%-25%-30%。</li></ul><div align="right"><small>最后编辑：12/04/2026 Devise <span class="ai-translate-note" style="color:#8FB8D8;">（本页面由 AI 自动翻译）</span></small></div></div></div></div></div></div><footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
+<p style="margin:0;"><strong style="color:#BFD5FF;">本站为玩家社区自建的非官方 Wiki 镜像。</strong></p>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":567,"wgPageParseReport":{"limitreport":{"cputime":"0.426","walltime":"0.510","ppvisitednodes":{"value":1125,"limit":1000000},"postexpandincludesize":{"value":4869,"limit":4194304},"templateargumentsize":{"value":1593,"limit":4194304},"expansiondepth":{"value":9,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":421,"limit":5000000},"timingprofile":["100.00%   91.710      1 -total"," 33.67%   30.882      3 Шаблон:See_also"," 27.12%   24.871      3 Шаблон:Другое_значение"," 12.28%   11.263      9 Шаблон:Ranks"," 11.49%   10.539     42 Шаблон:См._также/link","  8.49%    7.785      1 Шаблон:Hotkey","  7.44%    6.827      2 Шаблон:Img","  7.42%    6.807      1 Шаблон:LastEdit","  4.87%    4.462      4 Шаблон:Hint","  4.73%    4.335      1 Шаблон:Rank"]},"cachereport":{"timestamp":"20260823172031","ttl":86400,"transientcontent":false}}});});</script>
+    <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script></body></html>
