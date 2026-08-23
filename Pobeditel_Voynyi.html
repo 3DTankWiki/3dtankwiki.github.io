@@ -1,6 +1,27 @@
-<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>战争胜利者 — 3D 坦克 Wiki</title><meta charset="UTF-8">
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>(function(){
+  var BASE = 'https://ru.tankiwiki.com';
+  function fix(v){ return (typeof v === 'string' && v.charAt(0) === '/' && v.indexOf('//') !== 0) ? BASE + v : v; }
+  ['HTMLScriptElement','HTMLLinkElement'].forEach(function(tag){
+    var proto = window[tag] && window[tag].prototype;
+    var prop  = tag === 'HTMLScriptElement' ? 'src' : 'href';
+    if (!proto) return;
+    var d = Object.getOwnPropertyDescriptor(proto, prop);
+    if (!d || !d.set) return;
+    Object.defineProperty(proto, prop, {
+      configurable: true,
+      get: function(){ return d.get.call(this); },
+      set: function(v){ d.set.call(this, fix(v)); }
+    });
+  });
+  var of = window.fetch;
+  if (of) window.fetch = function(u, o){ return of.call(this, (typeof u === 'string' ? fix(u) : u), o); };
+  var ox = window.XMLHttpRequest && XMLHttpRequest.prototype.open;
+  if (ox) XMLHttpRequest.prototype.open = function(m, u){
+    var a = Array.prototype.slice.call(arguments); a[1] = fix(u); return ox.apply(this, a);
+  };
+})();</script><title>战争获胜者 — 3D 坦克 Wiki</title><meta charset="UTF-8">
     <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
-    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgRequestId":"d95e9dc1558f7c9c24233007","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Pobeditel_Voynyi","wgTitle":"Pobeditel Voynyi","wgCurRevisionId":304205,"wgRevisionId":304205,"wgArticleId":14070,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"ru","wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgRelevantPageName":"Pobeditel_Voynyi","wgRelevantArticleId":14070,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgRequestId":"37ca080a974d08b02b60490a","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Pobeditel_Voynyi","wgTitle":"Pobeditel Voynyi","wgCurRevisionId":304205,"wgRevisionId":304205,"wgArticleId":14070,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"ru","wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgRelevantPageName":"Pobeditel_Voynyi","wgRelevantArticleId":14070,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],
 "wgRestrictionMove":[],"wgVisualEditor":{"pageLanguageCode":"ru","pageLanguageDir":"ltr","pageVariantFallbacks":"ru"},"wgFlaggedRevsParams":{"tags":{"accuracy":{"levels":3}}},"wgStableRevisionId":304205,"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.flaggedRevs.icons":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.flaggedRevs.basic":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.flaggedRevs.advanced","skins.tankiblue.js","ext.purge"];</script>
     <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
 }];});});</script>
@@ -25,7 +46,165 @@
     <link rel="EditURI" type="application/rsd+xml" href="https://ru.tankiwiki.com/api.php?action=rsd">
     <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki&nbsp;— Atom-лента" href="https://ru.tankiwiki.com/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom">
     <script src="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=ext.visualEditor.core.utils.parsing%7Cext.visualEditor.desktopArticleTarget.init%7Cext.visualEditor.progressBarWidget%2CsupportCheck%2CtargetLoader%2CtempWikitextEditorWidget%2Ctrack%2Cve&amp;skin=tankiblue&amp;version=x8tmt"></script>
-    <script src="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=ext.flaggedRevs.advanced%7Cext.purge%7Cjquery%2Csite%7Cjquery.client%2Cspinner%2CtextSelection%7Cjquery.spinner.styles%7Cmediawiki.String%2CTitle%2Capi%2Cbase%2Ccldr%2Ccookie%2Cdiff%2CjqueryMsg%2Clanguage%2Cstorage%2Cuser%2Cutil%7Cmediawiki.diff.styles%7Cmediawiki.editfont.styles%7Cmediawiki.interface.helpers.styles%7Cmediawiki.libs.pluralruleparser%7Cmediawiki.page.ready%7Cskins.tankiblue.js&amp;skin=tankiblue&amp;version=1pzr4"></script><style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Pobeditel_Voynyi rootpage-Pobeditel_Voynyi skin-tankiblue action-view"><div id="mw-main-container"><a href="./%D0%AD%D0%BD%D1%86%D0%B8%D0%BA%D0%BB%D0%BE%D0%BF%D0%B5%D0%B4%D0%B8%D1%8F_%D0%B8%D0%B3%D1%80%D1%8B_%C2%AB%D0%A2%D0%B0%D0%BD%D0%BA%D0%B8_%D0%9E%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD%C2%BB" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">返回主页</a><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">战争胜利者</h1><div class="dablink"><em>参见：</em> <a href="./%D0%9A%D1%80%D0%B0%D1%81%D0%BA%D0%B8" class="mw-redirect" title="迷彩">迷彩</a>
+    <script src="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=ext.flaggedRevs.advanced%7Cext.purge%7Cjquery%2Csite%7Cjquery.client%2Cspinner%2CtextSelection%7Cjquery.spinner.styles%7Cmediawiki.String%2CTitle%2Capi%2Cbase%2Ccldr%2Ccookie%2Cdiff%2CjqueryMsg%2Clanguage%2Cstorage%2Cuser%2Cutil%7Cmediawiki.diff.styles%7Cmediawiki.editfont.styles%7Cmediawiki.interface.helpers.styles%7Cmediawiki.libs.pluralruleparser%7Cmediawiki.page.ready%7Cskins.tankiblue.js&amp;skin=tankiblue&amp;version=1pzr4"></script><style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
+
+/* 1. 只去掉源站皮肤的背景大图，保留底色；不要用 background 简写，否则会连带清掉皮肤别的背景设定 */
+html, body {
+    background-image: none !important;
+    background-color: #001926 !important;
+}
+/* 2. 让底色铺满视口，内容很短时下方不再露白 */
+html { min-height: 100%; }
+body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif; }
+
+/* 3. 版心容器 */
+#mw-main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #001926;
+}
+
+/* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
+      【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
+#mw-main-container .main-content,
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content,
+#mw-main-container #mw-content-text {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: auto !important;
+    flex-basis: auto !important;   /* 皮肤写了 .main-content{flex:0 0 75%} */
+    float: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* 5. 皮肤脚本 skins.tankiblue.js 会往 #mw-content-text 末尾插一条「发现错别字？Ctrl+Enter」
+      的俄语提示条和一个「报告错误」标签页。它按网址里有没有 'en'/'de' 来判断语言，
+      我们的域名两者都不含 → 一律显示俄语；且报错会提交到俄站编辑组，对镜像站没意义，直接隐藏。 */
+#custom-report-footer,
+.vectorTabs.customReport,
+.customReport { display: none !important; }
+
+/* 6. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐
+      （数值全部来自对官网实际渲染的 getComputedStyle 取样，根字号 13px 换算成 px 写死）
+        常态 141.375x78 / border 1px rgba(255,255,255,.25) / radius 6.5px
+              背景 radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15), transparent)
+              箭头 24.375x24 fill #BFD5FF
+        悬停 border #BFD5FF + outline 1px #BFD5FF / ::before 渐变 opacity 0→1
+              箭头 fill #fff 且位移 translate(10%)（约 2.44px）
+        全部过渡 all .15s ease
+      ⚠️ 手机是触屏，没有 :hover。所以下面额外加了 :active / :focus-visible，
+        让点按时也能看到同样的动效，另有 @media (hover:none) 的常驻高亮兜底。 */
+.home-back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 141.375px;
+    height: 78px;
+    margin: 0 0 25px 0;
+    padding: 0;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 6.5px;
+    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%);
+    outline: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: all .15s ease;
+}
+.home-back-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(100% 100% at 0% 0%, rgba(191,213,255,.25) 0%, rgba(191,213,255,.15) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all .15s ease;
+}
+.home-back-btn svg {
+    width: 24.375px;
+    height: 24px;
+    object-fit: contain;
+    transform: rotate(180deg);            /* prev：箭头指向左 */
+    transition: all .15s ease;
+}
+.home-back-btn svg path { fill: #BFD5FF; transition: all .15s ease; }
+
+.home-back-btn:hover,
+.home-back-btn:active,
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF; border-color: #BFD5FF; }
+.home-back-btn:hover::before,
+.home-back-btn:active::before,
+.home-back-btn:focus-visible::before { opacity: 1; }
+.home-back-btn:hover svg,
+.home-back-btn:active svg,
+.home-back-btn:focus-visible svg { transform: rotate(180deg) translate(10%); }
+.home-back-btn:hover svg path,
+.home-back-btn:active svg path,
+.home-back-btn:focus-visible svg path { fill: #fff; }
+
+/* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
+@media (hover: none) {
+    .home-back-btn { border-color: rgba(191,213,255,.55); }
+    .home-back-btn svg path { fill: #CFE0FF; }
+}
+/* 窄屏适当缩小，保持官网比例 141.375:78 */
+@media (max-width: 480px) {
+    .home-back-btn { width: 106px; height: 58.5px; }
+    .home-back-btn svg { width: 20px; height: 19.7px; }
+}
+
+/* 7. 移动端：源站容器 padding + 我们的 20px 叠加后两侧空太多，正文被挤成窄条 */
+@media (max-width: 768px) {
+    #mw-main-container { padding: 10px; margin: 8px auto; }
+    /* 主页那些写死 width:55% / 45% 的分栏在窄屏下强制单列 */
+    #mw-content-text .navigationContainerContent > div,
+    #mw-content-text [style*="width: 55%"],
+    #mw-content-text [style*="width:55%"],
+    #mw-content-text [style*="width: 45%"],
+    #mw-content-text [style*="width:45%"] { width: 100% !important; }
+}
+@media (max-width: 480px) {
+    #mw-main-container { padding: 6px; margin: 4px auto; }
+}
+
+/* 8. 防止宽表格 / 大图撑破版心产生横向滚动 */
+#mw-content-text img { max-width: 100%; height: auto; }
+#mw-content-text table { max-width: 100%; }
+
+/* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
+   只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+*/
+</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Pobeditel_Voynyi rootpage-Pobeditel_Voynyi skin-tankiblue action-view"><div id="skin-chrome-stub" aria-hidden="true" style="display:none !important;">
+<a class="problem" href="#"></a>
+<div class="close-wrapper"></div>
+<div class="support-block-popup"><div class="close-modal-support"></div></div>
+<div class="youtube-popup"><iframe title="stub"></iframe></div>
+<div class="video-button"></div>
+<div class="header-search"></div>
+<div class="search-dialog"></div>
+<div class="search-popup"><div class="close-wrapper"></div><div class="close-modal-search"></div></div>
+<div class="news-popup"></div>
+<div class="sales-block-header"></div>
+<div class="navbar-main"></div>
+<div class="main-navbar"></div>
+</div><div id="mw-main-container"><a class="home-back-btn" href="./Enciklopediya_igry_%C2%ABTanki_Onlayn%C2%BB" title="返回主页" aria-label="返回主页"><svg viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 0H13.5L25.5 12L24 13.5L13.5 24H18L30 12L18 0ZM24 13.5L21 10.5H0L3 13.5H24Z" fill="#BFD5FF"/></svg></a><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">战争获胜者</h1><div class="dablink"><em>参见：</em> <a href="./%D0%9A%D1%80%D0%B0%D1%81%D0%BA%D0%B8" class="mw-redirect" title="Краски">迷彩</a>
 </div><div class="paint_info">
 <div class="paint_info_title"></div>
 <div class="paint_info_wrapper">
@@ -34,31 +213,33 @@
 <p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/4/46/Paint_War_Winner.png" decoding="async" loading="lazy" width="166" height="106" class="mw-file-element"></span></span>
 </p>
 </div>
-<div class="paint_image_title">材质</div>
+<div class="paint_image_title">纹理</div>
 <div class="paint_image texture_image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/62/War_Winner_texture.jpg" decoding="async" loading="lazy" width="240" height="240" class="mw-file-element"></span></span></div>
 <div class="paint_image_title"></div>
 </div>
 <div class="paint_description">
-<div class="info_block_title">常规信息</div>
+<div class="info_block_title">基本信息</div>
 <div class="info_grid">
 <ul><li><div class="info_labeled_item"><div class="info_label">迷彩类型：</div><div class="info_content">活动</div></div></li>
 <li><div class="info_labeled_item"><div class="info_label">车库稀有度：</div><div class="info_content"><span style="color:#fd5309">异国情调</span></div></div></li></ul>
 </div>
 <div class="info_block_title"></div>
 <div class="info_block_title">车库描述</div>
-<p>该迷彩颁发给全球活动 «战争» 的胜利者。«战争» 中的事件在坦克世界的地图上展开。拥有这款迷彩的拥有者是一位非常活跃的坦克手，他在团队中表现出色，并且擅长制定精妙的战术。这款迷彩将保留在胜利者的车库中，直到下一场带有投票机制的特殊地图 «战争» 开始。
+<p>该迷彩发放给全球活动“战争”的获胜者。“战争”中的事件围绕坦克世界地图展开。拥有此迷彩的拥有者是一位非常活跃的坦克手，他擅长团队配合并且懂得如何合理制定战术。该迷彩将保留在获胜者的车库中，直到下一次带有特殊地图投票机制的“战争”开始。
 </p>
 <div class="info_block_title">趣闻</div>
 <div class="interesting_content">
-<ul><li>该迷彩于 2019 年 12 月 25 日加入游戏。</li>
-<li>该迷彩颁发给活动<a rel="nofollow" class="external text" href="http://tankionline.com/ru/2019/12/vojna-ukradennoe-rozhdestvo-uzhe-zavtra/">战争。«偷走的圣诞节»</a>的胜利者，颁发日期为 2019 年 12 月 25 日。</li>
-<li>该迷彩颁发给活动<a rel="nofollow" class="external text" href="http://tankionline.com/ru/2025/09/vojna-2025/">«战争 2025»</a>的胜利者，颁发日期为 2025 年 9 月 25 日。</li>
-<li>该迷彩颁发给活动<a rel="nofollow" class="external text" href="http://tankionline.com/ru/2026/08/vojna-2026/">«战争 2026»</a>的胜利者，颁发日期为 2026 年 9 月 3 日。</li></ul>
+<ul><li>迷彩于 2019 年 12 月 25 日加入游戏。</li>
+<li>该迷彩发放给 2019 年 12 月 25 日<a rel="nofollow" class="external text" href="http://tankionline.com/ru/2019/12/vojna-ukradennoe-rozhdestvo-uzhe-zavtra/">战争：“偷来的圣诞节”</a>活动的获胜者。</li>
+<li>该迷彩发放给 2025 年 9 月 25 日<a rel="nofollow" class="external text" href="http://tankionline.com/ru/2025/09/vojna-2025/">“2025 年战争”</a>活动的获胜者。</li>
+<li>该迷彩发放给 2026 年 9 月 3 日<a rel="nofollow" class="external text" href="http://tankionline.com/ru/2026/08/vojna-2026/">“2026 年战争”</a>活动的获胜者。</li></ul>
 </div>
 </div>
 </div>
 </div><h3><span id=".D0.92.D0.B8.D0.B4_.D0.BD.D0.B0_.D1.82.D0.B0.D0.BD.D0.BA.D0.B5"></span><span class="mw-headline" id="Вид_на_танке">坦克外观</span></h3><p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/e2/Winner_paint.png/450px-Winner_paint.png" decoding="async" loading="lazy" width="450" height="269" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e2/Winner_paint.png/675px-Winner_paint.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e2/Winner_paint.png/900px-Winner_paint.png 2x"></span></span>
-</p><div align="right"><small>最后修改：23/08/2026 Vestas</small></div></div></div></div></div></div><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</p><div align="right"><small>最后编辑：23/08/2026 Vestas <span class="ai-translate-note" style="color:#8FB8D8;">（本页面由 AI 自动翻译）</span></small></div></div></div></div></div></div><footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
+<p style="margin:0;"><strong style="color:#BFD5FF;">本站为玩家社区自建的非官方 Wiki 镜像。</strong></p>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <script type="text/javascript">
     (function (m, e, t, r, i, k, a) {
@@ -89,6 +270,6 @@
     <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
     <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
     <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
-    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":272,"wgPageParseReport":{"limitreport":{"cputime":"0.036","walltime":"0.043","ppvisitednodes":{"value":214,"limit":1000000},"postexpandincludesize":{"value":3551,"limit":4194304},"templateargumentsize":{"value":2461,"limit":4194304},"expansiondepth":{"value":9,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%   20.365      1 -total"," 42.44%    8.642      1 Шаблон:PaintInfo"," 41.22%    8.395      1 Шаблон:See_also"," 31.94%    6.505      1 Шаблон:InfoGrid"," 27.63%    5.627      1 Шаблон:Другое_значение"," 18.62%    3.792      2 Шаблон:InfoGrid/Item"," 15.29%    3.113      1 Шаблон:LastEdit"," 12.78%    2.603     14 Шаблон:См._также/link","  6.21%    1.265      1 Шаблон:Color"]},"cachereport":{"timestamp":"20260823171020","ttl":86400,"transientcontent":false}}});});</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":297,"wgPageParseReport":{"limitreport":{"cputime":"0.036","walltime":"0.043","ppvisitednodes":{"value":214,"limit":1000000},"postexpandincludesize":{"value":3551,"limit":4194304},"templateargumentsize":{"value":2461,"limit":4194304},"expansiondepth":{"value":9,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%   20.365      1 -total"," 42.44%    8.642      1 Шаблон:PaintInfo"," 41.22%    8.395      1 Шаблон:See_also"," 31.94%    6.505      1 Шаблон:InfoGrid"," 27.63%    5.627      1 Шаблон:Другое_значение"," 18.62%    3.792      2 Шаблон:InfoGrid/Item"," 15.29%    3.113      1 Шаблон:LastEdit"," 12.78%    2.603     14 Шаблон:См._также/link","  6.21%    1.265      1 Шаблон:Color"]},"cachereport":{"timestamp":"20260823171020","ttl":86400,"transientcontent":false}}});});</script>
     <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
     <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script></body></html>
