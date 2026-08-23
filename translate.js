@@ -15,9 +15,8 @@ const START_PAGE = 'Enciklopediya_igry_«Tanki_Onlayn»';
 const RECENT_CHANGES_FEED_URL = `${BASE_URL}/api.php?action=feedrecentchanges&days=7&feedformat=atom&urlversion=1`;
 const CONCURRENCY_LIMIT = 32; // 🚀 【核心】修改为 32，实现多标签页极速并发抓取
 const TARGET_BATCH_CHARS = 100000; // 🚀 全局唯一合并阈值：坚守此红线
-// 术语词库：优先读仓库根目录的 translations.js（俄语 -> 中文），读不到再退回远程
+// 术语词库：仓库根目录的 translations.js（俄语 -> 中文）
 const DICTIONARY_FILE = 'translations.js';
-const DICTIONARY_URL = 'https://testanki1.github.io/translations.js'; // 兜底用（英文 -> 中文）
 const SOURCE_DICT_FILE = 'source_replacements.js'; 
 const OUTPUT_DIR = './output';
 
@@ -311,45 +310,24 @@ async function getPagesForFeedMode(lastEditInfo) {
     }
 }
 
-function dictObjToString(dictObj) {
-    let dictStr = "";
-    for (const [src, zh] of Object.entries(dictObj)) {
-        dictStr += `${src} -> ${zh}\n`;
+function getDictionaryString() {
+    const filePath = path.resolve(__dirname, DICTIONARY_FILE);
+    if (!fs.existsSync(filePath)) {
+        console.warn(`⚠️ 未找到术语词库 ${DICTIONARY_FILE}，将不使用专有词库提示AI。`);
+        return "";
     }
-    return dictStr;
-}
-
-async function getDictionaryString() {
-    // ① 优先：仓库根目录的本地词库 translations.js
-    const localPath = path.resolve(__dirname, DICTIONARY_FILE);
-    if (fs.existsSync(localPath)) {
-        try {
-            const scriptContent = fs.readFileSync(localPath, 'utf-8');
-            const dictObj = new Function(`${scriptContent}; return replacementDict;`)();
-            const count = Object.keys(dictObj || {}).length;
-            if (count > 0) {
-                console.log(`✅ 已加载本地术语词库 ${DICTIONARY_FILE}（${count} 条），将作为指令发送给 AI。`);
-                return dictObjToString(dictObj);
-            }
-            console.warn(`⚠️ ${DICTIONARY_FILE} 解析出来是空的，改用远程词库。`);
-        } catch (error) {
-            console.warn(`⚠️ 本地词库 ${DICTIONARY_FILE} 解析失败（${error.message}），改用远程词库。`);
-        }
-    } else {
-        console.warn(`⚠️ 未找到本地词库 ${DICTIONARY_FILE}，改用远程词库。`);
-    }
-
-    // ② 兜底：远程词库
-    console.log(`正在从 URL 获取专有名词翻译词典: ${DICTIONARY_URL}`);
     try {
-        const response = await fetch(DICTIONARY_URL);
-        if (!response.ok) throw new Error(`网络请求失败: ${response.status}`);
-        const scriptContent = await response.text();
+        const scriptContent = fs.readFileSync(filePath, 'utf-8');
         const dictObj = new Function(`${scriptContent}; return replacementDict;`)();
-        console.log(`✅ 成功加载远程翻译词典。`);
-        return dictObjToString(dictObj);
+
+        let dictStr = "";
+        for (const [ru, zh] of Object.entries(dictObj || {})) {
+            dictStr += `${ru} -> ${zh}\n`;
+        }
+        console.log(`✅ 成功加载翻译词典 ${DICTIONARY_FILE}（${Object.keys(dictObj || {}).length} 条），将作为指令发送给 AI。`);
+        return dictStr;
     } catch (error) {
-        console.warn(`⚠️ 获取远程词典也失败，将不使用专有词库提示AI: ${error.message}`);
+        console.warn(`⚠️ 解析词库 ${DICTIONARY_FILE} 失败，将不使用专有词库提示AI: ${error.message}`);
         return "";
     }
 }
@@ -786,7 +764,7 @@ async function run() {
     if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR);
 
     const sourceReplacementMap = getPreparedSourceDictionary();
-    const dictStr = await getDictionaryString();
+    const dictStr = getDictionaryString();
     
     let lastEditInfo = {};
     if (fs.existsSync(EDIT_INFO_FILE)) try { lastEditInfo = JSON.parse(fs.readFileSync(EDIT_INFO_FILE, 'utf-8')); } catch (e) {}
