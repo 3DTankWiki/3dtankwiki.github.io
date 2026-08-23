@@ -16,6 +16,128 @@ const TARGET_BATCH_CHARS = 100000; // 🚀 全局唯一合并阈值：坚守此�
 const DICTIONARY_URL = 'https://testanki1.github.io/translations.js'; 
 const SOURCE_DICT_FILE = 'source_replacements.js'; 
 const OUTPUT_DIR = './output';
+
+// --- 【站点声明与外观】 ---
+// 「最后编辑」作者旁边追加的 AI 翻译说明
+const AI_NOTE_HTML = '<span class="ai-translate-note" style="color:#8FB8D8;">（由 AI 自动翻译）</span>';
+// 页脚免责声明：true = 所有页面都加；false = 只在主页加
+const FOOTER_ON_ALL_PAGES = true;
+const SITE_FOOTER_HTML = `<footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
+<p style="margin:0;"><strong style="color:#BFD5FF;">本站为玩家社区自建的非官方 Wiki 镜像。</strong></p>
+</footer>`;
+
+// 【修复 A】源站 ResourceLoader 的 startup 模块里写死了 mw.loader.addSource({"local":"/load.php"})，
+// 这是相对路径，在 GitHub Pages 上会解析成 https://<你的域名>/load.php → 404，
+// 导致 site / skins.tankiblue.js 等模块全部加载失败。这里在最前面劫持 script/link 的路径，补上源站域名。
+const HEAD_BOOT_SCRIPT = `<script>(function(){
+  var BASE = '${BASE_URL}';
+  function fix(v){ return (typeof v === 'string' && v.charAt(0) === '/' && v.indexOf('//') !== 0) ? BASE + v : v; }
+  ['HTMLScriptElement','HTMLLinkElement'].forEach(function(tag){
+    var proto = window[tag] && window[tag].prototype;
+    var prop  = tag === 'HTMLScriptElement' ? 'src' : 'href';
+    if (!proto) return;
+    var d = Object.getOwnPropertyDescriptor(proto, prop);
+    if (!d || !d.set) return;
+    Object.defineProperty(proto, prop, {
+      configurable: true,
+      get: function(){ return d.get.call(this); },
+      set: function(v){ d.set.call(this, fix(v)); }
+    });
+  });
+  var of = window.fetch;
+  if (of) window.fetch = function(u, o){ return of.call(this, (typeof u === 'string' ? fix(u) : u), o); };
+  var ox = window.XMLHttpRequest && XMLHttpRequest.prototype.open;
+  if (ox) XMLHttpRequest.prototype.open = function(m, u){
+    var a = Array.prototype.slice.call(arguments); a[1] = fix(u); return ox.apply(this, a);
+  };
+})();<\/script>`;
+
+// 【修复 B】皮肤脚本 common.js 里有大量对「皮肤外壳元素」的硬解引用，例如第 155 行：
+//     const problemModal = document.querySelector('.support-block-popup');
+//     const closeProblemModal = problemModal.querySelector('.close-modal-support');  // ← 我们没搬运外壳 → null → 抛错
+// 一抛错整个 common.js 就中断，而下拉框的初始化 initDropDowns() 排在它后面，于是主页
+// 「炮塔 / 底盘」下拉框点了没反应。这里补一组隐藏的占位元素让脚本能跑完。
+const SKIN_CHROME_STUB = `<div id="skin-chrome-stub" aria-hidden="true" style="display:none !important;">
+<a class="problem" href="#"></a>
+<div class="close-wrapper"></div>
+<div class="support-block-popup"><div class="close-modal-support"></div></div>
+<div class="youtube-popup"><iframe title="stub"></iframe></div>
+<div class="video-button"></div>
+<div class="header-search"></div>
+<div class="search-dialog"></div>
+<div class="search-popup"><div class="close-wrapper"></div><div class="close-modal-search"></div></div>
+<div class="news-popup"></div>
+<div class="sales-block-header"></div>
+<div class="navbar-main"></div>
+<div class="main-navbar"></div>
+</div>`;
+
+// 页面统一样式（保守版：只做必要的修正，源站皮肤 skins.tankiblue 的原有排版一律保留）
+const PAGE_STYLE = `<style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
+
+/* 1. 只去掉源站皮肤的背景大图，保留底色；不要用 background 简写，否则会连带清掉皮肤别的背景设定 */
+html, body {
+    background-image: none !important;
+    background-color: #001926 !important;
+}
+/* 2. 让底色铺满视口，内容很短时下方不再露白 */
+html { min-height: 100%; }
+body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif; }
+
+/* 3. 版心容器 */
+#mw-main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #001926;
+}
+
+/* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
+      【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
+#mw-main-container .main-content,
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content,
+#mw-main-container #mw-content-text {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: auto !important;
+    flex-basis: auto !important;   /* 皮肤写了 .main-content{flex:0 0 75%} */
+    float: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* 5. 移动端：源站容器 padding + 我们的 20px 叠加后两侧空太多，正文被挤成窄条 */
+@media (max-width: 768px) {
+    #mw-main-container { padding: 10px; margin: 8px auto; }
+    /* 主页那些写死 width:55% / 45% 的分栏在窄屏下强制单列 */
+    #mw-content-text .navigationContainerContent > div,
+    #mw-content-text [style*="width: 55%"],
+    #mw-content-text [style*="width:55%"],
+    #mw-content-text [style*="width: 45%"],
+    #mw-content-text [style*="width:45%"] { width: 100% !important; }
+}
+@media (max-width: 480px) {
+    #mw-main-container { padding: 6px; margin: 4px auto; }
+}
+
+/* 6. 防止宽表格 / 大图撑破版心产生横向滚动 */
+#mw-content-text img { max-width: 100%; height: auto; }
+#mw-content-text table { max-width: 100%; }
+
+/* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
+   只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+*/
+</style>`;
 const EDIT_INFO_FILE = path.join(__dirname, 'last_edit_info.json');
 
 // 【新增】超时保护相关常量 (避免被 GitHub Actions 6小时强杀)
@@ -27,7 +149,15 @@ const SCRIPT_START_TIME = Date.now();
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 const geminiModel = genAI.getGenerativeModel({ model: "gemini-flash-lite-latest" });
 
-const sanitizePageName = (name) => name.replaceAll(' ', '_');
+// 页面名一律使用「解码后的西里尔原文」形式（如 Устройства），
+// 若传入的是从地址栏复制的百分号编码（%D0%A3%D1%81...），这里自动解码，避免出现两套文件名
+const sanitizePageName = (name) => {
+    if (!name) return name;
+    if (/%[0-9A-Fa-f]{2}/.test(name)) {
+        try { name = decodeURIComponent(name); } catch (e) { /* 非法编码则保持原样 */ }
+    }
+    return name.replaceAll(' ', '_');
+};
 
 // 需要屏蔽的命名空间（俄站链接里英文规范名和俄语本地化名两种写法都可能出现）
 const NS_BLOCKLIST = new Array(
@@ -477,7 +607,8 @@ function finalizePage(preparedData, translatedResultsForPage) {
         translatedTitle = formatTypography(translatedResultsForPage['title_0']);
     }
 
-    const $contentContainer = cheerio.load(contentHtml, null, false).root();
+    const $c = cheerio.load(contentHtml, null, false);
+    const $contentContainer = $c.root();
 
     Object.keys(translatedResultsForPage).forEach(key => {
         if (key.startsWith('chunk_') && translatedResultsForPage[key]) {
@@ -489,6 +620,21 @@ function finalizePage(preparedData, translatedResultsForPage) {
     });
 
     $contentContainer.find('[data-translate-id]').removeAttr('data-translate-id');
+
+    // 在「最后编辑：某某 某年某月某日」这一行的作者旁边，追加 AI 翻译声明
+    let aiNoteAdded = false;
+    $contentContainer.find('small, .lastmod, .printfooter').each(function () {
+        if (aiNoteAdded) return;
+        const $el = $c(this);
+        if (/最后编辑|最後編輯|最后修改|Последне|Last edit/i.test($el.text())) {
+            $el.append(' ' + AI_NOTE_HTML);
+            aiNoteAdded = true;
+        }
+    });
+    // 源页面没有「最后编辑」行时的兜底：在正文末尾单独补一条
+    if (!aiNoteAdded) {
+        $contentContainer.append(`<div align="right" style="margin-top:16px;"><small>${AI_NOTE_HTML}</small></div>`);
+    }
 
     let finalHtmlContent = $contentContainer.html();
     finalHtmlContent = formatTypography(finalHtmlContent);
@@ -505,7 +651,8 @@ function finalizePage(preparedData, translatedResultsForPage) {
     bodyEndScripts.push(bilibiliPopupScript);
     
     const headContent = headElements.filter(el => !el.toLowerCase().startsWith('<title>')).join('\n    '); 
-    const finalHtml = `<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>${translatedTitle}</title>${headContent}<style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="${bodyClass}"><div id="mw-main-container">${homeButtonHtml}<div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr">${finalHtmlContent}</div></div></div></div></div>${bodyEndScripts.join('\n    ')}</body></html>`;
+    const footerHtml = (FOOTER_ON_ALL_PAGES || pageNameToProcess === START_PAGE) ? SITE_FOOTER_HTML : '';
+    const finalHtml = `<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">${HEAD_BOOT_SCRIPT}<title>${translatedTitle}</title>${headContent}${PAGE_STYLE}</head><body class="${bodyClass}">${SKIN_CHROME_STUB}<div id="mw-main-container">${homeButtonHtml}<div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr">${finalHtmlContent}</div></div></div></div></div>${footerHtml}${bodyEndScripts.join('\n    ')}</body></html>`;
     
     // 核心修复点：若有父目录，自动递归创建
     const outputPath = path.join(OUTPUT_DIR, `${pageNameToProcess}.html`);
