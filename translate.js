@@ -900,6 +900,14 @@ async function run() {
             }
         }
 
+        // 每批翻译落盘后立刻写进度，避免中途超时/崩溃丢失已完成页面
+        try {
+            fs.writeFileSync(EDIT_INFO_FILE, JSON.stringify(lastEditInfo, null, 2), 'utf-8');
+            console.log(`💾 已即时保存进度到 last_edit_info.json（当前 ${Object.keys(lastEditInfo).length} 条）`);
+        } catch (e) {
+            console.warn(`⚠️ 即时保存 last_edit_info.json 失败: ${e.message}`);
+        }
+
         // 扫除批次缓存，清空容积准备下一批
         pendingPreparedPages = new Array();
         globalTasksObj = {};
