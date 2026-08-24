@@ -155,7 +155,6 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
     background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%);
     
     position: relative;
-    overflow: hidden;
     cursor: pointer;
     text-decoration: none;
     -webkit-tap-highlight-color: transparent;
