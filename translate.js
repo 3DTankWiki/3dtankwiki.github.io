@@ -139,22 +139,23 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
         让点按时也能看到同样的动效，另有 @media (hover:none) 的常驻高亮兜底。 */
 .home-back-btn {
     box-sizing: border-box;
-    display: inline-flex;
+    display: flex;
+    width: auto;
     vertical-align: top;
     align-items: center;
     justify-content: center;
-    width: auto;
+    
     min-width: 142px;
     padding: 0 24px;
     height: 78px;
-    margin: 0 0 25px 0;
+    margin: 0;
     border: 1px solid rgba(255,255,255,.25);
     outline: 2px solid transparent;
     border-radius: 6.5px;
     background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%);
     
     position: relative;
-    z-index: 0;
+    overflow: hidden;
     cursor: pointer;
     text-decoration: none;
     -webkit-tap-highlight-color: transparent;
@@ -197,6 +198,7 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
 
 
 .home-back-btn span {
+    white-space: nowrap;
     color: #BFD5FF;
     font-size: 16px;
     margin-left: 10px;
@@ -220,14 +222,14 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
 }
 /* 窄屏适当缩小，保持官网比例 141.375:78 */
 @media (max-width: 480px) {
-    .home-back-btn { width: auto; min-width: 106px; padding: 0 16px; height: 58px; margin: 12px 0 25px 12px; }
+    .home-back-btn { width: auto; min-width: 106px; padding: 0 16px; height: 58px; margin: 0; }
     .home-back-btn svg { width: 20px; height: 19.7px; }
 }
 
 /* 7. 移动端：源站容器 padding + 我们的 20px 叠加后两侧空太多，正文被挤成窄条 */
 @media (max-width: 768px) {
     #mw-main-container { padding: 10px; margin: 8px auto; }
-    .home-back-btn { margin: 16px 0 25px 16px; }
+    
     /* 主页那些写死 width:55% / 45% 的分栏在窄屏下强制单列 */
     #mw-content-text .navigationContainerContent > div,
     #mw-content-text [style*="width: 55%"],
@@ -760,7 +762,7 @@ function finalizePage(preparedData, translatedResultsForPage) {
     const depth = (pageNameToProcess.match(/\//g) ||[]).length;
     const relPrefix = depth === 0 ? './' : '../'.repeat(depth);
     let homeButtonHtml = pageNameToProcess !== START_PAGE
-        ? `<a class="home-back-btn" href="${relPrefix}${encodeURIComponent(START_PAGE)}" title="返回主页" aria-label="返回主页">${HOME_BUTTON_SVG}<span>返回主页</span></a>`
+        ? `<div class="home-btn-wrapper" style="padding: 10px 0; margin-bottom: 15px; display: inline-flex; overflow: visible;"><a class="home-back-btn" href="${relPrefix}${encodeURIComponent(START_PAGE)}" title="返回主页" aria-label="返回主页">${HOME_BUTTON_SVG}<span>返回主页</span></a></div>`
         : '';
     
     const colorReplacementScript = `<script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\\(70,\\s*223,\\s*17\\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);<\/script>`;
