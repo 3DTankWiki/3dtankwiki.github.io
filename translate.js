@@ -138,13 +138,15 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
       ⚠️ 手机是触屏，没有 :hover。所以下面额外加了 :active / :focus-visible，
         让点按时也能看到同样的动效，另有 @media (hover:none) 的常驻高亮兜底。 */
 .home-back-btn {
-    display: flex;
+    box-sizing: border-box;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 141.375px;
+    width: auto;
+    min-width: 142px;
+    padding: 0 24px;
     height: 78px;
     margin: 0 0 25px 0;
-    padding: 0;
     border: 1px solid rgba(255,255,255,.25);
     border-radius: 6.5px;
     background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%);
@@ -185,10 +187,28 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
 .home-back-btn:focus-visible::before { opacity: 1; }
 .home-back-btn:hover svg,
 .home-back-btn:active svg,
-.home-back-btn:focus-visible svg { transform: rotate(180deg) translate(10%); }
+.home-back-btn:focus-visible svg { transform: rotate(180deg) translateX(10%); }
 .home-back-btn:hover svg path,
 .home-back-btn:active svg path,
 .home-back-btn:focus-visible svg path { fill: #fff; }
+
+
+.home-back-btn span {
+    color: #BFD5FF;
+    font-size: 16px;
+    margin-left: 10px;
+    font-weight: bold;
+    transition: all .15s ease;
+}
+.home-back-btn:hover span,
+.home-back-btn:active span,
+.home-back-btn:focus-visible span {
+    color: #fff;
+    transform: translateX(-4px);
+}
+@media (max-width: 480px) {
+    .home-back-btn span { font-size: 14px; margin-left: 8px; }
+}
 
 /* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
 @media (hover: none) {
@@ -197,7 +217,7 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
 }
 /* 窄屏适当缩小，保持官网比例 141.375:78 */
 @media (max-width: 480px) {
-    .home-back-btn { width: 106px; height: 58.5px; }
+    .home-back-btn { width: auto; min-width: 106px; padding: 0 16px; height: 58px; }
     .home-back-btn svg { width: 20px; height: 19.7px; }
 }
 
@@ -736,7 +756,7 @@ function finalizePage(preparedData, translatedResultsForPage) {
     const depth = (pageNameToProcess.match(/\//g) ||[]).length;
     const relPrefix = depth === 0 ? './' : '../'.repeat(depth);
     let homeButtonHtml = pageNameToProcess !== START_PAGE
-        ? `<a class="home-back-btn" href="${relPrefix}${encodeURIComponent(START_PAGE)}" title="返回主页" aria-label="返回主页">${HOME_BUTTON_SVG}</a>`
+        ? `<a class="home-back-btn" href="${relPrefix}${encodeURIComponent(START_PAGE)}" title="返回主页" aria-label="返回主页">${HOME_BUTTON_SVG}<span>返回主页</span></a>`
         : '';
     
     const colorReplacementScript = `<script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\\(70,\\s*223,\\s*17\\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);<\/script>`;
