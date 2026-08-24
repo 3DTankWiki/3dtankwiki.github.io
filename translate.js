@@ -22,7 +22,7 @@ const OUTPUT_DIR = './output';
 
 // --- 【站点声明与外观】 ---
 // 「最后编辑」作者旁边追加的 AI 翻译说明
-const AI_NOTE_HTML = '<span class="ai-translate-note" style="color:#8FB8D8;">（本页面由 AI 自动翻译）</span>';
+const AI_NOTE_HTML = '<span class="ai-translate-note" style="color:#8FB8D8;">（由 AI 自动翻译）</span>';
 // 页脚免责声明：true = 所有页面都加；false = 只在主页加
 const FOOTER_ON_ALL_PAGES = true;
 const SITE_FOOTER_HTML = `<footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
@@ -108,10 +108,6 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
 /* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
       【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
 
-#mw-main-container .main-content {
-    flex: 1 1 0% !important;
-    min-width: 0 !important;
-}
 #mw-main-container .main-content,
 #mw-main-container .mw-body,
 #mw-main-container .mw-body-content,
@@ -142,7 +138,6 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
 .home-btn-wrapper {
     display: block !important;
     width: 100% !important;
-    flex: 0 0 100% !important;
     box-sizing: border-box !important;
     padding: 10px 0 20px 0 !important;
     margin: 0 !important;
@@ -242,7 +237,7 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
         min-width: 106px !important;
         padding: 0 16px !important;
         height: 58px !important;
-        margin-left: 16px !important;
+        margin-left: 10px !important;
     }
     .home-back-btn svg { width: 20px !important; height: 19.7px !important; }
     .home-back-btn span { font-size: 14px !important; margin-left: 8px !important; }
@@ -251,7 +246,7 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
 /* 8. 移动端容器 Padding */
 @media (max-width: 768px) {
     #mw-main-container { padding: 10px !important; margin: 8px auto !important; }
-    .home-back-btn { margin-left: 16px !important; }
+    .home-back-btn { margin-left: 10px !important; }
     #mw-content-text .navigationContainerContent > div,
     #mw-content-text [style*="width: 55%"],
     #mw-content-text [style*="width:55%"],
@@ -265,171 +260,6 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
 /* 9. 防止宽表格 / 大图撑破版心 */
 #mw-content-text img { max-width: 100%; height: auto; }
 #mw-content-text table { max-width: 100%; }
-
-
-
-/* =========================================================================
-   10. TOC (Table of Contents) 桌面端左侧悬浮 & 移动端抽屉
-   ========================================================================= */
-
-/* 桌面端：固定在左侧，模仿 TankiOnline 官网文章的左侧目录 */
-@media (min-width: 1025px) {
-    #mw-main-container.has-desktop-toc {
-        display: flex !important;
-        align-items: flex-start !important;
-        flex-wrap: wrap !important;
-        max-width: 1400px !important; /* 加宽以容纳侧边栏 */
-    }
-    
-    #desktop-toc-wrapper {
-        position: sticky !important;
-        top: 2rem !important;
-        width: 17rem !important;
-        max-height: calc(100vh - 4rem) !important;
-        overflow-y: auto !important;
-        flex-shrink: 0 !important;
-        margin-right: 2rem !important;
-        /* 隐藏滚动条 */
-        scrollbar-width: none; 
-    }
-    #desktop-toc-wrapper::-webkit-scrollbar { display: none; }
-    
-    #desktop-toc-wrapper #toc, #desktop-toc-wrapper .toc {
-        background: transparent !important;
-        border: none !important;
-        padding: 0 !important;
-        box-shadow: none !important;
-        width: 100% !important;
-    }
-    
-    /* 隐藏原版自带的标题和“隐藏/显示”按钮 */
-    #desktop-toc-wrapper .toctitle {
-        display: none !important; 
-    }
-    
-    /* 样式化目录项 */
-    #desktop-toc-wrapper ul {
-        list-style: none !important;
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-    #desktop-toc-wrapper ul li {
-        margin-bottom: 0.2rem !important;
-    }
-    #desktop-toc-wrapper ul li a {
-        display: flex !important;
-        padding: 0.75rem 1rem !important;
-        color: rgba(255,255,255,0.6) !important;
-        font-size: 0.75rem !important;
-        font-weight: 500 !important;
-        line-height: 1rem !important;
-        letter-spacing: 0.0375rem !important;
-        text-transform: uppercase !important;
-        text-decoration: none !important;
-        border-radius: 0.5rem !important;
-        transition: 0.15s ease !important;
-    }
-    #desktop-toc-wrapper ul li a:hover {
-        color: #76FF33 !important;
-        background: rgba(118, 255, 51, 0.1) !important;
-    }
-    #desktop-toc-wrapper ul li a .tocnumber {
-        display: none !important; /* 隐藏标号，模仿官网纯文本 */
-    }
-    
-    /* 清理原有的空容器 */
-    .toclimit-3:empty, .toclimit-2:empty, .toclimit-4:empty { display: none !important; }
-}
-
-/* 移动端/平板：悬浮按钮 + 全屏覆盖/抽屉显示 */
-@media (max-width: 1024px) {
-    /* 隐藏原版的“隐藏/展开”俄文文字 */
-    .toctogglespan { font-size: 0 !important; color: transparent !important; }
-    
-    #toc, .toc {
-        position: fixed !important;
-        right: 1.25rem !important;
-        bottom: 6rem !important;
-        width: 3.5rem !important;
-        height: 3.5rem !important;
-        background: #76FF33 !important;
-        border-radius: 50% !important;
-        z-index: 1000 !important;
-        border: none !important;
-        padding: 0 !important;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.5) !important;
-        overflow: visible !important;
-        transition: all 0.3s ease !important;
-    }
-    
-    /* 把 toctitle 变成悬浮按钮的图标 */
-    #toc .toctitle {
-        width: 100% !important;
-        height: 100% !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        margin: 0 !important;
-    }
-    #toc .toctitle h2 { display: none !important; }
-    
-    /* 利用 toctogglelabel 作为点击区，并加上图标 */
-    .toctogglelabel {
-        position: absolute !important;
-        left: 0; top: 0; right: 0; bottom: 0;
-        cursor: pointer !important;
-        z-index: 2;
-    }
-    .toctogglelabel::before {
-        content: "☰" !important;
-        color: #001926 !important;
-        font-size: 24px !important;
-        line-height: 3.5rem !important;
-        display: block !important;
-        text-align: center !important;
-    }
-    .toctogglelabel::after { display: none !important; }
-    .toctogglespan { display: block !important; width: 100% !important; height: 100% !important; position: absolute !important; left: 0 !important; top: 0 !important; }
-
-    /* 默认 ul 是隐藏的，点击展示 */
-    #toc > ul {
-        display: none !important; 
-        position: absolute !important;
-        bottom: 4.5rem !important;
-        right: 0 !important;
-        background: #001926 !important;
-        border: 1px solid rgba(255,255,255,0.2) !important;
-        border-radius: 0.5rem !important;
-        padding: 1rem !important;
-        width: 250px !important;
-        max-height: 60vh !important;
-        overflow-y: auto !important;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.8) !important;
-        list-style: none !important;
-    }
-    
-    /* 配合原版 logic */
-    #toctogglecheckbox:checked ~ ul {
-        display: block !important;
-    }
-    
-    #toctogglecheckbox:checked ~ .toctitle .toctogglelabel::before {
-        content: "✕" !important;
-    }
-
-    #toc ul li { margin-bottom: 0.5rem !important; }
-    #toc ul li a {
-        color: #fff !important;
-        text-decoration: none !important;
-        font-size: 0.875rem !important;
-        display: block !important;
-    }
-    #toc ul li a:hover { color: #76FF33 !important; }
-    #toc ul li a .tocnumber {
-        color: #76FF33 !important;
-        margin-right: 0.5rem !important;
-    }
-}
 
 /* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
    只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
@@ -953,27 +783,6 @@ function finalizePage(preparedData, translatedResultsForPage) {
     
     const colorReplacementScript = `<script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\\(70,\\s*223,\\s*17\\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);<\/script>`;
     bodyEndScripts.push(colorReplacementScript);
-
-    const tocDomScript = `<script>
-document.addEventListener("DOMContentLoaded", function() {
-    var toc = document.querySelector('#toc');
-    var container = document.querySelector('#mw-main-container');
-    if(toc && container && window.innerWidth > 1024) {
-        var wrapper = document.createElement('div');
-        wrapper.id = 'desktop-toc-wrapper';
-        wrapper.appendChild(toc);
-        // Insert AFTER the home button if it exists, otherwise at the top
-        var homeBtn = document.querySelector('.home-btn-wrapper');
-        if(homeBtn && homeBtn.parentNode === container) {
-            container.insertBefore(wrapper, homeBtn.nextSibling);
-        } else {
-            container.insertBefore(wrapper, container.firstChild);
-        }
-        container.classList.add('has-desktop-toc');
-    }
-});
-</script>`;
-    bodyEndScripts.push(tocDomScript);
 
     const bilibiliPopupScript = `<script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(\`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=\${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>\`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });<\/script>`;
     bodyEndScripts.push(bilibiliPopupScript);
