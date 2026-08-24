@@ -288,7 +288,7 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
 const EDIT_INFO_FILE = path.join(__dirname, 'last_edit_info.json');
 
 // 【新增】超时保护相关常量 (避免被 GitHub Actions 6小时强杀)
-const MAX_EXECUTION_TIME_MINUTES = parseInt(process.env.MAX_EXECUTION_TIME || '345', 10); // 默认 5小时45分钟
+const MAX_EXECUTION_TIME_MINUTES = parseInt(process.env.MAX_EXECUTION_TIME || '330', 10); // 默认 5小时30分钟
 const MAX_EXECUTION_TIME_MS = MAX_EXECUTION_TIME_MINUTES * 60 * 1000;
 const SCRIPT_START_TIME = Date.now();
 
