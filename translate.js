@@ -150,9 +150,8 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
     border: 1px solid rgba(255,255,255,.25);
     border-radius: 6.5px;
     background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%);
-    outline: 2px solid transparent;
+    
     position: relative;
-    overflow: hidden;
     cursor: pointer;
     text-decoration: none;
     -webkit-tap-highlight-color: transparent;
@@ -169,6 +168,7 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
     opacity: 0;
     z-index: -1;
     transition: all .15s ease;
+    border-radius: inherit;
 }
 .home-back-btn svg {
     width: 24.375px;
@@ -181,7 +181,7 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
 
 .home-back-btn:hover,
 .home-back-btn:active,
-.home-back-btn:focus-visible { outline: 1px solid #BFD5FF; border-color: #BFD5FF; }
+.home-back-btn:focus-visible { border-color: #BFD5FF; box-shadow: 0 0 0 1px #BFD5FF; }
 .home-back-btn:hover::before,
 .home-back-btn:active::before,
 .home-back-btn:focus-visible::before { opacity: 1; }
@@ -217,13 +217,14 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
 }
 /* 窄屏适当缩小，保持官网比例 141.375:78 */
 @media (max-width: 480px) {
-    .home-back-btn { width: auto; min-width: 106px; padding: 0 16px; height: 58px; }
+    .home-back-btn { width: auto; min-width: 106px; padding: 0 16px; height: 58px; margin-left: 8px; margin-top: 8px; }
     .home-back-btn svg { width: 20px; height: 19.7px; }
 }
 
 /* 7. 移动端：源站容器 padding + 我们的 20px 叠加后两侧空太多，正文被挤成窄条 */
 @media (max-width: 768px) {
     #mw-main-container { padding: 10px; margin: 8px auto; }
+    .home-back-btn { margin-left: 6px; margin-top: 6px; }
     /* 主页那些写死 width:55% / 45% 的分栏在窄屏下强制单列 */
     #mw-content-text .navigationContainerContent > div,
     #mw-content-text [style*="width: 55%"],
