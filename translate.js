@@ -261,6 +261,20 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
 #mw-content-text img { max-width: 100%; height: auto; }
 #mw-content-text table { max-width: 100%; }
 
+/* 10. 目录（TOC）修复，全局生效：
+    a) 皮肤把目录折叠按钮的文字放在 CSS 伪元素里渲染，而不是 HTML 文本：
+         .toctogglecheckbox:checked  + .toctitle .toctogglelabel::after → content:'показать'
+         .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after → content:'скрыть'
+       AI 翻译只处理 HTML 文本，摸不到 CSS content，所以这个按钮永远是俄语，必须在这里覆盖成中文。
+    b) 皮肤的响应式 CSS 里写了 @media screen and (max-width:768px){ #toc{display:none} }，
+       导致手机端整个目录被隐藏。这里恢复显示，并配合下方 TOC_MOBILE_COLLAPSE_SCRIPT：
+       移动端默认折叠，只占一行「目录 [展开]」，避免长目录把正文挤到屏幕外。 */
+#toc .toctogglecheckbox:checked + .toctitle .toctogglelabel::after { content: '展开' !important; }
+#toc .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after { content: '收起' !important; }
+@media screen and (max-width: 768px) {
+    #toc { display: table !important; }
+}
+
 /* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
    只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
 #mw-main-container .mw-body,
@@ -756,6 +770,11 @@ function finalizePage(preparedData, translatedResultsForPage) {
 
     $contentContainer.find('[data-translate-id]').removeAttr('data-translate-id');
 
+    // 目录标题兜底：AI 漏翻时（标题里仍残留西里尔字母）强制改成「目录」，不依赖 AI
+    $contentContainer.find('#mw-toc-heading').each(function () {
+        if (containsSourceText($c(this).text())) $c(this).text('目录');
+    });
+
     // 在「最后编辑：某某 某年某月某日」这一行的作者旁边，追加 AI 翻译声明
     let aiNoteAdded = false;
     $contentContainer.find('small, .lastmod, .printfooter').each(function () {
@@ -786,6 +805,12 @@ function finalizePage(preparedData, translatedResultsForPage) {
 
     const bilibiliPopupScript = `<script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(\`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=\${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>\`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });<\/script>`;
     bodyEndScripts.push(bilibiliPopupScript);
+
+    // 移动端目录：皮肤响应式 CSS 在 ≤768px 默认隐藏 #toc（已由 PAGE_STYLE 恢复显示），
+    // 这里再让移动端默认折叠成「目录 [展开]」一行。源站 mediawiki.toc 模块只在
+    // hidetoc cookie 为 '1' 时才设置折叠状态，不会覆盖这里的默认值。
+    const tocMobileScript = `<script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });<\/script>`;
+    bodyEndScripts.push(tocMobileScript);
     
     const headContent = headElements.filter(el => !el.toLowerCase().startsWith('<title>')).join('\n    '); 
     const footerHtml = (FOOTER_ON_ALL_PAGES || pageNameToProcess === START_PAGE) ? SITE_FOOTER_HTML : '';
