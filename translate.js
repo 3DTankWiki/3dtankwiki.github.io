@@ -22,7 +22,7 @@ const OUTPUT_DIR = './output';
 
 // --- 【站点声明与外观】 ---
 // 「最后编辑」作者旁边追加的 AI 翻译说明
-const AI_NOTE_HTML = '<span class="ai-translate-note" style="color:#8FB8D8;">（本页面由 AI 自动翻译）</span>';
+const AI_NOTE_HTML = '<span class="ai-translate-note" style="color:#8FB8D8;">（由 AI 自动翻译）</span>';
 // 页脚免责声明：true = 所有页面都加；false = 只在主页加
 const FOOTER_ON_ALL_PAGES = true;
 const SITE_FOOTER_HTML = `<footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
