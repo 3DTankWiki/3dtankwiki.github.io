@@ -148,8 +148,8 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
     padding: 0 24px;
     height: 78px;
     margin: 0 0 25px 0;
-    border: none;
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,.25);
+    border: 1px solid rgba(255,255,255,.25);
+    outline: 2px solid transparent;
     border-radius: 6.5px;
     background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%);
     
@@ -184,7 +184,7 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
 
 .home-back-btn:hover,
 .home-back-btn:active,
-.home-back-btn:focus-visible { box-shadow: inset 0 0 0 1.5px #BFD5FF; }
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF; border-color: #BFD5FF; }
 .home-back-btn:hover::before,
 .home-back-btn:active::before,
 .home-back-btn:focus-visible::before { opacity: 1; }
@@ -215,7 +215,7 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
 
 /* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
 @media (hover: none) {
-    .home-back-btn { box-shadow: inset 0 0 0 1px rgba(191,213,255,.55); }
+    .home-back-btn { border-color: rgba(191,213,255,.55); }
     .home-back-btn svg path { fill: #CFE0FF; }
 }
 /* 窄屏适当缩小，保持官网比例 141.375:78 */
