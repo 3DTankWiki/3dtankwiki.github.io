@@ -237,6 +237,7 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
         min-width: 106px !important;
         padding: 0 16px !important;
         height: 58px !important;
+        margin-left: 10px !important;
     }
     .home-back-btn svg { width: 20px !important; height: 19.7px !important; }
     .home-back-btn span { font-size: 14px !important; margin-left: 8px !important; }
@@ -245,6 +246,7 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
 /* 8. 移动端容器 Padding */
 @media (max-width: 768px) {
     #mw-main-container { padding: 10px !important; margin: 8px auto !important; }
+    .home-back-btn { margin-left: 10px !important; }
     #mw-content-text .navigationContainerContent > div,
     #mw-content-text [style*="width: 55%"],
     #mw-content-text [style*="width:55%"],
