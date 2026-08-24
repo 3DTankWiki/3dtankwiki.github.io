@@ -107,6 +107,7 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
 
 /* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
       【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
+
 #mw-main-container .main-content,
 #mw-main-container .mw-body,
 #mw-main-container .mw-body-content,
@@ -116,9 +117,14 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
     width: auto !important;
     flex-basis: auto !important;   /* 皮肤写了 .main-content{flex:0 0 75%} */
     float: none !important;
+    margin-top: 0 !important;       /* 核心：清空原站皮肤的负 margin-top */
+    margin-bottom: 0 !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
-    margin-top: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    position: relative !important;
+    z-index: 1 !important;          /* 保证正文层级低于按钮 */
 }
 
 /* 5. 皮肤脚本 skins.tankiblue.js 会往 #mw-content-text 末尾插一条「发现错别字？Ctrl+Enter」
@@ -128,38 +134,44 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
 .vectorTabs.customReport,
 .customReport { display: none !important; }
 
-/* 6. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐
-      （数值全部来自对官网实际渲染的 getComputedStyle 取样，根字号 13px 换算成 px 写死）
-        常态 141.375x78 / border 1px rgba(255,255,255,.25) / radius 6.5px
-              背景 radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15), transparent)
-              箭头 24.375x24 fill #BFD5FF
-        悬停 border #BFD5FF + outline 1px #BFD5FF / ::before 渐变 opacity 0→1
-              箭头 fill #fff 且位移 translate(10%)（约 2.44px）
-        全部过渡 all .15s ease
-      ⚠️ 手机是触屏，没有 :hover。所以下面额外加了 :active / :focus-visible，
-        让点按时也能看到同样的动效，另有 @media (hover:none) 的常驻高亮兜底。 */
+/* 6. 返回按钮包裹容器：独占一行并强制最高层级 */
+.home-btn-wrapper {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px 0 20px 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    z-index: 9999 !important;       /* 核心：永远置于最顶层 */
+    clear: both !important;
+    overflow: visible !important;
+}
+
+/* 7. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐 */
 .home-back-btn {
-    box-sizing: border-box;
-    display: flex;
-    width: auto;
-    vertical-align: top;
-    align-items: center;
-    justify-content: center;
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    width: auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    isolation: isolate !important;
     
-    min-width: 142px;
-    padding: 0 24px;
-    height: 78px;
-    margin: 0;
-    border: 1px solid rgba(255,255,255,.25);
-    outline: 2px solid transparent;
-    border-radius: 6.5px;
-    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%);
+    min-width: 142px !important;
+    padding: 0 24px !important;
+    height: 78px !important;
+    margin: 0 !important;
+    border: 1px solid rgba(255,255,255,.25) !important;
+    outline: 2px solid transparent !important;
+    border-radius: 6.5px !important;
+    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%) !important;
     
-    position: relative;
-    cursor: pointer;
-    text-decoration: none;
-    -webkit-tap-highlight-color: transparent;
-    transition: all .15s ease;
+    position: relative !important;
+    z-index: 10000 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: all .15s ease !important;
+    overflow: visible !important;
 }
 .home-back-btn::before {
     content: "";
@@ -173,19 +185,21 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
     z-index: -1;
     transition: all .15s ease;
     border-radius: inherit;
+    pointer-events: none;
 }
 .home-back-btn svg {
     width: 24.375px;
     height: 24px;
     object-fit: contain;
-    transform: rotate(180deg);            /* prev：箭头指向左 */
+    transform: rotate(180deg);
     transition: all .15s ease;
+    flex-shrink: 0;
 }
 .home-back-btn svg path { fill: #BFD5FF; transition: all .15s ease; }
 
 .home-back-btn:hover,
 .home-back-btn:active,
-.home-back-btn:focus-visible { outline: 1px solid #BFD5FF; border-color: #BFD5FF; }
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF !important; border-color: #BFD5FF !important; }
 .home-back-btn:hover::before,
 .home-back-btn:active::before,
 .home-back-btn:focus-visible::before { opacity: 1; }
@@ -196,14 +210,13 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
 .home-back-btn:active svg path,
 .home-back-btn:focus-visible svg path { fill: #fff; }
 
-
 .home-back-btn span {
-    white-space: nowrap;
     color: #BFD5FF;
     font-size: 16px;
     margin-left: 10px;
     font-weight: bold;
     transition: all .15s ease;
+    white-space: nowrap;
 }
 .home-back-btn:hover span,
 .home-back-btn:active span,
@@ -211,26 +224,27 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
     color: #fff;
     transform: translateX(-4px);
 }
-@media (max-width: 480px) {
-    .home-back-btn span { font-size: 14px; margin-left: 8px; }
-}
 
 /* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
 @media (hover: none) {
-    .home-back-btn { border-color: rgba(191,213,255,.55); }
+    .home-back-btn { border-color: rgba(191,213,255,.55) !important; }
     .home-back-btn svg path { fill: #CFE0FF; }
 }
-/* 窄屏适当缩小，保持官网比例 141.375:78 */
+
+/* 移动端/窄屏自适应尺寸 */
 @media (max-width: 480px) {
-    .home-back-btn { width: auto; min-width: 106px; padding: 0 16px; height: 58px; margin: 0; }
-    .home-back-btn svg { width: 20px; height: 19.7px; }
+    .home-back-btn {
+        min-width: 106px !important;
+        padding: 0 16px !important;
+        height: 58px !important;
+    }
+    .home-back-btn svg { width: 20px !important; height: 19.7px !important; }
+    .home-back-btn span { font-size: 14px !important; margin-left: 8px !important; }
 }
 
-/* 7. 移动端：源站容器 padding + 我们的 20px 叠加后两侧空太多，正文被挤成窄条 */
+/* 8. 移动端容器 Padding */
 @media (max-width: 768px) {
-    #mw-main-container { padding: 10px; margin: 8px auto; }
-    
-    /* 主页那些写死 width:55% / 45% 的分栏在窄屏下强制单列 */
+    #mw-main-container { padding: 10px !important; margin: 8px auto !important; }
     #mw-content-text .navigationContainerContent > div,
     #mw-content-text [style*="width: 55%"],
     #mw-content-text [style*="width:55%"],
@@ -238,10 +252,10 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
     #mw-content-text [style*="width:45%"] { width: 100% !important; }
 }
 @media (max-width: 480px) {
-    #mw-main-container { padding: 6px; margin: 4px auto; }
+    #mw-main-container { padding: 6px !important; margin: 4px auto !important; }
 }
 
-/* 8. 防止宽表格 / 大图撑破版心产生横向滚动 */
+/* 9. 防止宽表格 / 大图撑破版心 */
 #mw-content-text img { max-width: 100%; height: auto; }
 #mw-content-text table { max-width: 100%; }
 
@@ -762,7 +776,7 @@ function finalizePage(preparedData, translatedResultsForPage) {
     const depth = (pageNameToProcess.match(/\//g) ||[]).length;
     const relPrefix = depth === 0 ? './' : '../'.repeat(depth);
     let homeButtonHtml = pageNameToProcess !== START_PAGE
-        ? `<div class="home-btn-wrapper" style="padding: 10px 0; margin-bottom: 25px; display: block !important; position: relative; z-index: 9999;"><a class="home-back-btn" href="${relPrefix}${encodeURIComponent(START_PAGE)}" title="返回主页" aria-label="返回主页">${HOME_BUTTON_SVG}<span>返回主页</span></a></div>`
+        ? `<div class="home-btn-wrapper"><a class="home-back-btn" href="${relPrefix}${encodeURIComponent(START_PAGE)}" title="返回主页" aria-label="返回主页">${HOME_BUTTON_SVG}<span>返回主页</span></a></div>`
         : '';
     
     const colorReplacementScript = `<script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\\(70,\\s*223,\\s*17\\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);<\/script>`;
