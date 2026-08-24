@@ -2,7 +2,7 @@ name: 翻译并部署 Wiki 页面
 
 on:
   schedule:
-    - cron: '*/30 * * * *' 
+    - cron: '*/30 * * * *'
   workflow_dispatch:
     inputs:
       run_mode:
@@ -12,7 +12,7 @@ on:
         type: choice
         options:
           - FEED       # 追踪更新模式 (默认)
-          - CRAWLER    # 完整爬虫模式
+          - CRAWLER    # 完整爬虫模式（约每小时提交/部署一次）
           - SPECIFIED  # 指定页面模式
       pages:
         description: '指定页面列表 (仅在SPECIFIED模式下有效, 逗号分隔, 例如: Устройства,Корпуса)'
@@ -21,7 +21,7 @@ on:
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
-# 🔒 全局串行锁：定时任务(每30分钟)与手动任务不再并行，避免两个 job 同时 push 造成 non-fast-forward
+# 🔒 全局串行锁：定时任务与手动任务不再并行，避免两个 job 同时 push 造成 non-fast-forward
 concurrency:
   group: wiki-translate-deploy
   cancel-in-progress: false
@@ -63,7 +63,11 @@ jobs:
       - name: 单独下载 Chromium 浏览器
         run: npx puppeteer browsers install chrome
 
-      - name: 运行翻译脚本
+      # ============================================================
+      # FEED / SPECIFIED：单次跑完再部署（与原先行为一致）
+      # ============================================================
+      - name: 运行翻译脚本 (FEED / SPECIFIED)
+        if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.run_mode != 'CRAWLER') }}
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           RUN_MODE: ${{ github.event.inputs.run_mode || 'FEED' }}
@@ -74,7 +78,8 @@ jobs:
           ls -l
           node translate.js
 
-      - name: 调试 - 检查文件和 Git 状态
+      - name: 调试 - 检查文件和 Git 状态 (FEED / SPECIFIED)
+        if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.run_mode != 'CRAWLER') }}
         run: |
           echo "--- 当前目录文件列表 ---"
           ls -laF
@@ -83,16 +88,18 @@ jobs:
           echo "--- Git 状态 ---"
           git status
 
-      # ⚠️ 顺序调整：先部署页面，再回写进度记录。
-      # 否则一旦进度记录写成功、部署失败，这些页面会被永久标记为“已翻译”，再也不会重新生成。
-      - name: 检出 gh-pages 分支到单独目录
+      # ⚠️ 顺序：先部署页面，再回写进度记录。
+      # 否则一旦进度写成功、部署失败，这些页面会被永久标记为“已翻译”，再也不会重新生成。
+      - name: 检出 gh-pages 分支到单独目录 (FEED / SPECIFIED)
+        if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.run_mode != 'CRAWLER') }}
         uses: actions/checkout@main
         with:
           ref: gh-pages
           path: gh-pages-dir
           fetch-depth: 0
 
-      - name: 增量部署到 gh-pages 分支
+      - name: 增量部署到 gh-pages 分支 (FEED / SPECIFIED)
+        if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.run_mode != 'CRAWLER') }}
         run: |
           if [ ! -d ./output ] || [ -z "$(ls -A ./output)" ]; then
             echo "本次没有生成任何页面，跳过部署。"
@@ -125,7 +132,8 @@ jobs:
           echo "❌ gh-pages 连续 5 次推送失败"
           exit 1
 
-      - name: 提交上次编辑记录更新到主分支
+      - name: 提交上次编辑记录更新到主分支 (FEED / SPECIFIED)
+        if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.run_mode != 'CRAWLER') }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -142,7 +150,7 @@ jobs:
             git commit --no-verify -m "ci: 更新页面状态记录 (手动触发)"
           fi
 
-          # 🔁 带重试的推送：这正是本次报错 (! [rejected] fetch first) 的修复点
+          # 🔁 带重试的推送
           for i in 1 2 3 4 5; do
             if git push origin HEAD:main; then
               echo "✅ main 推送成功"
@@ -154,3 +162,167 @@ jobs:
           done
           echo "❌ main 连续 5 次推送失败"
           exit 1
+
+      # ============================================================
+      # CRAWLER：同一 job 内多轮循环
+      #   每轮 MAX_EXECUTION_TIME ≈ 55 分钟 → 部署 gh-pages → 提交进度到 main
+      #   约等于「每小时提交一次」，而不是整站爬完才一次性提交
+      # ============================================================
+      - name: CRAWLER 模式 - 每小时翻译并提交
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.run_mode == 'CRAWLER' }}
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          # 每轮爬取时长（分钟）。留出 rsync + 两次 push 的缓冲，凑近「每小时一次」
+          ROUND_MINUTES: '55'
+          # 最多轮数：5 × 55min ≈ 4.6h 爬取 + 部署，仍低于 GHA 6 小时上限
+          MAX_ROUNDS: '5'
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # 可重用的 push 重试函数
+          push_with_retry() {
+            local branch="$1"
+            local i
+            for i in 1 2 3 4 5; do
+              if git push origin "HEAD:${branch}"; then
+                echo "✅ ${branch} 推送成功"
+                return 0
+              fi
+              echo "⚠️ 第 $i 次推送 ${branch} 被拒绝，正在 rebase 远端最新提交后重试..."
+              git pull --rebase --autostash "origin" "${branch}" || true
+              sleep $(( (RANDOM % 10) + 5 ))
+            done
+            echo "❌ ${branch} 连续 5 次推送失败"
+            return 1
+          }
+
+          ensure_gh_pages_dir() {
+            if [ ! -d gh-pages-dir/.git ]; then
+              rm -rf gh-pages-dir
+              git clone --branch gh-pages --single-branch \
+                "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" \
+                gh-pages-dir
+            else
+              (
+                cd gh-pages-dir
+                git fetch origin gh-pages
+                git checkout gh-pages
+                git reset --hard origin/gh-pages
+              )
+            fi
+            (
+              cd gh-pages-dir
+              git config user.name "github-actions[bot]"
+              git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            )
+          }
+
+          deploy_output_to_gh_pages() {
+            local round="$1"
+            if [ ! -d ./output ] || [ -z "$(ls -A ./output 2>/dev/null || true)" ]; then
+              echo "第 ${round} 轮没有生成任何页面，跳过部署。"
+              return 0
+            fi
+
+            ensure_gh_pages_dir
+            rsync -av ./output/ ./gh-pages-dir/
+
+            (
+              cd gh-pages-dir
+              git add .
+              if git diff --staged --quiet; then
+                echo "第 ${round} 轮没有新的页面变更需要部署"
+                exit 0
+              fi
+              git commit -m "deploy: CRAWLER 第 ${round} 轮增量页面"
+
+              local i
+              for i in 1 2 3 4 5; do
+                if git push origin gh-pages; then
+                  echo "✅ gh-pages 第 ${round} 轮推送成功"
+                  exit 0
+                fi
+                echo "⚠️ 第 $i 次推送 gh-pages 被拒绝，正在 rebase 后重试..."
+                git pull --rebase --autostash origin gh-pages || true
+                sleep $(( (RANDOM % 10) + 5 ))
+              done
+              echo "❌ gh-pages 第 ${round} 轮连续 5 次推送失败"
+              exit 1
+            )
+          }
+
+          commit_progress_to_main() {
+            local round="$1"
+            # 回到仓库根（main 工作树）
+            git add last_edit_info.json
+            if git diff --staged --quiet; then
+              echo "第 ${round} 轮没有 last_edit_info.json 变更需要提交"
+              return 0
+            fi
+            git commit --no-verify -m "ci: CRAWLER 第 ${round} 轮进度"
+            push_with_retry main
+          }
+
+          echo "CRAWLER 循环启动：每轮 ${ROUND_MINUTES} 分钟，最多 ${MAX_ROUNDS} 轮"
+
+          for round in $(seq 1 "${MAX_ROUNDS}"); do
+            echo ""
+            echo "========================================================"
+            echo "======== CRAWLER 第 ${round} / ${MAX_ROUNDS} 轮 ========"
+            echo "========================================================"
+
+            # 每轮开始前同步 main，拿到最新 last_edit_info.json（含本 job 上一轮刚 push 的）
+            git pull --rebase --autostash origin main || true
+
+            # 统计本轮开始前已记录的页面数，用于判断是否还有新产出
+            BEFORE_COUNT=0
+            if [ -f last_edit_info.json ]; then
+              BEFORE_COUNT=$(node -e "try{console.log(Object.keys(JSON.parse(require('fs').readFileSync('last_edit_info.json','utf8'))).length)}catch(e){console.log(0)}")
+            fi
+
+            # 清空上一轮产物，避免 rsync 重复推送同一批（进度已在 last_edit_info 与 gh-pages 中）
+            rm -rf ./output
+            mkdir -p ./output
+
+            echo "--- 开始第 ${round} 轮翻译 (MAX_EXECUTION_TIME=${ROUND_MINUTES} 分钟) ---"
+            set +e
+            MAX_EXECUTION_TIME="${ROUND_MINUTES}" RUN_MODE=CRAWLER node translate.js
+            SCRIPT_EXIT=$?
+            set -e
+            echo "--- 第 ${round} 轮翻译脚本退出码: ${SCRIPT_EXIT} ---"
+
+            echo "--- 第 ${round} 轮产物 ---"
+            ls -laF ./output || echo "(无 output 目录)"
+
+            # 先部署页面，再回写进度（顺序与 FEED 一致，避免“进度已写但页面未上线”）
+            deploy_output_to_gh_pages "${round}"
+            commit_progress_to_main "${round}"
+
+            AFTER_COUNT=0
+            if [ -f last_edit_info.json ]; then
+              AFTER_COUNT=$(node -e "try{console.log(Object.keys(JSON.parse(require('fs').readFileSync('last_edit_info.json','utf8'))).length)}catch(e){console.log(0)}")
+            fi
+            OUTPUT_COUNT=0
+            if [ -d ./output ]; then
+              OUTPUT_COUNT=$(find ./output -type f | wc -l | tr -d ' ')
+            fi
+
+            echo "进度条数: ${BEFORE_COUNT} → ${AFTER_COUNT}；本轮 output 文件数: ${OUTPUT_COUNT}"
+
+            # 本轮既没有新页面文件、进度也没增加 → 多半已爬完，提前结束
+            if [ "${OUTPUT_COUNT}" = "0" ] && [ "${AFTER_COUNT}" -le "${BEFORE_COUNT}" ]; then
+              echo "✅ 第 ${round} 轮无新产出，判定全站爬取已完成（或暂无待处理页），结束循环。"
+              break
+            fi
+
+            if [ "${round}" -lt "${MAX_ROUNDS}" ]; then
+              echo "准备进入下一轮..."
+            fi
+          done
+
+          echo "--- CRAWLER 全部轮次结束 ---"
