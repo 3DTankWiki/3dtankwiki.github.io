@@ -1,285 +1,446 @@
-<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>元帅 - 3D 坦克 Wiki</title><meta charset="UTF-8">
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>(function(){
+  var BASE = 'https://ru.tankiwiki.com';
+  function fix(v){ return (typeof v === 'string' && v.charAt(0) === '/' && v.indexOf('//') !== 0) ? BASE + v : v; }
+  ['HTMLScriptElement','HTMLLinkElement'].forEach(function(tag){
+    var proto = window[tag] && window[tag].prototype;
+    var prop  = tag === 'HTMLScriptElement' ? 'src' : 'href';
+    if (!proto) return;
+    var d = Object.getOwnPropertyDescriptor(proto, prop);
+    if (!d || !d.set) return;
+    Object.defineProperty(proto, prop, {
+      configurable: true,
+      get: function(){ return d.get.call(this); },
+      set: function(v){ d.set.call(this, fix(v)); }
+    });
+  });
+  var of = window.fetch;
+  if (of) window.fetch = function(u, o){ return of.call(this, (typeof u === 'string' ? fix(u) : u), o); };
+  var ox = window.XMLHttpRequest && XMLHttpRequest.prototype.open;
+  if (ox) XMLHttpRequest.prototype.open = function(m, u){
+    var a = Array.prototype.slice.call(arguments); a[1] = fix(u); return ox.apply(this, a);
+  };
+})();</script><title>元帅 — 3D 坦克 Wiki</title><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+    <meta charset="UTF-8">
+    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/xg_pWYS8-HRESiV6Rdg4aY_R/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-qWH0xCejb2gc1yqo8ob4TQrvIcQ9XjhOfGKbhFr/+LvFrJdTE3bA+FQP/FLAiQhz"></script>
     <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
-    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
-    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"fcbe13f8d23f59721489676d","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Marshal","wgTitle":"Marshal","wgCurRevisionId":66053,"wgRevisionId":66053,"wgArticleId":5485,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Marshal","wgRelevantArticleId":5485,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVisualEditor":{"pageLanguageCode":"en","pageLanguageDir":"ltr","pageVariantFallbacks":
-"en"},"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.visualEditor.desktopArticleTarget.noscript":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","mediawiki.toc","ext.gadget.UTCLiveClock","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","skins.tankiblue.js","ext.purge"];</script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgRequestId":"c91deb3082f48399e6e2aee8","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Marshal","wgTitle":"Marshal","wgCurRevisionId":295712,"wgRevisionId":295712,"wgArticleId":4740,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"ru","wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgRelevantPageName":"Marshal","wgRelevantArticleId":4740,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVisualEditor":
+{"pageLanguageCode":"ru","pageLanguageDir":"ltr","pageVariantFallbacks":"ru"},"wgFlaggedRevsParams":{"tags":{"accuracy":{"levels":3}}},"wgStableRevisionId":295712,"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.flaggedRevs.icons":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.flaggedRevs.basic":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.flaggedRevs.advanced","skins.tankiblue.js","ext.purge"];</script>
     <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
 }];});});</script>
-    <link rel="stylesheet" href="https://en.tankiwiki.com/load.php?lang=en&amp;modules=ext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
-    <script async="" src="https://en.tankiwiki.com/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=ext.flaggedRevs.basic%2Cicons%7Cext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <style>
+.mw-spinner{position:relative}.mw-spinner > .mw-spinner-container{transform-origin:0 0}.mw-spinner-small{width:20px;height:20px}.mw-spinner-small > .mw-spinner-container{transform:scale(0.3125)}.mw-spinner-large{width:32px;height:32px}.mw-spinner-large > .mw-spinner-container{transform:scale(0.5)}.mw-spinner-block{display:block;width:100%;text-align:center}.mw-spinner-block > .mw-spinner-container{display:inline-block;vertical-align:top}.mw-spinner-block.mw-spinner-small > .mw-spinner-container{min-width:20px}.mw-spinner-block.mw-spinner-large > .mw-spinner-container{min-width:32px}.mw-spinner-inline{display:inline-block;vertical-align:middle} .mw-spinner-container > div{transform-origin:32px 32px;animation:mw-spinner 1.2s linear infinite}.mw-spinner-container > div::after{content:' ';display:block;position:absolute;top:3px; left:29px;width:5px;height:14px;border-radius:20%;background:#000}.mw-spinner-container > div:nth-child(1){transform:rotate(0deg);animation-delay:-1.1s}.mw-spinner-container > div:nth-child(2){transform:rotate(30deg);animation-delay:-1s}.mw-spinner-container > div:nth-child(3){transform:rotate(60deg);animation-delay:-0.9s}.mw-spinner-container > div:nth-child(4){transform:rotate(90deg);animation-delay:-0.8s}.mw-spinner-container > div:nth-child(5){transform:rotate(120deg);animation-delay:-0.7s}.mw-spinner-container > div:nth-child(6){transform:rotate(150deg);animation-delay:-0.6s}.mw-spinner-container > div:nth-child(7){transform:rotate(180deg);animation-delay:-0.5s}.mw-spinner-container > div:nth-child(8){transform:rotate(210deg);animation-delay:-0.4s}.mw-spinner-container > div:nth-child(9){transform:rotate(240deg);animation-delay:-0.3s}.mw-spinner-container > div:nth-child(10){transform:rotate(270deg);animation-delay:-0.2s}.mw-spinner-container > div:nth-child(11){transform:rotate(300deg);animation-delay:-0.1s}.mw-spinner-container > div:nth-child(12){transform:rotate(330deg);animation-delay:0s}@keyframes mw-spinner{0%{opacity:1}100%{opacity:0}}
+.diff{border:0;border-spacing:4px;margin:0;width:100%; table-layout:fixed}.diff td{padding:0.33em 0.5em}.diff td.diff-marker{ padding:0.25em;text-align:right;font-weight:bold;font-size:1.25em;line-height:1.2}.diff td.diff-marker::before{content:attr(data-marker)}.diff td div{ word-wrap:break-word}.diff col.diff-marker{width:2%}.diff .diff-content{width:48%}.diff-title{vertical-align:top}.diff-notice,.diff-multi,.diff-otitle,.diff-ntitle{text-align:center}.diff-lineno{font-weight:bold;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.mw-diff-inline-added ins,.mw-diff-inline-changed ins,.mw-diff-inline-moved ins,.mw-diff-inline-deleted ins,.mw-diff-inline-added del,.mw-diff-inline-changed del,.mw-diff-inline-moved del,.mw-diff-inline-deleted del{padding:0.3em 1px;text-decoration:none;white-space:break-spaces}@media only screen and (max-width:720px){.client-js .mw-diff-inline-added ins,.client-js .mw-diff-inline-changed ins,.client-js .mw-diff-inline-moved ins,.client-js .mw-diff-inline-deleted ins,.client-js .mw-diff-inline-added del,.client-js .mw-diff-inline-changed del,.client-js .mw-diff-inline-moved del,.client-js .mw-diff-inline-deleted del{cursor:pointer}}.mw-diff-inline-added ins,.mw-diff-inline-changed ins,.mw-diff-inline-moved ins{background:#a3d3ff}.mw-diff-inline-deleted del,.mw-diff-inline-changed del,.mw-diff-inline-moved del{background:#ffe49c}.mw-diff-table-prefix{display:flex;justify-content:flex-end;align-items:center;margin:1em 0}.mw-diff-table-prefix .mw-diff-inline-legend{margin-right:auto}.mw-diff-table-prefix .mw-diff-inline-legend .mw-diff-inline-legend-ins,.mw-diff-table-prefix .mw-diff-inline-legend .mw-diff-inline-legend-del{display:inline-block;padding:4px 6px}.mw-diff-table-prefix .mw-diff-inline-legend .mw-diff-inline-legend-ins{background:#a3d3ff}.mw-diff-table-prefix .mw-diff-inline-legend .mw-diff-inline-legend-del{background:#ffe49c}.mw-diff-table-prefix .mw-diffPage-inlineToggle-container{margin-left:1em}.diff-addedline,.diff-deletedline,.diff-context{vertical-align:top;border-style:solid;border-width:1px 1px 1px 4px;border-radius:0.33em}.diff-addedline,.diff-deletedline,.diff-context,.mw-diff-inline-added,.mw-diff-inline-deleted,.mw-diff-inline-moved,.mw-diff-inline-changed,.mw-diff-inline-context{  font-size:13px;  -moz-tab-size:4; tab-size:4;line-height:1.6;white-space:pre-wrap;white-space:break-spaces}.diff-editfont-monospace .diff-addedline,.diff-editfont-monospace .diff-deletedline,.diff-editfont-monospace .diff-context,.diff-editfont-monospace .mw-diff-inline-added,.diff-editfont-monospace .mw-diff-inline-deleted,.diff-editfont-monospace .mw-diff-inline-moved,.diff-editfont-monospace .mw-diff-inline-changed,.diff-editfont-monospace .mw-diff-inline-context{font-family:monospace,monospace}.diff-editfont-sans-serif .diff-addedline,.diff-editfont-sans-serif .diff-deletedline,.diff-editfont-sans-serif .diff-context,.diff-editfont-sans-serif .mw-diff-inline-added,.diff-editfont-sans-serif .mw-diff-inline-deleted,.diff-editfont-sans-serif .mw-diff-inline-moved,.diff-editfont-sans-serif .mw-diff-inline-changed,.diff-editfont-sans-serif .mw-diff-inline-context{font-family:sans-serif}.diff-editfont-serif .diff-addedline,.diff-editfont-serif .diff-deletedline,.diff-editfont-serif .diff-context,.diff-editfont-serif .mw-diff-inline-added,.diff-editfont-serif .mw-diff-inline-deleted,.diff-editfont-serif .mw-diff-inline-moved,.diff-editfont-serif .mw-diff-inline-changed,.diff-editfont-serif .mw-diff-inline-context{font-family:serif}.mw-diff-inline-header{font-weight:bold;margin:1em 0}.diff-context{background:#f8f9fa;color:#222;border-color:#eee}.diff-addedline{border-color:#a3d3ff}.diff-deletedline{border-color:#ffe49c}.diffchange{font-weight:bold;text-decoration:none}.diff-addedline .diffchange,.diff-deletedline .diffchange{border-radius:0.33em;padding:0.25em 0}.diff-addedline .diffchange{background:#d8ecff}.diff-deletedline .diffchange{background:#feeec8} .diff-currentversion-title,.diff{direction:ltr;unicode-bidi:embed}.diff-contentalign-right td{ direction:rtl;unicode-bidi:embed}.diff-contentalign-left td{ direction:ltr;unicode-bidi:embed}.diff-multi,.diff-otitle,.diff-ntitle,.diff-lineno{direction:ltr !important; unicode-bidi:embed}.mw-diff-slot-header{text-align:center}.mw-diff-slot-error{text-align:center;color:#d03} .mw-diff-movedpara-left,.mw-diff-movedpara-right,.mw-diff-movedpara-left:visited,.mw-diff-movedpara-right:visited,.mw-diff-movedpara-left:active,.mw-diff-movedpara-right:active{display:block;color:transparent;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.mw-diff-movedpara-left:hover,.mw-diff-movedpara-right:hover{text-decoration:none;color:transparent}.mw-diff-movedpara-left::after,.mw-diff-movedpara-right::after{display:block;color:#202122;margin-top:-1.25em}.mw-diff-movedpara-left::after,.rtl .mw-diff-movedpara-right::after{content:'↪'}.mw-diff-movedpara-right::after,.rtl .mw-diff-movedpara-left::after{content:'↩'}#mw-inlinediff-header #mw-diff-otitle1,#mw-inlinediff-header #mw-diff-otitle2,#mw-inlinediff-header #mw-diff-otitle3,#mw-inlinediff-header #mw-diff-otitle5{display:none} .diff[data-selected-side='deleted'] .diff-side-added,.diff[data-selected-side='added'] .diff-side-deleted{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:text} .mw-diff-inline-added.mw-diff-empty-line::after,.mw-diff-inline-deleted.mw-diff-empty-line::after,.mw-inline-diff-newline::after{font-family:'Courier New',monospace;font-size:87.5%;padding:0 3px;display:inline-block;color:#555}.mw-diff-inline-added.mw-diff-empty-line::after,.mw-inline-diff-newline::after{content:'↲ новая строка';background:#a3d3ff}.mw-diff-inline-deleted.mw-diff-empty-line::after{content:'⟵ удалить';background:#ffe49c}.mw-diffPage-inlineToggle-container .oo-ui-fieldLayout-body{align-items:center;white-space:nowrap}.mw-diff-empty-line ins,.mw-diff-empty-line del{display:none}.mw-diff-usermetadata,.mw-diff-revision-history-links{display:none}@media only screen and (max-width:720px){.mw-diff-inline-legend{display:none}}
+@media print {
+	td.diff-context,td.diff-addedline .diffchange,td.diff-deletedline .diffchange{background-color:transparent}td.diff-addedline .diffchange{text-decoration:underline}td.diff-deletedline .diffchange{text-decoration:line-through}}
+.mw-editfont-monospace{font-family:monospace,monospace}.mw-editfont-sans-serif{font-family:sans-serif}.mw-editfont-serif{font-family:serif} .mw-editfont-monospace,.mw-editfont-sans-serif,.mw-editfont-serif{  font-size:13px;  -moz-tab-size:4; tab-size:4; }.mw-editfont-monospace.oo-ui-textInputWidget,.mw-editfont-sans-serif.oo-ui-textInputWidget,.mw-editfont-serif.oo-ui-textInputWidget{font-size:inherit}.mw-editfont-monospace.oo-ui-textInputWidget > .oo-ui-inputWidget-input,.mw-editfont-sans-serif.oo-ui-textInputWidget > .oo-ui-inputWidget-input,.mw-editfont-serif.oo-ui-textInputWidget > .oo-ui-inputWidget-input{  font-size:13px}.mw-editfont-monospace.oo-ui-textInputWidget > input.oo-ui-inputWidget-input,.mw-editfont-sans-serif.oo-ui-textInputWidget > input.oo-ui-inputWidget-input,.mw-editfont-serif.oo-ui-textInputWidget > input.oo-ui-inputWidget-input{min-height:32px}
+.unpatrolled{font-weight:bold;color:#d73333} .newpage,.minoredit,.botedit{font-weight:bold} .mw-userlink{word-wrap:break-word; -webkit-hyphens:auto;-moz-hyphens:auto;-ms-hyphens:auto;hyphens:auto; unicode-bidi:embed} .mw-tempuserlink{background-color:#eaecf0;padding:2px 8px;border-radius:0} span.comment{font-style:italic;unicode-bidi:-moz-isolate;unicode-bidi:isolate;word-wrap:break-word;overflow-wrap:break-word;word-break:break-word} .autocomment,.autocomment a,.autocomment a:visited{color:#72777d} li span.deleted,span.history-deleted{text-decoration:line-through;color:#72777d;font-style:italic}span.mw-history-suppressed{ text-decoration-style:double;color:#202122} span.mw-revdelundel-link,strong.mw-revdelundel-link{font-size:90%}.mw-usertoollinks-contribs-no-edits{color:#d03}.mw-usertoollinks-contribs-no-edits:visited{color:#a55858}        .mw-changeslist-separator:empty::before{content:'. .'} .mw-changeslist-separator--semicolon::before{content:';'}.mw-rollback-link::before{content:'['}.mw-rollback-link::after{content:']'}.mw-diff-edit::before,.mw-diff-tool::before,.mw-diff-undo::before,.comment--without-parentheses::before,.mw-changeslist-links::before,.mw-diff-bytes::before,.mw-tag-markers::before,.mw-uctop::before{content:'('}.mw-diff-edit::after,.mw-diff-tool::after,.mw-diff-undo::after,.comment--without-parentheses::after,.mw-changeslist-links::after,.mw-diff-bytes::after,.mw-tag-markers::after,.mw-uctop::after{content:')'}.mw-comment-none{display:block;position:absolute !important; clip:rect(1px,1px,1px,1px);width:1px;height:1px;margin:-1px;border:0;padding:0;overflow:hidden}.mw-changeslist-links{display:inline-block}.mw-changeslist-links > span:not(:first-child)::before{content:' | '}.mw-changeslist-links .mw-rollback-link::before,.mw-changeslist-links .mw-rollback-link::after{content:''}.mw-tag-marker::after{content:','}.mw-tag-marker:last-child::after{content:''}
+.ve-init-mw-progressBarWidget{height:1em;overflow:hidden;margin:0 25%}.ve-init-mw-progressBarWidget-bar{height:1em;width:0} .ve-init-mw-progressBarWidget{background-color:#fff;box-sizing:border-box;height:0.875em;border:1px solid #36c;border-radius:0.875em;box-shadow:0 1px 1px rgba(0,0,0,0.15)}.ve-init-mw-progressBarWidget-bar{background-color:#36c;height:0.875em}
+.mw-diff-popup .oo-ui-clippableElement-clippable p{margin:0;white-space:nowrap}
+#mw-teleport-target{position:absolute;z-index:450}</style>
+    <style>
+.ve-init-mw-tempWikitextEditorWidget{border:0;padding:0;color:inherit;line-height:1.5em;width:100%;-moz-tab-size:4;tab-size:4; }.ve-init-mw-tempWikitextEditorWidget:focus{outline:0;padding:0}.ve-init-mw-tempWikitextEditorWidget::selection{background:rgba(109,169,247,0.5); }</style>
+    <style>
+.ve-active .ve-init-mw-desktopArticleTarget-targetContainer #siteNotice,.ve-active .mw-indicators,.ve-active #t-print,.ve-active #t-permalink,.ve-active #p-coll-print_export,.ve-active #t-cite,.ve-active .ve-init-mw-desktopArticleTarget-editableContent,.ve-active .ve-init-mw-tempWikitextEditorWidget{display:none}.ve-deactivating .ve-ui-surface{display:none}.ve-activating{ }.ve-activating .ve-ui-surface{height:0;padding:0 !important; overflow:hidden} .ve-loading .ve-init-mw-desktopArticleTarget-targetContainer > :not(.ve-init-mw-desktopArticleTarget-toolbarPlaceholder):not(.ve-init-mw-desktopArticleTarget),.ve-loading .ve-init-mw-desktopArticleTarget-originalContent,.ve-activated:not(.ve-loading) .ve-init-mw-desktopArticleTarget-uneditableContent{pointer-events:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;opacity:0.5}.ve-activated .ve-init-mw-desktopArticleTarget-targetContainer #firstHeading{ -webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;pointer-events:auto;cursor:text}.ve-activated .ve-init-mw-desktopArticleTarget-targetContainer #firstHeading a{ pointer-events:none}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks{cursor:pointer}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks:hover{ background:#e9f2fd}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks a{opacity:1} .ve-init-mw-desktopArticleTarget-loading-overlay{z-index:2;position:absolute;width:100%;top:1em}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder{overflow:hidden;transition:height 250ms ease;height:0;padding-bottom:2px; }.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{transform:translateY(-100%);transition:transform 250ms ease}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-open .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{transform:translateY(0)}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating{transition:none}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{position:fixed;top:0;z-index:1;background:#fff} .oo-ui-element-hidden{display:none !important; } .mw-editsection{ unicode-bidi:-moz-isolate;unicode-bidi:-webkit-isolate;unicode-bidi:isolate}.mw-editsection::before{content:'\200B'}.mw-editsection a{white-space:nowrap}.mw-editsection-divider{color:#54595d} .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{height:42px;border-bottom:1px solid #c8ccd1;box-shadow:0 1px 1px 0 rgba(0,0,0,0.1)}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating,.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-open{height:42px}</style>
     <meta name="ResourceLoaderDynamicStyles" content="">
-    <link rel="stylesheet" href="https://en.tankiwiki.com/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
     <meta name="generator" content="MediaWiki 1.42.3">
     <meta name="robots" content="max-image-preview:standard">
     <meta name="format-detection" content="telephone=no">
-    <meta property="og:image" content="https://en.tankiwiki.com/images/en/6/64/IconsNormal_01.png">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/6/64/IconsNormal_01.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="1162">
-    <meta property="og:image" content="https://en.tankiwiki.com/images/en/6/64/IconsNormal_01.png">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/6/64/IconsNormal_01.png">
     <meta property="og:image:width" content="800">
     <meta property="og:image:height" content="775">
     <meta property="og:image:width" content="640">
     <meta property="og:image:height" content="620">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="https://en.tankiwiki.com/favicon.png">
-    <link rel="search" type="application/opensearchdescription+xml" href="https://en.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (en)">
-    <link rel="EditURI" type="application/rsd+xml" href="https://en.tankiwiki.com/api.php?action=rsd">
-    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki Atom feed" href="https://en.tankiwiki.com/index.php?title=Special:RecentChanges&amp;feed=atom">
-    <script src="https://en.tankiwiki.com/load.php?lang=en&amp;modules=ext.gadget.UTCLiveClock&amp;skin=tankiblue&amp;version=g0y7o"></script>
-    <script src="https://en.tankiwiki.com/load.php?lang=en&amp;modules=ext.visualEditor.core.utils.parsing%7Cext.visualEditor.desktopArticleTarget.init%7Cext.visualEditor.progressBarWidget%2CsupportCheck%2CtargetLoader%2CtempWikitextEditorWidget%2Ctrack%2Cve&amp;skin=tankiblue&amp;version=frddf"></script>
-    <script src="https://en.tankiwiki.com/load.php?lang=en&amp;modules=ext.purge%7Cjquery%2Csite%7Cjquery.client%2CtextSelection%7Cmediawiki.String%2CTitle%2Capi%2Cbase%2Ccldr%2Ccookie%2CjqueryMsg%2Clanguage%2Cstorage%2Ctoc%2Cuser%2Cutil%7Cmediawiki.editfont.styles%7Cmediawiki.libs.pluralruleparser%7Cmediawiki.page.ready%7Cskins.tankiblue.js&amp;skin=tankiblue&amp;version=1vdnf"></script><style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Marshal rootpage-Marshal skin-tankiblue action-view"><div id="mw-main-container"><a href="./Tanki_Online_Wiki" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">返回主页</a><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang=""><span class="mw-page-title-main">元帅</span></h1><div class="rank_list">
-<ul><li><span class="mw-default-size" typeof="mw:File"><a href="./Recruit" title="新兵"><img src="https://en.tankiwiki.com/images/en/6/64/IconsNormal_01.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./Private" title="二等兵"><img src="https://en.tankiwiki.com/images/en/9/91/IconsNormal_02.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./Gefreiter" title="一等兵"><img src="https://en.tankiwiki.com/images/en/2/20/IconsNormal_03.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./Corporal" title="下士"><img src="https://en.tankiwiki.com/images/en/d/d6/IconsNormal_04.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./Master_Corporal" title="中士"><img src="https://en.tankiwiki.com/images/en/5/51/IconsNormal_05.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./Sergeant" title="上士"><img src="https://en.tankiwiki.com/images/en/5/57/IconsNormal_06.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./Staff_Sergeant" title="三级军士长"><img src="https://en.tankiwiki.com/images/en/5/53/IconsNormal_07.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./Master_Sergeant" title="二级军士长"><img src="https://en.tankiwiki.com/images/en/6/6b/IconsNormal_08.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./First_Sergeant" title="一级军士长"><img src="https://en.tankiwiki.com/images/en/1/14/IconsNormal_09.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./Sergeant-Major" title="军士长"><img src="https://en.tankiwiki.com/images/en/6/63/IconsNormal_10.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./Warrant_Officer_1" title="五级准尉"><img src="https://en.tankiwiki.com/images/en/3/39/IconsNormal_11.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./Warrant_Officer_2" title="四级准尉"><img src="https://en.tankiwiki.com/images/en/5/50/IconsNormal_12.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./Warrant_Officer_3" title="三级准尉"><img src="https://en.tankiwiki.com/images/en/c/cc/IconsNormal_13.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./Warrant_Officer_4" title="二级准尉"><img src="https://en.tankiwiki.com/images/en/e/e8/IconsNormal_14.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./Warrant_Officer_5" title="一级准尉"><img src="https://en.tankiwiki.com/images/en/5/55/IconsNormal_15.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./Third_Lieutenant" title="特级准尉"><img src="https://en.tankiwiki.com/images/en/3/3f/IconsNormal_16.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./Second_Lieutenant" title="少尉"><img src="https://en.tankiwiki.com/images/en/4/48/IconsNormal_17.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./First_Lieutenant" title="中尉"><img src="https://en.tankiwiki.com/images/en/7/72/IconsNormal_18.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./Captain" title="上尉"><img src="https://en.tankiwiki.com/images/en/e/ed/IconsNormal_19.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./Major" title="少校"><img src="https://en.tankiwiki.com/images/en/b/b3/IconsNormal_20.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./Lieutenant_Colonel" title="中校"><img src="https://en.tankiwiki.com/images/en/c/c8/IconsNormal_21.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./Colonel" title="上校"><img src="https://en.tankiwiki.com/images/en/7/7c/IconsNormal_22.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./Brigadier" title="准将"><img src="https://en.tankiwiki.com/images/en/2/24/IconsNormal_23.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./Major_General" title="少将"><img src="https://en.tankiwiki.com/images/en/7/73/IconsNormal_24.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./Lieutenant_General" title="中将"><img src="https://en.tankiwiki.com/images/en/7/71/IconsNormal_25.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./General" title="上将"><img src="https://en.tankiwiki.com/images/en/0/04/IconsNormal_26.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./Marshal" title="元帅"><img src="https://en.tankiwiki.com/images/en/0/0f/IconsNormal_27.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./Fieldmarshal" title="陆军元帅"><img src="https://en.tankiwiki.com/images/en/3/38/IconsNormal_28.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./Commander" title="统帅"><img src="https://en.tankiwiki.com/images/en/d/db/IconsNormal_29.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./Generalissimo" title="大元帅"><img src="https://en.tankiwiki.com/images/en/e/eb/IconsNormal_30.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
-<li><span class="mw-default-size" typeof="mw:File"><a href="./Legend" title="传奇"><img src="https://en.tankiwiki.com/images/en/5/55/IconsNormal_31.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li></ul>
-</div><table class="wikitable-modern first-column-center default" style="width:100%">
+    <link rel="icon" href="https://ru.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://ru.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (ru)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://ru.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki&nbsp;— Atom-лента" href="https://ru.tankiwiki.com/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom"><style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
+
+/* 1. 只去掉源站皮肤的背景大图，保留底色；不要用 background 简写，否则会连带清掉皮肤别的背景设定 */
+html, body {
+    background-image: none !important;
+    background-color: #001926 !important;
+}
+/* 2. 让底色铺满视口，内容很短时下方不再露白 */
+html { min-height: 100%; }
+body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif; }
+
+/* 3. 版心容器 */
+#mw-main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #001926;
+}
+
+/* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
+      【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
+
+#mw-main-container .main-content,
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content,
+#mw-main-container #mw-content-text {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: auto !important;
+    flex-basis: auto !important;   /* 皮肤写了 .main-content{flex:0 0 75%} */
+    float: none !important;
+    margin-top: 0 !important;       /* 核心：清空原站皮肤的负 margin-top */
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    position: relative !important;
+    z-index: 1 !important;          /* 保证正文层级低于按钮 */
+}
+
+/* 5. 皮肤脚本 skins.tankiblue.js 会往 #mw-content-text 末尾插一条「发现错别字？Ctrl+Enter」
+      的俄语提示条和一个「报告错误」标签页。它按网址里有没有 'en'/'de' 来判断语言，
+      我们的域名两者都不含 → 一律显示俄语；且报错会提交到俄站编辑组，对镜像站没意义，直接隐藏。 */
+#custom-report-footer,
+.vectorTabs.customReport,
+.customReport { display: none !important; }
+
+/* 6. 返回按钮包裹容器：独占一行并强制最高层级 */
+.home-btn-wrapper {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px 0 20px 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    z-index: 9999 !important;       /* 核心：永远置于最顶层 */
+    clear: both !important;
+    overflow: visible !important;
+}
+
+/* 7. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐 */
+.home-back-btn {
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    width: auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    isolation: isolate !important;
+    
+    min-width: 142px !important;
+    padding: 0 24px !important;
+    height: 78px !important;
+    margin: 0 !important;
+    border: 1px solid rgba(255,255,255,.25) !important;
+    outline: 2px solid transparent !important;
+    border-radius: 6.5px !important;
+    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%) !important;
+    
+    position: relative !important;
+    z-index: 10000 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: all .15s ease !important;
+    overflow: visible !important;
+}
+.home-back-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(100% 100% at 0% 0%, rgba(191,213,255,.25) 0%, rgba(191,213,255,.15) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all .15s ease;
+    border-radius: inherit;
+    pointer-events: none;
+}
+.home-back-btn svg {
+    width: 24.375px;
+    height: 24px;
+    object-fit: contain;
+    transform: rotate(180deg);
+    transition: all .15s ease;
+    flex-shrink: 0;
+}
+.home-back-btn svg path { fill: #BFD5FF; transition: all .15s ease; }
+
+.home-back-btn:hover,
+.home-back-btn:active,
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF !important; border-color: #BFD5FF !important; }
+.home-back-btn:hover::before,
+.home-back-btn:active::before,
+.home-back-btn:focus-visible::before { opacity: 1; }
+.home-back-btn:hover svg,
+.home-back-btn:active svg,
+.home-back-btn:focus-visible svg { transform: rotate(180deg) translateX(10%); }
+.home-back-btn:hover svg path,
+.home-back-btn:active svg path,
+.home-back-btn:focus-visible svg path { fill: #fff; }
+
+.home-back-btn span {
+    color: #BFD5FF;
+    font-size: 16px;
+    margin-left: 10px;
+    font-weight: bold;
+    transition: all .15s ease;
+    white-space: nowrap;
+}
+.home-back-btn:hover span,
+.home-back-btn:active span,
+.home-back-btn:focus-visible span {
+    color: #fff;
+    transform: translateX(-4px);
+}
+
+/* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
+@media (hover: none) {
+    .home-back-btn { border-color: rgba(191,213,255,.55) !important; }
+    .home-back-btn svg path { fill: #CFE0FF; }
+}
+
+/* 移动端/窄屏自适应尺寸 */
+@media (max-width: 480px) {
+    .home-back-btn {
+        min-width: 106px !important;
+        padding: 0 16px !important;
+        height: 58px !important;
+        margin-left: 10px !important;
+    }
+    .home-back-btn svg { width: 20px !important; height: 19.7px !important; }
+    .home-back-btn span { font-size: 14px !important; margin-left: 8px !important; }
+}
+
+/* 8. 移动端容器 Padding */
+@media (max-width: 768px) {
+    #mw-main-container { padding: 10px !important; margin: 8px auto !important; }
+    .home-back-btn { margin-left: 10px !important; }
+    #mw-content-text .navigationContainerContent > div,
+    #mw-content-text [style*="width: 55%"],
+    #mw-content-text [style*="width:55%"],
+    #mw-content-text [style*="width: 45%"],
+    #mw-content-text [style*="width:45%"] { width: 100% !important; }
+}
+@media (max-width: 480px) {
+    #mw-main-container { padding: 6px !important; margin: 4px auto !important; }
+}
+
+/* 9. 防止宽表格 / 大图撑破版心 */
+#mw-content-text img { max-width: 100%; height: auto; }
+#mw-content-text table { max-width: 100%; }
+
+/* 10. 目录（TOC）修复，全局生效：
+    a) 皮肤把目录折叠按钮的文字放在 CSS 伪元素里渲染，而不是 HTML 文本：
+         .toctogglecheckbox:checked  + .toctitle .toctogglelabel::after → content:'показать'
+         .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after → content:'скрыть'
+       AI 翻译只处理 HTML 文本，摸不到 CSS content，所以这个按钮永远是俄语，必须在这里覆盖成中文。
+    b) 皮肤的响应式 CSS 里写了 @media screen and (max-width:768px){ #toc{display:none} }，
+       导致手机端整个目录被隐藏。这里恢复显示，并配合下方 TOC_MOBILE_COLLAPSE_SCRIPT：
+       移动端默认折叠，只占一行「目录 [展开]」，避免长目录把正文挤到屏幕外。 */
+#toc .toctogglecheckbox:checked + .toctitle .toctogglelabel::after { content: '展开' !important; }
+#toc .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after { content: '收起' !important; }
+@media screen and (max-width: 768px) {
+    #toc { display: table !important; }
+}
+
+/* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
+   只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+*/
+</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Marshal rootpage-Marshal skin-tankiblue action-view"><div id="skin-chrome-stub" aria-hidden="true" style="display:none !important;">
+<a class="problem" href="#"></a>
+<div class="close-wrapper"></div>
+<div class="support-block-popup"><div class="close-modal-support"></div></div>
+<div class="youtube-popup"><iframe title="stub"></iframe></div>
+<div class="video-button"></div>
+<div class="header-search"></div>
+<div class="search-dialog"></div>
+<div class="search-popup"><div class="close-wrapper"></div><div class="close-modal-search"></div></div>
+<div class="news-popup"></div>
+<div class="sales-block-header"></div>
+<div class="navbar-main"></div>
+<div class="main-navbar"></div>
+</div><div id="mw-main-container"><div class="home-btn-wrapper"><a class="home-back-btn" href="./Enciklopediya_igry_%C2%ABTanki_Onlayn%C2%BB" title="返回主页" aria-label="返回主页"><svg viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 0H13.5L25.5 12L24 13.5L13.5 24H18L30 12L18 0ZM24 13.5L21 10.5H0L3 13.5H24Z" fill="#BFD5FF"/></svg><span>返回主页</span></a></div><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">元帅</h1><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample1">等级导航</div><div class="collapse" id="collapseExample1"><div class="">
+<div class="rank_list">
+<ul><li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9D%D0%BE%D0%B2%D0%BE%D0%B1%D1%80%D0%B0%D0%BD%D0%B5%D1%86" title="新兵"><img src="https://ru.tankiwiki.com/images/ru/6/64/IconsNormal_01.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A0%D1%8F%D0%B4%D0%BE%D0%B2%D0%BE%D0%B9" title="二等兵"><img src="https://ru.tankiwiki.com/images/ru/9/91/IconsNormal_02.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%95%D1%84%D1%80%D0%B5%D0%B9%D1%82%D0%BE%D1%80" title="一等兵"><img src="https://ru.tankiwiki.com/images/ru/2/20/IconsNormal_03.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9A%D0%B0%D0%BF%D1%80%D0%B0%D0%BB" title="下士"><img src="https://ru.tankiwiki.com/images/ru/d/d6/IconsNormal_04.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9C%D0%B0%D1%81%D1%82%D0%B5%D1%80-%D0%BA%D0%B0%D0%BF%D1%80%D0%B0%D0%BB" title="中士"><img src="https://ru.tankiwiki.com/images/ru/5/51/IconsNormal_05.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A1%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" title="上士"><img src="https://ru.tankiwiki.com/images/ru/5/57/IconsNormal_06.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A8%D1%82%D0%B0%D0%B1-%D1%81%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" title="三级军士长"><img src="https://ru.tankiwiki.com/images/ru/5/53/IconsNormal_07.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9C%D0%B0%D1%81%D1%82%D0%B5%D1%80-%D1%81%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" title="二级军士长"><img src="https://ru.tankiwiki.com/images/ru/6/6b/IconsNormal_08.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9F%D0%B5%D1%80%D0%B2%D1%8B%D0%B9_%D1%81%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" title="一级军士长"><img src="https://ru.tankiwiki.com/images/ru/1/14/IconsNormal_09.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A1%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82-%D0%BC%D0%B0%D0%B9%D0%BE%D1%80" title="军士长"><img src="https://ru.tankiwiki.com/images/ru/6/63/IconsNormal_10.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_1" title="五级准尉"><img src="https://ru.tankiwiki.com/images/ru/3/39/IconsNormal_11.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_2" title="四级准尉"><img src="https://ru.tankiwiki.com/images/ru/5/50/IconsNormal_12.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_3" title="三级准尉"><img src="https://ru.tankiwiki.com/images/ru/c/cc/IconsNormal_13.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_4" title="二级准尉"><img src="https://ru.tankiwiki.com/images/ru/e/e8/IconsNormal_14.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_5" title="一级准尉"><img src="https://ru.tankiwiki.com/images/ru/5/55/IconsNormal_15.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9C%D0%BB%D0%B0%D0%B4%D1%88%D0%B8%D0%B9_%D0%BB%D0%B5%D0%B9%D1%82%D0%B5%D0%BD%D0%B0%D0%BD%D1%82" title="特级准尉"><img src="https://ru.tankiwiki.com/images/ru/3/3f/IconsNormal_16.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9B%D0%B5%D0%B9%D1%82%D0%B5%D0%BD%D0%B0%D0%BD%D1%82" title="少尉"><img src="https://ru.tankiwiki.com/images/ru/4/48/IconsNormal_17.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A1%D1%82%D0%B0%D1%80%D1%88%D0%B8%D0%B9_%D0%BB%D0%B5%D0%B9%D1%82%D0%B5%D0%BD%D0%B0%D0%BD%D1%82" title="中尉"><img src="https://ru.tankiwiki.com/images/ru/7/72/IconsNormal_18.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9A%D0%B0%D0%BF%D0%B8%D1%82%D0%B0%D0%BD" title="上尉"><img src="https://ru.tankiwiki.com/images/ru/e/ed/IconsNormal_19.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9C%D0%B0%D0%B9%D0%BE%D1%80" title="少校"><img src="https://ru.tankiwiki.com/images/ru/b/b3/IconsNormal_20.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9F%D0%BE%D0%B4%D0%BF%D0%BE%D0%BB%D0%BA%D0%BE%D0%B2%D0%BD%D0%B8%D0%BA" title="中校"><img src="https://ru.tankiwiki.com/images/ru/c/c8/IconsNormal_21.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9F%D0%BE%D0%BB%D0%BA%D0%BE%D0%B2%D0%BD%D0%B8%D0%BA" title="上校"><img src="https://ru.tankiwiki.com/images/ru/7/7c/IconsNormal_22.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%91%D1%80%D0%B8%D0%B3%D0%B0%D0%B4%D0%B8%D1%80" title="准将"><img src="https://ru.tankiwiki.com/images/ru/2/24/IconsNormal_23.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D0%BB-%D0%BC%D0%B0%D0%B9%D0%BE%D1%80" title="少将"><img src="https://ru.tankiwiki.com/images/ru/7/73/IconsNormal_24.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D0%BB-%D0%BB%D0%B5%D0%B9%D1%82%D0%B5%D0%BD%D0%B0%D0%BD%D1%82" title="中将"><img src="https://ru.tankiwiki.com/images/ru/7/71/IconsNormal_25.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D0%BB" title="上将"><img src="https://ru.tankiwiki.com/images/ru/0/04/IconsNormal_26.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9C%D0%B0%D1%80%D1%88%D0%B0%D0%BB" title="元帅"><img src="https://ru.tankiwiki.com/images/ru/0/0f/IconsNormal_27.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A4%D0%B5%D0%BB%D1%8C%D0%B4%D0%BC%D0%B0%D1%80%D1%88%D0%B0%D0%BB" title="陆军元帅"><img src="https://ru.tankiwiki.com/images/ru/3/38/IconsNormal_28.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%BE%D1%80" title="统帅"><img src="https://ru.tankiwiki.com/images/ru/d/db/IconsNormal_29.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D0%BB%D0%B8%D1%81%D1%81%D0%B8%D0%BC%D1%83%D1%81" title="大元帅"><img src="https://ru.tankiwiki.com/images/ru/e/eb/IconsNormal_30.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9B%D0%B5%D0%B3%D0%B5%D0%BD%D0%B4%D0%B0" title="传奇"><img src="https://ru.tankiwiki.com/images/ru/5/55/IconsNormal_31.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></a></span></li></ul>
+</div>
+</div></div><table class="wikitable-modern first-column-center default" style="width:100%">
 
 <tbody><tr class="wikitable-header wikitable-title-center">
-<td>上一<br>等级</td>
+<td>上一级<br>等级</td>
 <td>
 </td>
 <td>编号</td>
 <td>图标</td>
 <td>VIP
 </td>
-<td><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/f/f6/Icon_XP.png" decoding="async" loading="lazy" width="16" height="16" class="mw-file-element"></span></span>总经验值</td>
-<td><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/f/f6/Icon_XP.png" decoding="async" loading="lazy" width="16" height="16" class="mw-file-element"></span></span>距离<br>下一等级</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/f/f6/Icon_XP.png/16px-Icon_XP.png" decoding="async" loading="lazy" width="16" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/f/f6/Icon_XP.png/24px-Icon_XP.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/f/f6/Icon_XP.png/32px-Icon_XP.png 2x"></span></span>经验值<br>总量</td>
+<td>距下一级<br>还需经验</td>
 <td>
 </td>
-<td>下一等级</td></tr>
+<td>下一级<br>等级</td></tr>
 <tr>
-<td><span typeof="mw:File"><a href="./General" title="上将"><img src="https://en.tankiwiki.com/images/en/thumb/0/04/IconsNormal_26.png/25px-IconsNormal_26.png" decoding="async" loading="lazy" width="25" height="24" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/0/04/IconsNormal_26.png/38px-IconsNormal_26.png 1.5x, https://en.tankiwiki.com/images/en/thumb/0/04/IconsNormal_26.png/50px-IconsNormal_26.png 2x"></a></span> <a href="./General" title="上将">上将</a></td>
+<td><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D0%BB" title="上将"><img src="https://ru.tankiwiki.com/images/ru/thumb/0/04/IconsNormal_26.png/28px-IconsNormal_26.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/0/04/IconsNormal_26.png/42px-IconsNormal_26.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/0/04/IconsNormal_26.png/56px-IconsNormal_26.png 2x"></a></span> <a href="./%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D0%BB" class="mw-redirect" title="上将">上将</a></span></td>
 <td></td>
 <td>27</td>
-<td><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/0/0f/IconsNormal_27.png/38px-IconsNormal_27.png" decoding="async" loading="lazy" width="38" height="37" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/0/0f/IconsNormal_27.png/57px-IconsNormal_27.png 1.5x, https://en.tankiwiki.com/images/en/thumb/0/0f/IconsNormal_27.png/76px-IconsNormal_27.png 2x"></span></span></td>
-<td><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/9/91/IconsPremium_27.png/37px-IconsPremium_27.png" decoding="async" loading="lazy" width="37" height="37" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/9/91/IconsPremium_27.png/56px-IconsPremium_27.png 1.5x, https://en.tankiwiki.com/images/en/thumb/9/91/IconsPremium_27.png/74px-IconsPremium_27.png 2x"></span></span></td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/0/0f/IconsNormal_27.png/38px-IconsNormal_27.png" decoding="async" loading="lazy" width="38" height="37" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/0/0f/IconsNormal_27.png/57px-IconsNormal_27.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/0/0f/IconsNormal_27.png/76px-IconsNormal_27.png 2x"></span></span></td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/9/91/IconsPremium_27.png/37px-IconsPremium_27.png" decoding="async" loading="lazy" width="37" height="37" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/9/91/IconsPremium_27.png/56px-IconsPremium_27.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/9/91/IconsPremium_27.png/74px-IconsPremium_27.png 2x"></span></span></td>
 <td>1 000 000</td>
 <td>122 000</td>
 <td></td>
-<td><span typeof="mw:File"><a href="./Fieldmarshal" title="陆军元帅"><img src="https://en.tankiwiki.com/images/en/thumb/3/38/IconsNormal_28.png/25px-IconsNormal_28.png" decoding="async" loading="lazy" width="25" height="24" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/3/38/IconsNormal_28.png/38px-IconsNormal_28.png 1.5x, https://en.tankiwiki.com/images/en/thumb/3/38/IconsNormal_28.png/50px-IconsNormal_28.png 2x"></a></span> <a href="./Fieldmarshal" title="陆军元帅">陆军元帅</a>
-</td></tr></tbody></table><div class="dablink"><em>参见</em>：<a href="./Ranks" title="等级">等级</a>
+<td><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%A4%D0%B5%D0%BB%D1%8C%D0%B4%D0%BC%D0%B0%D1%80%D1%88%D0%B0%D0%BB" title="陆军元帅"><img src="https://ru.tankiwiki.com/images/ru/thumb/3/38/IconsNormal_28.png/28px-IconsNormal_28.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/38/IconsNormal_28.png/42px-IconsNormal_28.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/3/38/IconsNormal_28.png/56px-IconsNormal_28.png 2x"></a></span> <a href="./%D0%A4%D0%B5%D0%BB%D1%8C%D0%B4%D0%BC%D0%B0%D1%80%D1%88%D0%B0%D0%BB" class="mw-redirect" title="陆军元帅">陆军元帅</a></span>
+</td></tr></tbody></table><div class="dablink"><em>参见：</em> <a href="./%D0%97%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="等级">等级</a>
 </div><p><br>
-</p><p><b>元帅</b>是 «3D 坦克» 中的第 27 个<a href="./Ranks" title="等级">等级</a>。从该等级开始，可以在<a href="./Garage" title="车库">车库</a>中购买<a href="./Modifications" title="升级">升级</a>等级 7 的装备，且不再提供<a href="./Early_Access" title="抢先体验">抢先体验</a>。
-</p><p>以下是此等级新解锁的装备、<a href="./Modifications" title="升级">升级</a>等级和游戏模式。在提升至下一等级时，玩家将完成一项名为<b>«等级提升»</b>的<a href="./Missions" title="任务">特殊任务</a>，奖励为一个<a href="./Containers" title="幸运礼盒">普通礼盒</a>：
+</p><p>当玩家提升等级时，将完成<a href="./%D0%9C%D0%B8%D1%81%D1%81%D0%B8%D0%B8" class="mw-redirect" title="任务">特殊任务</a><b>“提升等级”</b>：
 </p><div class="mission_row completed">
 <div class="mission_image">
-<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/0/0f/IconsNormal_27.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></span></span>
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/0/0f/IconsNormal_27.png" decoding="async" loading="lazy" width="378" height="366" class="mw-file-element"></span></span>
 </p>
 </div>
 <div class="mission_text">
-<div class="mission_title">等级提升</div>
-<div class="mission_description">«达到下一等级并获得特殊奖励！»</div>
+<div class="mission_title">提升等级</div>
+<div class="mission_description">“达到下一个等级即可领取此奖励！”</div>
 </div>
 <div class="mission_prizes">
-<div class="mission_prize"><div class="mission_reward">x1</div><div class="mission_reward_image"><span class="mw-default-size" typeof="mw:File"><a href="./Containers" title="幸运礼盒"><img src="https://en.tankiwiki.com/images/en/d/dd/Common_key.png" decoding="async" loading="lazy" width="270" height="270" class="mw-file-element"></a></span></div></div>
+<div class="mission_prize"><div class="mission_reward">x1</div><div class="mission_reward_image"><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" title="幸运礼盒"><img src="https://ru.tankiwiki.com/images/ru/3/3e/Key_Regular.png" decoding="async" loading="lazy" width="270" height="270" class="mw-file-element"></a></span></div></div>
 </div>
 <div class="mission_status">
-<p>已完成</p>
+<p>领取</p>
 </div>
 <div class="mission_progress_bar"><div class="mission_progress" style="width: {{{progress}}}%"></div></div>
-</div><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">目录</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
-<ul>
-<li class="toclevel-1 tocsection-1"><a href="#Hulls"><span class="tocnumber">1</span> <span class="toctext">底盘</span></a></li>
-<li class="toclevel-1 tocsection-2"><a href="#Turrets"><span class="tocnumber">2</span> <span class="toctext">炮塔</span></a></li>
-<li class="toclevel-1 tocsection-3"><a href="#Supplies"><span class="tocnumber">3</span> <span class="toctext">道具</span></a></li>
-<li class="toclevel-1 tocsection-4"><a href="#Interesting_Facts"><span class="tocnumber">4</span> <span class="toctext">有趣的事实</span></a></li>
-</ul>
-</div><h3><span class="mw-headline" id="Hulls"><a href="./Hulls" title="底盘">底盘</a></span></h3><div class="ranks-equipment-cont">
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Wasp" title="黄蜂轻甲"><img src="https://en.tankiwiki.com/images/en/thumb/f/fe/Hull_wasp.png/166px-Hull_wasp.png" decoding="async" loading="lazy" width="166" height="98" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/f/fe/Hull_wasp.png/249px-Hull_wasp.png 1.5x, https://en.tankiwiki.com/images/en/thumb/f/fe/Hull_wasp.png/332px-Hull_wasp.png 2x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Wasp" title="黄蜂轻甲"><div style="font-size: 16px;"><b>黄蜂轻甲 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Hornet" title="蜂王"><img src="https://en.tankiwiki.com/images/en/thumb/c/c5/Hull_hornet.png/166px-Hull_hornet.png" decoding="async" loading="lazy" width="166" height="101" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c5/Hull_hornet.png/249px-Hull_hornet.png 1.5x, https://en.tankiwiki.com/images/en/thumb/c/c5/Hull_hornet.png/332px-Hull_hornet.png 2x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Hornet" title="蜂王"><div style="font-size: 16px;"><b>蜂王 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Hopper" title="霍珀"><img src="https://en.tankiwiki.com/images/en/thumb/7/7d/Hull_hopper.png/166px-Hull_hopper.png" decoding="async" loading="lazy" width="166" height="101" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/7d/Hull_hopper.png/249px-Hull_hopper.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/7d/Hull_hopper.png/332px-Hull_hopper.png 2x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Hopper" title="霍珀"><div style="font-size: 16px;"><b>霍珀 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Viking" title="维京"><img src="https://en.tankiwiki.com/images/en/thumb/a/ae/Hull_viking.png/166px-Hull_viking.png" decoding="async" loading="lazy" width="166" height="101" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/a/ae/Hull_viking.png/249px-Hull_viking.png 1.5x, https://en.tankiwiki.com/images/en/thumb/a/ae/Hull_viking.png/332px-Hull_viking.png 2x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Viking" title="维京"><div style="font-size: 16px;"><b>维京 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Paladin" title="圣骑士"><img src="https://en.tankiwiki.com/images/en/thumb/2/2e/Hull_paladin.png/166px-Hull_paladin.png" decoding="async" loading="lazy" width="166" height="101" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/2/2e/Hull_paladin.png/249px-Hull_paladin.png 1.5x, https://en.tankiwiki.com/images/en/thumb/2/2e/Hull_paladin.png/332px-Hull_paladin.png 2x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Paladin" title="圣骑士"><div style="font-size: 16px;"><b>圣骑士 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Hunter" title="猎人中甲"><img src="https://en.tankiwiki.com/images/en/thumb/6/65/Hull_hunter.png/166px-Hull_hunter.png" decoding="async" loading="lazy" width="166" height="94" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/6/65/Hull_hunter.png/249px-Hull_hunter.png 1.5x, https://en.tankiwiki.com/images/en/thumb/6/65/Hull_hunter.png/332px-Hull_hunter.png 2x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Hunter" title="猎人中甲"><div style="font-size: 16px;"><b>猎人中甲 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Crusader" title="十字军"><img src="https://en.tankiwiki.com/images/en/thumb/8/88/Hull_crusader.png/166px-Hull_crusader.png" decoding="async" loading="lazy" width="166" height="101" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/8/88/Hull_crusader.png/249px-Hull_crusader.png 1.5x, https://en.tankiwiki.com/images/en/thumb/8/88/Hull_crusader.png/332px-Hull_crusader.png 2x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Crusader" title="十字军"><div style="font-size: 16px;"><b>十字军 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Dictator" title="独裁者"><img src="https://en.tankiwiki.com/images/en/thumb/9/9e/Hull_dictator.png/166px-Hull_dictator.png" decoding="async" loading="lazy" width="166" height="101" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/9/9e/Hull_dictator.png/249px-Hull_dictator.png 1.5x, https://en.tankiwiki.com/images/en/thumb/9/9e/Hull_dictator.png/332px-Hull_dictator.png 2x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Dictator" title="独裁者"><div style="font-size: 16px;"><b>独裁者 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Ares" title="阿瑞斯"><img src="https://en.tankiwiki.com/images/en/thumb/b/b1/Hull_ares.png/166px-Hull_ares.png" decoding="async" loading="lazy" width="166" height="101" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/b/b1/Hull_ares.png/249px-Hull_ares.png 1.5x, https://en.tankiwiki.com/images/en/thumb/b/b1/Hull_ares.png/332px-Hull_ares.png 2x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Ares" title="阿瑞斯"><div style="font-size: 16px;"><b>阿瑞斯 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Titan" title="泰坦"><img src="https://en.tankiwiki.com/images/en/thumb/0/08/Hull_titan.png/166px-Hull_titan.png" decoding="async" loading="lazy" width="166" height="101" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/0/08/Hull_titan.png/249px-Hull_titan.png 1.5x, https://en.tankiwiki.com/images/en/thumb/0/08/Hull_titan.png/332px-Hull_titan.png 2x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Titan" title="泰坦"><div style="font-size: 16px;"><b>泰坦 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Mammoth" title="猛犸象"><img src="https://en.tankiwiki.com/images/en/thumb/1/1a/Hull_mammoth.png/166px-Hull_mammoth.png" decoding="async" loading="lazy" width="166" height="101" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/1/1a/Hull_mammoth.png/249px-Hull_mammoth.png 1.5x, https://en.tankiwiki.com/images/en/thumb/1/1a/Hull_mammoth.png/332px-Hull_mammoth.png 2x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Mammoth" title="猛犸象"><div style="font-size: 16px;"><b>猛犸象 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-</div><h3><span class="mw-headline" id="Turrets"><a href="./Turrets" title="炮塔">炮塔</a></span></h3><div class="ranks-equipment-cont">
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Firebird" title="火焰炮"><img src="https://en.tankiwiki.com/images/en/thumb/6/65/Turret_firebird.png/166px-Turret_firebird.png" decoding="async" loading="lazy" width="166" height="101" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/6/65/Turret_firebird.png/249px-Turret_firebird.png 1.5x, https://en.tankiwiki.com/images/en/thumb/6/65/Turret_firebird.png/332px-Turret_firebird.png 2x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Firebird" title="火焰炮"><div style="font-size: 16px;"><b>火焰炮 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Freeze" title="冰风暴"><img src="https://en.tankiwiki.com/images/en/thumb/b/b3/Turret_freeze.png/166px-Turret_freeze.png" decoding="async" loading="lazy" width="166" height="101" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/b/b3/Turret_freeze.png/249px-Turret_freeze.png 1.5x, https://en.tankiwiki.com/images/en/thumb/b/b3/Turret_freeze.png/332px-Turret_freeze.png 2x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Freeze" title="冰风暴"><div style="font-size: 16px;"><b>冰风暴 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Isida" title="磁力炮"><img src="https://en.tankiwiki.com/images/en/thumb/f/fe/Turret_isida.png/166px-Turret_isida.png" decoding="async" loading="lazy" width="166" height="101" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/f/fe/Turret_isida.png/249px-Turret_isida.png 1.5x, https://en.tankiwiki.com/images/en/thumb/f/fe/Turret_isida.png/332px-Turret_isida.png 2x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Isida" title="磁力炮"><div style="font-size: 16px;"><b>磁力炮 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Tesla" title="特斯拉"><img src="https://en.tankiwiki.com/images/en/thumb/8/80/Turret_tesla.png/166px-Turret_tesla.png" decoding="async" loading="lazy" width="166" height="101" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/8/80/Turret_tesla.png/249px-Turret_tesla.png 1.5x, https://en.tankiwiki.com/images/en/thumb/8/80/Turret_tesla.png/332px-Turret_tesla.png 2x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Tesla" title="特斯拉"><div style="font-size: 16px;"><b>特斯拉 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Hammer" title="滑膛炮"><img src="https://en.tankiwiki.com/images/en/thumb/9/96/Turret_hammer.png/166px-Turret_hammer.png" decoding="async" loading="lazy" width="166" height="101" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/9/96/Turret_hammer.png/249px-Turret_hammer.png 1.5x, https://en.tankiwiki.com/images/en/thumb/9/96/Turret_hammer.png/332px-Turret_hammer.png 2x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Hammer" title="滑膛炮"><div style="font-size: 16px;"><b>滑膛炮 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Twins" title="离子炮"><img src="https://en.tankiwiki.com/images/en/thumb/3/37/Turret_twins.png/166px-Turret_twins.png" decoding="async" loading="lazy" width="166" height="101" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/3/37/Turret_twins.png/249px-Turret_twins.png 1.5x, https://en.tankiwiki.com/images/en/thumb/3/37/Turret_twins.png/332px-Turret_twins.png 2x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Twins" title="离子炮"><div style="font-size: 16px;"><b>离子炮 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Ricochet" title="火龙珠"><img src="https://en.tankiwiki.com/images/en/thumb/a/ad/Turret_ricochet.png/166px-Turret_ricochet.png" decoding="async" loading="lazy" width="166" height="101" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/a/ad/Turret_ricochet.png/249px-Turret_ricochet.png 1.5x, https://en.tankiwiki.com/images/en/thumb/a/ad/Turret_ricochet.png/332px-Turret_ricochet.png 2x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Ricochet" title="火龙珠"><div style="font-size: 16px;"><b>火龙珠 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Vulcan" title="极速炮"><img src="https://en.tankiwiki.com/images/en/thumb/7/79/Turret_vulcan.png/166px-Turret_vulcan.png" decoding="async" loading="lazy" width="166" height="101" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/7/79/Turret_vulcan.png/249px-Turret_vulcan.png 1.5x, https://en.tankiwiki.com/images/en/thumb/7/79/Turret_vulcan.png/332px-Turret_vulcan.png 2x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Vulcan" title="极速炮"><div style="font-size: 16px;"><b>极速炮 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Smoky" title="轰天炮"><img src="https://en.tankiwiki.com/images/en/thumb/2/28/Turret_smoky.png/166px-Turret_smoky.png" decoding="async" loading="lazy" width="166" height="101" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/2/28/Turret_smoky.png/249px-Turret_smoky.png 1.5x, https://en.tankiwiki.com/images/en/thumb/2/28/Turret_smoky.png/332px-Turret_smoky.png 2x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Smoky" title="轰天炮"><div style="font-size: 16px;"><b>轰天炮 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Striker" title="火箭炮"><img src="https://en.tankiwiki.com/images/en/thumb/6/6d/Turret_striker.png/166px-Turret_striker.png" decoding="async" loading="lazy" width="166" height="101" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/6/6d/Turret_striker.png/249px-Turret_striker.png 1.5x, https://en.tankiwiki.com/images/en/thumb/6/6d/Turret_striker.png/332px-Turret_striker.png 2x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Striker" title="火箭炮"><div style="font-size: 16px;"><b>火箭炮 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Thunder" title="雷暴炮"><img src="https://en.tankiwiki.com/images/en/thumb/3/34/Turret_thunder.png/166px-Turret_thunder.png" decoding="async" loading="lazy" width="166" height="101" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/3/34/Turret_thunder.png/249px-Turret_thunder.png 1.5x, https://en.tankiwiki.com/images/en/thumb/3/34/Turret_thunder.png/332px-Turret_thunder.png 2x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Thunder" title="雷暴炮"><div style="font-size: 16px;"><b>雷暴炮 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Scorpion" title="蝎子"><img src="https://en.tankiwiki.com/images/en/thumb/a/aa/Turret_scorpion.png/166px-Turret_scorpion.png" decoding="async" loading="lazy" width="166" height="101" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/a/aa/Turret_scorpion.png/249px-Turret_scorpion.png 1.5x, https://en.tankiwiki.com/images/en/thumb/a/aa/Turret_scorpion.png/332px-Turret_scorpion.png 2x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Scorpion" title="蝎子"><div style="font-size: 16px;"><b>蝎子 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Railgun" title="激光炮"><img src="https://en.tankiwiki.com/images/en/thumb/e/e5/Turret_railgun.png/166px-Turret_railgun.png" decoding="async" loading="lazy" width="166" height="101" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/e/e5/Turret_railgun.png/249px-Turret_railgun.png 1.5x, https://en.tankiwiki.com/images/en/thumb/e/e5/Turret_railgun.png/332px-Turret_railgun.png 2x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Railgun" title="激光炮"><div style="font-size: 16px;"><b>激光炮 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Magnum" title="马格南"><img src="https://en.tankiwiki.com/images/en/thumb/d/d1/Turret_magnum.png/166px-Turret_magnum.png" decoding="async" loading="lazy" width="166" height="101" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/d/d1/Turret_magnum.png/249px-Turret_magnum.png 1.5x, https://en.tankiwiki.com/images/en/thumb/d/d1/Turret_magnum.png/332px-Turret_magnum.png 2x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Magnum" title="马格南"><div style="font-size: 16px;"><b>马格南 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Gauss" title="电磁炮"><img src="https://en.tankiwiki.com/images/en/thumb/3/36/Turret_gauss.png/166px-Turret_gauss.png" decoding="async" loading="lazy" width="166" height="101" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/3/36/Turret_gauss.png/249px-Turret_gauss.png 1.5x, https://en.tankiwiki.com/images/en/thumb/3/36/Turret_gauss.png/332px-Turret_gauss.png 2x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Gauss" title="电磁炮"><div style="font-size: 16px;"><b>电磁炮 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Shaft" title="镭射炮"><img src="https://en.tankiwiki.com/images/en/thumb/b/b1/Turret_shaft_m3.png/166px-Turret_shaft_m3.png" decoding="async" loading="lazy" width="166" height="101" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/b/b1/Turret_shaft_m3.png/249px-Turret_shaft_m3.png 1.5x, https://en.tankiwiki.com/images/en/thumb/b/b1/Turret_shaft_m3.png/332px-Turret_shaft_m3.png 2x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Shaft" title="镭射炮"><div style="font-size: 16px;"><b>镭射炮 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-</div><h3><span class="mw-headline" id="Supplies"><a href="./Supplies" title="道具">道具</a></span></h3><div class="ranks-equipment-cont">
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Bomb" title="炸弹"><img src="https://en.tankiwiki.com/images/en/thumb/c/c5/Bomb_Grenade_1.png/88px-Bomb_Grenade_1.png" decoding="async" loading="lazy" width="88" height="103" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c5/Bomb_Grenade_1.png/132px-Bomb_Grenade_1.png 1.5x, https://en.tankiwiki.com/images/en/thumb/c/c5/Bomb_Grenade_1.png/175px-Bomb_Grenade_1.png 2x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Bomb" title="炸弹"><div style="font-size: 16px;"><b>炸弹 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Mortar" title="迫击炮"><img src="https://en.tankiwiki.com/images/en/thumb/8/83/Mortar.png/87px-Mortar.png" decoding="async" loading="lazy" width="87" height="103" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/8/83/Mortar.png 1.5x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Mortar" title="迫击炮"><div style="font-size: 16px;"><b>迫击炮 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Salyut" title="礼炮"><img src="https://en.tankiwiki.com/images/en/thumb/4/4c/Salyut.png/87px-Salyut.png" decoding="async" loading="lazy" width="87" height="103" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/4/4c/Salyut.png 1.5x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Salyut" title="礼炮"><div style="font-size: 16px;"><b>礼炮 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Pumpkin" title="南瓜"><img src="https://en.tankiwiki.com/images/en/thumb/6/6b/Pumpkin_Grenade_1.png/87px-Pumpkin_Grenade_1.png" decoding="async" loading="lazy" width="87" height="103" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/6/6b/Pumpkin_Grenade_1.png 1.5x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Pumpkin" title="南瓜"><div style="font-size: 16px;"><b>南瓜 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Snowball" title="雪球"><img src="https://en.tankiwiki.com/images/en/thumb/3/3b/Snowball_Grenade.png/88px-Snowball_Grenade.png" decoding="async" loading="lazy" width="88" height="103" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/3/3b/Snowball_Grenade.png 1.5x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Snowball" title="雪球"><div style="font-size: 16px;"><b>雪球 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-<div class="ranks-equipment-box">
-  <div style="padding: 10px 15px 15px 15px;"><div style="height: 105px; margin: 5px auto 0 auto;" align="center"><span typeof="mw:File"><a href="./Tsar" title="沙皇"><img src="https://en.tankiwiki.com/images/en/thumb/a/a3/Tsar.png/87px-Tsar.png" decoding="async" loading="lazy" width="87" height="103" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/a/a3/Tsar.png 1.5x"></a></span></div>
-  <div style="margin: 5px 0 0 0;"><a href="./Tsar" title="沙皇"><div style="font-size: 16px;"><b>沙皇 Mk7</b></div></a> <a href="./Rubies" title="红宝石"><span class="rubies-modern" style="white-space: nowrap">8</span></a> <i><small></small></i>
-  </div></div>
-</div>
-</div><h3><span class="mw-headline" id="Interesting_Facts">有趣的事实</span></h3><ul><li>在 2012 年 12 月 17 日之前，元帅是游戏中的最高等级。</li></ul><div align="right"><small>最后编辑：Heatw4ve 2025 年 11 月 18 日</small></div></div></div></div></div></div><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</div><h3><span id=".D0.94.D0.BE.D1.81.D1.82.D1.83.D0.BF.D0.BD.D0.BE_.D1.81_.D1.8D.D1.82.D0.BE.D0.B3.D0.BE_.D0.B7.D0.B2.D0.B0.D0.BD.D0.B8.D1.8F:"></span><span class="mw-headline" id="Доступно_с_этого_звания:">此等级解锁内容：</span></h3><table class="wikitable-modern default">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<tbody><tr class="wikitable-header wikitable-footer">
+<td height="40px"><b>装备</b>
+</td></tr>
+<tr class="wikitable-header wikitable-footer">
+<td height="40px"><b><a href="./%D0%9F%D1%83%D1%88%D0%BA%D0%B8" class="mw-redirect" title="炮塔">炮塔</a></b>
+</td></tr>
+<tr>
+<td>
+<div class="img__container" style="width:164px;"><span typeof="mw:File"><a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%82" title="火焰炮"><img src="https://ru.tankiwiki.com/images/ru/thumb/6/61/Turret_firebird_m3_2.png/164px-Turret_firebird_m3_2.png" decoding="async" loading="lazy" width="164" height="100" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/61/Turret_firebird_m3_2.png/246px-Turret_firebird_m3_2.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/61/Turret_firebird_m3_2.png/328px-Turret_firebird_m3_2.png 2x"></a></span><br><a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%82" class="mw-redirect" title="火焰炮">火焰炮 Mk7</a></div><div class="img__container" style="width:164px;"><span typeof="mw:File"><a href="./%D0%A4%D1%80%D0%B8%D0%B7" title="冰风暴"><img src="https://ru.tankiwiki.com/images/ru/thumb/f/f2/Turret_freeze_m3.png/164px-Turret_freeze_m3.png" decoding="async" loading="lazy" width="164" height="100" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/f/f2/Turret_freeze_m3.png/246px-Turret_freeze_m3.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/f/f2/Turret_freeze_m3.png/328px-Turret_freeze_m3.png 2x"></a></span><br><a href="./%D0%A4%D1%80%D0%B8%D0%B7" class="mw-redirect" title="冰风暴">冰风暴 Mk7</a></div><div class="img__container" style="width:164px;"><span typeof="mw:File"><a href="./%D0%98%D0%B7%D0%B8%D0%B4%D0%B0" title="磁力炮"><img src="https://ru.tankiwiki.com/images/ru/thumb/5/5f/Turret_isida_m3.png/164px-Turret_isida_m3.png" decoding="async" loading="lazy" width="164" height="100" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/5f/Turret_isida_m3.png/246px-Turret_isida_m3.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/5f/Turret_isida_m3.png/328px-Turret_isida_m3.png 2x"></a></span><br><a href="./%D0%98%D0%B7%D0%B8%D0%B4%D0%B0" class="mw-redirect" title="磁力炮">磁力炮 Mk7</a></div><div class="img__container" style="width:164px;"><span typeof="mw:File"><a href="./%D0%A2%D0%B5%D1%81%D0%BB%D0%B0" title="特斯拉"><img src="https://ru.tankiwiki.com/images/ru/thumb/8/80/Turret_tesla.png/164px-Turret_tesla.png" decoding="async" loading="lazy" width="164" height="100" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/8/80/Turret_tesla.png/246px-Turret_tesla.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/8/80/Turret_tesla.png/328px-Turret_tesla.png 2x"></a></span><br><a href="./%D0%A2%D0%B5%D1%81%D0%BB%D0%B0" class="mw-redirect" title="特斯拉">特斯拉 Mk7</a></div><div class="img__container" style="width:164px;"><span typeof="mw:File"><a href="./%D0%9C%D0%BE%D0%BB%D0%BE%D1%82" title="滑膛炮"><img src="https://ru.tankiwiki.com/images/ru/thumb/b/b8/Turret_hammer_m3.png/164px-Turret_hammer_m3.png" decoding="async" loading="lazy" width="164" height="100" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/b8/Turret_hammer_m3.png/246px-Turret_hammer_m3.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/b8/Turret_hammer_m3.png/328px-Turret_hammer_m3.png 2x"></a></span><br><a href="./%D0%9C%D0%BE%D0%BB%D0%BE%D1%82" class="mw-redirect" title="滑膛炮">滑膛炮 Mk7</a></div><div class="img__container" style="width:164px;"><span typeof="mw:File"><a href="./%D0%A2%D0%B2%D0%B8%D0%BD%D1%81" title="离子炮"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d3/Turret_twins_m3.png/164px-Turret_twins_m3.png" decoding="async" loading="lazy" width="164" height="100" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d3/Turret_twins_m3.png/246px-Turret_twins_m3.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d3/Turret_twins_m3.png/328px-Turret_twins_m3.png 2x"></a></span><br><a href="./%D0%A2%D0%B2%D0%B8%D0%BD%D1%81" class="mw-redirect" title="离子炮">离子炮 Mk7</a></div><div class="img__container" style="width:164px;"><span typeof="mw:File"><a href="./%D0%A0%D0%B8%D0%BA%D0%BE%D1%88%D0%B5%D1%82" title="火龙珠"><img src="https://ru.tankiwiki.com/images/ru/thumb/b/bc/Turret_ricochet_m3.png/164px-Turret_ricochet_m3.png" decoding="async" loading="lazy" width="164" height="100" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/bc/Turret_ricochet_m3.png/246px-Turret_ricochet_m3.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/bc/Turret_ricochet_m3.png/328px-Turret_ricochet_m3.png 2x"></a></span><br><a href="./%D0%A0%D0%B8%D0%BA%D0%BE%D1%88%D0%B5%D1%82" class="mw-redirect" title="火龙珠">火龙珠 Mk7</a></div><div class="img__container" style="width:164px;"><span typeof="mw:File"><a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" title="轰天炮"><img src="https://ru.tankiwiki.com/images/ru/thumb/6/61/Turret_smoky_m3.png/164px-Turret_smoky_m3.png" decoding="async" loading="lazy" width="164" height="100" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/61/Turret_smoky_m3.png/246px-Turret_smoky_m3.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/61/Turret_smoky_m3.png/328px-Turret_smoky_m3.png 2x"></a></span><br><a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" class="mw-redirect" title="轰天炮">轰天炮 Mk7</a></div><div class="img__container" style="width:164px;"><span typeof="mw:File"><a href="./%D0%92%D1%83%D0%BB%D0%BA%D0%B0%D0%BD" title="极速炮"><img src="https://ru.tankiwiki.com/images/ru/thumb/6/64/Turret_minigun_m3.png/164px-Turret_minigun_m3.png" decoding="async" loading="lazy" width="164" height="100" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/64/Turret_minigun_m3.png/246px-Turret_minigun_m3.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/64/Turret_minigun_m3.png/328px-Turret_minigun_m3.png 2x"></a></span><br><a href="./%D0%92%D1%83%D0%BB%D0%BA%D0%B0%D0%BD" class="mw-redirect" title="极速炮">极速炮 Mk7</a></div><div class="img__container" style="width:164px;"><span typeof="mw:File"><a href="./%D0%A1%D1%82%D1%80%D0%B0%D0%B9%D0%BA%D0%B5%D1%80" title="火箭炮"><img src="https://ru.tankiwiki.com/images/ru/thumb/4/4e/Turret_striker_m3.png/164px-Turret_striker_m3.png" decoding="async" loading="lazy" width="164" height="100" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/4e/Turret_striker_m3.png/246px-Turret_striker_m3.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/4e/Turret_striker_m3.png/328px-Turret_striker_m3.png 2x"></a></span><br><a href="./%D0%A1%D1%82%D1%80%D0%B0%D0%B9%D0%BA%D0%B5%D1%80" class="mw-redirect" title="火箭炮">火箭炮 Mk7</a></div><div class="img__container" style="width:164px;"><span typeof="mw:File"><a href="./%D0%93%D1%80%D0%BE%D0%BC" title="雷暴炮"><img src="https://ru.tankiwiki.com/images/ru/thumb/3/3c/Turret_thunder_m3.png/164px-Turret_thunder_m3.png" decoding="async" loading="lazy" width="164" height="100" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/3c/Turret_thunder_m3.png/246px-Turret_thunder_m3.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/3/3c/Turret_thunder_m3.png/328px-Turret_thunder_m3.png 2x"></a></span><br><a href="./%D0%93%D1%80%D0%BE%D0%BC" class="mw-redirect" title="雷暴炮">雷暴炮 Mk7</a></div><div class="img__container" style="width:164px;"><span typeof="mw:File"><a href="./%D0%93%D1%80%D0%BE%D0%BC" title="雷暴炮"><img src="https://ru.tankiwiki.com/images/ru/thumb/7/74/Turret_Tsunami_m3.png/164px-Turret_Tsunami_m3.png" decoding="async" loading="lazy" width="164" height="100" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/74/Turret_Tsunami_m3.png/246px-Turret_Tsunami_m3.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/74/Turret_Tsunami_m3.png/328px-Turret_Tsunami_m3.png 2x"></a></span><br><a href="./%D0%A6%D1%83%D0%BD%D0%B0%D0%BC%D0%B8" class="mw-redirect" title="海啸">海啸 Mk7</a></div><div class="img__container" style="width:164px;"><span typeof="mw:File"><a href="./%D0%A1%D0%BA%D0%BE%D1%80%D0%BF%D0%B8%D0%BE%D0%BD" title="蝎子"><img src="https://ru.tankiwiki.com/images/ru/thumb/a/aa/Turret_scorpion.png/164px-Turret_scorpion.png" decoding="async" loading="lazy" width="164" height="100" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/a/aa/Turret_scorpion.png/246px-Turret_scorpion.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/a/aa/Turret_scorpion.png/328px-Turret_scorpion.png 2x"></a></span><br><a href="./%D0%A1%D0%BA%D0%BE%D1%80%D0%BF%D0%B8%D0%BE%D0%BD" class="mw-redirect" title="蝎子">蝎子 Mk7</a></div><div class="img__container" style="width:164px;"><span typeof="mw:File"><a href="./%D0%9C%D0%B0%D0%B3%D0%BD%D1%83%D0%BC" title="马格南"><img src="https://ru.tankiwiki.com/images/ru/thumb/a/ac/Turret_magnum_m3.png/164px-Turret_magnum_m3.png" decoding="async" loading="lazy" width="164" height="100" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/a/ac/Turret_magnum_m3.png/246px-Turret_magnum_m3.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/a/ac/Turret_magnum_m3.png/328px-Turret_magnum_m3.png 2x"></a></span><br><a href="./%D0%9C%D0%B0%D0%B3%D0%BD%D1%83%D0%BC" class="mw-redirect" title="马格南">马格南 Mk7</a></div><div class="img__container" style="width:164px;"><span typeof="mw:File"><a href="./%D0%A0%D0%B5%D0%BB%D1%8C%D1%81%D0%B0" title="激光炮"><img src="https://ru.tankiwiki.com/images/ru/thumb/c/c9/Turret_railgun_m3.png/164px-Turret_railgun_m3.png" decoding="async" loading="lazy" width="164" height="100" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/c9/Turret_railgun_m3.png/246px-Turret_railgun_m3.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/c/c9/Turret_railgun_m3.png/328px-Turret_railgun_m3.png 2x"></a></span><br><a href="./%D0%A0%D0%B5%D0%BB%D1%8C%D1%81%D0%B0" class="mw-redirect" title="激光炮">激光炮 Mk7</a></div><div class="img__container" style="width:164px;"><span typeof="mw:File"><a href="./%D0%93%D0%B0%D1%83%D1%81%D1%81" title="电磁炮"><img src="https://ru.tankiwiki.com/images/ru/thumb/4/4f/Turret_gauss_m3.png/164px-Turret_gauss_m3.png" decoding="async" loading="lazy" width="164" height="100" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/4f/Turret_gauss_m3.png/246px-Turret_gauss_m3.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/4f/Turret_gauss_m3.png/328px-Turret_gauss_m3.png 2x"></a></span><br><a href="./%D0%93%D0%B0%D1%83%D1%81%D1%81" class="mw-redirect" title="电磁炮">电磁炮 Mk7</a></div><div class="img__container" style="width:164px;"><span typeof="mw:File"><a href="./%D0%A8%D0%B0%D1%84%D1%82" title="镭射炮"><img src="https://ru.tankiwiki.com/images/ru/thumb/7/7b/Turret_shaft_m3_2.png/164px-Turret_shaft_m3_2.png" decoding="async" loading="lazy" width="164" height="100" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/7b/Turret_shaft_m3_2.png/246px-Turret_shaft_m3_2.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/7b/Turret_shaft_m3_2.png/328px-Turret_shaft_m3_2.png 2x"></a></span><br><a href="./%D0%A8%D0%B0%D1%84%D1%82" class="mw-redirect" title="镭射炮">镭射炮 Mk7</a></div>
+</td></tr>
+<tr class="wikitable-header wikitable-footer">
+<td height="40px"><b><a href="./%D0%9A%D0%BE%D1%80%D0%BF%D1%83%D1%81%D0%B0" class="mw-redirect" title="底盘">底盘</a></b>
+</td></tr>
+<tr>
+<td>
+<div class="img__container" style="width:164px;"><span typeof="mw:File"><a href="./%D0%92%D0%B0%D1%81%D0%BF" title="黄蜂轻甲"><img src="https://ru.tankiwiki.com/images/ru/c/c8/Hull_wasp_m3.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></a></span><br><a href="./%D0%92%D0%B0%D1%81%D0%BF" class="mw-redirect" title="黄蜂轻甲">黄蜂轻甲 Mk7</a></div><div class="img__container" style="width:164px;"><span typeof="mw:File"><a href="./%D0%A5%D0%BE%D0%BF%D0%BF%D0%B5%D1%80" title="霍珀"><img src="https://ru.tankiwiki.com/images/ru/2/22/Hull_Hopper.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></a></span><br><a href="./%D0%A5%D0%BE%D0%BF%D0%BF%D0%B5%D1%80" class="mw-redirect" title="霍珀">霍珀 Mk7</a></div><div class="img__container" style="width:164px;"><span typeof="mw:File"><a href="./%D0%A5%D0%BE%D1%80%D0%BD%D0%B5%D1%82" title="蜂王"><img src="https://ru.tankiwiki.com/images/ru/5/5b/Hull_hornet_m3.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></a></span><br><a href="./%D0%A5%D0%BE%D1%80%D0%BD%D0%B5%D1%82" class="mw-redirect" title="蜂王">蜂王 Mk7</a></div><div class="img__container" style="width:164px;"><span typeof="mw:File"><a href="./%D0%92%D0%B8%D0%BA%D0%B8%D0%BD%D0%B3" title="维京"><img src="https://ru.tankiwiki.com/images/ru/d/de/Hull_vicing_m3.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></a></span><br><a href="./%D0%92%D0%B8%D0%BA%D0%B8%D0%BD%D0%B3" class="mw-redirect" title="维京">维京 Mk7</a></div><div class="img__container" style="width:164px;"><span typeof="mw:File"><a href="./%D0%9A%D1%80%D1%83%D1%81%D0%B5%D0%B9%D0%B4%D0%B5%D1%80" title="十字军"><img src="https://ru.tankiwiki.com/images/ru/6/60/Hull_Crusader.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></a></span><br><a href="./%D0%9A%D1%80%D1%83%D1%81%D0%B5%D0%B9%D0%B4%D0%B5%D1%80" class="mw-redirect" title="十字军">十字军 Mk7</a></div><div class="img__container" style="width:164px;"><span typeof="mw:File"><a href="./%D0%A5%D0%B0%D0%BD%D1%82%D0%B5%D1%80" title="猎人中甲"><img src="https://ru.tankiwiki.com/images/ru/f/f7/Hull_hunter_m3.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></a></span><br><a href="./%D0%A5%D0%B0%D0%BD%D1%82%D0%B5%D1%80" class="mw-redirect" title="猎人中甲">猎人中甲 Mk7</a></div><div class="img__container" style="width:164px;"><span typeof="mw:File"><a href="./%D0%9F%D0%B0%D0%BB%D0%B0%D0%B4%D0%B8%D0%BD" title="圣骑士"><img src="https://ru.tankiwiki.com/images/ru/thumb/b/b2/Paladin.png/164px-Paladin.png" decoding="async" loading="lazy" width="164" height="100" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/b2/Paladin.png/246px-Paladin.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/b2/Paladin.png/328px-Paladin.png 2x"></a></span><br><a href="./%D0%9F%D0%B0%D0%BB%D0%B0%D0%B4%D0%B8%D0%BD" class="mw-redirect" title="圣骑士">圣骑士 Mk7</a></div><div class="img__container" style="width:164px;"><span typeof="mw:File"><a href="./%D0%94%D0%B8%D0%BA%D1%82%D0%B0%D1%82%D0%BE%D1%80" title="主宰者"><img src="https://ru.tankiwiki.com/images/ru/d/d7/Hull_dictator_m3.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></a></span><br><a href="./%D0%94%D0%B8%D0%BA%D1%82%D0%B0%D1%82%D0%BE%D1%80" class="mw-redirect" title="主宰者">主宰者 Mk7</a></div><div class="img__container" style="width:164px;"><span typeof="mw:File"><a href="./%D0%A2%D0%B8%D1%82%D0%B0%D0%BD" title="泰坦"><img src="https://ru.tankiwiki.com/images/ru/5/56/Hull_titan_m3.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></a></span><br><a href="./%D0%A2%D0%B8%D1%82%D0%B0%D0%BD" class="mw-redirect" title="泰坦">泰坦 Mk7</a></div><div class="img__container" style="width:164px;"><span typeof="mw:File"><a href="./%D0%90%D1%80%D0%B5%D1%81" title="阿瑞斯"><img src="https://ru.tankiwiki.com/images/ru/b/b1/Hull_ares.png" decoding="async" loading="lazy" width="164" height="100" class="mw-file-element"></a></span><br><a href="./%D0%90%D1%80%D0%B5%D1%81" class="mw-redirect" title="阿瑞斯">阿瑞斯 Mk7</a></div><div class="img__container" style="width:164px;"><span typeof="mw:File"><a href="./%D0%9C%D0%B0%D0%BC%D0%BE%D0%BD%D1%82" title="猛犸象"><img src="https://ru.tankiwiki.com/images/ru/9/9c/Hull_mammoth_m3.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></a></span><br><a href="./%D0%9C%D0%B0%D0%BC%D0%BE%D0%BD%D1%82" class="mw-redirect" title="猛犸象">猛犸象 Mk7</a></div>
+</td></tr>
+
+
+
+
+<tr class="wikitable-header wikitable-footer">
+<td height="40px"><b><a href="./%D0%93%D1%80%D0%B0%D0%BD%D0%B0%D1%82%D1%8B" class="mw-redirect" title="手榴弹">手榴弹</a></b>
+</td></tr>
+<tr>
+<td>
+<div class="img__container" style="width:80px;"><span typeof="mw:File"><a href="./%D0%91%D0%BE%D0%BC%D0%B1%D0%B0" title="炸弹"><img src="https://ru.tankiwiki.com/images/ru/thumb/c/c5/Bomb_Grenade_1.png/80px-Bomb_Grenade_1.png" decoding="async" loading="lazy" width="80" height="94" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/c5/Bomb_Grenade_1.png/120px-Bomb_Grenade_1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/c/c5/Bomb_Grenade_1.png/160px-Bomb_Grenade_1.png 2x"></a></span><br><a href="./%D0%91%D0%BE%D0%BC%D0%B1%D0%B0" class="mw-redirect" title="炸弹">炸弹 Mk7</a></div>
+<div class="img__container" style="width:80px;"><span typeof="mw:File"><a href="./%D0%A2%D1%8B%D0%BA%D0%B2%D0%B0" title="南瓜"><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6b/Pumpkin_Grenade_1.png/80px-Pumpkin_Grenade_1.png" decoding="async" loading="lazy" width="80" height="94" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/6b/Pumpkin_Grenade_1.png/120px-Pumpkin_Grenade_1.png 1.5x, https://ru.tankiwiki.com/images/ru/6/6b/Pumpkin_Grenade_1.png 2x"></a></span><br><a href="./%D0%A2%D1%8B%D0%BA%D0%B2%D0%B0" class="mw-redirect" title="南瓜">南瓜 Mk7</a></div>
+<div class="img__container" style="width:80px;"><span typeof="mw:File"><a href="./%D0%A1%D0%BD%D0%B5%D0%B6%D0%BE%D0%BA" title="雪球"><img src="https://ru.tankiwiki.com/images/ru/thumb/4/49/Snowball_Grenade_1.png/80px-Snowball_Grenade_1.png" decoding="async" loading="lazy" width="80" height="94" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/49/Snowball_Grenade_1.png/120px-Snowball_Grenade_1.png 1.5x, https://ru.tankiwiki.com/images/ru/4/49/Snowball_Grenade_1.png 2x"></a></span><br><a href="./%D0%A1%D0%BD%D0%B5%D0%B6%D0%BE%D0%BA" class="mw-redirect" title="雪球">雪球 Mk7</a></div>
+<div class="img__container" style="width:80px;"><span typeof="mw:File"><a href="./%D0%9C%D0%BE%D1%80%D1%82%D0%B8%D1%80%D0%B0" title="迫击炮弹"><img src="https://ru.tankiwiki.com/images/ru/thumb/7/7f/Mortar_Grenade.png/80px-Mortar_Grenade.png" decoding="async" loading="lazy" width="80" height="94" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/7f/Mortar_Grenade.png/120px-Mortar_Grenade.png 1.5x, https://ru.tankiwiki.com/images/ru/7/7f/Mortar_Grenade.png 2x"></a></span><br><a href="./%D0%9C%D0%BE%D1%80%D1%82%D0%B8%D1%80%D0%B0" class="mw-redirect" title="迫击炮弹">迫击炮弹 Mk7</a></div>
+<div class="img__container" style="width:80px;"><span typeof="mw:File"><a href="./%D0%A6%D0%B0%D1%80%D1%8C" title="沙皇"><img src="https://ru.tankiwiki.com/images/ru/thumb/a/a6/Holy_hand_grenade.png/80px-Holy_hand_grenade.png" decoding="async" loading="lazy" width="80" height="95" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/a/a6/Holy_hand_grenade.png 1.5x"></a></span><br><a href="./%D0%A6%D0%B0%D1%80%D1%8C" class="mw-redirect" title="沙皇">沙皇 Mk7</a></div>
+<div class="img__container" style="width:80px;"><span typeof="mw:File"><a href="./%D0%A1%D0%B0%D0%BB%D1%8E%D1%82" title="礼花弹"><img src="https://ru.tankiwiki.com/images/ru/thumb/9/9c/Salyut_Grenade_1.png/80px-Salyut_Grenade_1.png" decoding="async" loading="lazy" width="80" height="94" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/9/9c/Salyut_Grenade_1.png/120px-Salyut_Grenade_1.png 1.5x, https://ru.tankiwiki.com/images/ru/9/9c/Salyut_Grenade_1.png 2x"></a></span><br><a href="./%D0%A1%D0%B0%D0%BB%D1%8E%D1%82" class="mw-redirect" title="礼花弹">礼花弹 Mk7</a></div>
+<div class="img__container" style="width:80px;"><span typeof="mw:File"><a href="./%D0%9C%D0%B5%D0%B4%D0%B8%D0%BA" title="医护兵"><img src="https://ru.tankiwiki.com/images/ru/thumb/1/1f/Medic_Grenade.png/80px-Medic_Grenade.png" decoding="async" loading="lazy" width="80" height="94" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/1/1f/Medic_Grenade.png/120px-Medic_Grenade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/1/1f/Medic_Grenade.png/160px-Medic_Grenade.png 2x"></a></span><br><a href="./%D0%9C%D0%B5%D0%B4%D0%B8%D0%BA" class="mw-redirect" title="医护兵">医护兵 Mk7</a></div>
+</td></tr>
+
+
+
+
+
+
+
+
+
+
+
+</tbody></table><p><br>
+</p><div align="right"><small>最后编辑：21/05/2024 HelpersBot <span class="ai-translate-note" style="color:#8FB8D8;">（由 AI 自动翻译）</span></small></div></div></div></div></div></div><footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
+<p style="margin:0;"><strong style="color:#BFD5FF;">本站为玩家社区自建的非官方 Wiki 镜像。</strong></p>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <script type="text/javascript">
     (function (m, e, t, r, i, k, a) {
@@ -302,14 +463,15 @@
     <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
-    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
-    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
-    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
-    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
-    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
-    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
-    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
-    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":402,"wgPageParseReport":{"limitreport":{"cputime":"0.336","walltime":"0.461","ppvisitednodes":{"value":1655,"limit":1000000},"postexpandincludesize":{"value":28444,"limit":2097152},"templateargumentsize":{"value":5948,"limit":2097152},"expansiondepth":{"value":10,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%   70.109      1 -total"," 64.75%   45.397      1 Template:RankPageHeader"," 26.49%   18.574     33 Template:EquipmentOnRanks"," 25.08%   17.582      1 Template:RankInfo"," 17.04%   11.946      1 Template:See_also"," 11.81%    8.283      1 Template:Other_meaning"," 10.68%    7.487      2 Template:Rank","  9.31%    6.524      1 Template:Navranks","  7.79%    5.461      1 Template:Mission","  6.17%    4.327      2 Template:RankHelper"]},"cachereport":{"timestamp":"20260502161655","ttl":86400,"transientcontent":false}}});});</script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":1867,"wgPageParseReport":{"limitreport":{"cputime":"0.848","walltime":"1.735","ppvisitednodes":{"value":2970,"limit":1000000},"postexpandincludesize":{"value":30560,"limit":4194304},"templateargumentsize":{"value":6768,"limit":4194304},"expansiondepth":{"value":9,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%  518.606      1 -total"," 97.98%  508.124      1 Шаблон:RankPage"," 18.54%   96.162      1 Шаблон:RankInfo"," 18.40%   95.433     35 Шаблон:Img"," 17.05%   88.440      1 Шаблон:Navranks"," 11.00%   57.031      1 Шаблон:RankList","  5.15%   26.687      1 Шаблон:See_also","  4.17%   21.613      1 Шаблон:Mission","  3.45%   17.881      1 Шаблон:Другое_значение","  2.75%   14.277      1 Шаблон:Spoiler/Start"]},"cachereport":{"timestamp":"20260825025456","ttl":86400,"transientcontent":false}}});});</script>
     <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
-    <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script></body></html>
+    <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });</script></body></html>

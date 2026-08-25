@@ -1,0 +1,2530 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>(function(){
+  var BASE = 'https://ru.tankiwiki.com';
+  function fix(v){ return (typeof v === 'string' && v.charAt(0) === '/' && v.indexOf('//') !== 0) ? BASE + v : v; }
+  ['HTMLScriptElement','HTMLLinkElement'].forEach(function(tag){
+    var proto = window[tag] && window[tag].prototype;
+    var prop  = tag === 'HTMLScriptElement' ? 'src' : 'href';
+    if (!proto) return;
+    var d = Object.getOwnPropertyDescriptor(proto, prop);
+    if (!d || !d.set) return;
+    Object.defineProperty(proto, prop, {
+      configurable: true,
+      get: function(){ return d.get.call(this); },
+      set: function(v){ d.set.call(this, fix(v)); }
+    });
+  });
+  var of = window.fetch;
+  if (of) window.fetch = function(u, o){ return of.call(this, (typeof u === 'string' ? fix(u) : u), o); };
+  var ox = window.XMLHttpRequest && XMLHttpRequest.prototype.open;
+  if (ox) XMLHttpRequest.prototype.open = function(m, u){
+    var a = Array.prototype.slice.call(arguments); a[1] = fix(u); return ox.apply(this, a);
+  };
+})();</script><title>冰风暴的装备改造 — 3D 坦克 Wiki</title><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+    <meta charset="UTF-8">
+    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/xg_pWYS8-HRESiV6Rdg4aY_R/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-qWH0xCejb2gc1yqo8ob4TQrvIcQ9XjhOfGKbhFr/+LvFrJdTE3bA+FQP/FLAiQhz"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgRequestId":"a684e76bb0e0e8bd795b61ba","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Uluchsheniya_Friza","wgTitle":"Uluchsheniya Friza","wgCurRevisionId":302650,"wgRevisionId":302650,"wgArticleId":3522,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"ru","wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgRelevantPageName":"Uluchsheniya_Friza","wgRelevantArticleId":3522,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],
+"wgRestrictionMove":[],"wgVisualEditor":{"pageLanguageCode":"ru","pageLanguageDir":"ltr","pageVariantFallbacks":"ru"},"wgFlaggedRevsParams":{"tags":{"accuracy":{"levels":3}}},"wgStableRevisionId":302650,"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.flaggedRevs.icons":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.flaggedRevs.basic":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.flaggedRevs.advanced","skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=ext.flaggedRevs.basic%2Cicons%7Cext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <style>
+.mw-spinner{position:relative}.mw-spinner > .mw-spinner-container{transform-origin:0 0}.mw-spinner-small{width:20px;height:20px}.mw-spinner-small > .mw-spinner-container{transform:scale(0.3125)}.mw-spinner-large{width:32px;height:32px}.mw-spinner-large > .mw-spinner-container{transform:scale(0.5)}.mw-spinner-block{display:block;width:100%;text-align:center}.mw-spinner-block > .mw-spinner-container{display:inline-block;vertical-align:top}.mw-spinner-block.mw-spinner-small > .mw-spinner-container{min-width:20px}.mw-spinner-block.mw-spinner-large > .mw-spinner-container{min-width:32px}.mw-spinner-inline{display:inline-block;vertical-align:middle} .mw-spinner-container > div{transform-origin:32px 32px;animation:mw-spinner 1.2s linear infinite}.mw-spinner-container > div::after{content:' ';display:block;position:absolute;top:3px; left:29px;width:5px;height:14px;border-radius:20%;background:#000}.mw-spinner-container > div:nth-child(1){transform:rotate(0deg);animation-delay:-1.1s}.mw-spinner-container > div:nth-child(2){transform:rotate(30deg);animation-delay:-1s}.mw-spinner-container > div:nth-child(3){transform:rotate(60deg);animation-delay:-0.9s}.mw-spinner-container > div:nth-child(4){transform:rotate(90deg);animation-delay:-0.8s}.mw-spinner-container > div:nth-child(5){transform:rotate(120deg);animation-delay:-0.7s}.mw-spinner-container > div:nth-child(6){transform:rotate(150deg);animation-delay:-0.6s}.mw-spinner-container > div:nth-child(7){transform:rotate(180deg);animation-delay:-0.5s}.mw-spinner-container > div:nth-child(8){transform:rotate(210deg);animation-delay:-0.4s}.mw-spinner-container > div:nth-child(9){transform:rotate(240deg);animation-delay:-0.3s}.mw-spinner-container > div:nth-child(10){transform:rotate(270deg);animation-delay:-0.2s}.mw-spinner-container > div:nth-child(11){transform:rotate(300deg);animation-delay:-0.1s}.mw-spinner-container > div:nth-child(12){transform:rotate(330deg);animation-delay:0s}@keyframes mw-spinner{0%{opacity:1}100%{opacity:0}}
+.diff{border:0;border-spacing:4px;margin:0;width:100%; table-layout:fixed}.diff td{padding:0.33em 0.5em}.diff td.diff-marker{ padding:0.25em;text-align:right;font-weight:bold;font-size:1.25em;line-height:1.2}.diff td.diff-marker::before{content:attr(data-marker)}.diff td div{ word-wrap:break-word}.diff col.diff-marker{width:2%}.diff .diff-content{width:48%}.diff-title{vertical-align:top}.diff-notice,.diff-multi,.diff-otitle,.diff-ntitle{text-align:center}.diff-lineno{font-weight:bold;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.mw-diff-inline-added ins,.mw-diff-inline-changed ins,.mw-diff-inline-moved ins,.mw-diff-inline-deleted ins,.mw-diff-inline-added del,.mw-diff-inline-changed del,.mw-diff-inline-moved del,.mw-diff-inline-deleted del{padding:0.3em 1px;text-decoration:none;white-space:break-spaces}@media only screen and (max-width:720px){.client-js .mw-diff-inline-added ins,.client-js .mw-diff-inline-changed ins,.client-js .mw-diff-inline-moved ins,.client-js .mw-diff-inline-deleted ins,.client-js .mw-diff-inline-added del,.client-js .mw-diff-inline-changed del,.client-js .mw-diff-inline-moved del,.client-js .mw-diff-inline-deleted del{cursor:pointer}}.mw-diff-inline-added ins,.mw-diff-inline-changed ins,.mw-diff-inline-moved ins{background:#a3d3ff}.mw-diff-inline-deleted del,.mw-diff-inline-changed del,.mw-diff-inline-moved del{background:#ffe49c}.mw-diff-table-prefix{display:flex;justify-content:flex-end;align-items:center;margin:1em 0}.mw-diff-table-prefix .mw-diff-inline-legend{margin-right:auto}.mw-diff-table-prefix .mw-diff-inline-legend .mw-diff-inline-legend-ins,.mw-diff-table-prefix .mw-diff-inline-legend .mw-diff-inline-legend-del{display:inline-block;padding:4px 6px}.mw-diff-table-prefix .mw-diff-inline-legend .mw-diff-inline-legend-ins{background:#a3d3ff}.mw-diff-table-prefix .mw-diff-inline-legend .mw-diff-inline-legend-del{background:#ffe49c}.mw-diff-table-prefix .mw-diffPage-inlineToggle-container{margin-left:1em}.diff-addedline,.diff-deletedline,.diff-context{vertical-align:top;border-style:solid;border-width:1px 1px 1px 4px;border-radius:0.33em}.diff-addedline,.diff-deletedline,.diff-context,.mw-diff-inline-added,.mw-diff-inline-deleted,.mw-diff-inline-moved,.mw-diff-inline-changed,.mw-diff-inline-context{  font-size:13px;  -moz-tab-size:4; tab-size:4;line-height:1.6;white-space:pre-wrap;white-space:break-spaces}.diff-editfont-monospace .diff-addedline,.diff-editfont-monospace .diff-deletedline,.diff-editfont-monospace .diff-context,.diff-editfont-monospace .mw-diff-inline-added,.diff-editfont-monospace .mw-diff-inline-deleted,.diff-editfont-monospace .mw-diff-inline-moved,.diff-editfont-monospace .mw-diff-inline-changed,.diff-editfont-monospace .mw-diff-inline-context{font-family:monospace,monospace}.diff-editfont-sans-serif .diff-addedline,.diff-editfont-sans-serif .diff-deletedline,.diff-editfont-sans-serif .diff-context,.diff-editfont-sans-serif .mw-diff-inline-added,.diff-editfont-sans-serif .mw-diff-inline-deleted,.diff-editfont-sans-serif .mw-diff-inline-moved,.diff-editfont-sans-serif .mw-diff-inline-changed,.diff-editfont-sans-serif .mw-diff-inline-context{font-family:sans-serif}.diff-editfont-serif .diff-addedline,.diff-editfont-serif .diff-deletedline,.diff-editfont-serif .diff-context,.diff-editfont-serif .mw-diff-inline-added,.diff-editfont-serif .mw-diff-inline-deleted,.diff-editfont-serif .mw-diff-inline-moved,.diff-editfont-serif .mw-diff-inline-changed,.diff-editfont-serif .mw-diff-inline-context{font-family:serif}.mw-diff-inline-header{font-weight:bold;margin:1em 0}.diff-context{background:#f8f9fa;color:#222;border-color:#eee}.diff-addedline{border-color:#a3d3ff}.diff-deletedline{border-color:#ffe49c}.diffchange{font-weight:bold;text-decoration:none}.diff-addedline .diffchange,.diff-deletedline .diffchange{border-radius:0.33em;padding:0.25em 0}.diff-addedline .diffchange{background:#d8ecff}.diff-deletedline .diffchange{background:#feeec8} .diff-currentversion-title,.diff{direction:ltr;unicode-bidi:embed}.diff-contentalign-right td{ direction:rtl;unicode-bidi:embed}.diff-contentalign-left td{ direction:ltr;unicode-bidi:embed}.diff-multi,.diff-otitle,.diff-ntitle,.diff-lineno{direction:ltr !important; unicode-bidi:embed}.mw-diff-slot-header{text-align:center}.mw-diff-slot-error{text-align:center;color:#d03} .mw-diff-movedpara-left,.mw-diff-movedpara-right,.mw-diff-movedpara-left:visited,.mw-diff-movedpara-right:visited,.mw-diff-movedpara-left:active,.mw-diff-movedpara-right:active{display:block;color:transparent;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.mw-diff-movedpara-left:hover,.mw-diff-movedpara-right:hover{text-decoration:none;color:transparent}.mw-diff-movedpara-left::after,.mw-diff-movedpara-right::after{display:block;color:#202122;margin-top:-1.25em}.mw-diff-movedpara-left::after,.rtl .mw-diff-movedpara-right::after{content:'↪'}.mw-diff-movedpara-right::after,.rtl .mw-diff-movedpara-left::after{content:'↩'}#mw-inlinediff-header #mw-diff-otitle1,#mw-inlinediff-header #mw-diff-otitle2,#mw-inlinediff-header #mw-diff-otitle3,#mw-inlinediff-header #mw-diff-otitle5{display:none} .diff[data-selected-side='deleted'] .diff-side-added,.diff[data-selected-side='added'] .diff-side-deleted{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:text} .mw-diff-inline-added.mw-diff-empty-line::after,.mw-diff-inline-deleted.mw-diff-empty-line::after,.mw-inline-diff-newline::after{font-family:'Courier New',monospace;font-size:87.5%;padding:0 3px;display:inline-block;color:#555}.mw-diff-inline-added.mw-diff-empty-line::after,.mw-inline-diff-newline::after{content:'↲ новая строка';background:#a3d3ff}.mw-diff-inline-deleted.mw-diff-empty-line::after{content:'⟵ удалить';background:#ffe49c}.mw-diffPage-inlineToggle-container .oo-ui-fieldLayout-body{align-items:center;white-space:nowrap}.mw-diff-empty-line ins,.mw-diff-empty-line del{display:none}.mw-diff-usermetadata,.mw-diff-revision-history-links{display:none}@media only screen and (max-width:720px){.mw-diff-inline-legend{display:none}}
+@media print {
+	td.diff-context,td.diff-addedline .diffchange,td.diff-deletedline .diffchange{background-color:transparent}td.diff-addedline .diffchange{text-decoration:underline}td.diff-deletedline .diffchange{text-decoration:line-through}}
+.mw-editfont-monospace{font-family:monospace,monospace}.mw-editfont-sans-serif{font-family:sans-serif}.mw-editfont-serif{font-family:serif} .mw-editfont-monospace,.mw-editfont-sans-serif,.mw-editfont-serif{  font-size:13px;  -moz-tab-size:4; tab-size:4; }.mw-editfont-monospace.oo-ui-textInputWidget,.mw-editfont-sans-serif.oo-ui-textInputWidget,.mw-editfont-serif.oo-ui-textInputWidget{font-size:inherit}.mw-editfont-monospace.oo-ui-textInputWidget > .oo-ui-inputWidget-input,.mw-editfont-sans-serif.oo-ui-textInputWidget > .oo-ui-inputWidget-input,.mw-editfont-serif.oo-ui-textInputWidget > .oo-ui-inputWidget-input{  font-size:13px}.mw-editfont-monospace.oo-ui-textInputWidget > input.oo-ui-inputWidget-input,.mw-editfont-sans-serif.oo-ui-textInputWidget > input.oo-ui-inputWidget-input,.mw-editfont-serif.oo-ui-textInputWidget > input.oo-ui-inputWidget-input{min-height:32px}
+.unpatrolled{font-weight:bold;color:#d73333} .newpage,.minoredit,.botedit{font-weight:bold} .mw-userlink{word-wrap:break-word; -webkit-hyphens:auto;-moz-hyphens:auto;-ms-hyphens:auto;hyphens:auto; unicode-bidi:embed} .mw-tempuserlink{background-color:#eaecf0;padding:2px 8px;border-radius:0} span.comment{font-style:italic;unicode-bidi:-moz-isolate;unicode-bidi:isolate;word-wrap:break-word;overflow-wrap:break-word;word-break:break-word} .autocomment,.autocomment a,.autocomment a:visited{color:#72777d} li span.deleted,span.history-deleted{text-decoration:line-through;color:#72777d;font-style:italic}span.mw-history-suppressed{ text-decoration-style:double;color:#202122} span.mw-revdelundel-link,strong.mw-revdelundel-link{font-size:90%}.mw-usertoollinks-contribs-no-edits{color:#d03}.mw-usertoollinks-contribs-no-edits:visited{color:#a55858}        .mw-changeslist-separator:empty::before{content:'. .'} .mw-changeslist-separator--semicolon::before{content:';'}.mw-rollback-link::before{content:'['}.mw-rollback-link::after{content:']'}.mw-diff-edit::before,.mw-diff-tool::before,.mw-diff-undo::before,.comment--without-parentheses::before,.mw-changeslist-links::before,.mw-diff-bytes::before,.mw-tag-markers::before,.mw-uctop::before{content:'('}.mw-diff-edit::after,.mw-diff-tool::after,.mw-diff-undo::after,.comment--without-parentheses::after,.mw-changeslist-links::after,.mw-diff-bytes::after,.mw-tag-markers::after,.mw-uctop::after{content:')'}.mw-comment-none{display:block;position:absolute !important; clip:rect(1px,1px,1px,1px);width:1px;height:1px;margin:-1px;border:0;padding:0;overflow:hidden}.mw-changeslist-links{display:inline-block}.mw-changeslist-links > span:not(:first-child)::before{content:' | '}.mw-changeslist-links .mw-rollback-link::before,.mw-changeslist-links .mw-rollback-link::after{content:''}.mw-tag-marker::after{content:','}.mw-tag-marker:last-child::after{content:''}
+.ve-init-mw-progressBarWidget{height:1em;overflow:hidden;margin:0 25%}.ve-init-mw-progressBarWidget-bar{height:1em;width:0} .ve-init-mw-progressBarWidget{background-color:#fff;box-sizing:border-box;height:0.875em;border:1px solid #36c;border-radius:0.875em;box-shadow:0 1px 1px rgba(0,0,0,0.15)}.ve-init-mw-progressBarWidget-bar{background-color:#36c;height:0.875em}
+.mw-diff-popup .oo-ui-clippableElement-clippable p{margin:0;white-space:nowrap}
+#mw-teleport-target{position:absolute;z-index:450}</style>
+    <style>
+.ve-init-mw-tempWikitextEditorWidget{border:0;padding:0;color:inherit;line-height:1.5em;width:100%;-moz-tab-size:4;tab-size:4; }.ve-init-mw-tempWikitextEditorWidget:focus{outline:0;padding:0}.ve-init-mw-tempWikitextEditorWidget::selection{background:rgba(109,169,247,0.5); }</style>
+    <style>
+.ve-active .ve-init-mw-desktopArticleTarget-targetContainer #siteNotice,.ve-active .mw-indicators,.ve-active #t-print,.ve-active #t-permalink,.ve-active #p-coll-print_export,.ve-active #t-cite,.ve-active .ve-init-mw-desktopArticleTarget-editableContent,.ve-active .ve-init-mw-tempWikitextEditorWidget{display:none}.ve-deactivating .ve-ui-surface{display:none}.ve-activating{ }.ve-activating .ve-ui-surface{height:0;padding:0 !important; overflow:hidden} .ve-loading .ve-init-mw-desktopArticleTarget-targetContainer > :not(.ve-init-mw-desktopArticleTarget-toolbarPlaceholder):not(.ve-init-mw-desktopArticleTarget),.ve-loading .ve-init-mw-desktopArticleTarget-originalContent,.ve-activated:not(.ve-loading) .ve-init-mw-desktopArticleTarget-uneditableContent{pointer-events:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;opacity:0.5}.ve-activated .ve-init-mw-desktopArticleTarget-targetContainer #firstHeading{ -webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;pointer-events:auto;cursor:text}.ve-activated .ve-init-mw-desktopArticleTarget-targetContainer #firstHeading a{ pointer-events:none}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks{cursor:pointer}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks:hover{ background:#e9f2fd}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks a{opacity:1} .ve-init-mw-desktopArticleTarget-loading-overlay{z-index:2;position:absolute;width:100%;top:1em}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder{overflow:hidden;transition:height 250ms ease;height:0;padding-bottom:2px; }.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{transform:translateY(-100%);transition:transform 250ms ease}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-open .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{transform:translateY(0)}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating{transition:none}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{position:fixed;top:0;z-index:1;background:#fff} .oo-ui-element-hidden{display:none !important; } .mw-editsection{ unicode-bidi:-moz-isolate;unicode-bidi:-webkit-isolate;unicode-bidi:isolate}.mw-editsection::before{content:'\200B'}.mw-editsection a{white-space:nowrap}.mw-editsection-divider{color:#54595d} .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{height:42px;border-bottom:1px solid #c8ccd1;box-shadow:0 1px 1px 0 rgba(0,0,0,0.1)}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating,.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-open{height:42px}</style>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/f/f2/Turret_freeze_m3.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="733">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/f/f2/Turret_freeze_m3.png">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="489">
+    <meta property="og:image:width" content="640">
+    <meta property="og:image:height" content="391">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://ru.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://ru.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (ru)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://ru.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki&nbsp;— Atom-лента" href="https://ru.tankiwiki.com/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom"><style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
+
+/* 1. 只去掉源站皮肤的背景大图，保留底色；不要用 background 简写，否则会连带清掉皮肤别的背景设定 */
+html, body {
+    background-image: none !important;
+    background-color: #001926 !important;
+}
+/* 2. 让底色铺满视口，内容很短时下方不再露白 */
+html { min-height: 100%; }
+body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif; }
+
+/* 3. 版心容器 */
+#mw-main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #001926;
+}
+
+/* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
+      【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
+
+#mw-main-container .main-content,
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content,
+#mw-main-container #mw-content-text {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: auto !important;
+    flex-basis: auto !important;   /* 皮肤写了 .main-content{flex:0 0 75%} */
+    float: none !important;
+    margin-top: 0 !important;       /* 核心：清空原站皮肤的负 margin-top */
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    position: relative !important;
+    z-index: 1 !important;          /* 保证正文层级低于按钮 */
+}
+
+/* 5. 皮肤脚本 skins.tankiblue.js 会往 #mw-content-text 末尾插一条「发现错别字？Ctrl+Enter」
+      的俄语提示条和一个「报告错误」标签页。它按网址里有没有 'en'/'de' 来判断语言，
+      我们的域名两者都不含 → 一律显示俄语；且报错会提交到俄站编辑组，对镜像站没意义，直接隐藏。 */
+#custom-report-footer,
+.vectorTabs.customReport,
+.customReport { display: none !important; }
+
+/* 6. 返回按钮包裹容器：独占一行并强制最高层级 */
+.home-btn-wrapper {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px 0 20px 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    z-index: 9999 !important;       /* 核心：永远置于最顶层 */
+    clear: both !important;
+    overflow: visible !important;
+}
+
+/* 7. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐 */
+.home-back-btn {
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    width: auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    isolation: isolate !important;
+    
+    min-width: 142px !important;
+    padding: 0 24px !important;
+    height: 78px !important;
+    margin: 0 !important;
+    border: 1px solid rgba(255,255,255,.25) !important;
+    outline: 2px solid transparent !important;
+    border-radius: 6.5px !important;
+    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%) !important;
+    
+    position: relative !important;
+    z-index: 10000 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: all .15s ease !important;
+    overflow: visible !important;
+}
+.home-back-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(100% 100% at 0% 0%, rgba(191,213,255,.25) 0%, rgba(191,213,255,.15) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all .15s ease;
+    border-radius: inherit;
+    pointer-events: none;
+}
+.home-back-btn svg {
+    width: 24.375px;
+    height: 24px;
+    object-fit: contain;
+    transform: rotate(180deg);
+    transition: all .15s ease;
+    flex-shrink: 0;
+}
+.home-back-btn svg path { fill: #BFD5FF; transition: all .15s ease; }
+
+.home-back-btn:hover,
+.home-back-btn:active,
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF !important; border-color: #BFD5FF !important; }
+.home-back-btn:hover::before,
+.home-back-btn:active::before,
+.home-back-btn:focus-visible::before { opacity: 1; }
+.home-back-btn:hover svg,
+.home-back-btn:active svg,
+.home-back-btn:focus-visible svg { transform: rotate(180deg) translateX(10%); }
+.home-back-btn:hover svg path,
+.home-back-btn:active svg path,
+.home-back-btn:focus-visible svg path { fill: #fff; }
+
+.home-back-btn span {
+    color: #BFD5FF;
+    font-size: 16px;
+    margin-left: 10px;
+    font-weight: bold;
+    transition: all .15s ease;
+    white-space: nowrap;
+}
+.home-back-btn:hover span,
+.home-back-btn:active span,
+.home-back-btn:focus-visible span {
+    color: #fff;
+    transform: translateX(-4px);
+}
+
+/* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
+@media (hover: none) {
+    .home-back-btn { border-color: rgba(191,213,255,.55) !important; }
+    .home-back-btn svg path { fill: #CFE0FF; }
+}
+
+/* 移动端/窄屏自适应尺寸 */
+@media (max-width: 480px) {
+    .home-back-btn {
+        min-width: 106px !important;
+        padding: 0 16px !important;
+        height: 58px !important;
+        margin-left: 10px !important;
+    }
+    .home-back-btn svg { width: 20px !important; height: 19.7px !important; }
+    .home-back-btn span { font-size: 14px !important; margin-left: 8px !important; }
+}
+
+/* 8. 移动端容器 Padding */
+@media (max-width: 768px) {
+    #mw-main-container { padding: 10px !important; margin: 8px auto !important; }
+    .home-back-btn { margin-left: 10px !important; }
+    #mw-content-text .navigationContainerContent > div,
+    #mw-content-text [style*="width: 55%"],
+    #mw-content-text [style*="width:55%"],
+    #mw-content-text [style*="width: 45%"],
+    #mw-content-text [style*="width:45%"] { width: 100% !important; }
+}
+@media (max-width: 480px) {
+    #mw-main-container { padding: 6px !important; margin: 4px auto !important; }
+}
+
+/* 9. 防止宽表格 / 大图撑破版心 */
+#mw-content-text img { max-width: 100%; height: auto; }
+#mw-content-text table { max-width: 100%; }
+
+/* 10. 目录（TOC）修复，全局生效：
+    a) 皮肤把目录折叠按钮的文字放在 CSS 伪元素里渲染，而不是 HTML 文本：
+         .toctogglecheckbox:checked  + .toctitle .toctogglelabel::after → content:'показать'
+         .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after → content:'скрыть'
+       AI 翻译只处理 HTML 文本，摸不到 CSS content，所以这个按钮永远是俄语，必须在这里覆盖成中文。
+    b) 皮肤的响应式 CSS 里写了 @media screen and (max-width:768px){ #toc{display:none} }，
+       导致手机端整个目录被隐藏。这里恢复显示，并配合下方 TOC_MOBILE_COLLAPSE_SCRIPT：
+       移动端默认折叠，只占一行「目录 [展开]」，避免长目录把正文挤到屏幕外。 */
+#toc .toctogglecheckbox:checked + .toctitle .toctogglelabel::after { content: '展开' !important; }
+#toc .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after { content: '收起' !important; }
+@media screen and (max-width: 768px) {
+    #toc { display: table !important; }
+}
+
+/* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
+   只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+*/
+</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Uluchsheniya_Friza rootpage-Uluchsheniya_Friza skin-tankiblue action-view"><div id="skin-chrome-stub" aria-hidden="true" style="display:none !important;">
+<a class="problem" href="#"></a>
+<div class="close-wrapper"></div>
+<div class="support-block-popup"><div class="close-modal-support"></div></div>
+<div class="youtube-popup"><iframe title="stub"></iframe></div>
+<div class="video-button"></div>
+<div class="header-search"></div>
+<div class="search-dialog"></div>
+<div class="search-popup"><div class="close-wrapper"></div><div class="close-modal-search"></div></div>
+<div class="news-popup"></div>
+<div class="sales-block-header"></div>
+<div class="navbar-main"></div>
+<div class="main-navbar"></div>
+</div><div id="mw-main-container"><div class="home-btn-wrapper"><a class="home-back-btn" href="./Enciklopediya_igry_%C2%ABTanki_Onlayn%C2%BB" title="返回主页" aria-label="返回主页"><svg viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 0H13.5L25.5 12L24 13.5L13.5 24H18L30 12L18 0ZM24 13.5L21 10.5H0L3 13.5H24Z" fill="#BFD5FF"/></svg><span>返回主页</span></a></div><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">冰风暴的装备改造</h1><div class="top_navigation_buttons">
+<ul><li><div class="navigation_buttons_link"><div class="navigation_button_image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Back-new.png" decoding="async" loading="lazy" width="30" height="24" class="mw-file-element"></span></span></div><div class="navigation_button_text">炮塔</div><a href="./%D0%9F%D1%83%D1%88%D0%BA%D0%B8" class="mw-redirect" title="Пушки">炮塔</a></div></li>
+<li><div class="navigation_buttons_link"><div class="navigation_button_image"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/2/20/Icon_freeze.png/30px-Icon_freeze.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/20/Icon_freeze.png/45px-Icon_freeze.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/2/20/Icon_freeze.png/60px-Icon_freeze.png 2x"></span></span></div><div class="navigation_button_text">冰风暴</div><a href="./%D0%A4%D1%80%D0%B8%D0%B7" class="mw-redirect" title="Фриз">冰风暴</a></div></li>
+<li><div class="navigation_buttons_link"><div class="navigation_button_image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/e7/Upgrades-new.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span></div><div class="navigation_button_text">冰风暴的装备改造</div><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%A4%D1%80%D0%B8%D0%B7%D0%B0" class="mw-redirect" title="Улучшения Фриза">冰风暴的装备改造</a></div></li>
+<li><div class="navigation_buttons_link"><div class="navigation_button_image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/81/Guides-new.png" decoding="async" loading="lazy" width="24" height="21" class="mw-file-element"></span></span></div><div class="navigation_button_text">冰风暴指南</div><a href="./%D0%93%D0%B0%D0%B9%D0%B4_%D0%BF%D0%BE_%D0%A4%D1%80%D0%B8%D0%B7%D1%83" class="mw-redirect" title="Гайд по Фризу">冰风暴指南</a></div></li></ul>
+</div><p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/20/Frieze_02.png" decoding="async" loading="lazy" width="800" height="400" class="mw-file-element"></span></span>
+</p><div class="dablink"><em>参见：</em> <a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="Улучшения">升级</a>
+</div><p>冰风暴的升级同时进行车库中显示的四个参数。<br>然而，随着基础参数升级的每一步，炮塔的一些额外战术技术特性也会成比例地得到改进。<br>表格中展示了车库中显示的和实际升级的特性。
+</p><table class="wikitable">
+
+<tbody><tr class="bg-grey">
+<td><b>伤害</b></td>
+<td>伤害</td></tr>
+<tr>
+<td></td>
+<td>每罐伤害*
+</td></tr>
+<tr class="bg-grey">
+<td><b>转向速度</b></td>
+<td>转向速度</td></tr>
+<tr>
+<td></td>
+<td>转向加速度*
+</td></tr>
+<tr class="bg-grey">
+<td><b>射程</b></td>
+<td>最大有效射程</td></tr>
+<tr>
+<td></td>
+<td>全效射程*
+</td></tr>
+<tr class="bg-grey">
+<td><b>暴击伤害</b></td>
+<td>暴击伤害</td></tr></tbody></table><p><i>*</i> — 与主参数成比例同步升级的额外参数。
+</p><p>下表中展示了主要参数的升级情况。
+</p><div class="alert warning">
+  <div class="icon"></div>
+  <div class="text"><b>注意！</b>在<a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/321474/">第 767 号更新</a>之后，购买新改型会像升级参数一样提升武器属性，因此表格中的改型数据存在差异。</div>
+</div><div class="mapContainer" style="border-radius:.375rem">
+<div class="mapAbout is-active" data-content="tab1">
+  <div class="top">
+    <div class="switcher" style="display:flex; flex-wrap:wrap; justify-content:center; gap:8px 6px; margin:0 auto; width:100%; max-width:1200px;">
+      <div class="activeSwitcher" data-open-block="tab1"> Mk1
+ </div><div data-open-block="tab2"> Mk2
+ </div><div data-open-block="tab3"> Mk3
+ </div><div data-open-block="tab4"> Mk4
+ </div><div data-open-block="tab5"> Mk5
+ </div><div data-open-block="tab6"> Mk6
+ </div><div data-open-block="tab7"> Mk7
+ </div>
+    </div>
+  </div>
+  <div class="bottom"> <div style="display:flex; width:100%; margin:0; align-items:flex-stretch; flex-wrap: wrap; gap: 1em; margin-bottom: 1em">
+<div class="hull_image" style="min-height: 160px; display:flex; flex: 1 1 220px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); align-items:center; justify-content:center; border-radius:12px; border:1px solid rgba(255,255,255,0.06); box-shadow:0 6px 18px rgba(2,8,14,0.40);"><span typeof="mw:File"><a href="./%D0%A4%D1%80%D0%B8%D0%B7" title="Фриз"><img src="https://ru.tankiwiki.com/images/ru/thumb/f/f2/Turret_freeze_m3.png/200px-Turret_freeze_m3.png" decoding="async" loading="lazy" width="200" height="122" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/f/f2/Turret_freeze_m3.png/300px-Turret_freeze_m3.png 1.5x, https://ru.tankiwiki.com/images/ru/f/f2/Turret_freeze_m3.png 2x"></a></span></div>
+<div style="padding:1em; display:flex; flex: 1 1 60%; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);">
+<div style="list-style:none; padding:0; margin:0;">
+<div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/73/Icon_damage.png/20px-Icon_damage.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/73/Icon_damage.png/30px-Icon_damage.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/73/Icon_damage.png/40px-Icon_damage.png 2x"></span></span>伤害</b>：(900.00 → 960.00), hp/с</div><div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/da/Icon_rotation_speed.png/20px-Icon_rotation_speed.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/da/Icon_rotation_speed.png/30px-Icon_rotation_speed.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/da/Icon_rotation_speed.png/40px-Icon_rotation_speed.png 2x"></span></span>重新加载</b>：(3.00 → 2.80), град/с</div><div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/bf/Icon_range.png/20px-Icon_range.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/bf/Icon_range.png/30px-Icon_range.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/bf/Icon_range.png/40px-Icon_range.png 2x"></span></span>转向速度</b>：(90.00 → 108.00), м</div><div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/0/02/Icon_reloading.png/20px-Icon_reloading.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/0/02/Icon_reloading.png/30px-Icon_reloading.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/0/02/Icon_reloading.png/40px-Icon_reloading.png 2x"></span></span>射程</b>：(15.00 → 17.00), с</div><div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6e/Icon_critical_damage.png/20px-Icon_critical_damage.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/6e/Icon_critical_damage.png/30px-Icon_critical_damage.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/6e/Icon_critical_damage.png/40px-Icon_critical_damage.png 2x"></span></span>暴击伤害</b>：(570.00 → 608.00), hp</div>
+</div></div></div>
+<small></small><div class="item-upgrades-block">
+<table class="wikitable-modern item-upgrades-table centered" style="width:100%">
+
+<tbody><tr class="nocalc wikitable-header">
+<th style="width:75px;">等级</th>
+<th>伤害</th>
+<th>重新加载</th>
+<th>转向<br>速度</th>
+<th>射程</th>
+<th>暴击伤害</th>
+<th style="width:95px;">价格<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/ed/Crystal_small.png/13px-Crystal_small.png" decoding="async" loading="lazy" width="13" height="13" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/ed/Crystal_small.png/20px-Crystal_small.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/ed/Crystal_small.png/26px-Crystal_small.png 2x"></span></span>
+</th>
+<th style="width:95px;">价格<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/7e/Rubies_medium.png/13px-Rubies_medium.png" decoding="async" loading="lazy" width="13" height="13" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/7e/Rubies_medium.png/20px-Rubies_medium.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/7e/Rubies_medium.png/26px-Rubies_medium.png 2x"></span></span>
+</th></tr>
+<tr class="nocalc">
+<td>0
+</td>
+<td>900.00</td>
+<td>3.00</td>
+<td>90.00</td>
+<td>15.00</td>
+<td>570.00
+</td>
+<td>-
+</td>
+<td>-
+</td></tr>
+<tr>
+<td>1
+</td>
+<td>920.00</td>
+<td>2.93</td>
+<td>96.00</td>
+<td>15.67</td>
+<td>582.67
+</td>
+<td data-initial="100
+" style="user-select: none;">100
+</td>
+<td data-initial="10
+" style="user-select: none;">10
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>940.00</td>
+<td>2.87</td>
+<td>102.00</td>
+<td>16.33</td>
+<td>595.33
+</td>
+<td data-initial="1000
+" style="user-select: none;">1000
+</td>
+<td data-initial="100
+" style="user-select: none;">100
+</td></tr>
+<tr>
+<td>3
+</td>
+<td>960.00</td>
+<td>2.80</td>
+<td>108.00</td>
+<td>17.00</td>
+<td>608.00
+</td>
+<td data-initial="1900
+" style="user-select: none;">1900
+</td>
+<td data-initial="190
+" style="user-select: none;">190
+</td></tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<tr class="wikitable-footer nocalc">
+<th>总计</th>
+<th>+60.00</th>
+<th>-0.20</th>
+<th>+18.00</th>
+<th>+2.00</th>
+<th>+38.00
+</th>
+<th>3000
+</th>
+<th>300
+</th></tr>
+<tr class="nocalc sum hidden">
+<td colspan="6">选中项总和：</td>
+<td class="delay">0</td>
+<td class="speed">0
+</td></tr></tbody></table>
+            <div class="calc-mode">
+                <div class="custom-checkbox">
+                    <input id="calc-cb_0" type="checkbox">
+                    <div class="checkbox-calc"></div>
+                    <label for="calc-cb_0">计算器模式</label>
+                </div>
+                <div class="discounts hidden" style="display: none;">
+                    <div class="calc-input-group">
+                        <label for="calc-discount-step_0">折扣：</label>
+                        <input style="width: 120px" type="number" pattern="[0-9]{1,2}" value="0" min="0" max="95" step="5" class="delay" id="calc-discount-step_0">
+                    </div>
+                    <button class="wiki-control grey-gradient reset">重置</button>
+                </div>
+            </div>
+        </div>
+ </div>
+</div>
+<div class="mapAbout" data-content="tab2">
+  <div class="top">
+    <div class="switcher" style="display:flex; flex-wrap:wrap; justify-content:center; gap:8px 6px; margin:0 auto; width:100%; max-width:1200px;">
+      <div data-open-block="tab1"> Mk1
+ </div><div class="activeSwitcher" data-open-block="tab2"> Mk2
+ </div><div data-open-block="tab3"> Mk3
+ </div><div data-open-block="tab4"> Mk4
+ </div><div data-open-block="tab5"> Mk5
+ </div><div data-open-block="tab6"> Mk6
+ </div><div data-open-block="tab7"> Mk7
+ </div>
+    </div>
+  </div>
+  <div class="bottom"> <div style="display:flex; width:100%; margin:0; align-items:flex-stretch; flex-wrap: wrap; gap: 1em; margin-bottom: 1em">
+<div class="hull_image" style="min-height: 160px; display:flex; flex: 1 1 220px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); align-items:center; justify-content:center; border-radius:12px; border:1px solid rgba(255,255,255,0.06); box-shadow:0 6px 18px rgba(2,8,14,0.40);"><span typeof="mw:File"><a href="./%D0%A4%D1%80%D0%B8%D0%B7" title="Фриз"><img src="https://ru.tankiwiki.com/images/ru/thumb/f/f2/Turret_freeze_m3.png/200px-Turret_freeze_m3.png" decoding="async" loading="lazy" width="200" height="122" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/f/f2/Turret_freeze_m3.png/300px-Turret_freeze_m3.png 1.5x, https://ru.tankiwiki.com/images/ru/f/f2/Turret_freeze_m3.png 2x"></a></span></div>
+<div style="padding:1em; display:flex; flex: 1 1 60%; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);">
+<div style="list-style:none; padding:0; margin:0;">
+<div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/73/Icon_damage.png/20px-Icon_damage.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/73/Icon_damage.png/30px-Icon_damage.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/73/Icon_damage.png/40px-Icon_damage.png 2x"></span></span>伤害</b>：(968.33 → 1 010.00), hp/с</div><div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/da/Icon_rotation_speed.png/20px-Icon_rotation_speed.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/da/Icon_rotation_speed.png/30px-Icon_rotation_speed.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/da/Icon_rotation_speed.png/40px-Icon_rotation_speed.png 2x"></span></span>重新加载</b>：(2.77 → 2.63), град/с</div><div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/bf/Icon_range.png/20px-Icon_range.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/bf/Icon_range.png/30px-Icon_range.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/bf/Icon_range.png/40px-Icon_range.png 2x"></span></span>转向速度</b>：(110.50 → 123.00), м</div><div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/0/02/Icon_reloading.png/20px-Icon_reloading.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/0/02/Icon_reloading.png/30px-Icon_reloading.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/0/02/Icon_reloading.png/40px-Icon_reloading.png 2x"></span></span>射程</b>：(17.28 → 18.67), с</div><div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6e/Icon_critical_damage.png/20px-Icon_critical_damage.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/6e/Icon_critical_damage.png/30px-Icon_critical_damage.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/6e/Icon_critical_damage.png/40px-Icon_critical_damage.png 2x"></span></span>暴击伤害</b>：(613.28 → 639.67), hp</div>
+</div></div></div>
+<small></small><div class="item-upgrades-block">
+<table class="wikitable-modern item-upgrades-table centered" style="width:100%">
+
+<tbody><tr class="nocalc wikitable-header">
+<th style="width:75px;">等级</th>
+<th>伤害</th>
+<th>重新加载</th>
+<th>转向<br>速度</th>
+<th>射程</th>
+<th>暴击伤害</th>
+<th style="width:95px;">价格<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/ed/Crystal_small.png/13px-Crystal_small.png" decoding="async" loading="lazy" width="13" height="13" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/ed/Crystal_small.png/20px-Crystal_small.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/ed/Crystal_small.png/26px-Crystal_small.png 2x"></span></span>
+</th>
+<th style="width:95px;">价格<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/7e/Rubies_medium.png/13px-Rubies_medium.png" decoding="async" loading="lazy" width="13" height="13" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/7e/Rubies_medium.png/20px-Rubies_medium.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/7e/Rubies_medium.png/26px-Rubies_medium.png 2x"></span></span>
+</th></tr>
+<tr class="nocalc">
+<td>0
+</td>
+<td>968.33</td>
+<td>2.77</td>
+<td>110.50</td>
+<td>17.28</td>
+<td>613.28
+</td>
+<td>-
+</td>
+<td>-
+</td></tr>
+<tr>
+<td>1
+</td>
+<td>976.67</td>
+<td>2.74</td>
+<td>113.00</td>
+<td>17.56</td>
+<td>618.56
+</td>
+<td data-initial="1000
+" style="user-select: none;">1000
+</td>
+<td data-initial="50
+" style="user-select: none;">50
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>985.00</td>
+<td>2.72</td>
+<td>115.50</td>
+<td>17.84</td>
+<td>623.84
+</td>
+<td data-initial="2000
+" style="user-select: none;">2000
+</td>
+<td data-initial="100
+" style="user-select: none;">100
+</td></tr>
+<tr>
+<td>3
+</td>
+<td>993.33</td>
+<td>2.69</td>
+<td>118.00</td>
+<td>18.11</td>
+<td>629.11
+</td>
+<td data-initial="3000
+" style="user-select: none;">3000
+</td>
+<td data-initial="150
+" style="user-select: none;">150
+</td></tr>
+<tr>
+<td>4
+</td>
+<td>1 001.67</td>
+<td>2.66</td>
+<td>120.50</td>
+<td>18.39</td>
+<td>634.39
+</td>
+<td data-initial="4000
+" style="user-select: none;">4000
+</td>
+<td data-initial="200
+" style="user-select: none;">200
+</td></tr>
+<tr>
+<td>5
+</td>
+<td>1 010.00</td>
+<td>2.63</td>
+<td>123.00</td>
+<td>18.67</td>
+<td>639.67
+</td>
+<td data-initial="5000
+" style="user-select: none;">5000
+</td>
+<td data-initial="250
+" style="user-select: none;">250
+</td></tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<tr class="wikitable-footer nocalc">
+<th>总计</th>
+<th>+41.67</th>
+<th>-0.14</th>
+<th>+12.50</th>
+<th>+1.39</th>
+<th>+26.39
+</th>
+<th>15000
+</th>
+<th>750
+</th></tr>
+<tr class="nocalc sum hidden">
+<td colspan="6">选中项总和：</td>
+<td class="delay">0</td>
+<td class="speed">0
+</td></tr></tbody></table>
+            <div class="calc-mode">
+                <div class="custom-checkbox">
+                    <input id="calc-cb_1" type="checkbox">
+                    <div class="checkbox-calc"></div>
+                    <label for="calc-cb_1">计算器模式</label>
+                </div>
+                <div class="discounts hidden" style="display: none;">
+                    <div class="calc-input-group">
+                        <label for="calc-discount-step_1">折扣：</label>
+                        <input style="width: 120px" type="number" pattern="[0-9]{1,2}" value="0" min="0" max="95" step="5" class="delay" id="calc-discount-step_1">
+                    </div>
+                    <button class="wiki-control grey-gradient reset">重置</button>
+                </div>
+            </div>
+        </div>
+ </div>
+</div>
+<div class="mapAbout" data-content="tab3">
+  <div class="top">
+    <div class="switcher" style="display:flex; flex-wrap:wrap; justify-content:center; gap:8px 6px; margin:0 auto; width:100%; max-width:1200px;">
+      <div data-open-block="tab1"> Mk1
+ </div><div data-open-block="tab2"> Mk2
+ </div><div class="activeSwitcher" data-open-block="tab3"> Mk3
+ </div><div data-open-block="tab4"> Mk4
+ </div><div data-open-block="tab5"> Mk5
+ </div><div data-open-block="tab6"> Mk6
+ </div><div data-open-block="tab7"> Mk7
+ </div>
+    </div>
+  </div>
+  <div class="bottom"> <div style="display:flex; width:100%; margin:0; align-items:flex-stretch; flex-wrap: wrap; gap: 1em; margin-bottom: 1em">
+<div class="hull_image" style="min-height: 160px; display:flex; flex: 1 1 220px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); align-items:center; justify-content:center; border-radius:12px; border:1px solid rgba(255,255,255,0.06); box-shadow:0 6px 18px rgba(2,8,14,0.40);"><span typeof="mw:File"><a href="./%D0%A4%D1%80%D0%B8%D0%B7" title="Фриз"><img src="https://ru.tankiwiki.com/images/ru/thumb/f/f2/Turret_freeze_m3.png/200px-Turret_freeze_m3.png" decoding="async" loading="lazy" width="200" height="122" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/f/f2/Turret_freeze_m3.png/300px-Turret_freeze_m3.png 1.5x, https://ru.tankiwiki.com/images/ru/f/f2/Turret_freeze_m3.png 2x"></a></span></div>
+<div style="padding:1em; display:flex; flex: 1 1 60%; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);">
+<div style="list-style:none; padding:0; margin:0;">
+<div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/73/Icon_damage.png/20px-Icon_damage.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/73/Icon_damage.png/30px-Icon_damage.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/73/Icon_damage.png/40px-Icon_damage.png 2x"></span></span>伤害</b>：(1 015.56 → 1 060.00), hp/с</div><div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/da/Icon_rotation_speed.png/20px-Icon_rotation_speed.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/da/Icon_rotation_speed.png/30px-Icon_rotation_speed.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/da/Icon_rotation_speed.png/40px-Icon_rotation_speed.png 2x"></span></span>重新加载</b>：(2.61 → 2.47), град/с</div><div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/bf/Icon_range.png/20px-Icon_range.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/bf/Icon_range.png/30px-Icon_range.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/bf/Icon_range.png/40px-Icon_range.png 2x"></span></span>转向速度</b>：(124.67 → 138.00), м</div><div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/0/02/Icon_reloading.png/20px-Icon_reloading.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/0/02/Icon_reloading.png/30px-Icon_reloading.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/0/02/Icon_reloading.png/40px-Icon_reloading.png 2x"></span></span>射程</b>：(18.85 → 20.33), с</div><div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6e/Icon_critical_damage.png/20px-Icon_critical_damage.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/6e/Icon_critical_damage.png/30px-Icon_critical_damage.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/6e/Icon_critical_damage.png/40px-Icon_critical_damage.png 2x"></span></span>暴击伤害</b>：(643.19 → 671.33), hp</div>
+</div></div></div>
+<small></small><div class="item-upgrades-block">
+<table class="wikitable-modern item-upgrades-table centered" style="width:100%">
+
+<tbody><tr class="nocalc wikitable-header">
+<th style="width:75px;">等级</th>
+<th>伤害</th>
+<th>重新加载</th>
+<th>转向<br>速度</th>
+<th>射程</th>
+<th>暴击伤害</th>
+<th style="width:95px;">价格<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/ed/Crystal_small.png/13px-Crystal_small.png" decoding="async" loading="lazy" width="13" height="13" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/ed/Crystal_small.png/20px-Crystal_small.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/ed/Crystal_small.png/26px-Crystal_small.png 2x"></span></span>
+</th>
+<th style="width:95px;">价格<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/7e/Rubies_medium.png/13px-Rubies_medium.png" decoding="async" loading="lazy" width="13" height="13" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/7e/Rubies_medium.png/20px-Rubies_medium.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/7e/Rubies_medium.png/26px-Rubies_medium.png 2x"></span></span>
+</th></tr>
+<tr class="nocalc">
+<td>0
+</td>
+<td>1 015.56</td>
+<td>2.61</td>
+<td>124.67</td>
+<td>18.85</td>
+<td>643.19
+</td>
+<td>-
+</td>
+<td>-
+</td></tr>
+<tr>
+<td>1
+</td>
+<td>1 021.11</td>
+<td>2.59</td>
+<td>126.33</td>
+<td>19.04</td>
+<td>646.71
+</td>
+<td data-initial="1000
+" style="user-select: none;">1000
+</td>
+<td data-initial="50
+" style="user-select: none;">50
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>1 026.67</td>
+<td>2.58</td>
+<td>128.00</td>
+<td>19.22</td>
+<td>650.22
+</td>
+<td data-initial="2140
+" style="user-select: none;">2140
+</td>
+<td data-initial="107
+" style="user-select: none;">107
+</td></tr>
+<tr>
+<td>3
+</td>
+<td>1 032.22</td>
+<td>2.56</td>
+<td>129.67</td>
+<td>19.41</td>
+<td>653.74
+</td>
+<td data-initial="3290
+" style="user-select: none;">3290
+</td>
+<td data-initial="164
+" style="user-select: none;">164
+</td></tr>
+<tr>
+<td>4
+</td>
+<td>1 037.78</td>
+<td>2.54</td>
+<td>131.33</td>
+<td>19.59</td>
+<td>657.26
+</td>
+<td data-initial="4430
+" style="user-select: none;">4430
+</td>
+<td data-initial="221
+" style="user-select: none;">221
+</td></tr>
+<tr>
+<td>5
+</td>
+<td>1 043.33</td>
+<td>2.52</td>
+<td>133.00</td>
+<td>19.78</td>
+<td>660.78
+</td>
+<td data-initial="5570
+" style="user-select: none;">5570
+</td>
+<td data-initial="279
+" style="user-select: none;">279
+</td></tr>
+<tr>
+<td>6
+</td>
+<td>1 048.89</td>
+<td>2.51</td>
+<td>134.67</td>
+<td>19.96</td>
+<td>664.29
+</td>
+<td data-initial="6710
+" style="user-select: none;">6710
+</td>
+<td data-initial="336
+" style="user-select: none;">336
+</td></tr>
+<tr>
+<td>7
+</td>
+<td>1 054.44</td>
+<td>2.49</td>
+<td>136.33</td>
+<td>20.15</td>
+<td>667.81
+</td>
+<td data-initial="7860
+" style="user-select: none;">7860
+</td>
+<td data-initial="393
+" style="user-select: none;">393
+</td></tr>
+<tr>
+<td>8
+</td>
+<td>1 060.00</td>
+<td>2.47</td>
+<td>138.00</td>
+<td>20.33</td>
+<td>671.33
+</td>
+<td data-initial="9000
+" style="user-select: none;">9000
+</td>
+<td data-initial="450
+" style="user-select: none;">450
+</td></tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<tr class="wikitable-footer nocalc">
+<th>总计</th>
+<th>+44.44</th>
+<th>-0.14</th>
+<th>+13.33</th>
+<th>+1.48</th>
+<th>+28.14
+</th>
+<th>40000
+</th>
+<th>2000
+</th></tr>
+<tr class="nocalc sum hidden">
+<td colspan="6">选中项总和：</td>
+<td class="delay">0</td>
+<td class="speed">0
+</td></tr></tbody></table>
+            <div class="calc-mode">
+                <div class="custom-checkbox">
+                    <input id="calc-cb_2" type="checkbox">
+                    <div class="checkbox-calc"></div>
+                    <label for="calc-cb_2">计算器模式</label>
+                </div>
+                <div class="discounts hidden" style="display: none;">
+                    <div class="calc-input-group">
+                        <label for="calc-discount-step_2">折扣：</label>
+                        <input style="width: 120px" type="number" pattern="[0-9]{1,2}" value="0" min="0" max="95" step="5" class="delay" id="calc-discount-step_2">
+                    </div>
+                    <button class="wiki-control grey-gradient reset">重置</button>
+                </div>
+            </div>
+        </div>
+ </div>
+</div>
+<div class="mapAbout" data-content="tab4">
+  <div class="top">
+    <div class="switcher" style="display:flex; flex-wrap:wrap; justify-content:center; gap:8px 6px; margin:0 auto; width:100%; max-width:1200px;">
+      <div data-open-block="tab1"> Mk1
+ </div><div data-open-block="tab2"> Mk2
+ </div><div data-open-block="tab3"> Mk3
+ </div><div class="activeSwitcher" data-open-block="tab4"> Mk4
+ </div><div data-open-block="tab5"> Mk5
+ </div><div data-open-block="tab6"> Mk6
+ </div><div data-open-block="tab7"> Mk7
+ </div>
+    </div>
+  </div>
+  <div class="bottom"> <div style="display:flex; width:100%; margin:0; align-items:flex-stretch; flex-wrap: wrap; gap: 1em; margin-bottom: 1em">
+<div class="hull_image" style="min-height: 160px; display:flex; flex: 1 1 220px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); align-items:center; justify-content:center; border-radius:12px; border:1px solid rgba(255,255,255,0.06); box-shadow:0 6px 18px rgba(2,8,14,0.40);"><span typeof="mw:File"><a href="./%D0%A4%D1%80%D0%B8%D0%B7" title="Фриз"><img src="https://ru.tankiwiki.com/images/ru/thumb/f/f2/Turret_freeze_m3.png/200px-Turret_freeze_m3.png" decoding="async" loading="lazy" width="200" height="122" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/f/f2/Turret_freeze_m3.png/300px-Turret_freeze_m3.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/f/f2/Turret_freeze_m3.png 2x"></a></span></div>
+<div style="padding:1em; display:flex; flex: 1 1 60%; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);">
+<div style="list-style:none; padding:0; margin:0;">
+<div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/73/Icon_damage.png/20px-Icon_damage.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/73/Icon_damage.png/30px-Icon_damage.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/73/Icon_damage.png/40px-Icon_damage.png 2x"></span></span>伤害</b>：(1 062.73 → 1 090.00), hp/с</div><div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/da/Icon_rotation_speed.png/20px-Icon_rotation_speed.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/da/Icon_rotation_speed.png/30px-Icon_rotation_speed.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/da/Icon_rotation_speed.png/40px-Icon_rotation_speed.png 2x"></span></span>重新加载</b>：(2.46 → 2.37), град/с</div><div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/bf/Icon_range.png/20px-Icon_range.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/bf/Icon_range.png/30px-Icon_range.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/bf/Icon_range.png/40px-Icon_range.png 2x"></span></span>转向速度</b>：(138.82 → 147.00), м</div><div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/0/02/Icon_reloading.png/20px-Icon_reloading.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/0/02/Icon_reloading.png/30px-Icon_reloading.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/0/02/Icon_reloading.png/40px-Icon_reloading.png 2x"></span></span>射程</b>：(20.42 → 21.33), с</div><div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6e/Icon_critical_damage.png/20px-Icon_critical_damage.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/6e/Icon_critical_damage.png/30px-Icon_critical_damage.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/6e/Icon_critical_damage.png/40px-Icon_critical_damage.png 2x"></span></span>暴击伤害</b>：(673.06 → 690.33), hp</div>
+</div></div></div>
+<small></small><div class="item-upgrades-block">
+<table class="wikitable-modern item-upgrades-table centered" style="width:100%">
+
+<tbody><tr class="nocalc wikitable-header">
+<th style="width:75px;">等级</th>
+<th>伤害</th>
+<th>重新加载</th>
+<th>转向<br>速度</th>
+<th>射程</th>
+<th>暴击伤害</th>
+<th style="width:95px;">价格<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/ed/Crystal_small.png/13px-Crystal_small.png" decoding="async" loading="lazy" width="13" height="13" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/ed/Crystal_small.png/20px-Crystal_small.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/ed/Crystal_small.png/26px-Crystal_small.png 2x"></span></span>
+</th>
+<th style="width:95px;">价格<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/7e/Rubies_medium.png/13px-Rubies_medium.png" decoding="async" loading="lazy" width="13" height="13" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/7e/Rubies_medium.png/20px-Rubies_medium.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/7e/Rubies_medium.png/26px-Rubies_medium.png 2x"></span></span>
+</th></tr>
+<tr class="nocalc">
+<td>0
+</td>
+<td>1 062.73</td>
+<td>2.46</td>
+<td>138.82</td>
+<td>20.42</td>
+<td>673.06
+</td>
+<td>-
+</td>
+<td>-
+</td></tr>
+<tr>
+<td>1
+</td>
+<td>1 065.45</td>
+<td>2.45</td>
+<td>139.64</td>
+<td>20.51</td>
+<td>674.78
+</td>
+<td data-initial="1000
+" style="user-select: none;">1000
+</td>
+<td data-initial="50
+" style="user-select: none;">50
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>1 068.18</td>
+<td>2.44</td>
+<td>140.45</td>
+<td>20.60</td>
+<td>676.51
+</td>
+<td data-initial="2330
+" style="user-select: none;">2330
+</td>
+<td data-initial="117
+" style="user-select: none;">117
+</td></tr>
+<tr>
+<td>3
+</td>
+<td>1 070.91</td>
+<td>2.43</td>
+<td>141.27</td>
+<td>20.69</td>
+<td>678.24
+</td>
+<td data-initial="3670
+" style="user-select: none;">3670
+</td>
+<td data-initial="183
+" style="user-select: none;">183
+</td></tr>
+<tr>
+<td>4
+</td>
+<td>1 073.64</td>
+<td>2.42</td>
+<td>142.09</td>
+<td>20.78</td>
+<td>679.97
+</td>
+<td data-initial="5000
+" style="user-select: none;">5000
+</td>
+<td data-initial="250
+" style="user-select: none;">250
+</td></tr>
+<tr>
+<td>5
+</td>
+<td>1 076.36</td>
+<td>2.42</td>
+<td>142.91</td>
+<td>20.88</td>
+<td>681.69
+</td>
+<td data-initial="6330
+" style="user-select: none;">6330
+</td>
+<td data-initial="317
+" style="user-select: none;">317
+</td></tr>
+<tr>
+<td>6
+</td>
+<td>1 079.09</td>
+<td>2.41</td>
+<td>143.73</td>
+<td>20.97</td>
+<td>683.42
+</td>
+<td data-initial="7670
+" style="user-select: none;">7670
+</td>
+<td data-initial="383
+" style="user-select: none;">383
+</td></tr>
+<tr>
+<td>7
+</td>
+<td>1 081.82</td>
+<td>2.40</td>
+<td>144.55</td>
+<td>21.06</td>
+<td>685.15
+</td>
+<td data-initial="9000
+" style="user-select: none;">9000
+</td>
+<td data-initial="450
+" style="user-select: none;">450
+</td></tr>
+<tr>
+<td>8
+</td>
+<td>1 084.55</td>
+<td>2.39</td>
+<td>145.36</td>
+<td>21.15</td>
+<td>686.88
+</td>
+<td data-initial="10330
+" style="user-select: none;">10330
+</td>
+<td data-initial="517
+" style="user-select: none;">517
+</td></tr>
+<tr>
+<td>9
+</td>
+<td>1 087.27</td>
+<td>2.38</td>
+<td>146.18</td>
+<td>21.24</td>
+<td>688.60
+</td>
+<td data-initial="11670
+" style="user-select: none;">11670
+</td>
+<td data-initial="583
+" style="user-select: none;">583
+</td></tr>
+<tr>
+<td>10
+</td>
+<td>1 090.00</td>
+<td>2.37</td>
+<td>147.00</td>
+<td>21.33</td>
+<td>690.33
+</td>
+<td data-initial="13000
+" style="user-select: none;">13000
+</td>
+<td data-initial="650
+" style="user-select: none;">650
+</td></tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<tr class="wikitable-footer nocalc">
+<th>总计</th>
+<th>+27.27</th>
+<th>-0.09</th>
+<th>+8.18</th>
+<th>+0.91</th>
+<th>+17.27
+</th>
+<th>70000
+</th>
+<th>3500
+</th></tr>
+<tr class="nocalc sum hidden">
+<td colspan="6">选中项总和：</td>
+<td class="delay">0</td>
+<td class="speed">0
+</td></tr></tbody></table>
+            <div class="calc-mode">
+                <div class="custom-checkbox">
+                    <input id="calc-cb_3" type="checkbox">
+                    <div class="checkbox-calc"></div>
+                    <label for="calc-cb_3">计算器模式</label>
+                </div>
+                <div class="discounts hidden" style="display: none;">
+                    <div class="calc-input-group">
+                        <label for="calc-discount-step_3">折扣：</label>
+                        <input style="width: 120px" type="number" pattern="[0-9]{1,2}" value="0" min="0" max="95" step="5" class="delay" id="calc-discount-step_3">
+                    </div>
+                    <button class="wiki-control grey-gradient reset">重置</button>
+                </div>
+            </div>
+        </div>
+ </div>
+</div>
+<div class="mapAbout" data-content="tab5">
+  <div class="top">
+    <div class="switcher" style="display:flex; flex-wrap:wrap; justify-content:center; gap:8px 6px; margin:0 auto; width:100%; max-width:1200px;">
+      <div data-open-block="tab1"> Mk1
+ </div><div data-open-block="tab2"> Mk2
+ </div><div data-open-block="tab3"> Mk3
+ </div><div data-open-block="tab4"> Mk4
+ </div><div class="activeSwitcher" data-open-block="tab5"> Mk5
+ </div><div data-open-block="tab6"> Mk6
+ </div><div data-open-block="tab7"> Mk7
+ </div>
+    </div>
+  </div>
+  <div class="bottom"> <div style="display:flex; width:100%; margin:0; align-items:flex-stretch; flex-wrap: wrap; gap: 1em; margin-bottom: 1em">
+<div class="hull_image" style="min-height: 160px; display:flex; flex: 1 1 220px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); align-items:center; justify-content:center; border-radius:12px; border:1px solid rgba(255,255,255,0.06); box-shadow:0 6px 18px rgba(2,8,14,0.40);"><span typeof="mw:File"><a href="./%D0%A4%D1%80%D0%B8%D0%B7" title="Фриз"><img src="https://ru.tankiwiki.com/images/ru/thumb/f/f2/Turret_freeze_m3.png/200px-Turret_freeze_m3.png" decoding="async" loading="lazy" width="200" height="122" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/f/f2/Turret_freeze_m3.png/300px-Turret_freeze_m3.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/f/f2/Turret_freeze_m3.png 2x"></a></span></div>
+<div style="padding:1em; display:flex; flex: 1 1 60%; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);">
+<div style="list-style:none; padding:0; margin:0;">
+<div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/73/Icon_damage.png/20px-Icon_damage.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/73/Icon_damage.png/30px-Icon_damage.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/73/Icon_damage.png/40px-Icon_damage.png 2x"></span></span>伤害</b>：(1 092.50 → 1 120.00), hp/с</div><div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/da/Icon_rotation_speed.png/20px-Icon_rotation_speed.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/da/Icon_rotation_speed.png/30px-Icon_rotation_speed.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/da/Icon_rotation_speed.png/40px-Icon_rotation_speed.png 2x"></span></span>重新加载</b>：(2.36 → 2.27), град/с</div><div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/bf/Icon_range.png/20px-Icon_range.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/bf/Icon_range.png/30px-Icon_range.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/bf/Icon_range.png/40px-Icon_range.png 2x"></span></span>转向速度</b>：(147.75 → 156.00), м</div><div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/0/02/Icon_reloading.png/20px-Icon_reloading.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/0/02/Icon_reloading.png/30px-Icon_reloading.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/0/02/Icon_reloading.png/40px-Icon_reloading.png 2x"></span></span>射程</b>：(21.41 → 22.33), с</div><div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6e/Icon_critical_damage.png/20px-Icon_critical_damage.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/6e/Icon_critical_damage.png/30px-Icon_critical_damage.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/6e/Icon_critical_damage.png/40px-Icon_critical_damage.png 2x"></span></span>暴击伤害</b>：(691.91 → 709.33), hp</div>
+</div></div></div>
+<small></small><div class="item-upgrades-block">
+<table class="wikitable-modern item-upgrades-table centered" style="width:100%">
+
+<tbody><tr class="nocalc wikitable-header">
+<th style="width:75px;">等级</th>
+<th>伤害</th>
+<th>重新加载</th>
+<th>转向<br>速度</th>
+<th>射程</th>
+<th>暴击伤害</th>
+<th style="width:95px;">价格<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/ed/Crystal_small.png/13px-Crystal_small.png" decoding="async" loading="lazy" width="13" height="13" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/ed/Crystal_small.png/20px-Crystal_small.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/ed/Crystal_small.png/26px-Crystal_small.png 2x"></span></span>
+</th>
+<th style="width:95px;">价格<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/7e/Rubies_medium.png/13px-Rubies_medium.png" decoding="async" loading="lazy" width="13" height="13" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/7e/Rubies_medium.png/20px-Rubies_medium.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/7e/Rubies_medium.png/26px-Rubies_medium.png 2x"></span></span>
+</th></tr>
+<tr class="nocalc">
+<td>0
+</td>
+<td>1 092.50</td>
+<td>2.36</td>
+<td>147.75</td>
+<td>21.41</td>
+<td>691.91
+</td>
+<td>-
+</td>
+<td>-
+</td></tr>
+<tr>
+<td>1
+</td>
+<td>1 095.00</td>
+<td>2.35</td>
+<td>148.50</td>
+<td>21.50</td>
+<td>693.50
+</td>
+<td data-initial="1000
+" style="user-select: none;">1000
+</td>
+<td data-initial="50
+" style="user-select: none;">50
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>1 097.50</td>
+<td>2.35</td>
+<td>149.25</td>
+<td>21.58</td>
+<td>695.08
+</td>
+<td data-initial="2800
+" style="user-select: none;">2800
+</td>
+<td data-initial="140
+" style="user-select: none;">140
+</td></tr>
+<tr>
+<td>3
+</td>
+<td>1 100.00</td>
+<td>2.34</td>
+<td>150.00</td>
+<td>21.66</td>
+<td>696.66
+</td>
+<td data-initial="4600
+" style="user-select: none;">4600
+</td>
+<td data-initial="230
+" style="user-select: none;">230
+</td></tr>
+<tr>
+<td>4
+</td>
+<td>1 102.50</td>
+<td>2.33</td>
+<td>150.75</td>
+<td>21.75</td>
+<td>698.25
+</td>
+<td data-initial="6400
+" style="user-select: none;">6400
+</td>
+<td data-initial="320
+" style="user-select: none;">320
+</td></tr>
+<tr>
+<td>5
+</td>
+<td>1 105.00</td>
+<td>2.32</td>
+<td>151.50</td>
+<td>21.83</td>
+<td>699.83
+</td>
+<td data-initial="8200
+" style="user-select: none;">8200
+</td>
+<td data-initial="410
+" style="user-select: none;">410
+</td></tr>
+<tr>
+<td>6
+</td>
+<td>1 107.50</td>
+<td>2.31</td>
+<td>152.25</td>
+<td>21.91</td>
+<td>701.41
+</td>
+<td data-initial="10000
+" style="user-select: none;">10000
+</td>
+<td data-initial="500
+" style="user-select: none;">500
+</td></tr>
+<tr>
+<td>7
+</td>
+<td>1 110.00</td>
+<td>2.30</td>
+<td>153.00</td>
+<td>22.00</td>
+<td>703.00
+</td>
+<td data-initial="11800
+" style="user-select: none;">11800
+</td>
+<td data-initial="590
+" style="user-select: none;">590
+</td></tr>
+<tr>
+<td>8
+</td>
+<td>1 112.50</td>
+<td>2.30</td>
+<td>153.75</td>
+<td>22.08</td>
+<td>704.58
+</td>
+<td data-initial="13600
+" style="user-select: none;">13600
+</td>
+<td data-initial="680
+" style="user-select: none;">680
+</td></tr>
+<tr>
+<td>9
+</td>
+<td>1 115.00</td>
+<td>2.29</td>
+<td>154.50</td>
+<td>22.16</td>
+<td>706.16
+</td>
+<td data-initial="15400
+" style="user-select: none;">15400
+</td>
+<td data-initial="770
+" style="user-select: none;">770
+</td></tr>
+<tr>
+<td>10
+</td>
+<td>1 117.50</td>
+<td>2.28</td>
+<td>155.25</td>
+<td>22.25</td>
+<td>707.75
+</td>
+<td data-initial="17200
+" style="user-select: none;">17200
+</td>
+<td data-initial="860
+" style="user-select: none;">860
+</td></tr>
+<tr>
+<td>11
+</td>
+<td>1 120.00</td>
+<td>2.27</td>
+<td>156.00</td>
+<td>22.33</td>
+<td>709.33
+</td>
+<td data-initial="19000
+" style="user-select: none;">19000
+</td>
+<td data-initial="950
+" style="user-select: none;">950
+</td></tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<tr class="wikitable-footer nocalc">
+<th>总计</th>
+<th>+27.50</th>
+<th>-0.09</th>
+<th>+8.25</th>
+<th>+0.92</th>
+<th>+17.42
+</th>
+<th>110000
+</th>
+<th>5500
+</th></tr>
+<tr class="nocalc sum hidden">
+<td colspan="6">选中项总和：</td>
+<td class="delay">0</td>
+<td class="speed">0
+</td></tr></tbody></table>
+            <div class="calc-mode">
+                <div class="custom-checkbox">
+                    <input id="calc-cb_4" type="checkbox">
+                    <div class="checkbox-calc"></div>
+                    <label for="calc-cb_4">计算器模式</label>
+                </div>
+                <div class="discounts hidden" style="display: none;">
+                    <div class="calc-input-group">
+                        <label for="calc-discount-step_4">折扣：</label>
+                        <input style="width: 120px" type="number" pattern="[0-9]{1,2}" value="0" min="0" max="95" step="5" class="delay" id="calc-discount-step_4">
+                    </div>
+                    <button class="wiki-control grey-gradient reset">重置</button>
+                </div>
+            </div>
+        </div>
+ </div>
+</div>
+<div class="mapAbout" data-content="tab6">
+  <div class="top">
+    <div class="switcher" style="display:flex; flex-wrap:wrap; justify-content:center; gap:8px 6px; margin:0 auto; width:100%; max-width:1200px;">
+      <div data-open-block="tab1"> Mk1
+ </div><div data-open-block="tab2"> Mk2
+ </div><div data-open-block="tab3"> Mk3
+ </div><div data-open-block="tab4"> Mk4
+ </div><div data-open-block="tab5"> Mk5
+ </div><div class="activeSwitcher" data-open-block="tab6"> Mk6
+ </div><div data-open-block="tab7"> Mk7
+ </div>
+    </div>
+  </div>
+  <div class="bottom"> <div style="display:flex; width:100%; margin:0; align-items:flex-stretch; flex-wrap: wrap; gap: 1em; margin-bottom: 1em">
+<div class="hull_image" style="min-height: 160px; display:flex; flex: 1 1 220px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); align-items:center; justify-content:center; border-radius:12px; border:1px solid rgba(255,255,255,0.06); box-shadow:0 6px 18px rgba(2,8,14,0.40);"><span typeof="mw:File"><a href="./%D0%A4%D1%80%D0%B8%D0%B7" title="Фриз"><img src="https://ru.tankiwiki.com/images/ru/thumb/f/f2/Turret_freeze_m3.png/200px-Turret_freeze_m3.png" decoding="async" loading="lazy" width="200" height="122" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/f/f2/Turret_freeze_m3.png/300px-Turret_freeze_m3.png 1.5x, https://ru.tankiwiki.com/images/ru/f/f2/Turret_freeze_m3.png 2x"></a></span></div>
+<div style="padding:1em; display:flex; flex: 1 1 60%; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);">
+<div style="list-style:none; padding:0; margin:0;">
+<div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/73/Icon_damage.png/20px-Icon_damage.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/73/Icon_damage.png/30px-Icon_damage.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/73/Icon_damage.png/40px-Icon_damage.png 2x"></span></span>伤害</b>：(1 123.08 → 1 160.00), hp/с</div><div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/da/Icon_rotation_speed.png/20px-Icon_rotation_speed.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/da/Icon_rotation_speed.png/30px-Icon_rotation_speed.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/da/Icon_rotation_speed.png/40px-Icon_rotation_speed.png 2x"></span></span>重新加载</b>：(2.26 → 2.13), град/с</div><div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/bf/Icon_range.png/20px-Icon_range.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/bf/Icon_range.png/30px-Icon_range.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/bf/Icon_range.png/40px-Icon_range.png 2x"></span></span>转向速度</b>：(156.92 → 168.00), м</div><div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/0/02/Icon_reloading.png/20px-Icon_reloading.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/0/02/Icon_reloading.png/30px-Icon_reloading.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/0/02/Icon_reloading.png/40px-Icon_reloading.png 2x"></span></span>射程</b>：(22.43 → 23.67), с</div><div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6e/Icon_critical_damage.png/20px-Icon_critical_damage.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/6e/Icon_critical_damage.png/30px-Icon_critical_damage.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/6e/Icon_critical_damage.png/40px-Icon_critical_damage.png 2x"></span></span>暴击伤害</b>：(711.28 → 734.67), hp</div>
+</div></div></div>
+<small></small><div class="item-upgrades-block">
+<table class="wikitable-modern item-upgrades-table centered" style="width:100%">
+
+<tbody><tr class="nocalc wikitable-header">
+<th style="width:75px;">等级</th>
+<th>伤害</th>
+<th>重新加载</th>
+<th>转向<br>速度</th>
+<th>射程</th>
+<th>暴击伤害</th>
+<th style="width:95px;">价格<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/ed/Crystal_small.png/13px-Crystal_small.png" decoding="async" loading="lazy" width="13" height="13" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/ed/Crystal_small.png/20px-Crystal_small.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/ed/Crystal_small.png/26px-Crystal_small.png 2x"></span></span>
+</th>
+<th style="width:95px;">价格<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/7e/Rubies_medium.png/13px-Rubies_medium.png" decoding="async" loading="lazy" width="13" height="13" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/7e/Rubies_medium.png/20px-Rubies_medium.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/7e/Rubies_medium.png/26px-Rubies_medium.png 2x"></span></span>
+</th></tr>
+<tr class="nocalc">
+<td>0
+</td>
+<td>1 123.08</td>
+<td>2.26</td>
+<td>156.92</td>
+<td>22.43</td>
+<td>711.28
+</td>
+<td>-
+</td>
+<td>-
+</td></tr>
+<tr>
+<td>1
+</td>
+<td>1 126.15</td>
+<td>2.25</td>
+<td>157.85</td>
+<td>22.54</td>
+<td>713.23
+</td>
+<td data-initial="3000
+" style="user-select: none;">3000
+</td>
+<td data-initial="150
+" style="user-select: none;">150
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>1 129.23</td>
+<td>2.24</td>
+<td>158.77</td>
+<td>22.64</td>
+<td>715.18
+</td>
+<td data-initial="4730
+" style="user-select: none;">4730
+</td>
+<td data-initial="236
+" style="user-select: none;">236
+</td></tr>
+<tr>
+<td>3
+</td>
+<td>1 132.31</td>
+<td>2.23</td>
+<td>159.69</td>
+<td>22.74</td>
+<td>717.13
+</td>
+<td data-initial="6450
+" style="user-select: none;">6450
+</td>
+<td data-initial="323
+" style="user-select: none;">323
+</td></tr>
+<tr>
+<td>4
+</td>
+<td>1 135.38</td>
+<td>2.22</td>
+<td>160.62</td>
+<td>22.85</td>
+<td>719.08
+</td>
+<td data-initial="8180
+" style="user-select: none;">8180
+</td>
+<td data-initial="409
+" style="user-select: none;">409
+</td></tr>
+<tr>
+<td>5
+</td>
+<td>1 138.46</td>
+<td>2.21</td>
+<td>161.54</td>
+<td>22.95</td>
+<td>721.03
+</td>
+<td data-initial="9910
+" style="user-select: none;">9910
+</td>
+<td data-initial="495
+" style="user-select: none;">495
+</td></tr>
+<tr>
+<td>6
+</td>
+<td>1 141.54</td>
+<td>2.19</td>
+<td>162.46</td>
+<td>23.05</td>
+<td>722.97
+</td>
+<td data-initial="11640
+" style="user-select: none;">11640
+</td>
+<td data-initial="582
+" style="user-select: none;">582
+</td></tr>
+<tr>
+<td>7
+</td>
+<td>1 144.62</td>
+<td>2.18</td>
+<td>163.38</td>
+<td>23.15</td>
+<td>724.92
+</td>
+<td data-initial="13360
+" style="user-select: none;">13360
+</td>
+<td data-initial="668
+" style="user-select: none;">668
+</td></tr>
+<tr>
+<td>8
+</td>
+<td>1 147.69</td>
+<td>2.17</td>
+<td>164.31</td>
+<td>23.26</td>
+<td>726.87
+</td>
+<td data-initial="15090
+" style="user-select: none;">15090
+</td>
+<td data-initial="755
+" style="user-select: none;">755
+</td></tr>
+<tr>
+<td>9
+</td>
+<td>1 150.77</td>
+<td>2.16</td>
+<td>165.23</td>
+<td>23.36</td>
+<td>728.82
+</td>
+<td data-initial="16820
+" style="user-select: none;">16820
+</td>
+<td data-initial="841
+" style="user-select: none;">841
+</td></tr>
+<tr>
+<td>10
+</td>
+<td>1 153.85</td>
+<td>2.15</td>
+<td>166.15</td>
+<td>23.46</td>
+<td>730.77
+</td>
+<td data-initial="18550
+" style="user-select: none;">18550
+</td>
+<td data-initial="927
+" style="user-select: none;">927
+</td></tr>
+<tr>
+<td>11
+</td>
+<td>1 156.92</td>
+<td>2.14</td>
+<td>167.08</td>
+<td>23.57</td>
+<td>732.72
+</td>
+<td data-initial="20270
+" style="user-select: none;">20270
+</td>
+<td data-initial="1014
+" style="user-select: none;">1014
+</td></tr>
+<tr>
+<td>12
+</td>
+<td>1 160.00</td>
+<td>2.13</td>
+<td>168.00</td>
+<td>23.67</td>
+<td>734.67
+</td>
+<td data-initial="22000
+" style="user-select: none;">22000
+</td>
+<td data-initial="1100
+" style="user-select: none;">1100
+</td></tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<tr class="wikitable-footer nocalc">
+<th>总计</th>
+<th>+36.92</th>
+<th>-0.13</th>
+<th>+11.08</th>
+<th>+1.24</th>
+<th>+23.39
+</th>
+<th>150000
+</th>
+<th>7500
+</th></tr>
+<tr class="nocalc sum hidden">
+<td colspan="6">选中项总和：</td>
+<td class="delay">0</td>
+<td class="speed">0
+</td></tr></tbody></table>
+            <div class="calc-mode">
+                <div class="custom-checkbox">
+                    <input id="calc-cb_5" type="checkbox">
+                    <div class="checkbox-calc"></div>
+                    <label for="calc-cb_5">计算器模式</label>
+                </div>
+                <div class="discounts hidden" style="display: none;">
+                    <div class="calc-input-group">
+                        <label for="calc-discount-step_5">折扣：</label>
+                        <input style="width: 120px" type="number" pattern="[0-9]{1,2}" value="0" min="0" max="95" step="5" class="delay" id="calc-discount-step_5">
+                    </div>
+                    <button class="wiki-control grey-gradient reset">重置</button>
+                </div>
+            </div>
+        </div>
+ </div>
+</div>
+<div class="mapAbout" data-content="tab7">
+  <div class="top">
+    <div class="switcher" style="display:flex; flex-wrap:wrap; justify-content:center; gap:8px 6px; margin:0 auto; width:100%; max-width:1200px;">
+      <div data-open-block="tab1"> Mk1
+ </div><div data-open-block="tab2"> Mk2
+ </div><div data-open-block="tab3"> Mk3
+ </div><div data-open-block="tab4"> Mk4
+ </div><div data-open-block="tab5"> Mk5
+ </div><div data-open-block="tab6"> Mk6
+ </div><div class="activeSwitcher" data-open-block="tab7"> Mk7
+ </div>
+    </div>
+  </div>
+  <div class="bottom"> <div style="display:flex; width:100%; margin:0; align-items:flex-stretch; flex-wrap: wrap; gap: 1em; margin-bottom: 1em">
+<div class="hull_image" style="min-height: 160px; display:flex; flex: 1 1 220px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); align-items:center; justify-content:center; border-radius:12px; border:1px solid rgba(255,255,255,0.06); box-shadow:0 6px 18px rgba(2,8,14,0.40);"><span typeof="mw:File"><a href="./%D0%A4%D1%80%D0%B8%D0%B7" title="Фриз"><img src="https://ru.tankiwiki.com/images/ru/thumb/f/f2/Turret_freeze_m3.png/200px-Turret_freeze_m3.png" decoding="async" loading="lazy" width="200" height="122" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/f/f2/Turret_freeze_m3.png/300px-Turret_freeze_m3.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/f/f2/Turret_freeze_m3.png 2x"></a></span></div>
+<div style="padding:1em; display:flex; flex: 1 1 60%; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);">
+<div style="list-style:none; padding:0; margin:0;">
+<div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/73/Icon_damage.png/20px-Icon_damage.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/73/Icon_damage.png/30px-Icon_damage.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/73/Icon_damage.png/40px-Icon_damage.png 2x"></span></span>伤害</b>：(1 161.90 → 1 200.00), hp/с</div><div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/da/Icon_rotation_speed.png/20px-Icon_rotation_speed.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/da/Icon_rotation_speed.png/30px-Icon_rotation_speed.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/da/Icon_rotation_speed.png/40px-Icon_rotation_speed.png 2x"></span></span>重新加载</b>：(2.12 → 2.00), град/с</div><div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/bf/Icon_range.png/20px-Icon_range.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/bf/Icon_range.png/30px-Icon_range.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/bf/Icon_range.png/40px-Icon_range.png 2x"></span></span>转向速度</b>：(168.57 → 180.00), м</div><div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/0/02/Icon_reloading.png/20px-Icon_reloading.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/0/02/Icon_reloading.png/30px-Icon_reloading.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/0/02/Icon_reloading.png/40px-Icon_reloading.png 2x"></span></span>射程</b>：(23.73 → 25.00), с</div><div style="margin-bottom: 0.5em;"><b><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6e/Icon_critical_damage.png/20px-Icon_critical_damage.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/6e/Icon_critical_damage.png/30px-Icon_critical_damage.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/6e/Icon_critical_damage.png/40px-Icon_critical_damage.png 2x"></span></span>暴击伤害</b>：(735.88 → 760.00), hp</div>
+</div></div></div>
+<small></small><div class="item-upgrades-block">
+<table class="wikitable-modern item-upgrades-table centered" style="width:100%">
+
+<tbody><tr class="nocalc wikitable-header">
+<th style="width:75px;">等级</th>
+<th>伤害</th>
+<th>重新加载</th>
+<th>转向<br>速度</th>
+<th>射程</th>
+<th>暴击伤害</th>
+<th style="width:95px;">价格<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/ed/Crystal_small.png/13px-Crystal_small.png" decoding="async" loading="lazy" width="13" height="13" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/ed/Crystal_small.png/20px-Crystal_small.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/ed/Crystal_small.png/26px-Crystal_small.png 2x"></span></span>
+</th>
+<th style="width:95px;">价格<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/7e/Rubies_medium.png/13px-Rubies_medium.png" decoding="async" loading="lazy" width="13" height="13" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/7e/Rubies_medium.png/20px-Rubies_medium.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/7e/Rubies_medium.png/26px-Rubies_medium.png 2x"></span></span>
+</th></tr>
+<tr class="nocalc">
+<td>0
+</td>
+<td>1 161.90</td>
+<td>2.12</td>
+<td>168.57</td>
+<td>23.73</td>
+<td>735.88
+</td>
+<td>-
+</td>
+<td>-
+</td></tr>
+<tr>
+<td>1
+</td>
+<td>1 163.81</td>
+<td>2.12</td>
+<td>169.14</td>
+<td>23.80</td>
+<td>737.08
+</td>
+<td data-initial="5000
+" style="user-select: none;">5000
+</td>
+<td data-initial="125
+" style="user-select: none;">125
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>1 165.71</td>
+<td>2.11</td>
+<td>169.71</td>
+<td>23.86</td>
+<td>738.29
+</td>
+<td data-initial="6870
+" style="user-select: none;">6870
+</td>
+<td data-initial="172
+" style="user-select: none;">172
+</td></tr>
+<tr>
+<td>3
+</td>
+<td>1 167.62</td>
+<td>2.11</td>
+<td>170.29</td>
+<td>23.92</td>
+<td>739.49
+</td>
+<td data-initial="8750
+" style="user-select: none;">8750
+</td>
+<td data-initial="219
+" style="user-select: none;">219
+</td></tr>
+<tr>
+<td>4
+</td>
+<td>1 169.52</td>
+<td>2.10</td>
+<td>170.86</td>
+<td>23.99</td>
+<td>740.70
+</td>
+<td data-initial="10620
+" style="user-select: none;">10620
+</td>
+<td data-initial="266
+" style="user-select: none;">266
+</td></tr>
+<tr>
+<td>5
+</td>
+<td>1 171.43</td>
+<td>2.09</td>
+<td>171.43</td>
+<td>24.05</td>
+<td>741.91
+</td>
+<td data-initial="12490
+" style="user-select: none;">12490
+</td>
+<td data-initial="312
+" style="user-select: none;">312
+</td></tr>
+<tr>
+<td>6
+</td>
+<td>1 173.33</td>
+<td>2.09</td>
+<td>172.00</td>
+<td>24.11</td>
+<td>743.11
+</td>
+<td data-initial="14370
+" style="user-select: none;">14370
+</td>
+<td data-initial="359
+" style="user-select: none;">359
+</td></tr>
+<tr>
+<td>7
+</td>
+<td>1 175.24</td>
+<td>2.08</td>
+<td>172.57</td>
+<td>24.18</td>
+<td>744.32
+</td>
+<td data-initial="16240
+" style="user-select: none;">16240
+</td>
+<td data-initial="406
+" style="user-select: none;">406
+</td></tr>
+<tr>
+<td>8
+</td>
+<td>1 177.14</td>
+<td>2.07</td>
+<td>173.14</td>
+<td>24.24</td>
+<td>745.53
+</td>
+<td data-initial="18120
+" style="user-select: none;">18120
+</td>
+<td data-initial="453
+" style="user-select: none;">453
+</td></tr>
+<tr>
+<td>9
+</td>
+<td>1 179.05</td>
+<td>2.07</td>
+<td>173.71</td>
+<td>24.30</td>
+<td>746.73
+</td>
+<td data-initial="19990
+" style="user-select: none;">19990
+</td>
+<td data-initial="500
+" style="user-select: none;">500
+</td></tr>
+<tr>
+<td>10
+</td>
+<td>1 180.95</td>
+<td>2.06</td>
+<td>174.29</td>
+<td>24.37</td>
+<td>747.94
+</td>
+<td data-initial="21860
+" style="user-select: none;">21860
+</td>
+<td data-initial="547
+" style="user-select: none;">547
+</td></tr>
+<tr>
+<td>11
+</td>
+<td>1 182.86</td>
+<td>2.06</td>
+<td>174.86</td>
+<td>24.43</td>
+<td>749.14
+</td>
+<td data-initial="23740
+" style="user-select: none;">23740
+</td>
+<td data-initial="593
+" style="user-select: none;">593
+</td></tr>
+<tr>
+<td>12
+</td>
+<td>1 184.76</td>
+<td>2.05</td>
+<td>175.43</td>
+<td>24.49</td>
+<td>750.35
+</td>
+<td data-initial="25610
+" style="user-select: none;">25610
+</td>
+<td data-initial="640
+" style="user-select: none;">640
+</td></tr>
+<tr>
+<td>13
+</td>
+<td>1 186.67</td>
+<td>2.04</td>
+<td>176.00</td>
+<td>24.56</td>
+<td>751.56
+</td>
+<td data-initial="27480
+" style="user-select: none;">27480
+</td>
+<td data-initial="687
+" style="user-select: none;">687
+</td></tr>
+<tr>
+<td>14
+</td>
+<td>1 188.57</td>
+<td>2.04</td>
+<td>176.57</td>
+<td>24.62</td>
+<td>752.76
+</td>
+<td data-initial="29360
+" style="user-select: none;">29360
+</td>
+<td data-initial="734
+" style="user-select: none;">734
+</td></tr>
+<tr>
+<td>15
+</td>
+<td>1 190.48</td>
+<td>2.03</td>
+<td>177.14</td>
+<td>24.68</td>
+<td>753.97
+</td>
+<td data-initial="31230
+" style="user-select: none;">31230
+</td>
+<td data-initial="781
+" style="user-select: none;">781
+</td></tr>
+<tr>
+<td>16
+</td>
+<td>1 192.38</td>
+<td>2.02</td>
+<td>177.71</td>
+<td>24.75</td>
+<td>755.18
+</td>
+<td data-initial="33110
+" style="user-select: none;">33110
+</td>
+<td data-initial="828
+" style="user-select: none;">828
+</td></tr>
+<tr>
+<td>17
+</td>
+<td>1 194.29</td>
+<td>2.02</td>
+<td>178.29</td>
+<td>24.81</td>
+<td>756.38
+</td>
+<td data-initial="34980
+" style="user-select: none;">34980
+</td>
+<td data-initial="874
+" style="user-select: none;">874
+</td></tr>
+<tr>
+<td>18
+</td>
+<td>1 196.19</td>
+<td>2.01</td>
+<td>178.86</td>
+<td>24.87</td>
+<td>757.59
+</td>
+<td data-initial="36850
+" style="user-select: none;">36850
+</td>
+<td data-initial="921
+" style="user-select: none;">921
+</td></tr>
+<tr>
+<td>19
+</td>
+<td>1 198.10</td>
+<td>2.01</td>
+<td>179.43</td>
+<td>24.94</td>
+<td>758.79
+</td>
+<td data-initial="38730
+" style="user-select: none;">38730
+</td>
+<td data-initial="968
+" style="user-select: none;">968
+</td></tr>
+<tr>
+<td>20
+</td>
+<td>1 200.00</td>
+<td>2.00</td>
+<td>180.00</td>
+<td>25.00</td>
+<td>760.00
+</td>
+<td data-initial="40600
+" style="user-select: none;">40600
+</td>
+<td data-initial="1015
+" style="user-select: none;">1015
+</td></tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<tr class="wikitable-footer nocalc">
+<th>总计</th>
+<th>+38.10</th>
+<th>-0.12</th>
+<th>+11.43</th>
+<th>+1.27</th>
+<th>+24.12
+</th>
+<th>456000
+</th>
+<th>11400
+</th></tr>
+<tr class="nocalc sum hidden">
+<td colspan="6">选中项总和：</td>
+<td class="delay">0</td>
+<td class="speed">0
+</td></tr></tbody></table>
+            <div class="calc-mode">
+                <div class="custom-checkbox">
+                    <input id="calc-cb_6" type="checkbox">
+                    <div class="checkbox-calc"></div>
+                    <label for="calc-cb_6">计算器模式</label>
+                </div>
+                <div class="discounts hidden" style="display: none;">
+                    <div class="calc-input-group">
+                        <label for="calc-discount-step_6">折扣：</label>
+                        <input style="width: 120px" type="number" pattern="[0-9]{1,2}" value="0" min="0" max="95" step="5" class="delay" id="calc-discount-step_6">
+                    </div>
+                    <button class="wiki-control grey-gradient reset">重置</button>
+                </div>
+            </div>
+        </div>
+</div>
+</div>
+<p><br>
+</p><p><br>
+</p><p><br>
+</p><p><br>
+</p><p><br>
+</p><p><br>
+</p><p><br>
+</p><p><br>
+</p><p><br>
+</p><p><br>
+</p><p><br>
+</p><p><br>
+</p><p><br>
+</p><p><br>
+</p><p><br>
+</p><p><br>
+</p><p><br>
+</p><p><br>
+</p><p><br>
+</p><p><br>
+</p><p><br>
+</p><p><br>
+</p><p><br>
+</p>
+</div><p><br>
+</p><div align="right"><small>最后编辑：05/03/2026 Vestas <span class="ai-translate-note" style="color:#8FB8D8;">（由 AI 自动翻译）</span></small></div></div></div></div></div></div><footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
+<p style="margin:0;"><strong style="color:#BFD5FF;">本站为玩家社区自建的非官方 Wiki 镜像。</strong></p>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":1135,"wgPageParseReport":{"limitreport":{"cputime":"1.427","walltime":"2.045","ppvisitednodes":{"value":18035,"limit":1000000},"postexpandincludesize":{"value":165237,"limit":4194304},"templateargumentsize":{"value":64843,"limit":4194304},"expansiondepth":{"value":15,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00% 1680.189      1 -total"," 93.15% 1565.021      1 Шаблон:MUPage"," 87.45% 1469.282      1 Шаблон:Switcher"," 70.78% 1189.189      7 Шаблон:MUTable"," 30.81%  517.617     76 Шаблон:MUTable/Row","  4.27%   71.721      1 Шаблон:TopNavigationButtons","  1.73%   29.010      1 Шаблон:See_also","  1.18%   19.789      1 Шаблон:Другое_значение","  1.04%   17.507      7 Шаблон:BeginUpgradesTable","  0.53%    8.955      4 Шаблон:TopNavigationButtons/Button"]},"cachereport":{"timestamp":"20260825041647","ttl":86400,"transientcontent":false}}});});</script>
+    <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });</script></body></html>

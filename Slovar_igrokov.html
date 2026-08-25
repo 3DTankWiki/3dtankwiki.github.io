@@ -1,0 +1,641 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>(function(){
+  var BASE = 'https://ru.tankiwiki.com';
+  function fix(v){ return (typeof v === 'string' && v.charAt(0) === '/' && v.indexOf('//') !== 0) ? BASE + v : v; }
+  ['HTMLScriptElement','HTMLLinkElement'].forEach(function(tag){
+    var proto = window[tag] && window[tag].prototype;
+    var prop  = tag === 'HTMLScriptElement' ? 'src' : 'href';
+    if (!proto) return;
+    var d = Object.getOwnPropertyDescriptor(proto, prop);
+    if (!d || !d.set) return;
+    Object.defineProperty(proto, prop, {
+      configurable: true,
+      get: function(){ return d.get.call(this); },
+      set: function(v){ d.set.call(this, fix(v)); }
+    });
+  });
+  var of = window.fetch;
+  if (of) window.fetch = function(u, o){ return of.call(this, (typeof u === 'string' ? fix(u) : u), o); };
+  var ox = window.XMLHttpRequest && XMLHttpRequest.prototype.open;
+  if (ox) XMLHttpRequest.prototype.open = function(m, u){
+    var a = Array.prototype.slice.call(arguments); a[1] = fix(u); return ox.apply(this, a);
+  };
+})();</script><title>玩家词典 — 3D 坦克 Wiki</title><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+    <meta charset="UTF-8">
+    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/xg_pWYS8-HRESiV6Rdg4aY_R/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-qWH0xCejb2gc1yqo8ob4TQrvIcQ9XjhOfGKbhFr/+LvFrJdTE3bA+FQP/FLAiQhz"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgRequestId":"5554b09c77c55c0eee99a311","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Slovar_igrokov","wgTitle":"Slovar igrokov","wgCurRevisionId":296166,"wgRevisionId":296166,"wgArticleId":120,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"ru","wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgRelevantPageName":"Slovar_igrokov","wgRelevantArticleId":120,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[
+],"wgVisualEditor":{"pageLanguageCode":"ru","pageLanguageDir":"ltr","pageVariantFallbacks":"ru"},"wgFlaggedRevsParams":{"tags":{"accuracy":{"levels":3}}},"wgStableRevisionId":296166,"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.flaggedRevs.icons":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.flaggedRevs.basic":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.flaggedRevs.advanced","skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=ext.flaggedRevs.basic%2Cicons%7Cext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://ru.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://ru.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (ru)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://ru.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki&nbsp;— Atom-лента" href="https://ru.tankiwiki.com/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom"><style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
+
+/* 1. 只去掉源站皮肤的背景大图，保留底色；不要用 background 简写，否则会连带清掉皮肤别的背景设定 */
+html, body {
+    background-image: none !important;
+    background-color: #001926 !important;
+}
+/* 2. 让底色铺满视口，内容很短时下方不再露白 */
+html { min-height: 100%; }
+body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif; }
+
+/* 3. 版心容器 */
+#mw-main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #001926;
+}
+
+/* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
+      【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
+
+#mw-main-container .main-content,
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content,
+#mw-main-container #mw-content-text {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: auto !important;
+    flex-basis: auto !important;   /* 皮肤写了 .main-content{flex:0 0 75%} */
+    float: none !important;
+    margin-top: 0 !important;       /* 核心：清空原站皮肤的负 margin-top */
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    position: relative !important;
+    z-index: 1 !important;          /* 保证正文层级低于按钮 */
+}
+
+/* 5. 皮肤脚本 skins.tankiblue.js 会往 #mw-content-text 末尾插一条「发现错别字？Ctrl+Enter」
+      的俄语提示条和一个「报告错误」标签页。它按网址里有没有 'en'/'de' 来判断语言，
+      我们的域名两者都不含 → 一律显示俄语；且报错会提交到俄站编辑组，对镜像站没意义，直接隐藏。 */
+#custom-report-footer,
+.vectorTabs.customReport,
+.customReport { display: none !important; }
+
+/* 6. 返回按钮包裹容器：独占一行并强制最高层级 */
+.home-btn-wrapper {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px 0 20px 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    z-index: 9999 !important;       /* 核心：永远置于最顶层 */
+    clear: both !important;
+    overflow: visible !important;
+}
+
+/* 7. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐 */
+.home-back-btn {
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    width: auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    isolation: isolate !important;
+    
+    min-width: 142px !important;
+    padding: 0 24px !important;
+    height: 78px !important;
+    margin: 0 !important;
+    border: 1px solid rgba(255,255,255,.25) !important;
+    outline: 2px solid transparent !important;
+    border-radius: 6.5px !important;
+    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%) !important;
+    
+    position: relative !important;
+    z-index: 10000 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: all .15s ease !important;
+    overflow: visible !important;
+}
+.home-back-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(100% 100% at 0% 0%, rgba(191,213,255,.25) 0%, rgba(191,213,255,.15) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all .15s ease;
+    border-radius: inherit;
+    pointer-events: none;
+}
+.home-back-btn svg {
+    width: 24.375px;
+    height: 24px;
+    object-fit: contain;
+    transform: rotate(180deg);
+    transition: all .15s ease;
+    flex-shrink: 0;
+}
+.home-back-btn svg path { fill: #BFD5FF; transition: all .15s ease; }
+
+.home-back-btn:hover,
+.home-back-btn:active,
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF !important; border-color: #BFD5FF !important; }
+.home-back-btn:hover::before,
+.home-back-btn:active::before,
+.home-back-btn:focus-visible::before { opacity: 1; }
+.home-back-btn:hover svg,
+.home-back-btn:active svg,
+.home-back-btn:focus-visible svg { transform: rotate(180deg) translateX(10%); }
+.home-back-btn:hover svg path,
+.home-back-btn:active svg path,
+.home-back-btn:focus-visible svg path { fill: #fff; }
+
+.home-back-btn span {
+    color: #BFD5FF;
+    font-size: 16px;
+    margin-left: 10px;
+    font-weight: bold;
+    transition: all .15s ease;
+    white-space: nowrap;
+}
+.home-back-btn:hover span,
+.home-back-btn:active span,
+.home-back-btn:focus-visible span {
+    color: #fff;
+    transform: translateX(-4px);
+}
+
+/* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
+@media (hover: none) {
+    .home-back-btn { border-color: rgba(191,213,255,.55) !important; }
+    .home-back-btn svg path { fill: #CFE0FF; }
+}
+
+/* 移动端/窄屏自适应尺寸 */
+@media (max-width: 480px) {
+    .home-back-btn {
+        min-width: 106px !important;
+        padding: 0 16px !important;
+        height: 58px !important;
+        margin-left: 10px !important;
+    }
+    .home-back-btn svg { width: 20px !important; height: 19.7px !important; }
+    .home-back-btn span { font-size: 14px !important; margin-left: 8px !important; }
+}
+
+/* 8. 移动端容器 Padding */
+@media (max-width: 768px) {
+    #mw-main-container { padding: 10px !important; margin: 8px auto !important; }
+    .home-back-btn { margin-left: 10px !important; }
+    #mw-content-text .navigationContainerContent > div,
+    #mw-content-text [style*="width: 55%"],
+    #mw-content-text [style*="width:55%"],
+    #mw-content-text [style*="width: 45%"],
+    #mw-content-text [style*="width:45%"] { width: 100% !important; }
+}
+@media (max-width: 480px) {
+    #mw-main-container { padding: 6px !important; margin: 4px auto !important; }
+}
+
+/* 9. 防止宽表格 / 大图撑破版心 */
+#mw-content-text img { max-width: 100%; height: auto; }
+#mw-content-text table { max-width: 100%; }
+
+/* 10. 目录（TOC）修复，全局生效：
+    a) 皮肤把目录折叠按钮的文字放在 CSS 伪元素里渲染，而不是 HTML 文本：
+         .toctogglecheckbox:checked  + .toctitle .toctogglelabel::after → content:'показать'
+         .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after → content:'скрыть'
+       AI 翻译只处理 HTML 文本，摸不到 CSS content，所以这个按钮永远是俄语，必须在这里覆盖成中文。
+    b) 皮肤的响应式 CSS 里写了 @media screen and (max-width:768px){ #toc{display:none} }，
+       导致手机端整个目录被隐藏。这里恢复显示，并配合下方 TOC_MOBILE_COLLAPSE_SCRIPT：
+       移动端默认折叠，只占一行「目录 [展开]」，避免长目录把正文挤到屏幕外。 */
+#toc .toctogglecheckbox:checked + .toctitle .toctogglelabel::after { content: '展开' !important; }
+#toc .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after { content: '收起' !important; }
+@media screen and (max-width: 768px) {
+    #toc { display: table !important; }
+}
+
+/* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
+   只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+*/
+</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Slovar_igrokov rootpage-Slovar_igrokov skin-tankiblue action-view"><div id="skin-chrome-stub" aria-hidden="true" style="display:none !important;">
+<a class="problem" href="#"></a>
+<div class="close-wrapper"></div>
+<div class="support-block-popup"><div class="close-modal-support"></div></div>
+<div class="youtube-popup"><iframe title="stub"></iframe></div>
+<div class="video-button"></div>
+<div class="header-search"></div>
+<div class="search-dialog"></div>
+<div class="search-popup"><div class="close-wrapper"></div><div class="close-modal-search"></div></div>
+<div class="news-popup"></div>
+<div class="sales-block-header"></div>
+<div class="navbar-main"></div>
+<div class="main-navbar"></div>
+</div><div id="mw-main-container"><div class="home-btn-wrapper"><a class="home-back-btn" href="./Enciklopediya_igry_%C2%ABTanki_Onlayn%C2%BB" title="返回主页" aria-label="返回主页"><svg viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 0H13.5L25.5 12L24 13.5L13.5 24H18L30 12L18 0ZM24 13.5L21 10.5H0L3 13.5H24Z" fill="#BFD5FF"/></svg><span>返回主页</span></a></div><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">玩家词典</h1><div class="alert error">
+  <div class="icon"></div>
+  <div class="text"><b>注意！</b>本文档已归档，不再进行维护。</div>
+</div><p>在论坛、游戏聊天室以及其他玩家交流的场所中，经常会遇到一些让人费解的词汇。许多令人费解的词汇都可以在本词典中找到解释。
+<br><br>
+<b><a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">A</a>, <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">B</a>, <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">V</a>, <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">G</a>, <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">D</a>, <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">E/Ë</a>, <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">Zh</a>, <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">Z</a>, <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">I</a>, <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">K</a>, <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">L</a>, <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">M</a>, <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">N</a>, <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">O</a>, <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">P</a>, <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">R</a>, <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">S</a>, <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">T</a>, <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">U</a>, <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">F</a>, <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">H</a>, <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">Ts</a>, <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">Ch</a>, <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">Sh</a>, <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">E</a>, <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">Yu</a>, <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">Ya</a>, <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">外来术语</a>，<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">数字与符号</a></b>
+</p><h2><span id=".D0.90"></span><span class="mw-headline" id="А">A</span></h2><p><b>头像（Аватар, аватарка, ава）</b> — <a href="./%D0%A4%D0%BE%D1%80%D1%8C%D1%83%D0%BC" class="mw-redirect" title="Форум">论坛</a>上的一个特制小图片，用于反映玩家的职务（参见<a href="./%D0%A7%D1%82%D0%BE_%D1%81%D0%BA%D1%80%D1%8B%D0%B2%D0%B0%D1%8E%D1%82_%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80%D1%8B" class="mw-redirect" title="Что скрывают аватары">头像隐藏了什么</a>）。
+</p><p><b>自动封禁（Автобан）</b> — 自动<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">封禁</a>系统。常与<a href="./%D0%A7%D1%82%D0%BE_%D1%81%D0%BA%D1%80%D1%8B%D0%B2%D0%B0%D1%8E%D1%82_%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80%D1%8B" class="mw-redirect" title="Что скрывают аватары">版主</a>的操作混淆。
+</p><p><b>自动踢出（Автокик）</b> — 此前使用的一种系统，当触发<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">反作弊</a>时自动将其<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">踢出</a>。常与<a href="./%D0%A7%D1%82%D0%BE_%D1%81%D1%80%D1%8B%D0%B2%D0%B0%D1%8E%D1%82_%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80%D1%8B" class="mw-redirect" title="Что скрывают аватары">版主</a>的操作混淆。
+</p><p><b>挑衅、激怒（Агриться, агрить, агр）</b>（源自英文 <i>aggression</i> —— 愤怒、攻击）—— 生气、争吵、攻击。
+</p><p><b>正常人（Адекват）</b> — 遵守社会规范的人。交流中不使用脏话和侮辱性言语，举止得体且有礼貌（反义词 —— 参见<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">不正常人</a>）。
+</p><p><b>管理员（Админ）</b> — 游戏<a href="./%D0%90%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%8B" class="mw-redirect" title="Администраторы">管理员</a>，负责管理助手团队。
+</p><p><b>账号（Аккаунт, акк）</b>（英文 <i>account</i> —— 账户）—— 在游戏/论坛中注册的任意用户。
+</p><p><b>活跃（Актив）</b> — 玩家活跃度的表现。
+</p><p><b>公告（Алерт）</b> — 关于游戏内某项活动的通知。位于<a href="./%D0%9B%D0%BE%D0%B1%D0%B1%D0%B8" class="mw-redirect" title="Лобби">大厅</a>的新闻板块中。
+</p><p><b>Alternativa</b>（来自 Alternativa Games）—— 开发了“<a rel="nofollow" class="external text" href="http://tankionline.com/">3D 坦克</a>”的<a rel="nofollow" class="external text" href="http://alternativaplatform.com/ru/">彼尔姆公司</a>。
+</p><p><b>倒霉（Анлак）</b>（英文 <i>unluck</i>）—— 不走运。
+</p><p><b>倒霉蛋（Анлакер）</b>（英文 <i>unlucker</i>）—— 倒霉的人（参见反义词 —— <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">幸运儿</a>）。
+</p><p><b>抗锯齿（Антиалиасинг）</b> — 通过添加过渡色像素（从轮廓颜色到背景颜色）来平滑轮廓上的像素结构（参见<a href="./%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B8" class="mw-redirect" title="Настройки">设置</a>）。
+</p><p><b>反刷级（Антикач）</b> — 游戏内置的程序部分，旨在打击<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">刷级</a>行为。
+</p><p><b>防脏话系统（Антимат）</b> — 游戏内置的程序部分，用于打击<a href="./%D0%A7%D0%B0%D1%82" class="mw-redirect" title="Чат">聊天室</a>中的粗话。不文明用语会被<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">星号 (*)</a>代替。
+</p><p><b>防刷屏系统（Антифлуд）</b> — 游戏内置的程序部分，用于打击<a href="./%D0%A7%D0%B0%D1%82" class="mw-redirect" title="Чат">聊天室</a>中的<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">刷屏</a>行为。
+</p><p><b>反作弊系统（Античит）</b> — 游戏内置的程序部分，用于打击使用<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">作弊器</a>的行为。
+</p><p><b>顶帖、提升（АП, апать, UP, UPD）</b>（英文 <i>up</i> —— 向上）—— 发表会将主题推送到最近修改列表中的消息，以吸引对它的关注。此外也常用于诸如“<a href="./%D0%97%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="Звания">等级</a>提升”的语境中，表示“提升等级”。
+</p><p><b>升级（Апгрейд）</b>（英文 upgrade）—— 武器改造的升级。
+</p><p><b>橙子</b> — <a href="./%D0%A0%D0%B8%D0%BA%D0%BE%D1%88%D0%B5%D1%82" class="mw-redirect" title="Рикошет">火龙珠</a>的能量球。
+</p><p><i><b>“撞墙（Апстенку）”</b></i> — 这个概念适用于那些在墙上自毁的<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">雷暴炮手</a>。
+</p><p><b>急救包、维修（Аптечка, аптека, ремкомплект, ремка, лечилка）</b> — 恢复坦克生命的<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">道具</a>。默认通过按键 <span class="hotkey">1</span> 激活。
+</p><p><b>火炮</b> — <a href="./%D0%9C%D0%B0%D0%B3%D0%BD%D1%83%D0%BC" class="mw-redirect" title="Магнум">马格南</a>炮塔。
+</p><p><b>进攻者（Атакер）</b> — 主要参与团队进攻行动的玩家（参见<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">冲锋</a>）。
+</p><p><b>暂离（АФК）</b>（英文 <i>afk</i> —— “<i>away from keyboard</i>” —— 离开键盘）—— 缩写，表示角色当前未由玩家操作。
+</p><p><b>成就（Ачивмент, ачивка）</b>（英文 <i>achievement</i> —— 成就、成功）—— 达成某种目标并获得奖励。在《3D 坦克》中存在<a href="./%D0%9B%D0%B8%D1%87%D0%BD%D0%B0%D1%8F_%D1%81%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%B0" class="mw-redirect" title="Личная статистика">成就系统</a>；获得成就时会颁发纪念“勋章”，这些勋章将展示在玩家的个人资料中。
+</p><h2><span id=".D0.91"></span><span class="mw-headline" id="Б">B</span></h2><p><b>漏洞、Bug（Баг）</b>（英文 <i>bug</i> —— 错误、漏洞）—— 游戏错误。<a href="./%D0%A7%D1%82%D0%BE_%D1%81%D1%80%D1%8B%D0%B2%D0%B0%D1%8E%D1%82_%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80%D1%8B" class="mw-redirect" title="Что скрывают аватары">测试员和测试候选人</a>专门负责寻找此类错误。
+</p><p><b>卡 Bug（Багоюз）</b>（英文 <i>bug</i>, <i>use</i>）—— 为了谋取私利而在游戏中使用<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">漏洞</a>。此举被禁止且会受到惩罚。
+</p><p><b>封禁（Бан, баня, банан, банить）</b>（英文 <i>ban</i> —— 禁止）—— 对违规者（卡 bug 者、外挂使用者、刷屏者、发垃圾信息者等）的一种惩罚方式，由<a href="./%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%8%_%D1%87%D0%B0%D1%82%D0%B0" class="mw-redirect" title="Модераторы чата">版主</a>或系统自动发出。其表现为玩家在一段时间内无法使用<a href="./%D0%A7%D0%B0%D1%82" class="mw-redirect" title="Чат">聊天室</a>、发送私信、创建战斗。此外，被封禁的玩家无法在 <a href="./Tanki_X" title="Tanki X">Tanki X</a> 中预留自己的昵称。
+</p><p><b>礼包（Бандл）</b> — <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">特价优惠</a>。
+</p><p><b>封禁锤（Банхаммер）</b>（英文 <i>banhammer</i>）—— 虚拟的“封禁大锤”。<a href="./%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%8C_%D1%87%D0%B0%D1%82%D0%B0" class="mw-redirect" title="Модераторы чата">版主</a>和管理员用于惩罚违规者的主要武器。
+</p><p><i><b>“BB”， “bb”</b></i>（英文 <i>bye-bye</i> —— 再见）—— 表示告别。
+</p><p><b>无道具战（ББП）</b> — 过去被称为无道具战斗以及允许参与这种战斗的通行证。随着 208 版本的发布，无道具战通行证被带有更广泛战斗参数设置的<a href="./%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BC_%D0%B1%D0%B8%D1%82%D0%B2" class="mw-redirect" title="Список битв">“专家战场”通行证</a>所取代。目前创建战斗不再需要通行证（参见<a href="./%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BC_%D0%B1%D0%B8%D1%82%D0%B2" class="mw-redirect" title="Список битв">战场列表</a>）。老玩家可能会习惯性地继续使用这个名称。
+</p><p><b>疯狂（Безумка）</b> — <a href="./%D0%9A%D0%B0%D1%80%D1%82%D1%8B" class="mw-redirect" title="Карты">地图</a>“<a href="./%D0%91%D0%B5%D0%B7%D1%83%D0%BC%D0%B8%D0%B5" class="mw-redirect" title="Безумие">疯狂思维空间</a>”。
+</p><p><b>广告牌、横幅（Билборд, баннер）</b> — 广告牌。在不同的<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">活动</a>中会改变其外观。可以在所有<a href="./%D0%9A%D0%B0%D1%80%D1%82%D1%8B" class="mw-redirect" title="Карты">地图</a>上看到。
+</p><p><b>闪电战、快速杯（Блиц, фасткап）</b> — 常规赛事，此前曾在周末全天为第 3 和第 4 联赛的战队分别举办，而目前则在整周内为第 3 联赛的战队举办（参见<a rel="nofollow" class="external text" href="https://tankisport.com/">赛事</a>）。
+</p><p><b>机器人（Бот）</b> — 代替人类在计算机上自动执行操作的程序。也可以用作<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">菜鸟</a>的同义词。
+</p><p><b>BM</b>, <i><b>“战场版主（батлмоды）”</b></i>（英文 <i>BM —— Battle Moderators</i>）—— <a href="./%D0%A7%D1%82%D0%BE_%D1%81%D1%80%D1%8B%D0%B2%D0%B0%D1%8E%D1%82_%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80%D1%8B" class="mw-redirect" title="Что скрывают аватары">战场版主</a>。
+</p><p><b>准将（Бриг）</b> — “准将”的缩写（参见<a href="./%D0%97%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="Звания">等级</a>）。
+</p><p><b>兄弟（Бро）</b>（英文 <i>bro</i>, <i>brother</i> —— 兄弟）—— 1）游戏或现实中的朋友、好伙伴；能够给予帮助或单纯带来好心情的人；2）车库里的<a href="./%D0%9F%D0%BE%D0%B4%D0%B0%D1%80%D0%BA%D0%B8" class="mw-redirect" title="Подарки">礼物</a>。
+</p><h2><span id=".D0.92"></span><span class="mw-headline" id="В">V</span></h2><p><b>秒杀（Ваншот）</b>（英文 <i>one shot</i> —— 一枪）—— 用一枪杀死任何人。
+</p><p><b>黄蜂轰天（Васпосмок）</b> — <a href="./%D0%92%D0%B0%D1%81%D0%BF" class="mw-redirect" title="Васп">黄蜂轻甲</a>底盘与<a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" class="mw-redirect" title="Смоки">轰天炮</a>炮塔的组合。
+</p><p><b>黄蜂火焰（Васпожига / ВЖ）</b> — <a href="./%D0%92%D0%B0%D1%81%D0%BF" class="mw-redirect" title="Васп">黄蜂轻甲</a>底盘与<a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%82" class="mw-redirect" title="Огнемёт">火焰炮</a>炮塔的组合，非官方战斗模式。通常在此类战斗中会限制使用带有火焰防御的模块。
+</p><p><b>黄蜂激光（Васпореля / ВР）</b> — <a href="./%D0%92%D0%B0%D1%81%D0%BF" class="mw-redirect" title="Васп">黄蜂轻甲</a>底盘与<a href="./%D0%A0%D0%B5%D0%BB%D1%8C%D1%81%D0%B0" class="mw-redirect" title="Рельса">激光炮</a>炮塔的组合，战斗模式。
+</p><p><b>老兵（Ветеран）</b> — 1) 项目的资深玩家；2) 仅授予那些传奇的、著名的以及赢得过头衔的<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">电竞选手</a>（参见<a href="./%D0%9A%D0%B8%D0%B1%D0%B5%D1%80%D1%81%D0%BF%D0%BE%D1%80%D1%82" class="mw-redirect" title="Киберспорт">电竞</a>）的迷彩，这是他们通过多年的训练和胜利赢得的荣誉（参见<a href="./%D0%9A%D1%80%D0%B0%D1%81%D0%BA%D0%B8" class="mw-redirect" title="Краски">迷彩</a>）。
+</p><p><b>盗号（Взлом）</b> — 旨在获取<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">账号</a>密码的行为。通常过错在于玩家本人（参见<a href="./%D0%97%D0%B0%D1%89%D0%B8%D1%82%D0%B0_%D0%BE%D1%82_%D0%B2%D0%B7%D0%BB%D0%BE%D0%BC%D0%B0_%D0%B0%D0%BA%D0%BA%D0%B0%D1%83%D0%BD%D1%82%D0%B0" class="mw-redirect" title="Защита от взлома аккаунта">如何防范骗子？</a>）。
+</p><p><b>V-LOG、视频博客（Видеоблог / ВБ, влог）</b>（英文 <i>vlog</i>）—— 开发者与游戏受众交流的视频形式，回顾每周新闻，提供有关<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">新功能</a>开发的有趣信息。于每周五发布。可以在诸如 <a rel="nofollow" class="external text" href="https://www.youtube.com/playlist?list=PL_jDhnto5T7uwFUGBEFB7vavDWrghhbBk">YouTube</a> 上观看。
+</p><p><b>维京（Вик）</b> — <a href="./%D0%92%D0%B8%D0%BA%D0%B8%D0%BD%D0%B3" class="mw-redirect" title="Викинг">维京</a>底盘。
+</p><p><b>胜利（Вин）</b>（英文 <i>win</i>）—— 胜利、成功。
+</p><p><b>违规者（Виолатор）</b>（英文 <i>violations</i> —— 违规）—— 战场版主先前的称呼。
+</p><h2><span id=".D0.93"></span><span class="mw-headline" id="Г">G</span></h2><p><b>指南（Гайд）</b>（英文 <i>guide</i> —— 手册、指南）—— 关于如何使用某事物的详细指南（参见<a href="./%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%D1%8B_%D0%B8_%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE" class="mw-redirect" title="Советы и видео">建议与视频</a>）。
+</p><p><b>车库（Гараж）</b> — 游戏中的一个板块，在这里可以使用游戏货币购买<a href="./%D0%9A%D0%BE%D1%80%D0%BF%D1%83%D1%81%D0%B0" class="mw-redirect" title="Корпуса">底盘</a>、<a href="./%D0%9F%D1%83%D1%88%D0%BA%D0%B8" class="mw-redirect" title="Пушки">炮塔</a>、<a href="./%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D0%B8" class="mw-redirect" title="Модули">模块</a>、<a href="./%D0%9A%D1%80%D0%B0%D1%81%D0%BA%D0%B8" class="mw-redirect" title="Краски">迷彩</a>和其他物品，并对它们进行安装、更换和升级（参见<a href="./%D0%93%D0%B0%D1%80%D0%B0%D0%B6" class="mw-redirect" title="Гараж">车库</a>）。
+</p><p><b>游戏设计师（Геймдизайнер, геймдиз）</b> — 负责开发游戏规则、风格和设计的专家。
+</p><p><b>手柄（Геймпад）</b> — 一种游戏控制器。表现为一个双手持握、用大拇指和食指操作的遥控器（参见<a href="./%D0%98%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BF%D0%BE_%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8A%D1%87%D0%B5%D0%BD%D0%B8%D1%8F_%D0%B4%D0%B6%D0%BE%D0%B9%D1%81%D1%82%D0%B8%D0%BA%D0%BE%D0%B2_%D0%B8_%D0%B3%D0%B5%D0%B9%D0%BC%D0%BF%D0%B0%D0%B4%D0%BE%D0%B2" class="mw-redirect" title="Инструкция по подключению джойстиков и геймпадов">手柄和操纵杆连接指南</a>）。
+</p><p><b>游戏玩法（Геймплей）</b>（英文 <i>gameplay</i>）—— 从玩家的角度来看的游戏过程，即动态、剧情、音效、游戏呈现等的集合。
+</p><p><b>大元帅（Генус）</b> — “大元帅”的缩写（参见<a href="./%D0%97%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="Звания">等级</a>）。
+</p><p><i><b>“GL”</b></i>（英文 <i>gl</i> —— <i>good luck</i> —— 祝你好运）—— 战斗开始前的寄语，或者赛后祝对手好运。
+</p><p><b>角斗士（Гладик）</b> — “<a href="./%D0%93%D0%BB%D0%B0%D0%B4%D0%B8%D0%B0%D1%82%D0%BE%D1%80" class="mw-redirect" title="Гладиатор">角斗士</a>”迷彩（参见<a href="./%D0%9A%D1%80%D0%B0%D1%81%D0%BA%D0%B8" class="mw-redirect" title="Краски">迷彩</a>）。
+</p><p><i><b>“走，Gogou（Го, гоу）”</b></i>（英文 <i>go</i> —— 出发）—— 呼吁开始执行某项行动的表达。例如，开始战斗。通常用于<a href="./%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D0%BD%D1%8B%D0%B5_%D0%B1%D0%B8%D1%82%D0%B2%D1%8B" class="mw-redirect" title="Форматные битвы">模式化战斗</a>中。
+</p><p><i><b>“着火了/基地（Горим/база）”</b></i> — 在团队战斗中使用的表达（参见<a href="./%D0%A0%D0%B5%D0%B6%D0%B8%D0%BC%D1%83_%D0%B1%D0%BE%D1%8F" class="mw-redirect" title="Режимы боя">战斗模式</a>），用于集中队友对问题的注意力（基地被敌人占领、军旗被运走、控制点被夺走等）。
+</p><p><b>金箱子（Голд）</b>（英文 <i>gold</i> —— 黄金、金色，<i>gold box</i> —— 金箱子）—— 从天而降的金箱子。抢到它的人可以获得 1 000 水晶。它会<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">随机</a>掉落，或者由玩家投放，在此之前会响起警报声并出现金箱子即将掉落的提示消息（参见<a href="./%D0%97%D0%BE%D0%BB%D0%BE%D1%82%D0%BE%D0%B9_%D1%8F%D1%89%D0%B8%D0%BA" class="mw-redirect" title="Золотой ящик">金箱子</a>）。
+</p><p><i><b>“出金了吗？/gold bil?”</b></i> — 那些每次进入战斗都会问这个问题的<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">淘金客</a>总是这么问。
+</p><p><b>淘金客（Голдолов, золотолов）</b> — 为了抢金箱子而进入游戏、抢完就退出的玩家。在引入金箱子随机掉落机制后，玩家的这种行为便失去了意义。
+</p><p><b>GS</b>（英文 <i>GS</i> —— <i>Gear Score</i>）—— 游戏内部显示的已装备武器总“强度”的数值指示器（参见<a href="./Gear_Score" title="Gear Score">装备分数</a>）。
+</p><p><b>GT</b>（英文 <i>GT</i> —— <i>General Tanks</i>）—— 游戏中最著名、荣誉最多的<a href="./%D0%9A%D0%BB%D0%B0%D0%BD%D1%8B" class="mw-redirect" title="Кланы">战队</a>之一。这个缩写在社区中经常出现，其中也包括由于所谓的 <a href="./%D0%97%D0%B0%D0%B3%D0%BE%D0%B2%D0%BE%D1%80_%D0%93%D0%A2" class="mw-redirect" title="Заговор ГТ">GT 阴谋</a>（参见 <a href="./General_Tanks" title="General Tanks">General Tanks</a>）。
+</p><h2><span id=".D0.94"></span><span class="mw-headline" id="Д">D</span></h2><p><b>DA</b>（英文 <i>double armor</i>）—— 双倍护甲<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">道具</a>（现为护甲提升）。默认通过按键 <span class="hotkey">2</span> 激活。
+</p><p><b>双杀、烤串（Дабл-килл, дабл, шашлык）</b> — 双杀。这个概念经常被<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">激光炮手</a>使用。
+</p><p><b>伤害（Дамаг）</b>（英文 <i>damage</i> —— 伤害、破坏）—— 游戏中受到和造成的伤害。
+</p><p><b>双倍组合（Двойные）</b> — <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">DA</a>+<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">速度提升</a>道具的组合。此外还有“重型”（<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">DA</a>+<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">DD</a>）和“轻型”（<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">DD</a>+<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">速度提升</a>）双倍组合的说法（参见<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">满配</a>）。
+</p><p><b>DD</b>（英文 <i>double damage</i>）—— 双倍伤害<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">道具</a>（现为伤害提升）。默认通过按键 <span class="hotkey">3</span> 激活。
+</p><p><b>防守（Деф）</b>（英文 <i>defence</i>）—— 防御、防守。
+</p><p><b>防守者（Дефер）</b> — 倾向于待在后方防守自己基地的玩家。
+</p><p><b>剑圣（Джага）</b> — <a href="./%D0%94%D0%B6%D0%B0%D0%B3%D0%B3%D0%B5%D1%80%D0%BD%D0%B0%D1%83%D1%82" class="mw-redirect" title="Джаггернаут">剑圣</a>。
+</p><p><b>主宰（Дик）</b> — <a href="./%D0%94%D0%B8%D0%BA%D1%82%D0%B0%D1%82%D0%BE%D1%80" class="mw-redirect" title="Диктатор">主宰者</a>底盘。
+</p><p><b>主宰激光（Дикореля / ДР / ДР-К）</b> — <a href="./%D0%94%D0%B8%D0%BA%D1%82%D0%B0%D1%82%D0%BE%D1%80" class="mw-redirect" title="Диктатор">主宰者</a>底盘与<a href="./%D0%A0%D0%B5%D0%BB%D1%8C%D1%81%D0%B0" class="mw-redirect" title="Рельса">激光炮</a>炮塔的组合（参见<a href="./%D0%94%D0%B8%D0%BA%D0%BE%D1%80%D0%B5%D0%BB%D1%8F" class="mw-redirect" title="Дикореля">主宰激光</a>）。主宰激光是官方战斗模式，可以在创建战斗时进行设置（参见<a href="./%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D0%BD%D1%8B%D0%B5_%D0%B1%D0%B8%D1%82%D0%B2%D1%8B" class="mw-redirect" title="Форматные битвы">模式化战斗</a>）。
+</p><p><b>不平衡（Дисбаланс）</b> — 缺乏平衡，某个过程或行动的各个组成部分之间的比例遭到破坏（例如炮塔不平衡：某些炮塔比其他炮塔更强）。
+</p><p><b>“运到底（Довоз）”</b> — 人们这样称呼在没有敌方队伍抵抗的情况下，运送一个或多个军旗以快速结束战斗的行为。通常是在距离战斗结束只剩几分、对方队伍人数较少或者某一方在比分上遥遥领先时运送军旗。
+</p><p><b>“运到底（Довоз）”</b> — 人们这样称呼在没有敌方队伍抵抗的情况下，运送一个或多个军旗以快速结束战斗的行为。通常是在距离战斗结束只剩几分、对方队伍人数较少或者某一方在比分上遥遥领先时运送军旗。
+</p><p><b>压制（Доминировать）</b> — 1) 玩家踩在另一个玩家的坦克上时开玩笑说的话（<i>“压制 —— 羞辱”</i>）；2) 一支队伍对另一支队伍的绝对优势，即由第一方主导战斗：不断进攻，不给对方任何机会。
+</p><p><b>充值、氪金（Донат）</b>（英文 <i>donate</i> —— 捐赠） — 用真实货币购买<a href="./%D0%A2%D0%B0%D0%BD%D0%BA%D0%BE%D0%B8%D0%BD%D1%81" class="mw-redirect" title="Танкоины">坦克币</a>或其他游戏物品的玩家，以及将真实货币投入游戏本身的这一行为（参见<a href="./%D0%9C%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD" class="mw-redirect" title="Магазин">商店</a>）。
+</p><p><b>DPM</b>（英文 <i>DPM</i> —— <i>Damage Per Minute</i>）—— 每分钟伤害。即如果<a href="./%D0%9F%D1%83%D1%88%D0%BA%D0%B8" class="mw-redirect" title="Пушки">炮塔</a>在一分钟内持续射击，能够造成多少伤害。
+</p><p><i><b>“Др（好友）”</b></i> — 玩家对“друзья（好友）”一词的缩写。
+</p><p><b>掉落物（Дроп）</b> — 在战斗中掉落的<a href="./%D0%93%D0%BE%D0%BB%D0%B4" class="mw-redirect" title="Голд">金箱子</a>和<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">道具</a>（参见<a href="./%D0%94%D1%80%D0%BE%D0%BF" class="mw-redirect" title="Дроп">掉落物</a>）。
+</p><p><i><b>“那款别的坦克游戏（Другая игра про танки）”</b></i> — 对《坦克世界》（World of Tanks）的隐晦称呼。
+</p><p><b>ДС</b> — 1) “Discord”的缩写（参见<a href="./%D0%A1%D0%BE%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5_%D1%81%D0%B5%D1%82%D0%B8" class="mw-redirect" title="Социальные сети">社交网络</a>）；2) Domination Series <a href="./%D0%A2%D1%83%D1%80%D0%BD%D0%B8%D1%80%D1%8B" class="mw-redirect" title="Турниры">赛事</a>的简称。常被<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">电竞选手</a>使用。
+</p><p><b>DT</b> — 1) 动态阴影（参见<a href="https://ru.tankiwiki.com/index.php?title=%D0%94%D0%B8%D0%BD%D0%B0%D0%BC%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5_%D1%82%D0%B5%D0%BD%D0%B8&amp;action=edit&amp;redlink=1" class="new" title="Динамические тени (страница не существует)">动态阴影</a>）；2) “坦克手日”节日（在每年 9 月的第二个星期日庆祝）；3) TOF Dream Team 赛事（参见 <a href="./%D0%98%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D1%82%D1%83%D1%80%D0%BD%D0%B8%D1%80%D0%BE%D0%B2_TOF" class="mw-redirect" title="История турниров TOF">TOF 赛事历史</a>）。
+</p><p><b>决斗、PvP</b>（英文 <i>PvP</i> —— <i>player versus player</i> —— 玩家对战玩家）—— 两个玩家之间的相互对战（参见<a rel="nofollow" class="external text" href="http://ru.tankiforum.com/forum/31/">论坛板块</a>）。
+</p><p><b>杜塞尔（Дюсик, дюс）</b> — “<a href="./%D0%94%D1%8E%D1%81%D1%81%D0%B5%D0%BB%D1%8C%D0%B4%D0%BE%D1%80%D1%84" class="mw-redirect" title="Дюссельдорф">古代城堡</a>”地图。
+</p><h2><span id=".D0.95.2F.D0.81"></span><span class="mw-headline" id="Е/Ё">E/Ë</span></h2><p><b>每日任务（ЕЗ）</b> — <a href="./%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="Задания">每日任务</a>。
+</p><h2><span id=".D0.96"></span><span class="mw-headline" id="Ж">Zh</span></h2><p><b>火焰（Жига）</b> — <a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%82" class="mw-redirect" title="Огнемёт">火焰炮</a>炮塔。
+</p><h2><span id=".D0.97"></span><span class="mw-headline" id="З">Z</span></h2><p><b>网瘾少年（Задрот）</b> — 把所有时间都奉献给游戏的人，即他患有游戏依赖症。
+</p><p><b>密码房（Закрытка）</b> — 加密码的战斗。此选项适用于<a href="./PRO-%D0%B1%D0%B8%D1%82%D0%B2%D1%8B" class="mw-redirect" title="PRO-битвы">玩家创建的战斗</a>。
+</p><p><b>名人堂（Зал Славы / ЗС）</b> — 显示玩家积分、财富、<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">UP</a> 等数据的玩家排行榜，该榜单因负载过高已被关闭（参见<a href="./%D0%98%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F_%D0%B8%D0%B3%D1%80%D1%8B" class="mw-redirect" title="История создания игры">游戏创建历史</a>）。目前存在一个<a rel="nofollow" class="external text" href="http://ratings.tankionline.com/ru/">玩家排行榜</a>，它展示周统计数据以及玩家的<a href="./%D0%93%D0%B0%D1%80%D0%B0%D0%B6" class="mw-redirect" title="Гараж">车库</a>。此外还有官方排行榜的某种替代方案 —— <a href="./Leprotanki" title="Leprotanki">Leprotanki</a>。
+</p><p><b>地图争夺赛（Захват карт / ЗК）</b> — 争夺地图控制权的<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">战队</a>赛季赛事。有时会在休赛期为所有联赛的战队举办（参见<a href="./%D0%98%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%BA%D0%B8%D0%B1%D0%B5%D1%80%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%B0" class="mw-redirect" title="История киберспорта">电竞历史</a>、<a rel="nofollow" class="external text" href="https://tankisport.com/">赛事</a>）。
+</p><p><b>升阶（Званка）</b> — <a href="./%D0%97%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="Звания">等级</a>。在游戏中获得新军衔。
+</p><p><b>星星（Звёзды）</b> — 对军衔在准将到元帅之间的玩家的统称。有时也适用于少将到上校的军衔（参见<a href="./%D0%97%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="Звания">等级</a>）。切勿与<a href="./%D0%97%D0%B2%D1%91%D0%B7%D0%B4%D1%8B" class="mw-redirect" title="Звёзды">游戏货币</a>相混淆！
+</p><p><b>ЗКД</b> — 从属<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">冷却时间</a>。
+</p><p><b>僵尸（Зомби）</b> — 1) 非官方战斗模式，其中几名玩家驾驶轻型底盘（通常是<a href="./%D0%92%D0%B0%D1%81%D0%BF" class="mw-redirect" title="Васп">黄蜂轻甲</a>），在没有射击权的情况下从猛犸磁力炮手中逃生；当所有黄蜂轻甲被消灭后游戏结束；2) 2016 年万圣节期间可在商店购买的迷彩。
+</p><h2><span id=".D0.98"></span><span class="mw-headline" id="И">I</span></h2><p><b>活动（Ивент）</b>（英文 <i>event</i> —— 事件）—— 在游戏中持续一定时间的活动（例如<a href="./%D0%9A%D0%B2%D0%B5%D1%81%D1%82_%C2%AB%D0%98%D0%93%D0%A0%D0%90%C2%BB" class="mw-redirect" title="Квест «ИГРА»">“游戏”任务</a>、“3D 坦克”生日、新年庆典等）
+</p><p><b>屏蔽（Игнор）</b>（英文 <i>ignore</i> —— 忽略）—— <a href="./%D0%A7%D0%B0%D1%82" class="mw-redirect" title="Чат">黑名单</a>。被添加到黑名单中的玩家发出的消息将不会显示。
+</p><p><b>绿宝石（Изюм）</b> — “翡翠”<a href="./%D0%9A%D1%80%D0%B0%D1%81%D0%BA%D0%B8" class="mw-redirect" title="Краски">迷彩</a>。
+</p><p><b>邀请码（Инвайт）</b>（英文 invite —— 邀请）—— 用于登录《3D 坦克》<a href="./%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D0%B9_%D1%81%D0%B5%D1%80%D0%B2%D0%B5%D1%80" class="mw-redirect" title="Тестовый сервер">测试服务器</a>的代码。
+</p><p><i><b>“轻松、easy、ez（Изи, izi, ez）”</b></i>（英文 easy —— 简单）—— 表示轻松、胜利的游戏。在某些语境下用作<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">嘲讽</a>。
+</p><p><b>磁力（Изя）</b> — <a href="./%D0%98%D0%B7%D0%B8%D0%B4%D0%B0" class="mw-redirect" title="Изида">磁力炮</a>炮塔。
+</p><p><b>超模、Imba（Имба）</b>（英文 <i>imba</i>, <i>imbalanced</i> —— 不平衡的）—— 过于强力的武器，会给游戏带来<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">失衡</a>。
+</p><p><b>依我之见（ИМХО）</b>（英文 <i>imho</i> —— <i>in my humble/honest opinion</i>）—— 缩写“依我之见”。
+</p><h2><span id=".D0.9A"></span><span class="mw-headline" id="К">K</span></h2><p><b>大写（Капс）</b>（英文 <i>caps/capslock</i>）—— 使用大写字母书写单词/句子（例如，像这样）。会引起其他玩家的负面反应，会受到<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">封禁</a>/警告处罚。
+</p><p><b>人品、档案（Карма）</b> — 玩家的违规记录和被封禁历史。人品档案包含所有踢出记录（移除记录）以及版主的备注。基于人品档案来决定惩罚力度，此外，干净的人品档案是加入<a href="./%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D0%BD%D0%B8%D0%BA%D0%B8_%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%B0" class="mw-redirect" title="Помощники администрации">管理助手</a>的条件之一。可以通过在<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">私信</a>中联系<a href="./%D0%90%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%8B_%D0%B8_%D0%BC%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%8B_%D1%87%D0%B0%D1%82%D0%B0" class="mw-redirect" title="Администраторы и модераторы чата">聊天室管理员</a>来查询自己的人品档案。
+</p><p><b>一局、来一局（Катка, го катку）</b> — 打完的一个战斗<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">回合</a>。
+</p><p><b>练级、刷号（Кач, качнуться, качаться）</b> — 升级游戏账号，以增加经验、<a href="./%D0%97%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="Звания">等级</a>、<a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы">水晶</a>，解锁新<a href="./%D0%9F%D1%83%D1%88%D0%BA%D0%B8" class="mw-redirect" title="Пушки">炮塔</a>、新<a href="./%D0%9A%D0%BE%D1%80%D0%BF%D1%83%D1%81%D0%B0" class="mw-redirect" title="Корпуса">底盘</a>、<a href="./%D0%94%D1%80%D0%BE%D0%BD" class="mw-redirect" title="Дрон">无人机</a>、<a href="./%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D0%B8" class="mw-redirect" title="Модули">模块</a>和<a href="./%D0%9A%D0%B0%D1%80%D1%82%D1%8B" class="mw-redirect" title="Карты">地图</a>。练级既可以通过游戏过程中的合法方法进行，也可以通过使用违规方法（串通、破坏、使用第三方软件）进行。非法练级将会受到惩罚。
+</p><p><b>蹲坑、狙击手（Кемпер）</b> — 总是潜伏在伏击地点、只在敌方玩家毫无防备地从旁经过或者进入其远程武器准星时才开火的玩家。该概念通常用于形容使用<a href="./%D0%A1%D0%BA%D0%BE%D1%80%D0%BF%D0%B8%D0%BE%D0%BD" class="mw-redirect" title="Скорпион">蝎子</a>、<a href="./%D0%A0%D0%B5%D0%BB%D1%8C%D1%81%D0%B0" class="mw-redirect" title="Рельса">激光炮</a>、<a href="./%D0%9C%D0%B0%D0%B3%D0%BD%D1%83%D0%BC" class="mw-redirect" title="Магнум">马格南</a>、<a href="./%D0%93%D0%B0%D1%83%D1%81%D1%81" class="mw-redirect" title="Гаусс">电磁炮</a>或<a href="./%D0%A8%D0%B0%D1%84%D1%82" class="mw-redirect" title="Шафт">镭射炮</a>的玩家。
+</p><p><b>狙击点（Кемперка）</b> — 通常有良好掩护且四周被障碍物保护的地点，<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">狙击手</a>可以从这里轻松射击敌人。
+</p><p><b>电子竞技 / 电竞（Киберспорт / КС）</b> — 游戏中的竞技比赛（详情见<a href="./%D0%9A%D0%B8%D0%B1%D0%B5%D1%80%D1%81%D0%BF%D0%BE%D1%80%D1%8т" class="mw-redirect" title="Киберспорт">文章</a>和<a rel="nofollow" class="external text" href="http://tankisport.com/">网站</a>）。
+</p><p><b>电竞选手（Киберспортсмен）</b> — 战队间比赛和锦标赛的参与者（参见<a href="./%D0%A2%D1%83%D1%80%D0%BD%D0%B8%D1%80%D1%8В" class="mw-redirect" title="Турниры">赛事</a>、<a href="./%D0%9A%D0%B8%D0%B1%D0%B5%D1%80%D1%81%D0%BF%D0%BE%D1%80%D1%8т" class="mw-redirect" title="Киберспорт">电竞</a>、<a href="./%D0%9A%D0%BB%D0%B0%D0%BD%D1%8B" class="mw-redirect" title="Кланы">战队</a>）。
+</p><p><b>绝杀区（Киллзона）</b> — 地图上的非游戏空间（建筑屋顶、<a href="./%D0%9C%D0%B8%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BF%D0%BE%D0%BB%D1%8F" class="mw-redirect" title="Минные поля">雷区</a>、地图边界外的区域），进入后坦克会自毁。在“跑酷”模式中，绝杀区被禁用。
+</p><p><b>酸液迷彩持有者（Кислотник）</b> — 拥有<a href="./%D0%9A%D0%B8%D1%81%D0%BB%D0%BE%D1%82%D0%B0" class="mw-redirect" title="Кислота">酸液</a>迷彩的玩家。
+</p><p><b>战队（Клан）</b> — 具有统一名称和领导层的玩家联合体（参见<a href="./%D0%9A%D0%BB%D0%B0%D0%BD%D1%8B" class="mw-redirect" title="Кланы">战队</a>）。
+</p><p><b>战队赛、CW、KB（Kланвар, КВ, КБ）</b>（英文 <i>clan war</i>, <i>cw</i> —— <a href="./%D0%9A%D0%BB%D0%B0%D0%BD%D1%8B" class="mw-redirect" title="Кланы">战队</a>之间的战斗）—— 两支战队在具有预先商定规则和阵容的单独战斗中的比赛（参见<a href="./%D0%9A%D0%BB%D0%B0%D0%BD%D0%B2%D0%B0%D1%80%D1%8В" class="mw-redirect" title="Кланвары">战队赛</a>）。
+</p><p><b>客户端（Клиент）</b> — 非通过<a href="./%D0%91%D1%80%D0%B0%D1%83%D0%B7%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Браузеры">浏览器</a>进行游戏的程序。需要连接互联网。官方客户端只能在游戏主页下载。（参见<a href="./%D0%98%D0%B3%D1%80%D0%BE%D0%B2%D0%BE%D0%B9_%D0%BA%D0%BB%D0%B8%D0%B5%D0%BD%D1%82" class="mw-redirect" title="Игровой клиент">游戏客户端</a>）。
+</p><p><b>КМЧ</b> — 以前被称为聊天室顾问版主，现在被称为<a href="./%D0%90%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%8B_%D0%B8_%D0%BC%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%8В_%D1%87%D0%B0%D1%82%D0%B0" class="mw-redirect" title="Администраторы и модераторы чата">版主</a>。
+</p><p><b>套件（Комплект）</b> — 组合成一个整体的几件商品。所有商品加起来的价格要远比单独购买每件物品便宜得多。可购买的套件会显示在商店中。游戏中所有现有套件的列表可以在<a href="./%D0%9A%D0%BE%D0%BC%D0%BF%D0%BB%D0%B5%D0%BA%D1%82%D1%8B_%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D0%BE%D0%B2" class="mw-redirect" title="Комплекты товаров">这里</a>查看。
+</p><p><b>社区经理（Комьюнити-менеджер / КМ）</b> — 与玩家保持持续联系、研究他们的兴趣、并在受众与开发者之间充当中间桥梁的专家。
+</p><p><b>转换（Конвертация）</b> — 将武器从旧的改装系统（M0 —— M3）转换为新系统（Mk1 —— Mk7）。
+</p><p><b>幸运礼盒、箱子（Контейнер, конт, кейс）</b> — 里面装有预先未知内容的箱子。打开礼盒后，玩家会获得一件游戏物品。此外，礼盒有时会在普通战斗中代替<a href="./%D0%97%D0%BE%D0%BB%D0%BE%D1%82%D0%BE%D0%B9_%D1%8F%D1%89%D0%B8%D0%BA" class="mw-redirect" title="Золотой ящик">金箱子</a>掉落（参见<a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D1%8B%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры">幸运礼盒</a>）。
+</p><p><b>语音组（Конфа）</b> — 1) “会议”的缩写。指战斗期间用于通信的程序，如 <a rel="nofollow" class="external text" href="http://www.skype.com/ru/">Skype</a>、<a href="https://ru.tankiwiki.com/index.php?title=TeamSpeak&amp;action=edit&amp;redlink=1" class="new" title="TeamSpeak (страница не существует)">TeamSpeak</a>、<a href="https://ru.tankiwiki.com/index.php?title=Discord&amp;action=edit&amp;redlink=1" class="new" title="Discord (страница не существует)">Discord</a> 等；2) 一起玩并在游戏中使用语音通话的紧密团结的玩家群体。
+</p><p><b>水晶（Кри）</b> — 游戏中的货币（参见<a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы">水晶</a>）。
+</p><p><b>致命、闪退（Крит）</b> — 1) 暴击伤害；2) 以前这样称呼可能在游戏中出现的致命<a href="./%D0%9E%D1%88%D0%B8%D0%B0_%D0%B2_%D0%B1%D0%BE%D1%8ю" class="mw-redirect" title="Ошибка в бою">错误</a>。
+</p><p><b>КСК</b> — <a href="./%D0%9A%D0%BB%D0%B0%D0%BD%D1%8B" class="mw-redirect" title="Кланы">战队</a>圆桌会议（<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">Skype 会议</a>），在这里可以商定<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">训练战队赛</a>。目前，大家不再使用它，而是使用<a rel="nofollow" class="external text" href="https://discord.gg/Fh3CRXX/">电竞 Discord 服务器</a>上的专用频道。
+</p><p><b>KTTS（КТТС）</b> — 借用自<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">另一款坦克游戏</a>的表达 —— “<i>越快越好，敬请期待</i>”。
+</p><p><i><b>“Ку, кусь, q, qq, прив”</b></i> — 问候语。
+</p><p><b>冷却时间（Кулдаун / КД）</b>（英文 <i>cooldown</i> —— 冷却）—— <a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">道具</a>不可用的时间间隔。
+</p><p><b>缓存（Кэш）</b> — 用户已浏览过的网页副本。当试图再次浏览这些页面时，浏览器（或代理服务器）将不再向 Web 服务器请求它们，而是从缓存中提取（参见<a href="./%D0%9A%D0%B0%D0%BA_%D1%83%D0%B2%D0%B5%D0%BB%D0%B8%D1%87%D0%B8%D1%82%D1%8С_%D0%BA%D1%8D%D1%88_%D0%B1%D1%80%D0%B0%D1%83%D0%B7%D0%B5%D1%80%D0%B0" class="mw-redirect" title="Как увеличить кэш браузера">如何增加浏览器缓存</a>，<a href="./%D0%9A%D0%B0%D0%BA_%D0%BF%D0%BE%D1%87%D0%B8%D1%81%D1%82%D0%B8%D1%82%D1%8С_%D0%BA%D1%8э%D1%88" class="mw-redirect" title="Как почистить кэш">如何理缓存</a>）。
+</p><h2><span id=".D0.9B"></span><span class="mw-headline" id="Л">L</span></h2><p><b>卡顿、延迟（Лаг）</b>（英文 <i>lag</i> —— 滞后、延迟）—— 发送数据到服务器的延迟或从服务器接收响应的延迟。长时间的卡顿通常以<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">断开连接</a>告终。衍生动词 —— 卡顿（лагать）。
+</p><p><b>高延迟玩家（Лагер）</b> — 由于<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">卡顿</a>而导致游戏困难的角色，或者他在其他玩家眼中的显示是扭曲的。通常高延迟玩家在地图上瞬移前进，很难击中他们，并且他们的射击带有延迟才能命中目标，这会让普通玩家非常愤怒，甚至有人把他们当作<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">外挂使用者</a>。
+</p><p><b>幸运儿（Лакер）</b>（源自英文 <i>luck</i> —— 运气）—— 幸运的人、运气好的人（参见反义词 —— <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">倒霉蛋</a>）。
+</p><p><b>传奇、传奇军衔（Легенда, лега）</b> — 游戏中的最高军衔（参见<a href="./%D0%97%D0%B2%D0%B0%D0%BD%D0%B8%D1%8Ф" class="mw-redirect" title="Звания">等级</a>）。
+</p><p><b>中尉（Лейт）</b> — “中尉”的缩写（参见<a href="./%D0%97%D0%B2%D0%B0%D0%BD%D0%B8%D1%8Ф" class="mw-redirect" title="Звания">等级</a>）。
+</p><p><b>Leprotanki</b> — 坦克手的非官方社区（某种<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">名人堂</a>），他们希望看看别人并展现自己（参见 <a href="./Leprotanki" title="Leprotanki">Leprotanki</a>）。
+</p><p><b>退游、退战队（Ливнуть）</b>（源自英文 <i>leave</i> —— 离开）—— 离开（战斗、战队）。
+</p><p><b>轻甲（ЛК）</b> — 轻型<a href="./%D0%9A%D0%BE%D1%80%D0%BF%D1%83%D1%81%D0%B0" class="mw-redirect" title="Корпуса">底盘</a>（<a href="./%D0%92%D0%B0%D1%81%D0%BF" class="mw-redirect" title="Васп">黄蜂轻甲</a>、<a href="./%D0%A5%D0%BE%D0%BF%D0%BF%D0%B5%D1%80" class="mw-redirect" title="Хоппер">霍珀</a>和<a href="./%D0%A5%D0%BE%D1%80%D0%BD%D0%B5%D1%82" class="mw-redirect" title="Хорнет">蜂王</a>）。
+</p><p><b>大厅（Лобби）</b>（英文 <i>lobby</i> —— 大厅、门厅）—— 在游戏中指用户进入战斗前向其展示的元素集合（参见<a href="./%D0%9B%D0%BE%D0%B1%D0%B1%D0%B8" class="mw-redirect" title="Лобби">大厅</a>）。
+</p><p><b>日志（Лог）</b> — 以文本形式记录某些操作，通常带有时间戳。例如，在游戏中，战斗日志是右上角的信息，指示谁消灭了谁、谁进入了战斗、谁退出了战斗、谁运送了军旗、谁占领了点位。版主的操作、玩家登录游戏等等都会被记录在日志中（即以日志形式整理）。
+</p><p><i><b>“LOL（Лол）”</b></i>（英文 <i>LOL</i> —— <i>laughing out loud</i> —— 哈哈大笑）—— 表示笑声的表达。在某些语境下用作侮辱（<i>лолка, лалка, лолита</i>）。
+</p><p><b>LT</b> — “轻型坦克”套件的简称。此外，根据改装版本不同，还会使用“LT Mk1”、“LT Mk5”等说法。
+</p><h2><span id=".D0.9C"></span><span class="mw-headline" id="М">M</span></h2><p><b>商店（Магазин）</b> — 游戏中的一个板块，在这里可以购买<a href="./%D0%A2%D0%B0%D0%BD%D0%BA%D0%BE%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Танкоины">坦克币</a>、<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">水晶</a>、<a href="./%D0%9F%D1%80%D0%B5%D0%BC%D0%B8%D1%83%D0%BC_%D0%B0%D0%BA%D0%BA%D0%B0%D1%83%D0%BD%D1%82" class="mw-redirect" title="Премиум аккаунт">VIP</a> 订阅、“金箱子”道具以及其他一些物品（参见<a href="./%D0%9C%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD" class="mw-redirect" title="Магазин">商店</a>）。
+</p><p><b>地图（Мап, мапа）</b>（英文 <i>map</i>）—— 游戏中的<a href="./%D0%9A%D0%B0%D1%80%D1%82%D1%8B" class="mw-redirect" title="Карты">地图</a>。
+</p><p><b>地图池（Мап-пул）</b>（源自英文 <i>map</i> —— 地图，<i>pool</i> —— 池、储备）—— 团队<a href="./%D0%A2%D1%83%D1%80%D0%BD%D0%B8%D1%80%D1%8В" class="mw-redirect" title="Турниры">赛事</a>中所使用的特定<a href="./%D0%9A%D0%B0%D1%80%D1%82%D1%8B" class="mw-redirect" title="Карты">地图</a>列表。
+</p><p><i><b>“Mb（Мб）”</b></i> — 短语“可能是（может быть）”的缩写。
+</p><p><b>战队锦标赛（МЧ）</b> — 游戏中历史最悠久、最负盛名的<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">战队</a>赛事。每年定期举办一次（参见<a href="./%D0%9C%D0%B5%D0%B6%D0%BA%D0%BB%D0%B0%D0%BD%D0%BE%D0%B2%D1%8B%D0%B9_%D0%A7%D0%B5%D0%BC%D0%BF%D0%B8%D0%BE%D0%BD%D0%B0%D1%8т" class="mw-redirect" title="Межклановый Чемпионат">战队锦标赛</a>、<a href="./%D0%A2%D1%83%D1%80%D0%BD%D0%B8%D1%80%D1%8В" class="mw-redirect" title="Турниры">赛事</a>）。
+</p><p><b>地雷（Мина, минка）</b> — 对踩到它的敌人造成一定伤害（1200-2400 <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">HP</a>）的<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">道具</a>。默认通过按键 <span class="hotkey">5</span> 激活。
+</p><p><b>停战（Мир）</b> — 玩家之间的同盟。仅在<a href="./%D0%A0%D0%B5%D0%B6%D0%B8%D0%BC%D1%8B_%D0%B1%D0%BE%D1%8ф" class="mw-redirect" title="Режимы боя">个人战斗模式</a>中被允许。
+</p><p><b>MM</b> — <a href="./%D0%9C%D0%B0%D1%82%D1%87%D0%BC%D0%B5%D0%B9%D0%BA%D0%B8%D0%BD%D0%B3" class="mw-redirect" title="Матчмейкинг">匹配</a>。
+</p><p><b>版主（Модератор, модер, мод）</b>（英文 <i>moderator</i>, <i>moderation</i>）—— 游戏中的法律与秩序维护者。精通<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">封禁锤</a>（参见<a href="./%D0%90%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%8В_%D0%B8_%D0%BC%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%8В_%D1%87%D0%B0%D1%82%D0%B0" class="mw-redirect" title="Администраторы и модераторы чата">聊天室管理员和版主</a>、<a href="./%D0%90%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%8В_%D0%B8_%D0%BC%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%8В_%D1%84%D0%BE%D1%80%D1%83%D0%BC%D0%B0" class="mw-redirect" title="Администраторы и модераторы форума">论坛管理员和版主</a>、<a href="./%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D0%BD%D0%B8%D0%BA%D0%B8_%D0%B2_%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%B0%D1%8х_%C2%AB%D0%A2%D0%B0%D0%BD%D0%BA%D0%BE%D0%B2_%D0%9E%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD%C2%BB_%D0%B2_%D1%81%D0%BE%D1%86%D1%81%D0%B5%D1%82%D1%8F%D1%8х" class="mw-redirect" title="Помощники в сообществах «Танков Онлайн» в соцсетях">《3D 坦克》社交媒体社区助手</a>）。
+</p><p><b>改装（Модификация）</b> — 炮塔、底盘以及模块质优各异的等级或品种。.
+</p><p><b>滑膛炮（Молоток）</b> — <a href="./%D0%9C%D0%BE%D0%BB%D0%BE%D1%82" class="mw-redirect" title="Молот">滑膛炮</a>炮塔。
+</p><p><b>MotS</b> — Masters of The Sword 赛事的简称，经常被<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">电竞选手</a>使用（参见<a href="./%D0%A2%D1%83%D1%80%D0%BD%D0%B8%D1%80%D1%8В" class="mw-redirect" title="Турниры">赛事</a>）。
+</p><p><b>MP</b> — “<a href="./%D0%9C%D0%B0%D1%81%D1%82%D0%B5%D1%80%D0%B0_%D0%BF%D0%B0%D1%80%D0%BA%D1%83%D1%80%D0%B0" class="mw-redirect" title="Мастера паркура">跑酷大师</a>”比赛名称的缩写。
+</p><p><b>小号、多重账号（Мульт, твинк）</b> — 1) 同一个玩家的第二个及后续账号；2) 游戏中的内奸 —— 敌方队伍中的卧底玩家，其主要目的是削弱本方队伍的优势（即当内奸）。内奸通常也被称为菜鸟。如果有证据表明在游戏中使用内奸旨在让敌方队伍输掉比赛，将会受到封禁处罚（参见<a href="./%D0%9D%D0%B0%D1%80%D1%83%D1%88%D0%B5%D0%BD%D0%B8%D1%8Ф_%D0%B8_%D0%BD%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D0%BD%D0%B8%D1%8Ф" class="mw-redirect" title="Нарушения и наказания">违规与惩罚</a>）。
+</p><p><b>禁言（Мут）</b>（英文 <i>mute</i> —— 哑的）—— “封禁”的同义词。
+</p><p><b>炮灰（Мясо）</b> — 1) 战斗中武器薄弱的无用玩家，或者在激烈使用<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">道具</a>的战斗中不用道具的人（因此通常“炮灰”这个概念与<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">死亡混战</a>战斗相关）。通常此类玩家还没来得及从<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">复活点</a>返回就被再次消灭；2) 地图上的“乱战”。
+</p><h2><span id=".D0.9D"></span><span class="mw-headline" id="Н">N</span></h2><p><b>痛击（Нагнуть）</b> — 在战斗中战胜那些对自己的游戏能力和实力有着极高看法的玩家或队伍。痛击的过程通常伴随着持续使用<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">道具</a>。
+</p><p><b>高手（Нагибатор）</b> — 1) 精通某种或多种武器类型并且不羞于积极使用<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">消耗品</a>的玩家。能够凭一己之力为处于劣势的队伍扭转战局；2) 认为自己玩得很好但没有用实际行动证明这一点的玩家的讽刺称呼。
+</p><p><b>不正常玩家（Неадекват）</b> — 举止不端的人。以下是此类行为的例子：侮辱其他玩家，故意发送带有大写字母（全大写）或交替大小写字母的消息，或者出于自我表达而非技术原因故意使用<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">拼音文</a>，在玩家约定好使用某种特定武器（例如黄蜂激光或黄蜂火焰）的战斗中故意使用“错误”的武器，不遵循模式化战斗中的非官方行为准则。反义词 —— 参见<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">正常人</a>。
+</p><p><b>削弱（Нерф, нерфить）</b>（源自英文 <i>nerf</i> —— 削弱、变差）—— 通常这样称呼开发者为了寻找“黄金游戏平衡”而定期对物品<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">战术技术性能</a>所进行的更改。
+</p><p>此外，还存在诸如<i>“削弱 zeus（понерфить зеруса）”</i>这样的说法，这是由玩家 ZeRUS 引入的，他在自己主题的投票中添加了这一项。实际上，它没有任何意义。
+</p><p><b>NiD（找并追）</b>（Find and Catch）—— 这个广受欢迎的游戏名称本身就说明了一切。要么去追，要么逃跑（胜利的判定既可以通过车身触碰另一辆坦克来算，也可以通过用<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">地雷</a>消灭敌人来算）。
+</p><p><b>速度提升（Нитра）</b> — 临时增加坦克速度的<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">道具</a>。默认通过按键 <span class="hotkey">4</span> 激活。
+</p><p><b>新年（НГ）</b> — 游戏在跨年夜举行的一项<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">活动</a>。为了这次活动，地图上会推出与新年主题相符的特殊游戏元素。此外，折扣、<a href="./%D0%9A%D0%BE%D0%BD%D0%BA%D1%83%D1%80%D1%81%D1%8B" class="mw-redirect" title="Конкурсы">比赛</a>和其他活动也都会安排在新年期间。
+</p><p><b>菜鸟、新手（Нуб, нуп, нубас, нубяра, нубик, рак, краб）</b>（英文 <i>noob</i>, <i>newbie</i> —— 新手）—— 1) 弱小的玩家；2) 刚刚注册、尚不知道游戏规则和习俗的玩家；3) 一个通用表达，用来形容不符合战斗军衔/武器类型、或者行事与游戏内既定规则或习俗背道而驰的玩家。
+</p><p><b>新闻、报纸（Ньюс, газета）</b>（英文 <i>news</i> —— 新闻）—— 以前活跃的<a rel="nofollow" class="external text" href="http://ru.tankiforum.com/forum/43/">游戏新闻门户网站</a>（知识性文章、故事、玩家采访和其他新闻内容）。详见<a href="./%D0%9F%D1%80%D0%B5%D1%81%D1%81%D0%B0" class="mw-redirect" title="Пресса">文章</a>。
+</p><h2><span id=".D0.9E"></span><span class="mw-headline" id="О">O</span></h2><p><b>终极技能、星、终极（Овердрайв, звезда, овер）</b> — 底盘的终极技能（参见<a href="./%D0%9E%D0%B2%D0%B5%D1%80%D0%B4%D1%80%D0%B0%D0%B9%D0%B2" class="mw-redirect" title="Овердрайв">终极技能</a>）。
+</p><p><b>友军伤害、FF（Огонь по своим, ФФ）</b>（英文 <i>friendly fire</i> —— 友军伤害）—— <a href="./%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BC_%D0%B1%D0%B8%D1%82%D0%B2" class="mw-redirect" title="Список битв">创建战斗</a>的选项。开启友军伤害后，玩家可以对队友造成伤害。消灭队友的玩家不会因此获得击杀分和积分，而被消灭的玩家在战斗统计中会增加 1 次死亡。在 TDM 模式中也没有对队伍的惩罚。
+</p><p><b>单键玩家（Однокнопочный）</b> — 使用<a href="./%D0%A8%D0%B0%D1%84%D1%82" class="mw-redirect" title="Шафт">镭射炮</a>的玩家。
+</p><p><b>经典老派（Олдскул）</b>（英文 <i>oldschool</i> —— 老派）—— 偏好水平，其理想是崇拜旧的“秩序”以及与之相关的现象。最流行的例子是在<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">心形</a>地图上玩泰坦火焰。有时也会举办这种风格的派对。
+</p><p><i><b>“OMG/omg”</b></i>（英文 <i>Oh my God</i> —— “哦，我的天哪”）—— 表示惊讶的表达，既有负面的也有正面的。
+</p><p><b>摄像师（Операторы）</b> — 从事高质量拍摄和剪辑各种游戏内视频的玩家的特殊创意组织（参见<a href="./%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%8Р" class="mw-redirect" title="Операторы">摄像师</a>）。
+</p><p><b>坚果、匿名游戏设计师（Орех, орешек анонимный геймдизайнер）</b>（<a rel="nofollow" class="external text" href="http://ru.tankiforum.com/profile/10-opex-rah/">Opex-Pax</a>）—— 一位从普通玩家一路成长为<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">游戏设计师</a>和开发负责人的传奇人物，因此玩家们只期待他带来好的结果。
+</p><p><b>大号（Основа）</b> — 玩家的主要账号（通常是第一个或者发展得最好的账号）。
+</p><p><b>公开测试（ОБТ）</b> — 在社区志愿者和未来用户的协助下，对新项目几乎完成的版本进行测试。这是《3D 坦克》玩家和开发者针对 Tanki X 项目所使用的术语。
+</p><p><b>夺取（Отжать）</b> — “夺走”的同义词。例如：“夺取军旗”。
+</p><p><b>水群、离题（Оффтоп）</b>（源自英文 <i>off topic</i>）—— 超出预定主题范围的消息。例如，在聊天频道“<a href="./%D0%A7%D0%B0%D1%82" class="mw-redirect" title="Чат">违规举报</a>”中讨论闲散话题。
+</p><h2><span id=".D0.9F"></span><span class="mw-headline" id="П">P</span></h2><p><b>跑酷（Паркур）</b> — 克服障碍和移动以到达地图上难以到达区域的艺术。对一部分玩家来说，这是一种游戏风格（参见<a href="./%D0%9F%D0%B0%D1%80%D0%BA%D1%83%D1%80" class="mw-redirect" title="Паркур">跑酷</a>）。
+</p><p><b>火车阵（Паровозик）</b> — 护送和运送军旗的一种方式，即友方坦克排成一纵队在运旗手身后进行掩护。该术语主要在<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">电竞选手</a>中使用。
+</p><p><b>沙盒（Песок）</b> — “<a href="./%D0%9F%D0%B5%D1%81%D0%BE%D1%87%D0%BD%D0%B8%D1%86%D0%B0" class="mw-redirect" title="Песочница">高地角斗场</a>”地图。最受欢迎的地图之一。
+</p><p><i><b>“Пжл”, “Пж”, “плиз”</b></i> — 单词“请（пожалуйста）”的缩写。
+</p><p><b>网络延迟、Ping（Пинг）</b> — 传输数据包从玩家到服务器、再从服务器返回玩家所花费的时间。以毫秒为单位度量。
+</p><p><b>PiR（ПиР）</b> — 游戏<a rel="nofollow" class="external text" href="http://ru.tankiforum.com/forum/21/">论坛上的</a>“问题与解答”板块。
+</p><p><b>私信、PM、LS（ПМ, ЛС）</b>（英文 <i>PM</i> —— <i>private message</i> —— 私人消息）—— 在聊天室或<a href="./%D0%A4%D0%BE%D1%80%D1%83%D0%BC" class="mw-redirect" title="Форум">论坛</a>给另一个玩家的私人消息。此类消息是私密的，其内容对其他用户不可见（参见<a href="./%D0%A7%D1%82%D0%BE_%D1%82%D0%B0%D0%BA%D0%BE%D0%B5_%D0%9F%D0%9C_%D0%B8_%D0%BA%D0%B0%D0%ба_%D1%82%D1%83%D0%B4%D0%B0_%D0%BD%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C" class="mw-redirect" title="Что такое ПМ и как туда написать">什么是私信以及如何发送</a>，<a href="./%D0%A7%D0%B0%D1%82" class="mw-redirect" title="Чат">聊天室</a>）。
+</p><p><i><b>“按基准（По б）”</b></i> — “按基地（по базам）”的缩写。在双方队伍准备就绪时用于<a href="./%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D0%BD%D1%8B%D0%B5_%D0%B1%D0%B8%D1%82%D0%B2%D1%8ы" class="mw-redirect" title="Форматные битвы">模式化战斗</a>中。
+</p><p><b>回帖（Пост）</b> — <a href="./%D0%A4%D0%BE%D1%80%D1%83%D0%BC" class="mw-redirect" title="Форум">论坛</a>主题中的消息。
+</p><p><b>中校（Подполк）</b> — “中校”的缩写（参见<a href="./%D0%97%D0%B2%D0%B0%D0%BD%D0%B8%D1%8Ф" class="mw-redirect" title="Звания">等级</a>）。
+</p><p><b>上校（Полкан）</b> — “上校”的缩写（参见<a href="./%D0%97%D0%B2%D0%B0%D0%BD%D0%B8%D1%8Ф" class="mw-redirect" title="Звания">等级</a>）
+</p><p><b>VIP、VIP 卡（Прем, премка）</b> — <a href="./%D0%9F%D1%80%D0%B5%D0%BC%D0%B8%D1%83%D0%BC_%D0%B0%D0%BA%D0%BA%D0%B0%D1%83%D0%BD%D1%8т" class="mw-redirect" title="Премиум аккаунт">VIP</a>。
+</p><p><b>焊死的炮塔（Приваренная башня）</b> — 玩家对不会旋转炮塔的人的讽刺评价。在游戏中不旋转炮塔的玩家更容易失败。
+</p><p><b>专业、PRO（Про, PRO）</b>（英文 <i>pro</i>, <i>professional</i>）—— 1) 专业、进阶水平的某物/某人；2) 带有高级设置的战斗（参见<a href="./%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BC_%D0%B1%D0%B8%D1%82%D0%B2" class="mw-redirect" title="Список битв">战场列表</a>）。
+</p><p><b>神童（Продига）</b> — 有时这样称呼神童迷彩（参见<a href="./%D0%9A%D1%80%D0%B0%D1%81%D0%BA%D0%B8" class="mw-redirect" title="Краски">迷彩</a>）。
+</p><p><b>道具（Проп）</b> — <a href="./%D0%9A%D0%B0%D1%80%D1%82%D1%8B" class="mw-redirect" title="Карты">地图</a>的图形元素（参见<a href="./%D0%9F%D1%80%D0%BE%D0%BF" class="mw-redirect" title="Проп">道具</a>）。
+</p><p><b>证据（Пруф）</b>（源自英文 <i>proof</i>）—— 证明。
+</p><p><b>PSZh（ПСЖ）</b> — 自愿（по собственному желанию）。玩家有时会以此为由请求<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">封禁</a>。目前没有自愿封禁的机制。
+</p><p><b>极速炮（Пулемёт）</b> — <a href="./%D0%92%D1%83%D0%BB%D0%BA%D0%B0%D0%BD" class="mw-redirect" title="Вулкан">极速炮</a>炮塔。
+</p><h2><span id=".D0.A0"></span><span class="mw-headline" id="Р">R</span></h2><p><b>红警（РА, Редик, Ред）</b> — “<a href="./%D0%A0%D0%B5%D0%B4_%D0%90%D0%BB%D0%B5%D1%80%D1%82" class="mw-redirect" title="Ред Алерт">红色警戒</a>”地图。
+</p><p><b>开发者（Разрабы）</b> — 玩家对游戏开发者的称呼。
+</p><p><b>火箭炮（Ракетница）</b> — <a href="./%D0%A1%D1%82%D1%80%D0%B0%D0%B9%D0%BA%D0%B5%D1%80" class="mw-redirect" title="Страйкер">火箭炮</a>炮塔。
+</p><p><b>随机、RNG（Рандом）</b>（英文 <i>random</i>）—— 随机性、不可预测性。适用于坦克的复活点和<a href="./%D0%9C%D0%B8%D1%81%D1%81%D0%B8%D0%B8" class="mw-redirect" title="Миссии">任务</a>。此外还存在这样一个概念 —— “<b>彼尔姆随机</b>”。当玩家几乎不需要的东西频繁发生，或者相反 —— 需要的东西极少发生时，人们就会这么说。
+</p><p><b>消耗品、消耗（Расходники, расходка）</b> — 在车库中购买的、能临时提升坦克属性的道具（参见<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">道具</a>）。
+</p><p><b>回合、局（Раунд）</b> — 1) <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">电竞</a>中使用的术语，战斗的各个阶段之一；2) 打完的一场比赛，无论结果如何（参见<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">一局</a>）。
+</p><p><b>冲锋、冲（Раш, рашить）</b>（英文 <i>rush</i> —— 猛攻、冲击）—— 快速进攻，其任务是迫使敌人将特别注意力放在<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">防守</a>上。
+</p><p><b>现实（Реал）</b> — 1) 玩家花在购买游戏货币上的真实金钱（参见<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">充值</a>）；2) 现实生活。例如：“回归现实”。
+</p><p><b>大平衡（Ребаланс / РБ）</b> — 对游戏物品属性的根本性改变。在此期间，可能会对游戏中的经济系统进行调整并对游戏账号进行<a href="./%D0%9E%D0%B1%D0%BD%D1%83%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5" class="mw-redirect" title="Обнуление">清零</a>。
+</p><p><b>注册（Региться, регаться, рега, зарегаться）</b>（英文 <i>registration</i> —— 注册）—— 注册游戏账号或个人资料，以便参与游戏、论坛、新闻频道及其他游戏服务。
+</p><p><b>抗性（Резист）</b>（英文 <i>resistance</i> —— 抵抗）—— 对某种炮塔的防御。是<a href="./%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D0%B8" class="mw-redirect" title="Модули">模块</a>的主要属性，此前则是<a href="./%D0%9A%D1%80%D0%B0%D1%81%D0%BA%D0%B8" class="mw-redirect" title="Краски">迷彩</a>的主要属性。
+</p><p><b>版本更新、更新（Релиз, обнова）</b> — 在游戏中发布新更新（参见<a href="./%D0%9E%D0%B1%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D1%8Ф" class="mw-redirect" title="Обновления">更新</a>）。
+</p><p><b>激光（Реля）</b> — <a href="./%D0%A0%D0%B5%D0%BB%D1%8C%D1%81%D0%B0" class="mw-redirect" title="Рельса">激光炮</a>炮塔。
+</p><p><b>复活、复活点、刷新（Респаун, респ, спавн）</b>（英文 <i>spawn</i> —— 生成，<i>respawn</i> —— 重新生成）—— 坦克在<a href="./%D0%9A%D0%B0%D1%80%D1%82%D1%8B" class="mw-redirect" title="Карты">地图</a>上的出现位置。复活点是<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">随机的</a>。
+</p><p><b>重启（Рестарт）</b> — 游戏服务器的计划重置，会强制结束战斗并分配基金。发生在<b>莫斯科时间 05:00</b>（玩家在线人数最少的时间）。服务器重置也可能是非计划的，通常与推出更新或解决技术问题有关。
+</p><p><b>推荐人（Реферал）</b> — 被邀请加入游戏的玩家（参见<a href="./%D0%A0%D0%B5%D1%84%D0%B5%D1%80%D0%B0%D0%BB%D1%8B" class="mw-redirect" title="Рефералы">推荐人</a>）。
+</p><p><b>火龙珠（Рик）</b> — <a href="./%D0%A0%D0%B8%D0%BA%D0%BE%D1%88%D0%B5%D1%82" class="mw-redirect" title="Рикошет">火龙珠</a>炮塔。
+</p><h2><span id=".D0.A1"></span><span class="mw-headline" id="С">S</span></h2><p><b>消极怠工（Саботаж）</b> — 蓄意不作为或采取旨在妨碍本方队伍、帮助敌方队伍的行动。根据游戏规则将受到惩罚（参见<a href="./%D0%9A%D0%B0%D0%BA_%D0%BF%D0%BE%D0%B6%D0%B0%D0%BB%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%D1%81%D1%8F_%D0%BD%D0%B0_%D0%BD%D0%B0%D1%80%D1%83%D1%88%D0%B8%D1%82%D0%B5%D0%BB%D1%8F" class="mw-redirect" title="Как пожаловаться на нарушителя">如何举报违规者</a>）。
+</p><p><b>谢谢（Сенк）</b>（缩写自英文 <i>thank you</i> —— 谢谢）—— 感谢。
+</p><p><b>技术、意识（Скилл）</b>（英文 <i>skill</i> —— 技能）—— 一个抽象概念，意为技术、熟练度。高技术水平的玩家 —— 强力玩家。
+</p><p><b>中甲（СК）</b> — 中型<a href="./%D0%90%D0%BE%D1%80%D0%BF%D1%83%D1%81%D0%B0" class="mw-redirect" title="Корпуса">底盘</a>（<a href="./%D0%92%D0%B8%D0%BA%D0%B8%D0%BD%D0%B3" class="mw-redirect" title="Викинг">维京</a>、<a href="./%D0%9A%D1%80%D1%83%D1%81%D0%B5%D0%B9%D0%B4%D0%B5%D1%80" class="mw-redirect" title="Крусейдер">十字军</a>、<a href="./%D0%A5%D0%B0%D0%BD%D1%82%D0%B5%D1%80" class="mw-redirect" title="Хантер">猎人中甲</a>、<a href="./%D0%9F%D0%B0%D0%BB%D0%B0%D0%B4%D0%B8%D0%BD" class="mw-redirect" title="Паладин">圣骑士</a>和<a href="./%D0%94%D0%B8%D0%BA%D1%82%D0%B0%D1%82%D0%BE%D1%80" class="mw-redirect" title="Диктатор">主宰者</a>）。
+</p><p><b>折扣、传旗（Скидка）</b> — 1) 以优惠价格出售的真实货币或游戏货币商品；2) 游戏时刻，将军旗传给另一个玩家。
+</p><p><b>截图（Скрин）</b>（英文 <i>screenshot</i> —— 屏幕截图）—— 从显示器屏幕获取的图像（参见<a href="./%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82" class="mw-redirect" title="Скриншот">截图</a>，<a href="./%D0%98%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BF%D0%BE_%D0%BF%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8_%D1%81%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82%D0%BE%D0%B2_%D0%BD%D0%B0_%D1%84%D0%BE%D1%80%D1%83%D0%BC%D0%B5" class="mw-redirect" title="Инструкция по публикации скриншотов на форуме">论坛截图发布指南</a>）。
+</p><p><i><b>“惨败（Слив）”</b></i> — 输掉的战斗或<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">回合</a>。
+</p><p><b>慢动作、卡顿（Слоупок, слоу）</b>（英文 <i>slow</i> —— 慢的、迟钝的）—— 动作非常缓慢、反应迟钝的人。
+</p><p><b>观察者、上帝视角（Спектатор, наблюдатель, спек）</b>（源自英文 <i>spectator</i> —— 观察者）—— 游戏观察模式。拥有此模式的人可以隐身进入任何战斗，即使战斗中没有空位（参见<a href="./%D0%A1%D0%BF%D0%BA%D0%B5%D1%82%D0%B0%D1%82%D0%BE%D1%80" class="mw-redirect" title="Спектатор">观察者模式</a>）。
+</p><p><b>特价优惠（Спецпредложение, спецуха）</b> — 游戏<a href="./%D0%9C%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD" class="mw-redirect" title="Магазин">商店</a>中的特价优惠。特价优惠中包含价格划算的商品，有时其组合中可能包含独特物品。
+</p><p><b>溅射（Сплеш）</b>（英文 <i>splash</i> —— 溅泼）—— 射击击中目标时的闪光。当存在范围伤害时也会使用该词。<a href="./%D0%A2%D0%B2%D0%B8%D0%BD%D1%81" class="mw-redirect" title="Твинс">离子炮</a>、<a href="./%D0%A0%D0%B8%D0%BA%D0%BE%D1%88%D0%B5%D1%82" class="mw-redirect" title="Рикошет">火龙珠</a>（配专用装备改造）、<a href="./%D0%93%D1%80%D0%BE%D0%BC" class="mw-redirect" title="Гром">雷暴炮</a>、<a href="./%D0%A1%D1%82%D1%80%D0%B0%D0%B9%D0%BA%D0%B5%D1%80" class="mw-redirect" title="Страйкер">火箭炮</a>、<a href="./%D0%9C%D0%B0%D0%B3%D0%BD%D1%83%D0%BC" class="mw-redirect" title="Магнум">马格南</a>和<a href="./%D0%93%D0%B0%D1%83%D1%81%D1%81" class="mw-redirect" title="Гаусс">电磁炮</a>都具有溅射伤害（群体伤害）。
+</p><p><b>精灵、公告板（Спрайты）</b> — 环境的图形元素，它们总是“面向”你（灌木丛、军旗、雷区标牌）。
+</p><p><b>СТ</b> — “中型坦克”套件的简称。此外，根据改装版本不同，还会使用“СТ Mk1”、“СТ Mk5”等说法。
+</p><p><b>体育场（Стадик）</b> — “<a href="./%D0%A1%D1%82%D0%B0%D0%B4%D0%B8%D0%BE%D0%BD" class="mw-redirect" title="Стадион">运动场</a>”地图。
+</p><p><b>上尉（Старлей）</b> — “上尉”的缩写（参见<a href="./%D0%97%D0%B2%D0%B0%D0%BD%D0%B8%D1%8Ф" class="mw-redirect" title="Звания">等级</a>）。
+</p><p><b>数据（Стата）</b>（英文 <i>statistics</i> —— 统计）—— 提升自己在游戏中的各项指标。该术语最常用于“<a rel="nofollow" class="external text" href="http://ru.tankiforum.com/forum/31/">决斗者角落</a>”。
+</p><p><b>直播（Стрим）</b> — 某项活动的直接视频转播。在《3D 坦克》中，主播和开发者会进行直播，讲述新闻、发放奖品或单纯玩《3D 坦克》（参见<a href="./%D0%A2%D0%B0%D0%BD%D0%BA%D0%BE%D0%B2%D1%8B%D0%Bэ_%D1%81%D1%82%D1%80%D0%B8%D0%BC%D1%8B" class="mw-redirect" title="Танковые стримы">坦克直播</a>）。
+</p><h2><span id=".D0.A2"></span><span class="mw-headline" id="Т">T</span></h2><p><b>小板凳（Табуретка）</b> — <a href="./%D0%92%D0%B0%D1%81%D0%BF" class="mw-redirect" title="Васп">黄蜂轻甲</a>底盘。由于其操控性差，人们这样称呼它。
+</p><p><b>神秘房间（Тайка）</b> — 1) <a href="./%D0%A2%D0%B0%D0%B9%D0%BD%D1%8B%D0%B5_%D0%BA%D0%BE%D0%BC%D0%BD%D0%B0%D1%82%D1%8B" class="mw-redirect" title="Тайные комнаты">神秘房间</a>；2) 地图上的非游戏区域，通常隐藏在材质中，但可以爬进去。
+</p><p><b>坦克婚礼（Танкосвадьба）</b> — 两个因相似兴趣和观点而结合的玩家在《3D 坦克》中结为连理的仪式性确认。坦克婚礼具备现实婚礼的所有属性：新郎和新娘、节日着装、证婚人、宾客、司仪、祝酒词以及恋人们“炽热的吻”。这是一个积极的活动，能够巩固社区内的友谊。
+</p><p><b>双子、双管（Твин, двустволка）</b> — <a href="./%D0%A2%D0%B2%D0%B8%D0%BD%D1%81" class="mw-redirect" title="Твинс">离子炮</a>炮塔。
+</p><p><b>Twitch、推特（Твитч, твич）</b>（英文 <i>twitch</i>）—— 用于游戏直播的流行平台（参见<a href="./%D0%9A%D0%B8%D0%B1%D0%B5%D1%80%D1%81%D0%BF%D0%BE%D1%80%D1%8т%D0%B8%D0%B2%D0%BD%D1%8B%D0%B5_%D1%82%D1%80%D0%B0%D0%BD%D1%81%D0%BB%D1%8F%D1%86%D0%B8%D0%B8" class="mw-redirect" title="Киберспортивные трансляции">电竞赛事直播</a>）。
+</p><p><b>测试员（Тестер）</b> — 特殊玩家群体的一员，旨在捕捉<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">漏洞</a>和测试新功能（参见<a href="./%D0%A2%D0%B5%D1%81%D1%82%D0%B5%D1%80%D1%8В" class="mw-redirect" title="Тестеры">测试员</a>）。
+</p><p><b>测试服务器、测试（Тестовый сервер, тест）</b> — 用于研究新功能和排查潜在<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">漏洞</a>的独立隔离服务器。测试会招募一定数量的人员 —— <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">测试员</a>。<a rel="nofollow" class="external text" href="http://test.tankionline.com/">测试服务器的地址</a>为许多玩家所知。为了保护测试员的工作不被外人打扰，进入测试服务器需要邀请 —— <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">邀请码</a>。如果需要进行大规模的压力测试，<a href="./%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D0%B9_%D1%81%D0%B5%D1%80%D0%B2%D0%B5%D1%80" class="mw-redirect" title="Тестовый сервер">测试服务器</a>将向所有愿意参与的人开放（参见<a href="./%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D0%B9_%D1%81%D0%B5%D1%80%D0%B2%D0%B5%D1%80" class="mw-redirect" title="Тестовый сервер">测试服务器</a>）。
+</p><p><b>技术支持、技术、TP（Техподдержка, техи, ТП）</b> — 玩家的<a href="./%D0%9E%D0%B1%D1%80%D0%B0%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_%D0%B2_%D1%81%D0%BB%D1%83%D0%B6%D0%B1%D1%83_%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B8" class="mw-redirect" title="Обращение в службу поддержки">技术支持服务</a>。
+</p><p><b>泰坦火焰（Титаножига）</b> — <a href="./%D0%A2%D0%B8%D1%82%D0%B0%D0%BD" class="mw-redirect" title="Титан">泰坦</a>底盘与<a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%8т" class="mw-redirect" title="Огнемёт">火焰炮</a>炮塔的组合。在战斗中经常能见到这种<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">道具</a>。人们认为使用这种组合（特别是<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">大平衡</a>之前）就是在<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">嘲讽</a>玩家。
+</p><p><b>队伍（Тима, тим）</b>（源自英文 <i>team</i> —— 队伍）—— 玩家之间对队伍的俗称。
+</p><p><b>寂静（Тишка）</b> — “<a href="./%D0%A2%D0%B8%D1%88%D0%B8%D0%BD%D0%B0" class="mw-redirect" title="Тишина">寂静</a>”地图。
+</p><p><b>TK</b> — 1) 重型<a href="./%D0%9A%D0%BE%D1%80%D0%BF%D1%83%D1%81%D0%B0" class="mw-redirect" title="Корпуса">底盘</a>（<a href="./%D0%A2%D0%B8%D1%82%D0%B0%D0%BD" class="mw-redirect" title="Титан">泰坦</a>、<a href="./%D0%90%D1%80%D0%B5%D1%81" class="mw-redirect" title="Арес">阿瑞斯</a>和<a href="./%D0%9C%D0%B0%D0%BC%D0%BE%D0%BD%D1%82" class="mw-redirect" title="Мамонт">猛犸象</a>）；2) <a href="./%D0%A2%D0%B0%D0%BD%D0%BA%D0%BE%D0%B8%D0%BD%D1%8вы" class="mw-redirect" title="Танкоины">坦克币</a>
+</p><p><b>训练战队赛、训练（ТКВ, треня）</b> — 训练赛<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">战队赛</a>（参见<a href="./%D0%90%D0%BA%D0%BB%D0%B0%D0%BD%D0%B2%D0%B0%D1%80%D1%8вы" class="mw-redirect" title="Кланвары">战队赛</a>）。
+</p><p><b>TO</b> — “3D 坦克”的缩写。
+</p><p><b>TOM</b> — “<a href="./TO_Mobile" title="TO Mobile">TO Mobile</a>”的缩写。
+</p><p><b>主题（Топик）</b> — <a href="./%D0%A4%D0%BE%D1%80%D1%83%D0%BC" class="mw-redirect" title="Форум">论坛</a>上的主题。
+</p><p><b>楼主、话题发起人（Топикстартер / ТС）</b>（英文 <i>topic starter</i> —— 发起主题者）—— 论坛主题的作者。
+</p><p><b>TOF</b>（英文 <i>TOF</i>）—— Tanki Online Fighting <a href="./%D0%98%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8Ф_%D1%82%D1%83%D1%80%D0%BD%D0%B8%D1%80%D0%BE%D0%B2_TOF" class="mw-redirect" title="История турниров TOF">赛事</a>。
+</p><p><b>拼音文（Транслит）</b> — 用数字、符号和英文字母来表达俄语文本。有时会引起负面反应。如果没有俄语键盘，建议使用专用的拼音文转换器。
+</p><p><b>转会期、转会、休赛期（Трансферное окно, трансфер, межсезонье）</b> — 玩家可以从一个<a href="./%D0%9А%D0%BB%D0%B0%D0%BD%D1%8В" class="mw-redirect" title="Кланы">战队</a>转会到另一个战队的时间段。
+</p><p><b>三杀（Трипл-килл, трипл）</b>（英文 <i>triple</i> —— 三倍）—— 玩家这样称呼一炮三杀。
+</p><p><b>骂战、喷人（Троллинг）</b>（英文 <i>trolling</i>）—— 发布挑衅性消息，旨在引发<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">口水战</a> —— 玩家之间的冲突、侮辱等。
+</p><p><b>TT</b> — “重型坦克”套件的简称。此外，根据改装版本不同，还会使用“TT Mk1”、“TT Mk5”等说法。
+</p><p><b>战术技术性能（ТТХ）</b> — 战术技术性能，即伤害、护甲、速度等（参见<a href="./%D0%9F%D1%83%D1%88%D0%BA%D0%B8" class="mw-redirect" title="Пушки">炮塔</a>、<a href="./%D0%9А%D0%BE%D1%80%D0%BF%D1%83%D1%81%D0%Bа" class="mw-redirect" title="Корпуса">底盘</a>、<a href="./%D0%94%D1%80%D0%BE%D0%BD%D1%8B" class="mw-redirect" title="Дроны">无人机</a>）。
+</p><p><b>教程（Туториал, тутор）</b> — 关于某事物的教学。<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">“指南”</a>一词的同义词。
+</p><p><b>后方（Тыл）</b> — 基地的后部（侧）。
+</p><h2><span id=".D0.A3"></span><span class="mw-headline" id="У">U</span></h2><p><b>升级、微改装（Улучшения, микропрокачки / МПК）</b> — 升级炮塔、底盘、模块和无人机属性的可能性（参见<a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8Ф" class="mw-redirect" title="Улучшения">升级</a>）。
+</p><p><b>准尉（УО）</b> — “准尉”的缩写（例如，准尉 3）（参见<a href="./%D0%97%D0%B2%D0%B0%D0%BD%D0%B8%D1%8Ф" class="mw-redirect" title="Звания">等级</a>）。
+</p><p><b>KD 比、消灭/被摧毁比（УП, У/П）</b> — 消灭/被摧毁的数值。目前游戏中的该指标仅供参考。它不会直接影响战斗结束时获得的<a href="./%D0%9А%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8вы" class="mw-redirect" title="Кристаллы">水晶</a>数量。整个职业生涯中的总体 KD 比可以在<a href="./%D0%9B%D0%B8%D1%87%D0%BD%D0%B0%D1%8F_%D1%81%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%Bа" class="mw-redirect" title="Личная статистика">个人统计资料</a>中查看。
+</p><h2><span id=".D0.A4"></span><span class="mw-headline" id="Ф">F</span></h2><p><i><b>“F, F（Ф, F）”</b></i> — 1) “军旗”的缩写。在团队聊天室中使用，以免浪费时间“码字”。表示敌人正在进攻军旗或者需要回防军旗（参见<a href="./%D0%97%D0%Bа%D1%85%D0%B2%D0%B0%D1%8т_%D1%84%D0%BB%D0%B0%D0%B3%D0%B0" class="mw-redirect" title="Захват флага">互夺军旗</a>）；2) 致敬网络迷因“Press F to pay respect（按 F 键表示敬意）”。
+</p><p><b>幻影（Фантом）</b>（法文 <i>fantome</i> —— 幽灵）—— 尚未<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">复活完成</a>（处于透明状态）的玩家。游戏中经常使用这种战术：撞进这名玩家体内，不让他脱离这种状态，从而拖延时间。
+</p><p><b>刷怪、刷（Фермить, фарм）</b>（英文 <i>farming</i>）—— 有目标地、单调地、例行公事般地积累水晶（刷水晶）或经验（刷经验）。
+</p><p><b>失误（Фейл）</b>（英文 <i>fail</i> —— 失败）—— 错误、失败的机动。例如，玩家不小心从狙击点探出太多而被消灭。
+</p><p><b>陆军元帅（Фельд）</b> — “陆军元帅”的缩写（参见<a href="./%D0%97%D0%B2%D0%B0%D0%BD%D0%B8%D1%8Ф" class="mw-redirect" title="Звания">等级</a>）。
+</p><p><b>反馈、FB（Фидбек / ФБ）</b>（英文 <i>feedback</i> —— 反馈）—— 玩家对游戏或更新的评价、他们的想法和建议（参见<a rel="nofollow" class="external text" href="http://ru.tankiforum.com/forum/3/">论坛主题</a>）。
+</p><p><b>修复、削弱（Фикс）</b>（英文 <i>fix</i> —— 修复）—— 1) 修复<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">漏洞</a>（<i>“fixed/пофиксено —— 已修复”</i>）；2) <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">“削弱”</a>一词的同义词。
+</p><p><b>特性、亮点（Фича）</b>（英文 <i>feature</i> —— 特性、不寻常的属性，“绝招”）—— 1) 游戏的某项单独功能；2) 某项特定的属性。经常使用诸如“<i>这不是<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">漏洞</a>，这是特性</i>”这样的表达。
+</p><p><b>网络钓鱼、钓鱼（Фишинг, фиш）</b> — 一种网络诈骗。用于窃取账号和其他机密信息。钓鱼网站通常是伪装成真实登录表单的假冒表单。在此表单中输入的任何数据都会立即发送给攻击者。通常访问钓鱼网站并使用自己的登录名登录会导致游戏账号丢失（参见<a href="./%D0%A4%D0%B8%D1%88%D0%B8%D0%BD%D0%B3" class="mw-redirect" title="Фишинг">网络钓鱼</a>）。
+</p><p><b>口水战（Флейм）</b>（英文 <i>flame</i> —— 火焰）—— “为了争论而争论”、“挑衅”、争吵和指责。
+</p><p><b>刷屏（Флуд）</b>（英文 <i>flood</i> —— 洪水）—— 与主题无关的交流，通常毫无意义，会污染<a href="./%D0%A7%D0%B0%D1%8т" class="mw-redirect" title="Чат">聊天室</a>。无意义地重复同类型消息。
+</p><p>此外，还存在诸如<i>“吐了。已关闭。”</i>这样的表达，它完全是偶然出现的（由于版主的拼写错误），并在<a href="./%D0%A4%D0%BE%D1%80%D1%83%D0%BC" class="mw-redirect" title="Форум">论坛</a>上用作幽默梗。
+</p><p><b>集火、集火攻击（Фокус, фокусить）</b> — 一个或多个玩家同时向一个特定目标射击而不分心攻击其他目标的情况。在 DM 战斗中通常会“集火”弱小的坦克，在 CTF 中则集火运旗手，等等。
+</p><p><b>基金（Фонд）</b> — 在战斗中，<a href="./%D0%9А%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8вы" class="mw-redirect" title="Кристаллы">水晶</a>会在基金中累积。战斗结束后，这些水晶将在玩家之间进行分配。
+</p><p><b>FP、Flash Player（ФП, флеш плеер, flash player）</b> — 以前通过 Flash 客户端玩游戏时所必需的插件。
+</p><p><b>FPS、帧率（ФПС, fps）</b>（英文 <i>frames per second</i> —— 每秒传输帧数）—— 屏幕上显示的每秒帧数。体现了计算机在游戏中的性能（参见<a href="./%D0%9D%D0%B8%D0%B7%D0%BA%D0%B8%D0%B9_FPS" class="mw-redirect" title="Низкий FPS">低 FPS</a>）。
+</p><p><b>欺诈（Фрод）</b> — 通过任何欺诈手段获取游戏内货币。
+</p><p><b>满配、花环、彩灯、圣诞树（Фулл, full, гирлянда, люстра, ёлка）</b> — 玩家同时激活了三种类型的<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">道具</a>（伤害提升（<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">DD</a>）、护甲提升（<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">DA</a>）和速度提升（<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">速度提升</a>））。
+</p><p><b>全屏（Фуллскрин）</b>（英文 <i>full screen</i> —— 全屏）—— 游戏占满整个屏幕的情况。在某些情况下可能会降低 <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">fps</a>。可以在<a href="./%D0%91%D1%80%D0%B0%D1%83%D0%B7%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Браузеры">浏览器</a>和官方 <a href="./HTML5-%D0%BA%D0%BB%D0%B8%D0%B5%D0%BD%D1%82" class="mw-redirect" title="HTML5-клиент">HTML5 客户端</a>中通过按 <span class="hotkey">F11</span> 或 <span class="hotkey">O</span> 键（默认）来开启全屏。
+</p><h2><span id=".D0.A5"></span><span class="mw-headline" id="Х">H</span></h2><p><b>HUD（Хад）</b>（英文 <i>HUD</i> —— <i>Head-Up Display</i>；<i>heads-up</i> —— 预警，<i>display</i> —— 指示器）—— 游戏界面指示器，用于在游戏过程中直接显示重要信息。在《3D 坦克》中，这是带有<a href="./%D0%97%D0%B2%D0%B0%D0%BD%D0%B8%D1%8Ф" class="mw-redirect" title="Звания">等级</a>的顶部行、右上角的动作<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">日志</a>、屏幕顶部的关键信息、<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">道具</a>指示器、<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">基金</a>以及战斗时间。
+</p><p><b>高等级玩家（Хайлевел）</b> — 高<a href="./%D0%97%D0%B2%D0%B0%D0%BD%D0%B8%D1%8Ф" class="mw-redirect" title="Звания">等级</a>的玩家。
+</p><p><b>黑客（Хакер）</b>（英文 <i>hacker</i> —— 入侵者）—— 擅长专业处理计算机并且能够<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">破解</a>某些东西的人（参见<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">外挂使用者</a>）。
+</p><p><b>万圣节</b>（英文 <i>Halloween</i>）是游戏中的<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">活动</a>之一，于每年 10 月 31 日（即 11 月 1 日的前夕）为庆祝万圣节（诸圣节前夕）官方节日而举办。在此期间，地图中会加入与恐怖阴森主题相符的特殊游戏元素。
+</p><p><b>客服</b> — 技术支持服务（参见<a href="./%D0%A1%D0%BB%D1%83%D0%B6%D0%B1%D0%B0_%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B9_%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B8" class="mw-redirect" title="Служба технической поддержки">技术支持服务</a>）。
+</p><p><b>口水战</b>（英文 <i>holy war</i>）— 在<a href="./%D0%A4%D0%BE%D1%80%D1%83%D0%BC" class="mw-redirect" title="Форум">论坛</a>和<a href="./%D0%A7%D0%B0%D1%82" class="mw-redirect" title="Чат">聊天室</a>中进行的一系列毫无结果的争论，参与者在其中激烈地试图将各自的观点强加给对方。也指关于无法证明的事物或主观意见的争论（例如，某个<a href="./%D0%9F%D1%83%D1%88%D0%BA%D0%B8" class="mw-redirect" title="Пушки">炮塔</a>优于另一个炮塔等）。
+</p><p><b>小黄蜂，蜂王</b> — <a href="./%D0%A5%D0%BE%D1%80%D0%BD%D0%B5%D1%82" class="mw-redirect" title="Хорнет">蜂王</a>底盘。
+</p><p><b>蜂激（XP/XP-K）</b> — <a href="./%D0%A5%D0%BE%D1%80%D0%BD%D0%B5%D1%82" class="mw-redirect" title="Хорнет">蜂王</a>底盘与<a href="./%D0%A0%D0%B5%D0%BB%D1%8C%D1%81%D0%B0" class="mw-redirect" title="Рельса">激光炮</a>炮塔的组合，一种战斗模式。在<a href="./%D0%A0%D0%B5%D0%B1%D0%B0%D0%BB%D0%B0%D0%BD%D1%81" class="mw-redirect" title="Ребаланс">平衡性调整</a>后变得流行。蜂激是官方的战斗模式，可以在创建战斗时进行设置（参见<a href="./%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D0%BD%D1%8B%D0%B5_%D0%B1%D0%B8%D1%86%D0%B2%D1%8B" class="mw-redirect" title="Форматные битвы">专家战场</a>）。
+</p><p><b>蜂火</b> — <a href="./%D0%A5%D0%BE%D1%80%D0%BD%D0%B5%D1%82" class="mw-redirect" title="Хорнет">蜂王</a>底盘与<a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%82" class="mw-redirect" title="Огнемёт">火焰炮</a>炮塔的组合，非官方战斗模式。类似于<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">火激</a>。
+</p><h2><span id=".D0.A6"></span><span class="mw-headline" id="Ц">Ц</span></h2><p><b>电竞中心</b> — 电竞管理中心（参见<a href="./%D0%9A%D0%B8%D0%B1%D0%B5%D1%80%D1%81%D0%BF%D0%BE%D1%80%D1%82" class="mw-redirect" title="Киберспорт">电竞</a>）。
+</p><h2><span id=".D0.A7"></span><span class="mw-headline" id="Ч">Ч</span></h2><p><b>查克（Checker）</b>（源自英文 <i>checker</i> — 检查员、密探）— 为 3D 坦克官方锦标赛专门开发的反作弊程序（参见 <a href="https://ru.tankiwiki.com/index.php?title=Esports_Checker&amp;action=edit&amp;redlink=1" class="new" title="Esports Checker (страница не существует)">Esports Checker</a>、<a href="./%D0%A2%D1%83%D1%80%D0%BD%D0%B8%D1%80%D1%8B" class="mw-redirect" title="Турниры">比赛</a>）。
+</p><p><b>外挂</b> — 游戏中禁止使用的第三方软件，允许玩家在战斗中获得相对于其他玩家的额外优势。曾出现过能将<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">奖励箱</a>吸过来的外挂、穿墙外挂、加速外挂等。使用外挂程序将受到永久封号的惩罚。
+</p><p><b>秘籍</b> — 一系列字符（例如在聊天室中输入）或动作，可导致在游戏中获得优势。在<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков"> 3D 坦克</a>中不存在。
+</p><p><b>开挂者、作弊者</b>（英文 <i>cheater</i>, <i>cheat</i>）— 利用游戏安全漏洞使用被禁止的第三方黑客程序的玩家。使用外挂将受到永久封号的惩罚。
+</p><p><b>精彩特技</b> — 知名 V-LOG 主办的“特技奇迹”比赛，在此比赛中可以赢得丰厚的水晶基金并在<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков"> V-LOG </a>中露脸。目前该项目已关闭。
+</p><p><b>自大狂</b> — 自我重要感。用作形容那些过分夸大并在社区众人面前向他人炫耀自己及自身重要性的人的特征。
+</p><h2><span id=".D0.A8"></span><span class="mw-headline" id="Ш">Ш</span></h2><p><b>弹球</b> — 1）<a href="./%D0%A2%D0%B2%D0%B8%D0%BD%D1%81" class="mw-redirect" title="Твинс">离子炮</a>、<a href="./%D0%A0%D0%B8%D0%BA%D0%BE%D1%88%D0%B5%D1%82" class="mw-redirect" title="Рикошет">火龙珠</a>或<a href="./%D0%A2%D0%B5%D1%81%D0%BB%D0%B0" class="mw-redirect" title="Тесла">特斯拉</a>的炮弹；2）<a href="./%D0%93%D0%B0%D1%80%D0%B0%D0%B6" class="mw-redirect" title="Гараж">车库</a>中的道具，用于 2012 年的“<a rel="nofollow" class="external text" href="http://tankionline.com/ru/2012/04/mayskie-prazdniki/">最棒的五月！</a>”<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">活动</a>。
+</p><p><b>小学生</b> — 从某种意义上讲就是指中小学生。类似于<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">脑残玩家</a>，只是额外夹杂了大量的语法错误。然而，并非每个学生都应该被称为小学生。同时，小学生也不一定真的是学生。
+</p><h2><span id=".D0.AD"></span><span class="mw-headline" id="Э">Э</span></h2><p><b>精英</b>（英文 <i>elite</i>）— <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">职业玩家</a>群体。在任何讨论中都喜欢这样称呼<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">电竞选手</a>。
+</p><h2><span id=".D0.AE"></span><span class="mw-headline" id="Ю">Ю</span></h2><p><b>使用、上手</b>（英文 <i>use</i>）— 使用、运用某物。
+</p><p><b>用户</b> — 用户、参与者、玩家。
+</p><h2><span id=".D0.AF"></span><span class="mw-headline" id="Я">Я</span></h2><p><b>邮箱、电子信箱</b>（英文 <i>e-mail</i> — 电子邮件）— 互联网上的交流手段之一，也用于注册。将账号绑定到电子邮箱可以降低账号被盗的风险，解决各种账号问题也会更快。
+</p><h2><span id=".D0.98.D0.BD.D0.BE.D1.81.D1.82.D1.80.D0.B0.D0.BD.D0.BD.D1.8B.D0.B5_.D1.82.D0.B5.D1.80.D0.BC.D0.B8.D0.BD.D1.8B"></span><span class="mw-headline" id="Иностранные_термины">外来术语</span></h2><p><i><b>“7abibi”</b></i>（亲爱的、心爱的）— 用于表达感情的阿拉伯语术语。
+</p><p><b>Alternativa Editor (AE)</b> — 用于查看和编辑地图的程序。
+</p><p><i><b>“Barev”</b></i> — 亚美尼亚玩家的问候语。
+</p><p><b>BoxViewer</b> — 用于查看游戏中<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">奖励箱</a>纹理的程序。
+</p><p><b>DDoS</b>（源自英文 <i>Distributed Denial of Service</i> — 分布式拒绝服务攻击）— 一种网络攻击类型（<a rel="nofollow" class="external text" href="https://ru.wikipedia.org/wiki/DoS-%D0%B0%D1%82%D0%B0%D0%BA%D0%B0">了解详情</a>）。
+</p><p><b>FAQ, F.A.Q., 常见问题</b>（源自英文 <i>Frequently Asked Question(s)</i> — 常见问题解答）— 针对某个主题的常见问题及其解答的汇编。
+</p><p><i><b>“GG”</b></i>（英文 <i>Good Game</i> — 打得好）— 玩家以这种简写形式来表达对精彩比赛的谢意。
+</p><p><b>Godmode_ON</b> — 出现在<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков"> 2013 年万圣节</a>中的神秘玩家。他非常难以被击杀（有消息称他的迷彩能提供 99% 的全方位防御），而当成功击杀他时，会立刻掉落 3 个<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">金箱子</a>。
+</p><p><b>装备分数 (Gear Score)</b> — 游戏中显示的已装备武器总“强度”的数值指示器（参见<a href="./Gear_Score" title="Gear Score">装备分数</a>）。
+</p><p><i><b>“Hay ka”</b></i> — 亚美尼亚语玩家询问游戏中是否有同胞。
+</p><p><i><b>“hhh”</b></i> — 阿拉伯人的笑声表达方式。俄罗斯玩家可能会故意这样写来进行<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">恶搞</a>。
+</p><p><i><b>“hla”</b></i> — 阿拉伯人之间的问候方式。
+</p><p><b>HP</b>（源自英文 <i>hit points</i>）— 生命值，护甲的度量单位（参见<a href="./%D0%9A%D0%BE%D1%80%D0%BF%D1%83%D1%81%D0%B0" class="mw-redirect" title="Корпуса">底盘</a>）。切勿与经验值 (XP) 混淆。
+</p><p><i><b>“kfooo”</b></i>（好样的）— 表示赞美的阿拉伯语单词。
+</p><p><b>KSA</b>（<i>Kingdom of Saudi Arabia</i>，沙特阿拉伯王国）— 缩写。昵称中包含这几个字母（或在<a href="./%D0%A7%D0%B0%D1%82" class="mw-redirect" title="Чат">聊天室</a>中这样写）的玩家是阿拉伯人。他们总是有道具，并且喜欢<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">抢劫</a>。
+</p><p><b>KOT, KOA</b> — 主要由阿拉伯玩家组成的战队。他们总是有很多道具，并且喜欢<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">抢劫</a>。
+</p><p><b>Mk</b> — 改型。
+</p><p><b>Shared Objects (SO)</b> — <a href="./HTML5-%D0%BA%D0%BB%D0%B8%D0%B5%D0%BD%D1%82" class="mw-redirect" title="HTML5-клиент">HTML5 客户端</a>的 Cookie，以文件形式存储在用户的计算机上。这些数据有时需要除，以便跟上游戏的更新（参见<a href="./%D0%9A%D0%B0%D0%BA_%D1%87%D0%B8%D1%81%D1%82%D0%B8%D1%82%D1%8C_Shared_Objects" class="mw-redirect" title="Как чистить Shared Objects">如何清除 Shared Objects</a>）。
+</p><p><b>SS, SL</b> — Star Series 和 <a href="./StarLadder" title="StarLadder">StarLadder</a> 的缩写。以前用于<a href="./%D0%9A%D0%B8%D0%B1%D0%B5%D1%80%D1%81%D0%BF%D0%BE%D1%80%D1%82" class="mw-redirect" title="Киберспорт">电竞</a>。
+</p><p><b>SLTV</b> — <a rel="nofollow" class="external text" href="http://tanki.starladder.tv/ru">StarLadder TV</a>。转播军团战比赛的平台（参见<a href="./%D0%A2%D1%83%D1%80%D0%BD%D0%B8%D1%80%D1%8B" class="mw-redirect" title="Турниры">比赛</a>）。目前不再在 SLTV 平台上举办《3D 坦克》赛事。
+</p><p><b>Standalone Flash Player, SAFP</b> — 独立运行于浏览器之外的<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков"> Flash Player</a>。以前被电脑配置较低的玩家使用。
+</p><p><b>TanksTestingTools (TTT)</b> — 用于检查在 <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">Alternativa Editor</a> 中创建的地图的程序。
+</p><p><b>TankViewer</b> — 用于查看模型和纹理的程序。
+</p><p><b>Teammate</b> — 队友、团队成员。
+</p><p><b>XP</b>（源自英文 <i>experience points</i>）— 经验值。切勿与生命值 (HP) 混淆。
+</p><p><b>XT</b>（源自英文 <i>extended technology</i> — 扩展技术）— 武器的改进型，具有独特的外观（参见 <a href="./XT_%D0%B2%D0%BE%D0%BE%D1%80%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5" class="mw-redirect" title="XT вооружение">XT 装备</a>）。此外，这个概念也半开玩笑地用于指代具有某种过高<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">战术技术性能</a>的武器（参见<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">开挂者</a>）。
+</p><p><b>Z-fighting（深度冲突）</b> — 纹理显示错误。该术语主要在<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">测试员</a>中使用。
+</p><h2><span id=".D0.A6.D0.B8.D1.84.D1.80.D1.83_.D0.B8_.D1.81.D0.B8.D0.BC.D0.B2.D0.BE.D0.BB.D1.8b"></span><span class="mw-headline" id="数字和符号">数字和符号</span></h2><p><b>740</b> — 战队之间的战斗模式，一直持续到平衡性调整（带有微小修正）。740 生命值是每支队伍底盘生命值总和的最大允许值。该模式早已过时，不再使用（参见 <a href="./740" title="740">740</a>）。
+</p><p><b>234</b> — 隐晦的表达（2 = <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">护甲提升</a>，3 = <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">伤害提升</a>，4 = <a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">速度提升</a>），为了交流简便（参见<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">全套道具</a>）。
+</p><p><b>Mk8</b> — 约定俗成的改型（完全<a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="Улучшения">升级</a>后的 Mk7 装备）。
+</p><p><b>X2</b> — 基金翻倍的代称。也使用“x3”来表示基金三倍等。
+</p><p><b>1-2 代武器线</b> — <a href="./%D0%9F%D1%83%D1%88%D0%BA%D0%B8" class="mw-redirect" title="Пушки">炮塔</a>和<a href="./%D0%9A%D0%BE%D1%80%D0%BF%D1%83%D1%81%D0%B0" class="mw-redirect" title="Корпуса">底盘</a>的分类，在游戏中存在了很长时间，一直到<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">平衡性调整</a>。第一条线包含较弱的<a href="./%D0%9F%D1%83%D1%88%D0%BA%D0%B8" class="mw-redirect" title="Пушки">炮塔</a>和<a href="./%D0%9A%D0%BE%D1%80%D0%BF%D1%83%D1%81%D0%B0" class="mw-redirect" title="Корпуса">底盘</a>，它们在低<a href="./%D0%97%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="Звания">等级</a>和部分中等<a href="./%D0%97%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="Звания">等级</a>时被广泛使用。第二条线的商品随着玩家的“职业生涯发展”逐渐取代第一条线。其中大多数比第一条线的炮塔强大得多，并在更高的<a href="./%D0%97%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="Звания">等级</a>下使用。这些术语现在的使用频率要低得多，并不再是官方术语，因为现在假定游戏中的所有装备都是平衡的。
+</p><p><b>“+1” 或干脆 “+”</b> — 同意某人或某事。
+</p><p><b>版本 1.100</b> (100) — 新画面的发布。许多人至今仍含泪怀念这个版本之前的时代。
+</p><p><b>版本 1.100</b> (100) — 新画面的发布。许多人至今仍含泪怀念这个版本之前的时代。
+</p><p><b>版本 123</b> — 游戏经济系统的更改（所有与<a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы">水晶</a>相关的内容都乘以了 10），这在玩家中引起了负面情绪。
+</p><p><b>2.0</b> — 《3D 坦克 2.0》项目，该项目已被关闭（参见<a href="./%D0%A2%D0%B0%D0%BD%D0%BA%D0%B8_%D0%9E%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD_2.0" class="mw-redirect" title="Танки Онлайн 2.0">《3D 坦克 2.0》</a>、<a href="./%D0%98%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F_%D0%B8%D0%B3%D1%80%D1%8B" class="mw-redirect" title="История создания игры">游戏创作历史</a>）。
+</p><p><i><b>“100500”</b></i> — 表示非常非常多的某物。表达式“+100500”用于加强短语“+1”。
+</p><p><i><b>*</b></i> — 1）游戏和战斗<a href="./%D0%A7%D0%B0%D1%82" class="mw-redirect" title="Чат">聊天室</a>中的隐藏文本（通常是不文明的词汇和表达）。星号会屏蔽指向<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">网络钓鱼</a>和第三方资源的链接（参见<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">反脏话系统</a>）；2）如果玩家的新消息以这样的星号开头并以某个单独的单词结尾，反之亦然 — 以单词开头并以星号结尾，这通常意味着他想要纠正自己上一条消息中某个特定单词的拼写错误。
+<br>
+</p><div align="right"><small>最后修改：21/05/2024 HelpersBot <span class="ai-translate-note" style="color:#8FB8D8;">（由 AI 自动翻译）</span></small></div></div></div></div></div></div><footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
+<p style="margin:0;"><strong style="color:#BFD5FF;">本站为玩家社区自建的非官方 Wiki 镜像。</strong></p>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":1136,"wgPageParseReport":{"limitreport":{"cputime":"0.317","walltime":"0.336","ppvisitednodes":{"value":66,"limit":1000000},"postexpandincludesize":{"value":602,"limit":4194304},"templateargumentsize":{"value":143,"limit":4194304},"expansiondepth":{"value":4,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%   29.427      1 -total"," 33.45%    9.843      1 Шаблон:LastEdit"," 28.93%    8.512      7 Шаблон:Hotkey"," 27.03%    7.953      1 Шаблон:Alert"]},"cachereport":{"timestamp":"20260824200728","ttl":86400,"transientcontent":false}}});});</script>
+    <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });</script></body></html>
