@@ -1,0 +1,1164 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>(function(){
+  var BASE = 'https://ru.tankiwiki.com';
+  function fix(v){ return (typeof v === 'string' && v.charAt(0) === '/' && v.indexOf('//') !== 0) ? BASE + v : v; }
+  ['HTMLScriptElement','HTMLLinkElement'].forEach(function(tag){
+    var proto = window[tag] && window[tag].prototype;
+    var prop  = tag === 'HTMLScriptElement' ? 'src' : 'href';
+    if (!proto) return;
+    var d = Object.getOwnPropertyDescriptor(proto, prop);
+    if (!d || !d.set) return;
+    Object.defineProperty(proto, prop, {
+      configurable: true,
+      get: function(){ return d.get.call(this); },
+      set: function(v){ d.set.call(this, fix(v)); }
+    });
+  });
+  var of = window.fetch;
+  if (of) window.fetch = function(u, o){ return of.call(this, (typeof u === 'string' ? fix(u) : u), o); };
+  var ox = window.XMLHttpRequest && XMLHttpRequest.prototype.open;
+  if (ox) XMLHttpRequest.prototype.open = function(m, u){
+    var a = Array.prototype.slice.call(arguments); a[1] = fix(u); return ox.apply(this, a);
+  };
+})();</script><title>TLT 军团成员画廊 — 3D 坦克 Wiki</title><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+    <meta charset="UTF-8">
+    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/xg_pWYS8-HRESiV6Rdg4aY_R/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-qWH0xCejb2gc1yqo8ob4TQrvIcQ9XjhOfGKbhFr/+LvFrJdTE3bA+FQP/FLAiQhz"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgRequestId":"5334efdeaa9a92602593980e","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Galerei_legionerov_TLT","wgTitle":"Galerei legionerov TLT","wgCurRevisionId":295368,"wgRevisionId":295368,"wgArticleId":9740,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"ru","wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgRelevantPageName":"Galerei_legionerov_TLT","wgRelevantArticleId":9740,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,
+"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVisualEditor":{"pageLanguageCode":"ru","pageLanguageDir":"ltr","pageVariantFallbacks":"ru"},"wgFlaggedRevsParams":{"tags":{"accuracy":{"levels":3}}},"wgStableRevisionId":295368,"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.flaggedRevs.icons":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","jquery.makeCollapsible.styles":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.flaggedRevs.basic":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","jquery.makeCollapsible","mediawiki.toc","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.flaggedRevs.advanced","skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=ext.flaggedRevs.basic%2Cicons%7Cext.visualEditor.desktopArticleTarget.noscript%7Cjquery.makeCollapsible.styles%7Cmediawiki.skinning.interface%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://ru.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://ru.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (ru)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://ru.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki&nbsp;— Atom-лента" href="https://ru.tankiwiki.com/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom"><style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
+
+/* 1. 只去掉源站皮肤的背景大图，保留底色；不要用 background 简写，否则会连带清掉皮肤别的背景设定 */
+html, body {
+    background-image: none !important;
+    background-color: #001926 !important;
+}
+/* 2. 让底色铺满视口，内容很短时下方不再露白 */
+html { min-height: 100%; }
+body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif; }
+
+/* 3. 版心容器 */
+#mw-main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #001926;
+}
+
+/* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
+      【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
+
+#mw-main-container .main-content,
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content,
+#mw-main-container #mw-content-text {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: auto !important;
+    flex-basis: auto !important;   /* 皮肤写了 .main-content{flex:0 0 75%} */
+    float: none !important;
+    margin-top: 0 !important;       /* 核心：清空原站皮肤的负 margin-top */
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    position: relative !important;
+    z-index: 1 !important;          /* 保证正文层级低于按钮 */
+}
+
+/* 5. 皮肤脚本 skins.tankiblue.js 会往 #mw-content-text 末尾插一条「发现错别字？Ctrl+Enter」
+      的俄语提示条和一个「报告错误」标签页。它按网址里有没有 'en'/'de' 来判断语言，
+      我们的域名两者都不含 → 一律显示俄语；且报错会提交到俄站编辑组，对镜像站没意义，直接隐藏。 */
+#custom-report-footer,
+.vectorTabs.customReport,
+.customReport { display: none !important; }
+
+/* 6. 返回按钮包裹容器：独占一行并强制最高层级 */
+.home-btn-wrapper {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px 0 20px 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    z-index: 9999 !important;       /* 核心：永远置于最顶层 */
+    clear: both !important;
+    overflow: visible !important;
+}
+
+/* 7. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐 */
+.home-back-btn {
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    width: auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    isolation: isolate !important;
+    
+    min-width: 142px !important;
+    padding: 0 24px !important;
+    height: 78px !important;
+    margin: 0 !important;
+    border: 1px solid rgba(255,255,255,.25) !important;
+    outline: 2px solid transparent !important;
+    border-radius: 6.5px !important;
+    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%) !important;
+    
+    position: relative !important;
+    z-index: 10000 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: all .15s ease !important;
+    overflow: visible !important;
+}
+.home-back-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(100% 100% at 0% 0%, rgba(191,213,255,.25) 0%, rgba(191,213,255,.15) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all .15s ease;
+    border-radius: inherit;
+    pointer-events: none;
+}
+.home-back-btn svg {
+    width: 24.375px;
+    height: 24px;
+    object-fit: contain;
+    transform: rotate(180deg);
+    transition: all .15s ease;
+    flex-shrink: 0;
+}
+.home-back-btn svg path { fill: #BFD5FF; transition: all .15s ease; }
+
+.home-back-btn:hover,
+.home-back-btn:active,
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF !important; border-color: #BFD5FF !important; }
+.home-back-btn:hover::before,
+.home-back-btn:active::before,
+.home-back-btn:focus-visible::before { opacity: 1; }
+.home-back-btn:hover svg,
+.home-back-btn:active svg,
+.home-back-btn:focus-visible svg { transform: rotate(180deg) translateX(10%); }
+.home-back-btn:hover svg path,
+.home-back-btn:active svg path,
+.home-back-btn:focus-visible svg path { fill: #fff; }
+
+.home-back-btn span {
+    color: #BFD5FF;
+    font-size: 16px;
+    margin-left: 10px;
+    font-weight: bold;
+    transition: all .15s ease;
+    white-space: nowrap;
+}
+.home-back-btn:hover span,
+.home-back-btn:active span,
+.home-back-btn:focus-visible span {
+    color: #fff;
+    transform: translateX(-4px);
+}
+
+/* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
+@media (hover: none) {
+    .home-back-btn { border-color: rgba(191,213,255,.55) !important; }
+    .home-back-btn svg path { fill: #CFE0FF; }
+}
+
+/* 移动端/窄屏自适应尺寸 */
+@media (max-width: 480px) {
+    .home-back-btn {
+        min-width: 106px !important;
+        padding: 0 16px !important;
+        height: 58px !important;
+        margin-left: 10px !important;
+    }
+    .home-back-btn svg { width: 20px !important; height: 19.7px !important; }
+    .home-back-btn span { font-size: 14px !important; margin-left: 8px !important; }
+}
+
+/* 8. 移动端容器 Padding */
+@media (max-width: 768px) {
+    #mw-main-container { padding: 10px !important; margin: 8px auto !important; }
+    .home-back-btn { margin-left: 10px !important; }
+    #mw-content-text .navigationContainerContent > div,
+    #mw-content-text [style*="width: 55%"],
+    #mw-content-text [style*="width:55%"],
+    #mw-content-text [style*="width: 45%"],
+    #mw-content-text [style*="width:45%"] { width: 100% !important; }
+}
+@media (max-width: 480px) {
+    #mw-main-container { padding: 6px !important; margin: 4px auto !important; }
+}
+
+/* 9. 防止宽表格 / 大图撑破版心 */
+#mw-content-text img { max-width: 100%; height: auto; }
+#mw-content-text table { max-width: 100%; }
+
+/* 10. 目录（TOC）修复，全局生效：
+    a) 皮肤把目录折叠按钮的文字放在 CSS 伪元素里渲染，而不是 HTML 文本：
+         .toctogglecheckbox:checked  + .toctitle .toctogglelabel::after → content:'показать'
+         .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after → content:'скрыть'
+       AI 翻译只处理 HTML 文本，摸不到 CSS content，所以这个按钮永远是俄语，必须在这里覆盖成中文。
+    b) 皮肤的响应式 CSS 里写了 @media screen and (max-width:768px){ #toc{display:none} }，
+       导致手机端整个目录被隐藏。这里恢复显示，并配合下方 TOC_MOBILE_COLLAPSE_SCRIPT：
+       移动端默认折叠，只占一行「目录 [展开]」，避免长目录把正文挤到屏幕外。 */
+#toc .toctogglecheckbox:checked + .toctitle .toctogglelabel::after { content: '展开' !important; }
+#toc .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after { content: '收起' !important; }
+@media screen and (max-width: 768px) {
+    #toc { display: table !important; }
+}
+
+/* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
+   只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+*/
+</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Galerei_legionerov_TLT rootpage-Galerei_legionerov_TLT skin-tankiblue action-view"><div id="skin-chrome-stub" aria-hidden="true" style="display:none !important;">
+<a class="problem" href="#"></a>
+<div class="close-wrapper"></div>
+<div class="support-block-popup"><div class="close-modal-support"></div></div>
+<div class="youtube-popup"><iframe title="stub"></iframe></div>
+<div class="video-button"></div>
+<div class="header-search"></div>
+<div class="search-dialog"></div>
+<div class="search-popup"><div class="close-wrapper"></div><div class="close-modal-search"></div></div>
+<div class="news-popup"></div>
+<div class="sales-block-header"></div>
+<div class="navbar-main"></div>
+<div class="main-navbar"></div>
+</div><div id="mw-main-container"><div class="home-btn-wrapper"><a class="home-back-btn" href="./Enciklopediya_igry_%C2%ABTanki_Onlayn%C2%BB" title="返回主页" aria-label="返回主页"><svg viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 0H13.5L25.5 12L24 13.5L13.5 24H18L30 12L18 0ZM24 13.5L21 10.5H0L3 13.5H24Z" fill="#BFD5FF"/></svg><span>返回主页</span></a></div><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">TLT 军团成员画廊</h1><div class="dablink noprint"><em>主条目</em>：<b><a href="./%D0%A2%D0%B2%D0%BE%D1%80%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F_%D0%9B%D0%B8%D0%B3%D0%B0" class="mw-redirect" title="创意联盟">创意联盟</a></b>
+</div><p><br>创意联盟部分成员的画廊，其作品已无法在论坛的储藏室中找到。
+</p><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"><div class="toctitle" lang="ru" dir="ltr"><h2 id="mw-toc-heading">目录</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#4IRK"><span class="tocnumber">1</span> <span class="toctext">4IRK</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#6yka_MACTEP_xD"><span class="tocnumber">2</span> <span class="toctext">6yka_MACTEP_xD</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#A-R-X-A-H-G-E-L"><span class="tocnumber">3</span> <span class="toctext">A-R-X-A-H-G-E-L</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Afr0man"><span class="tocnumber">4</span> <span class="toctext">Afr0man</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Benneli"><span class="tocnumber">5</span> <span class="toctext">Benneli</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#F.O.R.T.U.N.A"><span class="tocnumber">6</span> <span class="toctext">F.O.R.T.U.N.A</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#I.D0M"><span class="tocnumber">7</span> <span class="toctext">I.D0M</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Jooe"><span class="tocnumber">8</span> <span class="toctext">Jooe</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#JVdragobomba"><span class="tocnumber">9</span> <span class="toctext">JVdragobomba</span></a></li>
+<li class="toclevel-1 tocsection-10"><a href="#Ky3mee4"><span class="tocnumber">10</span> <span class="toctext">Ky3mee4</span></a></li>
+<li class="toclevel-1 tocsection-11"><a href="#Mr.D0c3nTo"><span class="tocnumber">11</span> <span class="toctext">Mr.D0c3nTo</span></a></li>
+<li class="toclevel-1 tocsection-12"><a href="#NoN-StoP_o_O"><span class="tocnumber">12</span> <span class="toctext">NoN-StoP o O</span></a></li>
+<li class="toclevel-1 tocsection-13"><a href="#NoName8"><span class="tocnumber">13</span> <span class="toctext">NoName8</span></a></li>
+<li class="toclevel-1 tocsection-14"><a href="#Profnaz"><span class="tocnumber">14</span> <span class="toctext">Profnaz</span></a></li>
+<li class="toclevel-1 tocsection-15"><a href="#R.ost"><span class="tocnumber">15</span> <span class="toctext">R.ost</span></a></li>
+<li class="toclevel-1 tocsection-16"><a href="#Shadewarttt"><span class="tocnumber">16</span> <span class="toctext">Shadewarttt</span></a></li>
+<li class="toclevel-1 tocsection-17"><a href="#TOP_DOG"><span class="tocnumber">17</span> <span class="toctext">TOP_DOG</span></a></li>
+<li class="toclevel-1 tocsection-18"><a href="#ydzero"><span class="tocnumber">18</span> <span class="toctext">ydzero</span></a></li>
+<li class="toclevel-1 tocsection-19"><a href="#Ilia.ArchangeI"><span class="tocnumber">19</span> <span class="toctext">Ilia.ArchangeI</span></a></li>
+</ul>
+</div><h2><span class="mw-headline" id="4IRK">4IRK</span></h2><table>
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/1/1d/4irk_2.png/70px-4irk_2.png" decoding="async" loading="lazy" width="70" height="113" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/1/1d/4irk_2.png 1.5x"></span></span>
+</td>
+<td>
+<table class="tpl-quote-tiny" style="margin:16px auto auto; border-collapse:collapse; background-color:transparent; border-style:none; width:auto;"><tbody><tr><td style="width:30px; padding-left:25px; vertical-align:top; text-align:left; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">«</td><td style="display:block; text-align:left; font-style:italic;">
+<p class="quote">大家好！我叫赫尔曼。我在 2010 年加入了这个项目，在第一场战斗之后，这款游戏就立刻吸引了我。玩了 3 年后，我意识到仅仅玩游戏对我来说还不够。仔细浏览论坛后，我偶然发现了玩家们的创作，这让我非常感兴趣。从 2013 年 6 月 14 日起，我开始从零学习位图图形。经过半年的工作，我被注意到并受邀加入 <a href="./%D0%A2%D0%B2%D0%BE%D1%80%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F_%D0%9B%D0%B8%D0%B3%D0%B0" class="mw-redirect" title="创意联盟">TLT</a> 候选期，对此我感到惊讶和无比高兴。在成功通过考核并了解到这里有如此美妙的团队后，我在这里待了很长时间，对此我从未后悔过。</p>
+</td><td style="width:30px; padding-right:25px; vertical-align:bottom; text-align:right; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">»</td></tr><tr><td colspan="3" style="font-size:80%; line-height:100%; text-align:right; padding: 5px 30px 0;">— 4irk</td></tr>
+</tbody></table>
+</td></tr></tbody></table><div class="btn btn-collapsed border-0 rounded-0 w-100 text-left text-uppercase position-relative py-2 my-3" data-toggle="collapse" data-target="#collapseExample{{{id}}}">作品画廊</div><div class="collapse" id="collapseExample{{{id}}}"><div class="card card-body">
+
+&lt;sgallery width="800" height="600" showinfopane="false" &gt;
+File:09.03.2015_4irk_mega.jpg
+File:09.03.2015_4irk_ky3mee4_mega_walls.png
+File:02.03.2015_funt_4irk.png
+File:13.02.2015_funt+4irk.png
+File:26.01.2015_4IRK+ky3mme4(1).jpg
+File:26.01.2015_4IRK+ky3mme4.jpg
+Image:4IRK 1.jpg
+Image:4IRK 3.jpg
+Image:4IRK 4.jpg
+Image:4IRK 5.jpg
+Image:4IRK 6.jpg
+Image:4IRK 7.jpg
+Image:4IRK 8.jpg
+Image:4IRK 9.jpg
+Image:4IRK 10.jpg
+Image:4IRK.jpg
+Image:4IRK 12.jpg
+Image:4IRK 13.jpg
+Image:4IRK 17.jpg
+Image:4IRK 18.jpg
+Image:4IRK 19.jpg
+&lt;/sgallery&gt;
+<table><tbody><tr><td></td></tr></tbody></table>
+</div></div><h2><span class="mw-headline" id="6yka_MACTEP_xD">6yka_MACTEP_xD</span></h2><table>
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/41/6yka_MACTEP_xD.png/90px-6yka_MACTEP_xD.png" decoding="async" loading="lazy" width="90" height="128" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/41/6yka_MACTEP_xD.png/135px-6yka_MACTEP_xD.png 1.5x, https://ru.tankiwiki.com/images/ru/4/41/6yka_MACTEP_xD.png 2x"></span></span>
+</td>
+<td>
+<table class="tpl-quote-tiny" style="margin:16px auto auto; border-collapse:collapse; background-color:transparent; border-style:none; width:auto;"><tbody><tr><td style="width:30px; padding-left:25px; vertical-align:top; text-align:left; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">«</td><td style="display:block; text-align:left; font-style:italic;">
+<p class="quote">Ciao-ciao，伙计们！我叫热尼亚，是一名来自阳光灿烂的意大利的年轻、留着胡子的建筑工程师。我是一名专业的自行车手。我开始画一些关于 3D 坦克的主题，不久后便进入了 <a href="./%D0%A2%D0%B2%D0%BE%D1%80%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F_%D0%9B%D0%B8%D0%B3%D0%B0" class="mw-redirect" title="创意联盟">TLT</a> 的候选期，在那里我学到了很多东西。2016 年 1 月 23 日，我成为了 <a href="./%D0%A2%D0%B2%D0%BE%D1%80%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F_%D0%9B%D0%B8%D0%B3%D0%B0" class="mw-redirect" title="创意联盟">TLT</a> 的军团成员和酷炫团队的一部分。In bocca al lupo&nbsp;:)</p>
+</td><td style="width:30px; padding-right:25px; vertical-align:bottom; text-align:right; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">»</td></tr><tr><td colspan="3" style="font-size:80%; line-height:100%; text-align:right; padding: 5px 30px 0;">— 6yka_MACTEP_xD</td></tr>
+</tbody></table>
+</td></tr></tbody></table><div class="btn btn-collapsed border-0 rounded-0 w-100 text-left text-uppercase position-relative py-2 my-3" data-toggle="collapse" data-target="#collapseExample{{{id}}}">作品画廊</div><div class="collapse" id="collapseExample{{{id}}}"><div class="card card-body">
+<p>&lt;sgallery width="800" height="600" showinfopane="false" &gt;
+6yka_1.jpg
+6yka_2.jpg
+6yka_3.jpg
+6yka_4.jpg
+6yka_5.jpg
+6yka_6.jpg
+6yka_7.jpg
+6yka_8.jpg
+6yka_9.jpg
+6yka_10.jpg
+6yka_11.jpg
+6yka_12.jpg
+6yka_13.jpg
+6yka_14.jpg
+6yka_15.jpg
+6yka_16.jpg
+6yka_17.jpg
+6yka_18.jpg
+6yka_19.jpg
+6yka_20.jpg
+&lt;/sgallery&gt;
+</p>
+</div></div><h2><span class="mw-headline" id="A-R-X-A-H-G-E-L">A-R-X-A-H-G-E-L</span></h2><table>
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d1/A-R-X-A-H-G-E-L1.png/70px-A-R-X-A-H-G-E-L1.png" decoding="async" loading="lazy" width="70" height="90" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d1/A-R-X-A-H-G-E-L1.png/105px-A-R-X-A-H-G-E-L1.png 1.5x, https://ru.tankiwiki.com/images/ru/d/d1/A-R-X-A-H-G-E-L1.png 2x"></span></span>
+</td>
+<td>
+<table class="tpl-quote-tiny" style="margin:16px auto auto; border-collapse:collapse; background-color:transparent; border-style:none; width:auto;"><tbody><tr><td style="width:30px; padding-left:25px; vertical-align:top; text-align:left; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">«</td><td style="display:block; text-align:left; font-style:italic;">
+<p class="quote">我叫帕维尔，住在沃洛格达市。我从 2012 年 2 月开始玩 3D 坦克。很长一段时间我都是独自一人玩，但有一次我在论坛上看到了 <a href="./%D0%A2%D0%B2%D0%BE%D1%80%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F_%D0%9B%D0%B8%D0%B3%D0%B0" class="mw-redirect" title="创意联盟">TLT</a> 的主题，然后一切就开始了！我开始对建模、写诗和绘画产生兴趣。希望您能在我的画廊里找到对您来说新颖有趣的东西。祝您在战场上好运！</p>
+</td><td style="width:30px; padding-right:25px; vertical-align:bottom; text-align:right; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">»</td></tr><tr><td colspan="3" style="font-size:80%; line-height:100%; text-align:right; padding: 5px 30px 0;">— A-R-X-A-H-G-E-L</td></tr>
+</tbody></table>
+</td></tr></tbody></table><div class="btn btn-collapsed border-0 rounded-0 w-100 text-left text-uppercase position-relative py-2 my-3" data-toggle="collapse" data-target="#collapseExample{{{id}}}">作品画廊</div><div class="collapse" id="collapseExample{{{id}}}"><div class="card card-body">
+<p>&lt;sgallery width="800" height="600" showinfopane="false" &gt;
+File:3594383.jpg
+Image:3542921.jpg
+Image:3551115.jpg
+Image:3565450.jpg
+Image:3580808.jpg
+Image:3589249.jpg
+Image:3591051.jpg
+Image:3591287.jpg
+Image:3631497.jpg
+Image:3648112.jpg
+Image:3664900.jpg
+Image:3688993.jpg
+Image:3695613.jpg
+Image:3722362.jpg
+Image:3734179.jpg
+&lt;/sgallery&gt;
+</p>
+</div></div><h2><span class="mw-headline" id="Afr0man">Afr0man</span></h2><table>
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/4e/Afr0man.png/90px-Afr0man.png" decoding="async" loading="lazy" width="90" height="116" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/4/4e/Afr0man.png 1.5x"></span></span>
+</td>
+<td>
+<table class="tpl-quote-tiny" style="margin:16px auto auto; border-collapse:collapse; background-color:transparent; border-style:none; width:auto;"><tbody><tr><td style="width:30px; padding-left:25px; vertical-align:top; text-align:left; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">«</td><td style="display:block; text-align:left; font-style:italic;">
+<p class="quote">大家好，我叫索 ulius（Saulius），来自立陶宛！
+我今年 24 岁。我开始玩坦克是在 4.5 年前。我非常喜欢这款游戏。当我获得最高等级时，那是 1.5 年前，游戏对我来说进入了一个新水平——提升技巧。大约半年前，我听说了<a href="./%D0%A2%D0%B2%D0%BE%D1%80%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F_%D0%9B%D0%B8%D0%B3%D0%B0" class="mw-redirect" title="创意联盟">创意联盟</a> ——当时我对它是什么非常感兴趣。当时我的熟人 arty77 跟我讲了关于联盟的事，他知道我画画，说“尝试加入联盟吧”，于是我试着画了关于坦克的画，现在我是一名正式的军团成员了。</p>
+</td><td style="width:30px; padding-right:25px; vertical-align:bottom; text-align:right; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">»</td></tr><tr><td colspan="3" style="font-size:80%; line-height:100%; text-align:right; padding: 5px 30px 0;">— Afr0man</td></tr>
+</tbody></table>
+</td></tr></tbody></table><div class="btn btn-collapsed border-0 rounded-0 w-100 text-left text-uppercase position-relative py-2 my-3" data-toggle="collapse" data-target="#collapseExample{{{id}}}">作品画廊</div><div class="collapse" id="collapseExample{{{id}}}"><div class="card card-body">
+<p>&lt;sgallery width="800" height="600" showinfopane="false" &gt;
+File:Afr0man 17.jpg
+File:24.05.2015_afro.jpg
+File:18.03.2015_afroman.jpg
+File:09.03.2015_afroman(2).jpg
+File:09.03.2015_afr0man.jpg
+File:02.03.2015_afr0man(2).jpg
+File:02.03.2015_afr0man.jpg
+Image:Afr0man1.jpg
+Image:Afr0man2.jpg
+Image:Afr0man3.jpg
+Image:Afr0man4.jpg
+Image:Afr0man5.jpg
+Image:Afr0man6.jpg
+Image:Afr0man7.jpg
+Image:Afr0man8.jpg
+Image:Afr0man9.jpg
+Image:Afr0man10.jpg
+Image:Afr0man 15.jpg
+Image:Afr0man 22.jpg
+Image:Afr0man 18.jpg
+Image:Afr0man 19.jpg
+Image:Afr0man 20.jpg
+Image:Afr0man 21.jpg
+Image:Afr0man16.jpg
+&lt;/sgallery&gt;
+</p>
+<b>Speed Drawing — Package</b> <div title="点击打开视频" class="ShowYouTubePopup" style="width:23pxpx;" data-id="G7Oz_bcQx2o"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/23px-YT-icon.png" decoding="async" loading="lazy" width="23" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/35px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/46px-YT-icon.png 2x"></span></span></div><br>
+<b>How to Draw Bank Cards</b> <div title="点击打开视频" class="ShowYouTubePopup" style="width:23pxpx;" data-id="4iR7KcMkXgw"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/23px-YT-icon.png" decoding="async" loading="lazy" width="23" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/35px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/46px-YT-icon.png 2x"></span></span></div><br>
+<b>How to draw Coin</b> <div title="点击打开视频" class="ShowYouTubePopup" style="width:23pxpx;" data-id="g4J4nySCx1Q"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/23px-YT-icon.png" decoding="async" loading="lazy" width="23" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/35px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/46px-YT-icon.png 2x"></span></span></div><br>
+<b>Speed drawing — 黄蜂轻甲 &amp; 火龙珠</b> <div title="点击打开视频" class="ShowYouTubePopup" style="width:23pxpx;" data-id="rIjpgJ6XWC8"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/23px-YT-icon.png" decoding="async" loading="lazy" width="23" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/35px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/46px-YT-icon.png 2x"></span></span></div><br>
+<b>How to draw Chocolate</b> <div title="点击打开视频" class="ShowYouTubePopup" style="width:23pxpx;" data-id="Ld5ktvBpHMY"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/23px-YT-icon.png" decoding="async" loading="lazy" width="23" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/35px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/46px-YT-icon.png 2x"></span></span></div><br>
+<b>How to draw Bottle</b> <div title="点击打开视频" class="ShowYouTubePopup" style="width:23pxpx;" data-id="d4JRD6plvZs"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/23px-YT-icon.png" decoding="async" loading="lazy" width="23" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/35px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/46px-YT-icon.png 2x"></span></span></div><br>
+<b>How to draw Predator</b> <div title="点击打开视频" class="ShowYouTubePopup" style="width:23pxpx;" data-id="bELkY7fEI-o"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/23px-YT-icon.png" decoding="async" loading="lazy" width="23" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/35px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/46px-YT-icon.png 2x"></span></span></div><br>
+<b>Portrait drawing Forest Whitaker</b> <div title="点击打开视频" class="ShowYouTubePopup" style="width:23pxpx;" data-id="J5Qc9Clexe0"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/23px-YT-icon.png" decoding="async" loading="lazy" width="23" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/35px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/46px-YT-icon.png 2x"></span></span></div><br>
+<b>3D street art: Drawing plane</b> <div title="点击打开视频" class="ShowYouTubePopup" style="width:23pxpx;" data-id="U8IOGwfAe0I"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/23px-YT-icon.png" decoding="async" loading="lazy" width="23" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/35px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/46px-YT-icon.png 2x"></span></span></div><br>
+</div></div><h2><span class="mw-headline" id="Benneli">Benneli</span></h2><table>
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/eb/Benneli.png/80px-Benneli.png" decoding="async" loading="lazy" width="80" height="103" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/e/eb/Benneli.png 1.5x"></span></span>
+</td>
+<td>
+<table class="tpl-quote-tiny" style="margin:16px auto auto; border-collapse:collapse; background-color:transparent; border-style:none; width:auto;"><tbody><tr><td style="width:30px; padding-left:25px; vertical-align:top; text-align:left; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">«</td><td style="display:block; text-align:left; font-style:italic;">
+<p class="quote">丹尼尔（ydzero）的好友。激光炮的崇拜者，痴迷于主宰者 + 激光炮的组合，这必然会体现在他的创作中。带有超现实主义色调的画作以其独创性以及看似完全相反的风格的不可思议结合而令人着迷。他的作品不言而喻——打开 Benneli 的创作画廊吧——它是你双眼的愉悦宝盒！</p>
+</td><td style="width:30px; padding-right:25px; vertical-align:bottom; text-align:right; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">»</td></tr><tr><td colspan="3" style="font-size:80%; line-height:100%; text-align:right; padding: 5px 30px 0;">— TRD-34</td></tr>
+</tbody></table>
+</td></tr></tbody></table><div class="btn btn-collapsed border-0 rounded-0 w-100 text-left text-uppercase position-relative py-2 my-3" data-toggle="collapse" data-target="#collapseExample{{{id}}}">作品画廊</div><div class="collapse" id="collapseExample{{{id}}}"><div class="card card-body">
+<p>&lt;sgallery width="800" height="600" showinfopane="false" &gt;
+Файл:Ben.jpg
+Файл:Ben (19).jpg
+Файл:Веn (18).jpg
+Файл:Веn (17).jpg
+Файл:Веn (16).jpg
+Файл:Веn (15).jpg
+Файл:Веn (14).jpg
+Файл:Веn (13).jpg
+Файл:Веn (12).jpg
+Файл:Веn (11).jpg
+Файл:Веn (10).jpg
+Файл:Веn (9).jpg
+Файл:Веn (8).jpg
+Файл:Веn (7).jpg
+Файл:Веn (6).jpg
+Файл:Веn (5).jpg
+Файл:Веn (4).jpg
+Файл:Веn (3).jpg
+Файл:Веn (2).jpg
+Файл:Веn (1).jpg
+&lt;/sgallery&gt;
+</p>
+</div></div><h2><span class="mw-headline" id="F.O.R.T.U.N.A">F.O.R.T.U.N.A</span></h2><table>
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/c/ce/F.O.R.T.U.N.A.png/70px-F.O.R.T.U.N.A.png" decoding="async" loading="lazy" width="70" height="90" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/ce/F.O.R.T.U.N.A.png/105px-F.O.R.T.U.N.A.png 1.5x, https://ru.tankiwiki.com/images/ru/c/ce/F.O.R.T.U.N.A.png 2x"></span></span>
+</td>
+<td>
+<table class="tpl-quote-tiny" style="margin:16px auto auto; border-collapse:collapse; background-color:transparent; border-style:none; width:auto;"><tbody><tr><td style="width:30px; padding-left:25px; vertical-align:top; text-align:left; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">«</td><td style="display:block; text-align:left; font-style:italic;">
+<p class="quote">大家好！我叫玛丽亚！大约两年前我来到了“3D 坦克”。正是在那里我认识了阿尔乔姆 (arsim)。我与顾问团队的经历有着最温馨的回忆。感谢伙伴们，我还要特别感谢米沙 (SilverAIM) 和维库拉 (PagocTb)。多亏了 arsim、aircolor 和 Lyzzard，目前我是 SЦUК 的代表以及大家喜爱的电竞赛事的导播。</p>
+</td><td style="width:30px; padding-right:25px; vertical-align:bottom; text-align:right; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">»</td></tr><tr><td colspan="3" style="font-size:80%; line-height:100%; text-align:right; padding: 5px 30px 0;">— F.O.R.T.U.N.A</td></tr>
+</tbody></table>
+</td></tr></tbody></table><div class="btn btn-collapsed border-0 rounded-0 w-100 text-left text-uppercase position-relative py-2 my-3" data-toggle="collapse" data-target="#collapseExample{{{id}}}">作品画廊</div><div class="collapse" id="collapseExample{{{id}}}"><div class="card card-body">
+<b> MiX — 鲨鱼，2014 冬季顶级联赛</b> <div title="点击打开视频" class="ShowYouTubePopup" style="width:23pxpx;" data-id="7nExbtEC4kY"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/23px-YT-icon.png" decoding="async" loading="lazy" width="23" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/35px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/46px-YT-icon.png 2x"></span></span></div><br>
+<b>3D 坦克中的婚礼</b> <div title="点击打开视频" class="ShowYouTubePopup" style="width:23pxpx;" data-id="U4LY7mhf1mA"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/23px-YT-icon.png" decoding="async" loading="lazy" width="23" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/35px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/46px-YT-icon.png 2x"></span></span></div><br>
+<b>All In — Eternity，2014 冬季顶级联赛</b> <div title="点击打开视频" class="ShowYouTubePopup" style="width:23pxpx;" data-id="L_OqvAehkGI"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/23px-YT-icon.png" decoding="async" loading="lazy" width="23" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/35px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/46px-YT-icon.png 2x"></span></span></div><br>
+<b>在 TankiOnline 中获取等级</b> <div title="点击打开视频" class="ShowYouTubePopup" style="width:23pxpx;" data-id="GUHr0SWr36E"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/23px-YT-icon.png" decoding="async" loading="lazy" width="23" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/35px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/46px-YT-icon.png 2x"></span></span></div><br>
+<b>TankiOnline 中的婚礼</b> <div title="点击打开视频" class="ShowYouTubePopup" style="width:23pxpx;" data-id="2gnTtiXKgrw"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/23px-YT-icon.png" decoding="async" loading="lazy" width="23" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/35px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/46px-YT-icon.png 2x"></span></span></div><br>
+<b>Angry Smile Inc. — 天使与恶魔，精彩集锦</b> <div title="点击打开视频" class="ShowYouTubePopup" style="width:23pxpx;" data-id="hGJsrZc-8BE"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/23px-YT-icon.png" decoding="async" loading="lazy" width="23" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/35px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/46px-YT-icon.png 2x"></span></span></div><br>
+<b>PiRATE</b> <div title="点击打开视频" class="ShowYouTubePopup" style="width:23pxpx;" data-id="sTzaI2L-Iis"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/23px-YT-icon.png" decoding="async" loading="lazy" width="23" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/35px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/46px-YT-icon.png 2x"></span></span></div><br>
+<b>A&amp;D — NooBest，2014 冬季顶级联赛</b> <div title="点击打开视频" class="ShowYouTubePopup" style="width:23pxpx;" data-id="Cwhy7cDMMuk"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/23px-YT-icon.png" decoding="async" loading="lazy" width="23" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/35px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/46px-YT-icon.png 2x"></span></span></div><br>
+</div></div><h2><span class="mw-headline" id="I.D0M">I.D0M</span></h2><table>
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/f/fd/I.D0M.png/90px-I.D0M.png" decoding="async" loading="lazy" width="90" height="116" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/f/fd/I.D0M.png 1.5x"></span></span>
+</td>
+<td>
+<table class="tpl-quote-tiny" style="margin:16px auto auto; border-collapse:collapse; background-color:transparent; border-style:none; width:auto;"><tbody><tr><td style="width:30px; padding-left:25px; vertical-align:top; text-align:left; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">«</td><td style="display:block; text-align:left; font-style:italic;">
+<p class="quote">非常原创的设计师。专长是——标志设计。位图图形的崇拜者，为许多军团创建过标志。他作品中晰、平滑的线条和过渡凸显了创作者自身的性格与自信。主要的活跃游戏板块——英文论坛</p>
+</td><td style="width:30px; padding-right:25px; vertical-align:bottom; text-align:right; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">»</td></tr><tr><td colspan="3" style="font-size:80%; line-height:100%; text-align:right; padding: 5px 30px 0;">— TRD-34</td></tr>
+</tbody></table>
+</td></tr></tbody></table><div class="btn btn-collapsed border-0 rounded-0 w-100 text-left text-uppercase position-relative py-2 my-3" data-toggle="collapse" data-target="#collapseExample{{{id}}}">作品画廊</div><div class="collapse" id="collapseExample{{{id}}}"><div class="card card-body">
+<p>&lt;sgallery width="800" height="600" showinfopane="false" &gt;
+Image:I.D0M1.jpg
+Image:I.D0M2.png
+Image:I.D0M3.png
+Image:I.D0M4.png
+Image:I.D0M5.png
+Image:I.D0M6.png
+Image:I.D0M7.png
+Image:I.D0M8.png
+Image:I.D0M 9.png
+Image:I.D0M 10.png
+&lt;/sgallery&gt;
+</p>
+</div></div><h2><span class="mw-headline" id="Jooe">Jooe</span></h2><table>
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/0/0e/Jooe.png/90px-Jooe.png" decoding="async" loading="lazy" width="90" height="107" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/0/0e/Jooe.png 1.5x"></span></span>
+</td>
+<td>
+<table class="tpl-quote-tiny" style="margin:16px auto auto; border-collapse:collapse; background-color:transparent; border-style:none; width:auto;"><tbody><tr><td style="width:30px; padding-left:25px; vertical-align:top; text-align:left; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">«</td><td style="display:block; text-align:left; font-style:italic;">
+<p class="quote">大家好呀！<br>我是——尼基塔，“你的创作”板块的老资历。我在遥远的 2010 年加入了游戏，并且立刻就想以某种方式影响它的发展。曾担任过顾问、3D 坦克百科编辑，并在 ART-TO 团队中呆过。目前我是 <a href="./%D0%A2%D0%B2%D0%BE%D1%80%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F_%D0%9B%D0%B8%D0%B3%D0%B0" class="mw-redirect" title="创意联盟">TLT</a> 的成员，对此我非常高兴。伙计们，要知道懒惰已经在监视着你们了……<br>不断发展吧！</p>
+</td><td style="width:30px; padding-right:25px; vertical-align:bottom; text-align:right; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">»</td></tr><tr><td colspan="3" style="font-size:80%; line-height:100%; text-align:right; padding: 5px 30px 0;">— Jooe</td></tr>
+</tbody></table>
+</td></tr></tbody></table><div class="btn btn-collapsed border-0 rounded-0 w-100 text-left text-uppercase position-relative py-2 my-3" data-toggle="collapse" data-target="#collapseExample{{{id}}}">作品画廊</div><div class="collapse" id="collapseExample{{{id}}}"><div class="card card-body">
+<p>&lt;sgallery width="800" height="600" showinfopane="false" &gt;
+File:18.03.2015_jooe_ky3mee4.jpg
+File:02.03.2015_jooe_walls.jpg
+File:28.01.2015_Jooe.png
+Image:Jooe 1.jpg
+Image:Jooe 2.jpg
+Image:Jooe 3.jpg
+Image:Jooe 4.png
+Image:Jooe 5.png
+Image:Jooe 6.jpg
+Image:Jooe 7.jpg
+Image:Jooe 8.jpg
+Image:Jooe 9.jpg
+Image:Jooe 10.jpg
+Image:Jooe 11.png
+&lt;/sgallery&gt;
+</p>
+</div></div><h2><span class="mw-headline" id="JVdragobomba">JVdragobomba</span></h2><table>
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/c/cb/JVdragobomba.png/80px-JVdragobomba.png" decoding="async" loading="lazy" width="80" height="103" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/c/cb/JVdragobomba.png 1.5x"></span></span>
+</td>
+<td>
+<table class="tpl-quote-tiny" style="margin:16px auto auto; border-collapse:collapse; background-color:transparent; border-style:none; width:auto;"><tbody><tr><td style="width:30px; padding-left:25px; vertical-align:top; text-align:left; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">«</td><td style="display:block; text-align:left; font-style:italic;">
+<p class="quote">你好，我叫马克西姆！<br>自 2009 年起加入 3D 坦克。曾长期担任管理团队的助手（更确切地说，是葡萄牙语区聊天管理员）。优秀的设计师。</p>
+</td><td style="width:30px; padding-right:25px; vertical-align:bottom; text-align:right; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">»</td></tr><tr><td colspan="3" style="font-size:80%; line-height:100%; text-align:right; padding: 5px 30px 0;">— JVdragobomba</td></tr>
+</tbody></table>
+</td></tr></tbody></table><div class="btn btn-collapsed border-0 rounded-0 w-100 text-left text-uppercase position-relative py-2 my-3" data-toggle="collapse" data-target="#collapseExample{{{id}}}">作品画廊</div><div class="collapse" id="collapseExample{{{id}}}"><div class="card card-body">
+<p>&lt;sgallery width="800" height="600" showinfopane="false" &gt;
+File:09.03.2015_jv.png
+File:02.03.2015_jv(2).png
+File:02.03.2015_jv.png
+File:13.02.2015_JV.jpg
+Oboi4.jpg
+Image JV (1).jpg
+Image JV (2).png
+Image JV (1).png
+壁纸 (3).jpg
+Image JV (4).jpg
+Image JV (3).jpg
+Image JV (6).jpg
+Oboi3 (2).jpg
+Image:39hkmZz.jpg
+Image:black_Tshirt.png
+Image:black_Tshirt2.png
+Image:djaga.jpg
+Image:f26pslo.jpg
+Image:godmode.png
+Image:goldinfinitumlogo.PNG
+Image:gva.png
+Image:haloween1.png
+Image:jv.png
+Image:jvd.png
+Image:jvicon.png
+Image:kass1.png
+Image:logoGA.PNG
+Image:newjvlogo.png
+Image:newto.jpg
+Image:olimp.png
+Image:police.png
+Image:railgun.jpg
+Image:rasla.png
+Image:strov.png
+Image:tankspace.jpg
+Image:tanksrus.jpg
+Image:tankwar1.jpg
+Image:tester.png
+Image:waall.jpg
+Image:y2o7X0d.jpg
+Image:Yd347cmn.png
+Image:zombie apocalipsis.jpg
+Image:zygger.jpg
+Image:无标题-2.png
+Image:炸弹。jpg
+Image:炸弹 1.jpg
+Image:生死游戏 (2).jpg
+Image:生死游戏。jpg
+Image:0I6Kw3h.jpg
+Image:1c70f616.png
+Image:aVh3wHr.jpg
+Image:E5rHJAQ.png
+Image:fZ741yP.jpg
+Image:kByvqyq.png
+Image:ZgwOh0k.jpg
+Image:JVdragobomba 1.jpg
+Image:JVdragobomba 2.jpg
+Image:JVdragobomba 3.png
+Image:JVdragobomba 3.jpg
+Image:JVdragobomba 4.jpg
+Image:JVdragobomba 5.jpg
+Image:JVdragobomba 6.jpg
+Image:JVdragobomba 8.jpg
+Image:JV_1.jpg
+Image:JV_2.jpg
+&lt;/sgallery&gt;
+</p>
+</div></div><h2><span class="mw-headline" id="Ky3mee4">Ky3mee4</span></h2><table>
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/9/9a/%D0%9A%D1%83%D0%B7%D1%8C%D0%BC%D0%B8%D1%87.png/80px-%D0%9A%D1%83%D0%B7%D1%8C%D0%BC%D0%B8%D1%87.png" decoding="async" loading="lazy" width="80" height="103" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/9/9a/%D0%9A%D1%83%D0%B7%D1%8C%D0%BC%D0%B8%D1%87.png 1.5x"></span></span>
+</td>
+<td>
+<table class="tpl-quote-tiny" style="margin:16px auto auto; border-collapse:collapse; background-color:transparent; border-style:none; width:auto;"><tbody><tr><td style="width:30px; padding-left:25px; vertical-align:top; text-align:left; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">«</td><td style="display:block; text-align:left; font-style:italic;">
+<p class="quote">自 2011 年 4 月起加入 3D 坦克。游戏太引人入胜了，以至于我忍不住想自己做点什么并与坦克社区分享。我想起了 3D 软件的基础知识，然后就一发不可收拾了！随着时间的推移，“3D 创作”主题在论坛上固定了下来，这增加了动力。现在是 <a href="./%D0%A2%D0%B2%D0%BE%D1%80%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F_%D0%9B%D0%B8%D0%B3%D0%B0" class="mw-redirect" title="创意联盟">TLT</a> 的军团成员。欢迎来到我的画廊！在走廊里四处逛逛吧，希望你能看中点什么。</p>
+</td><td style="width:30px; padding-right:25px; vertical-align:bottom; text-align:right; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">»</td></tr><tr><td colspan="3" style="font-size:80%; line-height:100%; text-align:right; padding: 5px 30px 0;">— Ky3mee4</td></tr>
+</tbody></table>
+</td></tr></tbody></table><div class="btn btn-collapsed border-0 rounded-0 w-100 text-left text-uppercase position-relative py-2 my-3" data-toggle="collapse" data-target="#collapseExample{{{id}}}">作品画廊</div><div class="collapse" id="collapseExample{{{id}}}"><div class="card card-body">
+<p>&lt;sgallery width="800" height="600" showinfopane="false" &gt;
+Image:3_2.jpg
+Image:ky3mee4 14.jpg
+Image:ky3mee4 15.png
+Image:ky3mee4 16.png
+Image:ky3mee4 17.png
+Image:ky3mee4 18.jpg
+Image:ky3mee4 19.png
+Image:ky3mee4 20.jpg
+Image:ky3mee4 21.jpg
+Image:ky3mee4 22.jpg
+Image:ky3mee4 23.png
+Image:ky3mee4 24.jpg
+File:24.05.2015_ky3mee4(2).jpg
+File:18.03.2015_skin_ky3mee4_3d_walls.jpg
+File:18.03.2015_jooe_ky3mee4.jpg
+File:12.03.2015_ky3mme4_skin.jpg
+File:09.03.2015_4irk_ky3mee4_mega_walls.png
+File:09.03.2015_ky3mee4_3d.jpg
+File:13.02.2015_ky3mee4_3d.jpg
+File:13.02.2015_ky3mee4+skin(2).jpg
+File:13.02.2015_ky3mee4+skin.jpg
+File:26.01.2015_4IRK+ky3mme4(1).jpg
+File:26.01.2015_ky3mme4.jpg
+File:26.01.2015_S-K-I-N+ky3mme4.jpg
+File:26.01.2015_4IRK+ky3mme4.jpg
+Image (4).jpg
+Image (3).jpg
+Image (4).png
+Oboi3 (1).png
+Image (3).png
+Image_(2).jpg‎
+Image_(1).png
+Image_(1).jpg‎
+Image:4_2.jpg
+Image:5_2.jpg
+Image:6_2.jpg
+Image:Gelios_1_1.png
+Image:Gold.png
+Image:HT_1.png
+Image:RicochetM1.jpg
+Image:Rik.jpg
+Image:Rik_black.jpg
+Image:ThunderM1_1.jpg
+Image:ThunderM2_2.jpg
+Image:wp.jpg
+Image:雷暴炮_05.jpg
+Image:日落_1_1.jpg
+Image:蜂王激光炮_2.png
+Image:蜂王激光炮_记者_6.png
+Image:黄蜂_3_1.jpg
+File:08085977781d318e5e5c8ee84ca68c04.png
+File:mF2h95Pswn.jpg
+Image:ky3mee4 1.jpg
+Image:ky3mee4 2.jpg
+Image:ky3mee4 3.png
+Image:ky3mee4 5.jpg
+Image:ky3mee4 6.jpg
+Image:ky3mee4 7.jpg
+Image:ky3mee4 8.jpg
+Image:ky3mee4 9.jpg
+Image:ky3mee4 12.jpg
+Image:ky3mee4 13.jpg
+Image:Ky3mee4_1.jpg
+Image:Ky3mee4_31.jpg
+Image:Ky3mee4_32.jpg
+Image:Ky3mee4_33.jpg
+Image:Ky3mee4_34.jpg
+Image:Ky3mee4_35.jpg
+Image:Ky3mee4_36.jpg
+Image:Ky3mee4_37.jpg
+Image:Ky3mee4_38.jpg
+Image:Ky3mee4_39.jpg
+Image:Ky3mee4_40.jpg
+&lt;/sgallery&gt;
+</p>
+<div class="toccolours mw-collapsible mw-collapsed" style="width:{{{Width}}}">
+<p>视频作品画廊</p>
+<div class="mw-collapsible-content">
+<b>NY</b> <div title="点击打开视频" class="ShowYouTubePopup" style="width:23pxpx;" data-id="q7mdTwA_o3w"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/23px-YT-icon.png" decoding="async" loading="lazy" width="23" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/35px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/46px-YT-icon.png 2x"></span></span></div><br>
+<b>TLT Logo</b> <div title="点击打开视频" class="ShowYouTubePopup" style="width:23pxpx;" data-id="-LKwyBfwLLs"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/23px-YT-icon.png" decoding="async" loading="lazy" width="23" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/35px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/46px-YT-icon.png 2x"></span></span></div><br>
+</div></div>
+</div></div><h2><span class="mw-headline" id="Mr.D0c3nTo">Mr.D0c3nTo</span></h2><table>
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/72/Mr.D0c3nTo.png/80px-Mr.D0c3nTo.png" decoding="async" loading="lazy" width="80" height="103" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/7/72/Mr.D0c3nTo.png 1.5x"></span></span>
+</td>
+<td>
+<table class="tpl-quote-tiny" style="margin:16px auto auto; border-collapse:collapse; background-color:transparent; border-style:none; width:auto;"><tbody><tr><td style="width:30px; padding-left:25px; vertical-align:top; text-align:left; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">«</td><td style="display:block; text-align:left; font-style:italic;">
+<p class="quote">大家好。<br>我叫约翰尼斯。我在 2011 年开始玩游戏，不久后便沉迷其中。<br>在经历了一段时间的间歇后，我成为了社区的活跃成员，并在电竞领域获得了最初的经验。
+随着时间的推移，我开始为我所在的战队制作设计图。在当时德国分支机构负责人 <a href="./%D0%A2%D0%B2%D0%BE%D1%80%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F_%D0%9B%D0%B8%D0%B3%D0%B0" class="mw-redirect" title="创意联盟">TLT</a> (RussiaNikita) 的帮助下，我不断提高自己对 Photoshop 的掌握技能，不久便得以加入联盟。<br>现在我是联盟德国分支机构的创意总监。
+</p>
+</td><td style="width:30px; padding-right:25px; vertical-align:bottom; text-align:right; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">»</td></tr><tr><td colspan="3" style="font-size:80%; line-height:100%; text-align:right; padding: 5px 30px 0;">— Mr.D0c3nTo</td></tr>
+</tbody></table>
+</td></tr></tbody></table><div class="btn btn-collapsed border-0 rounded-0 w-100 text-left text-uppercase position-relative py-2 my-3" data-toggle="collapse" data-target="#collapseExample{{{id}}}">作品画廊</div><div class="collapse" id="collapseExample{{{id}}}"><div class="card card-body">
+<p>&lt;sgallery width="800" height="600" showinfopane="false" &gt;
+Image:Mr.D0c3nTo 4.jpg
+Image:Mr.D0c3nTo 1.jpg
+Image:Mr.D0c3nTo 3.jpg
+Image:Mr.D0c3nTo 5.jpg
+&lt;/sgallery&gt;
+</p>
+</div></div><h2><span class="mw-headline" id="NoN-StoP_o_O">NoN-StoP o O</span></h2><table>
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/5/50/NoN-StoP_o_O.png/80px-NoN-StoP_o_O.png" decoding="async" loading="lazy" width="80" height="103" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/5/50/NoN-StoP_o_O.png 1.5x"></span></span>
+</td></tr></tbody></table><div class="btn btn-collapsed border-0 rounded-0 w-100 text-left text-uppercase position-relative py-2 my-3" data-toggle="collapse" data-target="#collapseExample{{{id}}}">作品画廊</div><div class="collapse" id="collapseExample{{{id}}}"><div class="card card-body">
+<p>&lt;sgallery width="800" height="600" showinfopane="false" &gt;
+File:24.05.2015_NS(13).png
+File:24.05.2015_NS(12).png
+Image:24.05.2015_NS(3).jpg
+Image:24.05.2015_NS(4).png
+Image:24.05.2015_NS(4.1).png
+Image:24.05.2015_NS(5).png
+Image:24.05.2015_NS(6).png
+Image:24.05.2015_NS(7).png
+Image:24.05.2015_NS(8).png
+Image:24.05.2015_NS(9).png
+Image:24.05.2015_NS(10).png
+Image:24.05.2015_NS(11).png
+Image:24.05.2015_NS(2).png
+Image:24.05.2015_NS.png
+Файл:NS (6).png
+Файл:NS (8).jpg
+Файл:NS (8).png
+Файл:NS (9).png
+Файл:NS (1).jpg
+Файл:NS (1).png
+Файл:NS (2).png
+Файл:NS (3).jpg
+Файл:NS (3).png
+Файл:NS (4).jpg
+Файл:NS (4).png
+Файл:NS (5).png
+Файл:NS (5).jpg
+Image:NS_1.png
+Image:NS_2.jpg
+Image:NS_3.png
+Image:NS_4.png
+Image:NS_5.png
+Image:NS_6.png
+Image:NS_7.png
+Image:NS_8.png
+&lt;/sgallery&gt;
+</p>
+</div></div><h2><span class="mw-headline" id="NoName8">NoName8</span></h2><table>
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/da/NoName8.png/70px-NoName8.png" decoding="async" loading="lazy" width="70" height="90" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/da/NoName8.png/105px-NoName8.png 1.5x, https://ru.tankiwiki.com/images/ru/d/da/NoName8.png 2x"></span></span>
+</td>
+<td>
+<table class="tpl-quote-tiny" style="margin:16px auto auto; border-collapse:collapse; background-color:transparent; border-style:none; width:auto;"><tbody><tr><td style="width:30px; padding-left:25px; vertical-align:top; text-align:left; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">«</td><td style="display:block; text-align:left; font-style:italic;">
+<p class="quote">我叫鲁斯兰，我是从图形论坛来到这个游戏的，没想到游戏会让人陷得这么深。随着时间的推移，我了解到了坦克论坛，在那里我看到了其他坦克手的作品，比如 dimmmy、T.RexChaos 等人。我也想展现自己，我在“你的创作”板块创建了一个普通的主题，并开始制作坦克壁纸，现在我成为了 <a href="./%D0%A2%D0%B2%D0%BE%D1%80%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F_%D0%9B%D0%B8%D0%B3%D0%B0" class="mw-redirect" title="创意联盟">TLT</a> 军团成员。</p>
+</td><td style="width:30px; padding-right:25px; vertical-align:bottom; text-align:right; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">»</td></tr><tr><td colspan="3" style="font-size:80%; line-height:100%; text-align:right; padding: 5px 30px 0;">— NoName8</td></tr>
+</tbody></table>
+</td></tr></tbody></table><div class="btn btn-collapsed border-0 rounded-0 w-100 text-left text-uppercase position-relative py-2 my-3" data-toggle="collapse" data-target="#collapseExample{{{id}}}">作品画廊</div><div class="collapse" id="collapseExample{{{id}}}"><div class="card card-body">
+<p>&lt;sgallery width="800" height="600" showinfopane="false" &gt;
+Image:NoName8 wallpaper1.png
+Image:壁纸。png
+Image:12541.png
+Image:minimal.png
+Image:shaft.png
+Image:smokebattle.png
+Image:wallpaperstart.png
+Image:主宰雷暴。png
+Image:主宰雷暴雨后续。png
+Image:哇哦。png
+Image:啦啦啦。png
+Image:投票预览。png
+Image:预览。png
+Image:沙盒的秘密。png
+Image:冰风暴对决雷暴炮。png
+&lt;/sgallery&gt;
+</p>
+</div></div><h2><span class="mw-headline" id="Profnaz">Profnaz</span></h2><table>
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/f/f5/Profnaz.png/70px-Profnaz.png" decoding="async" loading="lazy" width="70" height="90" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/f/f5/Profnaz.png/105px-Profnaz.png 1.5x, https://ru.tankiwiki.com/images/ru/f/f5/Profnaz.png 2x"></span></span>
+</td>
+<td>
+<table class="tpl-quote-tiny" style="margin:16px auto auto; border-collapse:collapse; background-color:transparent; border-style:none; width:auto;"><tbody><tr><td style="width:30px; padding-left:25px; vertical-align:top; text-align:left; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">«</td><td style="display:block; text-align:left; font-style:italic;">
+<p class="quote"><i>我的座右铭是："永远追求最好/最完美"。</i></p>
+</td><td style="width:30px; padding-right:25px; vertical-align:bottom; text-align:right; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">»</td></tr><tr><td colspan="3" style="font-size:80%; line-height:100%; text-align:right; padding: 5px 30px 0;">— Profnaz</td></tr>
+</tbody></table>
+</td></tr></tbody></table><div class="btn btn-collapsed border-0 rounded-0 w-100 text-left text-uppercase position-relative py-2 my-3" data-toggle="collapse" data-target="#collapseExample{{{id}}}">作品画廊</div><div class="collapse" id="collapseExample{{{id}}}"><div class="card card-body">
+<p>&lt;sgallery width="800" height="600" showinfopane="false" &gt;
+File:профназу-заглавие-новое.jpg
+Image:11.PNG
+Image:22.PNG
+Image:33.PNG
+Image:44.PNG
+Image:55.PNG
+Image:66.PNG
+Image:77.PNG
+Image:88.PNG
+Image:99.PNG
+Image:222.PNG
+Image:333.PNG
+Image:444.PNG
+Image:555.PNG
+Image:666.PNG
+Image:777.PNG
+Image:888.PNG
+Image:999.PNG
+&lt;/sgallery&gt;
+</p>
+</div></div><h2><span class="mw-headline" id="R.ost">R.ost</span></h2><table>
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/df/Rost.png/70px-Rost.png" decoding="async" loading="lazy" width="70" height="90" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/df/Rost.png/105px-Rost.png 1.5x, https://ru.tankiwiki.com/images/ru/d/df/Rost.png 2x"></span></span>
+</td>
+<td>
+<table class="tpl-quote-tiny" style="margin:16px auto auto; border-collapse:collapse; background-color:transparent; border-style:none; width:auto;"><tbody><tr><td style="width:30px; padding-left:25px; vertical-align:top; text-align:left; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">«</td><td style="display:block; text-align:left; font-style:italic;">
+<p class="quote">罗斯季斯拉夫。命运将我们与他在论坛的广阔天地中联系在了一起。罗斯蒂克（大家在联盟中这样亲切地称呼他）的图形作品以其丰富的饱和度和信息含量而令人惊叹。作为一个圆滑且非常有趣的谈话对象，他不断地提供着宁静的源泉，他的作品令人赞叹，并激励着人们去创造新的创作壮举！</p>
+</td><td style="width:30px; padding-right:25px; vertical-align:bottom; text-align:right; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">»</td></tr><tr><td colspan="3" style="font-size:80%; line-height:100%; text-align:right; padding: 5px 30px 0;">— TRD-34</td></tr>
+</tbody></table>
+</td></tr></tbody></table><div class="btn btn-collapsed border-0 rounded-0 w-100 text-left text-uppercase position-relative py-2 my-3" data-toggle="collapse" data-target="#collapseExample{{{id}}}">作品画廊</div><div class="collapse" id="collapseExample{{{id}}}"><div class="card card-body">
+<p>&lt;sgallery width="800" height="600" showinfopane="false" &gt;
+Image:лого ТЛТ.jpg
+Image:r.ost 15.jpg
+Image:r.ost 16.jpg
+Image:r.ost 17.jpg
+Image:r.ost 9.jpg
+Image:r.ost 10.jpg
+Image:r.ost 11.jpg
+Image:r.ost 12.jpg
+Image:r.ost 13.jpg
+Image:r.ost 14.jpg
+File:24.05.2015_rost.jpg
+Image:r.ost 7.png
+Image:r.ost 8.jpg
+File:23.03.2015_rost.jpg
+File:12.03.2015_rost.jpg
+File:02.03.2015_rost_walls.jpg
+File:13.02.2015_rost.jpg
+File:28.01.2015_rost.jpg
+罗斯特。jpg
+R.jpg
+File:日历。jpg
+Image:001.jpg
+Image:01.jpg
+Image:02.jpg
+Image:FINAL.jpg
+Image:GH.jpg
+Image:ov.jpg
+Image:VDV.jpg
+Image:VIKORIK.jpg
+Image:抢旗战。jpg
+Image:瀑布 1.jpg
+Image:赫利俄斯壁纸。jpg
+Image:赛车。jpg
+Image:炫酷蜂王。jpg
+Image:剑 1.jpg
+Image:等离子。jpg
+Image:传送门 1.jpg
+Image:激光炮。jpg
+Image:坦克 1.jpg
+Image:坦克手。jpg
+Image:女坦克手。jpg
+Image:足球-1920x1080.jpg
+Image:镭射炮怪兽。jpg
+Image:镭射炮老爹。jpg
+Image:国际象棋。jpg
+Image:r.ost 1.jpg
+Image:r.ost 2.jpg
+Image:r.ost 3.jpg
+Image:r.ost 4.jpg
+Image:r.ost 5.jpg
+Image:r.ost 6.jpg
+Image:罗斯特_1.jpg
+Image:罗斯特_2.jpg
+Image:罗斯特_3.jpg
+Image:罗斯特_4.jpg
+Image:罗斯特_5.jpg
+&lt;/sgallery&gt;
+</p>
+</div></div><h2><span class="mw-headline" id="Shadewarttt">Shadewarttt</span></h2><table>
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/5/5f/Shadewarttt.png/70px-Shadewarttt.png" decoding="async" loading="lazy" width="70" height="90" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/5f/Shadewarttt.png/105px-Shadewarttt.png 1.5x, https://ru.tankiwiki.com/images/ru/5/5f/Shadewarttt.png 2x"></span></span>
+</td>
+<td>
+<table class="tpl-quote-tiny" style="margin:16px auto auto; border-collapse:collapse; background-color:transparent; border-style:none; width:auto;"><tbody><tr><td style="width:30px; padding-left:25px; vertical-align:top; text-align:left; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">«</td><td style="display:block; text-align:left; font-style:italic;">
+<p class="quote">你好！我叫谢德曼，我使用 3D 建模软件来制作我的美工，其中最主要的一个是 Blender。<a href="./%D0%A2%D0%B2%D0%BE%D1%80%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F_%D0%9B%D0%B8%D0%B3%D0%B0" class="mw-redirect" title="创意联盟">TLT</a> 是发布我的作品以及在该创作方向上获取新知识的好地方！</p>
+</td><td style="width:30px; padding-right:25px; vertical-align:bottom; text-align:right; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">»</td></tr><tr><td colspan="3" style="font-size:80%; line-height:100%; text-align:right; padding: 5px 30px 0;">— shadewarttt</td></tr>
+</tbody></table>
+</td></tr></tbody></table><div class="btn btn-collapsed border-0 rounded-0 w-100 text-left text-uppercase position-relative py-2 my-3" data-toggle="collapse" data-target="#collapseExample{{{id}}}">作品画廊</div><div class="collapse" id="collapseExample{{{id}}}"><div class="card card-body">
+<p>&lt;sgallery width="800" height="600" showinfopane="false" &gt;
+Image:shadewarttt 1.png
+Image:shadewarttt 2.png
+Image:shadewarttt 3.jpg
+Image:shadewarttt 4.png
+Image:shadewarttt 5.png
+Image:shadewarttt 6.png
+Image:shadewarttt 7.png
+Image:shadewarttt  8.png
+Image:Shadewarttt_11.png
+Image:Shadewarttt_12.png
+&lt;/sgallery&gt;
+</p>
+</div></div><h2><span class="mw-headline" id="TOP_DOG">TOP_DOG</span></h2><table>
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/2/2d/TOP_DOG1.png/70px-TOP_DOG1.png" decoding="async" loading="lazy" width="70" height="90" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/2d/TOP_DOG1.png/105px-TOP_DOG1.png 1.5x, https://ru.tankiwiki.com/images/ru/2/2d/TOP_DOG1.png 2x"></span></span>
+</td>
+<td>
+<table class="tpl-quote-tiny" style="margin:16px auto auto; border-collapse:collapse; background-color:transparent; border-style:none; width:auto;"><tbody><tr><td style="width:30px; padding-left:25px; vertical-align:top; text-align:left; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">«</td><td style="display:block; text-align:left; font-style:italic;">
+<p class="quote">鲍里斯，“诞生”于曾经强大的 3D 坦克战队——KGB。他在游戏中和创作中都很活跃。他的作品以大胆的决策、巨大的联想资源、与文学创作的融合而引人注目。他经常用散文和诗歌来配合他的图形幻想。他精通蜂王轰天炮，酷爱激光炮独奏。于 2014 年退出了创作和游戏。</p>
+</td><td style="width:30px; padding-right:25px; vertical-align:bottom; text-align:right; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">»</td></tr><tr><td colspan="3" style="font-size:80%; line-height:100%; text-align:right; padding: 5px 30px 0;">— TRD-34</td></tr>
+</tbody></table>
+</td></tr></tbody></table><div class="btn btn-collapsed border-0 rounded-0 w-100 text-left text-uppercase position-relative py-2 my-3" data-toggle="collapse" data-target="#collapseExample{{{id}}}">作品画廊</div><div class="collapse" id="collapseExample{{{id}}}"><div class="card card-body">
+<p>&lt;sgallery width="800" height="600" showinfopane="false" &gt;
+Image:111 副本。jpg
+Image:112 副本。jpg
+Image:113 副本。jpg
+Image:114 副本。jpg
+Image:115 副本。jpg
+Image:116 副本。jpg
+Image:117 副本。jpg
+Image:3110.jpg
+Image:121212 副本。jpg
+Image:brandenburg_gate_wallpaper_germany_world_wallpaper_1920_1200_widescreen_1734 副本。jpg
+Image:dogs 副本。jpg
+Image:fireexplosion1 副本。jpg
+Image:laik.gif
+Image:motto.net.jpg
+Image:p-2042.jpg
+Image:pesok.jpg
+Image:SzV025-006.jpg
+Image:wahiba 200.jpg
+Image:头像 1 副本。jpg
+Image:头像 2 副本。jpg
+Image:amaz 副本副本。jpg
+Image:动画冰风暴。gif
+Image:apo1 副本。jpg
+Image:无名-1.jpg
+Image:未来。jpg
+Image:vanhelsing2.jpg
+Image:gta 副本。jpg
+Image:老爷爷开挂。jpg
+Image:坦克手日 dor8.jpg
+Image:zd2 副本。jpg
+Image:磁力炮 1.jpg
+Image:磁力炮。jpg
+Image:方块。jpg
+Image:铁匠副本。jpg
+Image:激光 1.jpg
+Image:兰博基尼副本。jpg
+Image:联盟 5.jpg
+Image:爱副本。jpg
+Image:地雷。jpg
+Image:桥 1 副本。jpg
+Image:muz.jpg
+Image:nagib 副本。jpg
+Image:秋天。jpg
+Image:秋天 1.jpg
+Image:跑酷副本。jpg
+Image:狗狗。jpg
+Image:沙滩副本。jpg
+Image:post 副本。jpg
+Image:火龙珠。jpg
+Image:ris1 副本。jpg
+Image:自己。jpg
+Image:电焊工副本。jpg
+Image:轰天炮副本。jpg
+Image:snow 1.jpg
+Image:体育场 1.jpg
+Image:建设。jpg
+Image:寂静副本。jpg
+Image:TLT1.png
+Image:trans 1.jpg
+Image:tride 副本。jpg
+Image:人行道副本。png
+Image:ttt 副本。jpg
+Image:游客副本。jpg
+Image:背景 1.jpg
+Image:chern 副本。jpg
+Image:镭射炮 O.jpg
+&lt;/sgallery&gt;
+</p>
+</div></div><h2><span class="mw-headline" id="ydzero">ydzero</span></h2><table>
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/ef/Ydzero.png/90px-Ydzero.png" decoding="async" loading="lazy" width="90" height="128" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/ef/Ydzero.png/135px-Ydzero.png 1.5x, https://ru.tankiwiki.com/images/ru/e/ef/Ydzero.png 2x"></span></span>
+</td>
+<td>
+<table class="tpl-quote-tiny" style="margin:16px auto auto; border-collapse:collapse; background-color:transparent; border-style:none; width:auto;"><tbody><tr><td style="width:30px; padding-left:25px; vertical-align:top; text-align:left; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">«</td><td style="display:block; text-align:left; font-style:italic;">
+<p class="quote">我叫丹尼尔，自 2010 年起加入 3D 坦克。
+  我的职业是动画艺术家，在坦克中我将娱乐与实用结合在了一起！
+在我的创作中，我使用以下程序：<br>
+Adobe Photoshop CS6 ——用于图片；<br>
+Adobe Flash Professional CS6 ——用于简单的手绘动画；<br>
+Adobe After Effects CS6 ——用于剪辑和特效；<br>
+Autodesk 3ds max 2011 ——用于建模和复杂动画。<br>
+<a rel="nofollow" class="external text" href="http://www.youtube.com/user/okuba1982/videos/">我的 YouTube 频道</a></p>
+</td><td style="width:30px; padding-right:25px; vertical-align:bottom; text-align:right; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">»</td></tr><tr><td colspan="3" style="font-size:80%; line-height:100%; text-align:right; padding: 5px 30px 0;">— Ydzero</td></tr>
+</tbody></table>
+</td></tr></tbody></table><div class="btn btn-collapsed border-0 rounded-0 w-100 text-left text-uppercase position-relative py-2 my-3" data-toggle="collapse" data-target="#collapseExample{{{id}}}">作品画廊</div><div class="collapse" id="collapseExample{{{id}}}"><div class="card card-body">
+<p>&lt;sgallery width="800" height="600" showinfopane="false" &gt;
+Image:ydzero 7.jpg
+Image:ydzero 8.jpg
+Image:ydzero 9.jpg
+Image:ydzero 10.jpg
+Image:ydzero 11.jpg
+Image:ydzero 12.jpg
+Image:ydzero 13.png
+Image:ydzero 14.jpg
+Image:ydzero 15.jpg
+Image:ydzero 16.jpg
+Image:ydzero 17.jpg
+Image:ydzero 18.jpg
+Image:ydzero 19.jpg
+Image:ydzero 20.jpg
+Image:ydzero 21.jpg
+Image:ydzero 22.jpg
+File:18.03.2015_ydzero_walls.jpg
+File:13.02.2015_ydzero.jpg
+Image:1.jpg
+Image:2.jpg
+Image:3.jpg
+Image:4.jpg
+Image:5.jpg
+Image:6.jpg
+Image:7.jpg
+Image:8.jpg
+Image:9.jpg
+Image:10.jpg
+Image:11.jpg
+Image:12.jpg
+Image:13.jpg
+Image:14.jpg
+Image:15.gif
+Image:16.gif
+Image:17.gif
+Image:18.gif
+Image:19.gif
+Image:20.jpg
+Image:21.jpg
+Image:22.jpg
+Image:23.jpg
+Image:24.jpg
+Image:25.jpg
+Image:26.jpg
+Image:27.jpg
+Image:7qOMJDbA7q.jpg
+Image:IZaKfU8Tyc.jpg
+Image:VSi8xFdw5f.jpg
+Image:x4u05KPzL9.jpg
+Image28.jpg
+Image29.jpg
+File:30.jpg
+File:31.jpg
+Image:ydzero1.jpg
+Image:ydzero2.jpg
+Image:ydzero3.jpg
+Image:ydzero4.jpg
+Image:ydzero5.jpg
+Image:ydzero 6.jpg
+Image:Ydzero_1.jpg
+Image:Ydzero_2.jpg
+Image:Ydzero_0.jpg
+Image:Ydzero_4.jpg
+Image:Ydzero_5.jpg
+Image:Ydzero_6.jpg
+&lt;/sgallery&gt;
+</p>
+<div class="toccolours mw-collapsible mw-collapsed" style="width:{{{Width}}}">
+<p>视频作品画廊</p>
+<div class="mw-collapsible-content">
+<b>手工组装激光炮</b> <div title="点击打开视频" class="ShowYouTubePopup" style="width:23pxpx;" data-id="nQ1dnZe70Fk"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/23px-YT-icon.png" decoding="async" loading="lazy" width="23" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/35px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/46px-YT-icon.png 2x"></span></span></div><br>
+<b>Battle city</b> <div title="点击打开视频" class="ShowYouTubePopup" style="width:23pxpx;" data-id="RCt3oF9iPfI"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/23px-YT-icon.png" decoding="async" loading="lazy" width="23" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/35px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/46px-YT-icon.png 2x"></span></span></div><br>
+<b>16bit vs shaft</b> <div title="点击打开视频" class="ShowYouTubePopup" style="width:23pxpx;" data-id="l08ZYA4tqPg"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/23px-YT-icon.png" decoding="async" loading="lazy" width="23" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/35px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/46px-YT-icon.png 2x"></span></span></div><br>
+<b>snowman  </b> <div title="点击打开视频" class="ShowYouTubePopup" style="width:23pxpx;" data-id="0oqXdLrkOzk"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/23px-YT-icon.png" decoding="async" loading="lazy" width="23" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/35px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/46px-YT-icon.png 2x"></span></span></div><br>
+<b>ydzero vs kasim</b> <div title="点击打开视频" class="ShowYouTubePopup" style="width:23pxpx;" data-id="CwONDxymHVU"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/23px-YT-icon.png" decoding="async" loading="lazy" width="23" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/35px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/46px-YT-icon.png 2x"></span></span></div><br>
+<b>ydzero vs kasim 2</b> <div title="点击打开视频" class="ShowYouTubePopup" style="width:23pxpx;" data-id="ILq0r97rEQc"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/23px-YT-icon.png" decoding="async" loading="lazy" width="23" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/35px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/46px-YT-icon.png 2x"></span></span></div><br>
+<b>NAGIBATOR</b> <div title="点击打开视频" class="ShowYouTubePopup" style="width:23pxpx;" data-id="X2AZ4KxxcY4"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/23px-YT-icon.png" decoding="async" loading="lazy" width="23" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/35px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/46px-YT-icon.png 2x"></span></span></div><br>
+<b>jumper-man</b> <div title="点击打开视频" class="ShowYouTubePopup" style="width:23pxpx;" data-id="QMaRuPwmRC4"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/23px-YT-icon.png" decoding="async" loading="lazy" width="23" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/35px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/46px-YT-icon.png 2x"></span></span></div><br>
+</div></div>
+</div></div><h2><span class="mw-headline" id="Ilia.ArchangeI">Ilia.ArchangeI</span></h2><table>
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/9/9b/ArchangeI.png/70px-ArchangeI.png" decoding="async" loading="lazy" width="70" height="90" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/9/9b/ArchangeI.png/105px-ArchangeI.png 1.5x, https://ru.tankiwiki.com/images/ru/9/9b/ArchangeI.png 2x"></span></span>
+</td>
+<td>
+<table class="tpl-quote-tiny" style="margin:16px auto auto; border-collapse:collapse; background-color:transparent; border-style:none; width:auto;"><tbody><tr><td style="width:30px; padding-left:25px; vertical-align:top; text-align:left; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">«</td><td style="display:block; text-align:left; font-style:italic;">
+<p class="quote">玩坦克一年多了，但时间不多。我喜欢绘画、图形、摄影、音乐和书法，每一样都有涉猎一点。赢得了创意联盟（英文区）比赛的第一名，从而成为了军团成员。我一直在尝试新事物，不喜欢原地踏步。目前是一名记者和顾问，但我并不打算就此止步。我想深入了解 3D 图形和视频，所以在以后你会看到我的新的、虽然还很简陋的各种创作形式。</p>
+</td><td style="width:30px; padding-right:25px; vertical-align:bottom; text-align:right; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">»</td></tr><tr><td colspan="3" style="font-size:80%; line-height:100%; text-align:right; padding: 5px 30px 0;">— Ilia.ArchangeI</td></tr>
+</tbody></table>
+</td></tr></tbody></table><div class="btn btn-collapsed border-0 rounded-0 w-100 text-left text-uppercase position-relative py-2 my-3" data-toggle="collapse" data-target="#collapseExample{{{id}}}">作品画廊</div><div class="collapse" id="collapseExample{{{id}}}"><div class="card card-body">
+<p>&lt;sgallery width="800" height="600" showinfopane="false" &gt;
+Image:contest.jpg
+Image:titan.jpg
+Image:wp1.png
+Image:wp2.jpg
+Image:wp3.jpg
+Image:abst_1_mini.jpg
+Image:abst_2_mini.jpg
+Image:abst_3_mini.jpg
+Image:call_3_mini.jpg
+Image:call_8_mini.jpg
+Image:call_az_mini.jpg
+Image:call_boat_mini.jpg
+Image:call_box_mini.jpg
+Image:call_cursive_mini.jpg
+Image:call_gothic_mini.jpg
+Image:call_heart_mini.jpg
+Image:call_letter_mini.jpg
+Image:call_slavic_mini.jpg
+Image:call_sword_mini.jpg
+Image:call_tree_mini.jpg
+Image:chalk_bottle_mini.jpg
+Image:chalk_glass_mini.jpg
+Image:collage_bird_mini.jpg
+Image:oil_girl_mini.jpg
+Image:pastel_tea_mini.jpg
+Image:mark_patterns_mini.jpg
+Image:mark_vase_mini.jpg
+Image:pencil_bucket_mini.jpg
+Image:pencil_sheet_mini.jpg
+Image:pencil_tablet_mini.jpg
+Image:pencil_tea_mini.jpg
+Image:pencil_vase_mini.jpg
+Image:wax_eagle_mini.jpg
+&lt;/sgallery&gt;
+</p>
+</div></div><p><br>
+</p><div align="right"><small>最后编辑：21/05/2024 HelpersBot <span class="ai-translate-note" style="color:#8FB8D8;">（由 AI 自动翻译）</span></small></div></div></div></div></div></div><footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
+<p style="margin:0;"><strong style="color:#BFD5FF;">本站为玩家社区自建的非官方 Wiki 镜像。</strong></p>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":311,"wgPageParseReport":{"limitreport":{"cputime":"0.476","walltime":"0.985","ppvisitednodes":{"value":1834,"limit":1000000},"postexpandincludesize":{"value":41389,"limit":4194304},"templateargumentsize":{"value":15681,"limit":4194304},"expansiondepth":{"value":7,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":1,"limit":5000000},"timingprofile":["100.00%  272.312      1 -total"," 24.66%   67.150     18 Шаблон:Q"," 23.47%   63.920      1 Шаблон:LastEdit"," 12.87%   35.051      1 Шаблон:Main","  9.55%   26.019     27 Шаблон:YouTubePopup","  8.01%   21.813      1 Шаблон:Другое_значение","  6.76%   18.400     19 Шаблон:BeginPrettySpoiler","  5.49%   14.962      2 Шаблон:SimpleSpoiler","  3.85%   10.473     19 Шаблон:EndPrettySpoiler"]},"cachereport":{"timestamp":"20260825212218","ttl":86400,"transientcontent":false}}});});</script>
+    <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });</script></body></html>
