@@ -1,0 +1,648 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>(function(){
+  var BASE = 'https://ru.tankiwiki.com';
+  function fix(v){ return (typeof v === 'string' && v.charAt(0) === '/' && v.indexOf('//') !== 0) ? BASE + v : v; }
+  ['HTMLScriptElement','HTMLLinkElement'].forEach(function(tag){
+    var proto = window[tag] && window[tag].prototype;
+    var prop  = tag === 'HTMLScriptElement' ? 'src' : 'href';
+    if (!proto) return;
+    var d = Object.getOwnPropertyDescriptor(proto, prop);
+    if (!d || !d.set) return;
+    Object.defineProperty(proto, prop, {
+      configurable: true,
+      get: function(){ return d.get.call(this); },
+      set: function(v){ d.set.call(this, fix(v)); }
+    });
+  });
+  var of = window.fetch;
+  if (of) window.fetch = function(u, o){ return of.call(this, (typeof u === 'string' ? fix(u) : u), o); };
+  var ox = window.XMLHttpRequest && XMLHttpRequest.prototype.open;
+  if (ox) XMLHttpRequest.prototype.open = function(m, u){
+    var a = Array.prototype.slice.call(arguments); a[1] = fix(u); return ox.apply(this, a);
+  };
+})();</script><title>幸运礼盒 — 3D 坦克 Wiki</title><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+    <meta charset="UTF-8">
+    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/xg_pWYS8-HRESiV6Rdg4aY_R/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-qWH0xCejb2gc1yqo8ob4TQrvIcQ9XjhOfGKbhFr/+LvFrJdTE3bA+FQP/FLAiQhz"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgRequestId":"ca5b3c941eb0a731bf4f93b5","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Konteynery","wgTitle":"Konteynery","wgCurRevisionId":302991,"wgRevisionId":302991,"wgArticleId":10227,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"ru","wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgRelevantPageName":"Konteynery","wgRelevantArticleId":10227,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],
+"wgVisualEditor":{"pageLanguageCode":"ru","pageLanguageDir":"ltr","pageVariantFallbacks":"ru"},"wgFlaggedRevsParams":{"tags":{"accuracy":{"levels":3}}},"wgStableRevisionId":302991,"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.flaggedRevs.icons":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.flaggedRevs.basic":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","mediawiki.toc","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.flaggedRevs.advanced","skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=ext.flaggedRevs.basic%2Cicons%7Cext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/a/a6/Containers_logo.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="541">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/a/a6/Containers_logo.png">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="360">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/thumb/a/a6/Containers_logo.png/640px-Containers_logo.png">
+    <meta property="og:image:width" content="640">
+    <meta property="og:image:height" content="288">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://ru.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://ru.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (ru)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://ru.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki&nbsp;— Atom-лента" href="https://ru.tankiwiki.com/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom"><style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
+
+/* 1. 只去掉源站皮肤的背景大图，保留底色；不要用 background 简写，否则会连带清掉皮肤别的背景设定 */
+html, body {
+    background-image: none !important;
+    background-color: #001926 !important;
+}
+/* 2. 让底色铺满视口，内容很短时下方不再露白 */
+html { min-height: 100%; }
+body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif; }
+
+/* 3. 版心容器 */
+#mw-main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #001926;
+}
+
+/* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
+      【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
+
+#mw-main-container .main-content,
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content,
+#mw-main-container #mw-content-text {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: auto !important;
+    flex-basis: auto !important;   /* 皮肤写了 .main-content{flex:0 0 75%} */
+    float: none !important;
+    margin-top: 0 !important;       /* 核心：清空原站皮肤的负 margin-top */
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    position: relative !important;
+    z-index: 1 !important;          /* 保证正文层级低于按钮 */
+}
+
+/* 5. 皮肤脚本 skins.tankiblue.js 会往 #mw-content-text 末尾插一条「发现错别字？Ctrl+Enter」
+      的俄语提示条和一个「报告错误」标签页。它按网址里有没有 'en'/'de' 来判断语言，
+      我们的域名两者都不含 → 一律显示俄语；且报错会提交到俄站编辑组，对镜像站没意义，直接隐藏。 */
+#custom-report-footer,
+.vectorTabs.customReport,
+.customReport { display: none !important; }
+
+/* 6. 返回按钮包裹容器：独占一行并强制最高层级 */
+.home-btn-wrapper {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px 0 20px 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    z-index: 9999 !important;       /* 核心：永远置于最顶层 */
+    clear: both !important;
+    overflow: visible !important;
+}
+
+/* 7. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐 */
+.home-back-btn {
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    width: auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    isolation: isolate !important;
+    
+    min-width: 142px !important;
+    padding: 0 24px !important;
+    height: 78px !important;
+    margin: 0 !important;
+    border: 1px solid rgba(255,255,255,.25) !important;
+    outline: 2px solid transparent !important;
+    border-radius: 6.5px !important;
+    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%) !important;
+    
+    position: relative !important;
+    z-index: 10000 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: all .15s ease !important;
+    overflow: visible !important;
+}
+.home-back-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(100% 100% at 0% 0%, rgba(191,213,255,.25) 0%, rgba(191,213,255,.15) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all .15s ease;
+    border-radius: inherit;
+    pointer-events: none;
+}
+.home-back-btn svg {
+    width: 24.375px;
+    height: 24px;
+    object-fit: contain;
+    transform: rotate(180deg);
+    transition: all .15s ease;
+    flex-shrink: 0;
+}
+.home-back-btn svg path { fill: #BFD5FF; transition: all .15s ease; }
+
+.home-back-btn:hover,
+.home-back-btn:active,
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF !important; border-color: #BFD5FF !important; }
+.home-back-btn:hover::before,
+.home-back-btn:active::before,
+.home-back-btn:focus-visible::before { opacity: 1; }
+.home-back-btn:hover svg,
+.home-back-btn:active svg,
+.home-back-btn:focus-visible svg { transform: rotate(180deg) translateX(10%); }
+.home-back-btn:hover svg path,
+.home-back-btn:active svg path,
+.home-back-btn:focus-visible svg path { fill: #fff; }
+
+.home-back-btn span {
+    color: #BFD5FF;
+    font-size: 16px;
+    margin-left: 10px;
+    font-weight: bold;
+    transition: all .15s ease;
+    white-space: nowrap;
+}
+.home-back-btn:hover span,
+.home-back-btn:active span,
+.home-back-btn:focus-visible span {
+    color: #fff;
+    transform: translateX(-4px);
+}
+
+/* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
+@media (hover: none) {
+    .home-back-btn { border-color: rgba(191,213,255,.55) !important; }
+    .home-back-btn svg path { fill: #CFE0FF; }
+}
+
+/* 移动端/窄屏自适应尺寸 */
+@media (max-width: 480px) {
+    .home-back-btn {
+        min-width: 106px !important;
+        padding: 0 16px !important;
+        height: 58px !important;
+        margin-left: 10px !important;
+    }
+    .home-back-btn svg { width: 20px !important; height: 19.7px !important; }
+    .home-back-btn span { font-size: 14px !important; margin-left: 8px !important; }
+}
+
+/* 8. 移动端容器 Padding */
+@media (max-width: 768px) {
+    #mw-main-container { padding: 10px !important; margin: 8px auto !important; }
+    .home-back-btn { margin-left: 10px !important; }
+    #mw-content-text .navigationContainerContent > div,
+    #mw-content-text [style*="width: 55%"],
+    #mw-content-text [style*="width:55%"],
+    #mw-content-text [style*="width: 45%"],
+    #mw-content-text [style*="width:45%"] { width: 100% !important; }
+}
+@media (max-width: 480px) {
+    #mw-main-container { padding: 6px !important; margin: 4px auto !important; }
+}
+
+/* 9. 防止宽表格 / 大图撑破版心 */
+#mw-content-text img { max-width: 100%; height: auto; }
+#mw-content-text table { max-width: 100%; }
+
+/* 10. 目录（TOC）修复，全局生效：
+    a) 皮肤把目录折叠按钮的文字放在 CSS 伪元素里渲染，而不是 HTML 文本：
+         .toctogglecheckbox:checked  + .toctitle .toctogglelabel::after → content:'показать'
+         .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after → content:'скрыть'
+       AI 翻译只处理 HTML 文本，摸不到 CSS content，所以这个按钮永远是俄语，必须在这里覆盖成中文。
+    b) 皮肤的响应式 CSS 里写了 @media screen and (max-width:768px){ #toc{display:none} }，
+       导致手机端整个目录被隐藏。这里恢复显示，并配合下方 TOC_MOBILE_COLLAPSE_SCRIPT：
+       移动端默认折叠，只占一行「目录 [展开]」，避免长目录把正文挤到屏幕外。 */
+#toc .toctogglecheckbox:checked + .toctitle .toctogglelabel::after { content: '展开' !important; }
+#toc .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after { content: '收起' !important; }
+@media screen and (max-width: 768px) {
+    #toc { display: table !important; }
+}
+
+/* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
+   只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+*/
+</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Konteynery rootpage-Konteynery skin-tankiblue action-view"><div id="skin-chrome-stub" aria-hidden="true" style="display:none !important;">
+<a class="problem" href="#"></a>
+<div class="close-wrapper"></div>
+<div class="support-block-popup"><div class="close-modal-support"></div></div>
+<div class="youtube-popup"><iframe title="stub"></iframe></div>
+<div class="video-button"></div>
+<div class="header-search"></div>
+<div class="search-dialog"></div>
+<div class="search-popup"><div class="close-wrapper"></div><div class="close-modal-search"></div></div>
+<div class="news-popup"></div>
+<div class="sales-block-header"></div>
+<div class="navbar-main"></div>
+<div class="main-navbar"></div>
+</div><div id="mw-main-container"><div class="home-btn-wrapper"><a class="home-back-btn" href="./Enciklopediya_igry_%C2%ABTanki_Onlayn%C2%BB" title="返回主页" aria-label="返回主页"><svg viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 0H13.5L25.5 12L24 13.5L13.5 24H18L30 12L18 0ZM24 13.5L21 10.5H0L3 13.5H24Z" fill="#BFD5FF"/></svg><span>返回主页</span></a></div><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">幸运礼盒</h1><p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/a6/Containers_logo.png" decoding="async" loading="lazy" width="800" height="360" class="mw-file-element"></span></span>
+<b>幸运礼盒</b>是包含未知物品的箱子。所有获得的钥匙都存储在<a href="./%D0%9B%D0%BE%D0%B1%D0%B1%D0%B8" class="mw-redirect" title="Лобби">大厅</a>的相应部分中：<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/c/c6/Containers.png/30px-Containers.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/c6/Containers.png/45px-Containers.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/c/c6/Containers.png/60px-Containers.png 2x"></span></span>幸运礼盒。
+</p><div class="toclimit-3"><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"><div class="toctitle" lang="ru" dir="ltr"><h2 id="mw-toc-heading">目录</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Особенности_ключей"><span class="tocnumber">1</span> <span class="toctext">钥匙特点</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Доступные_контейнеры"><span class="tocnumber">2</span> <span class="toctext">可用礼盒</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Обычные_контейнеры"><span class="tocnumber">2.1</span> <span class="toctext">普通礼盒</span></a>
+<ul>
+<li class="toclevel-3 tocsection-4"><a href="#Категория_«Обычные»_—_50%"><span class="tocnumber">2.1.1</span> <span class="toctext">“普通”类别 — 50%</span></a></li>
+<li class="toclevel-3 tocsection-5"><a href="#Категория_«Необычные»_—_34%"><span class="tocnumber">2.1.2</span> <span class="toctext">“罕见”类别 — 34%</span></a></li>
+<li class="toclevel-3 tocsection-6"><a href="#Категория_«Редкие»_—_10%"><span class="tocnumber">2.1.3</span> <span class="toctext">“稀有”类别 — 10%</span></a></li>
+<li class="toclevel-3 tocsection-7"><a href="#Категория_«Эпические»_—_5%"><span class="tocnumber">2.1.4</span> <span class="toctext">“史诗”类别 — 5%</span></a></li>
+<li class="toclevel-3 tocsection-8"><a href="#Категория_«Легендарные»_—_1%"><span class="tocnumber">2.1.5</span> <span class="toctext">“传奇”类别 — 1%</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-9"><a href="#Редкие_контейнеры"><span class="tocnumber">2.2</span> <span class="toctext">每周任务礼盒</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Эпические_контейнеры"><span class="tocnumber">2.3</span> <span class="toctext">超级礼盒</span></a>
+<ul>
+<li class="toclevel-3 tocsection-11"><a href="#Категория_«Необычные»_—_60%"><span class="tocnumber">2.3.1</span> <span class="toctext">“罕见”类别 — 60%</span></a></li>
+<li class="toclevel-3 tocsection-12"><a href="#Категория_«Редкие»_—_27,5%"><span class="tocnumber">2.3.2</span> <span class="toctext">“稀有”类别 — 27.5%</span></a></li>
+<li class="toclevel-3 tocsection-13"><a href="#Категория_«Эпические»_—_10%"><span class="tocnumber">2.3.3</span> <span class="toctext">“史诗”类别 — 10%</span></a></li>
+<li class="toclevel-3 tocsection-14"><a href="#Категория_«Легендарные»_—_2%"><span class="tocnumber">2.3.4</span> <span class="toctext">“传奇”类别 — 2%</span></a></li>
+<li class="toclevel-3 tocsection-15"><a href="#Категория_«Экзотические»_—_0,5%"><span class="tocnumber">2.3.5</span> <span class="toctext">“异国情调”类别 — 0.5%</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-16"><a href="#Легендарные_контейнеры"><span class="tocnumber">2.4</span> <span class="toctext">皮肤礼盒</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-17"><a href="#Удалённые_контейнеры"><span class="tocnumber">3</span> <span class="toctext">已下架礼盒</span></a>
+<ul>
+<li class="toclevel-2 tocsection-18"><a href="#Коинбоксы"><span class="tocnumber">3.1</span> <span class="toctext">硬币箱</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="#Контейнеры_XT"><span class="tocnumber">3.2</span> <span class="toctext">XT 礼盒</span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="#Пит-стоп_ящики"><span class="tocnumber">3.3</span> <span class="toctext">进站箱</span></a></li>
+<li class="toclevel-2 tocsection-21"><a href="#Ящики_с_расходниками"><span class="tocnumber">3.4</span> <span class="toctext">供应箱</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-22"><a href="#Интересные_факты"><span class="tocnumber">4</span> <span class="toctext">趣事</span></a></li>
+</ul>
+</div>
+</div><p><br>
+</p><div class="alert warning">
+  <div class="icon"></div>
+  <div class="text"><b>注意！</b>打开礼盒需要<b>钥匙</b>。</div>
+</div><h2><span id=".D0.9E.D1.81.D0.BE.D0.B1.D0.B5.D0.BD.D0.BD.D0.BE.D1.81.D1.82.D0.B8_.D0.BA.D0.BB.D1.8E.D1.87.D0.B5.D0.B9"></span><span class="mw-headline" id="Особенности_ключей">钥匙特点</span></h2><ul><li><b>一把钥匙 = 一个礼盒。</b>使用钥匙打开礼盒时，玩家将从可能的奖品列表中随机获得一个游戏道具。奖品在打开的瞬间决定。</li>
+<li>钥匙永不过期：获得任何类型的礼盒钥匙后，玩家可以无限期地储存它。例如，你可以长期积攒<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/3/39/Key_Epic.png/30px-Key_Epic.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/39/Key_Epic.png/45px-Key_Epic.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/3/39/Key_Epic.png/60px-Key_Epic.png 2x"></span></span>超级钥匙，并在超级礼盒内容合你心意的那次特殊活动或促销期间花掉它们。</li>
+<li>如果同时打开多个礼盒，在打开时点击<b>“跳过”</b>按钮可以将批量打开礼盒的过程加速 4 倍。</li>
+<li>玩家已经拥有的单个游戏道具无法从礼盒中开出。</li></ul><p><br>
+</p><h2><span id=".D0.94.D0.BE.D1.81.D1.82.D1.83.D0.BF.D0.BD.D1.8B.D0.B5_.D0.BA.D0.BE.D0.BD.D1.82.D0.B5.D0.B9.D0.BD.D0.B5.D1.80.D1.8B"></span><span class="mw-headline" id="Доступные_контейнеры">可用礼盒</span></h2><h3><span id=".D0.9E.D0.B1.D1.8B.D1.87.D0.BD.D1.8B.D0.B5_.D0.BA.D0.BE.D0.BD.D1.82.D0.B5.D0.B9.D0.BD.D0.B5.D1.80.D1.8B"></span><span class="mw-headline" id="Обычные_контейнеры">普通礼盒</span></h3><table style="float:right">
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/3/3e/Key_Regular.png/120px-Key_Regular.png" decoding="async" loading="lazy" width="120" height="120" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/3e/Key_Regular.png/180px-Key_Regular.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/3/3e/Key_Regular.png/240px-Key_Regular.png 2x"></span></span>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6d/Container_preview.png/190px-Container_preview.png" decoding="async" loading="lazy" width="190" height="190" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/6d/Container_preview.png/285px-Container_preview.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/6d/Container_preview.png/380px-Container_preview.png 2x"></span></span>
+</td></tr></tbody></table><p>普通礼盒是游戏中最为常见的礼盒。它通过普通钥匙打开，可以通过以下方式获得：
+</p><ul><li>每日、每周和特殊<a href="./%D0%9C%D0%B8%D1%81%D1%81%D0%B8%D0%B8" class="mw-redirect" title="Миссии">任务</a>奖励</li>
+<li><a href="./%D0%A7%D0%B5%D0%BB%D0%BB%D0%B5%D0%BD%D0%B4%D0%B6%D0%B8" class="mw-redirect" title="Челленджи">星级挑战</a>奖励</li>
+<li>在特殊活动和小游戏中</li>
+<li>在战斗中拾取<a href="./%D0%97%D0%BE%D0%BB%D0%BE%D1%82%D0%BE%D0%B9_%D1%8F%D1%89%D0%B8%D0%BA" class="mw-redirect" title="Золотой ящик">金箱子</a></li>
+<li>输入<a href="./%D0%9F%D1%80%D0%BE%D0%BC%D0%BE%D0%BA%D0%BE%D0%B4%D1%8B" class="mw-redirect" title="Промокоды">兑换码</a></li>
+<li>参与锦标赛和各项活动</li></ul><p><br>单次最多可打开 15 个礼盒。如果钥匙少于 15 把，点击“打开”按钮将立即打开所有普通礼盒。
+</p><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample1">普通礼盒内容列表</div><div class="collapse" id="collapseExample1"><div class="">
+<div class="alert success">
+  <div class="icon"></div>
+  <div class="text">获取各稀有度等级物品的概率仅为近似值。它们对每个玩家而言都是个性化的，因为它们考虑了从特定礼盒中已经获得的所有物品。所有概率都可以在游戏内“幸运礼盒”部分的奖励列表中看到。</div>
+</div>
+<div class="alert notification">
+  <div class="icon"></div>
+  <div class="text"><b>注意！</b>每打开 15 个礼盒，保底掉落一个来自<span class="container-category rare"></span>“稀有”类别的物品。</div>
+</div>
+<div class="alert notification">
+  <div class="icon"></div>
+  <div class="text"><b>注意！</b>每打开 100 个礼盒，保底掉落一个来自<span class="container-category epic"></span>“史诗”类别的物品。</div>
+</div>
+<div class="alert notification">
+  <div class="icon"></div>
+  <div class="text"><b>注意！</b>每打开 300 个礼盒，保底掉落一个来自<span class="container-category legendary"></span>“传奇”类别的物品。</div>
+</div>
+<h4><span id=".D0.9A.D0.B0.D1.82.D0.B5.D0.B3.D0.BE.D1.80.D0.B8.D1.8F_.C2.AB.D0.9E.D0.B1.D1.8B.D1.87.D0.BD.D1.8B.D0.B5.C2.BB_.E2.80.94_50.25"></span><span class="mw-headline" id="Категория_«Обычные»_—_50%">“普通”类别 — 50%</span></h4>
+<p><span class="container-category common"></span> <a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">1 000</span></a> <br>
+</p>
+<h4><span id=".D0.9A.D0.B0.D1.82.D0.B5.D0.B3.D0.BE.D1.80.D0.B8.D1.8F_.C2.AB.D0.9D.D0.B5.D0.BE.D0.B1.D1.8B.D1.87.D0.BD.D1.8B.D0.B5.C2.BB_.E2.80.94_34.25"></span><span class="mw-headline" id="Категория_«Необычные»_—_34%">“罕见”类别 — 34%</span></h4>
+<p><span class="container-category uncommon"></span> <a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">3 000</span></a> <br>
+<span class="container-category uncommon"></span> 100 个“<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">护甲提升</a>”道具<br>
+<span class="container-category uncommon"></span> 100 个“<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">伤害提升</a>”道具<br>
+<span class="container-category uncommon"></span> 100 个“<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">速度提升</a>”道具<br>
+<span class="container-category uncommon"></span> 100 个“<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">地雷</a>”道具<br>
+</p>
+<h4><span id=".D0.9A.D0.B0.D1.82.D0.B5.D0.B3.D0.BE.D1.80.D0.B8.D1.8F_.C2.AB.D0.A0.D0.B5.D0.B4.D0.BA.D0.B8.D0.B5.C2.BB_.E2.80.94_10.25"></span><span class="mw-headline" id="Категория_«Редкие»_—_10%">“稀有”类别 — 10%</span></h4>
+<p><span class="container-category rare"></span> <a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">10 000</span></a> <br>
+<span class="container-category rare"></span> 100 个“<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">维修工具</a>”道具<br>
+<span class="container-category rare"></span> “稀有”类别的<a href="./%D0%9A%D1%80%D0%B0%D1%81%D0%BA%D0%B8" class="mw-redirect" title="Краски">迷彩</a><br>
+<span class="container-category rare"></span> “稀有”类别的底盘<a href="./%D0%A3%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0_%D0%B4%D0%BB%D1%8F_%D0%BA%D0%BE%D1%80%D0%BF%D1%83%D1%81%D0%BE%D0%B2" class="mw-redirect" title="Устройства для корпусов">装备改造</a><br>
+<span class="container-category rare"></span> “稀有”类别的炮塔<a href="./%D0%A3%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0_%D0%B4%D0%BB%D1%8F_%D0%BF%D1%83%D1%88%D0%B5%D0%BA" class="mw-redirect" title="Устройства для пушек">装备改造</a><br>
+</p>
+<h4><span id=".D0.9A.D0.B0.D1.82.D0.B5.D0.B3.D0.BE.D1.80.D0.B8.D1.8F_.C2.AB.D0.AD.D0.BF.D0.B8.D1.87.D0.B5.D1.81.D0.BA.D0.B8.D0.B5.C2.BB_.E2.80.94_5.25"></span><span class="mw-headline" id="Категория_«Эпические»_—_5%">“史诗”类别 — 5%</span></h4>
+<p><span class="container-category epic"></span> <a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">25 000</span></a> <br>
+<span class="container-category epic"></span>超级钥匙<br>
+<span class="container-category epic"></span> “史诗”类别的<a href="./%D0%9A%D1%80%D0%B0%D1%81%D0%BA%D0%B8" class="mw-redirect" title="Краски">迷彩</a><br>
+<span class="container-category epic"></span> <a href="./%D0%93%D1%80%D0%B0%D0%BD%D0%B0%D1%82%D1%8B" class="mw-redirect" title="Гранаты">手榴弹</a>“炸弹”、“迫击炮弹”、“医护兵”和“礼花弹”<br>
+<span class="container-category epic"></span> <a href="./%D0%A6%D0%B2%D0%B5%D1%82%D0%B0_%D0%B2%D1%8B%D1%81%D1%82%D1%80%D0%B5%D0%BB%D0%BE%D0%B2" class="mw-redirect" title="Цвета выстрелов">射击颜色</a><span style="color:yellow">*</span><br>
+<span class="container-category epic"></span> “史诗”类别的底盘<a href="./%D0%A3%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0_%D0%B4%D0%BB%D1%8F_%D0%BA%D0%BE%D1%80%D0%BF%D1%83%D1%81%D0%BE%D0%B2" class="mw-redirect" title="Устройства для корпусов">装备改造</a><br>
+<span class="container-category epic"></span> “史诗”类别的炮塔<a href="./%D0%A3%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0_%D0%B4%D0%BB%D1%8F_%D0%BF%D1%83%D1%88%D0%B5%D0%BA" class="mw-redirect" title="Устройства для пушек">装备改造</a><br>
+<span class="container-category epic"></span>所有 Mk1 <a href="./%D0%9F%D1%83%D1%88%D0%BA%D0%B8" class="mw-redirect" title="Пушки">炮塔</a>和<a href="./%D0%9A%D0%BE%D1%80%D0%BF%D1%83%D1%81%D0%B0" class="mw-redirect" title="Корпуса">底盘</a><br>
+</p>
+<h4><span id=".D0.9A.D0.B0.D1.82.D0.B5.D0.B3.D0.BE.D1.80.D0.B8.D1.8F_.C2.AB.D0.9B.D0.B5.D0.B3.D0.B5.D0.BD.D0.B4.D0.B0.D1.80.D0.BD.D1.8B.D0.B5.C2.BB_.E2.80.94_1.25"></span><span class="mw-headline" id="Категория_«Легендарные»_—_1%">“传奇”类别 — 1%</span></h4>
+<p><span class="container-category legendary"></span> <a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">100 000</span></a> <br>
+<span class="container-category legendary"></span> <a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Рубины"><span class="rubies-modern">100</span></a> <br>
+<span class="container-category legendary"></span> “传奇”类别的<a href="./%D0%9A%D1%80%D0%B0%D1%81%D0%BA%D0%B8" class="mw-redirect" title="Краски">迷彩</a><span style="color:yellow">*</span><br>
+<span class="container-category legendary"></span> “传奇”类别的炮塔和底盘<a href="./%D0%A3%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0_%D0%B4%D0%BB%D1%8F_%D0%BF%D1%83%D1%88%D0%B5%D0%BA" class="mw-redirect" title="Устройства для пушек">装备改造</a><br>
+</p><p><br>
+<span style="color:yellow">*</span> <i>某些新推出的物品可能在经过一定时间后才会进入礼盒。个别物品（例如“<a href="./%D0%96%D1%91%D0%BB%D1%82%D1%8B%D0%B9_%D0%B6%D1%83%D0%BA" class="mw-redirect" title="Жёлтый жук">黄蜂</a>”迷彩）可能完全无法从普通礼盒中开出。</i>
+</p>
+</div></div><h3><span id=".D0.A0.D0.B5.D0.B4.D0.BA.D0.B8.D0.B5_.D0.BA.D0.BE.D0.BD.D1.82.D0.B5.D0.B9.D0.BD.D0.B5.D1.80.D1.8B"></span><span class="mw-headline" id="Редкие_контейнеры">每周任务礼盒</span></h3><table style="float:right">
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/4d/Key_Rare.png/120px-Key_Rare.png" decoding="async" loading="lazy" width="120" height="120" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/4d/Key_Rare.png/180px-Key_Rare.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/4d/Key_Rare.png/240px-Key_Rare.png 2x"></span></span>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/f/f4/Container_weekly_preview.png/190px-Container_weekly_preview.png" decoding="async" loading="lazy" width="190" height="190" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/f/f4/Container_weekly_preview.png/285px-Container_weekly_preview.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/f/f4/Container_weekly_preview.png/380px-Container_weekly_preview.png 2x"></span></span>
+</td></tr></tbody></table><p>每周任务礼盒通过每周钥匙打开，可以通过以下方式获得：
+</p><ul><li>完成<a href="./%D0%9C%D0%B8%D1%81%D1%81%D0%B8%D0%B8" class="mw-redirect" title="Миссии">每周任务</a>的奖励</li>
+<li>通关<a href="./%D0%A7%D0%B5%D0%BB%D0%BB%D0%B5%D0%BD%D0%B4%D0%B6" class="mw-redirect" title="Челлендж">星级挑战</a></li>
+<li><a href="./%D0%9C%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD" class="mw-redirect" title="Магазин">商店</a>中的特价优惠</li>
+<li>输入<a href="./%D0%9F%D1%80%D0%BE%D0%BC%D0%BE%D0%BA%D0%BE%D0%B4%D1%8B" class="mw-redirect" title="Промокоды">兑换码</a></li></ul><p><br>它们包含水晶和道具。奖品数量与玩家的<a href="./%D0%97%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="Звания">等级</a>无关。每个每周任务礼盒必定开出：
+</p><table class="wikitable-modern first-column-center white-table default" style="width: 70%;">
+
+<tbody><tr class="wikitable-header wikitable-title-center">
+<td style="width: 10%;"><span typeof="mw:File"><a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" title="Припасы"><img src="https://ru.tankiwiki.com/images/ru/thumb/2/25/Icon_repair_kit_supply.png/20px-Icon_repair_kit_supply.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/2/25/Icon_repair_kit_supply.png 1.5x"></a></span>
+</td>
+<td style="width: 10%;"><span typeof="mw:File"><a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" title="Припасы"><img src="https://ru.tankiwiki.com/images/ru/thumb/8/85/Icon_double_armor_supply.png/20px-Icon_double_armor_supply.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/8/85/Icon_double_armor_supply.png 1.5x"></a></span>
+</td>
+<td style="width: 10%;"><span typeof="mw:File"><a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" title="Припасы"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/dc/Icon_double_damage_supply.png/20px-Icon_double_damage_supply.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/d/dc/Icon_double_damage_supply.png 1.5x"></a></span>
+</td>
+<td style="width: 10%;"><span typeof="mw:File"><a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" title="Припасы"><img src="https://ru.tankiwiki.com/images/ru/thumb/5/55/Icon_speed_boost_supply.png/20px-Icon_speed_boost_supply.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/5/55/Icon_speed_boost_supply.png 1.5x"></a></span>
+</td>
+<td style="width: 10%;"><span typeof="mw:File"><a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" title="Припасы"><img src="https://ru.tankiwiki.com/images/ru/thumb/2/28/Icon_mine_supply.png/20px-Icon_mine_supply.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/2/28/Icon_mine_supply.png 1.5x"></a></span>
+</td>
+<td style="width: 10%;"><span typeof="mw:File"><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" title="Кристаллы"><img src="https://ru.tankiwiki.com/images/ru/thumb/e/ed/Crystal_small.png/20px-Crystal_small.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/ed/Crystal_small.png/30px-Crystal_small.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/ed/Crystal_small.png/40px-Crystal_small.png 2x"></a></span>
+</td></tr>
+<tr>
+<td>100
+</td>
+<td>100
+</td>
+<td>100
+</td>
+<td>100
+</td>
+<td>100
+</td>
+<td>5 000
+</td></tr></tbody></table><p><br>
+</p><h3><span id=".D0.AD.D0.BF.D0.B8.D1.87.D0.B5.D1.81.D0.BA.D0.B8.D0.B5_.D0.BA.D0.BE.D0.BD.D1.82.D0.B5.D0.B9.D0.BD.D0.B5.D1.80.D1.8B"></span><span class="mw-headline" id="Эпические_контейнеры">超级礼盒</span></h3><table style="float:right">
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/3/39/Key_Epic.png/120px-Key_Epic.png" decoding="async" loading="lazy" width="120" height="120" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/39/Key_Epic.png/180px-Key_Epic.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/3/39/Key_Epic.png/240px-Key_Epic.png 2x"></span></span>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d3/Ultra_container_preview.png/190px-Container_preview.png" decoding="async" loading="lazy" width="190" height="190" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d3/Ultra_container_preview.png/285px-Container_preview.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d3/Ultra_container_preview.png/380px-Container_preview.png 2x"></span></span>
+</td></tr></tbody></table><p>与普通礼盒相比，超级礼盒包含更多的贵重物品，其中包括定期更新的独家“<span style="color:rgb(255, 83, 9)">异国情调</span>”稀有度等级物品。它们通过超级钥匙打开，可以通过以下方式获得：
+</p><ul><li>完成<a href="./%D0%9C%D0%B8%D1%81%D1%81%D0%B8%D0%B8" class="mw-redirect" title="Миссии">特殊任务</a>和每周<a href="./%D0%9C%D0%B8%D1%81%D1%81%D0%B8%D0%B8" class="mw-redirect" title="Миссии">超级任务 SECRET</a> 的奖励</li>
+<li>通关<a href="./%D0%A7%D0%B5%D0%BB%D0%BB%D0%B5%D0%BD%D0%B4%D0%B6" class="mw-redirect" title="Челлендж">星级挑战</a></li>
+<li>在 Wiki 上<a href="./%D0%A0%D0%B5%D0%BF%D0%BE%D1%80%D1%82%D1%8B" title="Репорты">发现错误</a></li>
+<li>在特殊活动和小游戏中</li>
+<li>通过观看电竞比赛获得 <a href="./Twitch_Drops" title="Twitch Drops">Twitch Drops</a></li>
+<li>作为普通礼盒的内容物</li>
+<li>输入<a href="./%D0%9F%D1%80%D0%BE%D0%BC%D0%BE%D0%BA%D0%BE%D0%B4" class="mw-redirect" title="Промокод">兑换码</a></li>
+<li>在游戏内<a href="./%D0%9C%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD" class="mw-redirect" title="Магазин">商店</a>中：</li></ul><table class="wikitable-modern default" style="width:100%">
+
+<tbody><tr class="wikitable-header">
+<td colspan="8">商店中的超级钥匙礼包</td></tr>
+<tr>
+<td>数量</td>
+<td>1<br><span typeof="mw:File"><a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" title="Контейнеры"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/da/Key_Epic_1.png/75px-Key_Epic_1.png" decoding="async" loading="lazy" width="75" height="75" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/da/Key_Epic_1.png/113px-Key_Epic_1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/da/Key_Epic_1.png/150px-Key_Epic_1.png 2x"></a></span></td>
+<td>15<br><span typeof="mw:File"><a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" title="Контейнеры"><img src="https://ru.tankiwiki.com/images/ru/thumb/8/83/Key_Epic_2.png/75px-Key_Epic_2.png" decoding="async" loading="lazy" width="75" height="75" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/8/83/Key_Epic_2.png/113px-Key_Epic_2.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/8/83/Key_Epic_2.png/150px-Key_Epic_2.png 2x"></a></span></td>
+<td>30<br><span typeof="mw:File"><a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" title="Контейнеры"><img src="https://ru.tankiwiki.com/images/ru/thumb/e/ee/Key_Epic_5.png/75px-Key_Epic_5.png" decoding="async" loading="lazy" width="75" height="75" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/ee/Key_Epic_5.png/113px-Key_Epic_5.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/ee/Key_Epic_5.png/150px-Key_Epic_5.png 2x"></a></span></td>
+<td>60<br><span typeof="mw:File"><a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" title="Контейнеры"><img src="https://ru.tankiwiki.com/images/ru/thumb/0/08/Key_Epic_3.png/75px-Key_Epic_3.png" decoding="async" loading="lazy" width="75" height="75" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/0/08/Key_Epic_3.png/113px-Key_Epic_3.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/0/08/Key_Epic_3.png/150px-Key_Epic_3.png 2x"></a></span></td>
+<td>120<br><span typeof="mw:File"><a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" title="Контейнеры"><img src="https://ru.tankiwiki.com/images/ru/thumb/9/9b/Key_Epic_6.png/75px-Key_Epic_6.png" decoding="async" loading="lazy" width="75" height="75" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/9/9b/Key_Epic_6.png/113px-Key_Epic_6.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/9/9b/Key_Epic_6.png/150px-Key_Epic_6.png 2x"></a></span></td>
+<td>240<br><span typeof="mw:File"><a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" title="Контейнеры"><img src="https://ru.tankiwiki.com/images/ru/thumb/e/e1/Key_Epic_4.png/75px-Key_Epic_4.png" decoding="async" loading="lazy" width="75" height="75" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e1/Key_Epic_4.png/113px-Key_Epic_4.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e1/Key_Epic_4.png/150px-Key_Epic_4.png 2x"></a></span>
+</td></tr>
+<tr>
+<td>价格</td>
+<td><a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Рубины"><span class="rubies-modern">200</span></a></td>
+<td><a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Рубины"><span class="rubies-modern">3 000</span></a></td>
+<td><a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Рубины"><span class="rubies-modern">6 000</span></a></td>
+<td><a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Рубины"><span class="rubies-modern">12 000</span></a></td>
+<td><a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Рубины"><span class="rubies-modern">24 000</span></a></td>
+<td><a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Рубины"><span class="rubies-modern">48 000</span></a>
+</td></tr></tbody></table><p><br>
+</p><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample2">超级礼盒内容列表</div><div class="collapse" id="collapseExample2"><div class="">
+<div class="alert success">
+  <div class="icon"></div>
+  <div class="text">获取各稀有度等级物品的概率仅为近似值。它们对每个玩家而言都是个性化的，因为它们考虑了从特定礼盒中已经获得的所有物品。所有概率都可以在游戏内“幸运礼盒”部分的奖励列表中看到。</div>
+</div>
+<div class="alert notification">
+  <div class="icon"></div>
+  <div class="text"><b>注意！</b>每打开 15 个礼盒，保底掉落一个来自<span class="container-category epic"></span>“史诗”类别的物品。</div>
+</div>
+<div class="alert notification">
+  <div class="icon"></div>
+  <div class="text"><b>注意！</b>每打开 100 个礼盒，保底掉落一个来自<span class="container-category legendary"></span>“传奇”类别的物品。</div>
+</div>
+<div class="alert notification">
+  <div class="icon"></div>
+  <div class="text"><b>注意！</b>每打开 300 个礼盒，保底掉落一个来自<span class="container-category exotic"></span>“异国情调”类别的物品。</div>
+</div>
+<h4><span id=".D0.9A.D0.B0.D1.82.D0.B5.D0.B3.D0.BE.D1.80.D0.B8.D1.8F_.C2.AB.D0.9D.D0.B5.D0.BE.D0.B1.D1.8B.D1.87.D0.BD.D1.8B.D0.B5.C2.BB_.E2.80.94_60.25"></span><span class="mw-headline" id="Категория_«Необычные»_—_60%">“罕见”类别 — 60%</span></h4>
+<p><span class="container-category uncommon"></span> <a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">9 000</span></a> <br>
+<span class="container-category uncommon"></span> 175 个“<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">护甲提升</a>”道具<br>
+<span class="container-category uncommon"></span> 175 个“<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">伤害提升</a>”道具<br>
+<span class="container-category uncommon"></span> 175 个“<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">速度提升</a>”道具<br>
+<span class="container-category uncommon"></span> 175 个“<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">地雷</a>”道具<br>
+</p>
+<h4><span id=".D0.9A.D0.B0.D1.82.D0.B5.D0.B3.D0.BE.D1.80.D0.B8.D1.8F_.C2.AB.D0.A0.D0.B5.D0.B4.D0.BA.D0.B8.D0.B5.C2.BB_.E2.80.94_27.2C5.25"></span><span class="mw-headline" id="Категория_«Редкие»_—_27,5%">“稀有”类别 — 27.5%</span></h4>
+<p><span class="container-category rare"></span> <a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">12 000</span></a> <br>
+<span class="container-category rare"></span> 100 个“<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">维修工具</a>”道具<br>
+<span class="container-category rare"></span> “稀有”类别的<a href="./%D0%9A%D1%80%D0%B0%D1%81%D0%BA%D0%B8" class="mw-redirect" title="Краски">迷彩</a><br>
+<span class="container-category rare"></span> “稀有”类别的底盘<a href="./%D0%A3%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0_%D0%B4%D0%BB%D1%8F_%D0%BA%D0%BE%D1%80%D0%BF%D1%83%D1%81%D0%BE%D0%B2" class="mw-redirect" title="Устройства для корпусов">装备改造</a><br>
+<span class="container-category rare"></span> “稀有”类别的炮塔<a href="./%D0%A3%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0_%D0%B4%D0%BB%D1%8F_%D0%BF%D1%83%D1%88%D0%B5%D0%BA" class="mw-redirect" title="Устройства для пушек">装备改造</a><br>
+</p>
+<h4><span id=".D0.9A.D0.B0.D1.82.D0.B5.D0.B3.D0.BE.D1.80.D0.B8.D1.8F_.C2.AB.D0.AD.D0.BF.D0.B8.D1.87.D0.B5.D1.81.D0.BA.D0.B8.D0.B5.C2.BB_.E2.80.94_10.25"></span><span class="mw-headline" id="Категория_«Эпические»_—_10%">“史诗”类别 — 10%</span></h4>
+<p><span class="container-category epic"></span> <a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">25 000</span></a> <br>
+<span class="container-category epic"></span> “史诗”类别的<a href="./%D0%9A%D1%80%D0%B0%D1%81%D0%BA%D0%B8" class="mw-redirect" title="Краски">迷彩</a><br>
+<span class="container-category epic"></span> <a href="./%D0%93%D1%80%D0%B0%D0%BD%D0%B0%D1%82%D1%8B" class="mw-redirect" title="Гранаты">手榴弹</a>“炸弹”、“迫击炮弹”、“医护兵”和“礼花弹”<br>
+<span class="container-category epic"></span> <a href="./%D0%A6%D0%B2%D0%B5%D1%82%D0%B0_%D0%B2%D1%8B%D1%81%D1%82%D1%80%D0%B5%D0%BB%D0%BE%D0%B2" class="mw-redirect" title="Цвета выстрелов">射击颜色</a><span style="color:yellow">*</span><br>
+<span class="container-category epic"></span> “史诗”类别的底盘<a href="./%D0%A3%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0_%D0%B4%D0%BB%D1%8F_%D0%BA%D0%BE%D1%80%D0%BF%D1%83%D1%81%D0%BE%D0%B2" class="mw-redirect" title="Устройства для корпусов">装备改造</a><br>
+<span class="container-category epic"></span> “史诗”类别的炮塔<a href="./%D0%A3%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0_%D0%B4%D0%BB%D1%8F_%D0%BF%D1%83%D1%88%D0%B5%D0%BA" class="mw-redirect" title="Устройства для пушек">装备改造</a><br>
+<span class="container-category epic"></span>所有 Mk1 <a href="./%D0%9F%D1%83%D1%88%D0%BA%D0%B8" class="mw-redirect" title="Пушки">炮塔</a>和<a href="./%D0%9A%D0%BE%D1%80%D0%BF%D1%83%D1%81%D0%B0" class="mw-redirect" title="Корпуса">底盘</a><br>
+</p>
+<h4><span id=".D0.9A.D0.B0.D1.82.D0.B5.D0.B3.D0.BE.D1.80.D0.B8.D1.8F_.C2.AB.D0.9B.D0.B5.D0.B3.D0.B5.D0.BD.D0.B4.D0.B0.D1.80.D0.BD.D1.8B.D0.B5.C2.BB_.E2.80.94_2.25"></span><span class="mw-headline" id="Категория_«Легендарные»_—_2%">“传奇”类别 — 2%</span></h4>
+<p><span class="container-category legendary"></span> <a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">100 000</span></a> <br>
+<span class="container-category legendary"></span> “传奇”类别的<a href="./%D0%9A%D1%80%D0%B0%D1%81%D0%BA%D0%B8" class="mw-redirect" title="Краски">迷彩</a><span style="color:yellow">*</span><br>
+<span class="container-category legendary"></span> “传奇”类别的炮塔和底盘<a href="./%D0%A3%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0_%D0%B4%D0%BB%D1%8F_%D0%BF%D1%83%D1%88%D0%B5%D0%BA" class="mw-redirect" title="Устройства для пушек">装备改造</a><br>
+</p>
+<h4><span id=".D0.9A.D0.B0.D1.82.D0.B5.D0.B3.D0.BE.D1.80.D0.B8.D1.8F_.C2.AB.D0.AD.D0.BA.D0.B7.D0.BE.D1.82.D0.B8.D1.87.D0.B5.D1.81.D0.BA.D0.B8.D0.B5.C2.BB_.E2.80.94_0.2C5.25"></span><span class="mw-headline" id="Категория_«Экзотические»_—_0,5%">“异国情调”类别 — 0.5%</span></h4>
+<p><span class="container-category exotic"></span> <a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">500 000</span></a> <br>
+<span class="container-category exotic"></span>传奇钥匙<br>
+<span class="container-category exotic"></span> “异国情调”类别的其余内容在每次特殊活动或促销期间各不相同。超级礼盒中此类别当前的内容可以在游戏中查看。
+</p>
+</div></div><h3><span id=".D0.9B.D0.B5.D0.B3.D0.B5.D0.BD.D0.B4.D0.B0.D1.80.D0.BD.D1.8B.D0.B5_.D0.BA.D0.BE.D0.BD.D1.82.D0.B5.D0.B9.D0.BD.D0.B5.D1.80.D1.8B"></span><span class="mw-headline" id="Легендарные_контейнеры">皮肤礼盒</span></h3><div class="dablink"><em>参见：</em> <a href="./%D0%A1%D0%BA%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Скины">皮肤</a>
+</div><table style="float:right">
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/e2/Key_Legendary.png/120px-Key_Legendary.png" decoding="async" loading="lazy" width="120" height="120" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e2/Key_Legendary.png/180px-Key_Legendary.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e2/Key_Legendary.png/240px-Key_Legendary.png 2x"></span></span>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/a/aa/Container_skins_preview.png/190px-Container_skins_preview.png" decoding="async" loading="lazy" width="190" height="190" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/a/aa/Container_skins_preview.png/285px-Container_skins_preview.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/a/aa/Container_skins_preview.png/380px-Container_skins_preview.png 2x"></span></span>
+</td></tr></tbody></table><p>皮肤礼盒通过传奇钥匙打开。它们包含来自 XT、Legacy、Demonic Old、Prime、Ultra、GT 和 Dark 系列中的一个随机<a href="./%D0%A1%D0%BA%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Скины">皮肤</a>，如果账号已经拥有礼盒可获取的所有可能皮肤，则会获得<a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Рубины"><span class="rubies-modern">700</span></a>。传奇钥匙可以通过以下方式获得：
+</p><ul><li><a href="./%D0%9C%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD" class="mw-redirect" title="Магазин">商店</a>中的特价优惠</li>
+<li>作为超级礼盒的内容物</li>
+<li>在特殊活动中</li></ul><p><br>
+</p><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample3">皮肤礼盒内容列表</div><div class="collapse" id="collapseExample3"><div class="">
+<ul><li>所有 Classic XT 皮肤</li>
+<li>所有 XT 皮肤（海啸除外）</li>
+<li>所有 LC 皮肤（电磁炮除外）</li>
+<li>所有 PR 皮肤</li>
+<li>所有 UT 皮肤</li>
+<li>所有 GT 皮肤</li>
+<li>所有 DK 皮肤</li>
+<li>火焰炮 DC Old</li></ul>
+</div></div><h2><span id=".D0.A3.D0.B4.D0.B0.D0.BB.D1.91.D0.BD.D0.BD.D1.8B.D0.B5_.D0.BA.D0.BE.D0.BD.D1.82.D0.B5.D0.B9.D0.BD.D0.B5.D1.80.D1.8B"></span><span class="mw-headline" id="Удалённые_контейнеры">已下架礼盒</span></h2><p>已下架礼盒，或称“灰色”礼盒——是以前在游戏中出现过的礼盒，通常在活动期间推出。目前这些礼盒已从游戏中移除，而现有的可用礼盒不再会过期。
+</p><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample4">已下架礼盒列表</div><div class="collapse" id="collapseExample4"><div class="">
+<h3><span id=".D0.9A.D0.BE.D0.B8.D0.BD.D0.B1.D0.BE.D0.BA.D1.81.D1.8B"></span><span class="mw-headline" id="Коинбоксы">硬币箱</span></h3>
+<div class="img__container" style="float:right;clear:right;"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/69/Coinbox.png" decoding="async" loading="lazy" width="151" height="94" class="mw-file-element"></span></span><br>硬币箱</div>
+<p>这些包含<a href="./%D0%A2%D0%B0%D0%BD%D0%BA%D0%BE%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Танкоины">坦克币</a>的奇特礼盒于 2019 年 9 月在<a rel="nofollow" class="external text" href="http://tankionline.com/ru/2019/09/novyj-kontejner/">“超值周末”</a>活动中首次在游戏中亮相。
+</p><p>目前硬币箱已无法获取，但也许有一天这种类型的礼盒还会再次出现。此前购买的硬币箱保存在“<b>幸运礼盒</b>”标签页中。
+</p>
+<div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample5">最近一次硬币箱内容列表</div><div class="collapse" id="collapseExample5"><div class="">
+<p><span class="container-category exotic"></span> 100 000 坦克币<br>
+<span class="container-category legendary"></span> 3 000 坦克币<br>
+<span class="container-category legendary"></span> 2 000 坦克币<br>
+<span class="container-category legendary"></span> 1 000 坦克币<br>
+<span class="container-category legendary"></span> 500 坦克币<br>
+<span class="container-category epic"></span> 300 坦克币<br>
+<span class="container-category epic"></span> 200 坦克币<br>
+<span class="container-category epic"></span> 100 坦克币<br>
+<span class="container-category rare"></span> 50 坦克币<br>
+<span class="container-category rare"></span> 40 坦克币<br>
+<span class="container-category rare"></span> 30 坦克币<br>
+<span class="container-category uncommon"></span> 10 坦克币<br>
+<span class="container-category common"></span> 1 坦克币<br>
+<span class="container-category legendary"></span> 30 000 水晶<br>
+<span class="container-category epic"></span> 15 000 水晶<br>
+<span class="container-category rare"></span> 5 000 水晶<br>
+<span class="container-category uncommon"></span> 2 000 水晶<br>
+<span class="container-category common"></span> 1 000 水晶</p>
+</div></div>
+<h3><span id=".D0.9A.D0.BE.D0.BD.D1.82.D0.B5.D0.B9.D0.BD.D0.B5.D1.80.D1.8B_XT"></span><span class="mw-headline" id="Контейнеры_XT">XT 礼盒</span></h3>
+<div class="img__container" style="float:right;clear:right;width:175px;"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/ee/Old_XT_container.png/175px-Old_XT_container.png" decoding="async" loading="lazy" width="175" height="159" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/ee/Old_XT_container.png/263px-Old_XT_container.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/ee/Old_XT_container.png/350px-Old_XT_container.png 2x"></span></span><br>XT 礼盒</div>
+<p>XT 礼盒是为了配合 <a rel="nofollow" class="external text" href="http://tankionline.com/pages/tanki-trip">Tanki Trip 2019 房车巡游</a>活动而推出的。这种礼盒可以通过激活在 Tanki Trip 的任何一场见面会上获得的特殊<a href="./%D0%9F%D1%80%D0%BE%D0%BC%D0%BE%D0%BA%D0%BE%D0%B4" class="mw-redirect" title="Промокод">兑换码</a>来获得，作为通关所有<a href="./%D0%A7%D0%B5%D0%BB%D0%BB%D0%B5%D0%BD%D0%B4%D0%B6" class="mw-redirect" title="Челлендж">星级挑战</a>等级的奖励，也可以在某些特价优惠中找到。
+</p><p>XT 礼盒包含一个随机的 XT <a href="./%D0%A1%D0%BA%D0%B8%D0%BD" class="mw-redirect" title="Скин">皮肤</a>（并非所有皮肤都在 XT 礼盒中可用），如果账号已经拥有该礼盒中可获取的所有 XT 系列皮肤，则会获得 20 000 水晶。
+</p>
+<h3><span id=".D0.9F.D0.B8.D1.82-.D1.81.D1.82.D0.BE.D0.BF_.D1.8F.D1.89.D0.B8.D0.BA.D0.B8"></span><span class="mw-headline" id="Пит-стоп_ящики">进站箱</span></h3>
+<div class="img__container" style="float:right;clear:right;width:160px;"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/88/Supplycrate.png" decoding="async" loading="lazy" width="160" height="101" class="mw-file-element"></span></span><br>进站箱</div>
+<p>这些包含任何坦克手必需品的箱子于 2020 年 3 月在<a rel="nofollow" class="external text" href="http://ru.tankiforum.com/topic/257413/">“超值周末”</a>活动中首次在游戏中亮相。
+</p><p>进站箱包含<a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы">水晶</a>、<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">道具</a>和<a href="./%D0%97%D0%BE%D0%BB%D0%BE%D1%82%D0%BE%D0%B9_%D1%8F%D1%89%D0%B8%D0%BA" class="mw-redirect" title="Золотой ящик">金箱子</a>。它们可能会在各种节日活动期间出现在游戏商店中。1 个箱子售价 30 <a href="./%D0%A2%D0%B0%D0%BD%D0%BA%D0%BE%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Танкоины">坦克币</a>。
+</p>
+<h3><span id=".D0.AF.D1.89.D0.B8.D0.BA.D0.B8_.D1.81_.D1.80.D0.B0.D1.81.D1.85.D0.BE.D0.B4.D0.BD.D0.B8.D0.BA.D0.B0.D0.BC.D0.B8"></span><span class="mw-headline" id="Ящики_с_расходниками">供应箱</span></h3>
+<div class="img__container" style="float:right;clear:right;width:160px;"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/88/Supplycrate.png" decoding="async" loading="lazy" width="160" height="101" class="mw-file-element"></span></span><br>供应箱</div>
+<p>供应箱是仅存在于 <a href="./TO_Mobile" title="TO Mobile">TO Mobile</a> 中的特殊礼盒。此箱子包含 3 个随机奖品，其中包括：
+</p>
+<ul><li>2 个“<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">护甲提升</a>”、“<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">伤害提升</a>”、“<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">速度提升</a>”或“<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">地雷</a>”道具</li>
+<li>1 个“<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">维修工具</a>”道具</li>
+<li><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы">水晶</a> — 150、250 或 500</li></ul>
+<p>供应箱每 6 小时免费发放一次。
+</p>
+</div></div><h2><span id=".D0.98.D0.BD.D1.82.D0.B5.D1.80.D0.B5.D1.81.D0.BD.D1.8B.D0.B5_.D1.84.D0.B0.D0.BA.D1.82.D1.8B"></span><span class="mw-headline" id="Интересные_факты">趣事</span></h2><ul><li>礼盒于 2017 年 11 月 24 日在<a rel="nofollow" class="external text" href="http://tankionline.com/ru/2017/11/chyornaya-pyatnica-v-tankax-onlajn/">“黑色星期五”</a>活动中首次在游戏中出现。它们在商店中出售至莫斯科时间 11 月 28 日 05:00。</li>
+<li>在 2017 年黑色星期五期间，可以从特殊的黑色金箱子中获得礼盒。</li>
+<li>2018 年 1 月 10 日，礼盒被加入到<a href="./%D0%9C%D0%B8%D1%81%D1%81%D0%B8%D0%B8" class="mw-redirect" title="Миссии">任务</a>链奖励中，并永久加入到战斗中掉落的<a href="./%D0%97%D0%BE%D0%BB%D0%BE%D1%82%D0%BE%D0%B9_%D1%8F%D1%89%D0%B8%D0%BA" class="mw-redirect" title="Золотой ящик">金箱子</a>中。</li>
+<li>2018 年 6 月 7 日，超大包水晶和 XT 皮肤被加入到礼盒中。</li>
+<li>2018 年 10 月 30 日，游戏中新增了一种礼盒——每周任务礼盒，作为完成每周任务的奖励发放，包含水晶和道具。</li>
+<li>2019 年 10 月 10 日，之前引入的“坦克币礼盒”更名为现在的“硬币箱”。</li>
+<li>从 2019 年 12 月 20 日到 2020 年 1 月 9 日，如果从“硬币箱”中开出<a href="./%D0%A2%D0%B0%D0%BD%D0%BA%D0%BE%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Танкоины"><span class="coins-modern">100 000</span></a>，即可获得稀有迷彩“<a href="./%D0%A2%D0%B0%D0%BD%D0%BA%D0%BE%D0%B8%D0%BD%D0%BE%D0%B2%D1%8B%D0%B9_%D1%82%D0%B0%D0%BD%D0%BA" class="mw-redirect" title="Танкоиновый танк">坦克币坦克</a>”。</li>
+<li>2020 年 3 月 20 日，进站箱在游戏中登场。</li>
+<li>2020 年 4 月 1 日，皮肤礼盒在游戏中登场，同时 XT 礼盒被移除。</li>
+<li>2020 年 4 月 24 日，超级礼盒在游戏中登场。</li>
+<li>2020 年 4 月 29 日，礼盒被更新为带有新<a href="./%D0%A3%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0" class="mw-redirect" title="Устройства">装备改造</a>的同款新礼盒。</li>
+<li>2021 年 1 月 29 日，随着游戏<a href="./TO_Mobile" title="TO Mobile">手机版</a>中<a href="./%D0%9E%D1%81%D0%BA%D0%BE%D0%BB%D0%BA%D0%B8" class="mw-redirect" title="Осколки">碎片</a>的移除，供应箱也随之消失。</li>
+<li>2021 年 9 月 1 日，皮肤礼盒从<a href="./%D0%A7%D0%B5%D0%BB%D0%BB%D0%B5%D0%BD%D0%B4%D0%B6%D0%B8" class="mw-redirect" title="Челленджи">星级挑战</a>中移除：最后一级现在提供特定的皮肤。</li>
+<li>在 2022 年 12 月 9 日至 2023 年 1 月 1 日进行的<a href="./%D0%A7%D0%B5%D0%BB%D0%BB%D0%B5%D0%BD%D0%B4%D0%B6%D0%B8" class="mw-redirect" title="Челленджи">星级挑战</a>中，皮肤礼盒重新被加入到最后一级。</li>
+<li>2023 年 3 月 17 日，电池从礼盒中移除。</li>
+<li>2023 年 12 月 22 日，礼盒钥匙被加入到游戏中。在此次更新之前，玩家可以直接在游戏中获得礼盒。礼盒此前还拥有过期机制：当礼盒内容更新时，游戏中会加入带有新内容的新类型礼盒。</li></ul><table class="wikitable-modern first-column-center white-table">
+
+<tbody><tr class="wikitable-header">
+<td>礼盒类型</td>
+<td>普通</td>
+<td>超级</td>
+<td>每周</td>
+<td>皮肤</td></tr>
+<tr>
+<td>2023 年 12 月之前的礼盒</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/5/50/Container_preview_old.png/150px-Container_preview_old.png" decoding="async" loading="lazy" width="150" height="93" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/5/50/Container_preview_old.png 1.5x"></span></span>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/a/ac/Ultra_container_preview_old.png/150px-Ultra_container_preview_old.png" decoding="async" loading="lazy" width="150" height="93" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/a/ac/Ultra_container_preview_old.png 1.5x"></span></span>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/0/01/Container_weekly_preview_old.png/150px-Container_weekly_preview_old.png" decoding="async" loading="lazy" width="150" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/0/01/Container_weekly_preview_old.png 1.5x"></span></span>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/8/87/Container_skins_preview_old.png/150px-Container_skins_preview_old.png" decoding="async" loading="lazy" width="150" height="93" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/8/87/Container_skins_preview_old.png 1.5x"></span></span>
+</td></tr>
+<tr>
+<td>2023 年 12 月之前<br>的过期礼盒</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Old_container_preview.png/160px-Old_container_preview.png" decoding="async" loading="lazy" width="160" height="105" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Old_container_preview.png/240px-Old_container_preview.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Old_container_preview.png/320px-Old_container_preview.png 2x"></span></span>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/8e/Old_Ultracontainer.png" decoding="async" loading="lazy" width="160" height="100" class="mw-file-element"></span></span>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/0/0c/Old_weekly_containers.png/160px-Old_weekly_containers.png" decoding="async" loading="lazy" width="160" height="103" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/0/0c/Old_weekly_containers.png 1.5x"></span></span>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/ee/Old_XT_container.png/150px-Old_XT_container.png" decoding="async" loading="lazy" width="150" height="137" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/ee/Old_XT_container.png/225px-Old_XT_container.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/ee/Old_XT_container.png/300px-Old_XT_container.png 2x"></span></span>
+</td></tr>
+<tr>
+<td>旧称</td>
+<td>普通<br>礼盒</td>
+<td>超级礼盒</td>
+<td>每周<br>礼盒</td>
+<td>皮肤<br>礼盒</td></tr></tbody></table><div align="right"><small>最后编辑：28/05/2026 Vestas <span class="ai-translate-note" style="color:#8FB8D8;">（由 AI 自动翻译）</span></small></div></div></div></div></div></div><footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
+<p style="margin:0;"><strong style="color:#BFD5FF;">本站为玩家社区自建的非官方 Wiki 镜像。</strong></p>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":540,"wgPageParseReport":{"limitreport":{"cputime":"0.538","walltime":"0.814","ppvisitednodes":{"value":959,"limit":1000000},"postexpandincludesize":{"value":7510,"limit":4194304},"templateargumentsize":{"value":3662,"limit":4194304},"expansiondepth":{"value":8,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%  179.488      1 -total"," 22.48%   40.351      5 Шаблон:Spoiler/Start"," 21.09%   37.847      4 Шаблон:Img"," 17.03%   30.563      1 Шаблон:See_also"," 12.21%   21.912      1 Шаблон:Другое_значение","  7.06%   12.671      9 Шаблон:Alert","  5.86%   10.517      1 Шаблон:LastEdit","  4.98%    8.934     14 Шаблон:См._также/link","  4.93%    8.851      5 Шаблон:Spoiler/End","  3.60%    6.454      6 Шаблон:Color"]},"cachereport":{"timestamp":"20260824234831","ttl":86400,"transientcontent":false}}});});</script>
+    <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });</script></body></html>

@@ -1,94 +1,331 @@
-<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><title>论坛 - 3D 坦克 Wiki</title><meta charset="UTF-8">
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>(function(){
+  var BASE = 'https://ru.tankiwiki.com';
+  function fix(v){ return (typeof v === 'string' && v.charAt(0) === '/' && v.indexOf('//') !== 0) ? BASE + v : v; }
+  ['HTMLScriptElement','HTMLLinkElement'].forEach(function(tag){
+    var proto = window[tag] && window[tag].prototype;
+    var prop  = tag === 'HTMLScriptElement' ? 'src' : 'href';
+    if (!proto) return;
+    var d = Object.getOwnPropertyDescriptor(proto, prop);
+    if (!d || !d.set) return;
+    Object.defineProperty(proto, prop, {
+      configurable: true,
+      get: function(){ return d.get.call(this); },
+      set: function(v){ d.set.call(this, fix(v)); }
+    });
+  });
+  var of = window.fetch;
+  if (of) window.fetch = function(u, o){ return of.call(this, (typeof u === 'string' ? fix(u) : u), o); };
+  var ox = window.XMLHttpRequest && XMLHttpRequest.prototype.open;
+  if (ox) XMLHttpRequest.prototype.open = function(m, u){
+    var a = Array.prototype.slice.call(arguments); a[1] = fix(u); return ox.apply(this, a);
+  };
+})();</script><title>论坛 — Tanki Online Wiki</title><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+    <meta charset="UTF-8">
+    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/xg_pWYS8-HRESiV6Rdg4aY_R/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-qWH0xCejb2gc1yqo8ob4TQrvIcQ9XjhOfGKbhFr/+LvFrJdTE3bA+FQP/FLAiQhz"></script>
     <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
-    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
-    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"711858bee3fed6f965ba64d0","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Forum","wgTitle":"Forum","wgCurRevisionId":67786,"wgRevisionId":67786,"wgArticleId":820,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Forum","wgRelevantArticleId":820,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVisualEditor":{"pageLanguageCode":"en","pageLanguageDir":"ltr","pageVariantFallbacks":"en"},
-"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.visualEditor.desktopArticleTarget.noscript":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["mediawiki.page.media","site","mediawiki.page.ready","mediawiki.toc","ext.gadget.UTCLiveClock","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","skins.tankiblue.js","ext.purge"];</script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgRequestId":"f654c96d152d9213d1868590","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Forum","wgTitle":"Forum","wgCurRevisionId":301366,"wgRevisionId":301366,"wgArticleId":151,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["FAQ RUS"],"wgPageViewLanguage":"ru","wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgRelevantPageName":"Forum","wgRelevantArticleId":151,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVisualEditor"
+:{"pageLanguageCode":"ru","pageLanguageDir":"ltr","pageVariantFallbacks":"ru"},"wgFlaggedRevsParams":{"tags":{"accuracy":{"levels":3}}},"wgStableRevisionId":301366,"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.flaggedRevs.icons":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.flaggedRevs.basic":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","mediawiki.toc","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.flaggedRevs.advanced","skins.tankiblue.js","ext.purge"];</script>
     <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
 }];});});</script>
-    <link rel="stylesheet" href="https://en.tankiwiki.com/load.php?lang=en&amp;modules=ext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
-    <script async="" src="https://en.tankiwiki.com/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=ext.flaggedRevs.basic%2Cicons%7Cext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
     <meta name="ResourceLoaderDynamicStyles" content="">
-    <link rel="stylesheet" href="https://en.tankiwiki.com/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
     <meta name="generator" content="MediaWiki 1.42.3">
     <meta name="robots" content="max-image-preview:standard">
     <meta name="format-detection" content="telephone=no">
-    <meta property="og:image" content="https://en.tankiwiki.com/images/en/2/2d/Forum2.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="1303">
-    <meta property="og:image" content="https://en.tankiwiki.com/images/en/2/2d/Forum2.png">
-    <meta property="og:image:width" content="800">
-    <meta property="og:image:height" content="869">
-    <meta property="og:image:width" content="640">
-    <meta property="og:image:height" content="695">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="https://en.tankiwiki.com/favicon.png">
-    <link rel="search" type="application/opensearchdescription+xml" href="https://en.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (en)">
-    <link rel="EditURI" type="application/rsd+xml" href="https://en.tankiwiki.com/api.php?action=rsd">
-    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki Atom feed" href="https://en.tankiwiki.com/index.php?title=Special:RecentChanges&amp;feed=atom">
-    <script src="https://en.tankiwiki.com/load.php?lang=en&amp;modules=ext.gadget.UTCLiveClock&amp;skin=tankiblue&amp;version=g0y7o"></script>
-    <script src="https://en.tankiwiki.com/load.php?lang=en&amp;modules=ext.visualEditor.core.utils.parsing%7Cext.visualEditor.desktopArticleTarget.init%7Cext.visualEditor.progressBarWidget%2CsupportCheck%2CtargetLoader%2CtempWikitextEditorWidget%2Ctrack%2Cve&amp;skin=tankiblue&amp;version=frddf"></script>
-    <script src="https://en.tankiwiki.com/load.php?lang=en&amp;modules=ext.purge%7Cjquery%2Csite%7Cjquery.client%2CtextSelection%7Cmediawiki.String%2CTitle%2Capi%2Cbase%2Ccldr%2Ccookie%2CjqueryMsg%2Clanguage%2Cstorage%2Ctoc%2Cuser%2Cutil%7Cmediawiki.editfont.styles%7Cmediawiki.libs.pluralruleparser%7Cmediawiki.page.media%2Cready%7Cskins.tankiblue.js&amp;skin=tankiblue&amp;version=17uib"></script><style>@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');body{font-family:'Rubik','M PLUS 1p',sans-serif;background-color:#001926 !important;}#mw-main-container{max-width:1200px;margin:20px auto;background-color:#001926;padding:20px;}</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Forum rootpage-Forum skin-tankiblue action-view"><div id="mw-main-container"><a href="./Tanki_Online_Wiki" style="display: inline-block; margin: 0 0 25px 0; padding: 12px 24px; background-color: #BFD5FF; color: #001926; text-decoration: none; font-weight: bold; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">返回主页</a><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang=""><span class="mw-page-title-main">论坛</span></h1><div class="dablink"><em>参见</em>：<a href="./Chat" title="Chat">聊天</a>、<a href="./Community" title="Community">社群</a>与<a href="./Forum_moderators" title="Forum moderators">论坛版主</a>
-</div><p><br>
-</p><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">目录</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+    <link rel="icon" href="https://ru.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://ru.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (ru)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://ru.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki&nbsp;— Atom-лента" href="https://ru.tankiwiki.com/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom"><style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
+
+/* 1. 只去掉源站皮肤的背景大图，保留底色；不要用 background 简写，否则会连带清掉皮肤别的背景设定 */
+html, body {
+    background-image: none !important;
+    background-color: #001926 !important;
+}
+/* 2. 让底色铺满视口，内容很短时下方不再露白 */
+html { min-height: 100%; }
+body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif; }
+
+/* 3. 版心容器 */
+#mw-main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #001926;
+}
+
+/* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
+      【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
+
+#mw-main-container .main-content,
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content,
+#mw-main-container #mw-content-text {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: auto !important;
+    flex-basis: auto !important;   /* 皮肤写了 .main-content{flex:0 0 75%} */
+    float: none !important;
+    margin-top: 0 !important;       /* 核心：清空原站皮肤的负 margin-top */
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    position: relative !important;
+    z-index: 1 !important;          /* 保证正文层级低于按钮 */
+}
+
+/* 5. 皮肤脚本 skins.tankiblue.js 会往 #mw-content-text 末尾插一条「发现错别字？Ctrl+Enter」
+      的俄语提示条和一个「报告错误」标签页。它按网址里有没有 'en'/'de' 来判断语言，
+      我们的域名两者都不含 → 一律显示俄语；且报错会提交到俄站编辑组，对镜像站没意义，直接隐藏。 */
+#custom-report-footer,
+.vectorTabs.customReport,
+.customReport { display: none !important; }
+
+/* 6. 返回按钮包裹容器：独占一行并强制最高层级 */
+.home-btn-wrapper {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px 0 20px 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    z-index: 9999 !important;       /* 核心：永远置于最顶层 */
+    clear: both !important;
+    overflow: visible !important;
+}
+
+/* 7. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐 */
+.home-back-btn {
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    width: auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    isolation: isolate !important;
+    
+    min-width: 142px !important;
+    padding: 0 24px !important;
+    height: 78px !important;
+    margin: 0 !important;
+    border: 1px solid rgba(255,255,255,.25) !important;
+    outline: 2px solid transparent !important;
+    border-radius: 6.5px !important;
+    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%) !important;
+    
+    position: relative !important;
+    z-index: 10000 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: all .15s ease !important;
+    overflow: visible !important;
+}
+.home-back-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(100% 100% at 0% 0%, rgba(191,213,255,.25) 0%, rgba(191,213,255,.15) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all .15s ease;
+    border-radius: inherit;
+    pointer-events: none;
+}
+.home-back-btn svg {
+    width: 24.375px;
+    height: 24px;
+    object-fit: contain;
+    transform: rotate(180deg);
+    transition: all .15s ease;
+    flex-shrink: 0;
+}
+.home-back-btn svg path { fill: #BFD5FF; transition: all .15s ease; }
+
+.home-back-btn:hover,
+.home-back-btn:active,
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF !important; border-color: #BFD5FF !important; }
+.home-back-btn:hover::before,
+.home-back-btn:active::before,
+.home-back-btn:focus-visible::before { opacity: 1; }
+.home-back-btn:hover svg,
+.home-back-btn:active svg,
+.home-back-btn:focus-visible svg { transform: rotate(180deg) translateX(10%); }
+.home-back-btn:hover svg path,
+.home-back-btn:active svg path,
+.home-back-btn:focus-visible svg path { fill: #fff; }
+
+.home-back-btn span {
+    color: #BFD5FF;
+    font-size: 16px;
+    margin-left: 10px;
+    font-weight: bold;
+    transition: all .15s ease;
+    white-space: nowrap;
+}
+.home-back-btn:hover span,
+.home-back-btn:active span,
+.home-back-btn:focus-visible span {
+    color: #fff;
+    transform: translateX(-4px);
+}
+
+/* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
+@media (hover: none) {
+    .home-back-btn { border-color: rgba(191,213,255,.55) !important; }
+    .home-back-btn svg path { fill: #CFE0FF; }
+}
+
+/* 移动端/窄屏自适应尺寸 */
+@media (max-width: 480px) {
+    .home-back-btn {
+        min-width: 106px !important;
+        padding: 0 16px !important;
+        height: 58px !important;
+        margin-left: 10px !important;
+    }
+    .home-back-btn svg { width: 20px !important; height: 19.7px !important; }
+    .home-back-btn span { font-size: 14px !important; margin-left: 8px !important; }
+}
+
+/* 8. 移动端容器 Padding */
+@media (max-width: 768px) {
+    #mw-main-container { padding: 10px !important; margin: 8px auto !important; }
+    .home-back-btn { margin-left: 10px !important; }
+    #mw-content-text .navigationContainerContent > div,
+    #mw-content-text [style*="width: 55%"],
+    #mw-content-text [style*="width:55%"],
+    #mw-content-text [style*="width: 45%"],
+    #mw-content-text [style*="width:45%"] { width: 100% !important; }
+}
+@media (max-width: 480px) {
+    #mw-main-container { padding: 6px !important; margin: 4px auto !important; }
+}
+
+/* 9. 防止宽表格 / 大图撑破版心 */
+#mw-content-text img { max-width: 100%; height: auto; }
+#mw-content-text table { max-width: 100%; }
+
+/* 10. 目录（TOC）修复，全局生效：
+    a) 皮肤把目录折叠按钮的文字放在 CSS 伪元素里渲染，而不是 HTML 文本：
+         .toctogglecheckbox:checked  + .toctitle .toctogglelabel::after → content:'показать'
+         .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after → content:'скрыть'
+       AI 翻译只处理 HTML 文本，摸不到 CSS content，所以这个按钮永远是俄语，必须在这里覆盖成中文。
+    b) 皮肤的响应式 CSS 里写了 @media screen and (max-width:768px){ #toc{display:none} }，
+       导致手机端整个目录被隐藏。这里恢复显示，并配合下方 TOC_MOBILE_COLLAPSE_SCRIPT：
+       移动端默认折叠，只占一行「目录 [展开]」，避免长目录把正文挤到屏幕外。 */
+#toc .toctogglecheckbox:checked + .toctitle .toctogglelabel::after { content: '展开' !important; }
+#toc .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after { content: '收起' !important; }
+@media screen and (max-width: 768px) {
+    #toc { display: table !important; }
+}
+
+/* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
+   只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+*/
+</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Forum rootpage-Forum skin-tankiblue action-view"><div id="skin-chrome-stub" aria-hidden="true" style="display:none !important;">
+<a class="problem" href="#"></a>
+<div class="close-wrapper"></div>
+<div class="support-block-popup"><div class="close-modal-support"></div></div>
+<div class="youtube-popup"><iframe title="stub"></iframe></div>
+<div class="video-button"></div>
+<div class="header-search"></div>
+<div class="search-dialog"></div>
+<div class="search-popup"><div class="close-wrapper"></div><div class="close-modal-search"></div></div>
+<div class="news-popup"></div>
+<div class="sales-block-header"></div>
+<div class="navbar-main"></div>
+<div class="main-navbar"></div>
+</div><div id="mw-main-container"><div class="home-btn-wrapper"><a class="home-back-btn" href="./Enciklopediya_igry_%C2%ABTanki_Onlayn%C2%BB" title="返回主页" aria-label="返回主页"><svg viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 0H13.5L25.5 12L24 13.5L13.5 24H18L30 12L18 0ZM24 13.5L21 10.5H0L3 13.5H24Z" fill="#BFD5FF"/></svg><span>返回主页</span></a></div><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">论坛</h1><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"><div class="toctitle" lang="ru" dir="ltr"><h2 id="mw-toc-heading">目录</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
-<li class="toclevel-1 tocsection-1"><a href="#Basic_information"><span class="tocnumber">1</span> <span class="toctext">基本信息</span></a></li>
-<li class="toclevel-1 tocsection-2"><a href="#Authorization_on_the_forum"><span class="tocnumber">2</span> <span class="toctext">论坛授权登录</span></a></li>
-<li class="toclevel-1 tocsection-3"><a href="#Forum_Groups"><span class="tocnumber">3</span> <span class="toctext">论坛用户组</span></a></li>
-<li class="toclevel-1 tocsection-4"><a href="#Forum_panels"><span class="tocnumber">4</span> <span class="toctext">论坛面板</span></a></li>
-<li class="toclevel-1 tocsection-5"><a href="#Forum_Sections"><span class="tocnumber">5</span> <span class="toctext">论坛板块</span></a></li>
-<li class="toclevel-1 tocsection-6"><a href="#Creating_a_topic"><span class="tocnumber">6</span> <span class="toctext">创建话题</span></a></li>
-<li class="toclevel-1 tocsection-7"><a href="#Private_Messages"><span class="tocnumber">7</span> <span class="toctext">私人消息</span></a></li>
-<li class="toclevel-1 tocsection-8"><a href="#Post_Editor"><span class="tocnumber">8</span> <span class="toctext">帖子编辑器</span></a></li>
-<li class="toclevel-1 tocsection-9"><a href="#Reactions"><span class="tocnumber">9</span> <span class="toctext">表情反应</span></a></li>
-<li class="toclevel-1 tocsection-10"><a href="#Follows"><span class="tocnumber">10</span> <span class="toctext">关注</span></a></li>
-<li class="toclevel-1 tocsection-11"><a href="#Reporting_Posts"><span class="tocnumber">11</span> <span class="toctext">举报帖子</span></a></li>
-<li class="toclevel-1 tocsection-12"><a href="#Forum_bans"><span class="tocnumber">12</span> <span class="toctext">论坛封禁</span></a></li>
+<li class="toclevel-1 tocsection-1"><a href="#Основная_информация"><span class="tocnumber">1</span> <span class="toctext">基本信息</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Блок_«Новости»"><span class="tocnumber">1.1</span> <span class="toctext">“新闻”板块</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Блок_«Сейчас_в_сети»"><span class="tocnumber">1.2</span> <span class="toctext">“当前在线”板块</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Блок_«Сейчас_на_странице»"><span class="tocnumber">1.3</span> <span class="toctext">“当前在页面上”板块</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Блок_«Активность»"><span class="tocnumber">1.4</span> <span class="toctext">“活跃度”板块</span></a></li>
 </ul>
-</div><h2><span class="mw-headline" id="Basic_information">基本信息</span></h2><p><a rel="nofollow" class="external text" href="https://pl.tankiforum.com/?attempt=1">论坛</a>是互联网上人们可以同时留言或与其他人讨论特定主题的地方；讨论论坛是联系来自世界各地具有相似兴趣的人的一种方式。因此，3D 坦克论坛是来自世界各地的坦克手分享他们对游戏的想法和意见、参与各种讨论，以及最重要的是从游戏开发者那里接收信息（无论是关于新更新、活动的信息，等等）的地方。等级达到<span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/6/6b/IconsNormal_08.png/21px-IconsNormal_08.png" decoding="async" loading="lazy" width="21" height="20" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/6/6b/IconsNormal_08.png/32px-IconsNormal_08.png 1.5x, https://en.tankiwiki.com/images/en/thumb/6/6b/IconsNormal_08.png/42px-IconsNormal_08.png 2x"></span></span><a rel="nofollow" class="external text" href="./Ranks_and_Experience">二级军士长</a>或以上的玩家均可在论坛进行授权登录。
-</p><p>此外，您可以在论坛上看到并联系到游戏的管理员与助手。每个助手小组都有其独特的论坛用户组和头像。
-<span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/4/46/Forum1.png" decoding="async" loading="lazy" width="2559" height="1439" class="mw-file-element"></span></span><br>
-</p><h2><span class="mw-headline" id="Authorization_on_the_forum">论坛授权登录</span></h2><figure class="mw-halign-right" typeof="mw:File/Thumb"><span><img resource="/File:Forum2.png" src="https://en.tankiwiki.com/images/en/thumb/2/2d/Forum2.png/300px-Forum2.png" decoding="async" loading="lazy" width="300" height="326" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/2/2d/Forum2.png 1.5x"></span><figcaption></figcaption></figure><p><br>
-<a rel="nofollow" class="external text" href="https://en.tankiforum.com/?attempt=1">论坛</a>不需要单独注册 —— 用户在游戏中使用的相同登录凭据即可用于登录论坛。但是，两者的注册日期并不相同：论坛上的注册时间是从首次登录论坛时开始计算的。
-</p><p><br>要登录论坛，您需要点击右上角的<a rel="nofollow" class="external text" href="https://en.tankiforum.com/login/">登录</a>按钮并填写相应的表单。或者，您也可以访问专门的论坛授权页面。
-</p><p><br>
-</p><h2><span class="mw-headline" id="Forum_Groups">论坛用户组</span></h2><p>根据所扮演的角色，论坛用户分为两个主要组别。第一组是<b>坦克手</b>，在注册论坛时会自动授予玩家。您可能会注意到某些用户拥有色彩斑斓的论坛用户组和独特的头像。这些是第二个主要组别，即官方的<b>管理员与助手</b>。这些独特的论坛用户组赋予了他们在论坛内执行工作所需的额外权限。（这些权限因职位而异）。
-</p><h2><span class="mw-headline" id="Forum_panels">论坛面板</span></h2><p>有几个“面板”（位于您屏幕的最右侧）。其用途如下；
-</p><figure class="mw-halign-right" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/c/c3/Forum3.png/200px-Forum3.png" decoding="async" loading="lazy" width="200" height="200" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/c/c3/Forum3.png/300px-Forum3.png 1.5x, https://en.tankiwiki.com/images/en/c/c3/Forum3.png 2x"></span><figcaption></figcaption></figure><center><b><big><big><big>话题</big></big></big></b></center><ul><li>此面板中显示的话题是社群经理发布的最新更新与活动。此面板的主要目的是帮助您 —— 我们亲爱的坦克手们，找到有关最新更新的所有信息！</li></ul><p><br><br><br>
-</p><figure class="mw-halign-right" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/a/a7/Forum_4.png/200px-Forum_4.png" decoding="async" loading="lazy" width="200" height="305" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/a/a7/Forum_4.png/300px-Forum_4.png 1.5x, https://en.tankiwiki.com/images/en/a/a7/Forum_4.png 2x"></span><figcaption></figcaption></figure><center><b><big><big><big>帖子</big></big></big></b></center><ul><li>此面板显示整个论坛中最 recentes（最新）的帖子！其中一些可能比其他的更具相关性。您可以使用此面板探索论坛并寻找讨论的新话题。</li></ul><p><br><br><br><br><br><br><br>
-</p><figure class="mw-halign-right" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/6/6c/Forum5.png/200px-Forum5.png" decoding="async" loading="lazy" width="200" height="494" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/6/6c/Forum5.png/300px-Forum5.png 1.5x, https://en.tankiwiki.com/images/en/6/6c/Forum5.png 2x"></span><figcaption></figcaption></figure><p><br>
-</p><center><b><big><big><big>在线员工</big></big></big></b></center><p>最新的面板显示了当前哪些助手在论坛在线；此类面板有三种类型：
-</p><ul><li><b>社群管理</b> - 这里列出的所有用户都负责英文社群。如果您对其中某位管理员有任何疑问，或者想就英文社群的运作方式提出建议，您应该联系行政主管或社群经理。</li></ul><ul><li><b>在线管理员</b> - 每个管理员负责他们自己的论坛用户组，但被赋予了更大的权限（即论坛管理员负责论坛版主团队，聊天管理员负责聊天管理员团队等。.）。如果您想对版主的的工作提出投诉，或者遇到版主无法解决的问题，应当联系管理员。</li></ul><ul><li><b>在线助手</b> - 显示哪些助手在线。为了获得更快的回复，请确保您联系了合适的助手。</li></ul><p><br><br><br>
-</p><h2><span class="mw-headline" id="Forum_Sections">论坛板块</span></h2><p>“<b>新闻与公告</b>”包含与 3D 坦克和英文社群相关的更新、V-LOG、活动和比赛的所有官方话题。—— 开发人员和社群经理使用这些话题来收集用户对游戏的反馈。
-</p><p>“<b>向开发者提问</b>”是一个用户可以提出只能由开发者回答的问题的话题，并有机会在其中一期 V-LOG 节目中获得解答。
-</p><p>“<b>项目助手</b>”是您可以找到官方助手名单、历届和当月最佳助手，以及一个通往招募门户网站链接的地方，您可以在那里申请成为一名助手！
-</p><p>“<b>问与答</b>”作为一个场所，用户可以在这里询问关于 3D 坦克的问题并获得社群的相关回答。这是一个非常重要的板块 —— 许多玩家依靠这个板块来获得解决各种问题的帮助。
-</p><p>“<b>游戏讨论</b>”板块是论坛中最最重要的板块 —— 它包含了游戏历史上最古老和讨论最多的话题。其话题从“让我们讨论道具”到“对未来特惠的猜测”，许多不同的用户都在其中发表自己的意见和见解。
-</p><p>“<b>创意与建议</b>”板块是一个预先审核的区域（用户可以发布话题，但在向所有人开放之前，版主必须先进行审阅和批准）。在这里，用户发布他们对游戏未来的建议 —— 从疯狂的想法、无法实现的构想，到真正经过深思熟虑、实际上可以被开发者考虑的想法。
-</p><p>“<b>灌水区</b>”是用户可以讨论与 3D 坦克无关的话题的地方；什么都可以！（只要不违反规则）
-</p><p>“<b>跑酷</b>”包含与 3D 坦克中的跑酷场景相关的一切。您可以找到与跑酷相关的各种讨论话题、官方与非官方跑酷俱乐部的名单，以及最新的跑酷新闻。
-</p><p>“<b>你的创意</b>”板块旨在收集所有用户与 3D 坦克相关的艺术作品和创作（主要是）—— 您会在这里找到视频、壁纸、手工制品、照片等。
-</p><p>“<b>电子竞技</b>”—— 包含通往官方电子竞技平台的链接（例如：电子竞技 Discord 服务器、电子竞技 YouTube 频道等。.）
-</p><h2><span class="mw-headline" id="Creating_a_topic">创建话题</span></h2><p>要创建一个话题，授权用户应前往论坛所需板块并点击“创建话题”。在打开的页面上，用户可以使用所有必要的功能来根据其需求自定义内容，包括在话题中附加投票的可能性。
-<span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/a/a8/Topic.png" decoding="async" loading="lazy" width="1334" height="712" class="mw-file-element"></span></span>
-</p><h2><span class="mw-headline" id="Private_Messages">私人消息</span></h2><p>论坛提供私信系统，允许所有注册用户相互交流。要发送消息，请点击论坛顶部面板中的相应图标“消息”。在弹出的窗口中，按“创建”按钮。还有一个用于创建消息的单独页面。
-</p><p>发送消息后，将创建一个对话。所有用户的对话都可以在“消息”板块中找到。
-<span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/b/b3/Forum6.png" decoding="async" loading="lazy" width="1329" height="732" class="mw-file-element"></span></span>
-</p><p><b><big><big>多人对话</big></big></b>
-</p><p>除了向单个玩家发送私信之外，用户还可以通过邀请其他几位论坛访客加入来创建对话。创建对话有两种方式：在创建私信时指定多个收件人（这样对话将自动为所有指定的收件人显示），或者向现有对话中添加新用户。请注意，添加的用户将看到此对话的完整历史记录。
-</p><h2><span class="mw-headline" id="Post_Editor">帖子编辑器</span></h2><p>在帖子线程中发帖或发送私信时，每个用户都可以使用文本编辑器。提供的工具允许您修改消息的各个部分：高亮重要字词、添加链接或图片、设置内容的缩进和对齐方式，并且还支持嵌入表情符号。请注意，添加图片只能通过图床（托管服务）进行；您无法从用户的设备中上传照片。
-<span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/a/ac/PostEditor2.png" decoding="async" loading="lazy" width="1330" height="447" class="mw-file-element"></span></span>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Авторизация_на_форуме"><span class="tocnumber">2</span> <span class="toctext">论坛登录</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Получение_разрешений_на_форуме"><span class="tocnumber">3</span> <span class="toctext">获取论坛权限</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Создание_темы"><span class="tocnumber">4</span> <span class="toctext">创建主题</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#Личные_сообщения"><span class="tocnumber">5</span> <span class="toctext">私信</span></a>
+<ul>
+<li class="toclevel-2 tocsection-10"><a href="#Многопользовательские_беседы"><span class="tocnumber">5.1</span> <span class="toctext">多人对话</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Редактор_текста"><span class="tocnumber">5.2</span> <span class="toctext">文本编辑器</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-12"><a href="#Реакции"><span class="tocnumber">6</span> <span class="toctext">反应</span></a></li>
+<li class="toclevel-1 tocsection-13"><a href="#Подписчики"><span class="tocnumber">7</span> <span class="toctext">关注者</span></a></li>
+<li class="toclevel-1 tocsection-14"><a href="#Система_пресечения_нарушений"><span class="tocnumber">8</span> <span class="toctext">违规惩处系统</span></a></li>
+<li class="toclevel-1 tocsection-15"><a href="#Полезные_ссылки"><span class="tocnumber">9</span> <span class="toctext">相关链接</span></a></li>
+</ul>
+</div><h2><span id=".D0.9E.D1.81.D0.BD.D0.BE.D0.B2.D0.BD.D0.B0.D1.8F_.D0.B8.D0.BD.D1.84.D0.BE.D1.80.D0.BC.D0.B0.D1.86.D0.B8.D1.8F"></span><span class="mw-headline" id="Основная_информация">基本信息</span></h2><p><a rel="nofollow" class="external text" href="http://ru.tankiforum.com/">论坛</a>是坦克手在经历激烈的战斗和消耗体力的厮杀后放松身心的地方。军衔达到<span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9C%D0%B0%D1%81%D1%82%D0%B5%D1%80-%D1%81%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" title="Мастер-сержант"><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6b/IconsNormal_08.png/28px-IconsNormal_08.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/6b/IconsNormal_08.png/42px-IconsNormal_08.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/6b/IconsNormal_08.png/56px-IconsNormal_08.png 2x"></a></span> <a href="./%D0%9C%D0%B0%D1%81%D1%82%D0%B5%D1%80-%D1%81%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" class="mw-redirect" title="Мастер-сержант">二级军士长</a></span>及以上的玩家即可登录论坛。
+</p><p>在这里，玩家可以与其他玩家交流、讨论游戏要点并分享成功经验。论坛上有许多子板块，供大家探讨各种不同的话题。新手一定能从经验丰富的战友那里找到许多对自己有用的信息。
+</p><p>论坛上的时间会根据用户的时区进行调整。
+</p><p>论坛上管理团队助手的昵称会根据助手所属的<a href="./%D0%A7%D1%82%D0%BE_%D1%81%D0%BA%D1%80%D1%8B%D0%B2%D0%B0%D1%8E%D1%82_%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80%D1%8би" class="mw-redirect" title="Что скрывают аватары">特定群组</a>显示为不同的颜色。
+</p><figure class="mw-halign-right" typeof="mw:File"><span title="“新闻”板块"><img alt="“新闻”板块" src="https://ru.tankiwiki.com/images/ru/thumb/5/59/Forum_news.png/270px-Forum_news.png" decoding="async" loading="lazy" width="270" height="433" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/5/59/Forum_news.png 1.5x"></span><figcaption>“新闻”板块</figcaption></figure><h3><span id=".D0.91.D0.BB.D0.BE.D0.BA_.C2.AB.D0.9D.D0.BE.D0.B2.D0.BE.D1.81.D1.82.D0.B8.C2.BB"></span><span class="mw-headline" id="Блок_«Новости»">“新闻”板块</span></h3><p>显示在论坛首页。包含游戏最新<a rel="nofollow" class="external text" href="http://ru.tankiforum.com/forum/4/">新闻</a>列表。此处展示了新闻的标题、作者、主题创建日期以及回复（评论）数量。它使用户能够快速了解最新动态，并在必要时直接跳转至某项改动的主题帖。
+</p><h3><span id=".D0.91.D0.BB.D0.BE.D0.BA_.C2.AB.D0.A1.D0.B5.D0.B9.D1.87.D0.B0.D1.81_.D0.B2_.D1.81.D0.B5.D1.82.D0.B8.C2.BB"></span><span class="mw-headline" id="Блок_«Сейчас_в_сети»">“当前在线”板块</span></h3><p>显示在论坛首页。它是“<a rel="nofollow" class="external text" href="http://ru.tankiforum.com/online/">在线用户</a>”页面的一部分，不同之处在于：这里不显示未登录的用户，也不展示玩家在论坛上的最新操作。在此板块中，用户可以浏览当前正在查看各个论坛页面的其他访客的昵称。
+</p><p><span class="mw-default-size" typeof="mw:File"><span title="“当前在线”板块"><img alt="“当前在线”板块" src="https://ru.tankiwiki.com/images/ru/1/12/Forum_now_online.png" decoding="async" loading="lazy" width="1000" height="122" class="mw-file-element"></span></span>
+</p><h3><span id=".D0.91.D0.BB.D0.BE.D0.BA_.C2.AB.D0.A1.D0.B5.D0.B9.D1.87.D0.B0.D1.81_.D0.BD.D0.B0_.D1.81.D1.82.D1.80.D0.B0.D0.BD.D0.B8.D1.86.D0.B5.C2.BB"></span><span class="mw-headline" id="Блок_«Сейчас_на_странице»">“当前在页面上”板块</span></h3><p>显示在主题的所有页面上。允许访客查看除了自己之外（仅限已登录论坛的用户），目前还有谁在浏览该主题。
+</p><figure class="mw-default-size mw-halign-right" typeof="mw:File"><span title="“活跃度”板块"><img alt="“活跃度”板块" src="https://ru.tankiwiki.com/images/ru/9/9e/Forum_topic_activity.png" decoding="async" loading="lazy" width="326" height="868" class="mw-file-element"></span><figcaption>“活跃度”板块</figcaption></figure><h3><span id=".D0.91.D0.BB.D0.BE.D0.BA_.C2.AB.D0.90.D0.BA.D1.82.D0.B8.D0.B2.D0.BD.D0.BE.D1.81.D1.82.D1.8C.C2.BB"></span><span class="mw-headline" id="Блок_«Активность»">“活跃度”板块</span></h3><p>显示在所有热度足够的页面上（该板块的存在取决于主题中的回复数量）。这里展示了有关主题的一些统计数据（例如，最热门的作者）。
+</p><p>论坛还有一个通用的活跃度<a rel="nofollow" class="external text" href="http://ru.tankiforum.com/discover/">页面</a>：在这里你可以看到用户在不同主题中留下的回复和反应。
+</p><h2><span id=".D0.90.D0.B2.D1.82.D0.BE.D1.80.D0.B8.D0.B7.D0.B0.D1.86.D0.B8.D1.8F_.D0.BD.D0.B0_.D1.84.D0.BE.D1.80.D1.83.D0.BC.D0.B5"></span><span class="mw-headline" id="Авторизация_на_форуме">论坛登录</span></h2><p>论坛不需要单独注册。当用户在游戏中注册账号时，系统会自动为其在论坛中完成注册。需要注意的是，注册日期并不一致：论坛注册时间是从首次登录论坛的时刻开始计算的。
+</p><p>要在论坛登录，需要点击右上角的“登录”按钮并填写弹出的表单。此外，还有一个单独的论坛登录<a rel="nofollow" class="external text" href="http://ru.tankiforum.com/login">页面</a>。
+</p><figure class="mw-halign-left" typeof="mw:File"><span title="论坛登录"><img alt="论坛登录" src="https://ru.tankiwiki.com/images/ru/thumb/4/42/Vxod_na_forum.png/340px-Vxod_na_forum.png" decoding="async" loading="lazy" width="340" height="402" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/42/Vxod_na_forum.png/510px-Vxod_na_forum.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/42/Vxod_na_forum.png/680px-Vxod_na_forum.png 2x"></span><figcaption>论坛登录</figcaption></figure><p><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </p><div class="alert error">
   <div class="icon"></div>
-  <div class="text">警告！如果用户被论坛封禁，他们将无法在论坛的所有板块中创建话题和编写帖子。玩家必须填写<a rel="nofollow" class="external text" href="https://pages.tankionline.com/forms/unban?lang=en">此表单</a>，以对他们在所有平台（论坛/聊天/Discord）上收到的封禁/警告/禁言提出申诉。</div>
-</div><p><br>
-</p><h2><span class="mw-headline" id="Reactions">表情反应</span></h2><figure class="mw-halign-right" typeof="mw:File/Thumb"><span><img resource="/File:Forum7.png" src="https://en.tankiwiki.com/images/en/a/a0/Forum7.png" decoding="async" loading="lazy" width="263" height="66" class="mw-file-element"></span><figcaption></figcaption></figure><p>表情反应适用于所有注册用户。您可以在某条消息下方选择提供的几个表情符号之一。请注意，您不能对同一条消息留下两个不同的反应：如果用户留下了某个反应，随后又选择了另一个，他们留下的第一个反应将被更新后的反应所替换。
-</p><h2><span class="mw-headline" id="Follows">关注</span></h2><p>当导航到个人资料页面时，用户可以关注该用户。
-</p><p><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/e/e5/Forum8.png" decoding="async" loading="lazy" width="1330" height="427" class="mw-file-element"></span></span>
-</p><p>关注任何用户后，您将收到关于论坛活动的通知：他们在帖子线程中的发帖、对帖子的反应等。
-</p><h2><span class="mw-headline" id="Reporting_Posts">举报帖子</span></h2><center><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/9/9b/ReportPost.png/700px-ReportPost.png" decoding="async" loading="lazy" width="700" height="121" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/thumb/9/9b/ReportPost.png/1050px-ReportPost.png 1.5x, https://en.tankiwiki.com/images/en/9/9b/ReportPost.png 2x"></span></span></center><p><br>一段时间以来，用户在他们的帖子/话题中往往会违反规则。如果您偶然发现违规行为，可以通过点击“举报帖子”按钮（位于每个帖子的右上角）将其报告给论坛版主团队。您还可以在举报时附带一条消息，以帮助论坛版主更好地了解情况。
-</p><center><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/d/df/ReportPost2.png/700px-ReportPost2.png" decoding="async" loading="lazy" width="700" height="495" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/d/df/ReportPost2.png 1.5x"></span></span></center><h2><span class="mw-headline" id="Forum_bans">论坛封禁</span></h2><p><span class="mw-default-size" typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/b/bc/Forum9.png" decoding="async" loading="lazy" width="993" height="127" class="mw-file-element"></span></span>
-</p><p>收到论坛警告/封禁的用户在进入网站时将收到一条通知，告知他们有关违规详情和处罚。您必须确认该警告；否则，您将无法在论坛上发表任何内容。
-</p><center><span typeof="mw:File"><span><img src="https://en.tankiwiki.com/images/en/thumb/f/f5/Forum10.png/400px-Forum10.png" decoding="async" loading="lazy" width="400" height="457" class="mw-file-element" srcset="https://en.tankiwiki.com/images/en/f/f5/Forum10.png 1.5x"></span></span></center><div align="right"><small>最后编辑：Jemcool 2026/7/26</small></div></div></div></div></div></div><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <div class="text"><b>注意！</b>如果用户在登录论坛时未绑定电子邮箱，系统会提示其进行绑定。通过论坛绑定邮箱后，玩家将能够在论坛登录，但这不会将邮箱绑定到游戏中的账号上。</div>
+</div><h2><span id=".D0.9F.D0.BE.D0.BB.D1.83.D1.87.D0.B5.D0.BD.D0.B8.D0.B5_.D1.80.D0.B0.D0.B7.D1.80.D0.B5.D1.88.D0.B5.D0.BD.D0.B8.D0.B9_.D0.BD.D0.B0_.D1.84.D0.BE.D1.80.D1.83.D0.BC.D0.B5"></span><span class="mw-headline" id="Получение_разрешений_на_форуме">获取论坛权限</span></h2><p>为了获得在论坛创建主题、进行评论以及发送私信的权限，每个玩家必须在<a href="./%D0%9C%D0%B0%D1%82%D1%87%D0%BC%D0%B5%D0%B9%D0%BA%D0%B8%D0%BD%D0%B3" class="mw-redirect" title="Матчмейкинг">匹配</a>中完成几场战斗。如果已完成所需数量的战斗但权限仍未发放，则需要重新登录论坛（登出后再次登录）。否则，当尝试进行上述任一操作时，用户将会看到以下提示消息：
+</p><p><span typeof="mw:File"><span title="获取论坛权限"><img alt="获取论坛权限" src="https://ru.tankiwiki.com/images/ru/thumb/a/a9/Forum_access_chat.png/1000px-Forum_access_chat.png" decoding="async" loading="lazy" width="1000" height="101" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/a/a9/Forum_access_chat.png/1500px-Forum_access_chat.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/a/a9/Forum_access_chat.png/2000px-Forum_access_chat.png 2x"></span></span>
+</p><h2><span id=".D0.A1.D0.BE.D0.B7.D0.B4.D0.B0.D0.BD.D0.B8.D0.B5_.D1.82.D0.B5.D0.BC.D1.8B"></span><span class="mw-headline" id="Создание_темы">创建主题</span></h2><p>要创建主题，已登录的用户必须转到所需的论坛板块，并点击“<b>创建主题</b>”按钮。在打开的页面上可以使用所有必要的功能，包括在主题中附加投票的选项。
+</p><p><span class="mw-default-size" typeof="mw:File"><span title="创建主题"><img alt="创建主题" src="https://ru.tankiwiki.com/images/ru/4/43/Forum_topic_creating.png" decoding="async" loading="lazy" width="1207" height="742" class="mw-file-element"></span></span>
+</p><h2><span id=".D0.9B.D0.B8.D1.87.D0.BD.D1.8B.D0.B5_.D1.81.D0.BE.D0.BE.D0.B1.D1.89.D0.B5.D0.BD.D0.B8.D1.8F"></span><span class="mw-headline" id="Личные_сообщения">私信</span></h2><p><span class="mw-default-size" typeof="mw:File"><span title="私信"><img alt="私信" src="https://ru.tankiwiki.com/images/ru/7/7b/Forum_messenger.png" decoding="async" loading="lazy" width="1222" height="750" class="mw-file-element"></span></span>
+</p><p>论坛提供了一套私信系统，所有已登录用户通过它能够互相交流。要发送消息，必须点击论坛顶部面板上的“消息”图标。在弹出的窗口中点击“创建”按钮。此外，还有一个单独的创建消息<a rel="nofollow" class="external text" href="http://ru.tankiforum.com/messenger/compose">页面</a>。
+</p><p>发送消息后将会创建一场对话。用户的所有对话都可以在“<a rel="nofollow" class="external text" href="http://ru.tankiworum.com/messenger">消息</a>”板块中查看。
+</p><h3><span id=".D0.9C.D0.BD.D0.BE.D0.B3.D0.BE.D0.BF.D0.BE.D0.BB.D1.8C.D0.B7.D0.BE.D0.B2.D0.B0.D1.82.D0.B5.D0.BB.D1.8C.D1.81.D0.BA.D0.B8.D0.B5_.D0.B1.D0.B5.D1.81.D0.B5.D0.B4.D1.8B"></span><span class="mw-headline" id="Многопользовательские_беседы">多人对话</span></h3><p>除了给某个玩家发送私信外，用户还可以通过邀请多位其他论坛访客来创建对话。创建对话有两种方式：在创建私信时指定多个收件人（此时系统将自动与指定的各用户建立对话），或者在现有的双人对话中添加新用户。请注意，新加入的用户将能够看到该对话的全部历史记录。
+</p><h3><span id=".D0.A0.D0.B5.D0.B4.D0.B0.D0.BA.D1.82.D0.BE.D1.80_.D1.82.D0.B5.D0.BA.D1.81.D1.82.D0.B0"></span><span class="mw-headline" id="Редактор_текста">文本编辑器</span></h3><p>在主题中或通过私信发送消息时，每个用户都可以使用专用的文本编辑器。提供的工具集允许修改消息的各个部分：突出显示重要词汇、添加链接或图片、设置段落缩进和内容对齐方式，同时还内置了 Emoji 表情。请注意，图片仅支持从图床外链附加，无法直接从用户设备上传图片。
+</p><p><span class="mw-default-size" typeof="mw:File"><span title="文本编辑器"><img alt="文本编辑器" src="https://ru.tankiwiki.com/images/ru/1/14/Post_Editor.png" decoding="async" loading="lazy" width="985" height="423" class="mw-file-element"></span></span>
+</p><div class="alert error">
+  <div class="icon"></div>
+  <div class="text"><b>注意！</b>如果用户在论坛中被封禁，他将无法在所有论坛板块中创建主题和发表消息。</div>
+</div><h2><span id=".D0.A0.D0.B5.D0.B0.D0.BA.D1.86.D0.B8.D0.B8"></span><span class="mw-headline" id="Реакции">反应</span></h2><figure class="mw-halign-right" typeof="mw:File"><span title="反应"><img alt="反应" src="https://ru.tankiwiki.com/images/ru/3/3d/Forum_reactions.png" decoding="async" loading="lazy" width="210" height="68" class="mw-file-element"></span><figcaption>反应</figcaption></figure><p>所有已登录用户都可以使用反应功能：即在特定消息下方留下提供的几种 Emoji 之一。请注意，不能对同一条消息留下两种不同的反应：如果用户留下了某一个反应，随后又选择了另一个，那么他之前留下的第一个反应将会消失。
+</p><h2><span id=".D0.9F.D0.BE.D0.B4.D0.B8.D0.B8.D1.81.D1.87.D0.B8.D0.BA.D0.БИ"></span><span class="mw-headline" id="Подписчики">关注者</span></h2><p><span class="mw-default-size" typeof="mw:File"><span title="关注者"><img alt="关注者" src="https://ru.tankiwiki.com/images/ru/8/84/Forum_follows.png" decoding="async" loading="lazy" width="1335" height="398" class="mw-file-element"></span></span>
+</p><p>访问某个用户的资料页面时，访客可以选择关注该用户。请注意，你也可以选择禁止其他论坛访客关注你的个人资料。
+</p><p>在论坛上关注某位用户 N 的账号后，你将收到关于用户 N 在论坛上的公开活动通知：他在主题中的消息、对消息的反应以及对其他用户的关注。
+</p><h2><span id=".D0.A1.D0.B8.D1.81.D1.82.D0.B5.D0.BC.D0.B0_.D0.BF.D1.80.D0.B5.D1.81.D0.B5.D1.87.D0.B5.D0.BD.D0.B8.D1.8F_.D0.BD.D0.B0.D1.80.D1.83.D1.88.D0.B5.D0.BD.D0.B8.D0.B9"></span><span class="mw-headline" id="Система_пресечения_нарушений">违规惩处系统</span></h2><p>论坛秩序由<a href="./%D0%90%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%8би_%D0%B8_%D0%BC%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%8B_%D1%84%D0%BE%D1%80%D1%83%D0%BC%D0%B0" class="mw-redirect" title="Администраторы и модераторы форума">版主团队</a>负责维护。每个用户都可以协助论坛版主开展工作 — 举报违反<a rel="nofollow" class="external text" href="http://tankionline.com/ru/gamerules/">游戏规则</a>的消息。为此，只需点击违反规则的消息下方的“举报违规”按钮。
+</p><p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/0/07/GsB5hIQ.png" decoding="async" loading="lazy" width="983" height="288" class="mw-file-element"></span></span>
+</p><p>之后将会弹出一个需要填写的表单，在其中应当指出发送举报的原因。
+</p><p>收到举报后，论坛版主对其进行处理并做出裁决：如果该消息确实违反了规则，它将被删除，其作者也将受到惩罚。
+</p><p>论坛的封禁系统并非互通的：这意味着因在<a href="./%D0%A7%D1%82%D0%BE" class="mw-redirect" title="Чат">聊天</a>中违反规则而受到惩罚的玩家，仍然可以在论坛上创建主题和发表消息。反之亦然：在论坛上被封禁的玩家可以使用游戏聊天。需要指出的是，论坛封禁同样适用于私信。
+</p><p>在论坛受到封禁时，系统会向玩家显示警告提示。
+</p><p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/3c/Forum_report.png" decoding="async" loading="lazy" width="1259" height="112" class="mw-file-element"></span></span>
+</p><p>警告中包含封禁的原因、期限以及罚分数量。违规越严重，累积的罚分就会越多，封禁期限也会越长。
+</p><p>收到警告后，用户必须对此表示同意。否则，发表消息的权限将被锁定。
+</p><p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/d2/Forum_report_2.png" decoding="async" loading="lazy" width="391" height="391" class="mw-file-element"></span></span>
+</p><h2><span id=".D0.9F.D0.BE.D0.BB.D0.B5.D0.B7.D0.BD.D1.8B.D0.B5_.D1.81.D1.81.D1.8B.D0.BB.D0.BA.D0.B8"></span><span class="mw-headline" id="Полезные_ссылки">相关链接</span></h2><ul><li><a href="./%D0%A7%D1%82%D0%BE_%D1%82%D0%B0%D0%BA%D0%BE%D0%B5_%D0%9F%D0%9C_%D0%B8_%D0%BA%D0%B0%D0%BA_%D1%82%D1%83%D0%B4%D0%B0_%D0%BD%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8ь" class="mw-redirect" title="Что такое ПМ и как туда написать">什么是私信以及如何发送私信</a></li>
+<li><a href="./%D0%9F%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D1%8ь_%D0%BD%D0%B0_%D1%84%D0%BE%D1%80%D1%83%D0%BC%D0%B5" class="mw-redirect" title="Профиль на форуме">论坛个人资料</a></li>
+<li><a href="./%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0_%D0%BC%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%B8" class="mw-redirect" title="Система модерации">如何在论坛举报违规者</a></li>
+<li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/4016/">论坛规则与封禁系统</a></li>
+<li><a href="./%D0%A7%D1%82%D0%BE_%D1%81%D0%BA%D1%80%D1%8B%D0%B2%D0%B0%D1%8E%D1%82_%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80%D1%8би" class="mw-redirect" title="Что скрывают аватары">论坛头像隐藏了什么？</a></li></ul><div align="right"><small>最后编辑：15/06/2025 Vestas <span class="ai-translate-note" style="color:#8FB8D8;">（由 AI 自动翻译）</span></small></div></div></div></div></div></div><footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
+<p style="margin:0;"><strong style="color:#BFD5FF;">本站为玩家社区自建的非官方 Wiki 镜像。</strong></p>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <script type="text/javascript">
     (function (m, e, t, r, i, k, a) {
@@ -111,14 +348,15 @@
     <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
-    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
-    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
-    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
-    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
-    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
-    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
-    <script src="https://en.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
-    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":346,"wgPageParseReport":{"limitreport":{"cputime":"0.043","walltime":"0.056","ppvisitednodes":{"value":206,"limit":1000000},"postexpandincludesize":{"value":821,"limit":2097152},"templateargumentsize":{"value":486,"limit":2097152},"expansiondepth":{"value":9,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%   13.419      1 -total"," 69.59%    9.338      1 Template:See_also"," 48.35%    6.488      1 Template:Other_meaning"," 24.31%    3.262     14 Template:See_also/link"," 14.32%    1.922      1 Template:Alert"," 13.87%    1.861      1 Template:LastEdit"]},"cachereport":{"timestamp":"20260726060343","ttl":86400,"transientcontent":false}}});});</script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":741,"wgPageParseReport":{"limitreport":{"cputime":"0.190","walltime":"0.714","ppvisitednodes":{"value":130,"limit":1000000},"postexpandincludesize":{"value":1163,"limit":4194304},"templateargumentsize":{"value":647,"limit":4194304},"expansiondepth":{"value":4,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%   65.134      1 -total"," 65.12%   42.417      1 Шаблон:Rank"," 17.87%   11.638      1 Шаблон:LastEdit"," 14.29%    9.308      2 Шаблон:Alert"]},"cachereport":{"timestamp":"20260824090357","ttl":86400,"transientcontent":false}}});});</script>
     <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
-    <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script></body></html>
+    <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });</script></body></html>

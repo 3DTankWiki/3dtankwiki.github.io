@@ -1,0 +1,1004 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>(function(){
+  var BASE = 'https://ru.tankiwiki.com';
+  function fix(v){ return (typeof v === 'string' && v.charAt(0) === '/' && v.indexOf('//') !== 0) ? BASE + v : v; }
+  ['HTMLScriptElement','HTMLLinkElement'].forEach(function(tag){
+    var proto = window[tag] && window[tag].prototype;
+    var prop  = tag === 'HTMLScriptElement' ? 'src' : 'href';
+    if (!proto) return;
+    var d = Object.getOwnPropertyDescriptor(proto, prop);
+    if (!d || !d.set) return;
+    Object.defineProperty(proto, prop, {
+      configurable: true,
+      get: function(){ return d.get.call(this); },
+      set: function(v){ d.set.call(this, fix(v)); }
+    });
+  });
+  var of = window.fetch;
+  if (of) window.fetch = function(u, o){ return of.call(this, (typeof u === 'string' ? fix(u) : u), o); };
+  var ox = window.XMLHttpRequest && XMLHttpRequest.prototype.open;
+  if (ox) XMLHttpRequest.prototype.open = function(m, u){
+    var a = Array.prototype.slice.call(arguments); a[1] = fix(u); return ox.apply(this, a);
+  };
+})();</script><title>终极技能 — 3D 坦克 Wiki</title><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+    <meta charset="UTF-8">
+    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/xg_pWYS8-HRESiV6Rdg4aY_R/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-qWH0xCejb2gc1yqo8ob4TQrvIcQ9XjhOfGKbhFr/+LvFrJdTE3bA+FQP/FLAiQhz"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgRequestId":"5bb1720e38bccbdd779394fa","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Overdrayvy","wgTitle":"Overdrayvy","wgCurRevisionId":302964,"wgRevisionId":302964,"wgArticleId":9736,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"ru","wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgRelevantPageName":"Overdrayvy","wgRelevantArticleId":9736,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],
+"wgVisualEditor":{"pageLanguageCode":"ru","pageLanguageDir":"ltr","pageVariantFallbacks":"ru"},"wgFlaggedRevsParams":{"tags":{"accuracy":{"levels":3}}},"wgStableRevisionId":302964,"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.flaggedRevs.icons":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.flaggedRevs.basic":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","mediawiki.toc","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.flaggedRevs.advanced","skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=ext.flaggedRevs.basic%2Cicons%7Cext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/1/1e/Overdrive_banner_new.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="678">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/1/1e/Overdrive_banner_new.png">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="452">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/thumb/1/1e/Overdrive_banner_new.png/640px-Overdrive_banner_new.png">
+    <meta property="og:image:width" content="640">
+    <meta property="og:image:height" content="362">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://ru.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://ru.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (ru)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://ru.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki&nbsp;— Atom-лента" href="https://ru.tankiwiki.com/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom"><style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
+
+/* 1. 只去掉源站皮肤的背景大图，保留底色；不要用 background 简写，否则会连带清掉皮肤别的背景设定 */
+html, body {
+    background-image: none !important;
+    background-color: #001926 !important;
+}
+/* 2. 让底色铺满视口，内容很短时下方不再露白 */
+html { min-height: 100%; }
+body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif; }
+
+/* 3. 版心容器 */
+#mw-main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #001926;
+}
+
+/* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
+      【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
+
+#mw-main-container .main-content,
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content,
+#mw-main-container #mw-content-text {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: auto !important;
+    flex-basis: auto !important;   /* 皮肤写了 .main-content{flex:0 0 75%} */
+    float: none !important;
+    margin-top: 0 !important;       /* 核心：清空原站皮肤的负 margin-top */
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    position: relative !important;
+    z-index: 1 !important;          /* 保证正文层级低于按钮 */
+}
+
+/* 5. 皮肤脚本 skins.tankiblue.js 会往 #mw-content-text 末尾插一条「发现错别字？Ctrl+Enter」
+      的俄语提示条和一个「报告错误」标签页。它按网址里有没有 'en'/'de' 来判断语言，
+      我们的域名两者都不含 → 一律显示俄语；且报错会提交到俄站编辑组，对镜像站没意义，直接隐藏。 */
+#custom-report-footer,
+.vectorTabs.customReport,
+.customReport { display: none !important; }
+
+/* 6. 返回按钮包裹容器：独占一行并强制最高层级 */
+.home-btn-wrapper {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px 0 20px 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    z-index: 9999 !important;       /* 核心：永远置于最顶层 */
+    clear: both !important;
+    overflow: visible !important;
+}
+
+/* 7. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐 */
+.home-back-btn {
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    width: auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    isolation: isolate !important;
+    
+    min-width: 142px !important;
+    padding: 0 24px !important;
+    height: 78px !important;
+    margin: 0 !important;
+    border: 1px solid rgba(255,255,255,.25) !important;
+    outline: 2px solid transparent !important;
+    border-radius: 6.5px !important;
+    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%) !important;
+    
+    position: relative !important;
+    z-index: 10000 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: all .15s ease !important;
+    overflow: visible !important;
+}
+.home-back-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(100% 100% at 0% 0%, rgba(191,213,255,.25) 0%, rgba(191,213,255,.15) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all .15s ease;
+    border-radius: inherit;
+    pointer-events: none;
+}
+.home-back-btn svg {
+    width: 24.375px;
+    height: 24px;
+    object-fit: contain;
+    transform: rotate(180deg);
+    transition: all .15s ease;
+    flex-shrink: 0;
+}
+.home-back-btn svg path { fill: #BFD5FF; transition: all .15s ease; }
+
+.home-back-btn:hover,
+.home-back-btn:active,
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF !important; border-color: #BFD5FF !important; }
+.home-back-btn:hover::before,
+.home-back-btn:active::before,
+.home-back-btn:focus-visible::before { opacity: 1; }
+.home-back-btn:hover svg,
+.home-back-btn:active svg,
+.home-back-btn:focus-visible svg { transform: rotate(180deg) translateX(10%); }
+.home-back-btn:hover svg path,
+.home-back-btn:active svg path,
+.home-back-btn:focus-visible svg path { fill: #fff; }
+
+.home-back-btn span {
+    color: #BFD5FF;
+    font-size: 16px;
+    margin-left: 10px;
+    font-weight: bold;
+    transition: all .15s ease;
+    white-space: nowrap;
+}
+.home-back-btn:hover span,
+.home-back-btn:active span,
+.home-back-btn:focus-visible span {
+    color: #fff;
+    transform: translateX(-4px);
+}
+
+/* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
+@media (hover: none) {
+    .home-back-btn { border-color: rgba(191,213,255,.55) !important; }
+    .home-back-btn svg path { fill: #CFE0FF; }
+}
+
+/* 移动端/窄屏自适应尺寸 */
+@media (max-width: 480px) {
+    .home-back-btn {
+        min-width: 106px !important;
+        padding: 0 16px !important;
+        height: 58px !important;
+        margin-left: 10px !important;
+    }
+    .home-back-btn svg { width: 20px !important; height: 19.7px !important; }
+    .home-back-btn span { font-size: 14px !important; margin-left: 8px !important; }
+}
+
+/* 8. 移动端容器 Padding */
+@media (max-width: 768px) {
+    #mw-main-container { padding: 10px !important; margin: 8px auto !important; }
+    .home-back-btn { margin-left: 10px !important; }
+    #mw-content-text .navigationContainerContent > div,
+    #mw-content-text [style*="width: 55%"],
+    #mw-content-text [style*="width:55%"],
+    #mw-content-text [style*="width: 45%"],
+    #mw-content-text [style*="width:45%"] { width: 100% !important; }
+}
+@media (max-width: 480px) {
+    #mw-main-container { padding: 6px !important; margin: 4px auto !important; }
+}
+
+/* 9. 防止宽表格 / 大图撑破版心 */
+#mw-content-text img { max-width: 100%; height: auto; }
+#mw-content-text table { max-width: 100%; }
+
+/* 10. 目录（TOC）修复，全局生效：
+    a) 皮肤把目录折叠按钮的文字放在 CSS 伪元素里渲染，而不是 HTML 文本：
+         .toctogglecheckbox:checked  + .toctitle .toctogglelabel::after → content:'показать'
+         .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after → content:'скрыть'
+       AI 翻译只处理 HTML 文本，摸不到 CSS content，所以这个按钮永远是俄语，必须在这里覆盖成中文。
+    b) 皮肤的响应式 CSS 里写了 @media screen and (max-width:768px){ #toc{display:none} }，
+       导致手机端整个目录被隐藏。这里恢复显示，并配合下方 TOC_MOBILE_COLLAPSE_SCRIPT：
+       移动端默认折叠，只占一行「目录 [展开]」，避免长目录把正文挤到屏幕外。 */
+#toc .toctogglecheckbox:checked + .toctitle .toctogglelabel::after { content: '展开' !important; }
+#toc .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after { content: '收起' !important; }
+@media screen and (max-width: 768px) {
+    #toc { display: table !important; }
+}
+
+/* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
+   只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+*/
+</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Overdrayvy rootpage-Overdrayvy skin-tankiblue action-view"><div id="skin-chrome-stub" aria-hidden="true" style="display:none !important;">
+<a class="problem" href="#"></a>
+<div class="close-wrapper"></div>
+<div class="support-block-popup"><div class="close-modal-support"></div></div>
+<div class="youtube-popup"><iframe title="stub"></iframe></div>
+<div class="video-button"></div>
+<div class="header-search"></div>
+<div class="search-dialog"></div>
+<div class="search-popup"><div class="close-wrapper"></div><div class="close-modal-search"></div></div>
+<div class="news-popup"></div>
+<div class="sales-block-header"></div>
+<div class="navbar-main"></div>
+<div class="main-navbar"></div>
+</div><div id="mw-main-container"><div class="home-btn-wrapper"><a class="home-back-btn" href="./Enciklopediya_igry_%C2%ABTanki_Onlayn%C2%BB" title="返回主页" aria-label="返回主页"><svg viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 0H13.5L25.5 12L24 13.5L13.5 24H18L30 12L18 0ZM24 13.5L21 10.5H0L3 13.5H24Z" fill="#BFD5FF"/></svg><span>返回主页</span></a></div><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">终极技能</h1><p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/1/1e/Overdrive_banner_new.png" decoding="async" loading="lazy" width="800" height="452" class="mw-file-element"></span></span>
+</p><p><b>终极技能</b>是<a href="./%D0%9A%D0%BE%D1%80%D0%BF%D1%83%D1%81%D0%B0" class="mw-redirect" title="Корпуса">底盘</a>的终极能力，允许在特定时刻在战场上获得巨大的优势。终极技能的使用不受<a href="./%D0%97%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="Звания">等级</a>限制。
+</p><p>每个底盘都有其独特的终极技能。按下 <span class="hotkey">Shift</span> 键可激活终极技能。终极技能图标、充能进度和剩余持续时间显示在<a href="./%D0%91%D0%BE%D0%B5%D0%B2%D0%BE%D0%B9_%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81" class="mw-redirect" title="Боевой интерфейс">屏幕</a>下方。
+</p><div class="toclimit-3"><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"><div class="toctitle" lang="ru" dir="ltr"><h2 id="mw-toc-heading">目录</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Овердрайвы_корпусов"><span class="tocnumber">1</span> <span class="toctext">底盘终极技能</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Овердрайв_Васпа_—_N2-бомба"><span class="tocnumber">1.1</span> <span class="toctext">黄蜂轻甲终极技能 — N2-бомба</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Характеристики"><span class="tocnumber">1.1.1</span> <span class="toctext">特性</span></a></li>
+<li class="toclevel-3"><a href="#Взаимодействие_с_другими_овердрайвами"><span class="tocnumber">1.1.2</span> <span class="toctext">与其他终极技能的交互</span></a></li>
+<li class="toclevel-3"><a href="#Дополнительная_информация"><span class="tocnumber">1.1.3</span> <span class="toctext">附加信息</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-6"><a href="#Овердрайв_Хоппера_—_Подрывной_прыжок"><span class="tocnumber">1.2</span> <span class="toctext">霍珀终极技能 — Подрывной прыжок</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Характеристики_2"><span class="tocnumber">1.2.1</span> <span class="toctext">特性</span></a></li>
+<li class="toclevel-3"><a href="#Взаимодействие_с_другими_овердрайвами_2"><span class="tocnumber">1.2.2</span> <span class="toctext">与其他终极技能的交互</span></a></li>
+<li class="toclevel-3"><a href="#Дополнительная_информация_2"><span class="tocnumber">1.2.3</span> <span class="toctext">附加信息</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-10"><a href="#Овердрайв_Хорнета_—_Скаут-радар"><span class="tocnumber">1.3</span> <span class="toctext">蜂王终极技能 — Скаут-радар</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Характеристики_3"><span class="tocnumber">1.3.1</span> <span class="toctext">特性</span></a></li>
+<li class="toclevel-3"><a href="#Взаимодействие_с_другими_овердрайвами_3"><span class="tocnumber">1.3.2</span> <span class="toctext">与其他终极技能的交互</span></a></li>
+<li class="toclevel-3"><a href="#Дополнительная_информация_3"><span class="tocnumber">1.3.3</span> <span class="toctext">附加信息</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-14"><a href="#Овердрайв_Викинга_—_Берсерк-реактор"><span class="tocnumber">1.4</span> <span class="toctext">维京终极技能 — Берсерк-реактор</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Характеристики_4"><span class="tocnumber">1.4.1</span> <span class="toctext">特性</span></a></li>
+<li class="toclevel-3"><a href="#Взаимодействие_с_другими_овердрайвами_4"><span class="tocnumber">1.4.2</span> <span class="toctext">与其他终极技能的交互</span></a></li>
+<li class="toclevel-3"><a href="#Дополнительная_информация_4"><span class="tocnumber">1.4.3</span> <span class="toctext">附加信息</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-18"><a href="#Овердрайв_Крусейдера_—_Криобластер"><span class="tocnumber">1.5</span> <span class="toctext">十字军终极技能 — Криобластер</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Характеристики_5"><span class="tocnumber">1.5.1</span> <span class="toctext">特性</span></a></li>
+<li class="toclevel-3"><a href="#Взаимодействие_с_другими_овердрайвами_5"><span class="tocnumber">1.5.2</span> <span class="toctext">与其他终极技能的交互</span></a></li>
+<li class="toclevel-3"><a href="#Дополнительная_информация_5"><span class="tocnumber">1.5.3</span> <span class="toctext">附加信息</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-22"><a href="#Овердрайв_Хантера_—_Электромагнитный_импульс"><span class="tocnumber">1.6</span> <span class="toctext">猎人中甲终极技能 — Электромагнитный импульс</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Характеристики_6"><span class="tocnumber">1.6.1</span> <span class="toctext">特性</span></a></li>
+<li class="toclevel-3"><a href="#Взаимодействие_с_другими_овердрайвами_6"><span class="tocnumber">1.6.2</span> <span class="toctext">与其他终极技能的交互</span></a></li>
+<li class="toclevel-3"><a href="#Дополнительная_информация_6"><span class="tocnumber">1.6.3</span> <span class="toctext">附加信息</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-26"><a href="#Овердрайв_Паладина_—_Поляризатор"><span class="tocnumber">1.7</span> <span class="toctext">圣骑士终极技能 — Поляризатор</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Характеристики_7"><span class="tocnumber">1.7.1</span> <span class="toctext">特性</span></a></li>
+<li class="toclevel-3"><a href="#Дополнительная_информация_7"><span class="tocnumber">1.7.2</span> <span class="toctext">附加信息</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-29"><a href="#Овердрайв_Диктатора_—_Перегрузка"><span class="tocnumber">1.8</span> <span class="toctext">主宰者终极技能 — Перегрузка</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Характеристики_8"><span class="tocnumber">1.8.1</span> <span class="toctext">特性</span></a></li>
+<li class="toclevel-3"><a href="#Дополнительная_информация_8"><span class="tocnumber">1.8.2</span> <span class="toctext">附加信息</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-32"><a href="#Овердрайв_Титана_—_Купол"><span class="tocnumber">1.9</span> <span class="toctext">泰坦终极技能 — Купол</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Характеристики_9"><span class="tocnumber">1.9.1</span> <span class="toctext">特性</span></a></li>
+<li class="toclevel-3"><a href="#Взаимодействие_с_другими_овердрайвами_7"><span class="tocnumber">1.9.2</span> <span class="toctext">与其他终极技能的交互</span></a></li>
+<li class="toclevel-3"><a href="#Дополнительная_информация_9"><span class="tocnumber">1.9.3</span> <span class="toctext">附加信息</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-36"><a href="#Овердрайв_Ареса_—_BFG-пушка"><span class="tocnumber">1.10</span> <span class="toctext">阿瑞斯终极技能 — BFG-пушка</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Характеристики_10"><span class="tocnumber">1.10.1</span> <span class="toctext">特性</span></a></li>
+<li class="toclevel-3"><a href="#Взаимодействие_с_другими_овердрайвами_8"><span class="tocnumber">1.10.2</span> <span class="toctext">与其他终极技能的交互</span></a></li>
+<li class="toclevel-3"><a href="#Дополнительная_информация_10"><span class="tocnumber">1.10.3</span> <span class="toctext">附加信息</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-40"><a href="#Овердрайв_Мамонта_—_AT-поле"><span class="tocnumber">1.11</span> <span class="toctext">猛犸象终极技能 — AT-поле</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Характеристики_11"><span class="tocnumber">1.11.1</span> <span class="toctext">特性</span></a></li>
+<li class="toclevel-3"><a href="#Взаимодействие_с_другими_овердрайвами_9"><span class="tocnumber">1.11.2</span> <span class="toctext">与其他终极技能的交互</span></a></li>
+<li class="toclevel-3"><a href="#Дополнительная_информация_11"><span class="tocnumber">1.11.3</span> <span class="toctext">附加信息</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-44"><a href="#Овердрайв_Джаггернаута_—_Репульсор"><span class="tocnumber">1.12</span> <span class="toctext">剑圣终极技能 — Репульсор</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Характеристики_12"><span class="tocnumber">1.12.1</span> <span class="toctext">特性</span></a></li>
+<li class="toclevel-3"><a href="#Дополнительная_информация_12"><span class="tocnumber">1.12.2</span> <span class="toctext">附加信息</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-47"><a href="#Механика_работы"><span class="tocnumber">2</span> <span class="toctext">运作机制</span></a>
+<ul>
+<li class="toclevel-2 tocsection-48"><a href="#Зарядка_по_очкам_репутации"><span class="tocnumber">2.1</span> <span class="toctext">按声望点数充能</span></a></li>
+<li class="toclevel-2 tocsection-49"><a href="#Зарядка_со_временем"><span class="tocnumber">2.2</span> <span class="toctext">随时间充能</span></a></li>
+<li class="toclevel-2 tocsection-50"><a href="#Сводная_таблица_зарядки_овердрайвов"><span class="tocnumber">2.3</span> <span class="toctext">终极技能充能汇总表</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-51"><a href="#Интересные_факты"><span class="tocnumber">3</span> <span class="toctext">趣闻</span></a></li>
+</ul>
+</div>
+</div><h2><span id=".D0.9E.D0.B2.D0.B5.D1.80.D0.B4.D1.80.D0.B0.D0.B9.D0.B2.D1.8B_.D0.BA.D0.BE.D1.80.D0.BF.D1.83.D1.81.D0.BE.D0.B2"></span><span class="mw-headline" id="Овердрайвы_корпусов">底盘终极技能</span></h2><div class="dablink"><em>参见：</em> <a href="./%D0%A1%D1%82%D0%B0%D1%82%D1%83%D1%8с-%D1%8эффекты" class="mw-redirect" title="Статус-эффекты">状态效果</a>
+</div><p>当玩家在地图上的终极技能准备就绪时，坦克上方会出现一个特殊图标<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/72/Icon_OD_ready.png/20px-Icon_OD_ready.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/72/Icon_OD_ready.png/30px-Icon_OD_ready.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/72/Icon_OD_ready.png/40px-Icon_OD_ready.png 2x"></span></span>。通过按下 <span class="hotkey">Shift</span> 键激活该能力会伴随视觉和音效，在此之后，该能力将再次开始逐渐充能。
+</p><h3><span id=".D0.9E.D0.B2.D0.B5.D1.80.D0.B4.D1.80.D0.B0.D0.B9.D0.B2_.D0.92.D0.B0.D1.81.D1.80.D0.BF_—_N2-.D0.B1.D0.BE.D0.BC.D0.B1.D0.B0"></span><span class="mw-headline" id="Овердрайв_Васпа_—_N2-бомба">黄蜂轻甲的终极技能 — N2-бомба</span></h3><table style="width:100%">
+<tbody><tr>
+<td width="10%"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/f/f4/Icon_overdrive_n2_bomb.png/78px-Icon_overdrive_n2_bomb.png" decoding="async" loading="lazy" width="78" height="78" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/f/f4/Icon_overdrive_n2_bomb.png/117px-Icon_overdrive_n2_bomb.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/f/f4/Icon_overdrive_n2_bomb.png/156px-Icon_overdrive_n2_bomb.png 2x"></span></span>
+</td>
+<td style="padding-left: 20px"><figure class="mw-halign-right" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/7d/Wasp_Bomb.png/60px-Wasp_Bomb.png" decoding="async" loading="lazy" width="60" height="85" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/7d/Wasp_Bomb.png/90px-Wasp_Bomb.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/7d/Wasp_Bomb.png/120px-Wasp_Bomb.png 2x"></span><figcaption></figcaption></figure>使用终极技能时，会在坦克的当前位置放置一枚强力炸弹，炸弹会在一段时间后爆炸，并对附近所有敌方坦克造成巨额伤害。对于在炸弹爆炸后幸存但受到冲击波影响的坦克，会施加状态效果<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/e7/Icon_Heat1.png/18px-Icon_Heat1.png" decoding="async" loading="lazy" width="18" height="18" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e7/Icon_Heat1.png/27px-Icon_Heat1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e7/Icon_Heat1.png/36px-Icon_Heat1.png 2x"></span></span> “<a href="./%D0%93%D0%BE%D1%80%D0%B5%D0%BD%D0%B8%D0%B5" class="mw-redirect" title="Горение">着火</a>”、<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/bb/Icon_EMP1.png/18px-Icon_EMP1.png" decoding="async" loading="lazy" width="18" height="18" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/bb/Icon_EMP1.png/27px-Icon_EMP1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/bb/Icon_EMP1.png/36px-Icon_EMP1.png 2x"></span></span> “<a href="./%D0%AD%D0%9C%D0%98" class="mw-redirect" title="ЭМИ">电磁脉冲</a>”和<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/64/Icon_jammer.png/18px-Icon_jammer.png" decoding="async" loading="lazy" width="18" height="18" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/64/Icon_jammer.png/27px-Icon_jammer.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/64/Icon_jammer.png/36px-Icon_jammer.png 2x"></span></span> “<a href="./%D0%9F%D0%BE%D0%B4%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5" class="mw-redirect" title="Подавление">干扰器</a>”。
+</td></tr>
+<tr>
+<td colspan="2" style="padding-top: 18px"><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample3">详情</div><div class="collapse" id="collapseExample3"><div class="">
+<h4><span id=".D0.A5.D0.B0.D1.80.D0.B0.D0.BA.D1.82.D0.B5.D1.80.D0.B8.D1.81.D1.82.D0.B8.D0.BA.D0.B8"></span><span class="mw-headline" id="Характеристики">特性</span></h4>
+<ul><li>引爆前延迟：3 秒</li>
+<li>爆炸伤害：中心区域 4000 hp，随距离衰减</li>
+<li>冲击力：100 单位</li>
+<li>地雷销毁半径：15 米</li>
+<li>最大爆炸伤害半径：20 米</li>
+<li>中等爆炸伤害半径：25 米</li>
+<li>最小爆炸伤害半径：60 米</li>
+<li>中等爆炸伤害百分比：25%</li>
+<li>最小爆炸伤害百分比：25%</li>
+<li>“电磁脉冲”效果施加半径：60 米</li>
+<li>“着火”效果施加半径：60 米</li>
+<li>“干扰器”效果施加半径：60 米</li>
+<li>“电磁脉冲”效果持续时间：1 秒</li>
+<li>“干扰器”效果持续时间：9 秒</li>
+<li>“着火”效果持续时间：10 秒</li></ul>
+<h4><span id=".D0.92.D0.B7.D0.B0.D0.BC.D0.BE.D0.B4.D0.B5.D0.B9.D1.81.D1.82.D0.B2.D0.B8.D0.B5_.D1.81_.D0.B4.D1.80.D1.83.D0.B3.D0.B8.D0.BC.D0.B8_.D0.BE.D0.B2.D0.B5.D1.80.D0.B4.D1.80.D0.B0.D0.B9.D0.B2.D0.B0.D0.BC.D0.B8"></span><span class="mw-headline" id="Взаимодействие_с_другими_овердрайвами">与其他终极技能的交互</span></h4>
+<ul><li>如果特斯拉的能量球飞入炸弹爆炸区域，则会使其失效。</li>
+<li>使敌方黄蜂轻甲已放置但尚未引爆的炸弹失效。</li>
+<li>如果阿瑞斯的能量球飞入炸弹爆炸区域，则会使其失效。</li>
+<li>使泰坦的穹顶发生器失效。</li>
+<li>如果十字军自己在蓄力时受到终极技能影响，则会解除十字军的终极技能。</li>
+<li>当受到敌方猎人中甲的终极技能影响时，已放置的炸弹会失效。</li>
+<li>当激活猛犸象的终极技能从黄蜂轻甲的炸弹上碾压而过时，炸弹会失效。</li>
+<li>泰坦的终极技能效果不会减免来自炸弹的伤害。</li></ul>
+<h4><span id=".D0.94.D0.BE.D0.BF.D0.BE.D0.BB.D0.BD.D0.B8.D1.82.D0.B5.D0.BB.D1.8C.D0.BD.D0.B0.D1.8F_.D0.B8.D0.BD.D1.84.D0.BE.D1.80.D0.BC.D0.B0.D1.86.D0.B8.D1.8F"></span><span class="mw-headline" id="Дополнительная_информация">附加信息</span></h4>
+<ul><li>炸弹是一个非实体对象，不会阻碍坦克移动且无法被摧毁。</li><li>炸弹对放置它的坦克及其队友没有任何影响。</li><li>炸弹会摧毁爆炸点直线视线内的敌方地雷。</li><li>放置炸弹的坦克被摧毁或离开战斗时，炸弹不会失效。</li><li>泰坦终极技能穹顶的安装会在炸弹处于其作用范围时使其失效。</li><li>放置炸弹的坦克的伤害提升加成（道具、无人机）不会影响炸弹本身的伤害。</li><li>炸弹的涂装颜色与放置它的玩家的坦克相同。</li></ul>
+</div></div></td></tr></tbody></table><h3><span id=".D0.9E.D0.B2.D0.B5.D1.80.D0.B4.D1.80.D0.B0.D0.B9.D0.B2_.D0.A5.D0.BE.D0.BF.D0.BF.D0.B5.D1.80.D0.B0_.E2.80.94_.D0.9F.D0.BE.D0.B4.D1.80.D1.8B.D0.B2.D0.BD.D0.BE.D0.B9_.D0.BF.D1.80.D1.8B.D0.B6.D0.BE.D0.BA"></span><span class="mw-headline" id="Овердрайв_Хоппера_—_Подрывной_прыжок">霍珀的终极技能 — Подрывной прыжок</span></h3><table style="width:100%">
+<tbody><tr>
+<td width="10%"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/0/01/Icon_overdrive_jump.png/78px-Icon_overdrive_jump.png" decoding="async" loading="lazy" width="78" height="78" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/0/01/Icon_overdrive_jump.png/117px-Icon_overdrive_jump.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/0/01/Icon_overdrive_jump.png/156px-Icon_overdrive_jump.png 2x"></span></span>
+</td>
+<td style="padding-left: 20px">使用终极技能时，会瞬间将坦克抛向相当高的高度。在起跳瞬间，会对一定半径内的敌人造成<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/ec/Icon_Stun1.png/18px-Icon_Stun1.png" decoding="async" loading="lazy" width="18" height="18" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/ec/Icon_Stun1.png/27px-Icon_Stun1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/ec/Icon_Stun1.png/36px-Icon_Stun1.png 2x"></span></span> <a href="./%D0%9e%D0%B3%D0%BB%D1%83%D1%88%D0%B5%D0%BD%D0%B8%D0%B5" class="mw-redirect" title="Оглушение">眩晕</a>并造成伤害。
+</td></tr>
+<tr>
+<td colspan="2" style="padding-top: 18px"><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample5">详情</div><div class="collapse" id="collapseExample5"><div class="">
+<h4><span id=".D0.A5.D0.B0.D1.80.D0.B0.D0.BA.D1.82.D0.B5.D1.80.D0.B8.D1.81.D1.82.D0.B8.D0.BA.D0.B8_2"></span><span class="mw-headline" id="Характеристики_2">特性</span></h4>
+<ul><li>激活前延迟：2 秒</li>
+<li>伤害半径：20 米</li>
+<li>地雷销毁半径：15 米</li>
+<li>跳跃速度：1300</li>
+<li>“眩晕”效果持续时间：3 秒</li>
+<div>向“眩晕”效果半径内的所有敌人造成 1500 至 2000 点不等的即时混乱伤害。</div></ul>
+<h4><span id=".D0.92.D0.B7.D0.B0.D0.BC.D0.BE.D0.B4.D0.B5.D0.B9.D1.81.D1.82.D0.B2.D0.B8.D0.B5_.D1.81_.D0.B4.D1.80.D1.83.D0.B3.D0.B8.D0.BC.D0.B8_.D0.BE.D0.B2.D0.B5.D1.80.D0.B4.D1.80.D0.B0.D0.B9.D0.B2.D0.B0.D0.BC.D0.B8_2"></span><span class="mw-headline" id="Взаимодействие_с_другими_овердрайвами_2">与其他终极技能的交互</span></h4>
+<ul><li>当进入伤害范围时：
+<ul><li>敌方黄蜂轻甲的终极技能设置的炸弹不会失效；</li><li>敌方泰坦的终极技能设置的发生器不会失效；</li><li>敌方维京的终极技能效果会被暂时打断；</li><li>敌方猎人中甲、十字军或阿瑞斯的终极技能准备工作会被完全打断；</li><li>敌方蜂王激活的侦察雷达将继续工作。</li></ul></li></ul>
+<h4><span id=".D0.94.D0.BE.D0.BF.D0.BE.D0.BB.D0.BD.D0.B8.D1.82.D0.B5.D0.BB.D1.8C.D0.BD.D0.B0.D1.8F_.D0.B8.D0.BD.D1.84.D0.BE.D1.80.D0.BC.D0.B0.D1.86.D0.B8.D1.8F_2"></span><span class="mw-headline" id="Дополнительная_информация_2">附加信息</span></h4>
+<ul><li>开创了新的游戏战术。</li>
+<li>能够跳上建筑物和其他以前无法到达的地方。</li>
+<li>在激活瞬间，会摧毁起跳点直线视线内的敌方地雷。</li><li>在上一项能力激活 10 秒后，通过在战斗中的有用行为获得声望点数将开始为新的终极技能充能。</li><li>如果在激活终极技能后立即被摧毁，则技能充能将无法部分或全部恢复。</li></ul>
+</div></div></td></tr></tbody></table><h3><span id=".D0.9E.D0.B2.D0.B5.D1.80.D0.B4.D1.80.D0.B0.D0.B9.D0.B2_.D0.A5.D0.BE.D1.80.D0.BD.D0.B5.D1.82.D0.B0_.E2.80.94_.D0.A1.D0.BA.D0.B0.D1.83.D1.82-.D1.80.D0.B0.D0.B4.D0.B0.D1.80"></span><span class="mw-headline" id="Овердрайв_Хорнета_—_Скаут-радар">蜂王的终极技能 — Скаут-радар</span></h3><table style="width:100%">
+<tbody><tr>
+<td width="10%"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/7d/Icon_overdrive_scout_radar.png/78px-Icon_overdrive_scout_radar.png" decoding="async" loading="lazy" width="78" height="78" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/7d/Icon_overdrive_scout_radar.png/117px-Icon_overdrive_scout_radar.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/7d/Icon_overdrive_scout_radar.png/156px-Icon_overdrive_scout_radar.png 2x"></span></span>
+</td>
+<td style="padding-left: 20px">使用终极技能的坦克及其所有队友在一段时间内获得查看敌方坦克位置和生命值指示器的能力。此外，在能力激活期间，位于特定半径内的所有敌方坦克都会被施加状态效果<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/b8/Icon_breaking_through1.png/18px-Icon_breaking_through1.png" decoding="async" loading="lazy" width="18" height="18" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/b8/Icon_breaking_through1.png/27px-Icon_breaking_through1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/b8/Icon_breaking_through1.png/36px-Icon_breaking_through1.png 2x"></span></span> “<a href="./%D0%9F%D1%80%D0%BE%D0%B1%D0%B8%D1%82%D0%B8%D0%B5" class="mw-redirect" title="Пробитие">穿甲</a>”、<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/64/Icon_jammer.png/18px-Icon_jammer.png" decoding="async" loading="lazy" width="18" height="18" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/64/Icon_jammer.png/27px-Icon_jammer.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/64/Icon_jammer.png/36px-Icon_jammer.png 2x"></span></span> “<a href="./%D0%9F%D0%BE%D0%B4%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5" class="mw-redirect" title="Подавление">干扰器</a>”。同时，在激活终极技能时，自己的坦克会被施加状态效果<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/8/88/Icon_Supercharger.png/18px-Icon_Supercharger.png" decoding="async" loading="lazy" width="18" height="18" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/8/88/Icon_Supercharger.png/27px-Icon_Supercharger.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/8/88/Icon_Supercharger.png/36px-Icon_Supercharger.png 2x"></span></span> “<a href="./%D0%A1%D1%83%D0%BF%D0%B5%D1%80%D0%B7%D0%B0%D1%80%D1%8F%D0%B4" class="mw-redirect" title="Суперзаряд">增压</a>”，这使得每次射击都能造成暴击伤害。
+</td></tr>
+<tr>
+<td colspan="2" style="padding-top: 18px"><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample4">详情</div><div class="collapse" id="collapseExample4"><div class="">
+<h4><span id=".D0.A5.D0.B0.D1.80.D0.B0.D0.BA.D1.82.D0.B5.D1.80.D0.B8.D1.81.D1.82.D0.B8.D0.BA.D0.B8_3"></span><span class="mw-headline" id="Характеристики_3">特性</span></h4>
+<ul><li>激活前延迟：2 秒</li>
+<li>持续时间：90 秒</li>
+<li>“穿甲”效果持续时间：20 秒</li>
+<li>“干扰器”效果持续时间：7 秒</li>
+<li>“增压”效果持续时间：7 秒</li>
+<li>“穿甲”效果施加半径：60 米</li>
+<li>“干扰器”效果施加半径：60 米</li></ul>
+<h4><span id=".D0.92.D0.B7.D0.B0.D0.BC.D0.BE.D0.B4.D0.B5.D0.B9.D1.81.D1.82.D0.B2.D0.B8.D0.B5_.D1.81_.D0.B4.D1.80.D1.83.D0.B3.D0.B8.D0.BC.D0.B8_.D0.BE.D0.B2.D0.B5.D1.80.D0.B4.D1.80.D0.B0.D0.B9.D0.B2.D0.B0.D0.BC.D0.B8_3"></span><span class="mw-headline" id="Взаимодействие_с_другими_овердрайвами_3">与其他终极技能的交互</span></h4>
+<ul><li>当使用该技能的坦克受到敌方猎人中甲的终极技能影响时，该能力将继续工作。</li>
+<li>泰坦的终极技能效果无法保护处于穹顶下的坦克免受“穿甲”状态效果的影响。</li></ul>
+<h4><span id=".D0.94.D0.BE.D0.BF.D0.BE.D0.BB.D0.BD.D0.B8.D1.82.D0.B5.D0.BB.D1.8C.D0.BD.D0.B0.D1.8F_.D0.B8.D0.BD.D1.84.D0.BE.D1.80.D0.BC.D0.B0.D1.86.D0.B8.D1.8F_3"></span><span class="mw-headline" id="Дополнительная_информация_3">附加信息</span></h4>
+<ul><li>使用此终极技能的坦克被摧毁或离开战斗将终止其本人及其所有队友的能力效果。</li>
+<li>穿甲效果还允许忽略敌方坦克对着火或地雷造成的伤害的防御。</li>
+<li>在上一项能力激活 7 秒后，通过在战斗中的有用行为获得声望点数将开始为新的终极技能充能。</li></ul>
+</div></div></td></tr></tbody></table><h3><span id=".D0.9E.D0.B2.D0.B5.D1.80.D0.B4.D1.80.D0.B0.D0.B9.D0.B2_.D0.92.D0.B8.D0.BA.D0.B8.D0.BD.D0.B3.D0.B0_.E2.80.94_.D0.91.D0.B5.D1.80.D1.81.D0.B5.D1.80.D0.BA-.D1.80.D0.B5.D0.B0.D0.BA.D1.82.D0.BE.D1.85"></span><span class="mw-headline" id="Овердрайв_Викинга_—_Берсерк-реактор">维京的终极技能 — Берсерк-реактор</span></h3><table style="width:100%">
+<tbody><tr>
+<td width="10%"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/1/10/Icon_overdrive_berserk_reactor.png/78px-Icon_overdrive_berserk_reactor.png" decoding="async" loading="lazy" width="78" height="78" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/1/10/Icon_overdrive_berserk_reactor.png/117px-Icon_overdrive_berserk_reactor.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/1/10/Icon_overdrive_berserk_reactor.png/156px-Icon_overdrive_berserk_reactor.png 2x"></span></span>
+</td>
+<td style="padding-left: 20px">使用终极技能的坦克瞬间为其炮塔重新装弹，并在一段时间内大幅提升其效能。
+</td></tr>
+<tr>
+<td colspan="2" style="padding-top: 18px"><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample6">详情</div><div class="collapse" id="collapseExample6"><div class="">
+<p><b>每个炮塔都会获得一组效果，其中包括：</b>
+</p>
+<ul><li>无限油箱/弹药；</li>
+<li>增加射速；</li>
+<li>增加射程；</li>
+<li>增加伤害/治疗量；</li>
+<li>增加冲击力并减少后坐力；</li>
+<li>特殊的射击颜色效果。</li></ul>
+<p><br>
+<b>一些具有独特机制的炮塔也会获得特殊效果：</b>
+</p>
+<ul><li>极速炮 — 瞬间预热炮管，解除/防止过热；</li>
+<li>火箭炮 — 关闭齐射模式（只能单发射击）；</li>
+<li>马格南 — 关闭蓄力模式（每次射击都以最大威力发射）；</li>
+<li>镭射炮 — 关闭狙击模式（只能盲射）；</li>
+<li>电磁炮 — 关闭狙击模式（只能盲射）。</li></ul>
+<h4><span id=".D0.A5.D0.B0.D1.80.D0.B0.D0.BA.D1.80.D0.B5.D1.80.D0.B8.D1.81.D1.82.D0.B8.D0.BA.D0.B8_4"></span><span class="mw-headline" id="Характеристики_4">特性</span></h4>
+<ul><li>激活前延迟：2 秒</li>
+<li>持续时间：8 秒</li>
+<li>伤害：“拆迁队”底盘装备改造 +300%，滑膛炮 +300%，近战炮塔 +400%，极速炮 +600%，其余炮塔 +150%</li></ul>
+<h4><span id=".D0.92.D0.B7.D0.B0.D0.BC.D0.BE.D0.B4.D0.B5.D0.B9.D1.81.D1.82.D0.B2.D0.B8.D0.B5_.D1.81_.D0.B4.D1.80.D1.83.D0.B3.D0.B8.D0.BC.D0.B8_.D0.BE.D0.B2.D0.B5.D1.80.D0.B4.D1.80.D0.B0.D0.B9.D0.B2.D0.B0.D0.BC.D0.B8_4"></span><span class="mw-headline" id="Взаимодействие_с_другими_овердрайвами_4">与其他终极技能的交互</span></h4>
+<ul><li>当坦克受到敌方猎人中甲或霍珀的终极技能影响时，能力效果会被打断（但不会完全终止）。</li></ul>
+<h4><span id=".D0.94.D0.BE.D0.BF.D0.BE.D0.BB.D0.BD.D0.B8.D1.80.D0.B0.D1.8с.D0.BD.D0.B0.D1.8F_.D0.B8.D0.BD.D1.84.D0.BE.D1.80.D0.BC.D0.B0.D1.86.D0.B8.D1.8F_4"></span><span class="mw-headline" id="Дополнительная_информация_4">附加信息</span></h4>
+<ul><li>坦克被摧毁时，该能力失效。</li><li>由于任何原因导致该能力在某些炮塔上失效，会导致短暂的暂停，在此期间玩家无法射击。</li><li>能力效果对在激活终极技能期间处于飞行状态的炮弹有效。</li><li>能力效果不影响温度变化速度。</li><li>已安装的装备改造的效果在此能力持续期间可能会发生变化。</li></ul>
+</div></div></td></tr></tbody></table><h3><span id=".D0.9E.D0.B2.D0.B5.D1.80.D0.B4.D1.80.D0.B0.D0.B9.D0.B2_.D0.9A.D1.80.D1.83.D1.81.D0.B5.D0.B9.D0.B4.D0.B5.D1.80.D0.B0_.E2.80.94_.D0.9A.D1.80.D0.B8.D0.BE.D0.BB.D0.B0.D1.81.D1.82.D0.B5.D1.80"></span><span class="mw-headline" id="Овердрайв_Крусейдера_—_Криобластер">十字军的终极技能 — Криобластер</span></h3><table style="width:100%">
+<tbody><tr>
+<td width="10%"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/a/a0/Icon_overdrive_icicle.png/70px-Icon_overdrive_icicle.png" decoding="async" loading="lazy" width="70" height="70" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/a/a0/Icon_overdrive_icicle.png/105px-Icon_overdrive_icicle.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/a/a0/Icon_overdrive_icicle.png/140px-Icon_overdrive_icicle.png 2x"></span></span>
+</td>
+<td style="padding-left: 20px"><figure class="mw-halign-right" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d7/Crusader_Icicle.png/35px-Crusader_Icicle.png" decoding="async" loading="lazy" width="35" height="87" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d7/Crusader_Icicle.png/53px-Crusader_Icicle.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d7/Crusader_Icicle.png/70px-Crusader_Icicle.png 2x"></span><figcaption></figcaption></figure>使用终极技能的坦克会发射一枚尖锐的冰柱，该冰柱在遇到障碍物时会以 45° 角反弹，并以极高的速度飞向敌人。撞击时会发生爆炸。炮弹会击中冰柱路径上的所有敌方坦克。撞击时会造成伤害，进行<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/5/52/Icon_Freezing1.png/18px-Icon_Freezing1.png" decoding="async" loading="lazy" width="18" height="18" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/52/Icon_Freezing1.png/27px-Icon_Freezing1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/52/Icon_Freezing1.png/36px-Icon_Freezing1.png 2x"></span></span> <a href="./%D0%97%D0%B0%D0%BC%D0%BE%D1%80%D0%BE%D0%B7%D0%BA%D0%B0" class="mw-redirect" title="Заморозка">冷冻</a>并施加状态效果<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/b8/Icon_breaking_through1.png/18px-Icon_breaking_through1.png" decoding="async" loading="lazy" width="18" height="18" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/b8/Icon_breaking_through1.png/27px-Icon_breaking_through1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/b8/Icon_breaking_through1.png/36px-Icon_breaking_through1.png 2x"></span></span> “<a href="./%D0%9F%D1%80%D0%BE%D0%B1%D0%B8%D1%82%D0%B8%D0%B5" class="mw-redirect" title="Пробитие">穿甲</a>”。
+</td></tr>
+<tr>
+<td colspan="2" style="padding-top: 18px"><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample8">详情</div><div class="collapse" id="collapseExample8"><div class="">
+<h4><span id=".D0.A5.D0.B0.D1.80.D0.B0.D0.BA.D1.82.D0.B5.D1.80.D0.B8.D1.81.D1.82.D0.B8.D0.BA.D0.B8_5"></span><span class="mw-headline" id="Характеристики_5">特性</span></h4>
+<ul><li>造成 3 000 至 4 000 hp 的不可阻挡的溅射伤害</li>
+<li>射击延迟：2 秒</li>
+<li>射速：60 米/秒</li>
+<li>目标速度：120-150 米/秒</li>
+<li>炮弹加速阶段：0.5 秒</li>
+<li>冲击力：3-9 单位</li>
+<li>后坐力：10-20 单位</li>
+<li>最大反弹次数：1</li>
+<li>最大反弹角度：45°</li>
+<li>炮弹命中半径：2 米</li>
+<li>最大伤害半径：3 米</li>
+<li>中等伤害半径：4 米</li>
+<li>最小伤害半径：30 米</li>
+<li>最小溅射伤害：25%</li>
+<li>“穿甲”效果持续时间：9 秒</li>
+<li>“冷冻”效果持续时间：10 秒</li>
+<li>自动瞄准向上角度：11°</li>
+<li>自动瞄准向下角度：14°</li>
+<li>水平自动瞄准：3°</li></ul>
+<h4><span id=".D0.92.D0.B7.D0.B0.D0.BC.D0.BE.D0.B4.D0.B5.D0.B9.D1.81.D1.82.D0.B2.D0.B8.D0.B5_.D1.81_.D0.B4.D1.80.D1.83.D0.B3.D0.B8.D0.BC.D0.B8_.D0.BE.D0.B2.D0.B5.D1.80.D0.B4.D1.80.D0.B0.D0.B9.D0.B2.D0.B0.D0.BC.D0.B8_5"></span><span class="mw-headline" id="Взаимодействие_с_другими_овердрайвами_5">与其他终极技能的交互</span></h4>
+<ul><li>当受到敌方霍珀、猎人中甲或猛犸象的终极技能影响时，能力准备会被完全重置。</li></ul>
+<h4><span id=".D0.94.D0.BE.D0.BF.D0.BE.D0.BB.D0.BD.D0.B8.D1.82.D0.B5.D0.BB.D1.8C.D0.BD.D0.B0.D1.8F_.D0.B8.D0.BD.D1.84.D0.BE.D1.80.D0.BC.D0.B0.D1.86.D0.B8.D1.8F_5"></span><span class="mw-headline" id="Дополнительная_информация_5">附加信息</span></h4>
+<ul><li>旨在远距离摧毁和压制单个目标。</li><li>炮塔炮弹表面覆盖着厚厚的一层冷冻混合物，为了改善弹道而呈冰柱状。</li></ul>
+</div></div></td></tr></tbody></table><h3><span id=".D0.9E.D0.B2.D0.B5.D1.80.D0.B4.D1.80.D0.B0.D0.B9.D0.B2_.D0.A5.D0.B0.D0.BD.D1.82.D0.B5.D1.80.D0.B0_.E2.80.94_.D0.AD.D0.BB.D0.B5.D0.BA.D1.82.D1.80.D0.BE.D0.BC.D0.B0.D0.B3.D0.BD.D0.B8.D1.82.D0.BD.D1.8B.D0.B9_.D0.B8.D0.BC.D0.BF.D1.83.D0.BB.D1.8C.D1.81"></span><span class="mw-headline" id="Овердрайв_Хантера_—_Электромагнитный_импульс">猎人中甲的终极技能 — Электромагнитный импульс</span></h3><table style="width:100%">
+<tbody><tr>
+<td width="10%"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/b0/Icon_overdrive_electromagnetic_pulse.png/78px-Icon_overdrive_electromagnetic_pulse.png" decoding="async" loading="lazy" width="78" height="78" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/b0/Icon_overdrive_electromagnetic_pulse.png/117px-Icon_overdrive_electromagnetic_pulse.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/b0/Icon_overdrive_electromagnetic_pulse.png/156px-Icon_overdrive_electromagnetic_pulse.png 2x"></span></span>
+</td>
+<td style="padding-left: 20px">使用终极技能的坦克会<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/ec/Icon_Stun1.png/18px-Icon_Stun1.png" decoding="async" loading="lazy" width="18" height="18" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/ec/Icon_Stun1.png/27px-Icon_Stun1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/ec/Icon_Stun1.png/36px-Icon_Stun1.png 2x"></span></span> <a href="./%D0%9E%D0%B3%D0%BB%D1%83%D1%88%D0%B5%D0%BD%D0%B8%D0%B5" class="mw-redirect" title="Оглушение">眩晕</a>周围的敌人，使其无法移动、射击和重新装弹、激活道具、终极技能和自毁，并<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/bb/Icon_EMP1.png/18px-Icon_EMP1.png" decoding="async" loading="lazy" width="18" height="18" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/bb/Icon_EMP1.png/27px-Icon_EMP1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/bb/Icon_EMP1.png/36px-Icon_EMP1.png 2x"></span></span> <a href="./%D0%AD%D0%9C%D0%98" class="mw-redirect" title="ЭМИ">使</a>他们的道具失效并进入<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">冷却</a>状态，对终极技能作用范围内的所有敌方坦克造成<a href="./%D0%A3%D1%80%D0%BE%D0%BD" class="mw-redirect" title="Урон">混乱伤害</a>。
+</td></tr>
+<tr>
+<td colspan="2" style="padding-top: 18px"><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample7">详情</div><div class="collapse" id="collapseExample7"><div class="">
+<h4><span id=".D0.A5.D0.B0.D1.80.D0.B0.D0.BA.D1.82.D0.B5.D1.80.D0.B8.D1.81.D1.82.D0.B8.D0.BA.D0.B8_6"></span><span class="mw-headline" id="Характеристики_6">特性</span></h4>
+<ul><li>激活前延迟：2 秒</li>
+<li>地雷销毁半径：15 米</li>
+<li>“眩晕”状态效果持续时间：4 秒</li>
+<li>“电磁脉冲”状态效果持续时间：6 秒</li>
+<li>“眩晕”和“电磁脉冲”效果作用半径：30 米</li>
+<div>向“电磁脉冲”和“眩晕”效果施加半径内的所有敌人造成 1000 至 2000 hp 的即时混乱伤害。</div></ul>
+<h4><span id=".D0.92.D0.B7.D0.B0.D0.BC.D0.BE.D0.B4.D0.B5.D0.B9.D1.81.D1.82.D0.B2.D0.B8.D0.B5_.D1.81_.D0.B4.D1.80.D1.83.D0.B3.D0.B8.D0.BC.D0.B8_.D0.BE.D0.B2.D0.B5.D1.80.D0.B4.D1.80.D0.B0.D0.B9.D0.B2.D0.B0.D0.BC.D0.B8_6"></span><span class="mw-headline" id="Взаимодействие_с_другими_овердрайвами_6">与其他终极技能的交互</span></h4>
+<ul><li>当受到电磁脉冲影响时：
+<ul><li>敌方黄蜂轻甲的终极技能设置的炸弹失效；</li><li>敌方泰坦的终极技能设置的发生器失效；</li><li>敌方维京的终极技能效果会被暂时打断；</li><li>敌方猎人中甲、十字军或阿瑞斯的终极技能准备工作会被完全打断；</li><li>如果特斯拉的能量球落入终极技能的作用范围内，则会关闭；</li><li>敌方蜂王激活的侦察雷达将继续工作。</li></ul></li>
+<li>当受到敌方霍珀或猎人中甲的终极技能影响时，能力准备会被完全重置。</li></ul>
+<h4><span id=".D0.94.D0.BE.D0.BF.D0.BE.D0.BB.D0.BD.D0.B8.D1.82.D0.B5.D0.BB.D1.8C.D0.BD.D0.B0.D1.8F_.D0.B8.D0.BD.D1.84.D0.BE.D1.80.D0.BC.D0.B0.D1.86.D0.B8.D1.8F_6"></span><span class="mw-headline" id="Дополнительная_информация_6">附加信息</span></h4>
+<ul><li>该能力不影响：
+<ul><li>自身无人机的工作以及从其他无人机和终极技能中获得奖励效果；</li><li>已放置的地雷；</li><li>拾取道具箱；</li><li>在 <a href="./CP" class="mw-redirect" title="CP">CP</a> 或 <a href="./SGE" class="mw-redirect" title="SGE">SGE</a> 中占领点的过程；</li><li>特殊坦克<a href="./%D0%A0%D0%B5%D0%B6%D0%B8%D0%BC_%D0%94%D0%B6%D0%B0%D0%B3%D0%B3%D0%B5%D1%80%D0%BD%D0%B0%D1%83%D1%82" class="mw-redirect" title="Режим Джаггернаут">“剑圣”</a>。</li></ul></li>
+<li>在激活瞬间，会摧毁脉冲点直线视线内的敌方地雷。</li>
+<li>能力准备期间坦克被摧毁会完全中断激活。</li></ul>
+</div></div></td></tr></tbody></table><h3><span id=".D0.9E.D0.B2.D0.B5.D1.80.D0.B4.D1.80.D0.B0.D0.B9.D0.B2_.D0.9F.D0.B0.D0.BB.D0.B0.D0.B4.D0.B8.D0.BD.D0.B0_.E2.80.94_.D0.9F.D0.BE.D0.BB.D1.8F.D1.80.D0.B8.D0.B7.D0.B0.D1.82.D0.BE.D1.80"></span><span class="mw-headline" id="Овердрайв_Паладина_—_Поляризатор">圣骑士的终极技能 — Поляризатор</span></h3><table style="width:100%">
+<tbody><tr>
+<td width="10%"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/1/1c/Paladin_Overdrive.png/78px-Paladin_Overdrive.png" decoding="async" loading="lazy" width="78" height="78" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/1/1c/Paladin_Overdrive.png/117px-Paladin_Overdrive.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/1/1c/Paladin_Overdrive.png/156px-Paladin_Overdrive.png 2x"></span></span>
+</td>
+<td style="padding-left: 20px">激活偏振器，治疗一定半径内的所有队友，并使他们对敌人的状态效果（温度状态除外 —— <span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/e7/Icon_Heat1.png/18px-Icon_Heat1.png" decoding="async" loading="lazy" width="18" height="18" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e7/Icon_Heat1.png/27px-Icon_Heat1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e7/Icon_Heat1.png/36px-Icon_Heat1.png 2x"></span></span> “<a href="./%D0%93%D0%BE%D1%80%D0%B5%D0%BD%D0%B8%D0%B5" class="mw-redirect" title="Горение">着火</a>”和<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/5/52/Icon_Freezing1.png/18px-Icon_Freezing1.png" decoding="async" loading="lazy" width="18" height="18" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/52/Icon_Freezing1.png/27px-Icon_Freezing1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/52/Icon_Freezing1.png/36px-Icon_Freezing1.png 2x"></span></span> “<a href="./%D0%97%D0%B0%D0%BC%D0%BE%D1%80%D0%BE%D0%B7%D0%BA%D0%B0" class="mw-redirect" title="Заморозка">冷冻</a>”） <span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/67/Polarizer_Icon.png/18px-Polarizer_Icon.png" decoding="async" loading="lazy" width="18" height="18" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/67/Polarizer_Icon.png/27px-Polarizer_Icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/67/Polarizer_Icon.png/36px-Polarizer_Icon.png 2x"></span></span> <a href="./%D0%9F%D0%BE%D0%BB%D1%8F%D1%80%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F" class="mw-redirect" title="Поляризация">免疫</a>。此外，终极技能作用范围内的敌方坦克会被施加状态效果<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/64/Icon_jammer.png/18px-Icon_jammer.png" decoding="async" loading="lazy" width="18" height="18" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/64/Icon_jammer.png/27px-Icon_jammer.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/64/Icon_jammer.png/36px-Icon_jammer.png 2x"></span></span> “<a href="./%D0%9F%D0%BE%D0%B4%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5" class="mw-redirect" title="Подавление">干扰器</a>”。
+</td></tr>
+<tr>
+<td colspan="2" style="padding-top: 18px"><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample9">详情</div><div class="collapse" id="collapseExample9"><div class="">
+<h4><span id=".D0.A5.D0.B0.D1.80.D0.B0.D0.BA.D1.82.D0.B5.D1.80.D0.B8.D1.81.D1.82.D0.B8.D0.BA.D0.B8_7"></span><span class="mw-headline" id="Характеристики_7">特性</span></h4>
+<ul><li>激活前延迟：2 秒</li>
+<li>持续时间：20 秒</li>
+<li>偏振器半径：25 米</li>
+<li>激活终极技能时，圣骑士拥有者本人以及偏振器作用范围内的所有队友都会获得对所有状态效果（温度状态除外 —— “着火”和“冷冻”）的免疫</li>
+<li>“干扰器”效果持续时间：只要坦克处于偏振器作用范围内</li>
+<li>每次跳动（¼秒）治疗量：35 → 50 HP</li></ul>
+<h4><span id=".D0.94.D0.BE.D0.BF.D0.BE.D0.BB.D0.BD.D0.B8.D1.82.D0.B5.D0.BB.D1.8C.D0.BD.D0.B0.D1.8F_.D0.B8.D0.BD.D1.84.D0.BE.D1.80.D0.BC.D0.B0.D1.86.D0.B8.D1.8F_7"></span><span class="mw-headline" id="Дополнительная_информация_7">附加信息</span></h4>
+<ul><li>旨在支援队友坦克。</li></ul>
+</div></div></td></tr></tbody></table><h3><span id=".D0.9E.D0.B2.D0.B5.D1.80.D0.B4.D1.80.D0.B0.D0.B9.D0.B2_.D0.94.D0.B8.D0.BA.D1.82.D0.B0.D1.82.D0.BE.D1.80.D0.B0_.E2.80.94_.D0.9F.D0.B5.D1.80.D0.B5.D0.B3.D1.80.D1.83.D0.B7.D0.BA.D0.B0"></span><span class="mw-headline" id="Овердрайв_Диктатора_—_Перегрузка">主宰者的终极技能 — Перегрузка</span></h3><table style="width:100%">
+<tbody><tr>
+<td width="10%"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/f/fe/Icon_overdrive_supplies_overload.png/75px-Icon_overdrive_supplies_overload.png" decoding="async" loading="lazy" width="75" height="75" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/f/fe/Icon_overdrive_supplies_overload.png/113px-Icon_overdrive_supplies_overload.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/f/fe/Icon_overdrive_supplies_overload.png/150px-Icon_overdrive_supplies_overload.png 2x"></span></span>
+</td>
+<td style="padding-left: 20px">使用终极技能的坦克会同时为自己和附近的所有队友激活维修工具、护甲提升、伤害提升、速度提升、地雷，并施加状态效果<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/8/88/Icon_Supercharger.png/18px-Icon_Supercharger.png" decoding="async" loading="lazy" width="18" height="18" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/8/88/Icon_Supercharger.png/27px-Icon_Supercharger.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/8/88/Icon_Supercharger.png/36px-Icon_Supercharger.png 2x"></span></span> “<a href="./%D0%A1%D1%83%D0%BF%D0%B5%D1%80%D0%B7%D0%B0%D1%80%D1%8F%D0%B4" class="mw-redirect" title="Суперзаряд">增压</a>”。使用终极技能还会对敌人施加状态效果<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/5/52/Icon_Freezing1.png/18px-Icon_Freezing1.png" decoding="async" loading="lazy" width="18" height="18" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/52/Icon_Freezing1.png/27px-Icon_Freezing1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/52/Icon_Freezing1.png/36px-Icon_Freezing1.png 2x"></span></span> “<a href="./%D0%97%D0%B0%D0%BC%D0%BE%D1%80%D0%BE%D0%B7%D0%BA%D0%B0" class="mw-redirect" title="Заморозка">冷冻</a>”。﻿
+</td></tr>
+<tr>
+<td colspan="2" style="padding-top: 18px"><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample10">详情</div><div class="collapse" id="collapseExample10"><div class="">
+<h4><span id=".D0.A5.D0.B0.D1.80.D0.B0.D0.BA.D1.82.D0.B5.D1.80.D0.B8.D1.81.D1.82.D0.B8.D0.BA.D0.B8_8"></span><span class="mw-headline" id="Характеристики_8">特性</span></h4>
+<ul><li>激活前延迟：2 秒</li>
+<li>作用半径：25 米</li>
+<div>支援队友奖励积分：20（如果至少有一个队友坦克（主宰者除外）受到该能力影响，则会获得此积分）</div>
+<li>“增压”效果持续时间：10 秒</li>
+<li>“冷冻”效果持续时间：10 秒</li></ul>
+<h4><span id=".D0.94.D0.BE.D0.BF.D0.BE.D0.BB.D0.BD.D0.B8.D1.82.D0.B5.D0.BB.D1.8C.D0.BD.D0.B0.D1.8F_.D0.B8.D0.BD.D1.84.D0.BE.D1.80.D0.BC.D0.B0.D1.86.D0.B8.D1.8F_8"></span><span class="mw-headline" id="Дополнительная_информация_8">附加信息</span></h4>
+<ul><li>将受终极技能影响的所有敌方坦克的温度降至最低值。</li>
+<li>如果使用<a href="./%D0%9A%D1%80%D0%B8%D0%B7%D0%B8%D1%81" class="mw-redirect" title="Кризис">危机</a>或<a href="./%D0%9E%D1%80%D0%B0%D0%BA%D1%83%D0%BB" class="mw-redirect" title="Оракул">神谕者</a>无人机的主宰者激活终极技能，则只会激活维修工具、地雷，并且只会延长当前道具的持续时间。</li>
+<li>如果使用<a href="./%D0%97%D0%B0%D1%89%D0%B8%D1%82%D0%BD%D0%B8%D0%BA" class="mw-redirect" title="Защитник">守卫者</a>、<a href="./%D0%91%D1%83%D1%81%D1%82%D0%B5%D1%85" class="mw-redirect" title="Бустер">助推器</a>或<a href="./%D0%9B%D0%BE%D0%B2%D0%BA%D0%B0%D1%87" class="mw-redirect" title="Ловкач">欺诈者</a>无人机的主宰者激活终极技能，则道具将不会根据无人机的能力得到强化。</li>
+<li>如果主宰者在 <a href="./CP" class="mw-redirect" title="CP">CP</a>、<a href="./SGE" class="mw-redirect" title="SGE">SGE</a>、<a href="./RGB" class="mw-redirect" title="RGB">RGB</a>、<a href="./CTF" class="mw-redirect" title="CTF">CTF</a> 和 <a href="./ASL" class="mw-redirect" title="ASL">ASL</a> 模式的点位附近及其小半径范围内激活终极技能，则终极技能设置的地雷将不会被放置。</li></ul>
+</div></div></td></tr></tbody></table><h3><span id=".D0.9E.D0.B2.D0.B5.D1.80.D0.B4.D1.80.D0.B0.D0.B9.D0.B2_.D0.A2.D0.B8.D1.82.D0.B0.D0.BD.D0.B0_.E2.80.94_.D0.9A.D1.83.D0.BF.D0.BE.D0.BB"></span><span class="mw-headline" id="Овердрайв_Титана_—_Купол">泰坦的终极技能 — Купол</span></h3><table style="width:100%">
+<tbody><tr>
+<td width="10%"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6d/Icon_overdrive_shield_generator.png/75px-Icon_overdrive_shield_generator.png" decoding="async" loading="lazy" width="75" height="75" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/6d/Icon_overdrive_shield_generator.png/113px-Icon_overdrive_shield_generator.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/6d/Icon_overdrive_shield_generator.png/150px-Icon_overdrive_shield_generator.png 2x"></span></span>
+</td>
+<td style="padding-left: 20px"><figure class="mw-halign-right" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/dd/Titan_Dome_Generator.png/60px-Titan_Dome_Generator.png" decoding="async" loading="lazy" width="60" height="64" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/dd/Titan_Dome_Generator.png/90px-Titan_Dome_Generator.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/dd/Titan_Dome_Generator.png/120px-Titan_Dome_Generator.png 2x"></span><figcaption></figcaption></figure>安装发生器的坦克及其在防护场范围内的队友可以获得对任何伤害的增强护甲，并且每秒可以恢复 100 hp 的生命值。每个新安装的发生器都会摧毁其附近的所有其他发生器（队友的和敌人的）以及敌方黄蜂轻甲的炸弹。
+</td></tr>
+<tr>
+<td colspan="2" style="padding-top: 18px"><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample12">详情</div><div class="collapse" id="collapseExample12"><div class="">
+<h4><span id=".D0.A5.D0.B0.D1.80.D0.B0.D0.BA.D1.82.D0.B5.D1.80.D0.B8.D1.81.D1.82.D0.B8.D0.BA.D0.B8_9"></span><span class="mw-headline" id="Характеристики_9">特性</span></h4>
+<ul><li>激活前延迟：2 秒</li>
+<li>持续时间：20 秒</li>
+<li>作用半径：20 米</li>
+<li>伤害减免：90%</li>
+<li>治疗速度：每秒 100 hp</li>
+<li>摧毁其他发生器的半径：35 米</li></ul>
+<h4><span id=".D0.92.D0.B7.D0.B0.D0.BC.D0.BE.D0.B4.D0.B5.D0.B9.D1.81.D1.82.D0.B2.D0.B8.D0.B5_.D1.81_.D0.B4.D1.80.D1.83.D0.B3.D0.B8.D0.BC.D0.B8_.D0.BE.D0.B2.D0.B5.D1.80.D0.B4.D1.80.D0.B0.D0.B9.D0.B2.D0.B0.D0.BC.D0.B8_7"></span><span class="mw-headline" id="Взаимодействие_с_другими_овердрайвами_7">与其他终极技能的交互</span></h4>
+<ul><li>安装时会使黄蜂轻甲的炸弹和阿瑞斯的能量球在其作用范围内时失效。</li>
+<li>防护场不会减免黄蜂轻甲终极技能效果造成的伤害。</li>
+<li>防护场会被使用终极技能的蜂王忽略。</li>
+<li>当受到敌方猎人中甲的终极技能影响时，已安装的发生器会失效。</li>
+<li>防护场无法抵御猛犸象和阿瑞斯的终极技能效果。</li><li>如果特斯拉的能量球在安装的穹顶内部飞过，防护场会将其关闭。</li></ul>
+<h4><span id=".D0.94.D0.BE.D0.BF.D0.BE.D0.BB.D0.BD.D0.B8.D1.80.D0.B0.D1.8с.D0.BD.D0.B0.D1.8F_.D0.B8.D0.BD.D1.84.D0.BE.D1.80.D0.BC.D0.B0.D1.86.D0.B8.D1.8F_9"></span><span class="mw-headline" id="Дополнительная_информация_9">附加信息</span></h4>
+<ul><li>发生器是一个非实体对象，不会阻碍坦克移动且无法被摧毁。</li><li>安装发生器的坦克被摧毁或离开战斗不会终止其效果。</li><li>防护场可以抵御剑圣的射击、着火、地雷和自伤。</li><li>场发生器的涂装颜色与安装它的玩家的坦克相同。</li></ul>
+</div></div></td></tr></tbody></table><h3><span id=".D0.9E.D0.B2.D0.B5.D1.80.D0.B4.D1.80.D0.B0.D0.B9.D0.B2_.D0.90.D1.80.D0.B5.D1.81.D0.B0_.E2.80.94_BFG-.D0.BF.D1.83.D1.88.D0.BA.D0.B0"></span><span class="mw-headline" id="Овердрайв_Ареса_—_BFG-пушка">阿瑞斯的终极技能 — BFG-пушка</span></h3><table style="width:100%">
+<tbody><tr>
+<td width="10%"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/3/3b/Icon_overdrive_BFG.png/70px-Icon_overdrive_BFG.png" decoding="async" loading="lazy" width="70" height="70" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/3b/Icon_overdrive_BFG.png/105px-Icon_overdrive_BFG.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/3/3b/Icon_overdrive_BFG.png/140px-Icon_overdrive_BFG.png 2x"></span></span>
+</td>
+<td style="padding-left: 20px">使用终极技能时，会从底盘前方发射一个能量球，该能量球沿底盘方向飞行，直至遇到第一个障碍物，包括敌方的阿瑞斯能量球。能量球作用范围内的所有敌人都会受到伤害，该伤害会忽略他们的<a href="./%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D0%B8" class="mw-redirect" title="Модули">防护模块</a>，而队友坦克的生命值则会得到恢复。
+</td></tr>
+<tr>
+<td colspan="2" style="padding-top: 18px"><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample11">详情</div><div class="collapse" id="collapseExample11"><div class="">
+<h4><span id=".D0.A5.D0.B0.D1.80.D0.B0.D0.BA.D1.80.D0.B5.D1.80.D0.B8.D1.81.D1.82.D0.B8.D0.BA.D0.B8_10"></span><span class="mw-headline" id="Характеристики_10">特性</span></h4>
+<ul><li>射击延迟：2 秒</li>
+<li>每次跳动（¼秒）伤害：240 hp</li>
+<li>每次跳动（¼秒）治疗量：120 hp</li>
+<li>爆炸伤害：2000 → 4000 hp</li>
+<li>后坐力：0.05</li>
+<li>爆炸冲击力：500 → 1000</li>
+<li>跳动间隔：0.1 秒</li>
+<div>能量球作用半径：20 米</div>
+<li>溅射伤害半径：20 米</li>
+<li>最大伤害半径：10 米</li>
+<li>飞行速度：20 米/秒</li>
+<li>自动瞄准向上角度：11°</li>
+<li>自动瞄准向下角度：14°</li></ul>
+<h4><span id=".D0.92.D0.B7.D0.B0.D0.BC.D0.BE.D0.B4.D0.B5.D0.B9.D1.81.D1.82.D0.B2.D0.B8.D0.B5_.D1.81_.D0.B4.D1.80.D1.83.D0.B3.D0.B8.D0.BC.D0.B8_.D0.BE.D0.B2.D0.B5.D1.80.D0.B4.D1.80.D0.B0.D0.B9.D0.B2.D0.B0.D0.BC.D0.B8_8"></span><span class="mw-headline" id="Взаимодействие_с_другими_овердрайвами_8">与其他终极技能的交互</span></h4>
+<ul><li>泰坦穹顶的安装和黄蜂轻甲的炸弹会使处于其作用范围内的能量球失效。</li>
+<li>当受到敌方霍珀或猎人中甲的终极技能影响时，能力准备会被完全重置。</li></ul>
+<h4><span id=".D0.94.D0.BE.D0.BF.D0.BE.D0.BB.D0.BD.D0.B8.D1.82.D0.B5.D0.BB.D1.8C.D0.BD.D0.B0.D1.8F_.D0.B8.D0.BD.D1.84.D0.BE.D1.80.D0.BC.D0.B0.D1.86.D0.B8.D1.8F_10"></span><span class="mw-headline" id="Дополнительная_информация_10">附加信息</span></h4>
+<ul><li>能量球会忽略坦克，只有在与地图上的物体碰撞时才会爆炸。</li><li>能量球是沿底盘方向发射的，而不是沿炮塔方向。</li></ul>
+</div></div></td></tr></tbody></table><h3><span id=".D0.9E.D0.B2.D0.B5.D1.80.D0.B4.D1.80.D0.B0.D0.B9.D0.B2_.D0.9C.D0.B0.D0.BC.D0.BE.D0.BD.D1.82.D0.B0_.E2.80.94_AT-.D0.BF.D0.BE.D0.BB.D0.B5"></span><span class="mw-headline" id="Овердрайв_Мамонта_—_AT-поле">猛犸象的终极技能 — AT-поле</span></h3><table style="width:100%">
+<tbody><tr>
+<td width="10%" style="text-align:center;"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/9/99/Icon_overdrive_at_field.png/75px-Icon_overdrive_at_field.png" decoding="async" loading="lazy" width="75" height="75" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/9/99/Icon_overdrive_at_field.png/113px-Icon_overdrive_at_field.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/9/99/Icon_overdrive_at_field.png/150px-Icon_overdrive_at_field.png 2x"></span></span>
+</td>
+<td style="padding-left: 20px">使用终极技能的坦克会瞬间完全恢复生命值并除所有<a href="./%D0%A1%D1%82%D0%B0%D1%82%D1%83%D1%81-%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%D1%8B" class="mw-redirect" title="Статус-эффекты">状态效果</a>。此外，坦克会在一段时间内在自身周围激活一个力场并获得额外的速度加成，同时免疫任何状态效果和地雷。在与敌方坦克直接接触时，力场会对其造成伤害，该伤害会忽略任何护甲提升。激活的终极技能还会忽略被摧毁的坦克，将其撞飞。
+</td></tr>
+<tr>
+<td colspan="2" style="padding-top: 18px"><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample13">详情</div><div class="collapse" id="collapseExample13"><div class="">
+<h4><span id=".D0.A5.D0.B0.D1.80.D0.B0.D0.BA.D1.82.D0.B5.D1.80.D0.B8.D1.81.D1.82.D0.B8.D0.BA.D0.B8_11"></span><span class="mw-headline" id="Характеристики_11">特性</span></h4>
+<ul><li>激活前延迟：2 秒</li>
+<li>持续时间：15 秒</li>
+<li>作用半径：7.5 米</li>
+<li>作用范围内伤害：每 0.1 秒 999 hp / 每秒 9990 hp</li>
+<li>最高速度加成：50%</li>
+<li>地雷防御：100%</li></ul>
+<h4><span id=".D0.92.D0.B7.D0.B0.D0.BC.D0.BE.D0.B4.D0.B5.D0.B9.D1.81.D1.82.D0.B2.D0.B8.D0.B5_.D1.81_.D0.B4.D1.80.D1.83.D0.B3.D0.B8.D0.BC.D0.B8_.D0.BE.D0.B2.D0.B5.D1.80.D0.B4.D1.80.D0.B0.D0.B9.D0.B2.D0.B0.D0.BC.D0.B8_9"></span><span class="mw-headline" id="Взаимодействие_с_другими_овердрайвами_9">与其他终极技能的交互</span></h4>
+<ul><li>使黄蜂轻甲的炸弹失效。</li>
+<li>使泰坦的穹顶发生器失效。</li>
+<li>使阿瑞斯的能量球失效。</li>
+<li>如果十字军受到终极技能影响，则会解除十字军的终极技能。</li>
+<li>如果特斯拉的能量球接触到 AT 力场，则会使其失效。</li>
+<li>当坦克受到敌方猎人中甲的终极技能影响时，力场不会失效。</li>
+<div>泰坦的终极技能效果不会减免来自力场的伤害。</div></ul>
+<h4><span id=".D0.94.D0.BE.D0.BF.D0.BE.D0.BB.D0.BD.D0.B8.D1.82.D0.B5.D0.BB.D1.8C.D0.BD.D0.B0.D1.8F_.D0.B8.D0.BD.D1.84.D0.BE.D1.80.D0.BC.D0.B0.D1.86.D0.B8.D1.8F_11"></span><span class="mw-headline" id="Дополнительная_информация_11">附加信息</span></h4>
+<ul><li>坦克被摧毁会终止力场的效果。</li></ul>
+</div></div></td></tr></tbody></table><h3><span id=".D0.9E.D0.B2.D0.B5.D1.80.D0.B4.D1.80.D0.B0.D0.B9.D0.B2_.D0.94.D0.B6.D0.B0.D0.B3.D0.B3.D0.B5.D1.80.D0.BD.D0.B0.D1.83.D1.82.D0.B0_.E2.80.94_.D0.A0.D0.B5.D0.BF.D1.83.D0.BB.D1.8C.D1.81.D0.BE.D1.80"></span><span class="mw-headline" id="Овердрайв_Джаггернаута_—_Репульсор">剑圣的终极技能 — Репульсор</span></h3><table style="width:100%">
+<tbody><tr>
+<td width="10%"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/5/5b/Icon_overdrive_juggernaut.png/75px-Icon_overdrive_juggernaut.png" decoding="async" loading="lazy" width="75" height="75" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/5b/Icon_overdrive_juggernaut.png/113px-Icon_overdrive_juggernaut.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/5b/Icon_overdrive_juggernaut.png/150px-Icon_overdrive_juggernaut.png 2x"></span></span>
+</td>
+<td style="padding-left: 20px">使用终极技能的坦克会将自身周围小半径内的所有敌方坦克击退，并应用瞬间恢复生命值的效果。
+</td></tr>
+<tr>
+<td colspan="2" style="padding-top: 18px"><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample14">详情</div><div class="collapse" id="collapseExample14"><div class="">
+<h4><span id=".D0.A5.D0.B0.D1.80.D0.B0.D0.BA.D1.82.D0.B5.D1.80.D0.B8.D1.81.D1.82.D0.B8.D0.BA.D0.B8_12"></span><span class="mw-headline" id="Характеристики_12">特性</span></h4>
+<ul><li>激活前延迟：1.1 秒</li>
+<li>治疗量：3 750 → 10 000 HP。</li>
+<li>作用半径：约 25 米（冲击力随距离增加而减小）</li></ul>
+<h4><span id=".D0.94.D0.BE.D0.BF.D0.BE.D0.BB.D0.BD.D0.B8.D1.82.D0.B5.D0.BB.D1.8C.D0.BD.D0.B0.D1.8F_.D0.B8.D0.BD.D1.84.D0.BE.D1.80.D0.BC.D0.B0.D1.86.D0.B8.D1.8F_12"></span><span class="mw-headline" id="Дополнительная_информация_12">附加信息</span></h4>
+<ul><li>剑圣的终极技能不通过声望点数积累，仅随时间推移积累。</li></ul>
+</div></div></td></tr></tbody></table><h2><span id=".D0.9C.D0.B5.D1.85.D0.B0.D0.BD.D0.B8.D0.BA.D0.B0_.D1.80.D0.B0.D0.B1.D0.BE.D1.82.D1.8B"></span><span class="mw-headline" id="Механика_работы">运作机制</span></h2><p>要激活终极技能，需要将其充能至 100%。进入战斗时，该能力开始逐渐充能。每个终极技能都有其自己的充能参数，也就是说，一个底盘的终极技能可能比另一个充能更快。
+</p><p><b>其他特性：</b>
+</p><ul><li>充能会在坦克的复活之间持续</li>
+<li>更换武器时充能进度不会重置，底盘除外 —— 更换底盘会清空终极技能的充能</li>
+<li>如果在<a href="./%D0%A0%D0%B5%D0%B6%D0%B8%D0%BC_%D0%94%D0%B6%D0%B0%D0%B3%D0%B3%D0%B5%D1%80%D0%BD%D0%B0%D1%83%D1%82" class="mw-redirect" title="Режим Джаггернаут">“剑圣”模式</a>中成为“Boss”，充能进度不会重置：在玩家失去“剑圣”身份后，玩家自己底盘上的终极技能充能将被保留</li>
+<li>在<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/64/Icon_jammer.png/20px-Icon_jammer.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/64/Icon_jammer.png/30px-Icon_jammer.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/64/Icon_jammer.png/40px-Icon_jammer.png 2x"></span></span> “<a href="./%D0%9F%D0%BE%D0%B4%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5" class="mw-redirect" title="Подавление">干扰器</a>”状态效果的作用下，除了“剑圣”之外，在一段时间内无法激活终极技能。如果有<a href="./%D0%A3%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0" class="mw-redirect" title="Устройства">装备改造</a>“抗干扰器”，则可以防御此效果</li>
+<li>在匹配地图中掉落的奖励箱<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/7d/Energy_icon.png/18px-Energy_icon.png" decoding="async" loading="lazy" width="18" height="18" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/7/7d/Energy_icon.png 1.5x"></span></span> “<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">核能</a>”可以使终极技能完全充能。道具“核能”也可以使终极技能完全充能。当玩家自己的终极技能充能超过 90% 时，无法激活物品栏中的道具</li>
+<li>在<a href="./PRO-%D0%B1%D0%B8%D1%82%D0%B2%D1%8B" class="mw-redirect" title="PRO-битвы">创建战场</a>时，可以启用或禁用选项<span class="battle-option"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/1/16/Icon_overdrives.png/18px-Icon_overdrives.png" decoding="async" loading="lazy" width="18" height="18" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/1/16/Icon_overdrives.png/27px-Icon_overdrives.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/1/16/Icon_overdrives.png/36px-Icon_overdrives.png 2x"></span></span> <span>终极技能</span></span>，以限制在战斗中使用终极技能。在<a href="./%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D0%BD%D1%8B%D0%B5_%D0%B1%D0%B8%D1%82%D0%B2%D1%8B" class="mw-redirect" title="Форматные битвы">模式战场</a>中，除“跑酷”模式外，终极技能默认禁用。</li></ul><h3><span id=".D0.97.D0.B0.D1.80.D1.8F.D0.B4.D0.BA.D0.B0_.D0.BF.D0.BE_.D0.BE.D1.87.D0.BA.D0.B0.D0.BC_.D1.80.D0.B5.D0.BF.D1.83.D1.82.D0.B0.D1.86.D0.B8.D0.B8"></span><span class="mw-headline" id="Зарядка_по_очкам_репутации">按声望点数充能</span></h3><p>在战斗中执行操作，玩家可以获得<a href="./%D0%9E%D1%87%D0%BA%D0%B8_%D1%80%D0%B5%D0%BF%D1%83%D1%82%D0%B0%D1%86%D0%B8%D0%B8" class="mw-redirect" title="Очки репутации">声望点数</a>。终极技能的充能将增加赚取的点数乘以装备底盘的“每个声望点数充能”参数。
+</p><p>例如，如果装备了 MAX <a href="./%D0%A2%D0%B8%D1%82%D0%B0%D0%BD" class="mw-redirect" title="Титан">泰坦</a>的玩家摧毁了一辆敌方坦克，获得了<span typeof="mw:File"><a href="./%D0%A0%D0%B5%D0%BF%D1%83%D1%82%D0%B0%D1%86%D0%B8%D1%8%" title="Репутация"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/RP_Icon.png/16px-RP_Icon.png" decoding="async" loading="lazy" width="16" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/RP_Icon.png/24px-RP_Icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/RP_Icon.png/32px-RP_Icon.png 2x"></a></span> <b>15</b> 声望点数，其终极技能充能将增加 (0.1% * 15) = 1.5%。
+</p><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample1">按声望点数充能表</div><div class="collapse" id="collapseExample1"><div class="">
+<table class="wikitable-modern">
+
+<tbody><tr class="wikitable-header">
+<td width="20%">底盘</td>
+<td width="10%">Mk1
+</td>
+<td width="10%">Mk2
+</td>
+<td width="10%">Mk3
+</td>
+<td width="10%">Mk4
+</td>
+<td width="10%">Mk5
+</td>
+<td width="10%">Mk6
+</td>
+<td width="10%">Mk7
+</td>
+<td width="10%">MAX
+</td></tr>
+<tr>
+<td style="text-align:left">黄蜂轻甲</td>
+<td>0.010</td>
+<td>0.028</td>
+<td>0.037</td>
+<td>0.049</td>
+<td>0.061</td>
+<td>0.073</td>
+<td>0.088</td>
+<td>0.100
+</td></tr>
+<tr>
+<td style="text-align:left">霍珀</td>
+<td>0.010</td>
+<td>0.034</td>
+<td>0.046</td>
+<td>0.055</td>
+<td>0.064</td>
+<td>0.076</td>
+<td>0.088</td>
+<td>0.100
+</td></tr>
+<tr>
+<td style="text-align:left">蜂王</td>
+<td>0.010</td>
+<td>0.034</td>
+<td>0.043</td>
+<td>0.058</td>
+<td>0.070</td>
+<td>0.079</td>
+<td>0.088</td>
+<td>0.100
+</td></tr>
+<tr>
+<td style="text-align:left">维京</td>
+<td>0.010</td>
+<td>0.031</td>
+<td>0.040</td>
+<td>0.055</td>
+<td>0.070</td>
+<td>0.079</td>
+<td>0.088</td>
+<td>0.100
+</td></tr>
+<tr>
+<td style="text-align:left">十字军</td>
+<td>0.010</td>
+<td>0.034</td>
+<td>0.043</td>
+<td>0.052</td>
+<td>0.064</td>
+<td>0.076</td>
+<td>0.088</td>
+<td>0.100
+</td></tr>
+<tr>
+<td style="text-align:left">猎人中甲</td>
+<td>0.010</td>
+<td>0.025</td>
+<td>0.037</td>
+<td>0.049</td>
+<td>0.061</td>
+<td>0.073</td>
+<td>0.088</td>
+<td>0.100
+</td></tr>
+<tr>
+<td style="text-align:left">圣骑士</td>
+<td>0.010</td>
+<td>0.031</td>
+<td>0.046</td>
+<td>0.058</td>
+<td>0.067</td>
+<td>0.076</td>
+<td>0.088</td>
+<td>0.100
+</td></tr>
+<tr>
+<td style="text-align:left">主宰者</td>
+<td>0.010</td>
+<td>0.031</td>
+<td>0.046</td>
+<td>0.058</td>
+<td>0.070</td>
+<td>0.079</td>
+<td>0.088</td>
+<td>0.100
+</td></tr>
+<tr>
+<td style="text-align:left">泰坦</td>
+<td>0.010</td>
+<td>0.028</td>
+<td>0.043</td>
+<td>0.052</td>
+<td>0.064</td>
+<td>0.073</td>
+<td>0.088</td>
+<td>0.100
+</td></tr>
+<tr>
+<td style="text-align:left">阿瑞斯</td>
+<td>0.010</td>
+<td>0.025</td>
+<td>0.040</td>
+<td>0.052</td>
+<td>0.067</td>
+<td>0.076</td>
+<td>0.088</td>
+<td>0.100
+</td></tr>
+<tr>
+<td style="text-align:left">猛犸象</td>
+<td>0.010</td>
+<td>0.028</td>
+<td>0.040</td>
+<td>0.055</td>
+<td>0.067</td>
+<td>0.079</td>
+<td>0.088</td>
+<td>0.100
+</td></tr></tbody></table>
+</div></div><h3><span id=".D0.97.D0.B0.D1.80.D1.8F.D0.B4.D0.BA.D0.B0_.D1.81.D0.BE_.D0.B2.D1.80.D0.B5.D0.BC.D0.B5.D0.BD.D0.B5.D0.BC"></span><span class="mw-headline" id="Зарядка_со_временем">随时间充能</span></h3><p>终极技能每秒自动充能特定数值。这个固定值是“每秒充能”参数，具体取决于所装备的底盘。
+</p><p>计算从 0 到 100% 充满终极技能所需时间的公式（以秒为单位）如下：(<b>100 / 每秒充能</b>)。
+</p><p>因此，每秒充能速度为 0.256 的<a href="./%D0%92%D0%B8%D0%BA%D0%B8%D0%BD%D0%B3" class="mw-redirect" title="Викинг">维京</a>将需要 (100 / 0.256) ≈ 390 秒才能将终极技能从 0 充能到 100%。终极技能的充能可以加速：玩家执行的有用行为越多（摧毁敌人、运送旗帜、占领点等），终极技能充能的速度就越快。
+</p><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample2">随时间充能表</div><div class="collapse" id="collapseExample2"><div class="">
+<table class="wikitable-modern" style="width:40%">
+
+<tbody><tr class="wikitable-header wikitable-title-center">
+<td width="20%">底盘</td>
+<td width="80%">Mk1 – MAX
+</td></tr>
+<tr>
+<td style="text-align:left">黄蜂轻甲</td>
+<td>0.300
+</td></tr>
+<tr>
+<td style="text-align:left">霍珀</td>
+<td>0.278
+</td></tr>
+<tr>
+<td style="text-align:left">蜂王</td>
+<td>0.333
+</td></tr>
+<tr>
+<td style="text-align:left">维京</td>
+<td>0.256
+</td></tr>
+<tr>
+<td style="text-align:left">十字军</td>
+<td>0.278
+</td></tr>
+<tr>
+<td style="text-align:left">猎人中甲</td>
+<td>0.333
+</td></tr>
+<tr>
+<td style="text-align:left">圣骑士</td>
+<td>0.256
+</td></tr>
+<tr>
+<td style="text-align:left">主宰者</td>
+<td>0.333
+</td></tr>
+<tr>
+<td style="text-align:left">泰坦</td>
+<td>0.333
+</td></tr>
+<tr>
+<td style="text-align:left">阿瑞斯</td>
+<td>0.256
+</td></tr>
+<tr>
+<td style="text-align:left">猛犸象</td>
+<td>0.300
+</td></tr>
+<tr>
+<td style="text-align:left">剑圣</td>
+<td>1.666
+</td></tr></tbody></table>
+</div></div><h3><span id=".D0.A1.D0.B2.D0.BE.D0.B4.D0.BD.D0.B0.D1.8F_.D1.82.D0.B0.D0.B1.D0.BB.D0.B8.D1.86.D0.B0_.D0.B7.D0.B0.D1.80.D1.8F.D0.B4.D0.BA.D0.B8_.D0.BE.D0.B2.D0.B5.D1.80.D0.B4.D1.80.D0.B0.D0.B9.D0.B2.D0.BE.D0.B2"></span><span class="mw-headline" id="Сводная_таблица_зарядки_овердрайвов">终极技能充能汇总表</span></h3><p>终极技能的个体加载系数取决于底盘的升级。箭头前的值适用于 Mk1 底盘，箭头后的值适用于 MAX 底盘。
+</p><table class="wikitable-modern" style="width:85%">
+
+<tbody><tr class="wikitable-header wikitable-title-center">
+<td style="text-align:left">底盘</td>
+<td style="width:180px">每个声望点数充能 (%)<br>Mk1 → MAX
+</td>
+<td style="width:190px">每秒充能 (%)
+</td>
+<td style="width:180px">充满电时间 (s) <span title="不考虑声望点数的赚取" class="hint i"></span>
+</td>
+<td style="width:180px">充能冷却 (s) <span title="激活终极技能后立即持续的一段时间，在此期间它仅自行充能，即不考虑声望点数的赚取" class="hint i"></span>
+</td></tr>
+<tr>
+<td style="text-align:left">黄蜂轻甲</td>
+<td>0.01 → 0.10</td>
+<td>0.300</td>
+<td>270</td>
+<td>4
+</td></tr>
+<tr>
+<td style="text-align:left">霍珀</td>
+<td>0.01 → 0.10</td>
+<td>0.278</td>
+<td>300</td>
+<td>10
+</td></tr>
+<tr>
+<td style="text-align:left">蜂王</td>
+<td>0.01 → 0.10</td>
+<td>0.476</td>
+<td>210</td>
+<td>7
+</td></tr>
+<tr>
+<td style="text-align:left">维京</td>
+<td>0.01 → 0.10</td>
+<td>0.256</td>
+<td>390</td>
+<td>8
+</td></tr>
+<tr>
+<td style="text-align:left">十字军</td>
+<td>0.01 → 0.10</td>
+<td>0.278</td>
+<td>333</td>
+<td>10
+</td></tr>
+<tr>
+<td style="text-align:left">猎人中甲</td>
+<td>0.01 → 0.10</td>
+<td>0.333</td>
+<td>240</td>
+<td>4
+</td></tr>
+<tr>
+<td style="text-align:left">圣骑士</td>
+<td>0.01 → 0.10</td>
+<td>0.256</td>
+<td>360</td>
+<td>20
+</td></tr>
+<tr>
+<td style="text-align:left">主宰者</td>
+<td>0.01 → 0.10</td>
+<td>0.333</td>
+<td>210</td>
+<td>9
+</td></tr>
+<tr>
+<td style="text-align:left">泰坦</td>
+<td>0.01 → 0.10</td>
+<td>0.333</td>
+<td>240</td>
+<td>0
+</td></tr>
+<tr>
+<td style="text-align:left">Арес</td>
+<td>0.01 → 0.10</td>
+<td>0.256</td>
+<td>360</td>
+<td>9
+</td></tr>
+<tr>
+<td style="text-align:left">猛犸象</td>
+<td>0.01 → 0.10</td>
+<td>0.300</td>
+<td>270</td>
+<td>16
+</td></tr>
+<tr>
+<td style="text-align:left">剑圣</td>
+<td>0</td>
+<td>1.666</td>
+<td>60</td>
+<td>0
+</td></tr></tbody></table><p><br>
+</p><h2><span id=".D0.98.D0.BD.D1.82.D0.B5.D1.80.D0.B5.D1.81.D0.BD.D1.8B.D0.B5_.D1.84.D0.B0.D0.BA.D1.82.D1.87"></span><span class="mw-headline" id="Интересные_факты">趣闻</span></h2><ul><li>终极技能的原型出现在 2017 年五月假期（名为“零道具”）以及游戏 8 周年庆典期间。</li>
+<li>启用所有道具的第一个终极技能于 2017 年 7 月 12 日永久引入游戏。</li>
+<li>2018 年 8 月 21 日，战场开始掉落为主营终极技能的“核能”奖励箱（掉落物）。在此之前，游戏中有一段时间存在“核能”掉落区，但箱子的掉落已被禁用。</li>
+<li>所有底盘的独特终极技能于 2019 年 4 月 11 日加入游戏。</li></ul><div align="right"><small>最后编辑：12/05/2026 Devise <span class="ai-translate-note" style="color:#8FB8D8;">（由 AI 自动翻译）</span></small></div></div></div></div></div></div><footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
+<p style="margin:0;"><strong style="color:#BFD5FF;">本站为玩家社区自建的非官方 Wiki 镜像。</strong></p>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":1210,"wgPageParseReport":{"limitreport":{"cputime":"0.369","walltime":"0.403","ppvisitednodes":{"value":642,"limit":1000000},"postexpandincludesize":{"value":40305,"limit":4194304},"templateargumentsize":{"value":882,"limit":4194304},"expansiondepth":{"value":8,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":311,"limit":5000000},"timingprofile":["100.00%   59.934      1 -total"," 27.24%   16.328      1 Шаблон:See_also"," 18.89%   11.322      1 Шаблон:Другое_значение"," 13.97%    8.372     14 Шаблон:Spoiler/Start"," 10.42%    6.244      1 Шаблон:LastEdit"," 10.22%    6.124      8 Шаблон:Spoiler/End","  9.33%    5.589      2 Шаблон:Hotkey","  8.74%    5.237     14 Шаблон:См._также/link","  5.96%    3.569      2 Шаблон:Hint","  4.52%    2.708      6 Шаблон:EndPrettySpoiler"]},"cachereport":{"timestamp":"20260824144121","ttl":86400,"transientcontent":false}}});});</script>
+    <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });</script></body></html>

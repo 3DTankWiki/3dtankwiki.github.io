@@ -1,0 +1,423 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>(function(){
+  var BASE = 'https://ru.tankiwiki.com';
+  function fix(v){ return (typeof v === 'string' && v.charAt(0) === '/' && v.indexOf('//') !== 0) ? BASE + v : v; }
+  ['HTMLScriptElement','HTMLLinkElement'].forEach(function(tag){
+    var proto = window[tag] && window[tag].prototype;
+    var prop  = tag === 'HTMLScriptElement' ? 'src' : 'href';
+    if (!proto) return;
+    var d = Object.getOwnPropertyDescriptor(proto, prop);
+    if (!d || !d.set) return;
+    Object.defineProperty(proto, prop, {
+      configurable: true,
+      get: function(){ return d.get.call(this); },
+      set: function(v){ d.set.call(this, fix(v)); }
+    });
+  });
+  var of = window.fetch;
+  if (of) window.fetch = function(u, o){ return of.call(this, (typeof u === 'string' ? fix(u) : u), o); };
+  var ox = window.XMLHttpRequest && XMLHttpRequest.prototype.open;
+  if (ox) XMLHttpRequest.prototype.open = function(m, u){
+    var a = Array.prototype.slice.call(arguments); a[1] = fix(u); return ox.apply(this, a);
+  };
+})();</script><title>聊天 — 3D 坦克 Wiki</title><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+    <meta charset="UTF-8">
+    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/xg_pWYS8-HRESiV6Rdg4aY_R/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-qWH0xCejb2gc1yqo8ob4TQrvIcQ9XjhOfGKbhFr/+LvFrJdTE3bA+FQP/FLAiQhz"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgRequestId":"f79ddba9c8d5f0fea138dda6","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"CHat","wgTitle":"CHat","wgCurRevisionId":302958,"wgRevisionId":302958,"wgArticleId":144,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"ru","wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgRelevantPageName":"CHat","wgRelevantArticleId":144,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVisualEditor":{
+"pageLanguageCode":"ru","pageLanguageDir":"ltr","pageVariantFallbacks":"ru"},"wgFlaggedRevsParams":{"tags":{"accuracy":{"levels":3}}},"wgStableRevisionId":302958,"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.flaggedRevs.icons":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.flaggedRevs.basic":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","mediawiki.toc","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.flaggedRevs.advanced","skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=ext.flaggedRevs.basic%2Cicons%7Cext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/c/c7/Chat.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1021">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/c/c7/Chat.png">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="680">
+    <meta property="og:image:width" content="640">
+    <meta property="og:image:height" content="544">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://ru.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://ru.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (ru)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://ru.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki&nbsp;— Atom-лента" href="https://ru.tankiwiki.com/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom"><style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
+
+/* 1. 只去掉源站皮肤的背景大图，保留底色；不要用 background 简写，否则会连带清掉皮肤别的背景设定 */
+html, body {
+    background-image: none !important;
+    background-color: #001926 !important;
+}
+/* 2. 让底色铺满视口，内容很短时下方不再露白 */
+html { min-height: 100%; }
+body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif; }
+
+/* 3. 版心容器 */
+#mw-main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #001926;
+}
+
+/* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
+      【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
+
+#mw-main-container .main-content,
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content,
+#mw-main-container #mw-content-text {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: auto !important;
+    flex-basis: auto !important;   /* 皮肤写了 .main-content{flex:0 0 75%} */
+    float: none !important;
+    margin-top: 0 !important;       /* 核心：清空原站皮肤的负 margin-top */
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    position: relative !important;
+    z-index: 1 !important;          /* 保证正文层级低于按钮 */
+}
+
+/* 5. 皮肤脚本 skins.tankiblue.js 会往 #mw-content-text 末尾插一条「发现错别字？Ctrl+Enter」
+      的俄语提示条和一个「报告错误」标签页。它按网址里有没有 'en'/'de' 来判断语言，
+      我们的域名两者都不含 → 一律显示俄语；且报错会提交到俄站编辑组，对镜像站没意义，直接隐藏。 */
+#custom-report-footer,
+.vectorTabs.customReport,
+.customReport { display: none !important; }
+
+/* 6. 返回按钮包裹容器：独占一行并强制最高层级 */
+.home-btn-wrapper {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px 0 20px 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    z-index: 9999 !important;       /* 核心：永远置于最顶层 */
+    clear: both !important;
+    overflow: visible !important;
+}
+
+/* 7. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐 */
+.home-back-btn {
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    width: auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    isolation: isolate !important;
+    
+    min-width: 142px !important;
+    padding: 0 24px !important;
+    height: 78px !important;
+    margin: 0 !important;
+    border: 1px solid rgba(255,255,255,.25) !important;
+    outline: 2px solid transparent !important;
+    border-radius: 6.5px !important;
+    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%) !important;
+    
+    position: relative !important;
+    z-index: 10000 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: all .15s ease !important;
+    overflow: visible !important;
+}
+.home-back-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(100% 100% at 0% 0%, rgba(191,213,255,.25) 0%, rgba(191,213,255,.15) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all .15s ease;
+    border-radius: inherit;
+    pointer-events: none;
+}
+.home-back-btn svg {
+    width: 24.375px;
+    height: 24px;
+    object-fit: contain;
+    transform: rotate(180deg);
+    transition: all .15s ease;
+    flex-shrink: 0;
+}
+.home-back-btn svg path { fill: #BFD5FF; transition: all .15s ease; }
+
+.home-back-btn:hover,
+.home-back-btn:active,
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF !important; border-color: #BFD5FF !important; }
+.home-back-btn:hover::before,
+.home-back-btn:active::before,
+.home-back-btn:focus-visible::before { opacity: 1; }
+.home-back-btn:hover svg,
+.home-back-btn:active svg,
+.home-back-btn:focus-visible svg { transform: rotate(180deg) translateX(10%); }
+.home-back-btn:hover svg path,
+.home-back-btn:active svg path,
+.home-back-btn:focus-visible svg path { fill: #fff; }
+
+.home-back-btn span {
+    color: #BFD5FF;
+    font-size: 16px;
+    margin-left: 10px;
+    font-weight: bold;
+    transition: all .15s ease;
+    white-space: nowrap;
+}
+.home-back-btn:hover span,
+.home-back-btn:active span,
+.home-back-btn:focus-visible span {
+    color: #fff;
+    transform: translateX(-4px);
+}
+
+/* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
+@media (hover: none) {
+    .home-back-btn { border-color: rgba(191,213,255,.55) !important; }
+    .home-back-btn svg path { fill: #CFE0FF; }
+}
+
+/* 移动端/窄屏自适应尺寸 */
+@media (max-width: 480px) {
+    .home-back-btn {
+        min-width: 106px !important;
+        padding: 0 16px !important;
+        height: 58px !important;
+        margin-left: 10px !important;
+    }
+    .home-back-btn svg { width: 20px !important; height: 19.7px !important; }
+    .home-back-btn span { font-size: 14px !important; margin-left: 8px !important; }
+}
+
+/* 8. 移动端容器 Padding */
+@media (max-width: 768px) {
+    #mw-main-container { padding: 10px !important; margin: 8px auto !important; }
+    .home-back-btn { margin-left: 10px !important; }
+    #mw-content-text .navigationContainerContent > div,
+    #mw-content-text [style*="width: 55%"],
+    #mw-content-text [style*="width:55%"],
+    #mw-content-text [style*="width: 45%"],
+    #mw-content-text [style*="width:45%"] { width: 100% !important; }
+}
+@media (max-width: 480px) {
+    #mw-main-container { padding: 6px !important; margin: 4px auto !important; }
+}
+
+/* 9. 防止宽表格 / 大图撑破版心 */
+#mw-content-text img { max-width: 100%; height: auto; }
+#mw-content-text table { max-width: 100%; }
+
+/* 10. 目录（TOC）修复，全局生效：
+    a) 皮肤把目录折叠按钮的文字放在 CSS 伪元素里渲染，而不是 HTML 文本：
+         .toctogglecheckbox:checked  + .toctitle .toctogglelabel::after → content:'показать'
+         .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after → content:'скрыть'
+       AI 翻译只处理 HTML 文本，摸不到 CSS content，所以这个按钮永远是俄语，必须在这里覆盖成中文。
+    b) 皮肤的响应式 CSS 里写了 @media screen and (max-width:768px){ #toc{display:none} }，
+       导致手机端整个目录被隐藏。这里恢复显示，并配合下方 TOC_MOBILE_COLLAPSE_SCRIPT：
+       移动端默认折叠，只占一行「目录 [展开]」，避免长目录把正文挤到屏幕外。 */
+#toc .toctogglecheckbox:checked + .toctitle .toctogglelabel::after { content: '展开' !important; }
+#toc .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after { content: '收起' !important; }
+@media screen and (max-width: 768px) {
+    #toc { display: table !important; }
+}
+
+/* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
+   只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+*/
+</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-CHat rootpage-CHat skin-tankiblue action-view"><div id="skin-chrome-stub" aria-hidden="true" style="display:none !important;">
+<a class="problem" href="#"></a>
+<div class="close-wrapper"></div>
+<div class="support-block-popup"><div class="close-modal-support"></div></div>
+<div class="youtube-popup"><iframe title="stub"></iframe></div>
+<div class="video-button"></div>
+<div class="header-search"></div>
+<div class="search-dialog"></div>
+<div class="search-popup"><div class="close-wrapper"></div><div class="close-modal-search"></div></div>
+<div class="news-popup"></div>
+<div class="sales-block-header"></div>
+<div class="navbar-main"></div>
+<div class="main-navbar"></div>
+</div><div id="mw-main-container"><div class="home-btn-wrapper"><a class="home-back-btn" href="./Enciklopediya_igry_%C2%ABTanki_Onlayn%C2%BB" title="返回主页" aria-label="返回主页"><svg viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 0H13.5L25.5 12L24 13.5L13.5 24H18L30 12L18 0ZM24 13.5L21 10.5H0L3 13.5H24Z" fill="#BFD5FF"/></svg><span>返回主页</span></a></div><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">聊天</h1><div class="dablink"><em>参见：</em> <a href="./%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0_%D0%B4%D1%80%D1%83%D0%B7%D0%B5%D0%B9" class="mw-redirect" title="Система друзей">好友系统</a>
+</div><div class="interestingFact" style="float:right; margin: 0px 10px 10px 10px; padding:10px; border:1px solid rgba(125, 157, 186, .4); border-radius: 6px; width:20em;">
+<div style="font-size:105%; line-height:120%; pointer-events: none;">
+<table>
+
+<tbody><tr>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/32/Favicon_user_eho.png" decoding="async" loading="lazy" width="16" height="16" class="mw-file-element"></span></span>
+</td>
+<td valign="bottom"><b>你知道吗……</b>
+</td></tr></tbody></table>
+</div>
+<div style="font-size: 95%; padding-top:10px">
+			V-LOG 的拍摄通常在周三进行，尽管剧本的筹备工作要早得多。周四和周五则用于视频剪辑。<div class="dablink noprint"><em>主条目</em>：<b><a href="./%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D0%B1%D0%BB%D0%BE%D0%B3" class="mw-redirect" title="Видеоблог">V-LOG</a></b>
+</div>
+<p><br>			
+</p>
+</div>
+</div><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"><div class="toctitle" lang="ru" dir="ltr"><h2 id="mw-toc-heading">目录</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Устройство_чата"><span class="tocnumber">1</span> <span class="toctext">聊天结构</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Чат_лобби"><span class="tocnumber">1.1</span> <span class="toctext">大厅聊天</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Приватные_сообщения"><span class="tocnumber">1.2</span> <span class="toctext">私密消息</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Боевой_чат"><span class="tocnumber">1.3</span> <span class="toctext">战斗聊天</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Доступность_чатов"><span class="tocnumber">1.4</span> <span class="toctext">聊天可用性</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Антифлуд-система"><span class="tocnumber">1.5</span> <span class="toctext">反刷屏系统</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-7"><a href="#Правила_чата"><span class="tocnumber">2</span> <span class="toctext">聊天规则</span></a>
+<ul>
+<li class="toclevel-2 tocsection-8"><a href="#Запрещённые_действия"><span class="tocnumber">2.1</span> <span class="toctext">禁止的行为</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Как_пожаловаться_в_чате"><span class="tocnumber">2.2</span> <span class="toctext">如何在聊天中举报</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="#Специальные_обозначения"><span class="tocnumber">3</span> <span class="toctext">特殊标识</span></a></li>
+<li class="toclevel-1 tocsection-11"><a href="#Команды_чата"><span class="tocnumber">4</span> <span class="toctext">聊天指令</span></a>
+<ul>
+<li class="toclevel-2 tocsection-12"><a href="#Боевой_чат_2"><span class="tocnumber">4.1</span> <span class="toctext">战斗聊天</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#Чат_лобби_2"><span class="tocnumber">4.2</span> <span class="toctext">大厅聊天</span></a></li>
+</ul>
+</li>
+</ul>
+</div><h2><span id=".D0.A3.D1.81.D1.82.D1.80.D0.BE.D0.B9.D1.81.D1.82.D0.B2.D0.BE_.D1.87.D0.B0.D1.82.D0.B0"></span><span class="mw-headline" id="Устройство_чата">聊天结构</span></h2><p>游戏中有四种类型的聊天：<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/1/13/Union.png/20px-Union.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/1/13/Union.png/30px-Union.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/1/13/Union.png/40px-Union.png 2x"></span></span> <a href="./%D0%9B%D0%BE%D0%B1%D0%B1%D0%B8" class="mw-redirect" title="Лобби">大厅</a>聊天、战斗聊天、私人聊天以及仅限军团成员使用的军团聊天。
+</p><h3><span id=".D0.A7.D0.B0.D1.87_.D0.BB.D0.BE.D0.B1.D0.B1.D0.B8"></span><span class="mw-headline" id="Чат_лобби">大厅聊天</span></h3><div class="img__container" style="float:right;clear:right;"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/f/f6/Open_chat_button.png" decoding="async" loading="lazy" width="300" height="77" class="mw-file-element"></span></span><br>打开大厅聊天的按钮</div><p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/1/13/Union.png/20px-Union.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/1/13/Union.png/30px-Union.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/1/13/Union.png/40px-Union.png 2x"></span></span>大厅聊天在&lt;+玩家&gt;处于战斗之外（在游戏大厅中）时可用。它被划分为几个主题频道。
+</p><div class="img__container" style="float:right;clear:right;width:170px;"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/c/c7/Chat.png/170px-Chat.png" decoding="async" loading="lazy" width="170" height="145" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/c7/Chat.png/255px-Chat.png 1.5x, https://ru.tankiwiki.com/images/ru/c/c7/Chat.png 2x"></span></span></div><p>游戏的每个语言版本都有自己独立的聊天频道集合。你可以在<span typeof="mw:File"><a href="./%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B8" title="Настройки"><img src="https://ru.tankiwiki.com/images/ru/thumb/9/91/Settings.png/25px-Settings.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/9/91/Settings.png/38px-Settings.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/9/91/Settings.png/50px-Settings.png 2x"></a></span> <a href="./%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B8" class="mw-redirect" title="Настройки">设置</a>中切换语言区域。
+</p><p>在大厅聊天中，你可以将&lt;+玩家&gt;加入黑名单：为此，需要点击聊天中的昵称并选择“隐藏消息”选项。来自此类&lt;+玩家&gt;的消息将不再显示。若要恢复显示消息，只需再次点击昵称并选择“显示消息”选项即可。
+</p><h3><span id=".D0.9F.D1.80.D0.B8.D0.B2.D0.B0.D1.82.D0.BD.D1.8B.D0.B5_.D1.81.D0.BE.D0.BE.D0.B1.D1.89.D0.B5.D0.BD.D0.B8.D1.8F"></span><span class="mw-headline" id="Приватные_сообщения">私密消息</span></h3><p>私密消息是指向其他&lt;+玩家&gt;发送仅收件人可见的个人消息的功能。同时，收件人必须在线且在好友列表中。处于哪个聊天频道和哪个语言区域并不重要。
+</p><p>要向&lt;+玩家&gt;发送<b>私密</b>消息，需要点击聊天中的其昵称并选择“私信”选项。如果聊天中没有该&lt;+玩家&gt;的昵称，你可以通过任何方式从其他地方<a href="./Kopirovanie_nika" title="Kopirovanie nika">复制</a>其昵称，将其粘贴到聊天中，在昵称后面加上冒号<span style="color:#33f305"><b>:</b></span>和一个空格，然后编写消息文本。
+</p><p>完成上述任意操作后，发送消息按钮将变成绿色 —— 这意味着准备发送的是私密消息。
+</p><p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/0/0a/Types_of_messages_in_lobby_2.png" decoding="async" loading="lazy" width="590" height="98" class="mw-file-element"></span></span>
+</p><p>发送私密消息后，收件人的大厅聊天<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/1/13/Union.png/20px-Union.png" decoding="async" loading="lazy" width="20" height="20" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/1/13/Union.png/30px-Union.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/1/13/Union.png/40px-Union.png 2x"></span></span>图标上方会出现一个黄色通知标记。
+</p><p>如果收件人离线，则无法发送私密消息。
+</p><p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/8e/Types_of_messages_in_lobby.png" decoding="async" loading="lazy" width="547" height="168" class="mw-file-element"></span></span>
+</p><h3><span id=".D0.91.D0.BE.D0.B5.D0.B2.D0.BE.D0.B9_.D1.87.D0.B0.D1.82"></span><span class="mw-headline" id="Боевой_чат">战斗聊天</span></h3><p>战斗聊天在&lt;+玩家&gt;处于战斗中时可用：在电脑版中通过按 <span class="hotkey">Enter</span> 键激活，或者在游戏<a href="./TO_Mobile" title="TO Mobile">移动端</a>中通过点击右上角的按钮激活。相应地，战斗中的所有人都能看到其中的消息。如果&lt;+玩家&gt;处于<a href="./%D0%A0%D0%B5%D0%B6%D0%B8%D0%BC%D1%8B_%D0%B1%D0%BE%D1%8F" class="mw-redirect" title="Режимы боя">团队对战</a>中，他既可以向所有战斗参与者发消息，也可以仅向队友发消息。要在综合聊天和团队聊天之间切换，需要在输入消息时按 <span class="hotkey">Tab</span> 键。团队聊天中编写的消息会高亮显示为蓝色。在战斗中无法发送私密消息。
+</p><h3><span id=".D0.94.D0.BE.D1.81.D1.82.D1.83.D0.BF.D0.BD.D0.BE.D1.81.D1.82.D1.8C_.D1.87.D0.B0.D1.82.D0.BE.D0.B2"></span><span class="mw-headline" id="Доступность_чатов">聊天可用性</span></h3><ul><li><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9D%D0%BE%D0%B2%D0%BE%D0%B1%D1%80%D0%B0%D0%BD%D0%B5%D1%86" title="Новобранец"><img src="https://ru.tankiwiki.com/images/ru/thumb/6/64/IconsNormal_01.png/28px-IconsNormal_01.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/64/IconsNormal_01.png/42px-IconsNormal_01.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/64/IconsNormal_01.png/56px-IconsNormal_01.png 2x"></a></span> <a href="./%D0%9D%D0%BE%D0%B2%D0%BE%D0%B1%D1%80%D0%B0%D0%BD%D0%B5%D1%86" class="mw-redirect" title="Новобранец">新兵</a></span>：聊天不可用</li>
+<li><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%95%D1%84%D1%80%D0%B5%D0%B9%D1%82%D0%BE%D1%80" title="Ефрейтор"><img src="https://ru.tankiwiki.com/images/ru/thumb/2/20/IconsNormal_03.png/28px-IconsNormal_03.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/20/IconsNormal_03.png/42px-IconsNormal_03.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/2/20/IconsNormal_03.png/56px-IconsNormal_03.png 2x"></a></span> <a href="./%D0%95%D1%84%D1%80%D0%B5%D0%B9%D1%82%D0%BE%D1%80" class="mw-redirect" title="Ефрейтор">一等兵</a></span>：“新手”和“专家战场”聊天频道可用</li>
+<li><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9A%D0%B0%D0%BF%D1%80%D0%B0%D0%BB" title="Капрал"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d6/IconsNormal_04.png/28px-IconsNormal_04.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d6/IconsNormal_04.png/42px-IconsNormal_04.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d6/IconsNormal_04.png/56px-IconsNormal_04.png 2x"></a></span> <a href="./%D0%9A%D0%B0%D0%BF%D1%80%D0%B0%D0%BB" class="mw-redirect" title="Капрал">下士</a></span>：私密消息可用</li>
+<li><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9C%D0%B0%D1%81%D1%82%D0%B5%D1%80-%D1%81%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" title="Мастер-сержант"><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6b/IconsNormal_08.png/28px-IconsNormal_08.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/6b/IconsNormal_08.png/42px-IconsNormal_08.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/6b/IconsNormal_08.png/56px-IconsNormal_08.png 2x"></a></span> <a href="./%D0%9C%D0%B0%D1%81%D1%82%D0%B5%D1%80-%D1%81%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" class="mw-redirect" title="Мастер-сержант">二级军士长</a></span>：“综合”聊天频道可用</li>
+<li><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%A1%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82-%D0%BC%D0%B0%D0%B9%D0%BE%D1%80" title="Сержант-майор"><img src="https://ru.tankiwiki.com/images/ru/thumb/6/63/IconsNormal_10.png/28px-IconsNormal_10.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/63/IconsNormal_10.png/42px-IconsNormal_10.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/63/IconsNormal_10.png/56px-IconsNormal_10.png 2x"></a></span> <a href="./%D0%A1%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82-%D0%BC%D0%B0%D0%B9%D0%BE%D1%80" class="mw-redirect" title="Сержант-майор">军士长</a></span>：“新手”聊天频道不可用</li></ul><h3><span id=".D0.90.D0.BD.D1.82.D0.B8.D1.84.D0.BB.D1.83.D0.B4-.D1.81.D0.B8.D1.81.D1.82.D0.B5.D0.BC.D0.B0"></span><span class="mw-headline" id="Антифлуд-система">反刷屏系统</span></h3><p>综合聊天和私人聊天中运行着“反刷屏系统”。其中包含两个参数：发送消息的“代价”和一个字符的“代价”——这些代价以毫秒为单位进行衡量。这意味着限制不仅按消息数量生效，还按单位时间内的字符数量生效。这种形式允许系统不直接封禁用户，而是将其发送消息的功能屏蔽几秒钟。超限的可能不是整条消息，而只是其一部分、几个字符；在这种情况下，正在输入的消息会高亮显示为红色，而“发送”按钮则会变成一个计时器，通知你何时才能发送如此长度的消息。
+</p><p><b>主要特点：</b>
+</p><ul><li>聊天中单条消息的最大长度为 299 个字符；</li>
+<li>在大厅聊天中交流时，字符的“代价”取决于聊天的速度；</li>
+<li>用户名也受此系统限制，即你也必须为对话者的昵称“付费”；</li>
+<li>在大厅聊天中，同一个链接每发送 60 条消息才可发送一次。否则，你会看到提示“发布的链接已存在于聊天中”。该规则不适用于指向战局的链接；</li>
+<li>在<a href="./%D0%9A%D0%BB%D0%B0%D0%BD%D0%BE%D0%B2%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0" class="mw-redirect" title="Клановая система">军团系统</a>聊天中，反刷屏系统不生效。</li></ul><h2><span id=".D0.9F.D1.80.D0.B0.D0.B2.D0.B8.D0.BB.D0.B0_.D1.87.D0.B0.D1.82.D0.B0"></span><span class="mw-headline" id="Правила_чата">聊天规则</span></h2><div class="dablink noprint"><em>主条目</em>：<b><a href="./%D0%9F%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0" class="mw-redirect" title="Правила">规则</a></b>
+</div><h3><span id=".D0.97.D0.B0.D0.BF.D1.80.D0.B5.D1.89.D1.91.D0.BD.D0.BD.D1.8B.D0.B5_.D0.B4.D0.B5.D0.B9.D1.81.D1.81.D1.82.D0.B2.D0.B8.D1.8F"></span><span class="mw-headline" id="Запрещённые_действия">禁止的行为</span></h3><p><b>禁止并面临聊天封禁的行为</b>：
+</p><ul><li>侮辱游戏中的其他用户、粗鲁无礼、以具侮辱性的方式公开算账、行为下流；</li>
+<li>使用粗口（在任何地方、以任何形式）；</li>
+<li>刷屏（发送由重复字符组成的消息、连续多次发送同一条消息、在一条消息中连续发送超过 5 个相同的标点符号、符号或单个字母）；</li>
+<li>在聊天中编写粗鲁或挑衅性的消息、干扰其他聊天参与者进行的交流；</li>
+<li>进行网络钓鱼、煽动社区成员采取对他们产生不利后果的行动、创建昵称以及采取任何其他可能引发冲突或冒犯社区成员的步骤；</li>
+<li>实施或教唆第三人实施现行法律禁止的行为，包括与非法贩运麻醉品、恐怖主义活动、呼吁推翻合法选举产生的政府、色情、任何形式的性别、年龄、宗教或其他形式歧视相关的行为；</li>
+<li>在游戏中进行任何形式的政治鼓动、政治广告、竞选宣传；</li>
+<li>传播明显具有色情性质、不适合未成年人公开访问的信息（请记住：这里也有儿童在玩游戏）。</li></ul><p><br>这些规则既适用于公共聊天，也适用于私人聊天，尽管版主无法阅读私人信件。
+</p><h3><span id=".D0.9A.D0.BA_.D0.BF.D0.BE.D0.B6.D0.B0.D0.BB.D0.BE.D0.B2.D0.B0.D1.82.D1.8C.D1.81.D1.8F_.D0.B2_.D1.87.D0.B0.D1.82.D0.B5"></span><span class="mw-headline" id="Как_пожаловаться_в_чате">如何在聊天中举报</span></h3><div class="dablink"><em>参见：</em> <a href="./%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0_%D0%BC%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%B8" class="mw-redirect" title="Система модерации">如何在聊天中举报消息</a>
+</div><p>如果&lt;+玩家&gt;在聊天中写不当词汇或侮辱他人，可以对其进行举报。在大厅聊天中，只需点击其昵称并在<a href="./%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0_%D0%B4%D1%80%D1%83%D0%B7%D0%B5%D0%B9" class="mw-redirect" title="Система друзей">上下文菜单</a>中点击“举报消息”。接下来就交由我们的版主处理了。他们会以最快速度审核举报并作出裁决。
+</p><p>在战斗聊天中，无法直接点击&lt;+玩家&gt;昵称并举报消息。但战斗中发送的所有消息都有历史记录，点击聊天面板旁边的红色图标即可打开。历史记录中的消息举报原理与大厅聊天相同。
+</p><h2><span id=".D0.A1.D0.BF.D0.B5.D1.86.D0.B8.D0.BB.D1.8C.D0.BD.D1.8B.D0.BE_.D0.BE.D0.B5.D0.B0.D0.B7.D0.B0.D0.BD.D0.B8.D1.8F"></span><span class="mw-headline" id="Специальные_обозначения">特殊标识</span></h2><p>在游戏聊天中，你可能会遇到昵称前带有以下符号的&lt;+玩家&gt;：
+</p><table class="wikitable-modern" style="width:65%">
+
+<tbody><tr class="wikitable-header">
+<th>
+</th>
+<th width="20%"><a href="./%D0%9A%D0%BE%D0%BC%D1%8C%D1%8E%D0%BD%D0%B8%D1%82%D0%B8-%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Комьюнити-менеджеры">CM</a>
+</th>
+<th width="20%"><a href="./%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%8B_%D1%87%D0%B0%D1%82%D0%B0" class="mw-redirect" title="Модераторы чата">聊天</a>
+</th>
+<th width="20%"><a href="./%D0%9C%D0%BE%D0%B4%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%8B_%D0%B1%D0%B8%D1%82%D0%B2" class="mw-redirect" title="Модераторы битв">战场</a>
+</th></tr>
+<tr>
+<td>管理员</td>
+<td><span style="color:tomato">(CM)</span>
+</td>
+<td><span style="color:tomato">(A)</span>
+</td>
+<td><span style="color:tomato">(BA)</span>
+</td></tr>
+<tr>
+<td>版主/组织者</td>
+<td>
+</td>
+<td>
+</td>
+<td><span style="color:tomato">(BM)</span>
+</td></tr>
+<tr>
+<td>候选人</td>
+<td>
+</td>
+<td>
+</td>
+<td><span style="color:tomato">(BC)</span>
+</td></tr></tbody></table><h2><span id=".D0.9A.D0.BE.D0.BC.D0.B0.D0.BD.D0.B4.D1.81_.D1.87.D0.B0.D1.82.D0.B0"></span><span class="mw-headline" id="Команды_чата">聊天指令</span></h2><h3><span id=".D0.91.D0.BE.D0.B5.D0.B2.D0.BE.D0.B9_.D1.87.D0.B0.D1.82_2"></span><span class="mw-headline" id="Боевой_чат_2">战斗聊天</span></h3><div class="dablink noprint"><em>主条目</em>：<b><a href="./PRO-%D0%B1%D0%B8%D1%82%D0%B2%D1%8B" class="mw-redirect" title="PRO-битвы">专家战场</a></b>
+</div><p>专家战场创建者可以使用特定的聊天指令来管理战斗设置。目前，仅能为专家战场设置密码保护。不过，可用功能计划在未来进行扩展。
+</p><h3><span id=".D0.A7.D0.B0.D1.87_.D0.BB.D0.BE.D0.B1.D0.B1.D0.B8_2"></span><span class="mw-headline" id="Чат_лобби_2">大厅聊天</span></h3><ul><li>#faq — 跳转至百科页面“<a href="./%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C" class="mw-redirect" title="Помощь">帮助</a>”</li>
+<li>#rules — 跳转至游戏页面“<a rel="nofollow" class="external text" href="https://tankionline.com/ru/gamerules/">规则</a>”</li>
+<li>#updates — 跳转至板块“<a rel="nofollow" class="external text" href="https://ru.tankiforum.com/forum/10/">更新</a>”</li>
+<li>#idea — 跳转至板块“<a rel="nofollow" class="external text" href="https://ru.tankiforum.com/forum/252/">想法与建议</a>”</li>
+<li>#clans — 跳转至百科页面“<a href="./%D0%9A%D0%BB%D0%B0%D0%BD%D1%8B" class="mw-redirect" title="Кланы">军团</a>”</li>
+<li>#ranks — 跳转至百科页面“<a href="./%D0%97%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="Звания">等级</a>”</li>
+<li>#forum — 跳转至<a rel="nofollow" class="external text" href="http://ru.tankiforum.com/">论坛主页</a></li>
+<li>#theft — 跳转至百科页面“<a href="./CHto_delat_esli_u_vas_ukrali_ili_vzlomali_akkaunt" title="CHto delat esli u vas ukrali ili vzlomali akkaunt">账号被盗或被黑时该怎么办</a>”</li>
+<li>#wiki — 跳转至 <a rel="nofollow" class="external text" href="http://ru.tankiwiki.com/">3D 坦克百科</a></li>
+<li>#nick — 跳转至<a href="./Pereimenovanie" title="Pereimenovanie">昵称更改说明</a></li>
+<li>re: — 文本输入框中将自动填入最后一个给发送者写信的&lt;+玩家&gt;昵称</li></ul><div align="right"><small>最后编辑：07/05/2026 Devise <span class="ai-translate-note" style="color:#8FB8D8;">（由 AI 自动翻译）</span></small></div></div></div></div></div></div><footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
+<p style="margin:0;"><strong style="color:#BFD5FF;">本站为玩家社区自建的非官方 Wiki 镜像。</strong></p>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":960,"wgPageParseReport":{"limitreport":{"cputime":"0.261","walltime":"0.308","ppvisitednodes":{"value":691,"limit":1000000},"postexpandincludesize":{"value":4031,"limit":4194304},"templateargumentsize":{"value":1270,"limit":4194304},"expansiondepth":{"value":8,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":360,"limit":5000000},"timingprofile":["100.00%   88.821      1 -total"," 34.42%   30.576      2 Шаблон:See_also"," 31.16%   27.672      5 Шаблон:Другое_значение"," 16.76%   14.886      1 Шаблон:RndTxt"," 12.19%   10.825     28 Шаблон:См._также/link"," 10.34%    9.183      1 Шаблон:LastEdit"," 10.03%    8.911      3 Шаблон:Main","  9.28%    8.243      5 Шаблон:Rank","  8.61%    7.651      2 Шаблон:Img","  6.41%    5.689      2 Шаблон:Hotkey"]},"cachereport":{"timestamp":"20260825034527","ttl":0,"transientcontent":true}}});});</script>
+    <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });</script></body></html>

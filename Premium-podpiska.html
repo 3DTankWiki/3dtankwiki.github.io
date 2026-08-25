@@ -1,0 +1,371 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>(function(){
+  var BASE = 'https://ru.tankiwiki.com';
+  function fix(v){ return (typeof v === 'string' && v.charAt(0) === '/' && v.indexOf('//') !== 0) ? BASE + v : v; }
+  ['HTMLScriptElement','HTMLLinkElement'].forEach(function(tag){
+    var proto = window[tag] && window[tag].prototype;
+    var prop  = tag === 'HTMLScriptElement' ? 'src' : 'href';
+    if (!proto) return;
+    var d = Object.getOwnPropertyDescriptor(proto, prop);
+    if (!d || !d.set) return;
+    Object.defineProperty(proto, prop, {
+      configurable: true,
+      get: function(){ return d.get.call(this); },
+      set: function(v){ d.set.call(this, fix(v)); }
+    });
+  });
+  var of = window.fetch;
+  if (of) window.fetch = function(u, o){ return of.call(this, (typeof u === 'string' ? fix(u) : u), o); };
+  var ox = window.XMLHttpRequest && XMLHttpRequest.prototype.open;
+  if (ox) XMLHttpRequest.prototype.open = function(m, u){
+    var a = Array.prototype.slice.call(arguments); a[1] = fix(u); return ox.apply(this, a);
+  };
+})();</script><title>VIP — 3D 坦克 Wiki</title><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+    <meta charset="UTF-8">
+    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/xg_pWYS8-HRESiV6Rdg4aY_R/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-qWH0xCejb2gc1yqo8ob4TQrvIcQ9XjhOfGKbhFr/+LvFrJdTE3bA+FQP/FLAiQhz"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgRequestId":"302657cc9a4204518dc4ee5c","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Premium-podpiska","wgTitle":"Premium-podpiska","wgCurRevisionId":302007,"wgRevisionId":302007,"wgArticleId":8152,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"ru","wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgRelevantPageName":"Premium-podpiska","wgRelevantArticleId":8152,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],
+"wgRestrictionMove":[],"wgVisualEditor":{"pageLanguageCode":"ru","pageLanguageDir":"ltr","pageVariantFallbacks":"ru"},"wgFlaggedRevsParams":{"tags":{"accuracy":{"levels":3}}},"wgStableRevisionId":302007,"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.flaggedRevs.icons":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.flaggedRevs.basic":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["mediawiki.page.media","site","mediawiki.page.ready","mediawiki.toc","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.flaggedRevs.advanced","skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=ext.flaggedRevs.basic%2Cicons%7Cext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/0/08/Premium_accounts_banner.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="651">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/thumb/0/08/Premium_accounts_banner.png/800px-Premium_accounts_banner.png">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="434">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/thumb/0/08/Premium_accounts_banner.png/640px-Premium_accounts_banner.png">
+    <meta property="og:image:width" content="640">
+    <meta property="og:image:height" content="347">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://ru.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://ru.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (ru)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://ru.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki&nbsp;— Atom-лента" href="https://ru.tankiwiki.com/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom"><style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
+
+/* 1. 只去掉源站皮肤的背景大图，保留底色；不要用 background 简写，否则会连带清掉皮肤别的背景设定 */
+html, body {
+    background-image: none !important;
+    background-color: #001926 !important;
+}
+/* 2. 让底色铺满视口，内容很短时下方不再露白 */
+html { min-height: 100%; }
+body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif; }
+
+/* 3. 版心容器 */
+#mw-main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #001926;
+}
+
+/* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
+      【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
+
+#mw-main-container .main-content,
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content,
+#mw-main-container #mw-content-text {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: auto !important;
+    flex-basis: auto !important;   /* 皮肤写了 .main-content{flex:0 0 75%} */
+    float: none !important;
+    margin-top: 0 !important;       /* 核心：清空原站皮肤的负 margin-top */
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    position: relative !important;
+    z-index: 1 !important;          /* 保证正文层级低于按钮 */
+}
+
+/* 5. 皮肤脚本 skins.tankiblue.js 会往 #mw-content-text 末尾插一条「发现错别字？Ctrl+Enter」
+      的俄语提示条和一个「报告错误」标签页。它按网址里有没有 'en'/'de' 来判断语言，
+      我们的域名两者都不含 → 一律显示俄语；且报错会提交到俄站编辑组，对镜像站没意义，直接隐藏。 */
+#custom-report-footer,
+.vectorTabs.customReport,
+.customReport { display: none !important; }
+
+/* 6. 返回按钮包裹容器：独占一行并强制最高层级 */
+.home-btn-wrapper {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px 0 20px 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    z-index: 9999 !important;       /* 核心：永远置于最顶层 */
+    clear: both !important;
+    overflow: visible !important;
+}
+
+/* 7. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐 */
+.home-back-btn {
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    width: auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    isolation: isolate !important;
+    
+    min-width: 142px !important;
+    padding: 0 24px !important;
+    height: 78px !important;
+    margin: 0 !important;
+    border: 1px solid rgba(255,255,255,.25) !important;
+    outline: 2px solid transparent !important;
+    border-radius: 6.5px !important;
+    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%) !important;
+    
+    position: relative !important;
+    z-index: 10000 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: all .15s ease !important;
+    overflow: visible !important;
+}
+.home-back-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(100% 100% at 0% 0%, rgba(191,213,255,.25) 0%, rgba(191,213,255,.15) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all .15s ease;
+    border-radius: inherit;
+    pointer-events: none;
+}
+.home-back-btn svg {
+    width: 24.375px;
+    height: 24px;
+    object-fit: contain;
+    transform: rotate(180deg);
+    transition: all .15s ease;
+    flex-shrink: 0;
+}
+.home-back-btn svg path { fill: #BFD5FF; transition: all .15s ease; }
+
+.home-back-btn:hover,
+.home-back-btn:active,
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF !important; border-color: #BFD5FF !important; }
+.home-back-btn:hover::before,
+.home-back-btn:active::before,
+.home-back-btn:focus-visible::before { opacity: 1; }
+.home-back-btn:hover svg,
+.home-back-btn:active svg,
+.home-back-btn:focus-visible svg { transform: rotate(180deg) translateX(10%); }
+.home-back-btn:hover svg path,
+.home-back-btn:active svg path,
+.home-back-btn:focus-visible svg path { fill: #fff; }
+
+.home-back-btn span {
+    color: #BFD5FF;
+    font-size: 16px;
+    margin-left: 10px;
+    font-weight: bold;
+    transition: all .15s ease;
+    white-space: nowrap;
+}
+.home-back-btn:hover span,
+.home-back-btn:active span,
+.home-back-btn:focus-visible span {
+    color: #fff;
+    transform: translateX(-4px);
+}
+
+/* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
+@media (hover: none) {
+    .home-back-btn { border-color: rgba(191,213,255,.55) !important; }
+    .home-back-btn svg path { fill: #CFE0FF; }
+}
+
+/* 移动端/窄屏自适应尺寸 */
+@media (max-width: 480px) {
+    .home-back-btn {
+        min-width: 106px !important;
+        padding: 0 16px !important;
+        height: 58px !important;
+        margin-left: 10px !important;
+    }
+    .home-back-btn svg { width: 20px !important; height: 19.7px !important; }
+    .home-back-btn span { font-size: 14px !important; margin-left: 8px !important; }
+}
+
+/* 8. 移动端容器 Padding */
+@media (max-width: 768px) {
+    #mw-main-container { padding: 10px !important; margin: 8px auto !important; }
+    .home-back-btn { margin-left: 10px !important; }
+    #mw-content-text .navigationContainerContent > div,
+    #mw-content-text [style*="width: 55%"],
+    #mw-content-text [style*="width:55%"],
+    #mw-content-text [style*="width: 45%"],
+    #mw-content-text [style*="width:45%"] { width: 100% !important; }
+}
+@media (max-width: 480px) {
+    #mw-main-container { padding: 6px !important; margin: 4px auto !important; }
+}
+
+/* 9. 防止宽表格 / 大图撑破版心 */
+#mw-content-text img { max-width: 100%; height: auto; }
+#mw-content-text table { max-width: 100%; }
+
+/* 10. 目录（TOC）修复，全局生效：
+    a) 皮肤把目录折叠按钮的文字放在 CSS 伪元素里渲染，而不是 HTML 文本：
+         .toctogglecheckbox:checked  + .toctitle .toctogglelabel::after → content:'показать'
+         .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after → content:'скрыть'
+       AI 翻译只处理 HTML 文本，摸不到 CSS content，所以这个按钮永远是俄语，必须在这里覆盖成中文。
+    b) 皮肤的响应式 CSS 里写了 @media screen and (max-width:768px){ #toc{display:none} }，
+       导致手机端整个目录被隐藏。这里恢复显示，并配合下方 TOC_MOBILE_COLLAPSE_SCRIPT：
+       移动端默认折叠，只占一行「目录 [展开]」，避免长目录把正文挤到屏幕外。 */
+#toc .toctogglecheckbox:checked + .toctitle .toctogglelabel::after { content: '展开' !important; }
+#toc .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after { content: '收起' !important; }
+@media screen and (max-width: 768px) {
+    #toc { display: table !important; }
+}
+
+/* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
+   只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+*/
+</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Premium-podpiska rootpage-Premium-podpiska skin-tankiblue action-view"><div id="skin-chrome-stub" aria-hidden="true" style="display:none !important;">
+<a class="problem" href="#"></a>
+<div class="close-wrapper"></div>
+<div class="support-block-popup"><div class="close-modal-support"></div></div>
+<div class="youtube-popup"><iframe title="stub"></iframe></div>
+<div class="video-button"></div>
+<div class="header-search"></div>
+<div class="search-dialog"></div>
+<div class="search-popup"><div class="close-wrapper"></div><div class="close-modal-search"></div></div>
+<div class="news-popup"></div>
+<div class="sales-block-header"></div>
+<div class="navbar-main"></div>
+<div class="main-navbar"></div>
+</div><div id="mw-main-container"><div class="home-btn-wrapper"><a class="home-back-btn" href="./Enciklopediya_igry_%C2%ABTanki_Onlayn%C2%BB" title="返回主页" aria-label="返回主页"><svg viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 0H13.5L25.5 12L24 13.5L13.5 24H18L30 12L18 0ZM24 13.5L21 10.5H0L3 13.5H24Z" fill="#BFD5FF"/></svg><span>返回主页</span></a></div><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">VIP</h1><p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/0/08/Premium_accounts_banner.png/800px-Premium_accounts_banner.png" decoding="async" loading="lazy" width="800" height="434" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/0/08/Premium_accounts_banner.png 1.5x"></span></span>
+</p><div class="dablink"><em>参见：</em> <a href="./%D0%98%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D0%B8_%D0%BF%D0%BE_%D0%BF%D0%BE%D0%BA%D1%83%D0%BF%D0%BA%D0%B5_%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D0%BE%D0%B2_%D0%B2_%D0%9C%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%D0%B5" class="mw-redirect" title="Инструкции по покупке товаров в Магазине">商店商品购买指南</a>和<a href="./%D0%90%D0%B1%D0%BE%D0%BD%D0%B5%D0%BC%D0%B5%D0%BD%D1%82%D1%8B" class="mw-redirect" title="Абонементы">每日坦克币通行证</a>
+</div><p><b>VIP</b> 是一种付费订阅，可为拥有者提供奖励和特权。任何等级均可购买，有效期有限，但可以随时续费。
+</p><div class="img__container" style="float:right;clear:right;width:100pxpx;"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/c/cf/Premium_item.png/100px-Premium_item.png" decoding="async" loading="lazy" width="100" height="100" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/cf/Premium_item.png/150px-Premium_item.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/c/cf/Premium_item.png/200px-Premium_item.png 2x"></span></span><br>物品<br>«VIP»</div><p><br>
+</p><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"><div class="toctitle" lang="ru" dir="ltr"><h2 id="mw-toc-heading">目录</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Способы_получения"><span class="tocnumber">1</span> <span class="toctext">获取途径</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Бонусы"><span class="tocnumber">2</span> <span class="toctext">奖励</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Особая_миссия"><span class="tocnumber">3</span> <span class="toctext">特殊任务</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Интересные_факты"><span class="tocnumber">4</span> <span class="toctext">趣事</span></a></li>
+</ul>
+</div><h2><span id=".D0.A1.D0.BF.D0.BE.D1.81.D0.BE.D0.B1.D1.8B_.D0.BF.D0.BE.D0.BB.D1.83.D1.87.D0.B5.D0.BD.D0.B8.D1.8F"></span><span class="mw-headline" id="Способы_получения">获取途径</span></h2><p>获取 VIP 有几种方法：
+</p><ul><li>在游戏内<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/2/21/Store.png/32px-Store.png" decoding="async" loading="lazy" width="32" height="29" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/21/Store.png/48px-Store.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/2/21/Store.png/64px-Store.png 2x"></span></span> <a href="./%D0%9C%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD" class="mw-redirect" title="Магазин">商店</a>购买</li>
+<li>激活包含 VIP 的<a href="./%D0%9F%D1%80%D0%BE%D0%BC%D0%BE%D0%BA%D0%BE%D0%B4%D1%8B" class="mw-redirect" title="Промокоды">兑换码</a></li>
+<li>在特殊活动（例如：“愚人节”）的特定<a href="./%D0%97%D0%BE%D0%BB%D0%BE%D1%82%D0%BE%D0%B9_%D1%8F%D1%89%D0%B8%D0%BA" class="mw-redirect" title="Золотой ящик">金箱子</a>中获得</li></ul><p><br>最简单的方法是在商店中购买 VIP。为此，你需要进入<a href="./%D0%9B%D0%BE%D0%B1%D0%B1%D0%B8" class="mw-redirect" title="Лобби">大厅</a>中带有特殊图标的商店，前往“VIP”板块并选择所需的套餐。
+</p><table class="wikitable-modern default">
+
+<tbody><tr class="wikitable-header">
+<td colspan="6">VIP 套餐</td></tr>
+<tr>
+<td width="16%">+ 1 天<br><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/c/cf/Premium_item.png/60px-Premium_item.png" decoding="async" loading="lazy" width="60" height="60" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/cf/Premium_item.png/90px-Premium_item.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/c/cf/Premium_item.png/120px-Premium_item.png 2x"></span></span>
+</td>
+<td width="16%">+ 7 天<br><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/c/cf/Premium_item.png/60px-Premium_item.png" decoding="async" loading="lazy" width="60" height="60" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/cf/Premium_item.png/90px-Premium_item.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/c/cf/Premium_item.png/120px-Premium_item.png 2x"></span></span>
+</td>
+<td width="17%">+ 14 天<br><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/c/cf/Premium_item.png/60px-Premium_item.png" decoding="async" loading="lazy" width="60" height="60" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/cf/Premium_item.png/90px-Premium_item.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/c/cf/Premium_item.png/120px-Premium_item.png 2x"></span></span>
+</td>
+<td width="16%">+ 30 天<br><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/c/cf/Premium_item.png/60px-Premium_item.png" decoding="async" loading="lazy" width="60" height="60" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/cf/Premium_item.png/90px-Premium_item.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/c/cf/Premium_item.png/120px-Premium_item.png 2x"></span></span>
+</td>
+<td width="16%">+ 60 天<br><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/c/cf/Premium_item.png/60px-Premium_item.png" decoding="async" loading="lazy" width="60" height="60" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/cf/Premium_item.png/90px-Premium_item.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/c/cf/Premium_item.png/120px-Premium_item.png 2x"></span></span>
+</td>
+<td width="16%">+ 120 天<br><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/c/cf/Premium_item.png/60px-Premium_item.png" decoding="async" loading="lazy" width="60" height="60" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/cf/Premium_item.png/90px-Premium_item.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/c/cf/Premium_item.png/120px-Premium_item.png 2x"></span></span>
+</td></tr>
+<tr>
+<td><a href="./%D0%A2%D0%B0%D0%BD%D0%BA%D0%BE%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Танкоины"><span class="coins-modern">150</span></a></td>
+<td><a href="./%D0%A2%D0%B0%D0%BD%D0%BA%D0%BE%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Танкоины"><span class="coins-modern">750</span></a></td>
+<td><a href="./%D0%A2%D0%B0%D0%BD%D0%BA%D0%BE%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Танкоины"><span class="coins-modern">1 400</span></a></td>
+<td><a href="./%D0%A2%D0%B0%D0%BD%D0%BA%D0%BE%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Танкоины"><span class="coins-modern">3 000</span></a></td>
+<td><a href="./%D0%A2%D0%B0%D0%BD%D0%BA%D0%BE%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Танкоины"><span class="coins-modern">6 000</span></a></td>
+<td><a href="./%D0%A2%D0%B0%D0%BD%D0%BA%D0%BE%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Танкоины"><span class="coins-modern">12 000</span></a>
+</td></tr></tbody></table><p><br>
+</p><figure class="mw-halign-right" typeof="mw:File/Thumb"><span><img resource="/%D0%A4%D0%B0%D0%B9%D0%BB:WindowPremiumDescription1.png" src="https://ru.tankiwiki.com/images/ru/thumb/0/0d/WindowPremiumDescription1.png/250px-WindowPremiumDescription1.png.jpeg" decoding="async" loading="lazy" width="250" height="309" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/0/0d/WindowPremiumDescription1.png/375px-WindowPremiumDescription1.png.jpeg 1.5x, https://ru.tankiwiki.com/images/ru/0/0d/WindowPremiumDescription1.png 2x"></span><figcaption>VIP 说明</figcaption></figure><p>获得 VIP 后，等级下方会出现一条红丝带。点击左上角的皇冠图标，即可查看有关所提供奖励以及订阅剩余时长的所有信息。
+</p><p>Если на аккаунте уже есть премиум-подписка и игрок продлевает её срок, то время действия свежеполученного премиума прибавляется к остатку времени от предыдущего. Таким образом, премиум можно продлевать заранее, не дожидаясь окончания срока действия.
+</p><h2><span id=".D0.91.D0.BE.D0.BD.D1.83.D1.81.D1.8B"></span><span class="mw-headline" id="Бонусы">奖励</span></h2><div class="img__container" style="float:right;clear:right;width:74px;"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/8/80/IconsPremium_31.png/74px-IconsPremium_31.png" decoding="async" loading="lazy" width="74" height="74" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/8/80/IconsPremium_31.png/111px-IconsPremium_31.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/8/80/IconsPremium_31.png/148px-IconsPremium_31.png 2x"></span></span><br>VIP 等级图标</div><p>VIP 为玩家提供了一系列显著优势。其中包括每周获得七把普通<a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры">幸运礼盒</a>钥匙、额外的水晶、经验值以及在战斗中获得双倍星星。
+</p><div class="img__container" style="float:right;clear:right;width:400px;"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/0/0a/EndBattleInfo.png/400px-EndBattleInfo.png" decoding="async" loading="lazy" width="400" height="170" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/0/0a/EndBattleInfo.png/600px-EndBattleInfo.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/0/0a/EndBattleInfo.png/800px-EndBattleInfo.png 2x"></span></span><br>拥有 VIP 时的战斗结算表</div><p>VIP 拥有者可享受的完整奖励列表：
+</p><ul><li>每场战斗<span style="color:orange">+150%</span> <a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы">水晶</a></li>
+<li>每场战斗经验值<span style="color:orange">+50%</span></li>
+<li>每场战斗<a href="./%D0%A7%D0%B5%D0%BB%D0%BB%D0%B5%D0%BD%D0%B4%D0%B6%D0%B8" class="mw-redirect" title="Челленджи">星星</a> <span style="color:orange">+100%</span></li>
+<li>提高在<a href="./PRO-%D0%B1%D0%B8%D1%82%D0%B2%D1%8B" class="mw-redirect" title="PRO-битвы">专家战场</a>中的经验值和水晶每日上限</li>
+<li>允许完成额外的活动任务、每日和每周 <a href="./%D0%9C%D0%B8%D1%81%D1%81%D0%B8%D0%B8" class="mw-redirect" title="Миссии">SECRET 任务</a></li>
+<li>特殊的红色<a href="./%D0%97%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="Звания">等级</a>丝带。在战斗中以及<a href="./%D0%9B%D0%B8%D1%87%D0%BD%D0%B0%D1%8F_%D1%81%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%B0" class="mw-redirect" title="Личная статистика">个人资料</a>中对所有人可见</li></ul><p><br>这些奖励与游戏中其他生效的奖励叠加，而经验值奖励<b>不影响</b>团队对战中的得分。
+</p><h2><span id=".D0.9E.D1.81.D0.BE.D0.B1.D0.B0.D1.8F_.D0.BC.D0.B8.D1.81.D1.81.D0.B8.D1.8F"></span><span class="mw-headline" id="Особая_миссия">特殊任务</span></h2><p>获得 VIP 后，玩家的“特殊任务”标签页中将出现一个每周奖励，其中包括 7 把普通<a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры">幸运礼盒</a>钥匙：
+</p><ul><li>任务在激活 VIP 的当天开始发放</li>
+<li>新任务在游戏服务器重启后发放（每周五<b>莫斯科时间 05:00</b> 进行）</li><li>只有在登录游戏时 VIP 处于激活状态，该任务才可用</li>
+<li>随着服务器重启，旧任务将消失并颁发新任务。如果不登录游戏并在任务上点击“领取”，则不会自动发放奖励</li></ul><p><br>
+</p><div class="mission_row completed">
+<div class="mission_image">
+<p><span typeof="mw:File"><a href="./%D0%9F%D1%80%D0%B5%D0%BC%D0%B8%D1%83%D0%BC-%D0%BF%D0%BE%D0%B4%D0%BF%D0%B8%D1%81%D0%BA%D0%B0" title="VIP"><img src="https://ru.tankiwiki.com/images/ru/thumb/e/ec/Mission_PremiumBonus.png/80px-Mission_PremiumBonus.png" decoding="async" loading="lazy" width="80" height="80" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/ec/Mission_PremiumBonus.png/120px-Mission_PremiumBonus.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/ec/Mission_PremiumBonus.png/160px-Mission_PremiumBonus.png 2x"></a></span>
+</p>
+</div>
+<div class="mission_text">
+<div class="mission_title">VIP 奖励</div>
+<div class="mission_description">每周登录游戏（新的一周从周五开始），只要你的 VIP 处于激活状态，就可以领取此奖励！</div>
+</div>
+<div class="mission_prizes">
+<div class="mission_prize"><div class="mission_reward">x7</div><div class="mission_reward_image"><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" title="Контейнеры"><img src="https://ru.tankiwiki.com/images/ru/3/3e/Key_Regular.png" decoding="async" loading="lazy" width="270" height="270" class="mw-file-element"></a></span></div></div>
+</div>
+<div class="mission_status">
+<p>领取</p>
+</div>
+</div><h2><span id=".D0.98.D0.BD.D1.82.D0.B5.D1.80.D0.B5.D1.81.D0.BD.D1.8B.D0.B5_.D1.84.D0.B0.D0.BA.D1.82.D1.8B"></span><span class="mw-headline" id="Интересные_факты">趣事</span></h2><ul><li>VIP 于 2015 年 10 月 21 日在游戏中推出。</li>
+<li>自 2022 年 1 月 21 日起，“<a href="./%D0%9F%D1%80%D0%B5%D0%BC%D0%B8%D1%83%D0%BC_(%D0%BA%D1%80%D0%B0%D1%81%D0%BA%D0%B0)" class="mw-redirect" title="VIP（迷彩）">VIP 迷彩</a>”被加入幸运礼盒的<span class="container-category epic"></span>“史诗”类别中。</li>
+<li>随着 2024 年 10 月 25 日<a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/321882/">第 779 号更新</a>的发布，VIP 开始以坦克币出售。</li></ul><div align="right"><small>Последняя правка: 07/11/2025 Vestas</small></div><div align="right" style="margin-top:16px;"><small><span class="ai-translate-note" style="color:#8FB8D8;">（由 AI 自动翻译）</span></small></div></div></div></div></div></div><footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
+<p style="margin:0;"><strong style="color:#BFD5FF;">本站为玩家社区自建的非官方 Wiki 镜像。</strong></p>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":529,"wgPageParseReport":{"limitreport":{"cputime":"0.197","walltime":"0.479","ppvisitednodes":{"value":441,"limit":1000000},"postexpandincludesize":{"value":3052,"limit":4194304},"templateargumentsize":{"value":1653,"limit":4194304},"expansiondepth":{"value":9,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%  184.912      1 -total"," 44.85%   82.934      1 Шаблон:See_also"," 34.23%   63.289      1 Шаблон:Другое_значение"," 28.48%   52.665     14 Шаблон:См._также/link"," 24.43%   45.179      1 Шаблон:Mission"," 17.28%   31.953      1 Шаблон:MissionPrize"," 13.49%   24.949      3 Шаблон:Img","  5.61%   10.376      6 Шаблон:Items/Coins","  5.23%    9.672      1 Шаблон:LastEdit","  3.96%    7.323      3 Шаблон:Color"]},"cachereport":{"timestamp":"20260824090347","ttl":86400,"transientcontent":false}}});});</script>
+    <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });</script></body></html>
