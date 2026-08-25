@@ -1,0 +1,346 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>(function(){
+  var BASE = 'https://ru.tankiwiki.com';
+  function fix(v){ return (typeof v === 'string' && v.charAt(0) === '/' && v.indexOf('//') !== 0) ? BASE + v : v; }
+  ['HTMLScriptElement','HTMLLinkElement'].forEach(function(tag){
+    var proto = window[tag] && window[tag].prototype;
+    var prop  = tag === 'HTMLScriptElement' ? 'src' : 'href';
+    if (!proto) return;
+    var d = Object.getOwnPropertyDescriptor(proto, prop);
+    if (!d || !d.set) return;
+    Object.defineProperty(proto, prop, {
+      configurable: true,
+      get: function(){ return d.get.call(this); },
+      set: function(v){ d.set.call(this, fix(v)); }
+    });
+  });
+  var of = window.fetch;
+  if (of) window.fetch = function(u, o){ return of.call(this, (typeof u === 'string' ? fix(u) : u), o); };
+  var ox = window.XMLHttpRequest && XMLHttpRequest.prototype.open;
+  if (ox) XMLHttpRequest.prototype.open = function(m, u){
+    var a = Array.prototype.slice.call(arguments); a[1] = fix(u); return ox.apply(this, a);
+  };
+})();</script><title>Гирлянда — Tanki Online Wiki</title><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+    <meta charset="UTF-8">
+    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/xg_pWYS8-HRESiV6Rdg4aY_R/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-qWH0xCejb2gc1yqo8ob4TQrvIcQ9XjhOfGKbhFr/+LvFrJdTE3bA+FQP/FLAiQhz"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgRequestId":"dce6a8619ee436126cdfebbd","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Girlyanda","wgTitle":"Girlyanda","wgCurRevisionId":295420,"wgRevisionId":295420,"wgArticleId":10245,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"ru","wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgRelevantPageName":"Girlyanda","wgRelevantArticleId":10245,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],
+"wgVisualEditor":{"pageLanguageCode":"ru","pageLanguageDir":"ltr","pageVariantFallbacks":"ru"},"wgFlaggedRevsParams":{"tags":{"accuracy":{"levels":3}}},"wgStableRevisionId":295420,"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.flaggedRevs.icons":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.flaggedRevs.basic":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.flaggedRevs.advanced","skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=ext.flaggedRevs.basic%2Cicons%7Cext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <style>
+.mw-spinner{position:relative}.mw-spinner > .mw-spinner-container{transform-origin:0 0}.mw-spinner-small{width:20px;height:20px}.mw-spinner-small > .mw-spinner-container{transform:scale(0.3125)}.mw-spinner-large{width:32px;height:32px}.mw-spinner-large > .mw-spinner-container{transform:scale(0.5)}.mw-spinner-block{display:block;width:100%;text-align:center}.mw-spinner-block > .mw-spinner-container{display:inline-block;vertical-align:top}.mw-spinner-block.mw-spinner-small > .mw-spinner-container{min-width:20px}.mw-spinner-block.mw-spinner-large > .mw-spinner-container{min-width:32px}.mw-spinner-inline{display:inline-block;vertical-align:middle} .mw-spinner-container > div{transform-origin:32px 32px;animation:mw-spinner 1.2s linear infinite}.mw-spinner-container > div::after{content:' ';display:block;position:absolute;top:3px; left:29px;width:5px;height:14px;border-radius:20%;background:#000}.mw-spinner-container > div:nth-child(1){transform:rotate(0deg);animation-delay:-1.1s}.mw-spinner-container > div:nth-child(2){transform:rotate(30deg);animation-delay:-1s}.mw-spinner-container > div:nth-child(3){transform:rotate(60deg);animation-delay:-0.9s}.mw-spinner-container > div:nth-child(4){transform:rotate(90deg);animation-delay:-0.8s}.mw-spinner-container > div:nth-child(5){transform:rotate(120deg);animation-delay:-0.7s}.mw-spinner-container > div:nth-child(6){transform:rotate(150deg);animation-delay:-0.6s}.mw-spinner-container > div:nth-child(7){transform:rotate(180deg);animation-delay:-0.5s}.mw-spinner-container > div:nth-child(8){transform:rotate(210deg);animation-delay:-0.4s}.mw-spinner-container > div:nth-child(9){transform:rotate(240deg);animation-delay:-0.3s}.mw-spinner-container > div:nth-child(10){transform:rotate(270deg);animation-delay:-0.2s}.mw-spinner-container > div:nth-child(11){transform:rotate(300deg);animation-delay:-0.1s}.mw-spinner-container > div:nth-child(12){transform:rotate(330deg);animation-delay:0s}@keyframes mw-spinner{0%{opacity:1}100%{opacity:0}}
+.diff{border:0;border-spacing:4px;margin:0;width:100%; table-layout:fixed}.diff td{padding:0.33em 0.5em}.diff td.diff-marker{ padding:0.25em;text-align:right;font-weight:bold;font-size:1.25em;line-height:1.2}.diff td.diff-marker::before{content:attr(data-marker)}.diff td div{ word-wrap:break-word}.diff col.diff-marker{width:2%}.diff .diff-content{width:48%}.diff-title{vertical-align:top}.diff-notice,.diff-multi,.diff-otitle,.diff-ntitle{text-align:center}.diff-lineno{font-weight:bold;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.mw-diff-inline-added ins,.mw-diff-inline-changed ins,.mw-diff-inline-moved ins,.mw-diff-inline-deleted ins,.mw-diff-inline-added del,.mw-diff-inline-changed del,.mw-diff-inline-moved del,.mw-diff-inline-deleted del{padding:0.3em 1px;text-decoration:none;white-space:break-spaces}@media only screen and (max-width:720px){.client-js .mw-diff-inline-added ins,.client-js .mw-diff-inline-changed ins,.client-js .mw-diff-inline-moved ins,.client-js .mw-diff-inline-deleted ins,.client-js .mw-diff-inline-added del,.client-js .mw-diff-inline-changed del,.client-js .mw-diff-inline-moved del,.client-js .mw-diff-inline-deleted del{cursor:pointer}}.mw-diff-inline-added ins,.mw-diff-inline-changed ins,.mw-diff-inline-moved ins{background:#a3d3ff}.mw-diff-inline-deleted del,.mw-diff-inline-changed del,.mw-diff-inline-moved del{background:#ffe49c}.mw-diff-table-prefix{display:flex;justify-content:flex-end;align-items:center;margin:1em 0}.mw-diff-table-prefix .mw-diff-inline-legend{margin-right:auto}.mw-diff-table-prefix .mw-diff-inline-legend .mw-diff-inline-legend-ins,.mw-diff-table-prefix .mw-diff-inline-legend .mw-diff-inline-legend-del{display:inline-block;padding:4px 6px}.mw-diff-table-prefix .mw-diff-inline-legend .mw-diff-inline-legend-ins{background:#a3d3ff}.mw-diff-table-prefix .mw-diff-inline-legend .mw-diff-inline-legend-del{background:#ffe49c}.mw-diff-table-prefix .mw-diffPage-inlineToggle-container{margin-left:1em}.diff-addedline,.diff-deletedline,.diff-context{vertical-align:top;border-style:solid;border-width:1px 1px 1px 4px;border-radius:0.33em}.diff-addedline,.diff-deletedline,.diff-context,.mw-diff-inline-added,.mw-diff-inline-deleted,.mw-diff-inline-moved,.mw-diff-inline-changed,.mw-diff-inline-context{  font-size:13px;  -moz-tab-size:4; tab-size:4;line-height:1.6;white-space:pre-wrap;white-space:break-spaces}.diff-editfont-monospace .diff-addedline,.diff-editfont-monospace .diff-deletedline,.diff-editfont-monospace .diff-context,.diff-editfont-monospace .mw-diff-inline-added,.diff-editfont-monospace .mw-diff-inline-deleted,.diff-editfont-monospace .mw-diff-inline-moved,.diff-editfont-monospace .mw-diff-inline-changed,.diff-editfont-monospace .mw-diff-inline-context{font-family:monospace,monospace}.diff-editfont-sans-serif .diff-addedline,.diff-editfont-sans-serif .diff-deletedline,.diff-editfont-sans-serif .diff-context,.diff-editfont-sans-serif .mw-diff-inline-added,.diff-editfont-sans-serif .mw-diff-inline-deleted,.diff-editfont-sans-serif .mw-diff-inline-moved,.diff-editfont-sans-serif .mw-diff-inline-changed,.diff-editfont-sans-serif .mw-diff-inline-context{font-family:sans-serif}.diff-editfont-serif .diff-addedline,.diff-editfont-serif .diff-deletedline,.diff-editfont-serif .diff-context,.diff-editfont-serif .mw-diff-inline-added,.diff-editfont-serif .mw-diff-inline-deleted,.diff-editfont-serif .mw-diff-inline-moved,.diff-editfont-serif .mw-diff-inline-changed,.diff-editfont-serif .mw-diff-inline-context{font-family:serif}.mw-diff-inline-header{font-weight:bold;margin:1em 0}.diff-context{background:#f8f9fa;color:#222;border-color:#eee}.diff-addedline{border-color:#a3d3ff}.diff-deletedline{border-color:#ffe49c}.diffchange{font-weight:bold;text-decoration:none}.diff-addedline .diffchange,.diff-deletedline .diffchange{border-radius:0.33em;padding:0.25em 0}.diff-addedline .diffchange{background:#d8ecff}.diff-deletedline .diffchange{background:#feeec8} .diff-currentversion-title,.diff{direction:ltr;unicode-bidi:embed}.diff-contentalign-right td{ direction:rtl;unicode-bidi:embed}.diff-contentalign-left td{ direction:ltr;unicode-bidi:embed}.diff-multi,.diff-otitle,.diff-ntitle,.diff-lineno{direction:ltr !important; unicode-bidi:embed}.mw-diff-slot-header{text-align:center}.mw-diff-slot-error{text-align:center;color:#d03} .mw-diff-movedpara-left,.mw-diff-movedpara-right,.mw-diff-movedpara-left:visited,.mw-diff-movedpara-right:visited,.mw-diff-movedpara-left:active,.mw-diff-movedpara-right:active{display:block;color:transparent;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.mw-diff-movedpara-left:hover,.mw-diff-movedpara-right:hover{text-decoration:none;color:transparent}.mw-diff-movedpara-left::after,.mw-diff-movedpara-right::after{display:block;color:#202122;margin-top:-1.25em}.mw-diff-movedpara-left::after,.rtl .mw-diff-movedpara-right::after{content:'↪'}.mw-diff-movedpara-right::after,.rtl .mw-diff-movedpara-left::after{content:'↩'}#mw-inlinediff-header #mw-diff-otitle1,#mw-inlinediff-header #mw-diff-otitle2,#mw-inlinediff-header #mw-diff-otitle3,#mw-inlinediff-header #mw-diff-otitle5{display:none} .diff[data-selected-side='deleted'] .diff-side-added,.diff[data-selected-side='added'] .diff-side-deleted{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:text} .mw-diff-inline-added.mw-diff-empty-line::after,.mw-diff-inline-deleted.mw-diff-empty-line::after,.mw-inline-diff-newline::after{font-family:'Courier New',monospace;font-size:87.5%;padding:0 3px;display:inline-block;color:#555}.mw-diff-inline-added.mw-diff-empty-line::after,.mw-inline-diff-newline::after{content:'↲ новая строка';background:#a3d3ff}.mw-diff-inline-deleted.mw-diff-empty-line::after{content:'⟵ удалить';background:#ffe49c}.mw-diffPage-inlineToggle-container .oo-ui-fieldLayout-body{align-items:center;white-space:nowrap}.mw-diff-empty-line ins,.mw-diff-empty-line del{display:none}.mw-diff-usermetadata,.mw-diff-revision-history-links{display:none}@media only screen and (max-width:720px){.mw-diff-inline-legend{display:none}}
+@media print {
+	td.diff-context,td.diff-addedline .diffchange,td.diff-deletedline .diffchange{background-color:transparent}td.diff-addedline .diffchange{text-decoration:underline}td.diff-deletedline .diffchange{text-decoration:line-through}}
+.mw-editfont-monospace{font-family:monospace,monospace}.mw-editfont-sans-serif{font-family:sans-serif}.mw-editfont-serif{font-family:serif} .mw-editfont-monospace,.mw-editfont-sans-serif,.mw-editfont-serif{  font-size:13px;  -moz-tab-size:4; tab-size:4; }.mw-editfont-monospace.oo-ui-textInputWidget,.mw-editfont-sans-serif.oo-ui-textInputWidget,.mw-editfont-serif.oo-ui-textInputWidget{font-size:inherit}.mw-editfont-monospace.oo-ui-textInputWidget > .oo-ui-inputWidget-input,.mw-editfont-sans-serif.oo-ui-textInputWidget > .oo-ui-inputWidget-input,.mw-editfont-serif.oo-ui-textInputWidget > .oo-ui-inputWidget-input{  font-size:13px}.mw-editfont-monospace.oo-ui-textInputWidget > input.oo-ui-inputWidget-input,.mw-editfont-sans-serif.oo-ui-textInputWidget > input.oo-ui-inputWidget-input,.mw-editfont-serif.oo-ui-textInputWidget > input.oo-ui-inputWidget-input{min-height:32px}
+.unpatrolled{font-weight:bold;color:#d73333} .newpage,.minoredit,.botedit{font-weight:bold} .mw-userlink{word-wrap:break-word; -webkit-hyphens:auto;-moz-hyphens:auto;-ms-hyphens:auto;hyphens:auto; unicode-bidi:embed} .mw-tempuserlink{background-color:#eaecf0;padding:2px 8px;border-radius:0} span.comment{font-style:italic;unicode-bidi:-moz-isolate;unicode-bidi:isolate;word-wrap:break-word;overflow-wrap:break-word;word-break:break-word} .autocomment,.autocomment a,.autocomment a:visited{color:#72777d} li span.deleted,span.history-deleted{text-decoration:line-through;color:#72777d;font-style:italic}span.mw-history-suppressed{ text-decoration-style:double;color:#202122} span.mw-revdelundel-link,strong.mw-revdelundel-link{font-size:90%}.mw-usertoollinks-contribs-no-edits{color:#d03}.mw-usertoollinks-contribs-no-edits:visited{color:#a55858}        .mw-changeslist-separator:empty::before{content:'. .'} .mw-changeslist-separator--semicolon::before{content:';'}.mw-rollback-link::before{content:'['}.mw-rollback-link::after{content:']'}.mw-diff-edit::before,.mw-diff-tool::before,.mw-diff-undo::before,.comment--without-parentheses::before,.mw-changeslist-links::before,.mw-diff-bytes::before,.mw-tag-markers::before,.mw-uctop::before{content:'('}.mw-diff-edit::after,.mw-diff-tool::after,.mw-diff-undo::after,.comment--without-parentheses::after,.mw-changeslist-links::after,.mw-diff-bytes::after,.mw-tag-markers::after,.mw-uctop::after{content:')'}.mw-comment-none{display:block;position:absolute !important; clip:rect(1px,1px,1px,1px);width:1px;height:1px;margin:-1px;border:0;padding:0;overflow:hidden}.mw-changeslist-links{display:inline-block}.mw-changeslist-links > span:not(:first-child)::before{content:' | '}.mw-changeslist-links .mw-rollback-link::before,.mw-changeslist-links .mw-rollback-link::after{content:''}.mw-tag-marker::after{content:','}.mw-tag-marker:last-child::after{content:''}
+.ve-init-mw-progressBarWidget{height:1em;overflow:hidden;margin:0 25%}.ve-init-mw-progressBarWidget-bar{height:1em;width:0} .ve-init-mw-progressBarWidget{background-color:#fff;box-sizing:border-box;height:0.875em;border:1px solid #36c;border-radius:0.875em;box-shadow:0 1px 1px rgba(0,0,0,0.15)}.ve-init-mw-progressBarWidget-bar{background-color:#36c;height:0.875em}
+.mw-diff-popup .oo-ui-clippableElement-clippable p{margin:0;white-space:nowrap}
+#mw-teleport-target{position:absolute;z-index:450}</style>
+    <style>
+.ve-init-mw-tempWikitextEditorWidget{border:0;padding:0;color:inherit;line-height:1.5em;width:100%;-moz-tab-size:4;tab-size:4; }.ve-init-mw-tempWikitextEditorWidget:focus{outline:0;padding:0}.ve-init-mw-tempWikitextEditorWidget::selection{background:rgba(109,169,247,0.5); }</style>
+    <style>
+.ve-active .ve-init-mw-desktopArticleTarget-targetContainer #siteNotice,.ve-active .mw-indicators,.ve-active #t-print,.ve-active #t-permalink,.ve-active #p-coll-print_export,.ve-active #t-cite,.ve-active .ve-init-mw-desktopArticleTarget-editableContent,.ve-active .ve-init-mw-tempWikitextEditorWidget{display:none}.ve-deactivating .ve-ui-surface{display:none}.ve-activating{ }.ve-activating .ve-ui-surface{height:0;padding:0 !important; overflow:hidden} .ve-loading .ve-init-mw-desktopArticleTarget-targetContainer > :not(.ve-init-mw-desktopArticleTarget-toolbarPlaceholder):not(.ve-init-mw-desktopArticleTarget),.ve-loading .ve-init-mw-desktopArticleTarget-originalContent,.ve-activated:not(.ve-loading) .ve-init-mw-desktopArticleTarget-uneditableContent{pointer-events:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;opacity:0.5}.ve-activated .ve-init-mw-desktopArticleTarget-targetContainer #firstHeading{ -webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;pointer-events:auto;cursor:text}.ve-activated .ve-init-mw-desktopArticleTarget-targetContainer #firstHeading a{ pointer-events:none}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks{cursor:pointer}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks:hover{ background:#e9f2fd}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks a{opacity:1} .ve-init-mw-desktopArticleTarget-loading-overlay{z-index:2;position:absolute;width:100%;top:1em}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder{overflow:hidden;transition:height 250ms ease;height:0;padding-bottom:2px; }.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{transform:translateY(-100%);transition:transform 250ms ease}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-open .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{transform:translateY(0)}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating{transition:none}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{position:fixed;top:0;z-index:1;background:#fff} .oo-ui-element-hidden{display:none !important; } .mw-editsection{ unicode-bidi:-moz-isolate;unicode-bidi:-webkit-isolate;unicode-bidi:isolate}.mw-editsection::before{content:'\200B'}.mw-editsection a{white-space:nowrap}.mw-editsection-divider{color:#54595d} .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{height:42px;border-bottom:1px solid #c8ccd1;box-shadow:0 1px 1px 0 rgba(0,0,0,0.1)}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating,.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-open{height:42px}</style>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/e/ec/Paint_Holiday_lights.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="766">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/e/ec/Paint_Holiday_lights.png">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="511">
+    <meta property="og:image:width" content="640">
+    <meta property="og:image:height" content="409">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://ru.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://ru.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (ru)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://ru.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki&nbsp;— Atom-лента" href="https://ru.tankiwiki.com/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom"><style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
+
+/* 1. 只去掉源站皮肤的背景大图，保留底色；不要用 background 简写，否则会连带清掉皮肤别的背景设定 */
+html, body {
+    background-image: none !important;
+    background-color: #001926 !important;
+}
+/* 2. 让底色铺满视口，内容很短时下方不再露白 */
+html { min-height: 100%; }
+body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif; }
+
+/* 3. 版心容器 */
+#mw-main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #001926;
+}
+
+/* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
+      【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
+
+#mw-main-container .main-content,
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content,
+#mw-main-container #mw-content-text {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: auto !important;
+    flex-basis: auto !important;   /* 皮肤写了 .main-content{flex:0 0 75%} */
+    float: none !important;
+    margin-top: 0 !important;       /* 核心：清空原站皮肤的负 margin-top */
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    position: relative !important;
+    z-index: 1 !important;          /* 保证正文层级低于按钮 */
+}
+
+/* 5. 皮肤脚本 skins.tankiblue.js 会往 #mw-content-text 末尾插一条「发现错别字？Ctrl+Enter」
+      的俄语提示条和一个「报告错误」标签页。它按网址里有没有 'en'/'de' 来判断语言，
+      我们的域名两者都不含 → 一律显示俄语；且报错会提交到俄站编辑组，对镜像站没意义，直接隐藏。 */
+#custom-report-footer,
+.vectorTabs.customReport,
+.customReport { display: none !important; }
+
+/* 6. 返回按钮包裹容器：独占一行并强制最高层级 */
+.home-btn-wrapper {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px 0 20px 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    z-index: 9999 !important;       /* 核心：永远置于最顶层 */
+    clear: both !important;
+    overflow: visible !important;
+}
+
+/* 7. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐 */
+.home-back-btn {
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    width: auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    isolation: isolate !important;
+    
+    min-width: 142px !important;
+    padding: 0 24px !important;
+    height: 78px !important;
+    margin: 0 !important;
+    border: 1px solid rgba(255,255,255,.25) !important;
+    outline: 2px solid transparent !important;
+    border-radius: 6.5px !important;
+    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%) !important;
+    
+    position: relative !important;
+    z-index: 10000 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: all .15s ease !important;
+    overflow: visible !important;
+}
+.home-back-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(100% 100% at 0% 0%, rgba(191,213,255,.25) 0%, rgba(191,213,255,.15) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all .15s ease;
+    border-radius: inherit;
+    pointer-events: none;
+}
+.home-back-btn svg {
+    width: 24.375px;
+    height: 24px;
+    object-fit: contain;
+    transform: rotate(180deg);
+    transition: all .15s ease;
+    flex-shrink: 0;
+}
+.home-back-btn svg path { fill: #BFD5FF; transition: all .15s ease; }
+
+.home-back-btn:hover,
+.home-back-btn:active,
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF !important; border-color: #BFD5FF !important; }
+.home-back-btn:hover::before,
+.home-back-btn:active::before,
+.home-back-btn:focus-visible::before { opacity: 1; }
+.home-back-btn:hover svg,
+.home-back-btn:active svg,
+.home-back-btn:focus-visible svg { transform: rotate(180deg) translateX(10%); }
+.home-back-btn:hover svg path,
+.home-back-btn:active svg path,
+.home-back-btn:focus-visible svg path { fill: #fff; }
+
+.home-back-btn span {
+    color: #BFD5FF;
+    font-size: 16px;
+    margin-left: 10px;
+    font-weight: bold;
+    transition: all .15s ease;
+    white-space: nowrap;
+}
+.home-back-btn:hover span,
+.home-back-btn:active span,
+.home-back-btn:focus-visible span {
+    color: #fff;
+    transform: translateX(-4px);
+}
+
+/* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
+@media (hover: none) {
+    .home-back-btn { border-color: rgba(191,213,255,.55) !important; }
+    .home-back-btn svg path { fill: #CFE0FF; }
+}
+
+/* 移动端/窄屏自适应尺寸 */
+@media (max-width: 480px) {
+    .home-back-btn {
+        min-width: 106px !important;
+        padding: 0 16px !important;
+        height: 58px !important;
+        margin-left: 10px !important;
+    }
+    .home-back-btn svg { width: 20px !important; height: 19.7px !important; }
+    .home-back-btn span { font-size: 14px !important; margin-left: 8px !important; }
+}
+
+/* 8. 移动端容器 Padding */
+@media (max-width: 768px) {
+    #mw-main-container { padding: 10px !important; margin: 8px auto !important; }
+    .home-back-btn { margin-left: 10px !important; }
+    #mw-content-text .navigationContainerContent > div,
+    #mw-content-text [style*="width: 55%"],
+    #mw-content-text [style*="width:55%"],
+    #mw-content-text [style*="width: 45%"],
+    #mw-content-text [style*="width:45%"] { width: 100% !important; }
+}
+@media (max-width: 480px) {
+    #mw-main-container { padding: 6px !important; margin: 4px auto !important; }
+}
+
+/* 9. 防止宽表格 / 大图撑破版心 */
+#mw-content-text img { max-width: 100%; height: auto; }
+#mw-content-text table { max-width: 100%; }
+
+/* 10. 目录（TOC）修复，全局生效：
+    a) 皮肤把目录折叠按钮的文字放在 CSS 伪元素里渲染，而不是 HTML 文本：
+         .toctogglecheckbox:checked  + .toctitle .toctogglelabel::after → content:'показать'
+         .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after → content:'скрыть'
+       AI 翻译只处理 HTML 文本，摸不到 CSS content，所以这个按钮永远是俄语，必须在这里覆盖成中文。
+    b) 皮肤的响应式 CSS 里写了 @media screen and (max-width:768px){ #toc{display:none} }，
+       导致手机端整个目录被隐藏。这里恢复显示，并配合下方 TOC_MOBILE_COLLAPSE_SCRIPT：
+       移动端默认折叠，只占一行「目录 [展开]」，避免长目录把正文挤到屏幕外。 */
+#toc .toctogglecheckbox:checked + .toctitle .toctogglelabel::after { content: '展开' !important; }
+#toc .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after { content: '收起' !important; }
+@media screen and (max-width: 768px) {
+    #toc { display: table !important; }
+}
+
+/* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
+   只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+*/
+</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Girlyanda rootpage-Girlyanda skin-tankiblue action-view"><div id="skin-chrome-stub" aria-hidden="true" style="display:none !important;">
+<a class="problem" href="#"></a>
+<div class="close-wrapper"></div>
+<div class="support-block-popup"><div class="close-modal-support"></div></div>
+<div class="youtube-popup"><iframe title="stub"></iframe></div>
+<div class="video-button"></div>
+<div class="header-search"></div>
+<div class="search-dialog"></div>
+<div class="search-popup"><div class="close-wrapper"></div><div class="close-modal-search"></div></div>
+<div class="news-popup"></div>
+<div class="sales-block-header"></div>
+<div class="navbar-main"></div>
+<div class="main-navbar"></div>
+</div><div id="mw-main-container"><div class="home-btn-wrapper"><a class="home-back-btn" href="./Enciklopediya_igry_%C2%ABTanki_Onlayn%C2%BB" title="返回主页" aria-label="返回主页"><svg viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 0H13.5L25.5 12L24 13.5L13.5 24H18L30 12L18 0ZM24 13.5L21 10.5H0L3 13.5H24Z" fill="#BFD5FF"/></svg><span>返回主页</span></a></div><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">Гирлянда</h1><div class="dablink"><em>См. также:</em> <a href="./%D0%9A%D1%80%D0%B0%D1%81%D0%BA%D0%B8" class="mw-redirect" title="Краски">Краски</a>
+</div><div class="paint_info">
+<div class="paint_info_title"></div>
+<div class="paint_info_wrapper">
+<div class="paint_info_images">
+<div class="paint_image">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/ec/Paint_Holiday_lights.png" decoding="async" loading="lazy" width="166" height="106" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="paint_image_title">Текстура</div>
+<div class="paint_image texture_image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6c/Holiday_lights_texture.jpg" decoding="async" loading="lazy" width="128" height="128" class="mw-file-element"></span></span></div>
+<div class="paint_image_title"></div>
+</div>
+<div class="paint_description">
+<div class="info_block_title">Общая информация</div>
+<div class="info_grid">
+<ul><li><div class="info_labeled_item"><div class="info_label">Тип краски:</div><div class="info_content">С контейнера</div></div></li>
+<li><div class="info_labeled_item"><div class="info_label">Редкость в гараже:</div><div class="info_content"><span style="color:#FFCC00">Легендарная</span></div></div></li>
+<li><div class="info_labeled_item"><div class="info_label">Редкость контейнера:</div><div class="info_content"><a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры"><span class="container-modern container-legendary">Легендарная</span></a></div></div></li></ul>
+</div>
+<div class="info_block_title"></div>
+<div class="info_block_title">описание из гаража</div>
+<p>Подготовка к Новому году — серьёзное испытание для настоящих танкистов. Ведь весьма непросто украшать ёлку, когда у тебя лапки... То есть гусеницы! Можно и запутаться в гирляндах и мишуре. Порой танкисты настолько увлекаются, что выезжают крушить врагов, опутанные мигающими огоньками. Что, впрочем, не сказывается на их боевой эффективности.
+</p>
+<div class="info_block_title">Интересные факты</div>
+<div class="interesting_content">
+<ul><li>Краска добавлена в игру 24 декабря 2017 года.</li>
+<li>Краска была доступна для покупки в специальном предложении на <a rel="nofollow" class="external text" href="https://tankionline.com/ru/2017/12/novyj-god-v-tankax-onlajn-2//">«Новый год 2018»</a> за 1499 руб. c 24 декабря 2017 года до 8 января 2018 года.</li>
+<li>Краска была добавлена ​​в <a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры">контейнеры</a> 5 февраля 2021 года.</li></ul>
+</div>
+</div>
+</div>
+</div><h3><span id=".D0.92.D0.B8.D0.B4_.D0.BD.D0.B0_.D1.82.D0.B0.D0.BD.D0.BA.D0.B5"></span><span class="mw-headline" id="Вид_на_танке">Вид на танке</span></h3><p><img style="width: 450px" src="https://ru.tankiwiki.com/images/ru/d/d6/Holiday_Lights_preview.gif">
+</p><div align="right"><small>Последняя правка: 21/05/2024 HelpersBot</small></div><div align="right" style="margin-top:16px;"><small><span class="ai-translate-note" style="color:#8FB8D8;">（由 AI 自动翻译）</span></small></div></div></div></div></div></div><footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
+<p style="margin:0;"><strong style="color:#BFD5FF;">本站为玩家社区自建的非官方 Wiki 镜像。</strong></p>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":784,"wgPageParseReport":{"limitreport":{"cputime":"0.115","walltime":"0.504","ppvisitednodes":{"value":235,"limit":1000000},"postexpandincludesize":{"value":4220,"limit":4194304},"templateargumentsize":{"value":2940,"limit":4194304},"expansiondepth":{"value":9,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":99,"limit":5000000},"timingprofile":["100.00%  271.424      1 -total"," 53.29%  144.638      1 Шаблон:PaintInfo"," 39.59%  107.464      1 Шаблон:See_also"," 37.67%  102.248      1 Шаблон:InfoGrid"," 15.41%   41.815      3 Шаблон:InfoGrid/Item"," 12.20%   33.122      1 Шаблон:Другое_значение","  6.70%   18.176      1 Шаблон:LastEdit","  5.19%   14.081     14 Шаблон:См._также/link","  4.01%   10.889      1 Шаблон:Items/Container/Legendary","  3.61%    9.790      1 Шаблон:Color"]},"cachereport":{"timestamp":"20260825080058","ttl":86400,"transientcontent":false}}});});</script>
+    <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });</script></body></html>
