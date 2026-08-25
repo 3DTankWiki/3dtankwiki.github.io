@@ -1,0 +1,455 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>(function(){
+  var BASE = 'https://ru.tankiwiki.com';
+  function fix(v){ return (typeof v === 'string' && v.charAt(0) === '/' && v.indexOf('//') !== 0) ? BASE + v : v; }
+  ['HTMLScriptElement','HTMLLinkElement'].forEach(function(tag){
+    var proto = window[tag] && window[tag].prototype;
+    var prop  = tag === 'HTMLScriptElement' ? 'src' : 'href';
+    if (!proto) return;
+    var d = Object.getOwnPropertyDescriptor(proto, prop);
+    if (!d || !d.set) return;
+    Object.defineProperty(proto, prop, {
+      configurable: true,
+      get: function(){ return d.get.call(this); },
+      set: function(v){ d.set.call(this, fix(v)); }
+    });
+  });
+  var of = window.fetch;
+  if (of) window.fetch = function(u, o){ return of.call(this, (typeof u === 'string' ? fix(u) : u), o); };
+  var ox = window.XMLHttpRequest && XMLHttpRequest.prototype.open;
+  if (ox) XMLHttpRequest.prototype.open = function(m, u){
+    var a = Array.prototype.slice.call(arguments); a[1] = fix(u); return ox.apply(this, a);
+  };
+})();</script><title>车库 — 3D 坦克 Wiki</title><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+    <meta charset="UTF-8">
+    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/xg_pWYS8-HRESiV6Rdg4aY_R/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-qWH0xCejb2gc1yqo8ob4TQrvIcQ9XjhOfGKbhFr/+LvFrJdTE3bA+FQP/FLAiQhz"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgRequestId":"4ea5cf277b70b96a001e0475","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Garaj","wgTitle":"Garaj","wgCurRevisionId":300173,"wgRevisionId":300173,"wgArticleId":105,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Геймплей"],"wgPageViewLanguage":"ru","wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgRelevantPageName":"Garaj","wgRelevantArticleId":105,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],
+"wgVisualEditor":{"pageLanguageCode":"ru","pageLanguageDir":"ltr","pageVariantFallbacks":"ru"},"wgFlaggedRevsParams":{"tags":{"accuracy":{"levels":3}}},"wgStableRevisionId":300173,"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.flaggedRevs.icons":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.flaggedRevs.basic":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.flaggedRevs.advanced","skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=ext.flaggedRevs.basic%2Cicons%7Cext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/5/5e/Garage_banner.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="646">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/thumb/5/5e/Garage_banner.png/800px-Garage_banner.png">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="431">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/thumb/5/5e/Garage_banner.png/640px-Garage_banner.png">
+    <meta property="og:image:width" content="640">
+    <meta property="og:image:height" content="345">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://ru.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://ru.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (ru)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://ru.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki&nbsp;— Atom-лента" href="https://ru.tankiwiki.com/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom"><style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
+
+/* 1. 只去掉源站皮肤的背景大图，保留底色；不要用 background 简写，否则会连带清掉皮肤别的背景设定 */
+html, body {
+    background-image: none !important;
+    background-color: #001926 !important;
+}
+/* 2. 让底色铺满视口，内容很短时下方不再露白 */
+html { min-height: 100%; }
+body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif; }
+
+/* 3. 版心容器 */
+#mw-main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #001926;
+}
+
+/* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
+      【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
+
+#mw-main-container .main-content,
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content,
+#mw-main-container #mw-content-text {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: auto !important;
+    flex-basis: auto !important;   /* 皮肤写了 .main-content{flex:0 0 75%} */
+    float: none !important;
+    margin-top: 0 !important;       /* 核心：清空原站皮肤的负 margin-top */
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    position: relative !important;
+    z-index: 1 !important;          /* 保证正文层级低于按钮 */
+}
+
+/* 5. 皮肤脚本 skins.tankiblue.js 会往 #mw-content-text 末尾插一条「发现错别字？Ctrl+Enter」
+      的俄语提示条和一个「报告错误」标签页。它按网址里有没有 'en'/'de' 来判断语言，
+      我们的域名两者都不含 → 一律显示俄语；且报错会提交到俄站编辑组，对镜像站没意义，直接隐藏。 */
+#custom-report-footer,
+.vectorTabs.customReport,
+.customReport { display: none !important; }
+
+/* 6. 返回按钮包裹容器：独占一行并强制最高层级 */
+.home-btn-wrapper {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px 0 20px 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    z-index: 9999 !important;       /* 核心：永远置于最顶层 */
+    clear: both !important;
+    overflow: visible !important;
+}
+
+/* 7. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐 */
+.home-back-btn {
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    width: auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    isolation: isolate !important;
+    
+    min-width: 142px !important;
+    padding: 0 24px !important;
+    height: 78px !important;
+    margin: 0 !important;
+    border: 1px solid rgba(255,255,255,.25) !important;
+    outline: 2px solid transparent !important;
+    border-radius: 6.5px !important;
+    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%) !important;
+    
+    position: relative !important;
+    z-index: 10000 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: all .15s ease !important;
+    overflow: visible !important;
+}
+.home-back-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(100% 100% at 0% 0%, rgba(191,213,255,.25) 0%, rgba(191,213,255,.15) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all .15s ease;
+    border-radius: inherit;
+    pointer-events: none;
+}
+.home-back-btn svg {
+    width: 24.375px;
+    height: 24px;
+    object-fit: contain;
+    transform: rotate(180deg);
+    transition: all .15s ease;
+    flex-shrink: 0;
+}
+.home-back-btn svg path { fill: #BFD5FF; transition: all .15s ease; }
+
+.home-back-btn:hover,
+.home-back-btn:active,
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF !important; border-color: #BFD5FF !important; }
+.home-back-btn:hover::before,
+.home-back-btn:active::before,
+.home-back-btn:focus-visible::before { opacity: 1; }
+.home-back-btn:hover svg,
+.home-back-btn:active svg,
+.home-back-btn:focus-visible svg { transform: rotate(180deg) translateX(10%); }
+.home-back-btn:hover svg path,
+.home-back-btn:active svg path,
+.home-back-btn:focus-visible svg path { fill: #fff; }
+
+.home-back-btn span {
+    color: #BFD5FF;
+    font-size: 16px;
+    margin-left: 10px;
+    font-weight: bold;
+    transition: all .15s ease;
+    white-space: nowrap;
+}
+.home-back-btn:hover span,
+.home-back-btn:active span,
+.home-back-btn:focus-visible span {
+    color: #fff;
+    transform: translateX(-4px);
+}
+
+/* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
+@media (hover: none) {
+    .home-back-btn { border-color: rgba(191,213,255,.55) !important; }
+    .home-back-btn svg path { fill: #CFE0FF; }
+}
+
+/* 移动端/窄屏自适应尺寸 */
+@media (max-width: 480px) {
+    .home-back-btn {
+        min-width: 106px !important;
+        padding: 0 16px !important;
+        height: 58px !important;
+        margin-left: 10px !important;
+    }
+    .home-back-btn svg { width: 20px !important; height: 19.7px !important; }
+    .home-back-btn span { font-size: 14px !important; margin-left: 8px !important; }
+}
+
+/* 8. 移动端容器 Padding */
+@media (max-width: 768px) {
+    #mw-main-container { padding: 10px !important; margin: 8px auto !important; }
+    .home-back-btn { margin-left: 10px !important; }
+    #mw-content-text .navigationContainerContent > div,
+    #mw-content-text [style*="width: 55%"],
+    #mw-content-text [style*="width:55%"],
+    #mw-content-text [style*="width: 45%"],
+    #mw-content-text [style*="width:45%"] { width: 100% !important; }
+}
+@media (max-width: 480px) {
+    #mw-main-container { padding: 6px !important; margin: 4px auto !important; }
+}
+
+/* 9. 防止宽表格 / 大图撑破版心 */
+#mw-content-text img { max-width: 100%; height: auto; }
+#mw-content-text table { max-width: 100%; }
+
+/* 10. 目录（TOC）修复，全局生效：
+    a) 皮肤把目录折叠按钮的文字放在 CSS 伪元素里渲染，而不是 HTML 文本：
+         .toctogglecheckbox:checked  + .toctitle .toctogglelabel::after → content:'показать'
+         .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after → content:'скрыть'
+       AI 翻译只处理 HTML 文本，摸不到 CSS content，所以这个按钮永远是俄语，必须在这里覆盖成中文。
+    b) 皮肤的响应式 CSS 里写了 @media screen and (max-width:768px){ #toc{display:none} }，
+       导致手机端整个目录被隐藏。这里恢复显示，并配合下方 TOC_MOBILE_COLLAPSE_SCRIPT：
+       移动端默认折叠，只占一行「目录 [展开]」，避免长目录把正文挤到屏幕外。 */
+#toc .toctogglecheckbox:checked + .toctitle .toctogglelabel::after { content: '展开' !important; }
+#toc .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after { content: '收起' !important; }
+@media screen and (max-width: 768px) {
+    #toc { display: table !important; }
+}
+
+/* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
+   只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+*/
+</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Garaj rootpage-Garaj skin-tankiblue action-view"><div id="skin-chrome-stub" aria-hidden="true" style="display:none !important;">
+<a class="problem" href="#"></a>
+<div class="close-wrapper"></div>
+<div class="support-block-popup"><div class="close-modal-support"></div></div>
+<div class="youtube-popup"><iframe title="stub"></iframe></div>
+<div class="video-button"></div>
+<div class="header-search"></div>
+<div class="search-dialog"></div>
+<div class="search-popup"><div class="close-wrapper"></div><div class="close-modal-search"></div></div>
+<div class="news-popup"></div>
+<div class="sales-block-header"></div>
+<div class="navbar-main"></div>
+<div class="main-navbar"></div>
+</div><div id="mw-main-container"><div class="home-btn-wrapper"><a class="home-back-btn" href="./Enciklopediya_igry_%C2%ABTanki_Onlayn%C2%BB" title="返回主页" aria-label="返回主页"><svg viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 0H13.5L25.5 12L24 13.5L13.5 24H18L30 12L18 0ZM24 13.5L21 10.5H0L3 13.5H24Z" fill="#BFD5FF"/></svg><span>返回主页</span></a></div><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">车库</h1><figure class="mw-halign-center" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/5/5e/Garage_banner.png/800px-Garage_banner.png" decoding="async" loading="lazy" width="800" height="431" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/5/5e/Garage_banner.png 1.5x"></span><figcaption></figcaption></figure><h3><span id=".D0.A0.D0.B0.D0.B7.D0.B4.D0.B5.D0.BB.D1.8B_.D0.B2_.D0.B3.D0.B0.D1.80.D0.B0.D0.B6.D0.B5"></span><span class="mw-headline" id="Разделы_в_гараже">车库板块</span></h3><p>车库中的所有物品按 7 个标签页进行分类：
+</p><ul><li><b>炮塔</b></li>
+<li><b>底盘</b></li>
+<li><b>手榴弹</b></li>
+<li><b>无人机</b></li>
+<li><b>模块</b></li>
+<li><b>道具</b></li>
+<li><b>迷彩</b></li></ul><p><br>在所有标签页中，游戏物品都按特定规则进行排序：炮塔按射程排序，底盘按质量和护甲排序，手榴弹和无人机按可购买的<a href="./%D0%97%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="Звания">等级</a>从低到高排序，模块按其防护的目标炮塔顺序排序，道具按其标准顺序排序，迷彩按稀有度排序。
+</p><p>如果在某个类别内部发生了新变化，例如解锁了新物品或正在进行<a href="./%D0%A1%D0%BA%D0%B8%D0%B4%D0%BA%D0%B8" class="mw-redirect" title="Скидки">折扣</a>活动，则相应类别的按钮上会出现黄色标记。
+</p><p>此外，车库中的所有操作都可以通过鼠标完成。例如，对物品双击鼠标左键（LMB）将触发主要操作：安装到坦克上或打开购买确认窗口。
+</p><p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/1/15/GarageHTML1.png" decoding="async" loading="lazy" width="1920" height="1080" class="mw-file-element"></span></span>
+</p><h3><span id=".D0.9F.D1.83.D1.88.D0.BA.D0.B8"></span><span class="mw-headline" id="Пушки">炮塔</span></h3><table>
+<tbody><tr>
+<td width="80%"><div class="dablink noprint"><em>主条目</em>：<b><a href="./%D0%9F%D1%83%D1%88%D0%BA%D0%B8" class="mw-redirect" title="Пушки">炮塔</a></b>
+</div>
+<p>个性化的游戏风格将取决于炮塔的选择：迅猛闪电般的突击、稳健的基地防守，或是来自掩护阵地的火力输出。
+</p><p>同时，心仪的武器可以进行改造升级。所有炮塔都有 7 个改装等级：从最弱到最强——从 Mk1 到 Mk7。相应地，最低阶改装的售价并不高。玩家无需花费大量水晶，在较低等级时就可以体验最热门的战术。
+</p><p>除了升级之外，还提供外观更改功能：每种炮塔都有专属的皮肤和射击颜色。
+</p>
+</td>
+<td class="centered"><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9F%D1%83%D1%88%D0%BA%D0%B8" title="Пушки"><img src="https://ru.tankiwiki.com/images/ru/6/61/Turret_firebird_m3_2.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span>
+</td></tr></tbody></table><h3><span id=".D0.9A.D0.BE.D1.80.D0.BF.D1.83.D1.81.D0.B0"></span><span class="mw-headline" id="Корпуса">底盘</span></h3><table>
+<tbody><tr>
+<td width="80%"><div class="dablink noprint"><em>主条目</em>：<b><a href="./%D0%9A%D0%BE%D1%85%D0%BF%D1%83%D1%81%D0%B0" class="mw-redirect" title="Корпуса">底盘</a></b>
+</div>
+<p>每位玩家都可以从一系列战斗载具中进行选择：轻型、中型和重型。并且在每个底盘级别中，既有普通的履带坦克，也有悬浮的霍珀。 
+</p><p>与炮塔一样，底盘也有 7 个改装等级，并且支持外观更改功能。每个底盘都拥有其独特的<a href="./%D0%9E%D0%B2%D0%B5%D1%80%D0%B4%D1%80%D0%B0%D0%B9%D0%B2" class="mw-redirect" title="Овердрайв">终极技能</a>——一种能够在战场上获得巨大优势的终极能力。
+</p>
+</td>
+<td class="centered"><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9A%D0%BE%D1%80%D0%BF%D1%83%D1%81%D0%B0" title="Корпуса"><img src="https://ru.tankiwiki.com/images/ru/c/c8/Hull_wasp_m3.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></a></span>
+</td></tr></tbody></table><h3><span id=".D0.93.D1.80.D0.B0.D0.BD.D0.B0.D1.82.D1.8B"></span><span class="mw-headline" id="Гранаты">手榴弹</span></h3><table>
+<tbody><tr>
+<td width="80%"><div class="dablink noprint"><em>主条目</em>：<b><a href="./%D0%93%D1%80%D0%B0%D0%BD%D0%B0%D1%82%D1%8B" class="mw-redirect" title="Гранаты">手榴弹</a></b>
+</div>
+<p>手榴弹是一种弹药，会对特定半径内的所有敌人造成混沌伤害并摧毁地雷。它们可以在战斗中使用，通过按 <span class="hotkey">F</span> 键投掷，并且它们有倒计时，时间一到就会爆炸。
+</p><p>和炮塔与底盘一样，手榴弹也有 7 个改装等级，通过这些等级可以提升它们的属性。同时，手榴弹也兼具道具的功能。在车库中可以购买任意类型、任意数量的手榴弹，在战斗中每次投掷会消耗 1 个手榴弹。
+</p>
+</td>
+<td class="centered"><span typeof="mw:File"><a href="./%D0%93%D1%80%D0%B0%D0%BD%D0%B0%D1%82%D1%8B" title="Гранаты"><img src="https://ru.tankiwiki.com/images/ru/thumb/c/c5/Bomb_Grenade_1.png/90px-Bomb_Grenade_1.png" decoding="async" loading="lazy" width="90" height="106" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/c5/Bomb_Grenade_1.png/135px-Bomb_Grenade_1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/c/c5/Bomb_Grenade_1.png/180px-Bomb_Grenade_1.png 2x"></a></span>
+</td></tr></tbody></table><h3><span id=".D0.94.D1.80.D0.BE.D0.BD.D1.8B"></span><span class="mw-headline" id="Дроны">无人机</span></h3><table>
+<tbody><tr>
+<td width="80%"><div class="dablink noprint"><em>主条目</em>：<b><a href="./%D0%94%D1%80%D0%BE%D0%BD%D1%8B" class="mw-redirect" title="Дроны">无人机</a></b>
+</div>
+<p>无人机是坦克的助手，可提供额外的被动功能，例如属性加成和道具增强。要使用无人机，需要在车库中像其他武器一样装备它。装备好的无人机会在战斗中出现在坦克上方并全程伴随。无人机会自动响应外部条件或操作而触发——无需额外手动激活。触发后，无人机会进入冷却状态，在此期间它不会在战斗中显示且无法使用。
+</p>
+</td>
+<td class="centered"><span class="mw-default-size" typeof="mw:File"><a href="./%D0%94%D1%80%D0%BE%D0%BD%D1%8B" title="Дроны"><img src="https://ru.tankiwiki.com/images/ru/e/e4/Drone_brutus.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></a></span>
+</td></tr></tbody></table><h3><span id=".D0.97.D0.B0.D1.89.D0.B8.D1.82.D0.B0"></span><span class="mw-headline" id="Защита">模块</span></h3><table>
+<tbody><tr>
+<td width="80%"><div class="dablink noprint"><em>主条目</em>：<b><a href="./%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D0%B8" class="mw-redirect" title="Модули">模块</a></b>
+</div>
+<p>模块是坦克的特殊部件，旨在保护坦克免受敌方炮塔火力的伤害。玩家可以同时装备最多 4 个模块，顺序和组合不限。 
+</p><p>防护模块的作用是降低对应炮塔造成的伤害，而不是按指定的百分比增加底盘的生命值。
+</p>
+</td>
+<td class="centered"><span typeof="mw:File"><a href="./%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D0%B8" title="模块"><img src="https://ru.tankiwiki.com/images/ru/thumb/3/36/Module_m3_preview.png/115px-Module_m3_preview.png" decoding="async" loading="lazy" width="115" height="86" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/36/Module_m3_preview.png/173px-Module_m3_preview.png 1.5x, https://ru.tankiwiki.com/images/ru/3/36/Module_m3_preview.png 2x"></a></span>
+</td></tr></tbody></table><h3><span id=".D0.9F.D1.80.D0.B8.D0.BF.D0.B0.D1.81.D1.8B"></span><span class="mw-headline" id="Припасы">道具</span></h3><table>
+<tbody><tr>
+<td width="80%"><div class="dablink noprint"><em>主条目</em>：<b><a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">道具</a></b>
+</div>
+<p>这些车库物品是战斗中的消耗品，借助它们可以在短时间内强化坦克的某些属性、恢复生命值、加速终极技能的充能或阻挡道路。
+</p>
+</td>
+<td class="centered"><span typeof="mw:File"><a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" title="道具"><img src="https://ru.tankiwiki.com/images/ru/thumb/b/b5/Inventory_first_aid.png/150px-Inventory_first_aid.png" decoding="async" loading="lazy" width="150" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/b/b5/Inventory_first_aid.png 1.5x"></a></span>
+</td></tr></tbody></table><h3><span id=".D0.9A.D0.BA.D0.B0.D1.81.D0.BA.D0.B8"></span><span class="mw-headline" id="Краски">迷彩</span></h3><table>
+<tbody><tr>
+<td width="80%"><div class="dablink noprint"><em>主条目</em>：<b><a href="./%D0%9A%D1%80%D0%B0%D1%81%D0%BA%D0%B8" class="mw-redirect" title="Краски">迷彩</a></b>
+</div>
+<p>借助大量的迷彩可以完善坦克的外部造型。存在一些特殊的迷彩，仅发放给<a href="./%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D0%BD%D0%B8%D0%BA%D0%B8_%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D0%B8" class="mw-redirect" title="Помощники администрации">管理员助手</a>、<a href="./%D0%9A%D0%B8%D0%B1%D0%B5%D1%80%D1%81%D0%BF%D0%BE%D1%80%D1%82" class="mw-redirect" title="Киберспорт">电竞选手</a>或<a href="./%D0%9F%D0%B0%D1%80%D0%BA%D1%83%D1%80" class="mw-redirect" title="Паркур">跑酷</a>玩家群体。任何可在车库中购买的迷彩，都可以在购买前先在坦克上试穿，以确保涂装选择正确。
+</p>
+</td>
+<td class="centered"><span typeof="mw:File"><a href="./%D0%9A%D1%80%D0%B0%D1%81%D0%BA%D0%B8" title="迷彩"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/dc/Coloring_green_paint.png/150px-Coloring_green_paint.png" decoding="async" loading="lazy" width="150" height="96" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/d/dc/Coloring_green_paint.png 1.5x"></a></span>
+</td></tr></tbody></table><h3><span id=".D0.A3.D1.81.D1.82.D1.80.D0.BE.D0.B9.D1.81.D1.82.D0.B2.D0.B0"></span><span class="mw-headline" id="Устройства">装备改造</span></h3><table>
+<tbody><tr>
+<td width="80%"><div class="dablink noprint"><em>主条目</em>：<b><a href="./%D0%A3%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0" class="mw-redirect" title="Устройства">装备改造</a></b>
+</div>
+<p>装备改造是能够改变炮塔参数与行为的修改器，同时也能为底盘提供状态效果防护或免疫，或者改变其质量。
+</p>
+</td>
+<td class="centered"><span typeof="mw:File"><a href="./%D0%A3%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0" title="装备改造"><img src="https://ru.tankiwiki.com/images/ru/thumb/5/5a/Alteration_preview.png/70px-Alteration_preview.png" decoding="async" loading="lazy" width="70" height="70" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/5a/Alteration_preview.png/105px-Alteration_preview.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/5a/Alteration_preview.png/140px-Alteration_preview.png 2x"></a></span>
+</td></tr></tbody></table><h3><span id=".D0.A1.D0.BA.D0.B8.D0.BD.D1.8B"></span><span class="mw-headline" id="Скины">皮肤</span></h3><table>
+<tbody><tr>
+<td width="80%"><div class="dablink noprint"><em>主条目</em>：<b><a href="./%D0%A1%D0%BA%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Скины">皮肤</a></b>
+</div>
+<p>皮肤是武器的外观选项。皮肤纯粹具有装饰意义。它们可以在任何等级安装在任何改装的炮塔和底盘上。
+</p>
+</td>
+<td class="centered"><span typeof="mw:File"><a href="./%D0%A1%D0%BA%D0%B8%D0%BD%D1%8B" title="皮肤"><img src="https://ru.tankiwiki.com/images/ru/thumb/4/4f/Standard_skin.png/70px-Standard_skin.png" decoding="async" loading="lazy" width="70" height="70" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/4f/Standard_skin.png/105px-Standard_skin.png 1.5x, https://ru.tankiwiki.com/images/ru/4/4f/Standard_skin.png/140px-Standard_skin.png 2x"></a></span>
+</td></tr></tbody></table><h3><span id=".D0.A6.D0.B2.D0.B5.D1.82.D0.B0_.D0.B2.D1.8B.D1.81.D1.82.D1.80.D0.B5.D0.BB.D0.BE.D0.B2"></span><span class="mw-headline" id="Цвета_выстрелов">射击颜色</span></h3><table>
+<tbody><tr>
+<td width="80%"><div class="dablink noprint"><em>主条目</em>：<b><a href="./%D0%A6%D0%B2%D0%B5%D1%82%D0%B0_%D0%B2%D1%8B%D1%81%D1%82%D1%80%D0%B5%D0%BB%D0%BE%D0%B2" class="mw-redirect" title="Цвета выстрелов">射击颜色</a></b>
+</div>
+<p>射击颜色允许自定义炮塔的射击效果。它们可以在任何等级安装在相应炮塔的任何改装版本上。射击颜色纯粹具有装饰意义。
+</p>
+</td>
+<td class="centered"><span typeof="mw:File"><a href="./%D0%A6%D0%B2%D0%B5%D1%82%D0%B0_%D0%B2%D1%8B%D1%81%D1%82%D1%80%D0%B5%D0%BB%D0%BE%D0%B2" title="射击颜色"><img src="https://ru.tankiwiki.com/images/ru/thumb/9/9c/Standard_shot_color.png/70px-Standard_shot_color.png" decoding="async" loading="lazy" width="70" height="70" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/9/9c/Standard_shot_color.png/105px-Standard_shot_color.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/9/9c/Standard_shot_color.png/140px-Standard_shot_color.png 2x"></a></span>
+</td></tr></tbody></table><h3><span id=".D0.A3.D0.BB.D1.83.D1.87.D1.88.D0.B5.D0.BD.D0.B8.D1.8F"></span><span class="mw-headline" id="Улучшения">升级</span></h3><table>
+<tbody><tr>
+<td width="80%"><div class="dablink noprint"><em>主条目</em>：<b><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="Улучшения">升级</a></b>
+</div>
+<p>对炮塔、底盘、无人机和模块进行升级，可以循序渐进地一步步增强物品的属性。
+</p>
+</td>
+<td class="centered"><span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F" title="升级"><img src="https://ru.tankiwiki.com/images/ru/thumb/9/9e/Improve_button.png/260px-Improve_button.png" decoding="async" loading="lazy" width="260" height="72" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/9/9e/Improve_button.png/390px-Improve_button.png 1.5x, https://ru.tankiwiki.com/images/ru/9/9e/Improve_button.png 2x"></a></span>
+</td></tr></tbody></table><h3><span id=".D0.A0.D0.B5.D0.B6.D0.B8.D0.BC_.D0.BF.D1.80.D0.BE.D1.81.D0.BC.D0.BE.D1.82.D1.80.D0.B0_.D1.82.D0.B0.D0.BD.D0.BA.D0.B0"></span><span class="mw-headline" id="Режим_просмотра_танка">坦克预览模式</span></h3><p>车库中的一个特殊板块，可以在其中从各个方向、不同距离和各种角度观察自己的坦克，并将战车截图保存留念。如果坦克装备了动态迷彩，则会出现一个用于录制视频的额外按钮。此功能不仅对好奇的玩家有用，对内容创作者也很有帮助。
+</p><p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/4/4e/Garage_view_mode.png" decoding="async" loading="lazy" width="1920" height="1056" class="mw-file-element"></span></span>
+</p><p>要进入预览模式，需要点击车库主界面上的专用按钮，或者使用以下快捷键组合之一：<span class="hotkey">Shift</span>+<span class="hotkey">V</span> 或 <span class="hotkey">Alt</span>+<span class="hotkey">V</span>。
+</p><table class="wikitable-modern default" width="100%">
+
+<tbody><tr class="wikitable-header wikitable-title-center">
+<td width="40%" height="40px">按键</td>
+<td width="60%">操作</td></tr>
+<tr>
+<td>按下左键（LMB）
+</td>
+<td>旋转相机</td></tr>
+<tr>
+<td><span class="hotkey">Z</span><span class="hotkey">X</span>
+</td>
+<td>旋转炮塔</td></tr>
+<tr>
+<td><span class="hotkey">V</span>
+</td>
+<td>切换坦克部件显示</td></tr>
+<tr>
+<td><span class="hotkey">-</span><span class="hotkey">+</span> / 滚动鼠标滚轮</td>
+<td>拉近 / 拉远相机</td></tr>
+<tr>
+<td><span class="hotkey">←</span><span class="hotkey">→</span><span class="hotkey">↑</span><span class="hotkey">↓</span>/ 按下鼠标滚轮</td>
+<td>移动坦克</td></tr></tbody></table><p>为了在车库中与物品和标签页进行交互，可以使用快捷键：
+</p><table class="wikitable-modern default" width="100%">
+
+<tbody><tr class="wikitable-header wikitable-title-center">
+<td width="30%" height="40px">按键</td>
+<td width="70%">操作</td></tr>
+<tr>
+<td><span class="hotkey">Q</span><span class="hotkey">E</span>
+</td>
+<td>在主标签页之间切换</td></tr>
+<tr>
+<td><span class="hotkey">←</span><span class="hotkey">→</span><span class="hotkey">↑</span><span class="hotkey">↓</span>
+</td>
+<td>在物品之间切换</td></tr>
+<tr>
+<td><span class="hotkey">Space</span>
+</td>
+<td>装备选中的物品</td></tr>
+<tr>
+<td><span class="hotkey">Enter</span>
+</td>
+<td>购买或升级物品</td></tr>
+<tr>
+<td><span class="hotkey">Shift</span>+<span class="hotkey">V</span> 或 <span class="hotkey">Alt</span>+<span class="hotkey">V</span>
+</td>
+<td>坦克预览模式</td></tr></tbody></table><p><br>
+</p><div align="right"><small>最后编辑：08/01/2025 Arcane <span class="ai-translate-note" style="color:#8FB8D8;">（由 AI 自动翻译）</span></small></div></div></div></div></div></div><footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
+<p style="margin:0;"><strong style="color:#BFD5FF;">本站为玩家社区自建的非官方 Wiki 镜像。</strong></p>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":1321,"wgPageParseReport":{"limitreport":{"cputime":"0.174","walltime":"0.229","ppvisitednodes":{"value":614,"limit":1000000},"postexpandincludesize":{"value":5136,"limit":4194304},"templateargumentsize":{"value":1440,"limit":4194304},"expansiondepth":{"value":6,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":11,"limit":5000000},"timingprofile":["100.00%   45.080      1 -total"," 45.32%   20.429     11 Шаблон:Main"," 28.15%   12.690     11 Шаблон:Другое_значение"," 19.31%    8.705      1 Шаблон:LastEdit"," 18.92%    8.530     26 Шаблон:Hotkey"]},"cachereport":{"timestamp":"20260824200042","ttl":86400,"transientcontent":false}}});});</script>
+    <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });</script></body></html>

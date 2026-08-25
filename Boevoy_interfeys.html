@@ -1,0 +1,853 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>(function(){
+  var BASE = 'https://ru.tankiwiki.com';
+  function fix(v){ return (typeof v === 'string' && v.charAt(0) === '/' && v.indexOf('//') !== 0) ? BASE + v : v; }
+  ['HTMLScriptElement','HTMLLinkElement'].forEach(function(tag){
+    var proto = window[tag] && window[tag].prototype;
+    var prop  = tag === 'HTMLScriptElement' ? 'src' : 'href';
+    if (!proto) return;
+    var d = Object.getOwnPropertyDescriptor(proto, prop);
+    if (!d || !d.set) return;
+    Object.defineProperty(proto, prop, {
+      configurable: true,
+      get: function(){ return d.get.call(this); },
+      set: function(v){ d.set.call(this, fix(v)); }
+    });
+  });
+  var of = window.fetch;
+  if (of) window.fetch = function(u, o){ return of.call(this, (typeof u === 'string' ? fix(u) : u), o); };
+  var ox = window.XMLHttpRequest && XMLHttpRequest.prototype.open;
+  if (ox) XMLHttpRequest.prototype.open = function(m, u){
+    var a = Array.prototype.slice.call(arguments); a[1] = fix(u); return ox.apply(this, a);
+  };
+})();</script><title>战斗界面 — Tanki Online Wiki</title><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+    <meta charset="UTF-8">
+    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/xg_pWYS8-HRESiV6Rdg4aY_R/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-qWH0xCejb2gc1yqo8ob4TQrvIcQ9XjhOfGKbhFr/+LvFrJdTE3bA+FQP/FLAiQhz"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgRequestId":"d49242b67f2e09d38caa1bcc","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Boevoy_interfeys","wgTitle":"Boevoy interfeys","wgCurRevisionId":302779,"wgRevisionId":302779,"wgArticleId":10411,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"ru","wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgRelevantPageName":"Boevoy_interfeys","wgRelevantArticleId":10411,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],
+"wgRestrictionMove":[],"wgVisualEditor":{"pageLanguageCode":"ru","pageLanguageDir":"ltr","pageVariantFallbacks":"ru"},"wgFlaggedRevsParams":{"tags":{"accuracy":{"levels":3}}},"wgStableRevisionId":302779,"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.flaggedRevs.icons":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.flaggedRevs.basic":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["mediawiki.page.media","site","mediawiki.page.ready","mediawiki.toc","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.flaggedRevs.advanced","skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=ext.flaggedRevs.basic%2Cicons%7Cext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <style>
+.mw-spinner{position:relative}.mw-spinner > .mw-spinner-container{transform-origin:0 0}.mw-spinner-small{width:20px;height:20px}.mw-spinner-small > .mw-spinner-container{transform:scale(0.3125)}.mw-spinner-large{width:32px;height:32px}.mw-spinner-large > .mw-spinner-container{transform:scale(0.5)}.mw-spinner-block{display:block;width:100%;text-align:center}.mw-spinner-block > .mw-spinner-container{display:inline-block;vertical-align:top}.mw-spinner-block.mw-spinner-small > .mw-spinner-container{min-width:20px}.mw-spinner-block.mw-spinner-large > .mw-spinner-container{min-width:32px}.mw-spinner-inline{display:inline-block;vertical-align:middle} .mw-spinner-container > div{transform-origin:32px 32px;animation:mw-spinner 1.2s linear infinite}.mw-spinner-container > div::after{content:' ';display:block;position:absolute;top:3px; left:29px;width:5px;height:14px;border-radius:20%;background:#000}.mw-spinner-container > div:nth-child(1){transform:rotate(0deg);animation-delay:-1.1s}.mw-spinner-container > div:nth-child(2){transform:rotate(30deg);animation-delay:-1s}.mw-spinner-container > div:nth-child(3){transform:rotate(60deg);animation-delay:-0.9s}.mw-spinner-container > div:nth-child(4){transform:rotate(90deg);animation-delay:-0.8s}.mw-spinner-container > div:nth-child(5){transform:rotate(120deg);animation-delay:-0.7s}.mw-spinner-container > div:nth-child(6){transform:rotate(150deg);animation-delay:-0.6s}.mw-spinner-container > div:nth-child(7){transform:rotate(180deg);animation-delay:-0.5s}.mw-spinner-container > div:nth-child(8){transform:rotate(210deg);animation-delay:-0.4s}.mw-spinner-container > div:nth-child(9){transform:rotate(240deg);animation-delay:-0.3s}.mw-spinner-container > div:nth-child(10){transform:rotate(270deg);animation-delay:-0.2s}.mw-spinner-container > div:nth-child(11){transform:rotate(300deg);animation-delay:-0.1s}.mw-spinner-container > div:nth-child(12){transform:rotate(330deg);animation-delay:0s}@keyframes mw-spinner{0%{opacity:1}100%{opacity:0}}
+.diff{border:0;border-spacing:4px;margin:0;width:100%; table-layout:fixed}.diff td{padding:0.33em 0.5em}.diff td.diff-marker{ padding:0.25em;text-align:right;font-weight:bold;font-size:1.25em;line-height:1.2}.diff td.diff-marker::before{content:attr(data-marker)}.diff td div{ word-wrap:break-word}.diff col.diff-marker{width:2%}.diff .diff-content{width:48%}.diff-title{vertical-align:top}.diff-notice,.diff-multi,.diff-otitle,.diff-ntitle{text-align:center}.diff-lineno{font-weight:bold;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.mw-diff-inline-added ins,.mw-diff-inline-changed ins,.mw-diff-inline-moved ins,.mw-diff-inline-deleted ins,.mw-diff-inline-added del,.mw-diff-inline-changed del,.mw-diff-inline-moved del,.mw-diff-inline-deleted del{padding:0.3em 1px;text-decoration:none;white-space:break-spaces}@media only screen and (max-width:720px){.client-js .mw-diff-inline-added ins,.client-js .mw-diff-inline-changed ins,.client-js .mw-diff-inline-moved ins,.client-js .mw-diff-inline-deleted ins,.client-js .mw-diff-inline-added del,.client-js .mw-diff-inline-changed del,.client-js .mw-diff-inline-moved del,.client-js .mw-diff-inline-deleted del{cursor:pointer}}.mw-diff-inline-added ins,.mw-diff-inline-changed ins,.mw-diff-inline-moved ins{background:#a3d3ff}.mw-diff-inline-deleted del,.mw-diff-inline-changed del,.mw-diff-inline-moved del{background:#ffe49c}.mw-diff-table-prefix{display:flex;justify-content:flex-end;align-items:center;margin:1em 0}.mw-diff-table-prefix .mw-diff-inline-legend{margin-right:auto}.mw-diff-table-prefix .mw-diff-inline-legend .mw-diff-inline-legend-ins,.mw-diff-table-prefix .mw-diff-inline-legend .mw-diff-inline-legend-del{display:inline-block;padding:4px 6px}.mw-diff-table-prefix .mw-diff-inline-legend .mw-diff-inline-legend-ins{background:#a3d3ff}.mw-diff-table-prefix .mw-diff-inline-legend .mw-diff-inline-legend-del{background:#ffe49c}.mw-diff-table-prefix .mw-diffPage-inlineToggle-container{margin-left:1em}.diff-addedline,.diff-deletedline,.diff-context{vertical-align:top;border-style:solid;border-width:1px 1px 1px 4px;border-radius:0.33em}.diff-addedline,.diff-deletedline,.diff-context,.mw-diff-inline-added,.mw-diff-inline-deleted,.mw-diff-inline-moved,.mw-diff-inline-changed,.mw-diff-inline-context{  font-size:13px;  -moz-tab-size:4; tab-size:4;line-height:1.6;white-space:pre-wrap;white-space:break-spaces}.diff-editfont-monospace .diff-addedline,.diff-editfont-monospace .diff-deletedline,.diff-editfont-monospace .diff-context,.diff-editfont-monospace .mw-diff-inline-added,.diff-editfont-monospace .mw-diff-inline-deleted,.diff-editfont-monospace .mw-diff-inline-moved,.diff-editfont-monospace .mw-diff-inline-changed,.diff-editfont-monospace .mw-diff-inline-context{font-family:monospace,monospace}.diff-editfont-sans-serif .diff-addedline,.diff-editfont-sans-serif .diff-deletedline,.diff-editfont-sans-serif .diff-context,.diff-editfont-sans-serif .mw-diff-inline-added,.diff-editfont-sans-serif .mw-diff-inline-deleted,.diff-editfont-sans-serif .mw-diff-inline-moved,.diff-editfont-sans-serif .mw-diff-inline-changed,.diff-editfont-sans-serif .mw-diff-inline-context{font-family:sans-serif}.diff-editfont-serif .diff-addedline,.diff-editfont-serif .diff-deletedline,.diff-editfont-serif .diff-context,.diff-editfont-serif .mw-diff-inline-added,.diff-editfont-serif .mw-diff-inline-deleted,.diff-editfont-serif .mw-diff-inline-moved,.diff-editfont-serif .mw-diff-inline-changed,.diff-editfont-serif .mw-diff-inline-context{font-family:serif}.mw-diff-inline-header{font-weight:bold;margin:1em 0}.diff-context{background:#f8f9fa;color:#222;border-color:#eee}.diff-addedline{border-color:#a3d3ff}.diff-deletedline{border-color:#ffe49c}.diffchange{font-weight:bold;text-decoration:none}.diff-addedline .diffchange,.diff-deletedline .diffchange{border-radius:0.33em;padding:0.25em 0}.diff-addedline .diffchange{background:#d8ecff}.diff-deletedline .diffchange{background:#feeec8} .diff-currentversion-title,.diff{direction:ltr;unicode-bidi:embed}.diff-contentalign-right td{ direction:rtl;unicode-bidi:embed}.diff-contentalign-left td{ direction:ltr;unicode-bidi:embed}.diff-multi,.diff-otitle,.diff-ntitle,.diff-lineno{direction:ltr !important; unicode-bidi:embed}.mw-diff-slot-header{text-align:center}.mw-diff-slot-error{text-align:center;color:#d03} .mw-diff-movedpara-left,.mw-diff-movedpara-right,.mw-diff-movedpara-left:visited,.mw-diff-movedpara-right:visited,.mw-diff-movedpara-left:active,.mw-diff-movedpara-right:active{display:block;color:transparent;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.mw-diff-movedpara-left:hover,.mw-diff-movedpara-right:hover{text-decoration:none;color:transparent}.mw-diff-movedpara-left::after,.mw-diff-movedpara-right::after{display:block;color:#202122;margin-top:-1.25em}.mw-diff-movedpara-left::after,.rtl .mw-diff-movedpara-right::after{content:'↪'}.mw-diff-movedpara-right::after,.rtl .mw-diff-movedpara-left::after{content:'↩'}#mw-inlinediff-header #mw-diff-otitle1,#mw-inlinediff-header #mw-diff-otitle2,#mw-inlinediff-header #mw-diff-otitle3,#mw-inlinediff-header #mw-diff-otitle5{display:none} .diff[data-selected-side='deleted'] .diff-side-added,.diff[data-selected-side='added'] .diff-side-deleted{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:text} .mw-diff-inline-added.mw-diff-empty-line::after,.mw-diff-inline-deleted.mw-diff-empty-line::after,.mw-inline-diff-newline::after{font-family:'Courier New',monospace;font-size:87.5%;padding:0 3px;display:inline-block;color:#555}.mw-diff-inline-added.mw-diff-empty-line::after,.mw-inline-diff-newline::after{content:'↲ новая строка';background:#a3d3ff}.mw-diff-inline-deleted.mw-diff-empty-line::after{content:'⟵ удалить';background:#ffe49c}.mw-diffPage-inlineToggle-container .oo-ui-fieldLayout-body{align-items:center;white-space:nowrap}.mw-diff-empty-line ins,.mw-diff-empty-line del{display:none}.mw-diff-usermetadata,.mw-diff-revision-history-links{display:none}@media only screen and (max-width:720px){.mw-diff-inline-legend{display:none}}
+@media print {
+	td.diff-context,td.diff-addedline .diffchange,td.diff-deletedline .diffchange{background-color:transparent}td.diff-addedline .diffchange{text-decoration:underline}td.diff-deletedline .diffchange{text-decoration:line-through}}
+.mw-editfont-monospace{font-family:monospace,monospace}.mw-editfont-sans-serif{font-family:sans-serif}.mw-editfont-serif{font-family:serif} .mw-editfont-monospace,.mw-editfont-sans-serif,.mw-editfont-serif{  font-size:13px;  -moz-tab-size:4; tab-size:4; }.mw-editfont-monospace.oo-ui-textInputWidget,.mw-editfont-sans-serif.oo-ui-textInputWidget,.mw-editfont-serif.oo-ui-textInputWidget{font-size:inherit}.mw-editfont-monospace.oo-ui-textInputWidget > .oo-ui-inputWidget-input,.mw-editfont-sans-serif.oo-ui-textInputWidget > .oo-ui-inputWidget-input,.mw-editfont-serif.oo-ui-textInputWidget > .oo-ui-inputWidget-input{  font-size:13px}.mw-editfont-monospace.oo-ui-textInputWidget > input.oo-ui-inputWidget-input,.mw-editfont-sans-serif.oo-ui-textInputWidget > input.oo-ui-inputWidget-input,.mw-editfont-serif.oo-ui-textInputWidget > input.oo-ui-inputWidget-input{min-height:32px}
+.unpatrolled{font-weight:bold;color:#d73333} .newpage,.minoredit,.botedit{font-weight:bold} .mw-userlink{word-wrap:break-word; -webkit-hyphens:auto;-moz-hyphens:auto;-ms-hyphens:auto;hyphens:auto; unicode-bidi:embed} .mw-tempuserlink{background-color:#eaecf0;padding:2px 8px;border-radius:0} span.comment{font-style:italic;unicode-bidi:-moz-isolate;unicode-bidi:isolate;word-wrap:break-word;overflow-wrap:break-word;word-break:break-word} .autocomment,.autocomment a,.autocomment a:visited{color:#72777d} li span.deleted,span.history-deleted{text-decoration:line-through;color:#72777d;font-style:italic}span.mw-history-suppressed{ text-decoration-style:double;color:#202122} span.mw-revdelundel-link,strong.mw-revdelundel-link{font-size:90%}.mw-usertoollinks-contribs-no-edits{color:#d03}.mw-usertoollinks-contribs-no-edits:visited{color:#a55858}        .mw-changeslist-separator:empty::before{content:'. .'} .mw-changeslist-separator--semicolon::before{content:';'}.mw-rollback-link::before{content:'['}.mw-rollback-link::after{content:']'}.mw-diff-edit::before,.mw-diff-tool::before,.mw-diff-undo::before,.comment--without-parentheses::before,.mw-changeslist-links::before,.mw-diff-bytes::before,.mw-tag-markers::before,.mw-uctop::before{content:'('}.mw-diff-edit::after,.mw-diff-tool::after,.mw-diff-undo::after,.comment--without-parentheses::after,.mw-changeslist-links::after,.mw-diff-bytes::after,.mw-tag-markers::after,.mw-uctop::after{content:')'}.mw-comment-none{display:block;position:absolute !important; clip:rect(1px,1px,1px,1px);width:1px;height:1px;margin:-1px;border:0;padding:0;overflow:hidden}.mw-changeslist-links{display:inline-block}.mw-changeslist-links > span:not(:first-child)::before{content:' | '}.mw-changeslist-links .mw-rollback-link::before,.mw-changeslist-links .mw-rollback-link::after{content:''}.mw-tag-marker::after{content:','}.mw-tag-marker:last-child::after{content:''}
+.ve-init-mw-progressBarWidget{height:1em;overflow:hidden;margin:0 25%}.ve-init-mw-progressBarWidget-bar{height:1em;width:0} .ve-init-mw-progressBarWidget{background-color:#fff;box-sizing:border-box;height:0.875em;border:1px solid #36c;border-radius:0.875em;box-shadow:0 1px 1px rgba(0,0,0,0.15)}.ve-init-mw-progressBarWidget-bar{background-color:#36c;height:0.875em}
+@media screen {
+	.toctoggle{-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none;font-size:94%}}
+.mw-diff-popup .oo-ui-clippableElement-clippable p{margin:0;white-space:nowrap}
+#mw-teleport-target{position:absolute;z-index:450}</style>
+    <style>
+.ve-init-mw-tempWikitextEditorWidget{border:0;padding:0;color:inherit;line-height:1.5em;width:100%;-moz-tab-size:4;tab-size:4; }.ve-init-mw-tempWikitextEditorWidget:focus{outline:0;padding:0}.ve-init-mw-tempWikitextEditorWidget::selection{background:rgba(109,169,247,0.5); }</style>
+    <style>
+.ve-active .ve-init-mw-desktopArticleTarget-targetContainer #siteNotice,.ve-active .mw-indicators,.ve-active #t-print,.ve-active #t-permalink,.ve-active #p-coll-print_export,.ve-active #t-cite,.ve-active .ve-init-mw-desktopArticleTarget-editableContent,.ve-active .ve-init-mw-tempWikitextEditorWidget{display:none}.ve-deactivating .ve-ui-surface{display:none}.ve-activating{ }.ve-activating .ve-ui-surface{height:0;padding:0 !important; overflow:hidden} .ve-loading .ve-init-mw-desktopArticleTarget-targetContainer > :not(.ve-init-mw-desktopArticleTarget-toolbarPlaceholder):not(.ve-init-mw-desktopArticleTarget),.ve-loading .ve-init-mw-desktopArticleTarget-originalContent,.ve-activated:not(.ve-loading) .ve-init-mw-desktopArticleTarget-uneditableContent{pointer-events:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;opacity:0.5}.ve-activated .ve-init-mw-desktopArticleTarget-targetContainer #firstHeading{ -webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;pointer-events:auto;cursor:text}.ve-activated .ve-init-mw-desktopArticleTarget-targetContainer #firstHeading a{ pointer-events:none}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks{cursor:pointer}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks:hover{ background:#e9f2fd}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks a{opacity:1} .ve-init-mw-desktopArticleTarget-loading-overlay{z-index:2;position:absolute;width:100%;top:1em}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder{overflow:hidden;transition:height 250ms ease;height:0;padding-bottom:2px; }.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{transform:translateY(-100%);transition:transform 250ms ease}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-open .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{transform:translateY(0)}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating{transition:none}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{position:fixed;top:0;z-index:1;background:#fff} .oo-ui-element-hidden{display:none !important; } .mw-editsection{ unicode-bidi:-moz-isolate;unicode-bidi:-webkit-isolate;unicode-bidi:isolate}.mw-editsection::before{content:'\200B'}.mw-editsection a{white-space:nowrap}.mw-editsection-divider{color:#54595d} .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{height:42px;border-bottom:1px solid #c8ccd1;box-shadow:0 1px 1px 0 rgba(0,0,0,0.1)}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating,.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-open{height:42px}</style>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://ru.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://ru.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (ru)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://ru.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki&nbsp;— Atom-лента" href="https://ru.tankiwiki.com/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom"><style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
+
+/* 1. 只去掉源站皮肤的背景大图，保留底色；不要用 background 简写，否则会连带清掉皮肤别的背景设定 */
+html, body {
+    background-image: none !important;
+    background-color: #001926 !important;
+}
+/* 2. 让底色铺满视口，内容很短时下方不再露白 */
+html { min-height: 100%; }
+body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif; }
+
+/* 3. 版心容器 */
+#mw-main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #001926;
+}
+
+/* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
+      【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
+
+#mw-main-container .main-content,
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content,
+#mw-main-container #mw-content-text {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: auto !important;
+    flex-basis: auto !important;   /* 皮肤写了 .main-content{flex:0 0 75%} */
+    float: none !important;
+    margin-top: 0 !important;       /* 核心：清空原站皮肤的负 margin-top */
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    position: relative !important;
+    z-index: 1 !important;          /* 保证正文层级低于按钮 */
+}
+
+/* 5. 皮肤脚本 skins.tankiblue.js 会往 #mw-content-text 末尾插一条「发现错别字？Ctrl+Enter」
+      的俄语提示条和一个「报告错误」标签页。它按网址里有没有 'en'/'de' 来判断语言，
+      我们的域名两者都不含 → 一律显示俄语；且报错会提交到俄站编辑组，对镜像站没意义，直接隐藏。 */
+#custom-report-footer,
+.vectorTabs.customReport,
+.customReport { display: none !important; }
+
+/* 6. 返回按钮包裹容器：独占一行并强制最高层级 */
+.home-btn-wrapper {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px 0 20px 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    z-index: 9999 !important;       /* 核心：永远置于最顶层 */
+    clear: both !important;
+    overflow: visible !important;
+}
+
+/* 7. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐 */
+.home-back-btn {
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    width: auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    isolation: isolate !important;
+    
+    min-width: 142px !important;
+    padding: 0 24px !important;
+    height: 78px !important;
+    margin: 0 !important;
+    border: 1px solid rgba(255,255,255,.25) !important;
+    outline: 2px solid transparent !important;
+    border-radius: 6.5px !important;
+    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%) !important;
+    
+    position: relative !important;
+    z-index: 10000 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: all .15s ease !important;
+    overflow: visible !important;
+}
+.home-back-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(100% 100% at 0% 0%, rgba(191,213,255,.25) 0%, rgba(191,213,255,.15) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all .15s ease;
+    border-radius: inherit;
+    pointer-events: none;
+}
+.home-back-btn svg {
+    width: 24.375px;
+    height: 24px;
+    object-fit: contain;
+    transform: rotate(180deg);
+    transition: all .15s ease;
+    flex-shrink: 0;
+}
+.home-back-btn svg path { fill: #BFD5FF; transition: all .15s ease; }
+
+.home-back-btn:hover,
+.home-back-btn:active,
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF !important; border-color: #BFD5FF !important; }
+.home-back-btn:hover::before,
+.home-back-btn:active::before,
+.home-back-btn:focus-visible::before { opacity: 1; }
+.home-back-btn:hover svg,
+.home-back-btn:active svg,
+.home-back-btn:focus-visible svg { transform: rotate(180deg) translateX(10%); }
+.home-back-btn:hover svg path,
+.home-back-btn:active svg path,
+.home-back-btn:focus-visible svg path { fill: #fff; }
+
+.home-back-btn span {
+    color: #BFD5FF;
+    font-size: 16px;
+    margin-left: 10px;
+    font-weight: bold;
+    transition: all .15s ease;
+    white-space: nowrap;
+}
+.home-back-btn:hover span,
+.home-back-btn:active span,
+.home-back-btn:focus-visible span {
+    color: #fff;
+    transform: translateX(-4px);
+}
+
+/* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
+@media (hover: none) {
+    .home-back-btn { border-color: rgba(191,213,255,.55) !important; }
+    .home-back-btn svg path { fill: #CFE0FF; }
+}
+
+/* 移动端/窄屏自适应尺寸 */
+@media (max-width: 480px) {
+    .home-back-btn {
+        min-width: 106px !important;
+        padding: 0 16px !important;
+        height: 58px !important;
+        margin-left: 10px !important;
+    }
+    .home-back-btn svg { width: 20px !important; height: 19.7px !important; }
+    .home-back-btn span { font-size: 14px !important; margin-left: 8px !important; }
+}
+
+/* 8. 移动端容器 Padding */
+@media (max-width: 768px) {
+    #mw-main-container { padding: 10px !important; margin: 8px auto !important; }
+    .home-back-btn { margin-left: 10px !important; }
+    #mw-content-text .navigationContainerContent > div,
+    #mw-content-text [style*="width: 55%"],
+    #mw-content-text [style*="width:55%"],
+    #mw-content-text [style*="width: 45%"],
+    #mw-content-text [style*="width:45%"] { width: 100% !important; }
+}
+@media (max-width: 480px) {
+    #mw-main-container { padding: 6px !important; margin: 4px auto !important; }
+}
+
+/* 9. 防止宽表格 / 大图撑破版心 */
+#mw-content-text img { max-width: 100%; height: auto; }
+#mw-content-text table { max-width: 100%; }
+
+/* 10. 目录（TOC）修复，全局生效：
+    a) 皮肤把目录折叠按钮的文字放在 CSS 伪元素里渲染，而不是 HTML 文本：
+         .toctogglecheckbox:checked  + .toctitle .toctogglelabel::after → content:'показать'
+         .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after → content:'скрыть'
+       AI 翻译只处理 HTML 文本，摸不到 CSS content，所以这个按钮永远是俄语，必须在这里覆盖成中文。
+    b) 皮肤的响应式 CSS 里写了 @media screen and (max-width:768px){ #toc{display:none} }，
+       导致手机端整个目录被隐藏。这里恢复显示，并配合下方 TOC_MOBILE_COLLAPSE_SCRIPT：
+       移动端默认折叠，只占一行「目录 [展开]」，避免长目录把正文挤到屏幕外。 */
+#toc .toctogglecheckbox:checked + .toctitle .toctogglelabel::after { content: '展开' !important; }
+#toc .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after { content: '收起' !important; }
+@media screen and (max-width: 768px) {
+    #toc { display: table !important; }
+}
+
+/* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
+   只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+*/
+</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Boevoy_interfeys rootpage-Boevoy_interfeys skin-tankiblue action-view"><div id="skin-chrome-stub" aria-hidden="true" style="display:none !important;">
+<a class="problem" href="#"></a>
+<div class="close-wrapper"></div>
+<div class="support-block-popup"><div class="close-modal-support"></div></div>
+<div class="youtube-popup"><iframe title="stub"></iframe></div>
+<div class="video-button"></div>
+<div class="header-search"></div>
+<div class="search-dialog"></div>
+<div class="search-popup"><div class="close-wrapper"></div><div class="close-modal-search"></div></div>
+<div class="news-popup"></div>
+<div class="sales-block-header"></div>
+<div class="navbar-main"></div>
+<div class="main-navbar"></div>
+</div><div id="mw-main-container"><div class="home-btn-wrapper"><a class="home-back-btn" href="./Enciklopediya_igry_%C2%ABTanki_Onlayn%C2%BB" title="返回主页" aria-label="返回主页"><svg viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 0H13.5L25.5 12L24 13.5L13.5 24H18L30 12L18 0ZM24 13.5L21 10.5H0L3 13.5H24Z" fill="#BFD5FF"/></svg><span>返回主页</span></a></div><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">战斗界面</h1><div class="interestingFact" style="float:right; margin: 0px 10px 10px 10px; padding:10px; border:1px solid rgba(125, 157, 186, .4); border-radius: 6px; width:20em;">
+<div style="font-size:105%; line-height:120%; pointer-events: none;">
+<table>
+
+<tbody><tr>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/32/Favicon_user_eho.png" decoding="async" loading="lazy" width="16" height="16" class="mw-file-element"></span></span>
+</td>
+<td valign="bottom"><b>你知道吗……</b>
+</td></tr></tbody></table>
+</div>
+<div style="font-size: 95%; padding-top:10px">
+<p>在 2012 年夏天，3D 坦克举行了一场与欧洲杯足球赛相关的活动。在此期间，<a href="./%D0%97%D0%BE%D0%BB%D0%BE%D1%82%D0%BE%D0%B9_%D1%8F%D1%89%D0%B8%D0%BA" class="mw-redirect" title="Золотой ящик">金箱子</a>的面值增加了数次，据统计，在不到一个月的时间里，玩家们抓到的金箱子总价值达到了 9000 万水晶——在当前的经济体制下，这几乎相当于 10 亿水晶！
+</p>
+</div>
+</div><div class="dablink"><em>参见：</em> <a href="./%D0%A3%D1%80%D0%BE%D0%BD" class="mw-redirect" title="Урон">伤害</a>
+</div><p>本文将介绍各种战斗界面和指示器元素的用途，以及它们在玩家屏幕上的布局特性。战斗界面的所有元素通常统称为<b><a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">HUD</a></b>。
+</p><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"><div class="toctitle" lang="ru" dir="ltr"><h2 id="mw-toc-heading">目录</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Структура_боевого_интерфейса"><span class="tocnumber">1</span> <span class="toctext">战斗界面的结构</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Основная_информация"><span class="tocnumber">1.1</span> <span class="toctext">基本信息</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Виды_интерфейса"><span class="tocnumber">1.2</span> <span class="toctext">界面类型</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#Основные_элементы_боевого_интерфейса"><span class="tocnumber">2</span> <span class="toctext">战斗界面的主要元素</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Меню_паузы"><span class="tocnumber">2.1</span> <span class="toctext">暂停菜单</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Статистика_битвы"><span class="tocnumber">2.2</span> <span class="toctext">战斗统计</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Детали_боя"><span class="tocnumber">2.3</span> <span class="toctext">战斗详情</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Важные_уведомления"><span class="tocnumber">2.4</span> <span class="toctext">重要通知</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Боевой_чат"><span class="tocnumber">2.5</span> <span class="toctext">战斗聊天框</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Радар"><span class="tocnumber">2.6</span> <span class="toctext">雷达</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Подсвечивание_танков"><span class="tocnumber">2.7</span> <span class="toctext">坦克高亮显示</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-12"><a href="#Иконки_в_бою"><span class="tocnumber">3</span> <span class="toctext">战斗中的图标</span></a>
+<ul>
+<li class="toclevel-2 tocsection-13"><a href="#Лог_событий"><span class="tocnumber">3.1</span> <span class="toctext">事件日志</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Индикаторы_целей"><span class="tocnumber">3.2</span> <span class="toctext">目标指示器</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#Статус-эффекты"><span class="tocnumber">3.3</span> <span class="toctext">状态效果</span></a></li>
+</ul>
+</li>
+</ul>
+</div><h2><span id=".D0.A1.D1.82.D1.80.D1.83.D0.BA.D1.82.D1.83.D1.80.D0.B0_.D0.B1.D0.BE.D0.B5.D0.B2.D0.BE.D0.B3.D0.BE_.D0.B8.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81.D0.B0"></span><span class="mw-headline" id="Структура_боевого_интерфейса">战斗界面的结构</span></h2><h3><span id=".D0.9E.D1.81.D0.BD.D0.BE.D0.B2.D0.BD.D0.B0.D1.8F_.D0.B8.D0.BD.D1.84.D0.BE.D1.80.D0.BC.D0.B0.D1.86.D0.B8.D1.8F"></span><span class="mw-headline" id="Основная_информация">基本信息</span></h3><p>战斗界面是每个坦克手的得力助手。借助它，玩家可以获取至关重要的指标信息：例如自己坦克的生命值、<a href="./%D0%9F%D1%83%D1%88%D0%BA%D0%B8" class="mw-redirect" title="Пушки">炮塔</a>是否准备好射击或<a href="./%D0%9E%D0%B2%D0%B5%D1%80%D0%B4%D1%80%D0%B0%D0%B9%D0%B2%D1%8B" class="mw-redirect" title="Овердрайвы">终极技能</a>是否可以激活，还可以获取许多其他同样有用的附加信息：受到的<a href="./%D0%A1%D1%82%D0%B0%D1%82%D1%83%D1%81-%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%D1%8B" class="mw-redirect" title="Статус-эффекты">状态效果</a>、激活的<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">道具</a>、战斗统计、距离结束的时间、附近坦克的方位等等。<br>
+</p><p>最核心的信息以屏幕中央区域的两条水平条显示：<span style="color: #33c2ff">蓝色</span>条表示玩家坦克剩余的经验值（生命值），<span style="color: #ffff00">黄色</span>条表示自身炮塔的装填指示。两条填满的条表示坦克已完全做好战斗准备。
+</p><figure class="mw-default-size mw-halign-center" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/1/1d/HUD_stripes.png" decoding="async" loading="lazy" width="319" height="50" class="mw-file-element"></span><figcaption></figcaption></figure><p><br>在这些条的上方或下方（取决于所选的界面类型），会以图标形式显示作用于自身坦克的<a href="./%D0%A1%D1%82%D0%B0%D1%82%D1%83%D1%81-%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%D1%8B" class="mw-redirect" title="Статус-эффекты">状态效果</a>信息。值得注意的是，在<a href="./%D0%A0%D0%B5%D0%B6%D0%B8%D0%BC%D1%8B_%D0%B1%D0%BE%D1%8F" class="mw-redirect" title="Режимы боя">团队对战</a>中，队友头顶上方也存在一条<span style="color: #33c2ff">蓝色</span>的坦克生命值状态条，这在战斗中与队友配合时提供了极大的便利。<br>
+</p><p>游戏屏幕的底部提供了一个面板，其中包含有关可激活或已激活的自身坦克增益的信息——包括<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">道具</a>及其<a href="./%D0%9E%D0%B2%D0%B5%D1%80%D0%B4%D1%80%D0%B0%D0%B9%D0%B2%D1%8B" class="mw-redirect" title="Овердрайвы">终极技能</a>。在特定界面变体中，您还可以从此面板获取有关安装在炮塔和底盘上的<a href="./%D0%A3%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0" class="mw-redirect" title="Устройства">装备改造</a>的信息。<br>
+</p><p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/5/50/HID_low.png" decoding="async" loading="lazy" width="1919" height="162" class="mw-file-element"></span></span>
+</p><p>战斗屏幕的顶部始终显示有关战斗的基本信息——战斗分数和剩余时间或任何其他获胜条件。您还可以在此处找到有关当前账号经验值以及辅助快捷键的信息。此外，战斗界面还提供了一个对进阶玩家同样有趣且实用的元素——<a href="./%D0%A0%D0%B0%D0%B4%D0%B0%D1%80" class="mw-redirect" title="Радар">雷达</a>。<br>
+</p><p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/0/0f/HUD_upper.png" decoding="async" loading="lazy" width="1915" height="257" class="mw-file-element"></span></span>
+</p><p>在游戏过程中，您还可以发现其他附加信息的显示，这些信息能够极大协助玩家作战。例如，关于坦克拥有的终极技能或施加在其身上的状态效果的信息。为了方便瞄准，您可以通过激活<a href="./%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B8" class="mw-redirect" title="Настройки">设置</a>中的<b>«在屏幕中央显示瞄准点»</b>选项，在屏幕中心添加一个特殊的点。如果能明智地利用所有提供的数据，玩家将能显著提高在战场上的效率。<br>
+</p><p>为了在战斗中与其他玩家交流，游戏提供了<a href="./%D0%A7%D0%B0%D1%82" class="mw-redirect" title="Чат">聊天框</a>，按 <span class="hotkey">Enter</span> 键即可打开。
+</p><h3><span id=".D0.92.D0.B8.D0.B4.D1.83_.D0.B8.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81.D0.B0"></span><span class="mw-headline" id="Виды_интерфейса">界面类型</span></h3><p>战斗界面提供两种变体：主界面和备用界面。要切换到备用视图，需要在<a href="./%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B8" class="mw-redirect" title="Настройки">设置</a>中激活<b>«战斗界面居中»</b>参数。在设置的同一部分中，您可以选择战斗界面的百分比大小，以及在启用时设置屏幕中心点的参数。<br>两种界面类型的区别在于自身坦克信息和雷达等核心元素在游戏屏幕上的布局位置。
+</p><p><b>主</b>界面的特点是紧凑，屏幕中央区域不包含任何战斗界面的元素。<br>
+</p><p>底部增益面板分为两部分，并合乎逻辑地分布在游戏窗口的两侧，从而在中央部分腾出空间来放置生命值条、炮塔装填条和状态效果指示器。雷达位于屏幕左上角。<br>
+</p><p>主界面视图将玩家的注意力集中在地图上的事件上，而不会被界面元素遮挡对自身坦克的视野。
+</p><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample1">战斗界面的主视图</div><div class="collapse" id="collapseExample1"><div class="">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/70/Interface_main_view.png" decoding="async" loading="lazy" width="1920" height="1080" class="mw-file-element"></span></span>
+</p>
+</div></div><p><b>备用</b>界面视图将所有元素移动到屏幕中央部分，将生命值条和炮塔装填条提升到自身坦克的高度。在下方中央部分，终极技能充能指示器、道具和雷达紧凑地排列在一起。<br>
+</p><p>此界面视图允许玩家更多地专注于自身坦克的状态指示器，并在屏幕中央为其分配额外的空间。
+</p><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample2">战斗界面的备用视图</div><div class="collapse" id="collapseExample2"><div class="">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/d3/Interface_alter_view.png" decoding="async" loading="lazy" width="1920" height="1080" class="mw-file-element"></span></span>
+</p>
+</div></div><figure typeof="mw:File/Thumb"><span><img resource="/%D0%A4%D0%B0%D0%B9%D0%BB:InviteFriendInBattle.png" src="https://ru.tankiwiki.com/images/ru/thumb/f/f4/InviteFriendInBattle.png/250px-InviteFriendInBattle.png" decoding="async" loading="lazy" width="250" height="319" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/f/f4/InviteFriendInBattle.png/375px-InviteFriendInBattle.png 1.5x, https://ru.tankiwiki.com/images/ru/f/f4/InviteFriendInBattle.png 2x"></span><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:InviteFriendInBattle.png" class="mw-file-magnify"></a><figcaption></figcaption></figure><h2><span id=".D0.9E.D1.81.D0.BD.D0.BE.D0.B2.D0.BD.D1.8B.D0.B5_.D1.8D.D0.BB.D0.B5.D0.BC.D0.B5.D0.BD.D1.82.D1.8B_.D0.B1.D0.BE.D0.B5.D0.B2.D0.BE.D0.B3.D0.BE_.D0.B8.D0.BD.D1.82.D0.B5.D1.80.D1.84.D0.B5.D0.B9.D1.81.D0.B5"></span><span class="mw-headline" id="Основные_элементы_боевого_интерфейса">战斗界面的主要元素</span></h2><h3><span id=".D0.9C.D0.B5.D0.BD.D1.8E_.D0.BF.D0.B0.D1.83.D0.B7.D1.8B"></span><span class="mw-headline" id="Меню_паузы">暂停菜单</span></h3><p>在电脑版游戏中，可以通过按 <span class="hotkey">Esc</span> 或 <span class="hotkey">P</span> 键打开“战斗”或“暂停”菜单。在<a href="./TO_Mobile" title="TO Mobile">移动版</a>中，右上角有一个用于此操作的按钮。通过菜单，您可以进入<a href="./%D0%93%D0%B0%D1%80%D0%B0%D0%B6" class="mw-redirect" title="Гараж">车库</a>、<a href="./%D0%9F%D0%B5%D1%80%D0%B5%D0%BE%D0%B4%D0%B5%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5" class="mw-redirect" title="Переодевание">更换</a>装备、打开<a href="./%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B8" class="mw-redirect" title="Настройки">设置</a>、邀请<a href="./%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0_%D0%B4%D1%80%D1%83%D0%B7%D0%B5%D0%B9" class="mw-redirect" title="Система друзей">好友</a>、重新加载游戏或退出战斗。计时器显示在被自动踢出战斗前剩余的暂停时间：
+</p><ul><li>匹配中最多 1 分钟</li>
+<li>专家战场中最多 2 分钟</li></ul><h3><span id=".D0.A1.D1.82.D0.B0.D1.82.D0.B8.D1.81.D1.82.D0.B8.D0.BA.D0.B0_.D0.B1.D0.B8.D1.82.D0.B2.D1.85"></span><span class="mw-headline" id="Статистика_битвы">战斗统计</span></h3><p>按住 <span class="hotkey">Tab</span> 键，战斗统计会以独立半透明窗口的形式在屏幕中央打开。其中会显示战斗中每个参与者的以下信息：
+</p><ol><li><a href="./%D0%97%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="Звания">等级</a></li>
+<li>昵称</li>
+<li><a href="./Gear_Score" title="Gear Score">装备分数</a></li>
+<li>装备了装备改造的<a href="./%D0%9F%D1%83%D1%88%D0%BA%D0%B8" class="mw-redirect" title="Пушки">炮塔</a></li>
+<li>装备了装备改造的<a href="./%D0%9A%D0%BE%D1%80%D0%BF%D1%83%D1%81%D0%B0" class="mw-redirect" title="Корпуса">底盘</a></li>
+<li><span typeof="mw:File"><a href="./%D0%9E%D1%87%D0%BA%D0%B8_%D1%80%D0%B5%D0%BF%D1%83%D1%82%D0%B0%D1%86%D0%B8%D0%B8" title="Очки репутации"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/RP_Icon.png/16px-RP_Icon.png" decoding="async" loading="lazy" width="16" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/RP_Icon.png/24px-RP_Icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/RP_Icon.png/32px-RP_Icon.png 2x"></a></span> <a href="./%D0%9E%D1%87%D0%BA%D0%B8_%D1%80%D0%B5%D0%BF%D1%83%D1%82%D0%B0%D1%86%D0%B8%D0%B8" class="mw-redirect" title="Очки репутации">经验值</a></li>
+<li>“消灭”指标（击杀数）/“被摧毁”指标（死亡数）</li></ol><p><br>
+<span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6f/HUD_statistics.png" decoding="async" loading="lazy" width="1217" height="414" class="mw-file-element"></span></span>
+</p><p>将鼠标悬停在所需的玩家身上，即可了解其装备的<a href="./%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D0%B8" class="mw-redirect" title="Модули">模块</a>信息，而在战斗结束后，还可以查看奖励（来自战斗基金的水晶份额 + 如果激活了 <a href="./%D0%9F%D1%80%D0%B5%D0%BC%D0%B8%D1%83%D0%BC-%D0%BF%D0%BE%D0%B4%D0%BF%D0%B8%D1%81%D0%BA%D0%B0" class="mw-redirect" title="Премиум-подписка">VIP</a> 则享受加成，以及在当前<a href="./%D0%A7%D0%B5%D0%BB%D0%BB%D0%B5%D0%BD%D0%B4%D0%B6%D0%B8" class="mw-redirect" title="Челленджи">星级挑战</a>中获得的星星）。
+</p><div class="alert warning">
+  <div class="icon"></div>
+  <div class="text"><b>注意！</b>如果 <span class="hotkey">Tab</span> 键（显示战斗统计窗口）无效，通常双击 <span class="hotkey">Esc</span> 键会有所帮助。或者您也可以直接按 <span class="hotkey">P</span>，等待暂停对话框打开然后将其关闭。如果这两种方法都不起作用，您需要检查游戏中的<a href="./%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B8" class="mw-redirect" title="Настройки">坦克控制</a>键是否被重新绑定。</div>
+</div><h3><span id=".D0.94.D0.B5.D1.82.D0.B0.D0.BB.D0.B8_.D0.B1.D0.BE.D1.8F"></span><span class="mw-headline" id="Детали_боя">战斗详情</span></h3><p>战斗详情位于屏幕中央上方。此处显示：
+</p><ul><li>战斗剩余时间</li>
+<li>战斗比分<ul><li>在团队模式中：己方团队比分和敌方团队比分</li>
+<li>在个人模式中：自己的分数和最佳玩家的分数</li></ul></li>
+<li>点数的占领状态及所属团队（如果战斗是在 <a href="./CP" class="mw-redirect" title="CP">CP</a> 和<a href="./SGE" class="mw-redirect" title="SGE">围城大战</a>模式下进行）</li></ul><p><br>
+</p><div class="img__container" style="float:right;clear:right;width:210px;"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/48/Battlestats_tdm.png/210px-Battlestats_tdm.png" decoding="async" loading="lazy" width="210" height="13" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/48/Battlestats_tdm.png/315px-Battlestats_tdm.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/48/Battlestats_tdm.png/420px-Battlestats_tdm.png 2x"></span></span><br>战斗详情显示</div><p>在<a href="./%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%B1%D0%B8%D1%82%D0%B2" class="mw-redirect" title="Список битв">手动创建的</a>战斗中，右下角会显示基金——即战斗结束后将在所有玩家之间分配的水晶总数。
+</p><h3><span id=".D0.92.D0.B0.D0.B6.D0.BD.D1.8B.D0.B5_.D1.83.D0.B2.D0.B5.D0.B4.D0.BE.D0.BC.D0.BB.D0.B5.D0.BD.D0.B8.D1.80"></span><span class="mw-headline" id="Важные_уведомления">重要通知</span></h3><p>重要通知会出现在屏幕中央。它们标志着在整个战斗规模中具有重要意义的重大事件：
+</p><ul><li>运送了军旗（<a href="./%D0%97%D0%B0%D1%85%D0%B2%D0%B0%D1%82_%D1%84%D0%BB%D0%B0%D0%B3%D0%B0" class="mw-redirect" title="Захват флага">CTF</a>）</li>
+<li>基地遭到攻击（<a href="./%D0%A8%D1%82%D1%83%D1%80%D0%BC" class="mw-redirect" title="Штурм">突袭</a>）</li>
+<li>球即将掉落（<a href="./%D0%A0%D0%B5%D0%B3%D0%B1%D0%B8" class="mw-redirect" title="Регби">橄榄球</a>）</li>
+<li>进球得分（<a href="./%D0%A0%D0%B5%D0%B3%D0%B1%D0%B8" class="mw-redirect" title="Регби">橄榄球</a>）</li>
+<li>剑圣保持连杀纪录（<a href="./%D0%A1%D0%BE%D0%BB%D0%BE_%D0%94%D0%B6%D0%B0%D0%B3%D0%B3%D0%B5%D1%80%D0%BD%D0%B0%D1%83%D1%82" class="mw-redirect" title="Соло Джаггернаут">剑圣</a>）</li>
+<li>玩家获得了新炮塔（<a href="./%D0%93%D0%BE%D0%BD%D0%BA%D0%B0_%D0%B2%D0%BE%D0%BE%D1%80%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9" class="mw-redirect" title="Гонка вооружений">军备竞赛</a>）</li>
+<li><a href="./%D0%97%D0%BE%D0%BB%D0%BE%D1%82%D0%BE%D0%B9_%D1%8F%D1%89%D0%B8%D0%BA" class="mw-redirect" title="Золотой ящик">金箱子</a>或<a href="./%D0%97%D0%BE%D0%BB%D0%BE%D1%82%D0%BE%D0%B9_%D1%8F%D1%89%D0%B8%D0%BA" class="mw-redirect" title="Золотой ящик">巨型金箱子</a>即将掉落</li>
+<li>拿到了<a href="./%D0%97%D0%BE%D0%BB%D0%BE%D1%82%D0%BE%D0%B9_%D1%8F%D1%89%D0%B8%D0%BA" class="mw-redirect" title="Золотой ящик">金箱子</a></li></ul><p><br>
+</p><h3><span id=".D0.91.D0.BE.D0.B5.D0.B2.D0.BE.D0.B9_.D1.87.D0.B0.D1.82"></span><span class="mw-headline" id="Боевой_чат">战斗聊天框</span></h3><div class="dablink noprint"><em>主条目</em>：<b><a href="./%D0%A7%D0%B0%D1%82" class="mw-redirect" title="Чат">聊天</a></b>
+</div><p><a href="./%D0%A7%D0%B0%D1%82" class="mw-redirect" title="Чат">战斗聊天框</a>区域位于屏幕左侧。在电脑版中通过 <span class="hotkey">Enter</span> 键激活，或者在游戏<a href="./TO_Mobile" title="TO Mobile">移动版</a>中使用右上角的按钮激活。其中显示玩家的消息以及系统消息，例如封禁或投诉确认。在团队模式战斗中，可以使用 <span class="hotkey">Tab</span> 键在团队聊天和全体聊天之间切换。
+</p><h3><span id=".D0.A0.D0.B0.D0.B4.D0.B0.D1.80"></span><span class="mw-headline" id="Радар">雷达</span></h3><div class="img__container" style="float:right;clear:right;"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/c3/Icon_Radar.png" decoding="async" loading="lazy" width="469" height="469" class="mw-file-element"></span></span></div><div class="dablink noprint"><em>主条目</em>：<b><a href="./%D0%A0%D0%B0%D0%B4%D0%B0%D1%80" class="mw-redirect" title="Радар">雷达</a></b>
+</div><p>雷达是战斗中的一个图形元素，位于战斗界面屏幕的底部。它显示玩家周围 90 米半径内的所有坦克。雷达可用于观察高处的坦克，以及各种障碍物拐角处的坦克。这在游戏中可以成为巨大的优势。
+</p><h3><span id=".D0.9F.D0.BE.D0.B4.D1.81.D0.B2.D0.B5.D1.87.D0.B8.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5_.D1.82.D0.B0.D0.BD.D0.BA.D0.BE.D0.B2"></span><span class="mw-headline" id="Подсвечивание_танков">坦克高亮显示</span></h3><p>在战斗中的特定情况下，坦克可能会被高亮显示。它们会获得一个彩色轮廓。轮廓的颜色取决于各种因素。
+</p><p>当玩家将炮塔对准敌人时，敌人会被高亮显示。这可以让玩家看到他的炮弹会击中哪辆坦克。
+显示坦克轮廓颜色的距离取决于炮塔。近战炮塔的敌人高亮显示仅在几米距离内可见，而远程炮塔则在几百米距离内可见。高亮轮廓的粗细和颜色各有不同。
+</p><table class="wikitable-modern first-column-center default">
+
+<tbody><tr class="wikitable-header">
+<td width="10%">轮廓</td>
+<td>含义</td></tr>
+<tr class="wikitable-header wikitable-footer">
+<td colspan="2">高亮粗细</td></tr>
+<tr>
+<td><span style="color:white">粗</span>
+</td>
+<td>炮塔已准备好射击</td></tr>
+<tr>
+<td><span style="color:white">细</span>
+</td>
+<td>炮塔正在装填中</td></tr>
+<tr class="wikitable-header wikitable-footer">
+<td colspan="2">轮廓颜色</td></tr>
+<tr>
+<td><span style="color:red">红色</span>
+</td>
+<td>敌人处于对其造成全额伤害的半径范围内</td></tr>
+<tr>
+<td><span style="color:orange">橙色</span>
+</td>
+<td>敌人在伤害随距离增加而衰减的距离处</td></tr>
+<tr>
+<td><span style="color:yellow">黄色</span>
+</td>
+<td>敌人超出了最佳作用范围，受到的伤害微乎其微</td></tr>
+<tr>
+<td><span style="color:lightgray">灰色</span>
+</td>
+<td>敌人拥有<a href="./%D0%9D%D0%B5%D1%83%D1%8F%D0%B7%D0%B2%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C" class="mw-redirect" title="Неуязвимость">无敌状态</a>且不会受到任何伤害</td></tr>
+<tr>
+<td><span style="color:white">白色</span>
+</td>
+<td>所有敌人都可以通过激活<a href="./%D0%A5%D0%BE%D1%80%D0%BD%D0%B5%D1%82" class="mw-redirect" title="Хорнет">蜂王</a>的<a href="./%D0%9E%D0%B2%D0%B5%D1%80%D0%B4%D1%80%D0%B0%D0%B9%D0%B2%D1%8B" class="mw-redirect" title="Овердрайвы">终极技能</a>看到，无论使用什么炮塔，甚至能穿透障碍物</td></tr>
+<tr>
+<td><span style="color:#2E9AFE">蓝色</span>
+</td>
+<td>显示在可以为其治疗或将其用作<a href="./%D0%A2%D0%B5%D1%81%D0%BB%D0%B0" class="mw-redirect" title="Тесла">特斯拉</a>链条节点的队友身上</td></tr></tbody></table><h2><span id=".D0.98.D0.BA.D0.BE.D0.BD.D0.BA.D0.B8_.D0.B2_.D0.B1.D0.BE.D1.8E"></span><span class="mw-headline" id="Иконки_в_бою">战斗中的图标</span></h2><p>在战斗中，大部分信息都是通过图标以缩写形式提供的。它们分为不同的类型：
+</p><ul><li><a href="#Лог_событий">事件日志</a>显示在屏幕右上角和左上角供玩家查看。其中反映了活跃玩家的昵称，但几秒钟后就会消失。</li>
+<li><a href="#Индикаторы_целей">目标指示器</a>直接显示在玩家的视野中，指示地图上具体物体的位置。例如，玩家正带着球在地图上移动。</li>
+<li><a href="#Статус-эффекты">状态效果</a>显示在生命值条或坦克昵称上方。它们会影响坦克的战斗状态。</li></ul><h3><span id=".D0.9B.D0.BE.D0.B3_.D1.81.D0.BE.D0.B1.D1.8B.D1.82.D0.B8.D0.B9"></span><span class="mw-headline" id="Лог_событий">事件日志</span></h3><p>战斗事件日志位于屏幕右上角。其中反映了玩家当前的行动：谁消灭了谁、运送了军旗、拾取了球等。战斗日志中的行动由专门的图标表示：
+</p><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample3">事件日志</div><div class="collapse" id="collapseExample3"><div class="">
+<table class="wikitable-modern default">
+
+<tbody><tr class="wikitable-header wikitable-title-center">
+<td style="text-transform: uppercase; width: 130px;">玩家<br>团队</td>
+<td style="width: 120px;">敌方<br>团队</td>
+<td>说明</td></tr>
+<tr class="wikitable-footer wikitable-header">
+<td colspan="3">游戏时刻</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/bc/Icon_Blue_flag.png/25px-Icon_Blue_flag.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/bc/Icon_Blue_flag.png/38px-Icon_Blue_flag.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/bc/Icon_Blue_flag.png/50px-Icon_Blue_flag.png 2x"></span></span>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/1/15/Icon_Red_flag.png/25px-Icon_Red_flag.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/1/15/Icon_Red_flag.png/38px-Icon_Red_flag.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/1/15/Icon_Red_flag.png/50px-Icon_Red_flag.png 2x"></span></span>
+</td>
+<td>被玩家夺取的<span style="color:#33bafe">玩家</span> / <span style="color:#ff8f8f">敌人</span>团队的军旗</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/c/c2/Icon_Blue_rgb.png/25px-Icon_Blue_rgb.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/c2/Icon_Blue_rgb.png/38px-Icon_Blue_rgb.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/c/c2/Icon_Blue_rgb.png/50px-Icon_Blue_rgb.png 2x"></span></span>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/65/Icon_Red_rgb.png/25px-Icon_Red_rgb.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/65/Icon_Red_rgb.png/38px-Icon_Red_rgb.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/65/Icon_Red_rgb.png/50px-Icon_Red_rgb.png 2x"></span></span>
+</td>
+<td>被玩家拿起的<span style="color:#33bafe">玩家</span> / <span style="color:#ff8f8f">敌人</span>团队的球</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6d/Icon_Blue_drop.png/25px-Icon_Blue_drop.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/6d/Icon_Blue_drop.png/38px-Icon_Blue_drop.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/6d/Icon_Blue_drop.png/50px-Icon_Blue_drop.png 2x"></span></span>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/1/1f/Icon_Red_drop.png/25px-Icon_Red_drop.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/1/1f/Icon_Red_drop.png/38px-Icon_Red_drop.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/1/1f/Icon_Red_drop.png/50px-Icon_Red_drop.png 2x"></span></span>
+</td>
+<td>由<span style="color:#33bafe">玩家</span> / <span style="color:#ff8f8f">敌人</span>丢失（掉落）的军旗或球</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d1/Icon_CP_blue.png/60px-Icon_CP_blue.png" decoding="async" loading="lazy" width="60" height="24" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d1/Icon_CP_blue.png/90px-Icon_CP_blue.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d1/Icon_CP_blue.png/120px-Icon_CP_blue.png 2x"></span></span>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/f/fe/Icon_CP_red.png/60px-Icon_CP_red.png" decoding="async" loading="lazy" width="60" height="24" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/f/fe/Icon_CP_red.png/90px-Icon_CP_red.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/f/fe/Icon_CP_red.png/120px-Icon_CP_red.png 2x"></span></span>
+</td>
+<td>被玩家占领的<span style="color:#33bafe">玩家</span> / <span style="color:#ff8f8f">敌人</span>团队的点位</td></tr>
+<tr class="wikitable-footer wikitable-header">
+<td colspan="3">击杀图标</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/0/0f/Icon_firebird.png/30px-Icon_firebird.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/0/0f/Icon_firebird.png/45px-Icon_firebird.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/0/0f/Icon_firebird.png/60px-Icon_firebird.png 2x"></span></span>
+</td>
+<td>玩家用<a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%82" class="mw-redirect" title="Огнемёт">火焰炮</a>消灭了敌人</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/2/20/Icon_freeze.png/30px-Icon_freeze.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/20/Icon_freeze.png/45px-Icon_freeze.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/2/20/Icon_freeze.png/60px-Icon_freeze.png 2x"></span></span>
+</td>
+<td>玩家用<a href="./%D0%A4%D1%80%D0%B8%D0%B7" class="mw-redirect" title="Фриз">冰风暴</a>消灭了敌人</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/0/0b/Icon_isida.png/30px-Icon_isida.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/0/0b/Icon_isida.png/45px-Icon_isida.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/0/0b/Icon_isida.png/60px-Icon_isida.png 2x"></span></span>
+</td>
+<td>玩家用<a href="./%D0%98%D0%B7%D0%B8%D0%B4%D0%B0" class="mw-redirect" title="Изида">磁力炮</a>消灭了敌人</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/7c/Icon_tesla.png/30px-Icon_tesla.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/7c/Icon_tesla.png/45px-Icon_tesla.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/7c/Icon_tesla.png/60px-Icon_tesla.png 2x"></span></span>
+</td>
+<td>玩家用<a href="./%D0%A2%D0%B5%D1%81%D0%BB%D0%B0" class="mw-redirect" title="Тесла">特斯拉</a>消灭了敌人</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/1/1a/Icon_hammer.png/30px-Icon_hammer.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/1/1a/Icon_hammer.png/45px-Icon_hammer.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/1/1a/Icon_hammer.png/60px-Icon_hammer.png 2x"></span></span>
+</td>
+<td>玩家用<a href="./%D0%9C%D0%BE%D0%BB%D0%BE%D1%82" class="mw-redirect" title="Молот">滑膛炮</a>消灭了敌人</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/5/5b/Icon_twins.png/30px-Icon_twins.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/5b/Icon_twins.png/45px-Icon_twins.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/5b/Icon_twins.png/60px-Icon_twins.png 2x"></span></span>
+</td>
+<td>玩家用<a href="./%D0%A2%D0%B2%D0%B8%D0%BD%D1%81" class="mw-redirect" title="Твинс">离子炮</a>消灭了敌人</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/1/15/Icon_ricochet.png/30px-Icon_ricochet.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/1/15/Icon_ricochet.png/45px-Icon_ricochet.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/1/15/Icon_ricochet.png/60px-Icon_ricochet.png 2x"></span></span>
+</td>
+<td>玩家用<a href="./%D0%A0%D0%B8%D0%BA%D0%BE%D1%88%D0%B5%D1%82" class="mw-redirect" title="Рикошет">火龙珠</a>消灭了敌人</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/9/90/Icon_smoky.png/30px-Icon_smoky.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/9/90/Icon_smoky.png/45px-Icon_smoky.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/9/90/Icon_smoky.png/60px-Icon_smoky.png 2x"></span></span>
+</td>
+<td>玩家用<a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" class="mw-redirect" title="Смоки">轰天炮</a>消灭了敌人</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/8/8e/Icon_striker.png/30px-Icon_striker.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/8/8e/Icon_striker.png/45px-Icon_striker.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/8/8e/Icon_striker.png/60px-Icon_striker.png 2x"></span></span>
+</td>
+<td>玩家用<a href="./%D0%A1%D1%82%D1%80%D0%B0%D0%B9%D0%BA%D0%B5%D1%80" class="mw-redirect" title="Страйкер">火箭炮</a>消灭了敌人</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d3/Icon_vulcan.png/30px-Icon_vulcan.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d3/Icon_vulcan.png/45px-Icon_vulcan.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d3/Icon_vulcan.png/60px-Icon_vulcan.png 2x"></span></span>
+</td>
+<td>玩家用<a href="./%D0%92%D1%83%D0%BB%D0%BA%D0%B0%D0%BD" class="mw-redirect" title="Вулкан">极速炮</a>消灭了敌人</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/76/Icon_thunder.png/30px-Icon_thunder.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/76/Icon_thunder.png/45px-Icon_thunder.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/76/Icon_thunder.png/60px-Icon_thunder.png 2x"></span></span>
+</td>
+<td>玩家用<a href="./%D0%93%D1%80%D0%BE%D0%BC" class="mw-redirect" title="Гром">雷暴炮</a>消灭了敌人</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/c/c8/Icon_Tsunami.png/30px-Icon_Tsunami.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/c8/Icon_Tsunami.png/45px-Icon_Tsunami.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/c/c8/Icon_Tsunami.png/60px-Icon_Tsunami.png 2x"></span></span>
+</td>
+<td>玩家用<a href="./%D0%A6%D1%83%D0%BD%D0%B0%D0%BC%D0%B8" class="mw-redirect" title="Цунами">海啸</a>炮塔消灭了敌人</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/8/83/Icon_scorpion.png/30px-Icon_scorpion.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/8/83/Icon_scorpion.png/45px-Icon_scorpion.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/8/83/Icon_scorpion.png/60px-Icon_scorpion.png 2x"></span></span>
+</td>
+<td>玩家用<a href="./%D0%A1%D0%BA%D0%BE%D1%80%D0%BF%D0%B8%D0%BE%D0%BD" class="mw-redirect" title="Скорпион">蝎子</a>消灭了敌人</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/b1/Icon_railgun.png/30px-Icon_railgun.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/b1/Icon_railgun.png/45px-Icon_railgun.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/b1/Icon_railgun.png/60px-Icon_railgun.png 2x"></span></span>
+</td>
+<td>玩家用<a href="./%D0%A0%D0%B5%D0%BB%D1%8C%D1%81%D0%B0" class="mw-redirect" title="Рельса">激光炮</a>消灭了敌人</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/2/2d/Icon_magnum.png/30px-Icon_magnum.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/2d/Icon_magnum.png/45px-Icon_magnum.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/2/2d/Icon_magnum.png/60px-Icon_magnum.png 2x"></span></span>
+</td>
+<td>玩家用<a href="./%D0%9C%D0%B0%D0%B3%D0%BD%D1%83%D0%BC" class="mw-redirect" title="Магнум">马格南</a>消灭了敌人</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6c/Icon_gauss.png/30px-Icon_gauss.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/6c/Icon_gauss.png/45px-Icon_gauss.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/6c/Icon_gauss.png/60px-Icon_gauss.png 2x"></span></span>
+</td>
+<td>玩家用<a href="./%D0%93%D0%B0%D1%83%D1%81%D1%81" class="mw-redirect" title="Гаусс">电磁炮</a>消灭了敌人</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/1/11/Icon_shaft.png/30px-Icon_shaft.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/1/11/Icon_shaft.png/45px-Icon_shaft.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/1/11/Icon_shaft.png/60px-Icon_shaft.png 2x"></span></span>
+</td>
+<td>玩家用<a href="./%D0%A8%D0%B0%D1%84%D1%82" class="mw-redirect" title="Шафт">镭射炮</a>消灭了敌人</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/64/Icon_bonk.png/30px-Icon_bonk.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/64/Icon_bonk.png/45px-Icon_bonk.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/64/Icon_bonk.png/60px-Icon_bonk.png 2x"></span></span>
+</td>
+<td>玩家用<a href="./%D0%9A%D1%83%D0%B2%D0%B0%D0%BB%D0%B4%D0%B0" class="mw-redirect" title="Кувалда">大锤</a>消灭了敌人</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/a/a1/Icon_mine.png/30px-Icon_mine.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/a/a1/Icon_mine.png/45px-Icon_mine.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/a/a1/Icon_mine.png/60px-Icon_mine.png 2x"></span></span>
+</td>
+<td>玩家用<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">地雷</a>消灭了敌人</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/7d/Tank_damage.png/30px-Tank_damage.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/7d/Tank_damage.png/45px-Tank_damage.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/7d/Tank_damage.png/60px-Tank_damage.png 2x"></span></span>
+</td>
+<td>玩家通过<a href="./%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%BD%D1%8B%D0%B9_%D0%94%D0%B6%D0%B0%D0%B3%D0%B3%D0%B5%D1%80%D0%BD%D0%B0%D1%83%D1%82" class="mw-redirect" title="Командный Джаггернаут">剑圣</a>的溅射伤害或“破坏者”<a href="./%D0%A3%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0" class="mw-redirect" title="Устройства">装备改造</a>消灭了敌人</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/c/ce/Icon_wasp_explotion_kill.png/30px-Icon_wasp_explotion_kill.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/ce/Icon_wasp_explotion_kill.png/45px-Icon_wasp_explotion_kill.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/c/ce/Icon_wasp_explotion_kill.png/60px-Icon_wasp_explotion_kill.png 2x"></span></span>
+</td>
+<td>玩家用黄蜂轻甲的<a href="./%D0%9E%D0%B2%D0%B5%D1%80%D0%B4%D1%80%D0%B0%D0%B9%D0%B2%D1%8B" class="mw-redirect" title="Овердрайвы">炸弹</a>消灭了敌人</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/7a/Icon_hopper_kill.png/30px-Icon_hopper_kill.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/7a/Icon_hopper_kill.png/45px-Icon_hopper_kill.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/7a/Icon_hopper_kill.png/60px-Icon_hopper_kill.png 2x"></span></span>
+</td>
+<td>玩家用霍珀的<a href="./%D0%9E%D0%B2%D0%B5%D1%80%D0%B4%D1%80%D0%B0%D0%B9%D0%B2%D1%8B" class="mw-redirect" title="Овердрайвы">耀斑干扰弹</a>消灭了敌人</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/f/f1/Icon_hunter_kill.png/30px-Icon_hunter_kill.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/f/f1/Icon_hunter_kill.png/45px-Icon_hunter_kill.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/f/f1/Icon_hunter_kill.png/60px-Icon_hunter_kill.png 2x"></span></span>
+</td>
+<td>玩家用猎人中甲的<a href="./%D0%9E%D0%B2%D0%B5%D1%80%D0%B4%D1%80%D0%B0%D0%B9%D0%B2%D1%8B" class="mw-redirect" title="Овердрайвы">电磁脉冲</a>消灭了敌人</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d0/Icon_crusader_kill.png/30px-Icon_crusader_kill.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d0/Icon_crusader_kill.png/45px-Icon_crusader_kill.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d0/Icon_crusader_kill.png/60px-Icon_crusader_kill.png 2x"></span></span>
+</td>
+<td>玩家用十字军的<a href="./%D0%9E%D0%B2%D0%B5%D1%80%D0%B4%D1%80%D0%B0%D0%B9%D0%B2%D1%8B" class="mw-redirect" title="Овердрайвы">震荡冻结</a>消灭了敌人</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/dd/Icon_ares_kill.png/30px-Icon_ares_kill.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/dd/Icon_ares_kill.png/45px-Icon_ares_kill.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/dd/Icon_ares_kill.png/60px-Icon_ares_kill.png 2x"></span></span>
+</td>
+<td>玩家用阿瑞斯的<a href="./%D0%9E%D0%B2%D0%B5%D1%80%D0%B4%D1%80%D0%B0%D0%B9%D0%B2%D1%8B" class="mw-redirect" title="Овердрайвы">等离子焰炬</a>消灭了敌人</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/b0/Icon_mammoth_kill.png/30px-Icon_mammoth_kill.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/b0/Icon_mammoth_kill.png/45px-Icon_mammoth_kill.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/b0/Icon_mammoth_kill.png/60px-Icon_mammoth_kill.png 2x"></span></span>
+</td>
+<td>玩家用猛犸象的<a href="./%D0%9E%D0%B2%D0%B5%D1%80%D0%B4%D1%80%D0%B0%D0%B9%D0%B2%D1%8B" class="mw-redirect" title="Овердрайвы">炙热领域</a>消灭了敌人</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/f/f7/Icon_jugger_kill.png/30px-Icon_jugger_kill.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/f/f7/Icon_jugger_kill.png/45px-Icon_jugger_kill.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/f/f7/Icon_jugger_kill.png/60px-Icon_jugger_kill.png 2x"></span></span>
+</td>
+<td>剑圣消灭了玩家</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/4f/Icon_grenade_kill.png/30px-Icon_grenade_kill.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/4f/Icon_grenade_kill.png/45px-Icon_grenade_kill.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/4f/Icon_grenade_kill.png/60px-Icon_grenade_kill.png 2x"></span></span>
+</td>
+<td>玩家用<a href="./%D0%93%D1%80%D0%B0%D0%BD%D0%B0%D1%82%D1%8B" class="mw-redirect" title="Гранаты">手榴弹</a>消灭了敌人</td></tr>
+<tr class="wikitable-footer wikitable-header">
+<td colspan="3">玩家行动</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/3/3e/Player_self_destroy-1.png/30px-Player_self_destroy-1.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/3e/Player_self_destroy-1.png/45px-Player_self_destroy-1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/3/3e/Player_self_destroy-1.png/60px-Player_self_destroy-1.png 2x"></span></span>
+</td>
+<td>玩家自毁</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/c/c9/Player_change_equipment-1.png/30px-Player_change_equipment-1.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/c9/Player_change_equipment-1.png/45px-Player_change_equipment-1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/c/c9/Player_change_equipment-1.png/60px-Player_change_equipment-1.png 2x"></span></span>
+</td>
+<td>玩家<a href="./%D0%9F%D0%B5%D1%80%D0%B5%D0%BE%D0%B4%D0%B5%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5_%D0%B2_%D0%B1%D0%B8%D1%82%D0%B2%D0%B5" class="mw-redirect" title="Переодевание в битве">更换了装备</a>
+</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/0/04/Player_join_the_battle.png/30px-Player_join_the_battle.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/0/04/Player_join_the_battle.png/45px-Player_join_the_battle.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/0/04/Player_join_the_battle.png/60px-Player_join_the_battle.png 2x"></span></span>
+</td>
+<td>玩家进入战斗</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/8/8d/Player_leave_the_battle.png/30px-Player_leave_the_battle.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/8/8d/Player_leave_the_battle.png/45px-Player_leave_the_battle.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/8/8d/Player_leave_the_battle.png/60px-Player_leave_the_battle.png 2x"></span></span>
+</td>
+<td>玩家离开战斗</td></tr></tbody></table>
+</div></div><h3><span id=".D0.98.D0.BD.D0.B4.D0.B8.D0.BA.D0.B0.D1.82.D0.BE.D1.80.D1.8B_.D1.86.D0.B5.D0.BB.D0.B5.D0.B9"></span><span class="mw-headline" id="Индикаторы_целей">目标指示器</span></h3><p>目标指示器指示各种<a href="./%D0%A0%D0%B5%D0%B6%D0%B8%D0%BC%D1%8B_%D0%B1%D0%BE%D1%8F" class="mw-redirect" title="Режимы боя">战斗模式</a>中游戏对象的位置——军旗、基地、点位、球、其他玩家。指示器可以透过游戏世界的纹理显示，随玩家在屏幕上移动，如果您靠得足够近，它们就会隐藏。
+</p><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample4">目标指示器</div><div class="collapse" id="collapseExample4"><div class="">
+<table class="wikitable-modern default">
+
+<tbody><tr class="wikitable-header wikitable-title-center">
+<td style="text-transform: uppercase; width: 118px;">玩家<br>团队</td>
+<td style="width: 118px;">敌方<br>团队</td>
+<td>说明</td></tr>
+<tr class="wikitable-header wikitable-footer">
+<td height="40px" class="wikitable-subheader wikitable-title-center" colspan="3"><b>«<a href="./%D0%97%D0%B0%D1%85%D0%B2%D0%B0%D1%82_%D1%84%D0%BB%D0%B0%D0%B3%D0%B0" class="mw-redirect" title="Захват флага">互夺军旗</a>» 模式</b>
+</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/74/Icon_ctf_flag_blue.png.png/27px-Icon_ctf_flag_blue.png.png" decoding="async" loading="lazy" width="27" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/74/Icon_ctf_flag_blue.png.png/41px-Icon_ctf_flag_blue.png.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/74/Icon_ctf_flag_blue.png.png/54px-Icon_ctf_flag_blue.png.png 2x"></span></span>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/2/23/Icon_ctf_flag_red.png.png/27px-Icon_ctf_flag_red.png.png" decoding="async" loading="lazy" width="27" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/23/Icon_ctf_flag_red.png.png/41px-Icon_ctf_flag_red.png.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/2/23/Icon_ctf_flag_red.png.png/54px-Icon_ctf_flag_red.png.png 2x"></span></span>
+</td>
+<td style="text-align:left;">基地上的<span style="color:#33bafe">玩家</span> / <span style="color:#ff8f8f">敌人</span>团队军旗</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/0/04/Icon_ctf_flag_blu_move.png/27px-Icon_ctf_flag_blu_move.png" decoding="async" loading="lazy" width="27" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/0/04/Icon_ctf_flag_blu_move.png/41px-Icon_ctf_flag_blu_move.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/0/04/Icon_ctf_flag_blu_move.png/54px-Icon_ctf_flag_blu_move.png 2x"></span></span>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/66/Icon_asl_flag_red.png/27px-Icon_asl_flag_red.png" decoding="async" loading="lazy" width="27" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/66/Icon_asl_flag_red.png/41px-Icon_asl_flag_red.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/66/Icon_asl_flag_red.png/54px-Icon_asl_flag_red.png 2x"></span></span>
+</td>
+<td style="text-align:left;">被玩家夺取的<span style="color:#33bafe">玩家</span> / <span style="color:#ff8f8f">敌人</span>团队军旗</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/2/2c/Icon_ctf_blue_base_no_flag.png/27px-Icon_ctf_blue_base_no_flag.png" decoding="async" loading="lazy" width="27" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/2c/Icon_ctf_blue_base_no_flag.png/41px-Icon_ctf_blue_base_no_flag.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/2/2c/Icon_ctf_blue_base_no_flag.png/54px-Icon_ctf_blue_base_no_flag.png 2x"></span></span>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/3/30/Icon_ctf_red_base_no_flag.png/27px-Icon_ctf_red_base_no_flag.png" decoding="async" loading="lazy" width="27" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/30/Icon_ctf_red_base_no_flag.png/41px-Icon_ctf_red_base_no_flag.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/3/30/Icon_ctf_red_base_no_flag.png/54px-Icon_ctf_red_base_no_flag.png 2x"></span></span>
+</td>
+<td style="text-align:left;">没有军旗的<span style="color:#33bafe">玩家</span> / <span style="color:#ff8f8f">敌人</span>团队基地</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/8/85/Icon_ctf_blue_delivering_down.png/27px-Icon_ctf_blue_delivering_down.png" decoding="async" loading="lazy" width="27" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/8/85/Icon_ctf_blue_delivering_down.png/41px-Icon_ctf_blue_delivering_down.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/8/85/Icon_ctf_blue_delivering_down.png/54px-Icon_ctf_blue_delivering_down.png 2x"></span></span>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6c/Icon_ctf_red_delivering_down.png/27px-Icon_ctf_red_delivering_down.png" decoding="async" loading="lazy" width="27" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/6c/Icon_ctf_red_delivering_down.png/41px-Icon_ctf_red_delivering_down.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/6c/Icon_ctf_red_delivering_down.png/54px-Icon_ctf_red_delivering_down.png 2x"></span></span>
+</td>
+<td style="text-align:left;">丢失（丢弃）的<span style="color:#33bafe">玩家</span> / <span style="color:#ff8f8f">敌人</span>团队军旗</td></tr>
+<tr class="wikitable-header wikitable-footer">
+<td colspan="3" style="text-align:center;"><b>«<a href="./%D0%9A%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D1%8C_%D1%82%D0%BE%D1%87%D0%B5%D0%BA" class="mw-redirect" title="Контроль точек">控制点</a>» 和 «<a href="./%D0%9E%D1%81%D0%B0%D0%B4%D0%B0" class="mw-redirect" title="Осада">奥萨达</a>» 模式</b>
+</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/2/21/Icon_cp_point_blu.png/27px-Icon_cp_point_blu.png" decoding="async" loading="lazy" width="27" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/21/Icon_cp_point_blu.png/41px-Icon_cp_point_blu.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/2/21/Icon_cp_point_blu.png/54px-Icon_cp_point_blu.png 2x"></span></span>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/f/f3/Icon_cp_point_red.png/27px-Icon_cp_point_red.png" decoding="async" loading="lazy" width="27" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/f/f3/Icon_cp_point_red.png/41px-Icon_cp_point_red.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/f/f3/Icon_cp_point_red.png/54px-Icon_cp_point_red.png 2x"></span></span>
+</td>
+<td style="text-align:left;">被<span style="color:#33bafe">玩家</span> / <span style="color:#ff8f8f">敌人</span>团队占领的点位</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/64/Point_CP_neutral.png/27px-Point_CP_neutral.png" decoding="async" loading="lazy" width="27" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/64/Point_CP_neutral.png/41px-Point_CP_neutral.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/64/Point_CP_neutral.png/54px-Point_CP_neutral.png 2x"></span></span>
+</td>
+<td style="text-align:left;">中立点位</td></tr>
+<tr class="wikitable-header wikitable-footer">
+<td colspan="3" style="text-align:center;"><b>«<a href="./%D0%A8%D1%82%D1%83%D1%80%D0%BC" class="mw-redirect" title="Штурм">突袭</a>» 模式</b>
+</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/70/Icon_asl_base_blue.png/27px-Icon_asl_base_blue.png" decoding="async" loading="lazy" width="27" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/70/Icon_asl_base_blue.png/41px-Icon_asl_base_blue.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/70/Icon_asl_base_blue.png/54px-Icon_asl_base_blue.png 2x"></span></span>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6c/Icon_ctf_red_delivering_down.png/27px-Icon_ctf_red_delivering_down.png" decoding="async" loading="lazy" width="27" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/6c/Icon_ctf_red_delivering_down.png/41px-Icon_ctf_red_delivering_down.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/6c/Icon_ctf_red_delivering_down.png/54px-Icon_ctf_red_delivering_down.png 2x"></span></span>
+</td>
+<td style="text-align:left;"><span style="color:#33bafe">防守</span>团队的基地</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/74/Icon_ctf_flag_blue.png.png/27px-Icon_ctf_flag_blue.png.png" decoding="async" loading="lazy" width="27" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/74/Icon_ctf_flag_blue.png.png/41px-Icon_ctf_flag_blue.png.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/74/Icon_ctf_flag_blue.png.png/54px-Icon_ctf_flag_blue.png.png 2x"></span></span>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/2/23/Icon_ctf_flag_red.png.png/27px-Icon_ctf_flag_red.png.png" decoding="async" loading="lazy" width="27" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/23/Icon_ctf_flag_red.png.png/41px-Icon_ctf_flag_red.png.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/2/23/Icon_ctf_flag_red.png.png/54px-Icon_ctf_flag_red.png.png 2x"></span></span>
+</td>
+<td style="text-align:left;"><span style="color:#ff8f8f">进攻</span>团队的军旗（在基地上或已被玩家夺取）
+</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/2/2c/Icon_ctf_blue_base_no_flag.png/27px-Icon_ctf_blue_base_no_flag.png" decoding="async" loading="lazy" width="27" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/2c/Icon_ctf_blue_base_no_flag.png/41px-Icon_ctf_blue_base_no_flag.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/2/2c/Icon_ctf_blue_base_no_flag.png/54px-Icon_ctf_blue_base_no_flag.png 2x"></span></span>
+</td>
+<td>—
+</td>
+<td style="text-align:left;">缺少军旗的<span style="color:#ff8f8f">进攻</span>团队基地</td></tr>
+<tr>
+<td>—
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6c/Icon_ctf_red_delivering_down.png/27px-Icon_ctf_red_delivering_down.png" decoding="async" loading="lazy" width="27" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/6c/Icon_ctf_red_delivering_down.png/41px-Icon_ctf_red_delivering_down.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/6c/Icon_ctf_red_delivering_down.png/54px-Icon_ctf_red_delivering_down.png 2x"></span></span>
+</td>
+<td style="text-align:left;">丢失（丢弃）的<span style="color:#ff8f8f">进攻</span>团队军旗</td></tr>
+<tr class="wikitable-header wikitable-footer">
+<td colspan="3" style="text-align:center;"><b>«<a href="./%D0%A0%D0%B5%D0%B3%D0%B1%D0%B8" class="mw-redirect" title="Регби">橄榄球</a>» 模式</b>
+</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d8/Icon_rgb_blue_base.png/27px-Icon_rgb_blue_base.png" decoding="async" loading="lazy" width="27" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d8/Icon_rgb_blue_base.png/41px-Icon_rgb_blue_base.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d8/Icon_rgb_blue_base.png/54px-Icon_rgb_blue_base.png 2x"></span></span>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/b4/Icon_rgb_red_base.png/27px-Icon_rgb_red_base.png" decoding="async" loading="lazy" width="27" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/b4/Icon_rgb_red_base.png/41px-Icon_rgb_red_base.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/b4/Icon_rgb_red_base.png/54px-Icon_rgb_red_base.png 2x"></span></span>
+</td>
+<td style="text-align:left;"><span style="color:#33bafe">玩家</span> / <span style="color:#ff8f8f">敌人</span>团队的基地</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/4c/Icon_rgb_blue_delivering.png/27px-Icon_rgb_blue_delivering.png" decoding="async" loading="lazy" width="27" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/4c/Icon_rgb_blue_delivering.png/41px-Icon_rgb_blue_delivering.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/4c/Icon_rgb_blue_delivering.png/54px-Icon_rgb_blue_delivering.png 2x"></span></span>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/5/5d/Icon_rgb_red_delivering.png/27px-Icon_rgb_red_delivering.png" decoding="async" loading="lazy" width="27" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/5d/Icon_rgb_red_delivering.png/41px-Icon_rgb_red_delivering.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/5d/Icon_rgb_red_delivering.png/54px-Icon_rgb_red_delivering.png 2x"></span></span>
+</td>
+<td style="text-align:left;">被玩家拿起的<span style="color:#33bafe">玩家</span> / <span style="color:#ff8f8f">敌人</span>团队的球</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/9/90/Icon_rgb_ball.png/27px-Icon_rgb_ball.png" decoding="async" loading="lazy" width="27" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/9/90/Icon_rgb_ball.png/41px-Icon_rgb_ball.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/9/90/Icon_rgb_ball.png/54px-Icon_rgb_ball.png 2x"></span></span>
+</td>
+<td style="text-align:left;">地图上丢失（丢弃）的球</td></tr>
+<tr class="wikitable-header wikitable-footer">
+<td colspan="3" style="text-align:center;"><b>«<a href="./%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%BD%D1%8B%D0%B9_%D0%94%D0%B6%D0%B0%D0%B3%D0%B5%D1%80%D0%BD%D0%B0%D1%83%D1%82" class="mw-redirect" title="Командный Джаггернаут">团队剑圣</a>» 模式</b>
+</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/7c/Icon_jgr_blue_ally.png/27px-Icon_jgr_blue_ally.png" decoding="async" loading="lazy" width="27" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/7c/Icon_jgr_blue_ally.png/41px-Icon_jgr_blue_ally.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/7c/Icon_jgr_blue_ally.png/54px-Icon_jgr_blue_ally.png 2x"></span></span>
+</td>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/a/a5/Icon_jgr_red.png/27px-Icon_jgr_red.png" decoding="async" loading="lazy" width="27" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/a/a5/Icon_jgr_red.png/41px-Icon_jgr_red.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/a/a5/Icon_jgr_red.png/54px-Icon_jgr_red.png 2x"></span></span>
+</td>
+<td style="text-align:left;"><span style="color:#33bafe">玩家</span> / <span style="color:#ff8f8f">敌人</span>团队的“剑圣”
+</td></tr>
+<tr class="wikitable-header wikitable-footer">
+<td colspan="3" style="text-align:center;"><b>«<a href="./%D0%A1%D0%BE%D0%BB%D0%BE_%D0%94%D0%B6%D0%B0%D0%B3%D0%B3%D0%B5%D1%80%D0%BD%D0%B0%D1%83%D1%82" class="mw-redirect" title="Соло Джаггернаут">索洛剑圣</a>» 模式</b>
+</td></tr>
+<tr>
+<td colspan="2"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/e5/Icon_sjr.png" decoding="async" loading="lazy" width="27" height="30" class="mw-file-element"></span></span>
+</td>
+<td style="text-align:left;">驾驶超级坦克“剑圣”的玩家</td></tr></tbody></table>
+</div></div><h3><span id=".D0.A1.D1.82.D0.B0.D1.82.D1.83.D1.81-.D1.8D.D1.84.D1.84.D0.B5.D0.BA.D1.82.D1.8B"></span><span class="mw-headline" id="Статус-эффекты">状态效果</span></h3><div class="dablink noprint"><em>主条目</em>：<b><a href="./%D0%A1%D1%82%D0%B0%D1%82%D1%83%D1%81-%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%D1%8B" class="mw-redirect" title="Статус-эффекты">状态效果</a></b>
+</div><p>状态效果显示在生命值条或坦克昵称上方。它们会影响坦克的战斗状态。
+</p><p>如果在敌方坦克上施加状态效果，其上方会出现相应的图标。如果该坦克对该效果免疫，则会出现“免疫”文本。
+</p><p>状态效果指示器分为两种类型，在战斗中用以下图标表示：
+</p><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample5">状态效果指示器</div><div class="collapse" id="collapseExample5"><div class="">
+<table class="wikitable-modern first-column-center default">
+
+<tbody><tr class="wikitable-header wikitable-title-center">
+<td style="width:10%">图标</td>
+<td style="width:15%">名称</td>
+<td style="width:75%">含义</td></tr>
+
+<tr class="wikitable-header wikitable-footer">
+<td height="40px" class="wikitable-subheader wikitable-title-center" colspan="9"><b>正面效果</b>
+</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/2/25/Icon_repair_kit_supply.png/24px-Icon_repair_kit_supply.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/2/25/Icon_repair_kit_supply.png 1.5x"></span></span>
+</td>
+<td>维修工具</td>
+<td>维修工具生效中的指示</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/8/85/Icon_double_armor_supply.png/24px-Icon_double_armor_supply.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/8/85/Icon_double_armor_supply.png 1.5x"></span></span>
+</td>
+<td>护甲提升</td>
+<td>激活护甲提升的指示</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/dc/Icon_double_damage_supply.png/24px-Icon_double_damage_supply.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/d/dc/Icon_double_damage_supply.png 1.5x"></span></span>
+</td>
+<td>伤害提升</td>
+<td>激活伤害提升的指示</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/5/55/Icon_speed_boost_supply.png/24px-Icon_speed_boost_supply.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/5/55/Icon_speed_boost_supply.png 1.5x"></span></span>
+</td>
+<td>速度提升</td>
+<td>激活速度提升的指示</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/0/0d/Icon_drone_additional_armor.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td>额外防护</td>
+<td>激活超级护甲的指示（例如，“<a href="./%D0%97%D0%B0%D1%89%D0%B8%D1%82%D0%BD%D0%B8%D0%BA" class="mw-redirect" title="Защитник">守卫者</a>”无人机）
+</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/1/18/Icon_drone_additional_damage.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span>
+</td>
+<td>额外伤害</td>
+<td>激活超级伤害的指示（例如，“<a href="./%D0%91%D1%83%D1%81%D1%82%D0%B5%D1%80" class="mw-redirect" title="Бустер">助推器</a>”无人机）
+</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/a/a4/Icon_drone_additional_speed.png/24px-Icon_drone_additional_speed.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/a/a4/Icon_drone_additional_speed.png/36px-Icon_drone_additional_speed.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/a/a4/Icon_drone_additional_speed.png/48px-Icon_drone_additional_speed.png 2x"></span></span>
+</td>
+<td>额外加速</td>
+<td>激活超高速的指示（例如，“<a href="./%D0%9B%D0%BE%D0%B2%D0%BA%D0%B0%D1%87" class="mw-redirect" title="Ловкач">欺诈者</a>”无人机）
+</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/7d/Energy_icon.png/24px-Energy_icon.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/7/7d/Energy_icon.png 1.5x"></span></span>
+</td>
+<td>终极技能</td>
+<td>终极技能已就绪</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/3/36/Rescuer.png/24px-Rescuer.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/36/Rescuer.png/36px-Rescuer.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/3/36/Rescuer.png/48px-Rescuer.png 2x"></span></span>
+</td>
+<td>已救援</td>
+<td>通过“救生员”<a href="./%D0%A3%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0" class="mw-redirect" title="Устройства">装备改造</a>恢复生命值</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/3/3f/Icon_Immunity1.png/24px-Icon_Immunity1.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/3f/Icon_Immunity1.png/36px-Icon_Immunity1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/3/3f/Icon_Immunity1.png/48px-Icon_Immunity1.png 2x"></span></span>
+</td>
+<td>无敌状态</td>
+<td>重生后忽略伤害</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/67/Polarizer_Icon.png/24px-Polarizer_Icon.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/67/Polarizer_Icon.png/36px-Polarizer_Icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/67/Polarizer_Icon.png/48px-Polarizer_Icon.png 2x"></span></span>
+</td>
+<td>极化</td>
+<td>当<a href="./%D0%9F%D0%B0%D0%BB%D0%B0%D0%B4%D0%B8%D0%BD" class="mw-redirect" title="Паладин">圣骑士</a>的<a href="./%D0%9E%D0%B2%D0%B5%D1%80%D0%B4%D1%80%D0%B0%D0%B9%D0%B2%D1%8B" class="mw-redirect" title="Овердрайвы">终极技能</a>生效或使用维修工具时出现的指示</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/8/88/Icon_Supercharger.png/24px-Icon_Supercharger.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/8/88/Icon_Supercharger.png/36px-Icon_Supercharger.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/8/88/Icon_Supercharger.png/48px-Icon_Supercharger.png 2x"></span></span>
+</td>
+<td>增压</td>
+<td>每次射击都能造成<a href="./%D0%9A%D1%80%D0%B8%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9_%D1%83%D1%80%D0%BE%D0%BD" class="mw-redirect" title="Критический урон">致命伤害</a>的能力（例如<a href="./%D0%94%D0%B8%D0%BA%D1%82%D0%B0%D1%82%D0%BE%D1%80" class="mw-redirect" title="Диктатор">主宰者</a><a href="./%D0%9E%D0%B2%D0%B5%D1%80%D0%B4%D1%80%D0%B0%D0%B9%D0%B2%D1%8B" class="mw-redirect" title="Овердрайвы">终极技能</a>的效果）
+</td></tr>
+
+<tr class="wikitable-header wikitable-footer">
+<td height="40px" class="wikitable-subheader wikitable-title-center" colspan="9"><b>负面效果</b>
+</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/e7/Icon_Heat1.png/24px-Icon_Heat1.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e7/Icon_Heat1.png/36px-Icon_Heat1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e7/Icon_Heat1.png/48px-Icon_Heat1.png 2x"></span></span>
+</td>
+<td>着火</td>
+<td>坦克<a href="./%D0%A2%D0%B5%D0%BC%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D1%83%D1%80%D0%B0" class="mw-redirect" title="Температура">加热</a>并在冷却过程中持续受到伤害</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/5/52/Icon_Freezing1.png/24px-Icon_Freezing1.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/52/Icon_Freezing1.png/36px-Icon_Freezing1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/52/Icon_Freezing1.png/48px-Icon_Freezing1.png 2x"></span></span>
+</td>
+<td>冷冻</td>
+<td>坦克和炮塔速度变慢，额外伤害也会失效（例如来自“伤害提升”道具的伤害）
+</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/bb/Icon_EMP1.png/24px-Icon_EMP1.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/bb/Icon_EMP1.png/36px-Icon_EMP1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/bb/Icon_EMP1.png/48px-Icon_EMP1.png 2x"></span></span>
+</td>
+<td>电磁脉冲</td>
+<td>道具被禁用并进入<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">冷却状态</a>（例如<a href="./%D0%A5%D0%B0%D0%BD%D1%82%D0%B5%D1%80" class="mw-redirect" title="Хантер">猎人中甲</a><a href="./%D0%9E%D0%B2%D0%B5%D1%80%D0%B4%D1%80%D0%B0%D0%B9%D0%B2%D1%8B" class="mw-redirect" title="Овердрайвы">终极技能</a>的效果）
+</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/ec/Icon_Stun1.png/24px-Icon_Stun1.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/ec/Icon_Stun1.png/36px-Icon_Stun1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/ec/Icon_Stun1.png/48px-Icon_Stun1.png 2x"></span></span>
+</td>
+<td>眩晕</td>
+<td>坦克无法移动（例如猎人终极技能的效果）
+</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/b8/Icon_breaking_through1.png/24px-Icon_breaking_through1.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/b8/Icon_breaking_through1.png/36px-Icon_breaking_through1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/b8/Icon_breaking_through1.png/48px-Icon_breaking_through1.png 2x"></span></span>
+</td>
+<td>穿甲</td>
+<td>对坦克造成的伤害会忽略任何护甲增益（例如<a href="./%D0%A5%D0%BE%D1%80%D0%BD%D0%B5%D1%82" class="mw-redirect" title="Хорнет">蜂王</a><a href="./%D0%9E%D0%B2%D0%B5%D1%80%D0%B4%D1%80%D0%B0%D0%B9%D0%B2%D1%8B" class="mw-redirect" title="Овердрайвы">终极技能</a>的效果）
+</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/64/Icon_jammer.png/24px-Icon_jammer.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/64/Icon_jammer.png/36px-Icon_jammer.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/64/Icon_jammer.png/48px-Icon_jammer.png 2x"></span></span>
+</td>
+<td>干扰器</td>
+<td>禁用无人机的附加增益（例如<a href="./%D0%91%D1%83%D1%81%D1%82%D0%B5%D1%80" class="mw-redirect" title="Бустер">助推器</a>的伤害加成）并禁用激活<a href="./%D0%9E%D0%B2%D0%B5%D1%80%D0%B4%D1%80%D0%B0%D0%B9%D0%B2%D1%8B" class="mw-redirect" title="Овердрайвы">终极技能</a>的能力（例如<a href="./%D0%92%D0%B0%D1%81%D0%BF" class="mw-redirect" title="Васп">黄蜂轻甲</a>终极技能的效果）
+</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/2/2c/Icon_Self1.png/24px-Icon_Self1.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/2c/Icon_Self1.png/36px-Icon_Self1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/2/2c/Icon_Self1.png/48px-Icon_Self1.png 2x"></span></span>
+</td>
+<td>自毁</td>
+<td>坦克正在进行自毁</td></tr></tbody></table>
+</div></div><div align="right"><small>最后编辑：09/04/2026 Vestas <span class="ai-translate-note" style="color:#8FB8D8;">（由 AI 自动翻译）</span></small></div></div></div></div></div></div><footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
+<p style="margin:0;"><strong style="color:#BFD5FF;">本站为玩家社区自建的非官方 Wiki 镜像。</strong></p>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":2429,"wgPageParseReport":{"limitreport":{"cputime":"0.886","walltime":"1.664","ppvisitednodes":{"value":1267,"limit":1000000},"postexpandincludesize":{"value":15443,"limit":4194304},"templateargumentsize":{"value":2386,"limit":4194304},"expansiondepth":{"value":8,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":624,"limit":5000000},"timingprofile":["100.00%  382.956      1 -total"," 22.59%   86.501      1 Шаблон:See_also"," 13.22%   50.614      1 Шаблон:TableHUD"," 12.10%   46.353      4 Шаблон:Другое_значение"," 11.33%   43.378      5 Шаблон:Spoiler/Start"," 11.15%   42.716      1 Шаблон:LastEdit"," 10.45%   40.005     36 Шаблон:Color","  7.33%   28.081      9 Шаблон:Hotkey","  5.42%   20.754      3 Шаблон:Main","  4.84%   18.537     14 Шаблон:См._также/link"]},"cachereport":{"timestamp":"20260824235634","ttl":0,"transientcontent":true}}});});</script>
+    <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });</script></body></html>

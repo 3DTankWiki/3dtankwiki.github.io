@@ -1,0 +1,1689 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>(function(){
+  var BASE = 'https://ru.tankiwiki.com';
+  function fix(v){ return (typeof v === 'string' && v.charAt(0) === '/' && v.indexOf('//') !== 0) ? BASE + v : v; }
+  ['HTMLScriptElement','HTMLLinkElement'].forEach(function(tag){
+    var proto = window[tag] && window[tag].prototype;
+    var prop  = tag === 'HTMLScriptElement' ? 'src' : 'href';
+    if (!proto) return;
+    var d = Object.getOwnPropertyDescriptor(proto, prop);
+    if (!d || !d.set) return;
+    Object.defineProperty(proto, prop, {
+      configurable: true,
+      get: function(){ return d.get.call(this); },
+      set: function(v){ d.set.call(this, fix(v)); }
+    });
+  });
+  var of = window.fetch;
+  if (of) window.fetch = function(u, o){ return of.call(this, (typeof u === 'string' ? fix(u) : u), o); };
+  var ox = window.XMLHttpRequest && XMLHttpRequest.prototype.open;
+  if (ox) XMLHttpRequest.prototype.open = function(m, u){
+    var a = Array.prototype.slice.call(arguments); a[1] = fix(u); return ox.apply(this, a);
+  };
+})();</script><title>雷暴炮 — Tanki Online Wiki</title><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+    <meta charset="UTF-8">
+    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/xg_pWYS8-HRESiV6Rdg4aY_R/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-qWH0xCejb2gc1yqo8ob4TQrvIcQ9XjhOfGKbhFr/+LvFrJdTE3bA+FQP/FLAiQhz"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgRequestId":"20bdd16eff9a0a0b66251740","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Grom","wgTitle":"Grom","wgCurRevisionId":303148,"wgRevisionId":303148,"wgArticleId":539,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Страницы с нечисловыми аргументами formatnum"],"wgPageViewLanguage":"ru","wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgRelevantPageName":"Grom","wgRelevantArticleId":539,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":
+false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVisualEditor":{"pageLanguageCode":"ru","pageLanguageDir":"ltr","pageVariantFallbacks":"ru"},"wgFlaggedRevsParams":{"tags":{"accuracy":{"levels":3}}},"wgStableRevisionId":303148,"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.flaggedRevs.icons":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.flaggedRevs.basic":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.flaggedRevs.advanced","skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=ext.flaggedRevs.basic%2Cicons%7Cext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/6/61/Turret_firebird_m3_2.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="733">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/6/61/Turret_firebird_m3_2.png">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="489">
+    <meta property="og:image:width" content="640">
+    <meta property="og:image:height" content="391">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://ru.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://ru.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (ru)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://ru.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki&nbsp;— Atom-лента" href="https://ru.tankiwiki.com/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom"><style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
+
+/* 1. 只去掉源站皮肤的背景大图，保留底色；不要用 background 简写，否则会连带清掉皮肤别的背景设定 */
+html, body {
+    background-image: none !important;
+    background-color: #001926 !important;
+}
+/* 2. 让底色铺满视口，内容很短时下方不再露白 */
+html { min-height: 100%; }
+body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif; }
+
+/* 3. 版心容器 */
+#mw-main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #001926;
+}
+
+/* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
+      【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
+
+#mw-main-container .main-content,
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content,
+#mw-main-container #mw-content-text {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: auto !important;
+    flex-basis: auto !important;   /* 皮肤写了 .main-content{flex:0 0 75%} */
+    float: none !important;
+    margin-top: 0 !important;       /* 核心：清空原站皮肤的负 margin-top */
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    position: relative !important;
+    z-index: 1 !important;          /* 保证正文层级低于按钮 */
+}
+
+/* 5. 皮肤脚本 skins.tankiblue.js 会往 #mw-content-text 末尾插一条「发现错别字？Ctrl+Enter」
+      的俄语提示条和一个「报告错误」标签页。它按网址里有没有 'en'/'de' 来判断语言，
+      我们的域名两者都不含 → 一律显示俄语；且报错会提交到俄站编辑组，对镜像站没意义，直接隐藏。 */
+#custom-report-footer,
+.vectorTabs.customReport,
+.customReport { display: none !important; }
+
+/* 6. 返回按钮包裹容器：独占一行并强制最高层级 */
+.home-btn-wrapper {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px 0 20px 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    z-index: 9999 !important;       /* 核心：永远置于最顶层 */
+    clear: both !important;
+    overflow: visible !important;
+}
+
+/* 7. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐 */
+.home-back-btn {
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    width: auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    isolation: isolate !important;
+    
+    min-width: 142px !important;
+    padding: 0 24px !important;
+    height: 78px !important;
+    margin: 0 !important;
+    border: 1px solid rgba(255,255,255,.25) !important;
+    outline: 2px solid transparent !important;
+    border-radius: 6.5px !important;
+    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%) !important;
+    
+    position: relative !important;
+    z-index: 10000 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: all .15s ease !important;
+    overflow: visible !important;
+}
+.home-back-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(100% 100% at 0% 0%, rgba(191,213,255,.25) 0%, rgba(191,213,255,.15) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all .15s ease;
+    border-radius: inherit;
+    pointer-events: none;
+}
+.home-back-btn svg {
+    width: 24.375px;
+    height: 24px;
+    object-fit: contain;
+    transform: rotate(180deg);
+    transition: all .15s ease;
+    flex-shrink: 0;
+}
+.home-back-btn svg path { fill: #BFD5FF; transition: all .15s ease; }
+
+.home-back-btn:hover,
+.home-back-btn:active,
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF !important; border-color: #BFD5FF !important; }
+.home-back-btn:hover::before,
+.home-back-btn:active::before,
+.home-back-btn:focus-visible::before { opacity: 1; }
+.home-back-btn:hover svg,
+.home-back-btn:active svg,
+.home-back-btn:focus-visible svg { transform: rotate(180deg) translateX(10%); }
+.home-back-btn:hover svg path,
+.home-back-btn:active svg path,
+.home-back-btn:focus-visible svg path { fill: #fff; }
+
+.home-back-btn span {
+    color: #BFD5FF;
+    font-size: 16px;
+    margin-left: 10px;
+    font-weight: bold;
+    transition: all .15s ease;
+    white-space: nowrap;
+}
+.home-back-btn:hover span,
+.home-back-btn:active span,
+.home-back-btn:focus-visible span {
+    color: #fff;
+    transform: translateX(-4px);
+}
+
+/* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
+@media (hover: none) {
+    .home-back-btn { border-color: rgba(191,213,255,.55) !important; }
+    .home-back-btn svg path { fill: #CFE0FF; }
+}
+
+/* 移动端/窄屏自适应尺寸 */
+@media (max-width: 480px) {
+    .home-back-btn {
+        min-width: 106px !important;
+        padding: 0 16px !important;
+        height: 58px !important;
+        margin-left: 10px !important;
+    }
+    .home-back-btn svg { width: 20px !important; height: 19.7px !important; }
+    .home-back-btn span { font-size: 14px !important; margin-left: 8px !important; }
+}
+
+/* 8. 移动端容器 Padding */
+@media (max-width: 768px) {
+    #mw-main-container { padding: 10px !important; margin: 8px auto !important; }
+    .home-back-btn { margin-left: 10px !important; }
+    #mw-content-text .navigationContainerContent > div,
+    #mw-content-text [style*="width: 55%"],
+    #mw-content-text [style*="width:55%"],
+    #mw-content-text [style*="width: 45%"],
+    #mw-content-text [style*="width:45%"] { width: 100% !important; }
+}
+@media (max-width: 480px) {
+    #mw-main-container { padding: 6px !important; margin: 4px auto !important; }
+}
+
+/* 9. 防止宽表格 / 大图撑破版心 */
+#mw-content-text img { max-width: 100%; height: auto; }
+#mw-content-text table { max-width: 100%; }
+
+/* 10. 目录（TOC）修复，全局生效：
+    a) 皮肤把目录折叠按钮的文字放在 CSS 伪元素里渲染，而不是 HTML 文本：
+         .toctogglecheckbox:checked  + .toctitle .toctogglelabel::after → content:'показать'
+         .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after → content:'скрыть'
+       AI 翻译只处理 HTML 文本，摸不到 CSS content，所以这个按钮永远是俄语，必须在这里覆盖成中文。
+    b) 皮肤的响应式 CSS 里写了 @media screen and (max-width:768px){ #toc{display:none} }，
+       导致手机端整个目录被隐藏。这里恢复显示，并配合下方 TOC_MOBILE_COLLAPSE_SCRIPT：
+       移动端默认折叠，只占一行「目录 [展开]」，避免长目录把正文挤到屏幕外。 */
+#toc .toctogglecheckbox:checked + .toctitle .toctogglelabel::after { content: '展开' !important; }
+#toc .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after { content: '收起' !important; }
+@media screen and (max-width: 768px) {
+    #toc { display: table !important; }
+}
+
+/* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
+   只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+*/
+</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Grom rootpage-Grom skin-tankiblue action-view"><div id="skin-chrome-stub" aria-hidden="true" style="display:none !important;">
+<a class="problem" href="#"></a>
+<div class="close-wrapper"></div>
+<div class="support-block-popup"><div class="close-modal-support"></div></div>
+<div class="youtube-popup"><iframe title="stub"></iframe></div>
+<div class="video-button"></div>
+<div class="header-search"></div>
+<div class="search-dialog"></div>
+<div class="search-popup"><div class="close-wrapper"></div><div class="close-modal-search"></div></div>
+<div class="news-popup"></div>
+<div class="sales-block-header"></div>
+<div class="navbar-main"></div>
+<div class="main-navbar"></div>
+</div><div id="mw-main-container"><div class="home-btn-wrapper"><a class="home-back-btn" href="./Enciklopediya_igry_%C2%ABTanki_Onlayn%C2%BB" title="返回主页" aria-label="返回主页"><svg viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 0H13.5L25.5 12L24 13.5L13.5 24H18L30 12L18 0ZM24 13.5L21 10.5H0L3 13.5H24Z" fill="#BFD5FF"/></svg><span>返回主页</span></a></div><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">雷暴炮</h1><p><br>
+</p><div class="top_navigation_buttons">
+<ul><li><div class="navigation_buttons_link"><div class="navigation_button_image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Back-new.png" decoding="async" loading="lazy" width="30" height="24" class="mw-file-element"></span></span></div><div class="navigation_button_text">炮塔</div><a href="./%D0%9F%D1%83%D1%88%D0%BA%D0%B8" class="mw-redirect" title="Пушки">炮塔</a></div></li>
+<li><div class="navigation_buttons_link"><div class="navigation_button_image"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/76/Icon_thunder.png/30px-Icon_thunder.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/76/Icon_thunder.png/45px-Icon_thunder.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/76/Icon_thunder.png/60px-Icon_thunder.png 2x"></span></span></div><div class="navigation_button_text">雷暴炮</div><a href="./%D0%93%D1%80%D0%BE%D0%BC" class="mw-redirect" title="Гром">雷暴炮</a></div></li>
+<li><div class="navigation_buttons_link"><div class="navigation_button_image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/e7/Upgrades-new.png" decoding="async" loading="lazy" width="24" height="24" class="mw-file-element"></span></span></div><div class="navigation_button_text">雷暴炮的装备改造</div><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%93%D1%80%D0%BE%D0%BC%D0%B0" class="mw-redirect" title="Улучшения Грома">雷暴炮的装备改造</a></div></li>
+<li><div class="navigation_buttons_link"><div class="navigation_button_image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/81/Guides-new.png" decoding="async" loading="lazy" width="24" height="21" class="mw-file-element"></span></span></div><div class="navigation_button_text">雷暴炮指南</div><a href="./%D0%93%D0%B0%D0%B9%D0%B4_%D0%BF%D0%BE_%D0%93%D1%80%D0%BE%D0%BC%D1%83" class="mw-redirect" title="Гайд по Грому">雷暴炮指南</a></div></li></ul>
+</div><p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/ef/Thunder_01.png" decoding="async" loading="lazy" width="800" height="400" class="mw-file-element"></span></span>
+</p><div class="modules_list">
+<ul><li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%82" title="Огнемёт"><img src="https://ru.tankiwiki.com/images/ru/6/61/Turret_firebird_m3_2.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A4%D1%80%D0%B8%D0%B7" title="Фриз"><img src="https://ru.tankiwiki.com/images/ru/f/f2/Turret_freeze_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%98%D0%B7%D0%B8%D0%B4%D0%B0" title="Изида"><img src="https://ru.tankiwiki.com/images/ru/5/5f/Turret_isida_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A2%D0%B5%D1%81%D0%BB%D0%B0" title="Тесла"><img src="https://ru.tankiwiki.com/images/ru/8/80/Turret_tesla.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9C%D0%BE%D0%BB%D0%BE%D1%82" title="Молот"><img src="https://ru.tankiwiki.com/images/ru/b/b8/Turret_hammer_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A2%D0%B2%D0%B8%D0%BD%D1%81" title="Твинс"><img src="https://ru.tankiwiki.com/images/ru/d/d3/Turret_twins_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A0%D0%B8%D0%BA%D0%BE%D1%88%D0%B5%D1%82" title="Рикошет"><img src="https://ru.tankiwiki.com/images/ru/b/bc/Turret_ricochet_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" title="Смоки"><img src="https://ru.tankiwiki.com/images/ru/6/61/Turret_smoky_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A1%D1%82%D1%80%D0%B0%D0%B9%D0%BA%D0%B5%D1%80" title="Страйкер"><img src="https://ru.tankiwiki.com/images/ru/4/4e/Turret_striker_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%92%D1%83%D0%BB%D0%BA%D0%B0%D0%BD" title="Вулкан"><img src="https://ru.tankiwiki.com/images/ru/6/64/Turret_minigun_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size active" typeof="mw:File"><a href="./%D0%93%D1%80%D0%BE%D0%BC" title="Гром"><img src="https://ru.tankiwiki.com/images/ru/3/3c/Turret_thunder_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A6%D1%83%D0%BD%D0%B0%D0%BC%D0%B8" title="Цунами"><img src="https://ru.tankiwiki.com/images/ru/7/74/Turret_Tsunami_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A1%D0%BA%D0%BE%D1%80%D0%BF%D0%B8%D0%BE%D0%BD" title="Скорпион"><img src="https://ru.tankiwiki.com/images/ru/a/aa/Turret_scorpion.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A0%D0%B5%D0%BB%D1%8C%D1%81%D0%B0" title="Рельса"><img src="https://ru.tankiwiki.com/images/ru/c/c9/Turret_railgun_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9C%D0%B0%D0%B3%D0%BD%D1%83%D0%BC" title="Магнум"><img src="https://ru.tankiwiki.com/images/ru/a/ac/Turret_magnum_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%93%D0%B0%D1%83%D1%81%D1%81" title="Гаусс"><img src="https://ru.tankiwiki.com/images/ru/4/4f/Turret_gauss_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A8%D0%B0%D1%84%D1%82" title="Шафт"><img src="https://ru.tankiwiki.com/images/ru/7/7b/Turret_shaft_m3_2.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A2%D0%B5%D1%80%D0%BC%D0%B8%D0%BD%D0%B0%D1%82%D0%BE%D1%80" title="Терминатор"><img src="https://ru.tankiwiki.com/images/ru/8/81/Terminator.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9A%D1%83%D0%B2%D0%B0%D0%BB%D0%B4%D0%B0" title="Кувалда"><img src="https://ru.tankiwiki.com/images/ru/a/ac/Turret_bonk_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%93%D0%BB%D0%B5%D0%B1%D1%8B%D1%87" title="Глебыч"><img src="https://ru.tankiwiki.com/images/ru/e/ef/Turret_Snowman.png" decoding="async" loading="lazy" width="580" height="350" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A2%D0%BE%D0%BC%D0%B0%D1%82%D1%8B%D1%87" title="Томатыч"><img src="https://ru.tankiwiki.com/images/ru/3/33/Tomato_Gun.png" decoding="async" loading="lazy" width="788" height="600" class="mw-file-element"></a></span></li></ul>
+</div><p><br>
+</p><div style="display: flex; flex-wrap: wrap">
+<div style="width: 500px">
+<p><iframe data-extension="youtube" width="500" height="315" src="https://www.youtube-nocookie.com/embed/9cGJHIZOQ6c?" frameborder="0" allowfullscreen=""></iframe>
+</p>
+</div>
+<div style="width: 330px; flex-grow: 1; padding-left: 20px">
+<p>雷暴炮炮塔有其独特的玩法特点：
+</p>
+<ul><li>中等攻击距离，在远程击中敌人并不困难</li>
+<li>中等射速，但炮弹能造成大量伤害</li>
+<li>炮弹具有大范围的溅射伤害，但也会对自己造成伤害</li>
+<li>在极远距离下伤害会降低</li></ul>
+</div>
+</div><h3><span id=".D0.9E.D0.BF.D0.B8.D1.81.D0.B0.D0.BD.D0.B8.D0.B5"></span><span class="mw-headline" id="Описание">简介</span></h3><div class="hull_wrapper">
+<div class="hull_info_wrapper">
+<div class="hull_image">
+<p><span class="mw-default-size" typeof="mw:File"><a href="./%D0%93%D1%80%D0%BE%D0%BC" title="Гром"><img src="https://ru.tankiwiki.com/images/ru/3/3c/Turret_thunder_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span>
+</p>
+</div>
+<div class="hull_info">
+<div class="hull_stats">
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Icon_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 46%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Icon_range.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 60%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">旋转速度</div><div class="statbar"><div class="statbar_inner" style="width: 67%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Icon_impact_force.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 67%"></div></div></div></li></ul>
+</div>
+<div class="hull_review">
+<div class="hull_review_title">玩家评价</div>
+<div class="reviews_cards">
+<div class="review_card positive"><div class="review_card_title"><div class="review_icon"></div><span>炮塔优点</span></div><div class="review_card_description">能够通过冲击波对多名敌人或处于视野盲区的敌人造成伤害。可以利用任何掩体进行战斗并造成溅射伤害。</div></div>
+<div class="review_card negative"><div class="review_card_title"><div class="review_icon"></div><span>炮塔缺点</span></div><div class="review_card_description">在远距离时伤害会降低。冲击波会造成自伤。</div></div>
+</div>
+</div>
+</div>
+</div></div><h3><span id=".D0.97.D0.B0.D1.89.D0.B8.D1.82.D0.BD.D1.8B.D0.B9_.D0.BC.D0.BE.D0.B4.D1.83.D0.BB.D1.8C"></span><span class="mw-headline" id="Защитный_модуль">防护模块</span></h3><div class="dablink noprint"><em>主条目</em>：<b><a href="./%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D0%B8" class="mw-redirect" title="Модули">模块</a></b>
+</div><p><br>模块是坦克的特殊部件，旨在保护战车免受敌方炮塔伤害、已布置的地雷或暴击伤害。
+</p><div class="module_cards_row">
+<div class="module_card icon_on_image">
+<div class="module_card_title">
+<p>灰熊</p>
+</div>
+<div class="module_card_image" align="center">
+<div style="position: relative; display: inline-block; min-height:6.688rem; width:fit-content; display:flex; justify-content:center; align-items:center">
+<p><span typeof="mw:File"><a href="./%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D0%B8" title="Модули"><img src="https://ru.tankiwiki.com/images/ru/thumb/3/36/Module_m3_preview.png/117px-Module_m3_preview.png" decoding="async" loading="lazy" width="117" height="88" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/36/Module_m3_preview.png/176px-Module_m3_preview.png 1.5x, https://ru.tankiwiki.com/images/ru/3/36/Module_m3_preview.png 2x"></a></span>
+</p>
+<div style="position: absolute; top: 42%; left: 50%; transform:translate(-50%, -50%); width: 51px; height: 51px;">
+<p><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D0%B8" title="Модули"><img src="https://ru.tankiwiki.com/images/ru/1/11/Icon_modul_Thunder.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span>
+</p>
+</div></div>
+<div class="module_card_icon"></div>
+</div>
+<div class="module_card_description">
+<p><a href="./%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D0%B8" class="mw-redirect" title="Модули">标准模块</a>，可为坦克提供 50% 的雷暴炮防护。
+</p>
+</div>
+</div>
+<div class="module_card icon_on_image">
+<div class="module_card_title">
+<p>犰狳</p>
+</div>
+<div class="module_card_image" align="center">
+<div style="position: relative; display: inline-block; min-height:6.688rem; width:fit-content; display:flex; justify-content:center; align-items:center">
+<p><span typeof="mw:File"><a href="./%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D0%B8" title="Модули"><img src="https://ru.tankiwiki.com/images/ru/thumb/3/36/Module_m3_preview.png/117px-Module_m3_preview.png" decoding="async" loading="lazy" width="117" height="88" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/36/Module_m3_preview.png/176px-Module_m3_preview.png 1.5x, https://ru.tankiwiki.com/images/ru/3/36/Module_m3_preview.png 2x"></a></span>
+</p>
+<div style="position: absolute; top: 42%; left: 50%; transform:translate(-50%, -50%); width: 51px; height: 51px;">
+<p><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D0%B8" title="Модули"><img src="https://ru.tankiwiki.com/images/ru/2/20/Icon_modul_Crit.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span>
+</p>
+</div></div>
+<div class="module_card_icon"></div>
+</div>
+<div class="module_card_description">
+<p><a href="./%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D0%B8" class="mw-redirect" title="Модули">特殊模块</a>，可保护坦克免受雷暴炮暴击命中。
+</p>
+</div>
+</div>
+<div class="module_card icon_on_image">
+<div class="module_card_title">
+<p>光谱</p>
+</div>
+<div class="module_card_image" align="center">
+<div style="position: relative; display: inline-block; min-height:6.688rem; width:fit-content; display:flex; justify-content:center; align-items:center">
+<p><span typeof="mw:File"><a href="./%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D0%B8" title="Модули"><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6a/Module_gold_preview.png/117px-Module_gold_preview.png" decoding="async" loading="lazy" width="117" height="88" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/6a/Module_gold_preview.png/176px-Module_gold_preview.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/6a/Module_gold_preview.png 2x"></a></span>
+</p>
+<div style="position: absolute; top: 42%; left: 50%; transform:translate(-50%, -50%); width: 51px; height: 51px;">
+<p><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D0%B8" title="Модули"><img src="https://ru.tankiwiki.com/images/ru/c/c1/Icon_modul_Spectrum.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span>
+</p>
+</div></div>
+<div class="module_card_icon"></div>
+</div>
+<div class="module_card_description">
+<p>特殊模块，可保护坦克免受所有标准炮塔的伤害。
+</p>
+</div>
+</div>
+</div><h3><span id=".D0.A3.D1.81.D1.82.D1.80.D0.BE.D0.B9.D1.81.D1.82.D0.B2.D0.B0"></span><span class="mw-headline" id="Устройства">装备改造</span></h3><p><i>主条目：</i> <b><a href="./%D0%A3%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0" class="mw-redirect" title="Устройства">装备改造</a></b>
+</p><p>装备改造允许改变炮塔的属性及其工作原理。
+</p><div class="modules_list">
+<ul><li><span class="mw-default-size" typeof="mw:File"><a href="#Alteration_thunder_Adrenaline.png" title=""><img src="https://ru.tankiwiki.com/images/ru/8/8e/Alteration_thunder_Adrenaline.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="#Alteration_thunder_Small_caliber_charging_machine.png" title=""><img src="https://ru.tankiwiki.com/images/ru/2/2f/Alteration_thunder_Small_caliber_charging_machine.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="#Alteration_thunder_Subcaliber_shells.png" title=""><img src="https://ru.tankiwiki.com/images/ru/4/4b/Alteration_thunder_Subcaliber_shells.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="#Alteration_thunder_Sledgehammer_shells.png" title=""><img src="https://ru.tankiwiki.com/images/ru/3/3a/Alteration_thunder_Sledgehammer_shells.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="#Alteration_thunder_Salamandra_shells.png" title=""><img src="https://ru.tankiwiki.com/images/ru/3/33/Alteration_thunder_Salamandra_shells.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="#Alteration_thunder_Wyvern_shells.png" title=""><img src="https://ru.tankiwiki.com/images/ru/b/b7/Alteration_thunder_Wyvern_shells.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="#Alteration_thunder_Magneto_shells.png" title=""><img src="https://ru.tankiwiki.com/images/ru/8/8c/Alteration_thunder_Magneto_shells.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="#Alteration_thunder_Peacekeepers_shells.png" title=""><img src="https://ru.tankiwiki.com/images/ru/c/cb/Alteration_thunder_Peacekeepers_shells.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="#Alteration_thunder_Corrosion_shells.png" title=""><img src="https://ru.tankiwiki.com/images/ru/6/63/Alteration_thunder_Corrosion_shells.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="#Alteration_thunder_Noise_shells.png" title=""><img src="https://ru.tankiwiki.com/images/ru/3/38/Alteration_thunder_Noise_shells.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="#Alteration_thunder_Pulsar.png" title=""><img src="https://ru.tankiwiki.com/images/ru/3/3f/Alteration_thunder_Pulsar.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="#Alteration_thunder_Сamper.png" title=""><img src="https://ru.tankiwiki.com/images/ru/e/e3/Alteration_thunder_%D0%A1amper.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="#Alteration_thunder_Strict_loading_ammunition.png" title=""><img src="https://ru.tankiwiki.com/images/ru/f/f4/Alteration_thunder_Strict_loading_ammunition.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="#Alteration_thunder_Vacuum_shell.png" title=""><img src="https://ru.tankiwiki.com/images/ru/c/c4/Alteration_thunder_Vacuum_shell.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="#Alteration_thunder_Hyperspeed_shells.png" title=""><img src="https://ru.tankiwiki.com/images/ru/2/2e/Alteration_thunder_Hyperspeed_shells.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="#Alteration_thunder_Adaptive_reload.png" title=""><img src="https://ru.tankiwiki.com/images/ru/5/5e/Alteration_thunder_Adaptive_reload.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="#Alteration_thunder_Nanotech_shells.png" title=""><img src="https://ru.tankiwiki.com/images/ru/6/63/Alteration_thunder_Nanotech_shells.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="#Alteration_thunder_Anvil_shells.png" title=""><img src="https://ru.tankiwiki.com/images/ru/f/f1/Alteration_thunder_Anvil_shells.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="#Alteration_thunder_Bolter.png" title=""><img src="https://ru.tankiwiki.com/images/ru/2/27/Alteration_thunder_Bolter.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="#Alteration_thunder_Yamato.png" title=""><img src="https://ru.tankiwiki.com/images/ru/e/e6/Alteration_thunder_Yamato.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="#Alteration_thunder_Excelsior.png" title=""><img src="https://ru.tankiwiki.com/images/ru/b/b5/Alteration_thunder_Excelsior.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span></li>
+<li><span class="mw-default-size" typeof="mw:File"><a href="#Alteration_thunder_Phoenix.png" title=""><img src="https://ru.tankiwiki.com/images/ru/2/22/Alteration_thunder_Phoenix.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></a></span></li></ul>
+</div><p><br>
+</p><div class="device-container" data-rarity="rare" id="Alteration_thunder_Adrenaline.png">
+<div class="rarity-edge-paints rarity-edge rare" title="稀有度：rare"></div>
+<div class="device-description">
+<div class="device-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/8e/Alteration_thunder_Adrenaline.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<div class="device-info-wrapper">
+<div class="device-header">
+<p><span class="name">肾上腺素</span><span class="name"><span typeof="mw:File"><span title="推出日期：04.06.2020"><img alt="推出日期：04.06.2020" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/40px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/80px-Weekly_missions_picture.png 2x"></span></span></span>
+<a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">245 000</span></a>
+<a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры"><span class="container-modern container-rare"></span></a>
+</p>
+</div>
+<div class="description">当坦克受到重创时，增加炮塔伤害。<br>伤害提升调制器的备用电池。仅在最极端的情况下启用，即坦克底盘严重受损时。从两个电源为伤害调制器供电是不安全的 —— 它可能会爆炸。显然，要求仅在严重受损时激活是为了避免触发保修情况。</div>
+</div>
+</div>
+<div class="device-stats-wrapper">
+<div class="device-stats">
+<div class="heading">优势</div>
+<ul><li>标准与暴击伤害：
+<ul><li><span title="离子炮、火龙珠、轰天炮、火箭炮、极速炮和雷暴炮" class="hint">中等</span>射程炮塔：+25%</li></ul></li></ul>
+</div>
+<div class="device-stats negative">
+<div class="heading">劣势</div>
+<ul><li>伤害加成仅在生命值降至以下时激活：≤25%</li>
+<li>受到<a href="./%D0%A1%D1%82%D0%B0%D1%82%D1%83%D1%81-%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%D1%8B" class="mw-redirect" title="Статус-эффекты">状态效果</a>影响时效果失效：<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/5/52/Icon_Freezing1.png/17px-Icon_Freezing1.png" decoding="async" loading="lazy" width="17" height="17" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/52/Icon_Freezing1.png/26px-Icon_Freezing1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/52/Icon_Freezing1.png/34px-Icon_Freezing1.png 2x"></span></span> «冷冻»</li></ul>
+</div>
+</div>
+</div><p><br>
+</p><div class="device-container" data-rarity="rare" id="Alteration_thunder_Small_caliber_charging_machine.png">
+<div class="rarity-edge-paints rarity-edge rare" title="稀有度：rare"></div>
+<div class="device-description">
+<div class="device-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Alteration_thunder_Small_caliber_charging_machine.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<div class="device-info-wrapper">
+<div class="device-header">
+<p><span class="name">轻型军械自动装载机</span><span class="name"><span typeof="mw:File"><span title="推出日期：22.09.2016"><img alt="推出日期：22.09.2016" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/40px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/80px-Weekly_missions_picture.png 2x"></span></span></span>
+<a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">245 000</span></a>
+<a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры"><span class="container-modern container-rare"></span></a>
+</p>
+</div>
+<div class="description">使用小口径弹药配合自动装载机可以缩短重新装填时间。小口径炮弹造成的伤害较低。</div>
+</div>
+</div>
+<div class="device-stats-wrapper">
+<div class="device-stats">
+<div class="heading">优势</div>
+<ul><li>重新装填时间：-20%</li></ul>
+</div>
+<div class="device-stats negative">
+<div class="heading">劣势</div>
+<ul><li>伤害：-30%</li></ul>
+</div>
+</div>
+</div><p><br>
+</p><div class="device-container" data-rarity="rare" id="Alteration_thunder_Subcaliber_shells.png">
+<div class="rarity-edge-paints rarity-edge rare" title="稀有度：rare"></div>
+<div class="device-description">
+<div class="device-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/4/4b/Alteration_thunder_Subcaliber_shells.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<div class="device-info-wrapper">
+<div class="device-header">
+<p><span class="name">穿甲弹药</span><span class="name"><span typeof="mw:File"><span title="推出日期：23.12.2016"><img alt="推出日期：23.12.2016" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/40px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/80px-Weekly_missions_picture.png 2x"></span></span></span>
+<a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">245 000</span></a>
+<a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры"><span class="container-modern container-rare"></span></a>
+</p>
+</div>
+<div class="description">炮弹重新装填时间缩短，但冲击力和炮弹速度提高。<br>用具有强大动能的穿透型弹药替换高爆弹。这种炮弹在击中坦克或障碍物时不会爆炸，也不会对射击者本人造成伤害。</div>
+</div>
+</div>
+<div class="device-stats-wrapper">
+<div class="device-stats">
+<div class="heading">优势</div>
+<ul><li>自伤：无</li>
+<li>冲击力：+25%</li>
+<li>重新装填时间：–10%</li>
+<li>炮弹初始速度：+100%</li>
+<li>炮弹终点速度：+100%</li></ul>
+</div>
+<div class="device-stats negative">
+<div class="heading">劣势</div>
+<ul><li>溅射伤害：无</li></ul>
+</div>
+</div>
+</div><p><br>
+</p><div class="device-container" data-rarity="rare" id="Alteration_thunder_Sledgehammer_shells.png">
+<div class="rarity-edge-paints rarity-edge rare" title="稀有度：rare"></div>
+<div class="device-description">
+<div class="device-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/3a/Alteration_thunder_Sledgehammer_shells.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<div class="device-info-wrapper">
+<div class="device-header">
+<p><span class="name">«大锤» 炮弹</span><span class="name"><span typeof="mw:File"><span title="推出日期：31.10.2018"><img alt="推出日期：31.10.2018" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/40px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/80px-Weekly_missions_picture.png 2x"></span></span></span>
+<a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">245 000</span></a>
+<a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры"><span class="container-modern container-rare"></span></a>
+</p>
+</div>
+<div class="description">带有厚实铸铁外壳的炮弹降低了炮弹飞行速度并缩短了远距离敌人的打击范围，但由于其质量大，可以造成更高的伤害。</div>
+</div>
+</div>
+<div class="device-stats-wrapper">
+<div class="device-stats">
+<div class="heading">优势</div>
+<ul><li>伤害：+35%</li></ul>
+</div>
+<div class="device-stats negative">
+<div class="heading">劣势</div>
+<ul><li>弱效伤害距离：-60%</li>
+<li>全效伤害距离：-60%</li>
+<li>暴击伤害：无</li>
+<li>炮弹初始速度：-50%</li>
+<li>炮弹终点速度：-50%</li></ul>
+</div>
+</div>
+</div><p><br>
+</p><div class="device-container" data-rarity="epic" id="Alteration_thunder_Salamandra_shells.png">
+<div class="rarity-edge-paints rarity-edge epic" title="稀有度：epic"></div>
+<div class="device-description">
+<div class="device-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/33/Alteration_thunder_Salamandra_shells.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<div class="device-info-wrapper">
+<div class="device-header">
+<p><span class="name">«蝾螈» 炮弹</span><span class="name"><span typeof="mw:File"><span title="推出日期：01.07.2022"><img alt="推出日期：01.07.2022" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/40px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/80px-Weekly_missions_picture.png 2x"></span></span></span>
+<a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Рубины"><span class="rubies-modern">4 990</span></a>
+<a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры"><span class="container-modern container-epic"></span></a>
+</p>
+</div>
+<div class="description">在弹药库中增加几发燃烧弹。暴击时，此类炮弹能够同时点燃多个目标。</div>
+</div>
+</div>
+<div class="device-stats-wrapper">
+<div class="device-stats">
+<div class="heading">优势</div>
+<ul><li>暴击命中施加<a href="./%D0%A1%D1%82%D0%B0%D1%82%D1%83%D1%81-%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%D1%8B" class="mw-redirect" title="Статус-эффекты">状态效果</a> <span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/e7/Icon_Heat1.png/17px-Icon_Heat1.png" decoding="async" loading="lazy" width="17" height="17" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e7/Icon_Heat1.png/26px-Icon_Heat1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e7/Icon_Heat1.png/34px-Icon_Heat1.png 2x"></span></span> «着火» 到敌方坦克<ul><li>持续时间：=4 秒</li></ul></li>
+<li>溅射状态效果施加半径：12 米</li>
+<li>暴击几率：+8% <span title="最大和初始暴击几率变化 +10% — 从 23% 到 25.3%。同时，最小暴击几率保持不变，为 0%。这使平均暴击几率变化 +8% — 从 18.7% 到 20.19%。" class="hint i"></span></li></ul>
+</div>
+<div class="device-stats negative">
+<div class="heading">劣势</div>
+<ul><li>暴击伤害：-50%</li></ul>
+</div>
+</div>
+</div><p><br>
+</p><div class="device-container" data-rarity="epic" id="Alteration_thunder_Wyvern_shells.png">
+<div class="rarity-edge-paints rarity-edge epic" title="稀有度：epic"></div>
+<div class="device-description">
+<div class="device-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/b7/Alteration_thunder_Wyvern_shells.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<div class="device-info-wrapper">
+<div class="device-header">
+<p><span class="name">«飞龙» 炮弹</span><span class="name"><span typeof="mw:File"><span title="推出日期：15.07.2022"><img alt="推出日期：15.07.2022" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/40px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/80px-Weekly_missions_picture.png 2x"></span></span></span>
+<a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Рубины"><span class="rubies-modern">4 990</span></a>
+<a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры"><span class="container-modern container-epic"></span></a>
+</p>
+</div>
+<div class="description">在弹药库中增加几发带有低温核心的炮弹。暴击时，此类炮弹能够同时冻结多个目标。</div>
+</div>
+</div>
+<div class="device-stats-wrapper">
+<div class="device-stats">
+<div class="heading">优势</div>
+<ul><li>暴击命中施加<a href="./%D0%A1%D1%82%D0%B0%D1%82%D1%83%D1%81-%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%D1%8B" class="mw-redirect" title="Статус-эффекты">状态效果</a> <span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/5/52/Icon_Freezing1.png/17px-Icon_Freezing1.png" decoding="async" loading="lazy" width="17" height="17" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/52/Icon_Freezing1.png/26px-Icon_Freezing1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/52/Icon_Freezing1.png/34px-Icon_Freezing1.png 2x"></span></span> «冷冻» 到敌方坦克<ul><li>持续时间：=10 秒</li></ul></li>
+<li>溅射状态效果施加半径：12 米</li>
+<li>暴击几率：+8% <span title="最大和初始暴击几率变化 +10% — 从 23% 到 25.3%. 同时，最小暴击几率保持不变，为 0%. 这使平均暴击几率变化 +8% — 从 18.7% 到 20.19%." class="hint i"></span></li></ul>
+</div>
+<div class="device-stats negative">
+<div class="heading">劣势</div>
+<ul><li>暴击伤害：-50%</li></ul>
+</div>
+</div>
+</div><p><br>
+</p><div class="device-container" data-rarity="epic" id="Alteration_thunder_Magneto_shells.png">
+<div class="rarity-edge-paints rarity-edge epic" title="稀有度：epic"></div>
+<div class="device-description">
+<div class="device-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/8c/Alteration_thunder_Magneto_shells.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<div class="device-info-wrapper">
+<div class="device-header">
+<p><span class="name">«万磁王» 炮弹</span><span class="name"><span typeof="mw:File"><span title="推出日期：11.11.2022"><img alt="推出日期：11.11.2022" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/40px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/80px-Weekly_missions_picture.png 2x"></span></span></span>
+<a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Рубины"><span class="rubies-modern">4 990</span></a>
+<a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры"><span class="container-modern container-epic"></span></a>
+</p>
+</div>
+<div class="description">在弹药库中增加几发带有电芯的炮弹。暴击时，此类炮弹能够同时禁用多个目标的道具。</div>
+</div>
+</div>
+<div class="device-stats-wrapper">
+<div class="device-stats">
+<div class="heading">优势</div>
+<ul><li>暴击命中施加<a href="./%D0%A1%D1%82%D0%B0%D1%82%D1%83%D1%81-%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%D1%8B" class="mw-redirect" title="Статус-эффекты">状态效果</a> <span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/bb/Icon_EMP1.png/17px-Icon_EMP1.png" decoding="async" loading="lazy" width="17" height="17" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/bb/Icon_EMP1.png/26px-Icon_EMP1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/bb/Icon_EMP1.png/34px-Icon_EMP1.png 2x"></span></span> «电磁脉冲» 到敌方坦克<ul><li>持续时间：=2 秒</li></ul></li>
+<li>溅射状态效果施加半径：12 米</li>
+<li>暴击几率：+8% <span title="最大和初始暴击几率变化 +10% — 从 23% 到 25.3%. 同时，最小暴击几率保持不变，为 0%. 这使平均暴击几率变化 +8% — 从 18.7% 到 20.19%." class="hint i"></span></li></ul>
+</div>
+<div class="device-stats negative">
+<div class="heading">劣势</div>
+<ul><li>暴击伤害：-50%</li></ul>
+</div>
+</div>
+</div><p><br>
+</p><div class="device-container" data-rarity="epic" id="Alteration_thunder_Peacekeepers_shells.png">
+<div class="rarity-edge-paints rarity-edge epic" title="稀有度：epic"></div>
+<div class="device-description">
+<div class="device-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Alteration_thunder_Peacekeepers_shells.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<div class="device-info-wrapper">
+<div class="device-header">
+<p><span class="name">«和平卫士» 炮弹</span><span class="name"><span typeof="mw:File"><span title="推出日期：03.02.2023"><img alt="推出日期：03.02.2023" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/40px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/80px-Weekly_missions_picture.png 2x"></span></span></span>
+<a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Рубины"><span class="rubies-modern">4 990</span></a>
+<a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры"><span class="container-modern container-epic"></span></a>
+</p>
+</div>
+<div class="description">在弹药库中增加几发具有巨大冲击力的眩晕弹。暴击时，此类炮弹能够同时阻止多个目标。</div>
+</div>
+</div>
+<div class="device-stats-wrapper">
+<div class="device-stats">
+<div class="heading">优势</div>
+<ul><li>暴击命中施加<a href="./%D0%A1%D1%82%D0%B0%D1%82%D1%83%D1%81-%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%D1%8B" class="mw-redirect" title="Статус-эффекты">状态效果</a> <span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/ec/Icon_Stun1.png/17px-Icon_Stun1.png" decoding="async" loading="lazy" width="17" height="17" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/ec/Icon_Stun1.png/26px-Icon_Stun1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/ec/Icon_Stun1.png/34px-Icon_Stun1.png 2x"></span></span> «眩晕» 到敌方坦克<ul><li>持续时间：=1 秒</li></ul></li>
+<li>溅射状态效果施加半径：12 米</li>
+<li>暴击几率：+8% <span title="最大和初始暴击几率变化 +10% — 从 23% 到 25.3%. 同时，最小暴击几率保持不变，为 0%. 这使平均暴击几率变化 +8% — 从 18.7% 到 20.19%." class="hint i"></span></li></ul>
+</div>
+<div class="device-stats negative">
+<div class="heading">劣势</div>
+<ul><li>暴击伤害：-50%</li></ul>
+</div>
+</div>
+</div><p><br>
+</p><div class="device-container" data-rarity="epic" id="Alteration_thunder_Corrosion_shells.png">
+<div class="rarity-edge-paints rarity-edge epic" title="稀有度：epic"></div>
+<div class="device-description">
+<div class="device-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/63/Alteration_thunder_Corrosion_shells.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<div class="device-info-wrapper">
+<div class="device-header">
+<p><span class="name">«腐蚀» 炮弹</span><span class="name"><span typeof="mw:File"><span title="推出日期：12.08.2022"><img alt="推出日期：12.08.2022" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/40px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/80px-Weekly_missions_picture.png 2x"></span></span></span>
+<a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Рубины"><span class="rubies-modern">4 990</span></a>
+<a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры"><span class="container-modern container-epic"></span></a>
+</p>
+</div>
+<div class="description">在弹药库中增加几发含有化学成分的炮弹，能够瞬间破坏最坚固的材料。暴击时，此类炮弹能够同时摧毁多个目标的装甲。</div>
+</div>
+</div>
+<div class="device-stats-wrapper">
+<div class="device-stats">
+<div class="heading">优势</div>
+<ul><li>暴击命中施加<a href="./%D0%A1%D1%82%D0%B0%D1%82%D1%83%D1%81-%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%D1%8B" class="mw-redirect" title="Статус-эффекты">状态效果</a> <span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/b8/Icon_breaking_through1.png/17px-Icon_breaking_through1.png" decoding="async" loading="lazy" width="17" height="17" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/b8/Icon_breaking_through1.png/26px-Icon_breaking_through1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/b8/Icon_breaking_through1.png/34px-Icon_breaking_through1.png 2x"></span></span> «穿甲» 到敌方坦克<ul><li>持续时间：=5 秒</li></ul></li>
+<li>溅射状态效果施加半径：12 米</li>
+<li>暴击几率：+8% <span title="最大和初始暴击几率变化 +10% — 从 23% 到 25.3%. 同时，最小暴击几率保持不变，为 0%. 这使平均暴击几率变化 +8% — 从 18.7% 到 20.19%." class="hint i"></span></li></ul>
+</div>
+<div class="device-stats negative">
+<div class="heading">劣势</div>
+<ul><li>暴击伤害：-50%</li></ul>
+</div>
+</div>
+</div><p><br>
+</p><div class="device-container" data-rarity="epic" id="Alteration_thunder_Noise_shells.png">
+<div class="rarity-edge-paints rarity-edge epic" title="稀有度：epic"></div>
+<div class="device-description">
+<div class="device-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/38/Alteration_thunder_Noise_shells.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<div class="device-info-wrapper">
+<div class="device-header">
+<p><span class="name">«噪音» 炮弹</span><span class="name"><span typeof="mw:File"><span title="推出日期：05.08.2022"><img alt="推出日期：05.08.2022" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/40px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/80px-Weekly_missions_picture.png 2x"></span></span></span>
+<a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Рубины"><span class="rubies-modern">4 990</span></a>
+<a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры"><span class="container-modern container-epic"></span></a>
+</p>
+</div>
+<div class="description">在弹药库中增加几发含有铝屑的炮弹。暴击时，此类炮弹能够同时限制多个目标的终极技能和无人机使用。</div>
+</div>
+</div>
+<div class="device-stats-wrapper">
+<div class="device-stats">
+<div class="heading">优势</div>
+<ul><li>对敌人造成的任何伤害都会施加<a href="./%D0%A1%D1%82%D0%B0%D1%82%D1%83%D1%81-%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%D1%8B" class="mw-redirect" title="Статус-эффекты">状态效果</a> <span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/64/Icon_jammer.png/17px-Icon_jammer.png" decoding="async" loading="lazy" width="17" height="17" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/64/Icon_jammer.png/26px-Icon_jammer.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/64/Icon_jammer.png/34px-Icon_jammer.png 2x"></span></span> «干扰器» 到敌方坦克<ul><li>持续时间：=3 秒</li></ul></li></ul>
+</div>
+<div class="device-stats negative">
+<div class="heading">劣势</div>
+<ul><li>暴击伤害：-50%</li></ul>
+</div>
+</div>
+</div><p><br>
+</p><div class="device-container" data-rarity="legendary" id="Alteration_thunder_Pulsar.png">
+<div class="rarity-edge-paints rarity-edge legendary" title="稀有度：legendary"></div>
+<div class="device-description">
+<div class="device-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/3f/Alteration_thunder_Pulsar.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<div class="device-info-wrapper">
+<div class="device-header">
+<p><span class="name">脉冲星</span><span class="name"><span typeof="mw:File"><span title="推出日期：20.01.2023"><img alt="推出日期：20.01.2023" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/40px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/80px-Weekly_missions_picture.png 2x"></span></span></span>
+</p><p><br>
+</p>
+</div>
+<div class="description">使用不可复现技术的装备改造。暴击命中会产生一个量子涡流，使目标同时进入几种状态 —— 通常都不是什么好状态。科学家们成功降低了暴击伤害的数值，但这并没有多大拯救局势，对手终将被击败。该技术的发明者已被国际通缉。</div>
+</div>
+</div>
+<div class="device-stats-wrapper">
+<div class="device-stats">
+<div class="heading">优势</div>
+<ul><li>暴击命中施加<a href="./%D0%A1%D1%82%D0%B0%D1%82%D1%83%D1%81-%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%D1%8B" class="mw-redirect" title="Статус-эффекты">状态效果</a>：
+<ul><li><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/bb/Icon_EMP1.png/17px-Icon_EMP1.png" decoding="async" loading="lazy" width="17" height="17" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/bb/Icon_EMP1.png/26px-Icon_EMP1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/bb/Icon_EMP1.png/34px-Icon_EMP1.png 2x"></span></span> «电磁脉冲»：=2 秒</li>
+<li><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/ec/Icon_Stun1.png/17px-Icon_Stun1.png" decoding="async" loading="lazy" width="17" height="17" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/ec/Icon_Stun1.png/26px-Icon_Stun1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/ec/Icon_Stun1.png/34px-Icon_Stun1.png 2x"></span></span> «眩晕»：=1 秒</li>
+<li><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/b8/Icon_breaking_through1.png/17px-Icon_breaking_through1.png" decoding="async" loading="lazy" width="17" height="17" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/b8/Icon_breaking_through1.png/26px-Icon_breaking_through1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/b8/Icon_breaking_through1.png/34px-Icon_breaking_through1.png 2x"></span></span> «穿甲»：=5 秒</li>
+<li><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/64/Icon_jammer.png/17px-Icon_jammer.png" decoding="async" loading="lazy" width="17" height="17" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/64/Icon_jammer.png/26px-Icon_jammer.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/64/Icon_jammer.png/34px-Icon_jammer.png 2x"></span></span> «干扰器»：=3 秒</li></ul></li></ul>
+</div>
+<div class="device-stats negative">
+<div class="heading">劣势</div>
+<ul><li>暴击伤害：-90%</li>
+<li>暴击几率：-10% <span title="最大和初始暴击几率变化 -12% — 从 23% 到 20.24%. 同时，最小暴击几率保持不变，为 0%. 这使平均暴击几率变化 -10% — 从 18.7% 到 16.83%." class="hint i"></span></li></ul>
+</div>
+</div>
+</div><p><br>
+</p><div class="device-container" data-rarity="legendary" id="Alteration_thunder_Сamper.png">
+<div class="rarity-edge-paints rarity-edge legendary" title="稀有度：legendary"></div>
+<div class="device-description">
+<div class="device-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/e3/Alteration_thunder_%D0%A1amper.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<div class="device-info-wrapper">
+<div class="device-header">
+<p><span class="name">露营者</span><span class="name"><span typeof="mw:File"><span title="推出日期：27.06.2025"><img alt="推出日期：27.06.2025" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/40px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/80px-Weekly_missions_picture.png 2x"></span></span></span>
+</p><p><a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры"><span class="container-modern container-legendary"></span></a>
+</p>
+</div>
+<div class="description">当坦克受损最小时增加炮塔伤害。
+伤害提升调制器的备用电池，通过带有 AI 元素的控制系统与主电源并联。该系统允许在超越伤害调制器标准能力的情况下安全地提高炮塔伤害，但前提是保持系统完整性。如果人工智能怀疑坦克底盘失去了完整性，备用电池将立即断开。当然，这是为了避免触发保修情况。</div>
+</div>
+</div>
+<div class="device-stats-wrapper">
+<div class="device-stats">
+<div class="heading">优势</div>
+<ul><li>标准伤害：+90% <span title="伤害增加仅对标准伤害生效。" class="hint i"></span></li></ul>
+</div>
+<div class="device-stats negative">
+<div class="heading">劣势</div>
+<ul><li>伤害加成在生命值降至以下时停用：≤85%</li>
+<li>受到<a href="./%D0%A1%D1%82%D0%B0%D1%82%D1%83%D1%81-%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%D1%8B" class="mw-redirect" title="Статус-эффекты">状态效果</a>影响时效果失效：<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/5/52/Icon_Freezing1.png/17px-Icon_Freezing1.png" decoding="async" loading="lazy" width="17" height="17" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/52/Icon_Freezing1.png/26px-Icon_Freezing1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/52/Icon_Freezing1.png/34px-Icon_Freezing1.png 2x"></span></span> «冷冻»</li></ul>
+</div>
+</div>
+</div><p><br>
+</p><div class="device-container" data-rarity="legendary" id="Alteration_thunder_Strict_loading_ammunition.png">
+<div class="rarity-edge-paints rarity-edge legendary" title="稀有度：legendary"></div>
+<div class="device-description">
+<div class="device-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/f/f4/Alteration_thunder_Strict_loading_ammunition.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<div class="device-info-wrapper">
+<div class="device-header">
+<p><span class="name">精确弹药装载</span><span class="name"><span typeof="mw:File"><span title="推出日期：12.08.2022"><img alt="推出日期：12.08.2022" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/40px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/80px-Weekly_missions_picture.png 2x"></span></span></span>
+</p><p><a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры"><span class="container-modern container-legendary"></span></a>
+</p>
+</div>
+<div class="description">重新装填时间缩短。暴击伤害和暴击几率增加。<br>带有分类弹药的自动装载机提高了射速，并确保每三发炮弹造成更高的暴击伤害。</div>
+</div>
+</div>
+<div class="device-stats-wrapper">
+<div class="device-stats">
+<div class="heading">优势</div>
+<ul><li>重新装填：-20%</li>
+<li>暴击伤害：+25%</li>
+<li>最大暴击几率：=100%</li>
+<li>初始暴击几率：=100%</li>
+<li>暴击几率加成：= +100%</li></ul>
+</div>
+<div class="device-stats negative">
+<div class="heading">劣势</div>
+<ul><li>最小暴击伤害：= -100%</li></ul>
+</div>
+</div>
+</div><p><br>
+</p><div class="device-container" data-rarity="legendary" id="Alteration_thunder_Vacuum_shell.png">
+<div class="rarity-edge-paints rarity-edge legendary" title="稀有度：legendary"></div>
+<div class="device-description">
+<div class="device-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/c4/Alteration_thunder_Vacuum_shell.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<div class="device-info-wrapper">
+<div class="device-header">
+<p><span class="name">真空炮弹</span><span class="name"><span typeof="mw:File"><span title="推出日期：04.07.2022"><img alt="推出日期：04.07.2022" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/40px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/80px-Weekly_missions_picture.png 2x"></span></span></span>
+</p><p><a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры"><span class="container-modern container-legendary"></span></a>
+</p>
+</div>
+<div class="description">这些炮弹里面到底是什么——不得而知。据开发人员称，里面是纯净的液态真空。无论如何，这种炮弹爆炸时，目标距离爆炸中心越远，造成的伤害就越大，但伤害本身有所降低。</div>
+</div>
+</div>
+<div class="device-stats-wrapper">
+<div class="device-stats">
+<div class="heading">优势</div>
+<ul><li>爆炸极限伤害半径：12 米</li>
+<li>爆炸中间伤害半径：9 米</li>
+<li>爆炸中间伤害百分比：=250%</li>
+<li>爆炸弱效伤害百分比：=250%</li>
+<li>自动瞄准水平角度：=0°</li></ul>
+</div>
+<div class="device-stats negative">
+<div class="heading">劣势</div>
+<ul><li>伤害：-15%</li></ul>
+</div>
+</div>
+</div><p><br>
+</p><div class="device-container" data-rarity="legendary" id="Alteration_thunder_Hyperspeed_shells.png">
+<div class="rarity-edge-paints rarity-edge legendary" title="稀有度：legendary"></div>
+<div class="device-description">
+<div class="device-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2e/Alteration_thunder_Hyperspeed_shells.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<div class="device-info-wrapper">
+<div class="device-header">
+<p><span class="name">超高速炮弹</span><span class="name"><span typeof="mw:File"><span title="推出日期：22.07.2022"><img alt="推出日期：22.07.2022" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/40px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/80px-Weekly_missions_picture.png 2x"></span></span></span>
+</p><p><a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры"><span class="container-modern container-legendary"></span></a>
+</p>
+</div>
+<div class="description">具有超高威力的制导炮弹，其伤害随距离增加而增加。这种炮弹在自己坦克附近爆炸可能会摧毁它。为了防止这种情况发生，炮弹的初始速度显著增加，并且专门的系统会将伤害限制在炮弹远离坦克之前。</div>
+</div>
+</div>
+<div class="device-stats-wrapper">
+<div class="device-stats">
+<div class="heading">优势</div>
+<ul><li>炮弹初始速度：+100%</li>
+<li>炮弹终点速度：+100%</li>
+<li>弱效伤害百分比：=300%</li>
+<li>全效伤害距离：-50%</li></ul>
+</div>
+<div class="device-stats negative">
+<div class="heading">劣势</div>
+<ul><li>伤害：-50%</li>
+<li>暴击伤害：无</li></ul>
+</div>
+</div>
+</div><p><br>
+</p><div class="device-container" data-rarity="legendary" id="Alteration_thunder_Adaptive_reload.png">
+<div class="rarity-edge-paints rarity-edge legendary" title="稀有度：legendary"></div>
+<div class="device-description">
+<div class="device-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/5/5e/Alteration_thunder_Adaptive_reload.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<div class="device-info-wrapper">
+<div class="device-header">
+<p><span class="name">自适应重载</span><span class="name"><span typeof="mw:File"><span title="推出日期：15.11.2022"><img alt="推出日期：15.11.2022" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/40px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/80px-Weekly_missions_picture.png 2x"></span></span></span>
+</p><p><a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры"><span class="container-modern container-legendary"></span></a>
+</p>
+</div>
+<div class="description">将重新装填系统的控制权交给人工智能。击中敌人会促使人工智能显著加速下一次射击的重新装填。目前还没有人能够教它无论击中还是未击中都更快地重新装填每一发子弹。</div>
+</div>
+</div>
+<div class="device-stats-wrapper">
+<div class="device-stats">
+<div class="heading">优势</div>
+<ul><li>击中敌人时缩短重新装填时间：-33%</li></ul>
+</div>
+<div class="device-stats negative">
+<div class="heading">劣势</div>
+<ul><li>重新装填：+15%</li>
+<li>爆炸中间伤害半径：-25%</li></ul>
+</div>
+</div>
+</div><p><br>
+</p><div class="device-container" data-rarity="legendary" id="Alteration_thunder_Nanotech_shells.png">
+<div class="rarity-edge-paints rarity-edge legendary" title="稀有度：legendary"></div>
+<div class="device-description">
+<div class="device-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/63/Alteration_thunder_Nanotech_shells.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<div class="device-info-wrapper">
+<div class="device-header">
+<p><span class="name">«纳米技术» 炮弹</span><span class="name"><span typeof="mw:File"><span title="推出日期：21.11.2022"><img alt="推出日期：21.11.2022" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/40px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/80px-Weekly_missions_picture.png 2x"></span></span></span>
+</p><p><a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры"><span class="container-modern container-legendary"></span></a>
+</p>
+</div>
+<div class="description">带有纳米机器人高科技核心的炮弹。击中队友时，这种炮弹可以修复目标。击中敌人时，纳米机器人扮演穿甲核心的角色，尽管它极其昂贵。</div>
+</div>
+</div>
+<div class="device-stats-wrapper">
+<div class="device-stats">
+<div class="heading">优势</div>
+<ul><li>射中盟友坦克的炮弹会为其恢复生命值，数值等于击中敌方坦克时造成的伤害量。
+<ul><li>治疗可获得 1 到 10 点声望值，具体取决于恢复的生命值数量。</li>
+<li>治疗可获得 1 到 20 点经验值，具体取决于恢复的生命值。</li></ul></li></ul>
+</div>
+<div class="device-stats negative">
+<div class="heading">劣势</div>
+<ul><li>冲击力：无</li>
+<li>暴击伤害：无</li>
+<li>溅射伤害不会治疗盟友坦克</li>
+<li>自动瞄准水平角度：=0°</li>
+<li>伤害：-20%</li></ul>
+</div>
+</div>
+</div><p><br>
+</p><div class="device-container" data-rarity="legendary" id="Alteration_thunder_Anvil_shells.png">
+<div class="rarity-edge-paints rarity-edge legendary" title="稀有度：legendary"></div>
+<div class="device-description">
+<div class="device-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/f/f1/Alteration_thunder_Anvil_shells.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<div class="device-info-wrapper">
+<div class="device-header">
+<p><span class="name">«铁砧» 炮弹</span><span class="name"><span typeof="mw:File"><span title="推出日期：26.05.2023"><img alt="推出日期：26.05.2023" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/40px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/80px-Weekly_missions_picture.png 2x"></span></span></span>
+</p><p><a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры"><span class="container-modern container-legendary"></span></a>
+</p>
+</div>
+<div class="description">普通和暴击伤害增加。暴击伤害在炮弹爆炸半径内造成。打击距离变短。<br>这是一种带有额外火药装药的改进型炮弹，能够在爆炸半径内的所有目标身上造成更高的暴击和普通伤害，而不仅仅是在直接命中时。这种炮弹缩短了远距离敌人的打击范围。</div>
+</div>
+</div>
+<div class="device-stats-wrapper">
+<div class="device-stats">
+<div class="heading">优势</div>
+<ul><li>伤害：+35%</li>
+<li>暴击伤害：+30%</li>
+<li>暴击伤害半径：12 米</li>
+<li>重新装填：-10%</li></ul>
+</div>
+<div class="device-stats negative">
+<div class="heading">劣势</div>
+<ul><li>弱效伤害距离：-25%</li>
+<li>全效伤害距离：-50%</li></ul>
+</div>
+</div>
+</div><p><br>
+</p><div class="device-container" data-rarity="legendary" id="Alteration_thunder_Bolter.png">
+<div class="rarity-edge-paints rarity-edge legendary" title="稀有度：legendary"></div>
+<div class="device-description">
+<div class="device-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/27/Alteration_thunder_Bolter.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<div class="device-info-wrapper">
+<div class="device-header">
+<p><span class="name">爆弹枪</span><span class="name"><span typeof="mw:File"><span title="推出日期：27.12.2024"><img alt="推出日期：27.12.2024" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/40px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/80px-Weekly_missions_picture.png 2x"></span></span></span>
+</p><p><a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры"><span class="container-modern container-legendary"></span></a>
+</p>
+</div>
+<div class="description">慢速炮弹随时间加速。重新装填显著加快。冲击力和后坐力增加。用沿轨迹自加速的“螺栓”替换标准炮弹 —— 它们是火箭助推弹药，命中目标时会产生巨大威力的爆炸。这些炮弹较小的弹壳尺寸显著加快了重新装填。</div>
+</div>
+</div>
+<div class="device-stats-wrapper">
+<div class="device-stats">
+<div class="heading">优势</div>
+<ul><li>炮弹终点速度：=700 米/秒</li>
+<li>冲击力：+25%</li>
+<li>爆炸冲击力：+25%</li>
+<li>重新装填：-45%</li></ul>
+</div>
+<div class="device-stats negative">
+<div class="heading">劣势</div>
+<ul><li>炮弹初始速度：=10 米/秒</li>
+<li>炮弹加速时间：=2500 米/秒</li>
+<li>后坐力：+15%</li></ul>
+</div>
+</div>
+</div><p><br>
+</p><div class="device-container" data-rarity="legendary" id="Alteration_thunder_Yamato.png">
+<div class="rarity-edge-paints rarity-edge legendary" title="稀有度：legendary"></div>
+<div class="device-description">
+<div class="device-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/e6/Alteration_thunder_Yamato.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<div class="device-info-wrapper">
+<div class="device-header">
+<p><span class="name">大和</span><span class="name"><span typeof="mw:File"><span title="推出日期：20.02.2026"><img alt="推出日期：20.02.2026" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/40px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/80px-Weekly_missions_picture.png 2x"></span></span></span>
+</p><p><a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры"><span class="container-modern container-legendary"></span></a>
+</p>
+</div>
+<div class="description">显着增加伤害并降低炮塔射速。<br>在雷暴炮塔中安装“大和”大口径火炮使每次射击都成为一个隆重的事件。重型枪管显著减慢了重新装填速度和炮塔旋转速度。但一击就能击穿战舰装甲。对待这种炮塔需要给予最大程度的关注和尊重，调整应用战术。</div>
+</div>
+</div>
+<div class="device-stats-wrapper">
+<div class="device-stats">
+<div class="heading">优势</div>
+<ul><li>伤害：+60%</li>
+<li>暴击伤害：+50%</li>
+<li>炮弹初始速度：+100%</li>
+<li>炮弹终点速度：+100%</li>
+<li>敌人高亮显示距离：+50%</li>
+<li>弱效伤害距离：+50%</li></ul>
+</div>
+<div class="device-stats negative">
+<div class="heading">劣势</div>
+<ul><li>重新装填：+80%</li>
+<li>旋转速度：-25%</li>
+<li>旋转加速度：-25%</li></ul>
+</div>
+</div>
+</div><p><br>
+</p><div class="device-container" data-rarity="exotic" id="Alteration_thunder_Excelsior.png">
+<div class="rarity-edge-paints rarity-edge exotic" title="稀有度：exotic"></div>
+<div class="device-description">
+<div class="device-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/b5/Alteration_thunder_Excelsior.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<div class="device-info-wrapper">
+<div class="device-header">
+<p><span class="name">卓越</span><span class="name"><span typeof="mw:File"><span title="推出日期：16.05.2025"><img alt="推出日期：16.05.2025" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/40px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/80px-Weekly_missions_picture.png 2x"></span></span></span>
+</p><p><br>
+</p>
+</div>
+<div class="description">增强炮塔的核心参数而不改变其工作原理。<br>这是一款高级装备改造，是将金刚石晶体引入坦克炮塔运行系统的突破性研究计划的成果。在枪管中使用金刚石涂层可以提高射击时的的工作压力。使用金刚石轴承可改善炮塔旋转参数。使用金刚石半导体可提高瞄准系统的计算能力。这个装备改造只有一个缺点——它所有的美丽都隐藏在炮塔内部。</div>
+</div>
+</div>
+<div class="device-stats-wrapper">
+<div class="device-stats">
+<div class="heading">优势</div>
+<ul><li>伤害：+25%</li>
+<li>旋转速度：+15%</li>
+<li>旋转加速度：+15%</li></ul>
+</div>
+</div>
+</div><p><br>
+</p><div class="device-container" data-rarity="exotic" id="Alteration_thunder_Phoenix.png">
+<div class="rarity-edge-paints rarity-edge exotic" title="稀有度：exotic"></div>
+<div class="device-description">
+<div class="device-image"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/22/Alteration_thunder_Phoenix.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<div class="device-info-wrapper">
+<div class="device-header">
+<p><span class="name">凤凰</span><span class="name"><span typeof="mw:File"><span title="推出日期：01.04.2024"><img alt="推出日期：01.04.2024" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/40px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="40" height="40" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/80px-Weekly_missions_picture.png 2x"></span></span></span>
+<span typeof="mw:File"><a href="./%D0%A0%D0%B5%D0%BF%D1%83%D1%82%D0%B0%D1%86%D0%B8%D1%8F" title="Репутация"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/RP_Icon.png/16px-RP_Icon.png" decoding="async" loading="lazy" width="16" height="16" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/RP_Icon.png/24px-RP_Icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/RP_Icon.png/32px-RP_Icon.png 2x"></a></span>&nbsp;<b>5 000 000</b>
+</p>
+</div>
+<div class="description">只有像凤凰一样为了实现目标而一次又一次从灰烬中崛起的人才配拥有这把武器。秘密装备改造。要获得它，需要在雷暴炮上赚取 5 000 000 <a href="./%D0%9E%D1%87%D0%BA%D0%B8_%D1%80%D0%B5%D0%BF%D1%83%D1%82%D0%B0%D1%86%D0%B8%D0%B8" class="mw-redirect" title="Очки репутации">经验值</a>。</div>
+</div>
+</div>
+<div class="device-stats-wrapper">
+<div class="device-stats">
+<div class="heading">优势</div>
+<ul><li>获得的经验值：+40%</li>
+<li>伤害：+15%</li>
+<li>暴击伤害：+15%</li>
+<li>暴击几率：+23% <span title="最大和初始暴击几率变化 +30% — 从 23% 到 29.9%. 同时，最小暴击几率保持不变，为 0%. 这使平均暴击几率变化 +23% — 从 18.7% 到 23.02%." class="hint i"></span></li>
+<li>自动瞄准上下角度：+15%</li></ul>
+</div>
+</div>
+</div><p><br>
+</p><p><br>
+</p><h3><span id=".D0.A1.D0.BA.D0.B8.D0.BD.D1.8B"></span><span class="mw-headline" id="Скины">皮肤</span></h3><p><i>主条目：</i> <b><a href="./%D0%A1%D0%BA%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Скины">皮肤</a></b>
+</p><p>皮肤只改变炮塔的外观。它们仅具有装饰作用。
+</p><div class="module_cards_row">
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/4/4f/Standard_skin.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>普通</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/3c/Turret_thunder_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+</div>
+<div class="module_card_description">
+<p>标准设置。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/4/42/Icon_XT_classic_skin.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>雷暴炮 XT
+</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/a9/Skin_thunder_xt.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+<div class="module_card_icon"><span typeof="mw:File"><span title="推出日期：10.09.2015"><img alt="推出日期：10.09.2015" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/30px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/45px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 2x"></span></span></div>
+</div>
+<div class="module_card_description">
+<p>独家雷暴炮 XT 将让你感觉自己化身凶猛的掠食野兽。
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2b/Icon_XT_skin.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>雷暴炮 XT
+</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/9/91/Skin_thunder_xt_hd.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+<div class="module_card_icon"><span typeof="mw:File"><span title="推出日期：31.05.2024"><img alt="推出日期：31.05.2024" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/30px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/45px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 2x"></span></span></div>
+</div>
+<div class="module_card_description">
+<p>XT 系列皮肤是各种坦克的独家外观合集，每款都拥有独特的外观。..
+</p>
+</div>
+<div class="module_card_full_description">XT 系列皮肤是各种坦克的独家外观合集，每款都拥有独特的外观。更细致、更大规模渲染的炮塔模型赋予其强大而震撼的视觉效果。每一个微小的细节都得到了考虑！拥有这款稀有皮肤的人将永远处于聚光灯的中心。</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/aa/Icon_Legacy_skin.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>雷暴炮遗产</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/4/42/Skin_thunder_legacy.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+<div class="module_card_icon"><span typeof="mw:File"><span title="推出日期：30.07.2018"><img alt="推出日期：30.07.2018" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/30px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/45px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 2x"></span></span></div>
+</div>
+<div class="module_card_description">
+<p>雷暴炮的遗产皮肤将帮助你沉浸在“老 3D 坦克”的氛围中。如果你是游戏的老玩家——你可以回忆起你最初几场战斗的感觉。..
+</p>
+</div>
+<div class="module_card_full_description">雷暴炮的遗产皮肤将帮助你沉浸在“老 3D 坦克”的氛围中。如果你是游戏的老玩家——你可以回忆起你最初几场战斗的感觉。</div>
+</div>
+</div><div class="module_cards_row">
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/f/f7/Icon_Prime_skin.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>雷暴炮青春</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/c5/Skin_thunder_prime.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+<div class="module_card_icon"><span typeof="mw:File"><span title="推出日期：01.04.2019"><img alt="推出日期：01.04.2019" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/30px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/45px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 2x"></span></span></div>
+</div>
+<div class="module_card_description">
+<p>雷暴炮是第一款获得青春系列皮肤的炮塔。这款皮肤突出了炮塔的残酷感及其拥有者严肃的意图。当可以狠狠给敌人一击时，何必花哨呢！
+</p>
+</div>
+<div class="module_card_full_description">雷暴炮是第一款获得青春系列皮肤的炮塔。这款皮肤突出了炮塔的残酷感及其拥有者严肃的意图。当可以狠狠给敌人一击时，何必花哨呢！</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/22/Icon_Ultra_skin.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>雷暴炮超高</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/a2/Skin_thunder_ultra.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+<div class="module_card_icon"><span typeof="mw:File"><span title="推出日期：20.12.2019"><img alt="推出日期：20.12.2019" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/30px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/45px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 2x"></span></span></div>
+</div>
+<div class="module_card_description">
+<p>在熟练的手中，雷暴炮既优雅又致命。有了全新的超高皮肤，它看起来更加炫酷！
+</p>
+</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/80/Gt.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>雷暴炮 GT
+</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/79/Skin_Thunder_GT.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+<div class="module_card_icon"><span typeof="mw:File"><span title="推出日期：30.09.2022"><img alt="推出日期：30.09.2022" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/30px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/45px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 2x"></span></span></div>
+</div>
+<div class="module_card_description">
+<p>炮塔专用 GT 皮肤系列不仅是任何轮式底盘的绝佳补充，也是一种特殊勇气的体现。并不是每个坦克手都准备好为了展示自己坦克的独特。..
+</p>
+</div>
+<div class="module_card_full_description">炮塔专用 GT 皮肤系列不仅是任何轮式底盘的绝佳补充，也是一种特殊勇气的体现。并不是每个坦克手都准备好为了展示自己坦克的独特和与众不同，而在战场上牺牲隐蔽性和谨慎性。<br>类似于由带有大爪子的掠食者留下的伤疤的特殊刻痕，以及独特的几何形状，使该系列的炮塔呈现出更加威严和危险的外观。坦克制造领域的最新研发成果和特殊的白色金属合金，解放了该产品设计师的手，首次创造出不仅强大而且美丽的武器，永远不会在坦克手的车库里白白蒙尘。</div>
+</div>
+<div class="module_card">
+<div class="module_card_title">
+<div class="module_card_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/3f/Icon_DK_skin.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div>
+<p>雷暴炮 DK
+</p>
+</div>
+<div class="module_card_image" align="center">
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/1/1c/Skin_Thunder_DK.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+</p>
+<div class="module_card_icon"><span typeof="mw:File"><span title="推出日期：16.05.2025"><img alt="推出日期：16.05.2025" src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/30px-Weekly_missions_picture.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/45px-Weekly_missions_picture.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e4/Weekly_missions_picture.png/60px-Weekly_missions_picture.png 2x"></span></span></div>
+</div>
+<div class="module_card_description">
+<p>力量与优雅设计的结合。这个炮塔不仅看起来令人生畏，它是为了统治和精准打击而创造的。每个战场上的控制象征。..
+</p>
+</div>
+<div class="module_card_full_description">力量与优雅设计的结合。这个炮塔不仅看起来令人生畏，它是为了统治和精准打击而创造的。每个战场上的控制象征。</div>
+</div>
+</div><h3><span id=".D0.9C.D0.BE.D0.B4.D0.B8.D1.84.D0.B8.D0.BA.D0.B0.D1.86.D0.B8.D0.B8"></span><span class="mw-headline" id="Модификации">等级</span></h3><p>要使用<a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Рубины">红宝石</a>购买新等级的修改，当前等级的修改必须首先使用<a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы">水晶</a>完全<a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="Улучшения">升级</a>。这两种修改成本都在下面的概览中列出。此外，还可以直接在<a href="./%D0%A0%D0%B0%D0%BD%D0%BD%D0%B8%D0%B9_%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%-BF" class="mw-redirect" title="Ранний доступ">早期访问</a>中用红宝石购买修改等级。
+</p><div class="modificationInfoWrapper">
+<div class="modificationInfoItem">
+<div class="modificationInfoItem__info">
+<div class="modificationInfoItem__header">Mk1</div><span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%93%D1%80%D0%BE%D0%BC%D0%B0" title="Улучшения Грома"><img src="https://ru.tankiwiki.com/images/ru/thumb/2/24/Upgrade_button.png/150px-Upgrade_button.png" decoding="async" loading="lazy" width="150" height="38" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/24/Upgrade_button.png/225px-Upgrade_button.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/2/24/Upgrade_button.png/300px-Upgrade_button.png 2x"></a></span>
+</div>
+<table style="text-align:center; width:100%">
+<tbody><tr>
+<td>
+</td>
+<td><span typeof="mw:File"><a href="./%D0%A0%D1%8F%D0%B4%D0%BE%D0%B2%D0%BE%D0%B9" title="Рядовой"><img src="https://ru.tankiwiki.com/images/ru/thumb/9/91/IconsNormal_02.png/85px-IconsNormal_02.png" decoding="async" loading="lazy" width="85" height="82" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/9/91/IconsNormal_02.png/128px-IconsNormal_02.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/9/91/IconsNormal_02.png/170px-IconsNormal_02.png 2x"></a></span>
+</td>
+<td><span typeof="mw:File"><a href="./%D0%9A%D0%B0%D0%BF%D1%80%D0%B0%D0%BB" title="Капрал"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d6/IconsNormal_04.png/85px-IconsNormal_04.png" decoding="async" loading="lazy" width="85" height="82" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d6/IconsNormal_04.png/128px-IconsNormal_04.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d6/IconsNormal_04.png/170px-IconsNormal_04.png 2x"></a></span>
+</td></tr>
+<tr>
+<td>​<br>​
+</td>
+<td><a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Рубины"><span class="rubies-modern">30</span></a>
+</td>
+<td><a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры"><span class="container-modern container-epic"></span></a><br>+ <a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Рубины"><span class="rubies-modern">3</span></a>
+</td></tr>
+<tr>
+<td>​
+</td>
+<td><div class="modificationInfoItem__price__info"><span><a href="./%D0%A0%D0%B0%D0%BD%D0%BD%D0%B8%D0%B9_%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF" class="mw-redirect" title="Ранний доступ">早期访问</a></span></div>
+</td>
+<td><div class="modificationInfoItem__price__info"><span><a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры">幸运礼盒</a></span></div>
+</td></tr></tbody></table>
+</div>
+<div class="modificationInfoItem">
+<div class="modificationInfoItem__info">
+<div class="modificationInfoItem__header">Mk2</div><span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%93%D1%80%D0%BE%D0%BC%D0%B0" title="雷暴炮的装备改造"><img src="https://ru.tankiwiki.com/images/ru/thumb/2/24/Upgrade_button.png/150px-Upgrade_button.png" decoding="async" loading="lazy" width="150" height="38" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/24/Upgrade_button.png/225px-Upgrade_button.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/2/24/Upgrade_button.png/300px-Upgrade_button.png 2x"></a></span>
+</div>
+<table style="text-align:center; width:100%">
+<tbody><tr>
+<td>
+</td>
+<td><span typeof="mw:File"><a href="./%D0%9C%D0%B0%D1%81%D1%82%D0%B5%D1%80-%D0%BA%D0%B0%D0%BF%D1%80%D0%B0%D0%би" title="中士"><img src="https://ru.tankiwiki.com/images/ru/thumb/5/51/IconsNormal_05.png/85px-IconsNormal_05.png" decoding="async" loading="lazy" width="85" height="82" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/51/IconsNormal_05.png/128px-IconsNormal_05.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/51/IconsNormal_05.png/170px-IconsNormal_05.png 2x"></a></span>
+</td>
+<td><span typeof="mw:File"><a href="./%D0%A8%D1%82%D0%B0%D0%B1-%D1%81%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" title="三级军士长"><img src="https://ru.tankiwiki.com/images/ru/thumb/5/53/IconsNormal_07.png/85px-IconsNormal_07.png" decoding="async" loading="lazy" width="85" height="82" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/53/IconsNormal_07.png/128px-IconsNormal_07.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/53/IconsNormal_07.png/170px-IconsNormal_07.png 2x"></a></span>
+</td></tr>
+<tr>
+<td>​<br>​
+</td>
+<td><a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="红宝石"><span class="rubies-modern">100</span></a>
+</td>
+<td><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="水晶"><span class="crystals-modern">3 000</span></a><br>+ <a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="红宝石"><span class="rubies-modern">3</span></a>
+</td></tr>
+<tr>
+<td>​
+</td>
+<td><div class="modificationInfoItem__price__info"><span><a href="./%D0%A0%D0%B0%D0%BD%D0%BD%D0%B8%D0%B9_%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF" class="mw-redirect" title="提前体验">提前体验</a></span></div>
+</td>
+<td><div class="modificationInfoItem__price__info"><span><a href="./%D0%93%D0%B0%D1%80%D0%B0%D0%B6" class="mw-redirect" title="车库">车库</a></span></div>
+</td></tr></tbody></table>
+</div>
+<div class="modificationInfoItem">
+<div class="modificationInfoItem__info">
+<div class="modificationInfoItem__header">Mk3</div><span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%93%D1%80%D0%BE%D0%BC%D0%B0" title="雷暴炮的装备改造"><img src="https://ru.tankiwiki.com/images/ru/thumb/2/24/Upgrade_button.png/150px-Upgrade_button.png" decoding="async" loading="lazy" width="150" height="38" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/24/Upgrade_button.png/225px-Upgrade_button.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/2/24/Upgrade_button.png/300px-Upgrade_button.png 2x"></a></span>
+</div>
+<table style="text-align:center; width:100%">
+<tbody><tr>
+<td>
+</td>
+<td><span typeof="mw:File"><a href="./%D0%9F%D0%B5%D1%80%D0%B2%D1%8B%D0%B9_%D1%81%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" title="一级军士长"><img src="https://ru.tankiwiki.com/images/ru/thumb/1/14/IconsNormal_09.png/85px-IconsNormal_09.png" decoding="async" loading="lazy" width="85" height="82" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/1/14/IconsNormal_09.png/128px-IconsNormal_09.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/1/14/IconsNormal_09.png/170px-IconsNormal_09.png 2x"></a></span>
+</td>
+<td><span typeof="mw:File"><a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_1" title="五级准尉"><img src="https://ru.tankiwiki.com/images/ru/thumb/3/39/IconsNormal_11.png/85px-IconsNormal_11.png" decoding="async" loading="lazy" width="85" height="82" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/39/IconsNormal_11.png/128px-IconsNormal_11.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/3/39/IconsNormal_11.png/170px-IconsNormal_11.png 2x"></a></span>
+</td></tr>
+<tr>
+<td>​<br>​
+</td>
+<td><a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="红宝石"><span class="rubies-modern">400</span></a>
+</td>
+<td><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="水晶"><span class="crystals-modern">15 000</span></a><br>+ <a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="红宝石"><span class="rubies-modern">4</span></a>
+</td></tr>
+<tr>
+<td>​
+</td>
+<td><div class="modificationInfoItem__price__info"><span><a href="./%D0%A0%D0%B0%D0%BD%D0%BD%D0%B8%D0%B9_%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%БП" class="mw-redirect" title="提前体验">提前体验</a></span></div>
+</td>
+<td><div class="modificationInfoItem__price__info"><span><a href="./%D0%93%D0%B0%D1%80%D0%B0%D0%B6" class="mw-redirect" title="车库">车库</a></span></div>
+</td></tr></tbody></table>
+</div>
+<div class="modificationInfoItem">
+<div class="modificationInfoItem__info">
+<div class="modificationInfoItem__header">Mk4</div><span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%93%D1%80%D0%BE%D0%BC%D0%B0" title="雷暴炮的装备改造"><img src="https://ru.tankiwiki.com/images/ru/thumb/2/24/Upgrade_button.png/150px-Upgrade_button.png" decoding="async" loading="lazy" width="150" height="38" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/24/Upgrade_button.png/225px-Upgrade_button.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/2/24/Upgrade_button.png/300px-Upgrade_button.png 2x"></a></span>
+</div>
+<table style="text-align:center; width:100%">
+<tbody><tr>
+<td>
+</td>
+<td><span typeof="mw:File"><a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_3" title="三级准尉"><img src="https://ru.tankiwiki.com/images/ru/thumb/c/cc/IconsNormal_13.png/85px-IconsNormal_13.png" decoding="async" loading="lazy" width="85" height="82" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/cc/IconsNormal_13.png/128px-IconsNormal_13.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/c/cc/IconsNormal_13.png/170px-IconsNormal_13.png 2x"></a></span>
+</td>
+<td><span typeof="mw:File"><a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_5" title="一级准尉"><img src="https://ru.tankiwiki.com/images/ru/thumb/5/55/IconsNormal_15.png/85px-IconsNormal_15.png" decoding="async" loading="lazy" width="85" height="82" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/55/IconsNormal_15.png/128px-IconsNormal_15.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/55/IconsNormal_15.png/170px-IconsNormal_15.png 2x"></a></span>
+</td></tr>
+<tr>
+<td>​<br>​
+</td>
+<td><a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="红宝石"><span class="rubies-modern">900</span></a>
+</td>
+<td><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="水晶"><span class="crystals-modern">40 000</span></a><br>+ <a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="红宝石"><span class="rubies-modern">5</span></a>
+</td></tr>
+<tr>
+<td>​
+</td>
+<td><div class="modificationInfoItem__price__info"><span><a href="./%D0%A0%D0%B0%D0%BD%D0%BD%D0%B8%D0%B9_%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF" class="mw-redirect" title="提前体验">提前体验</a></span></div>
+</td>
+<td><div class="modificationInfoItem__price__info"><span><a href="./%D0%93%D0%B0%D1%80%D0%B0%D0%B6" class="mw-redirect" title="车库">车库</a></span></div>
+</td></tr></tbody></table>
+</div>
+<div class="modificationInfoItem">
+<div class="modificationInfoItem__info">
+<div class="modificationInfoItem__header">Mk5</div><span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%93%D1%80%D0%BE%D0%BC%D0%B0" title="雷暴炮的装备改造"><img src="https://ru.tankiwiki.com/images/ru/thumb/2/24/Upgrade_button.png/150px-Upgrade_button.png" decoding="async" loading="lazy" width="150" height="38" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/24/Upgrade_button.png/225px-Upgrade_button.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/2/24/Upgrade_button.png/300px-Upgrade_button.png 2x"></a></span>
+</div>
+<table style="text-align:center; width:100%">
+<tbody><tr>
+<td>
+</td>
+<td><span typeof="mw:File"><a href="./%D0%A1%D1%82%D0%B0%D1%80%D1%88%D0%B8%D0%B9_%D0%BB%D0%B5%D0%B9%D1%82%D0%B5%D0%BD%D0%B0%D0%BD%D1%82" title="中尉"><img src="https://ru.tankiwiki.com/images/ru/thumb/7/72/IconsNormal_18.png/85px-IconsNormal_18.png" decoding="async" loading="lazy" width="85" height="82" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/72/IconsNormal_18.png/128px-IconsNormal_18.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/72/IconsNormal_18.png/170px-IconsNormal_18.png 2x"></a></span>
+</td>
+<td><span typeof="mw:File"><a href="./%D0%9C%D0%B0%D0%B9%D0%BE%D1%80" title="少校"><img src="https://ru.tankiwiki.com/images/ru/thumb/b/b3/IconsNormal_20.png/85px-IconsNormal_20.png" decoding="async" loading="lazy" width="85" height="82" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/b3/IconsNormal_20.png/128px-IconsNormal_20.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/b3/IconsNormal_20.png/170px-IconsNormal_20.png 2x"></a></span>
+</td></tr>
+<tr>
+<td>​<br>​
+</td>
+<td><a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="红宝石"><span class="rubies-modern">1 600</span></a>
+</td>
+<td><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="水晶"><span class="crystals-modern">70 000</span></a><br>+ <a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="红宝石"><span class="rubies-modern">6</span></a>
+</td></tr>
+<tr>
+<td>​
+</td>
+<td><div class="modificationInfoItem__price__info"><span><a href="./%D0%A0%D0%B0%D0%BD%D0%BD%D0%B8%D0%B9_%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF" class="mw-redirect" title="提前体验">提前体验</a></span></div>
+</td>
+<td><div class="modificationInfoItem__price__info"><span><a href="./%D0%93%D0%B0%D1%80%D0%B0%D0%B6" class="mw-redirect" title="车库">车库</a></span></div>
+</td></tr></tbody></table>
+</div>
+<div class="modificationInfoItem">
+<div class="modificationInfoItem__info">
+<div class="modificationInfoItem__header">Mk6</div><span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%93%D1%80%D0%BE%D0%BC%D0%B0" title="雷暴炮的装备改造"><img src="https://ru.tankiwiki.com/images/ru/thumb/2/24/Upgrade_button.png/150px-Upgrade_button.png" decoding="async" loading="lazy" width="150" height="38" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/24/Upgrade_button.png/225px-Upgrade_button.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/2/24/Upgrade_button.png/300px-Upgrade_button.png 2x"></a></span>
+</div>
+<table style="text-align:center; width:100%">
+<tbody><tr>
+<td>
+</td>
+<td><span typeof="mw:File"><a href="./%D0%9F%D0%BE%D0%B4%D0%BF%D0%BE%D0%BB%D0%BA%D0%BE%D0%B2%D0%BD%D0%B8%D0%АК" title="中校"><img src="https://ru.tankiwiki.com/images/ru/thumb/c/c8/IconsNormal_21.png/85px-IconsNormal_21.png" decoding="async" loading="lazy" width="85" height="82" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/c8/IconsNormal_21.png/128px-IconsNormal_21.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/c/c8/IconsNormal_21.png/170px-IconsNormal_21.png 2x"></a></span>
+</td>
+<td><span typeof="mw:File"><a href="./%D0%91%D1%80%D0%B8%D0%B3%D0%B0%D0%B4%D0%B8%D1%80" title="准将"><img src="https://ru.tankiwiki.com/images/ru/thumb/2/24/IconsNormal_23.png/85px-IconsNormal_23.png" decoding="async" loading="lazy" width="85" height="82" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/24/IconsNormal_23.png/128px-IconsNormal_23.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/2/24/IconsNormal_23.png/170px-IconsNormal_23.png 2x"></a></span>
+</td></tr>
+<tr>
+<td>​<br>​
+</td>
+<td><a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="红宝石"><span class="rubies-modern">2 300</span></a>
+</td>
+<td><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="水晶"><span class="crystals-modern">110 000</span></a><br>+ <a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="红宝石"><span class="rubies-modern">7</span></a>
+</td></tr>
+<tr>
+<td>​
+</td>
+<td><div class="modificationInfoItem__price__info"><span><a href="./%D0%A0%D0%B0%D0%BD%D0%BD%D0%B8%D0%B9_%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF" class="mw-redirect" title="提前体验">提前体验</a></span></div>
+</td>
+<td><div class="modificationInfoItem__price__info"><span><a href="./%D0%93%D0%B0%D1%80%D0%B0%D0%B6" class="mw-redirect" title="车库">车库</a></span></div>
+</td></tr></tbody></table>
+</div>
+<div class="modificationInfoItem">
+<div class="modificationInfoItem__info">
+<div class="modificationInfoItem__header">Mk7</div><span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%93%D1%80%D0%BE%D0%BC%D0%B0" title="雷暴炮的装备改造"><img src="https://ru.tankiwiki.com/images/ru/thumb/2/24/Upgrade_button.png/150px-Upgrade_button.png" decoding="async" loading="lazy" width="150" height="38" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/24/Upgrade_button.png/225px-Upgrade_button.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/2/24/Upgrade_button.png/300px-Upgrade_button.png 2x"></a></span>
+</div>
+<table style="text-align:center; width:100%">
+<tbody><tr>
+<td>
+</td>
+<td><span typeof="mw:File"><a href="./%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D0%BB-%D0%BB%D0%B5%D0%B9%D1%82%D0%B5%D0%BD%D0%B0%D0%BD%D1%82" title="中将"><img src="https://ru.tankiwiki.com/images/ru/thumb/7/71/IconsNormal_25.png/85px-IconsNormal_25.png" decoding="async" loading="lazy" width="85" height="82" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/71/IconsNormal_25.png/128px-IconsNormal_25.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/71/IconsNormal_25.png/170px-IconsNormal_25.png 2x"></a></span>
+</td>
+<td><span typeof="mw:File"><a href="./%D0%9C%D0%B0%D1%80%D1%88%D0%B0%D0%BB" title="元帅"><img src="https://ru.tankiwiki.com/images/ru/thumb/0/0f/IconsNormal_27.png/85px-IconsNormal_27.png" decoding="async" loading="lazy" width="85" height="82" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/0/0f/IconsNormal_27.png/128px-IconsNormal_27.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/0/0f/IconsNormal_27.png/170px-IconsNormal_27.png 2x"></a></span>
+</td></tr>
+<tr>
+<td>​<br>​
+</td>
+<td><a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="红宝石"><span class="rubies-modern">3 800</span></a>
+</td>
+<td><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="水晶"><span class="crystals-modern">150 000</span></a><br>+ <a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="红宝石"><span class="rubies-modern">8</span></a>
+</td></tr>
+<tr>
+<td>​
+</td>
+<td><div class="modificationInfoItem__price__info"><span><a href="./%D0%A0%D0%B0%D0%BD%D0%BD%D0%B8%D0%B9_%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF" class="mw-redirect" title="提前体验">提前体验</a></span></div>
+</td>
+<td><div class="modificationInfoItem__price__info"><span><a href="./%D0%93%D0%B0%D1%80%D0%B0%D0%B6" class="mw-redirect" title="车库">车库</a></span></div>
+</td></tr></tbody></table>
+</div>
+<div class="modificationInfoItem">
+<div class="modificationInfoItem__info">
+<div class="modificationInfoItem__header">MAX</div>
+</div>
+<table style="text-align:center; width:100%">
+<tbody><tr>
+<td>
+</td>
+<td><span typeof="mw:File"><a href="./%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D0%BB-%D0%BB%D0%B5%D0%B9%D1%82%D0%B5%D0%BD%D0%B0%D0%BD%D1%82" title="中将"><img src="https://ru.tankiwiki.com/images/ru/thumb/7/71/IconsNormal_25.png/85px-IconsNormal_25.png" decoding="async" loading="lazy" width="85" height="82" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/71/IconsNormal_25.png/128px-IconsNormal_25.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/71/IconsNormal_25.png/170px-IconsNormal_25.png 2x"></a></span>
+</td>
+<td><span typeof="mw:File"><a href="./%D0%9C%D0%B0%D1%80%D1%88%D0%B0%D0%BB" title="元帅"><img src="https://ru.tankiwiki.com/images/ru/thumb/0/0f/IconsNormal_27.png/85px-IconsNormal_27.png" decoding="async" loading="lazy" width="85" height="82" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/0/0f/IconsNormal_27.png/128px-IconsNormal_27.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/0/0f/IconsNormal_27.png/170px-IconsNormal_27.png 2x"></a></span>
+</td></tr>
+<tr>
+<td>​<br>​
+</td>
+<td><a href="./%D0%A0%D1%83%D0%B1%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="红宝石"><span class="rubies-modern">11 400</span></a>
+</td>
+<td><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="水晶"><span class="crystals-modern">456 000</span></a>
+</td></tr>
+<tr>
+<td>​
+</td>
+<td colspan="2"><div class="modificationInfoItem__price__info"><span><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%93%D1%80%D0%BE%D0%BC%D0%B0" class="mw-redirect" title="雷暴炮的装备改造">升级</a></span></div>
+</td>
+<td><div class="modificationInfoItem__price__info"><span></span></div>
+</td></tr></tbody></table>
+</div>
+<div class="modificationInfoItem" style="opacity:0;"></div>
+</div><p><br>
+</p><h3><span id=".D0.A5.D0.B0.D1.80.D0.B0.D0.BA.D1.82.D0.B5.D1.80.D0.B8.D1.81.D1.82.D0.B8.D0.BA.D0.B8"></span><span class="mw-headline" id="Характеристики">性能参数</span></h3><div class="characteristics-table">
+<table class="wikitable-modern head-table" width="100%">
+
+<tbody><tr class="wikitable-header wikitable-title-center">
+<td style="">雷暴炮</td>
+<td>Mk1
+</td>
+<td>Mk2
+</td>
+<td>Mk3
+</td>
+<td>Mk4
+</td>
+<td>Mk5
+</td>
+<td>Mk6
+</td>
+<td>Mk7
+</td>
+<td>MAX
+</td></tr></tbody></table>
+<table class="wikitable-modern active" width="100%">
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6a/Damage.png/30px-Damage.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/6a/Damage.png/45px-Damage.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/6a/Damage.png/60px-Damage.png 2x"></span></span>
+</td>
+<td>伤害（生命值）
+</td>
+<td>675</td><td>720</td><td>750</td><td>780</td><td>817,5</td><td>840</td><td>870</td><td>900</td>
+</tr></tbody></table>
+<div class="table-note">炮塔每次射击对目标造成的伤害。</div>
+<div class="characteristics-table">
+<table class="wikitable-modern active" width="100%">
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6e/Icon_critical_damage.png/30px-Icon_critical_damage.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/6e/Icon_critical_damage.png/45px-Icon_critical_damage.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/6e/Icon_critical_damage.png/60px-Icon_critical_damage.png 2x"></span></span>
+</td>
+<td>暴击伤害（生命值）
+</td>
+<td>870</td><td>928</td><td>966,67</td><td>1005,33</td><td>1053,67</td><td>1082,67</td><td>1121,33</td><td>1160</td>
+</tr></tbody></table>
+<div class="table-note">炮塔单次射击造成的暴击伤害。可忽略除“犰狳”特殊模块之外的所有防护模块。</div>
+<table class="wikitable-modern active" width="100%">
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/9/98/Icon_critical_chance.png/30px-Icon_critical_chance.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/9/98/Icon_critical_chance.png/45px-Icon_critical_chance.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/9/98/Icon_critical_chance.png/60px-Icon_critical_chance.png 2x"></span></span>
+</td>
+<td>暴击几率（%）
+</td>
+<td>18,7</td><td>18,7</td><td>18,7</td><td>18,7</td><td>18,7</td><td>18,7</td><td>18,7</td><td>18,7</td>
+</tr></tbody></table>
+<div class="table-note">初始暴击几率为 23%。每次触发暴击命中后，该数值会降至 0%，只有在下一次射击后才会再次回升至 23%。平均暴击几率为 18,7%。</div>
+<table class="wikitable-modern active" width="100%">
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/0/02/Icon_reloading.png/30px-Icon_reloading.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/0/02/Icon_reloading.png/45px-Icon_reloading.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/0/02/Icon_reloading.png/60px-Icon_reloading.png 2x"></span></span>
+</td>
+<td>装填时间（秒）
+</td>
+<td>3</td><td>2,8</td><td>2,67</td><td>2,53</td><td>2,37</td><td>2,27</td><td>2,13</td><td>2</td>
+</tr></tbody></table>
+<div class="table-note">射击之间的间隔。</div>
+<table class="wikitable-modern" width="100%">
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/b6/Icon_projectile_speed.png/30px-Icon_projectile_speed.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/b6/Icon_projectile_speed.png/45px-Icon_projectile_speed.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/b6/Icon_projectile_speed.png/60px-Icon_projectile_speed.png 2x"></span></span>
+</td>
+<td>炮弹初始飞行速度（米/秒）
+</td>
+<td>300</td><td>340</td><td>366,67</td><td>393,33</td><td>426,67</td><td>446,67</td><td>473,33</td><td>500</td>
+</tr></tbody></table>
+<div class="table-note">炮弹在射击刚开始时一秒内飞行的距离。</div>
+<table class="wikitable-modern" width="100%">
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/b6/Icon_projectile_speed.png/30px-Icon_projectile_speed.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/b6/Icon_projectile_speed.png/45px-Icon_projectile_speed.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/b6/Icon_projectile_speed.png/60px-Icon_projectile_speed.png 2x"></span></span>
+</td>
+<td>炮弹最终飞行速度（米/秒）
+</td>
+<td>150</td><td>180</td><td>200</td><td>220</td><td>245</td><td>260</td><td>280</td><td>300</td>
+</tr></tbody></table>
+<div class="table-note">炮弹在达到最终距离时，每秒飞行的距离。在此之前，炮弹的初始飞行速度呈线性变化。</div>
+<table class="wikitable-modern" width="100%">
+
+<tbody><tr>
+<td>
+</td>
+<td>炮弹加速时间（秒）
+</td>
+<td>0,5</td><td>0,5</td><td>0,5</td><td>0,5</td><td>0,5</td><td>0,5</td><td>0,5</td><td>0,5</td>
+</tr></tbody></table>
+<div class="table-note">发射的炮弹加速至最大速度所需的时间。</div>
+<table class="wikitable-modern" width="100%">
+
+<tbody><tr>
+<td>
+</td>
+<td>全额伤害射程（米）
+</td>
+<td>60</td><td>66</td><td>70</td><td>74</td><td>79</td><td>82</td><td>86</td><td>90</td>
+</tr></tbody></table>
+<div class="table-note">在此射程内，炮弹造成全额伤害。如果目标距离超过该范围，伤害将呈线性衰减，直至衰减至弱伤害射程。</div>
+<table class="wikitable-modern active" width="100%">
+
+<tbody><tr>
+<td>
+</td>
+<td>弱伤害射程（米）
+</td>
+<td>90</td><td>96</td><td>100</td><td>104</td><td>109</td><td>112</td><td>116</td><td>120</td>
+</tr></tbody></table>
+<div class="table-note">在此距离下，由于距离导致的伤害衰减达到极限。</div>
+<table class="wikitable-modern" width="100%">
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/c/c4/Icon_weak_damage.png/30px-Icon_weak_damage.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/c4/Icon_weak_damage.png/45px-Icon_weak_damage.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/c/c4/Icon_weak_damage.png/60px-Icon_weak_damage.png 2x"></span></span>
+</td>
+<td>弱伤害比例（%）
+</td>
+<td>25</td><td>25</td><td>25</td><td>25</td><td>25</td><td>25</td><td>25</td><td>25</td>
+</tr></tbody></table>
+<div class="table-note">表示在大于或等于弱伤害射程的距离上，所造成的伤害占总伤害的百分比。</div>
+<table class="wikitable-modern" width="100%">
+
+<tbody><tr>
+<td>
+</td>
+<td>敌方显形射程（米）
+</td>
+<td>120</td><td>132</td><td>140</td><td>148</td><td>158</td><td>164</td><td>172</td><td>180</td>
+</tr></tbody></table>
+<div class="table-note">瞄准时敌方保持高亮显形的最大距离。</div>
+<table class="wikitable-modern" width="100%">
+
+<tbody><tr>
+<td>
+</td>
+<td>炮弹半径（米）
+</td>
+<td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td>
+</tr></tbody></table>
+<div class="table-note">从炮弹中心到其边界的半径。如果炮弹经过目标距离不大于该数值，则会造成伤害。</div>
+<table class="wikitable-modern" width="100%">
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/c/cb/Icon_impact_force.png/30px-Icon_impact_force.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/cb/Icon_impact_force.png/45px-Icon_impact_force.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/c/cb/Icon_impact_force.png/60px-Icon_impact_force.png 2x"></span></span>
+</td>
+<td>炮弹冲击力（单位）
+</td>
+<td>2</td><td>2,8</td><td>3,33</td><td>3,87</td><td>4,53</td><td>4,93</td><td>5,47</td><td>6</td>
+</tr></tbody></table>
+<div class="table-note">炮弹对目标的物理冲击影响，这会导致坦克发生位移。</div>
+<table class="wikitable-modern" width="100%">
+
+<tbody><tr>
+<td>
+</td>
+<td>爆炸冲击力（单位）
+</td>
+<td>2</td><td>2,4</td><td>2,67</td><td>2,93</td><td>3,27</td><td>3,47</td><td>3,73</td><td>4</td>
+</tr></tbody></table>
+<div class="table-note">炮弹爆炸点伤害半径内对坦克的物理影响，这会导致坦克发生位移。</div>
+<table class="wikitable-modern" width="100%">
+
+<tbody><tr>
+<td>
+</td>
+<td>后坐力（单位）
+</td>
+<td>1,2</td><td>1,44</td><td>1,6</td><td>1,76</td><td>1,96</td><td>2,08</td><td>2,24</td><td>2,4</td>
+</tr></tbody></table>
+<div class="table-note">射击时炮塔对自身底盘产生的物理影响。</div>
+<table class="wikitable-modern" width="100%">
+
+<tbody><tr>
+<td>
+</td>
+<td>爆炸暴击伤害半径（米）
+</td>
+<td>6</td><td>6</td><td>6</td><td>6</td><td>6</td><td>6</td><td>6</td><td>6</td>
+</tr></tbody></table>
+<div class="table-note">距离炮弹落点在此范围内的目标会受到暴击伤害。如果目标距离炮弹落点更远，则会根据性能参数造成普通伤害。</div>
+<table class="wikitable-modern" width="100%">
+
+<tbody><tr>
+<td>
+</td>
+<td>爆炸全额伤害半径（米）
+</td>
+<td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td>
+</tr></tbody></table>
+<div class="table-note">距离炮弹落点在此范围内的目标会受到全额伤害。如果目标距离炮弹落点更远，伤害将衰减至极限爆炸伤害半径。</div>
+<table class="wikitable-modern" width="100%">
+
+<tbody><tr>
+<td>
+</td>
+<td>爆炸中等伤害半径（米）
+</td>
+<td>6</td><td>6</td><td>6</td><td>6</td><td>6</td><td>6</td><td>6</td><td>6</td>
+</tr></tbody></table>
+<div class="table-note">图表中的附加转折点，随着目标距离炮弹落点的增加，爆炸伤害将在此处开始衰减。它将伤害随半径的变化从线性关系转变为类似指数关系。</div>
+<table class="wikitable-modern" width="100%">
+
+<tbody><tr>
+<td>
+</td>
+<td>极限爆炸伤害半径（米）
+</td>
+<td>8</td><td>8,8</td><td>9,33</td><td>9,87</td><td>10,53</td><td>10,93</td><td>11,47</td><td>12</td>
+</tr></tbody></table>
+<div class="table-note">距离炮弹落点在此范围内的目标仍会受到伤害。如果目标距离炮弹爆炸点更远，则不会受到伤害。</div>
+<table class="wikitable-modern" width="100%">
+
+<tbody><tr>
+<td>
+</td>
+<td>爆炸中等伤害比例（%）
+</td>
+<td>50</td><td>50</td><td>50</td><td>50</td><td>50</td><td>50</td><td>50</td><td>50</td>
+</tr></tbody></table>
+<div class="table-note">表示在等于爆炸中等伤害半径的距离处，由炮弹落点造成的伤害百分比。</div>
+<table class="wikitable-modern" width="100%">
+
+<tbody><tr>
+<td>
+</td>
+<td>爆炸弱伤害比例（%）
+</td>
+<td>50</td><td>50</td><td>50</td><td>50</td><td>50</td><td>50</td><td>50</td><td>50</td>
+</tr></tbody></table>
+<div class="table-note">表示在等于极限爆炸伤害半径的距离处，由炮弹落点造成的伤害百分比。</div>
+<table class="wikitable-modern active" width="100%">
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/da/Icon_rotation_speed.png/30px-Icon_rotation_speed.png" decoding="async" loading="lazy" width="30" height="30" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/da/Icon_rotation_speed.png/45px-Icon_rotation_speed.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/da/Icon_rotation_speed.png/60px-Icon_rotation_speed.png 2x"></span></span>
+</td>
+<td>旋转速度（度/秒）
+</td>
+<td>70</td><td>80</td><td>86,67</td><td>93,33</td><td>101,67</td><td>106,67</td><td>113,33</td><td>120</td>
+</tr></tbody></table>
+<div class="table-note">炮塔能够旋转的最大速度。</div>
+<table class="wikitable-modern" width="100%">
+
+<tbody><tr>
+<td>
+</td>
+<td>旋转加速度（度/秒²）
+</td>
+<td>70</td><td>80</td><td>86,67</td><td>93,33</td><td>101,67</td><td>106,67</td><td>113,33</td><td>120</td>
+</tr></tbody></table>
+<div class="table-note">炮塔加速至最大旋转速度的加速度。</div>
+<table class="wikitable-modern" width="100%">
+
+<tbody><tr>
+<td>
+</td>
+<td>自动瞄准向上角度（度）
+</td>
+<td>9</td><td>9</td><td>9</td><td>9</td><td>9</td><td>9</td><td>9</td><td>9</td>
+</tr></tbody></table>
+<div class="table-note">如果目标高于炮塔瞄准平面时的自动瞄准角度。</div>
+<table class="wikitable-modern" width="100%">
+
+<tbody><tr>
+<td>
+</td>
+<td>自动瞄准向下角度（度）
+</td>
+<td>12</td><td>12</td><td>12</td><td>12</td><td>12</td><td>12</td><td>12</td><td>12</td>
+</tr></tbody></table>
+<div class="table-note">如果目标低于炮塔瞄准平面时的自动瞄准角度。</div>
+<table class="wikitable-modern" width="100%">
+
+<tbody><tr>
+<td>
+</td>
+<td>自动瞄准水平角度（度）
+</td>
+<td>0,2</td><td>0,2</td><td>0,2</td><td>0,2</td><td>0,2</td><td>0,2</td><td>0,2</td><td>0,2</td>
+</tr></tbody></table>
+<div class="table-note">当目标位于炮塔垂直瞄准平面左右两侧时的自动瞄准角度。</div>
+</div>
+<h3><span id=".D0.98.D0.BD.D1.82.D0.B5.D1.80.D0.B5.D1.81.D0.BD.D1.8B.D0.B5_.D1.84.D0.B0.D0.BA.D1.82.D1.8B"></span><span class="mw-headline" id="有趣的事实">有趣的事实</span></h3>
+<ul><li>雷暴炮于 <a rel="nofollow" class="external text" href="http://tankionline.com/ru/2010/04/novost-pro-novoe-vooruzhenie/">2010 年 4 月 27 日</a>加入游戏，与<a href="./%D0%A5%D0%BE%D1%80%D0%BD%D0%B5%D1%82" class="mw-redirect" title="蜂王">蜂王</a>、<a href="./%D0%92%D0%B8%D0%BA%D0%B8%D0%BD%D0%B3" class="mw-redirect" title="维京">维京</a>和<a href="./%D0%9C%D0%B0%D0%BC%D0%BE%D0%BD%D1%82" class="mw-redirect" title="猛犸象">猛犸象</a>一同登场。它是所谓“第二系列”武器中的第一款炮塔，该系列除了雷暴炮之外，还包括后来出现的<a href="./%D0%A4%D1%80%D0%B8%D0%B7" class="mw-redirect" title="冰风暴">冰风暴</a>、<a href="./%D0%A0%D0%B8%D0%BA%D0%BE%D1%88%D0%B5%D1%82" class="mw-redirect" title="火龙珠">火龙珠</a>和<a href="./%D0%A8%D0%B0%D1%84%D1%82" class="mw-redirect" title="镭射炮">镭射炮</a>。在<a href="./%D0%A0%D0%B5%D0%B1%D0%B0%D0%BB%D0%B0%D0%BD%D1%81" class="mw-redirect" title="平衡性调整">平衡性调整</a>之后，武器不再按“系列”进行划分。</li>
+<li>2015 年 9 月 10 日，雷暴炮 XT 加入游戏，玩家可以通过完成特定的每日任务，或者在拥有 <a href="./%D0%9F%D1%80%D0%B5%D0%BC%D0%B8%D1%83%D0%BC-%D0%BF%D0%BE%D0%B4%D0%BF%D0%B8%D1%81%D0%BA%D0%B0" class="mw-redirect" title="VIP">VIP</a> 的情况下在车库里花 500 000 水晶购买来获得它。</li></ul>
+<h3><span id=".D0.A1.D1.81.D1.8B.D0.BB.D0.BA.D0.B8"></span><span class="mw-headline" id="Ссылки">相关链接</span></h3>
+<ul><li><a rel="nofollow" class="external text" href="http://ru.tankiforum.com/topic/49/">讨论雷暴炮</a>（论坛）</li></ul>
+<div align="right"><small>最后编辑：01/07/2026 Vestas <span class="ai-translate-note" style="color:#8FB8D8;">（由 AI 自动翻译）</span></small></div> </div></div></div></div></div></div><footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
+<p style="margin:0;"><strong style="color:#BFD5FF;">本站为玩家社区自建的非官方 Wiki 镜像。</strong></p>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":3843,"wgPageParseReport":{"limitreport":{"cputime":"1.617","walltime":"2.830","ppvisitednodes":{"value":5083,"limit":1000000},"postexpandincludesize":{"value":162735,"limit":4194304},"templateargumentsize":{"value":64986,"limit":4194304},"expansiondepth":{"value":15,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":5598,"limit":5000000},"timingprofile":["100.00%  636.908      1 -total"," 34.97%  222.719      1 Шаблон:Устройства/Гром"," 30.87%  196.637     22 Шаблон:Device"," 16.90%  107.646      7 Шаблон:Device/CritChange"," 16.11%  102.590      1 Скины"," 15.46%   98.477      1 Пушки"," 13.78%   87.771      9 Шаблон:Hint","  6.19%   39.411     59 Шаблон:CritChance","  6.10%   38.850      8 Шаблон:ModificationInfo","  5.39%   34.349      3 Шаблон:ModuleCard/IconOnImage"]},"cachereport":{"timestamp":"20260825000608","ttl":0,"transientcontent":true}}});});</script>
+    <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });</script></body></html>

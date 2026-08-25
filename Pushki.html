@@ -1,0 +1,1031 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>(function(){
+  var BASE = 'https://ru.tankiwiki.com';
+  function fix(v){ return (typeof v === 'string' && v.charAt(0) === '/' && v.indexOf('//') !== 0) ? BASE + v : v; }
+  ['HTMLScriptElement','HTMLLinkElement'].forEach(function(tag){
+    var proto = window[tag] && window[tag].prototype;
+    var prop  = tag === 'HTMLScriptElement' ? 'src' : 'href';
+    if (!proto) return;
+    var d = Object.getOwnPropertyDescriptor(proto, prop);
+    if (!d || !d.set) return;
+    Object.defineProperty(proto, prop, {
+      configurable: true,
+      get: function(){ return d.get.call(this); },
+      set: function(v){ d.set.call(this, fix(v)); }
+    });
+  });
+  var of = window.fetch;
+  if (of) window.fetch = function(u, o){ return of.call(this, (typeof u === 'string' ? fix(u) : u), o); };
+  var ox = window.XMLHttpRequest && XMLHttpRequest.prototype.open;
+  if (ox) XMLHttpRequest.prototype.open = function(m, u){
+    var a = Array.prototype.slice.call(arguments); a[1] = fix(u); return ox.apply(this, a);
+  };
+})();</script><title>炮塔 — 3D 坦克 Wiki</title><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+    <meta charset="UTF-8">
+    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/xg_pWYS8-HRESiV6Rdg4aY_R/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-qWH0xCejb2gc1yqo8ob4TQrvIcQ9XjhOfGKbhFr/+LvFrJdTE3bA+FQP/FLAiQhz"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgRequestId":"e24ddc212a2507a964254fd2","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Pushki","wgTitle":"Pushki","wgCurRevisionId":302927,"wgRevisionId":302927,"wgArticleId":39,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"ru","wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgRelevantPageName":"Pushki","wgRelevantArticleId":39,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVisualEditor":{
+"pageLanguageCode":"ru","pageLanguageDir":"ltr","pageVariantFallbacks":"ru"},"wgFlaggedRevsParams":{"tags":{"accuracy":{"levels":3}}},"wgStableRevisionId":302927,"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.flaggedRevs.icons":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.flaggedRevs.basic":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","mediawiki.toc","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.flaggedRevs.advanced","skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=ext.flaggedRevs.basic%2Cicons%7Cext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/b/b9/Turrets.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="450">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/b/b9/Turrets.png">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="300">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/thumb/b/b9/Turrets.png/640px-Turrets.png">
+    <meta property="og:image:width" content="640">
+    <meta property="og:image:height" content="240">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://ru.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://ru.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (ru)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://ru.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki&nbsp;— Atom-лента" href="https://ru.tankiwiki.com/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom"><style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
+
+/* 1. 只去掉源站皮肤的背景大图，保留底色；不要用 background 简写，否则会连带清掉皮肤别的背景设定 */
+html, body {
+    background-image: none !important;
+    background-color: #001926 !important;
+}
+/* 2. 让底色铺满视口，内容很短时下方不再露白 */
+html { min-height: 100%; }
+body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif; }
+
+/* 3. 版心容器 */
+#mw-main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #001926;
+}
+
+/* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
+      【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
+
+#mw-main-container .main-content,
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content,
+#mw-main-container #mw-content-text {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: auto !important;
+    flex-basis: auto !important;   /* 皮肤写了 .main-content{flex:0 0 75%} */
+    float: none !important;
+    margin-top: 0 !important;       /* 核心：清空原站皮肤的负 margin-top */
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    position: relative !important;
+    z-index: 1 !important;          /* 保证正文层级低于按钮 */
+}
+
+/* 5. 皮肤脚本 skins.tankiblue.js 会往 #mw-content-text 末尾插一条「发现错别字？Ctrl+Enter」
+      的俄语提示条和一个「报告错误」标签页。它按网址里有没有 'en'/'de' 来判断语言，
+      我们的域名两者都不含 → 一律显示俄语；且报错会提交到俄站编辑组，对镜像站没意义，直接隐藏。 */
+#custom-report-footer,
+.vectorTabs.customReport,
+.customReport { display: none !important; }
+
+/* 6. 返回按钮包裹容器：独占一行并强制最高层级 */
+.home-btn-wrapper {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px 0 20px 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    z-index: 9999 !important;       /* 核心：永远置于最顶层 */
+    clear: both !important;
+    overflow: visible !important;
+}
+
+/* 7. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐 */
+.home-back-btn {
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    width: auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    isolation: isolate !important;
+    
+    min-width: 142px !important;
+    padding: 0 24px !important;
+    height: 78px !important;
+    margin: 0 !important;
+    border: 1px solid rgba(255,255,255,.25) !important;
+    outline: 2px solid transparent !important;
+    border-radius: 6.5px !important;
+    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%) !important;
+    
+    position: relative !important;
+    z-index: 10000 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: all .15s ease !important;
+    overflow: visible !important;
+}
+.home-back-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(100% 100% at 0% 0%, rgba(191,213,255,.25) 0%, rgba(191,213,255,.15) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all .15s ease;
+    border-radius: inherit;
+    pointer-events: none;
+}
+.home-back-btn svg {
+    width: 24.375px;
+    height: 24px;
+    object-fit: contain;
+    transform: rotate(180deg);
+    transition: all .15s ease;
+    flex-shrink: 0;
+}
+.home-back-btn svg path { fill: #BFD5FF; transition: all .15s ease; }
+
+.home-back-btn:hover,
+.home-back-btn:active,
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF !important; border-color: #BFD5FF !important; }
+.home-back-btn:hover::before,
+.home-back-btn:active::before,
+.home-back-btn:focus-visible::before { opacity: 1; }
+.home-back-btn:hover svg,
+.home-back-btn:active svg,
+.home-back-btn:focus-visible svg { transform: rotate(180deg) translateX(10%); }
+.home-back-btn:hover svg path,
+.home-back-btn:active svg path,
+.home-back-btn:focus-visible svg path { fill: #fff; }
+
+.home-back-btn span {
+    color: #BFD5FF;
+    font-size: 16px;
+    margin-left: 10px;
+    font-weight: bold;
+    transition: all .15s ease;
+    white-space: nowrap;
+}
+.home-back-btn:hover span,
+.home-back-btn:active span,
+.home-back-btn:focus-visible span {
+    color: #fff;
+    transform: translateX(-4px);
+}
+
+/* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
+@media (hover: none) {
+    .home-back-btn { border-color: rgba(191,213,255,.55) !important; }
+    .home-back-btn svg path { fill: #CFE0FF; }
+}
+
+/* 移动端/窄屏自适应尺寸 */
+@media (max-width: 480px) {
+    .home-back-btn {
+        min-width: 106px !important;
+        padding: 0 16px !important;
+        height: 58px !important;
+        margin-left: 10px !important;
+    }
+    .home-back-btn svg { width: 20px !important; height: 19.7px !important; }
+    .home-back-btn span { font-size: 14px !important; margin-left: 8px !important; }
+}
+
+/* 8. 移动端容器 Padding */
+@media (max-width: 768px) {
+    #mw-main-container { padding: 10px !important; margin: 8px auto !important; }
+    .home-back-btn { margin-left: 10px !important; }
+    #mw-content-text .navigationContainerContent > div,
+    #mw-content-text [style*="width: 55%"],
+    #mw-content-text [style*="width:55%"],
+    #mw-content-text [style*="width: 45%"],
+    #mw-content-text [style*="width:45%"] { width: 100% !important; }
+}
+@media (max-width: 480px) {
+    #mw-main-container { padding: 6px !important; margin: 4px auto !important; }
+}
+
+/* 9. 防止宽表格 / 大图撑破版心 */
+#mw-content-text img { max-width: 100%; height: auto; }
+#mw-content-text table { max-width: 100%; }
+
+/* 10. 目录（TOC）修复，全局生效：
+    a) 皮肤把目录折叠按钮的文字放在 CSS 伪元素里渲染，而不是 HTML 文本：
+         .toctogglecheckbox:checked  + .toctitle .toctogglelabel::after → content:'показать'
+         .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after → content:'скрыть'
+       AI 翻译只处理 HTML 文本，摸不到 CSS content，所以这个按钮永远是俄语，必须在这里覆盖成中文。
+    b) 皮肤的响应式 CSS 里写了 @media screen and (max-width:768px){ #toc{display:none} }，
+       导致手机端整个目录被隐藏。这里恢复显示，并配合下方 TOC_MOBILE_COLLAPSE_SCRIPT：
+       移动端默认折叠，只占一行「目录 [展开]」，避免长目录把正文挤到屏幕外。 */
+#toc .toctogglecheckbox:checked + .toctitle .toctogglelabel::after { content: '展开' !important; }
+#toc .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after { content: '收起' !important; }
+@media screen and (max-width: 768px) {
+    #toc { display: table !important; }
+}
+
+/* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
+   只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+*/
+</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Pushki rootpage-Pushki skin-tankiblue action-view"><div id="skin-chrome-stub" aria-hidden="true" style="display:none !important;">
+<a class="problem" href="#"></a>
+<div class="close-wrapper"></div>
+<div class="support-block-popup"><div class="close-modal-support"></div></div>
+<div class="youtube-popup"><iframe title="stub"></iframe></div>
+<div class="video-button"></div>
+<div class="header-search"></div>
+<div class="search-dialog"></div>
+<div class="search-popup"><div class="close-wrapper"></div><div class="close-modal-search"></div></div>
+<div class="news-popup"></div>
+<div class="sales-block-header"></div>
+<div class="navbar-main"></div>
+<div class="main-navbar"></div>
+</div><div id="mw-main-container"><div class="home-btn-wrapper"><a class="home-back-btn" href="./Enciklopediya_igry_%C2%ABTanki_Onlayn%C2%BB" title="返回主页" aria-label="返回主页"><svg viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 0H13.5L25.5 12L24 13.5L13.5 24H18L30 12L18 0ZM24 13.5L21 10.5H0L3 13.5H24Z" fill="#BFD5FF"/></svg><span>返回主页</span></a></div><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">炮塔</h1><p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/b9/Turrets.png" decoding="async" loading="lazy" width="800" height="300" class="mw-file-element"></span></span> 
+</p><div class="dablink"><em>参见：</em> <a href="./%D0%A3%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0" class="mw-redirect" title="Устройства">装备改造</a>、<a href="./%D0%A1%D0%BA%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Скины">皮肤</a>和<a href="./%D0%93%D0%B0%D0%B9%D0%B4%D1%8B_%D0%BF%D0%BE_%D0%BF%D1%83%D1%88%D0%BA%D0%B0%D0%BC" class="mw-redirect" title="Гайды по пушкам">炮塔指南</a>
+</div><div class="interestingFact" style="float:right; margin: 0px 10px 10px 10px; padding:10px; border:1px solid rgba(125, 157, 186, .4); border-radius: 6px; width:20em;">
+<div style="font-size:105%; line-height:120%; pointer-events: none;">
+<table>
+
+<tbody><tr>
+<td><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/32/Favicon_user_eho.png" decoding="async" loading="lazy" width="16" height="16" class="mw-file-element"></span></span>
+</td>
+<td valign="bottom"><b>你知道吗……</b>
+</td></tr></tbody></table>
+</div>
+<div style="font-size: 95%; padding-top:10px">
+<p>从 2017 年 11 月 16 日到 23 日，游戏内举办了一场真正的 VKontakte 与 Odnoklassniki 社交网络之间的激烈对抗赛。为了参与其中，玩家需要在车库里花 1000 水晶购买一款代表某个社交网络的迷彩，将其安装在自己的坦克上，然后驶入战场去消灭那些穿着敌对阵营迷彩的敌方坦克。代表 VKontakte 的迷彩被购买了 122 000 次，代表 Odnoklassniki 的则是 39 000 次。最终 VKontakte 派系以 52.54% 的得票率赢得了该活动的胜利。活动结束后，这些迷彩永久保留在了它们的主人手中。
+</p>
+</div>
+</div><p>炮塔是 3D 坦克中的坦克部件，它与<a href="./%D0%9A%D0%BE%D1%80%D0%BF%D1%83%D1%81%D0%B0" class="mw-redirect" title="Корпуса">底盘</a>、<a href="./%D0%93%D1%80%D0%B0%D0%BD%D0%B0%D1%82%D1%8B" class="mw-redirect" title="Гранаты">手榴弹</a>、<a href="./%D0%94%D1%80%D0%BE%D0%BD%D1%8B" class="mw-redirect" title="Дроны">无人机</a>、<a href="./%D0%9A%D1%80%D0%B0%D1%81%D0%BA%D0%B8" class="mw-redirect" title="Краски">迷彩</a>和<a href="./%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D0%B8" class="mw-redirect" title="Модули">模块</a>共同组成了一辆坦克。它们对游戏风格有着巨大的影响。炮塔按射程进行分类。
+</p><p>在战斗中，你可以使用 <span class="hotkey">Z</span> 和 <span class="hotkey">X</span> 键旋转炮塔，使用 <span class="hotkey">C</span> 键将其回正，<span class="hotkey">SPACE</span> 键用于射击。某些炮塔还拥有第二种射击模式，这需要按住 <span class="hotkey">SPACE</span> 键不放。
+</p><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">请记住，即使把底盘藏在掩体后面，当敌方击中坦克炮塔时依然会受到伤害。</div>
+</div><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"><div class="toctitle" lang="ru" dir="ltr"><h2 id="mw-toc-heading">目录</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Общая_информация"><span class="tocnumber">1</span> <span class="toctext">通用信息</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Базовая_механика_пушек"><span class="tocnumber">2</span> <span class="toctext">炮塔基础机制</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Улучшения_пушек"><span class="tocnumber">3</span> <span class="toctext">炮塔升级</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Ближний_бой"><span class="tocnumber">4</span> <span class="toctext">近战</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Огнемёт"><span class="tocnumber">4.1</span> <span class="toctext">火焰炮</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Фриз"><span class="tocnumber">4.2</span> <span class="toctext">冰风暴</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Изида"><span class="tocnumber">4.3</span> <span class="toctext">磁力炮</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Тесла"><span class="tocnumber">4.4</span> <span class="toctext">特斯拉</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Молот"><span class="tocnumber">4.5</span> <span class="toctext">滑膛炮</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="#Средняя_дальность"><span class="tocnumber">5</span> <span class="toctext">中距离</span></a>
+<ul>
+<li class="toclevel-2 tocsection-11"><a href="#Твинс"><span class="tocnumber">5.1</span> <span class="toctext">离子炮</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#Рикошет"><span class="tocnumber">5.2</span> <span class="toctext">火龙珠</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#Вулкан"><span class="tocnumber">5.3</span> <span class="toctext">极速炮</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Смоки"><span class="tocnumber">5.4</span> <span class="toctext">轰天炮</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#Страйкер"><span class="tocnumber">5.5</span> <span class="toctext">火箭炮</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#Гром"><span class="tocnumber">5.6</span> <span class="toctext">雷暴炮</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-17"><a href="#Большая_дальность"><span class="tocnumber">6</span> <span class="toctext">远距离</span></a>
+<ul>
+<li class="toclevel-2 tocsection-18"><a href="#Цунами"><span class="tocnumber">6.1</span> <span class="toctext">海啸</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="#Скорпион"><span class="tocnumber">6.2</span> <span class="toctext">蝎子</span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="#Магнум"><span class="tocnumber">6.3</span> <span class="toctext">马格南</span></a></li>
+<li class="toclevel-2 tocsection-21"><a href="#Рельса"><span class="tocnumber">6.4</span> <span class="toctext">激光炮</span></a></li>
+<li class="toclevel-2 tocsection-22"><a href="#Гаусс"><span class="tocnumber">6.5</span> <span class="toctext">电磁炮</span></a></li>
+<li class="toclevel-2 tocsection-23"><a href="#Шафт"><span class="tocnumber">6.6</span> <span class="toctext">镭射炮</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-24"><a href="#Особые"><span class="tocnumber">7</span> <span class="toctext">特殊</span></a>
+<ul>
+<li class="toclevel-2 tocsection-25"><a href="#Терминатор"><span class="tocnumber">7.1</span> <span class="toctext">终结者</span></a></li>
+<li class="toclevel-2 tocsection-26"><a href="#Кувалда"><span class="tocnumber">7.2</span> <span class="toctext">大锤</span></a></li>
+<li class="toclevel-2 tocsection-27"><a href="#Глебыч"><span class="tocnumber">7.3</span> <span class="toctext">雪人</span></a></li>
+<li class="toclevel-2 tocsection-28"><a href="#Томатыч"><span class="tocnumber">7.4</span> <span class="toctext">番茄炮</span></a></li>
+</ul>
+</li>
+</ul>
+</div><h2><span id=".D0.9E.D0.B1.D1.89.D0.B0.D1.8F_.D0.B8.D0.BD.D1.84.D0.BE.D1.80.D0.BC.D0.B0.D1.86.D0.B8.D1.8F"></span><span class="mw-headline" id="Общая_информация">通用信息</span></h2><p>炮塔可以从<a href="./%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%B9%D0%BD%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Контейнеры">幸运礼盒</a>中获取，也可以在<a href="./%D0%9C%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD" class="mw-redirect" title="Магазин">商店</a>的“<a href="./%D0%9C%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD" class="mw-redirect" title="Магазин">抢先体验</a>”专区获得。某些在活动期间或特定游戏模式中出现的特殊炮塔除外：它们只会自动安装在特定的战斗模式中，因此无法将其获取到你的车库中*
+</p><p><i>* — 某些特殊账号可能拥有独特的炮塔。</i>
+</p><div class="img__container" style="float:right;clear:right;width:240px;"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/5/50/Garage_Module.png/240px-Garage_Module.png" decoding="async" loading="lazy" width="240" height="78" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/5/50/Garage_Module.png 1.5x"></span></span><br>车库中的模块</div><p>在战斗中，你可以通过安装特定炮塔的防护来减少受到的伤害。为此，你可以在车库中装备<a href="./%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D0%B8" class="mw-redirect" title="Модули">模块</a>。每款炮塔都有一个对应的独立模块（特殊炮塔除外）。
+</p><p>通过安装其中一款可用的<a href="./%D0%A1%D0%BA%D0%B8%D0%BD%D1%8B" class="mw-redirect" title="Скины">皮肤</a>或<a href="./%D0%A6%D0%B2%D0%B5%D1%82%D0%B0_%D0%B2%D1%8B%D1%81%D1%82%D1%80%D0%B5%D0%BB%D0%BE%D0%B2" class="mw-redirect" title="Цвета выстрелов">射击颜色</a>，你可以稍微改变炮塔的外观及其射击特效。此外，你还可以安装能够影响炮塔某些性能的<a href="./%D0%A3%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0" class="mw-redirect" title="Устройства">装备改造</a>。
+</p><h2><span id=".D0.91.D0.B0.D0.B7.D0.BE.D0.B2.D0.B0.D1.8F_.D0.BC.D0.B5.D1.85.D0.B0.D0.BD.D0.B8.D0.BA.D0.B0_.D0.BF.D1.83.D1.88.D0.B5.D0.BA"></span><span class="mw-headline" id="Базовая_механика_пушек">炮塔基础机制</span></h2><p>每款炮塔都有其独特的玩法。某些参数存在于所有类型的武器中，而有些参数则仅对特定物品独有。主要机制如下：
+</p><ul><li><b>暴击伤害</b>：炮塔有几率造成<a href="./%D0%A3%D1%80%D0%BE%D0%BD" class="mw-redirect" title="Урон">伤害提升</a>，从而造成更高伤害。</li>
+<li><b>距离衰减</b>：某些类型的炮塔会根据与目标的距离造成伤害。在一定距离内会造成全额伤害，随后伤害会线性衰减至某个特定数值（例如，如果标明全额伤害距离为 50 米，弱效伤害距离为 100 米，弱效伤害百分比为 20%，这意味着在 50 米到 100 米的距离内，伤害将从 100% 线性降至 20%）。</li>
+<li><b>射程</b>：近战炮塔具有绝对射程，炮弹只能飞行到这个距离。</li>
+<li><b>弹丸速度</b>：游戏中的大多数炮塔都拥有速度受限的炮弹。这个速度可以是恒定的，也可以在飞行过程中增加或减少。在后几种情况下，炮塔除了弹丸速度外，还会获得另外两个附加参数：初始弹丸速度和弹丸加速时间。达到最终速度的速度正好决定了炮弹在飞行过程中的加速或减速。</li>
+<li><b>弹射</b>：如果撞击角度足够小，某些武器类型的炮弹可以从坚硬物体上弹射。离子炮是个例外，它的炮弹可以在任何角度弹射。弹射后，炮弹速度会重置为初始值。</li>
+<li><b>溅射伤害</b>：某些类型炮塔的炮弹会在地图表面或坦克上爆炸。这会对命中点周围小半径内的敌人造成伤害。</li></ul><h2><span id=".D0.A3.D0.BB.D1.83.D1.87.D1.88.D0.B5.D0.BD.D0.B8.D1.8F_.D0.BF.D1.83.D1.88.D0.B5.D0.BA"></span><span class="mw-headline" id="Улучшения_пушек">炮塔升级</span></h2><p>每款炮塔都有 7 个等级的改装。升级从第 1 级（Mk1）开始，这是最弱的改装。所有的炮塔都可以用水晶或少量的红宝石<a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="Улучшения">升级</a>到 Mk7。但你无法一次性买齐：为了解锁新的改装等级，当下一个改装可用时，你需要达到相应的<a href="./%D0%97%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="Звания">等级</a>。
+</p><p>你可以逐步<a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="Улучшения">升级</a>每个改装，直到下一个改装解锁。最高改装带有“MAX”字样。
+</p><p>炮塔在旧画质中（2012 年 9 月 6 日之前）是什么样的，以及在<a href="./%D0%A0%D0%B5%D0%B1%D0%B0%D0%BB%D0%B0%D0%BD%D1%81" class="mw-redirect" title="Ребаланс">平衡性调整</a>（2012 年 12 月 17 日）之前拥有什么属性，可以在<a href="./%D0%9F%D1%83%D1%88%D0%BA%D0%B8_%D0%B4%D0%BE_%D1%80%D0%B5%D0%B1%D0%B0%D0%BB%D0%B0%D0%BD%D1%81%D0%B0" class="mw-redirect" title="Пушки до ребаланса">平衡性调整前的炮塔</a>一文中查看。
+</p><h2><span id=".D0.91.D0.BB.D0.B8.D0.B6.D0.BD.D0.B8.D0.B9_.D0.B1.D0.BE.D0.B9"></span><span class="mw-headline" id="Ближний_бой">近战</span></h2><p>近战炮塔的射程非常有限。为了有效地使用这些炮塔，必须进行直接接触，并掌握在合适的时间出现在合适地点的能力。
+</p><h3><span id=".D0.9E.D0.B3.D0.BD.D0.BC.D0.91.D0.BE.D0.BD.D1.8ёт"></span><span class="mw-headline" id="Огнемёт"><a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%82" class="mw-redirect" title="Огнемёт">火焰炮</a></span></h3><div class="hull_wrapper">
+<div class="hull_info_wrapper">
+<div class="hull_image">
+<p><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%82" title="Огнемёт"><img src="https://ru.tankiwiki.com/images/ru/6/61/Turret_firebird_m3_2.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span>
+</p>
+</div>
+<div class="hull_info">
+<div class="hull_description">
+<p>在逼仄的城市街区里，当战斗场面看起来更像是一个蚁巢时，没有什么武器能比火焰炮更优秀了。这是在有限空间内的理想神器。它能以同样美妙的姿态烧毁笨重的重型坦克以及灵活的轻型坦克。理论上，冰风暴炮塔喷出的氟利昂射流可以扑灭敌人。但在实践中，只要稍有走神，坦克就已经像火柴一样烧毁了。
+</p>
+</div>
+<div class="hull_stats">
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Icon_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 80%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 25%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Icon_range.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 20%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">转向速度</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Icon_impact_force.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 0%"></div></div></div></li></ul>
+</div>
+<div class="hull_review">
+<div class="hull_review_title">玩家评价</div>
+<div class="reviews_cards">
+<div class="review_card positive"><div class="review_card_title"><div class="review_icon"></div><span>炮塔优点</span></div><div class="review_card_description">高伤害。炮塔转向快。敌方坦克在攻击结束后的一段时间内仍会受到持续伤害。油箱充能很快。</div></div>
+<div class="review_card negative"><div class="review_card_title"><div class="review_icon"></div><span>炮塔缺点</span></div><div class="review_card_description">攻击射程非常短。需要为小油箱重新充能。</div></div>
+</div>
+</div>
+</div>
+</div>
+</div><p><br>
+</p><h3><span id=".D0.A4.D1.80.D0.B8.D0.B7"></span><span class="mw-headline" id="Фриз"><a href="./%D0%A4%D1%80%D0%B8%D0%B7" class="mw-redirect" title="Фриз">冰风暴</a></span></h3><div class="hull_wrapper">
+<div class="hull_info_wrapper">
+<div class="hull_image">
+<p><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A4%D1%80%D0%B8%D0%B7" title="Фриз"><img src="https://ru.tankiwiki.com/images/ru/f/f2/Turret_freeze_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span>
+</p>
+</div>
+<div class="hull_info">
+<div class="hull_description">
+<p>冰风暴炮塔通过向敌人喷射基于氟利昂的化学成分，不仅能造成伤害还能将其冻结，减缓其所有动作。能够彻底冻结敌人并离开反击路线的能力，使你能够轻松对抗更强大的坦克。<br>最重要的是不要把油箱白白浪费在和队友打雪仗上。这当然很有趣，但战斗坦克总是有更重要的任务要做。
+</p>
+</div>
+<div class="hull_stats">
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Icon_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 82%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 83%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Icon_range.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 20%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">转向速度</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Icon_impact_force.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 0%"></div></div></div></li></ul>
+</div>
+<div class="hull_review">
+<div class="hull_review_title">玩家评价</div>
+<div class="reviews_cards">
+<div class="review_card positive"><div class="review_card_title"><div class="review_icon"></div><span>炮塔优点</span></div><div class="review_card_description">减速敌人。单箱能造成高伤害。油箱充能快。能够冷却受到“着火”效果影响的友方坦克。</div></div>
+<div class="review_card negative"><div class="review_card_title"><div class="review_icon"></div><span>炮塔缺点</span></div><div class="review_card_description">攻击射程非常短。需要为油箱充能。</div></div>
+</div>
+</div>
+</div>
+</div>
+</div><p><br>
+</p><h3><span id=".D0.98.D0.B7.D0.B8.D0.B4.D0.B0"></span><span class="mw-headline" id="Изида"><a href="./%D0%98%D0%B7%D0%B8%D0%B4%D0%B0" class="mw-redirect" title="Изида">磁力炮</a></span></h3><div class="hull_wrapper">
+<div class="hull_info_wrapper">
+<div class="hull_image">
+<p><span class="mw-default-size" typeof="mw:File"><a href="./%D0%98%D0%B7%D0%B8%D0%B4%D0%B0" title="Изида"><img src="https://ru.tankiwiki.com/images/ru/5/5f/Turret_isida_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span>
+</p>
+</div>
+<div class="hull_info">
+<div class="hull_description">
+<p>磁力炮使用磁场光束在几十米的距离内传输纳米机器人。纳米机器人能够精准识别目标，要么迅速将敌方装甲分解为分子，要么对其进行逐步修复。因此，这种武器既能对敌人造成伤害，又能修复队友，这在团队游戏中尤为重要。<br>量子物理学和纳米技术的发展为这个简单的工业焊接设备赋予了惊人的潜力。要是它能用来修理自己的坦克就好了。
+</p>
+</div>
+<div class="hull_stats">
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Icon_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 42%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 8%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Icon_range.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 20%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">转向速度</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Icon_impact_force.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 0%"></div></div></div></li></ul>
+</div>
+<div class="hull_review">
+<div class="hull_review_title">玩家评价</div>
+<div class="reviews_cards">
+<div class="review_card positive"><div class="review_card_title"><div class="review_icon"></div><span>炮塔优点</span></div><div class="review_card_description">高伤害。治疗队友可获得大量经验值。</div></div>
+<div class="review_card negative"><div class="review_card_title"><div class="review_icon"></div><span>炮塔缺点</span></div><div class="review_card_description">攻击射程小。油箱需要重新充能。攻击扇面小。在远距离面对中远程炮塔时处于劣势。</div></div>
+</div>
+</div>
+</div>
+</div>
+</div><p><br>
+</p><h3><span id=".D0.A2.D0.B5.D1.81.D0.BB.D0.B0"></span><span class="mw-headline" id="Тесла"><a href="./%D0%A2%D0%B5%D1%81%D0%BB%D0%B0" class="mw-redirect" title="特斯拉">特斯拉</a></span></h3><div class="hull_wrapper">
+<div class="hull_info_wrapper">
+<div class="hull_image">
+<p><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A2%D0%B5%D1%81%D0%BB%D0%B0" title="Тесла"><img src="https://ru.tankiwiki.com/images/ru/8/80/Turret_tesla.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span>
+</p>
+</div>
+<div class="hull_info">
+<div class="hull_description">
+<p>特斯拉炮塔可以利用任何坦克作为其链式闪电的导体。包括可以作为掩体藏在其身后的友方坦克，并且依然能用电流攻击到敌人。链式闪电同时击中的目标越少，对每个单独目标造成的伤害就越高。<br>测试台上的一次偶然短路产生了一个极其罕见的现象――球状闪电。在无视所有安全规定的情况下，第二次电流放电被引导向了球状闪电。闪电击中了球体，并顺着链条击中了最近的机库，将整整一打崭新的坦克烧成灰烬。
+</p>
+</div>
+<div class="hull_stats">
+<ul><li class="mw-empty-elt"></li></ul>
+<p><big><b>链式闪电</b></big>
+</p>
+ <div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Icon_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 91%"></div></div></div>
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 82%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Icon_range.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 20%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">转向速度</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Icon_impact_force.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 0%"></div></div></div></li></ul>
+<p><br>
+<big><b>球状闪电</b></big>
+</p>
+<div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Icon_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 20%"></div></div></div>
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 0%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Icon_range.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 60%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">转向速度</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Icon_impact_force.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 37%"></div></div></div></li></ul>
+</div>
+<div class="hull_review">
+<div class="hull_review_title">玩家评价</div>
+<div class="reviews_cards">
+<div class="review_card positive"><div class="review_card_title"><div class="review_icon"></div><span>炮塔优点</span></div><div class="review_card_description">球状闪电伤害高。能够对无限数量的敌人造成伤害。可以通过友方和敌方坦克形成闭合回路。</div></div>
+<div class="review_card negative"><div class="review_card_title"><div class="review_icon"></div><span>炮塔缺点</span></div><div class="review_card_description">随着受击目标数量增加，伤害会降低。</div></div>
+</div>
+</div>
+</div>
+</div>
+</div><h3><span id=".D0.9C.D0.BE.D0.BB.D0.BE.D1.82"></span><span class="mw-headline" id="Молот"><a href="./%D0%9C%D0%BE%D0%BB%D0%BE%D1%82" class="mw-redirect" title="Молот">滑膛炮</a></span></h3><div class="hull_wrapper">
+<div class="hull_info_wrapper">
+<div class="hull_image">
+<p><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9C%D0%BE%D0%BB%D0%BE%D1%82" title="Молот"><img src="https://ru.tankiwiki.com/images/ru/b/b8/Turret_hammer_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span>
+</p>
+</div>
+<div class="hull_info">
+<div class="hull_description">
+<p>滑膛炮使用装有钨合金箭形弹的霰弹。这些弹丸可以从墙壁反弹并打击多个敌人。在远距离射击时，这些箭形弹的密集度不高，因此你需要靠近敌人。此外，该炮塔还配有一个带有三连发弹匣的供弹鼓。只有在打完全部弹匣后才能重新装填。<br>由于质量较低，每枚钨合金箭形弹最多只能弹射一次。通常，这就足以击中转角处的敌人，或者从侧面给予反弹来打断他们的准星。或者通过反弹砸中自己，这就得看运气了。
+</p>
+</div>
+<div class="hull_stats">
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Icon_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 38%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 70%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Icon_range.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 20%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">转向速度</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Icon_impact_force.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 44%"></div></div></div></li></ul>
+</div>
+<div class="hull_review">
+<div class="hull_review_title">玩家评价</div>
+<div class="reviews_cards">
+<div class="review_card positive"><div class="review_card_title"><div class="review_icon"></div><span>炮塔优点</span></div><div class="review_card_description">可观的伤害。极强的弹丸阻止效果。能够同时对多个敌人造成伤害。三连发弹匣。能够攻击视线之外的敌人。</div></div>
+<div class="review_card negative"><div class="review_card_title"><div class="review_icon"></div><span>炮塔缺点</span></div><div class="review_card_description">最高伤害的射程有限。弹匣重新装填缓慢。在打完所有弹丸之前无法重新装填。不小心利用霰弹反弹时会造成自我伤害。</div></div>
+</div>
+</div>
+</div>
+</div>
+</div><h2><span id=".D0.A1.D1.80.D0.B5.D0.B4.D0.BD.D1.8F.D1.8F_.D0.B4.D0.B0.D0.BB.D1.8C.D0.BD.D0.BE.D1.81.D1.82.D1.8C"></span><span class="mw-headline" id="Средняя_дальность">中距离</span></h2><p>中距离炮塔可能没有射程限制，但随着距离的增加，打击效果会下降。为了有效地使用这些炮塔，必须将敌人保持在有效射程的边缘，防止其进入近战或陷入低伤害区域。
+</p><h3><span id=".D0.A2.D0.B2.D0.B8.D0.BD.D1.81"></span><span class="mw-headline" id="Твинс"><a href="./%D0%A2%D0%B2%D0%B8%D0%BD%D1%81" class="mw-redirect" title="Твинс">离子炮</a></span></h3><div class="hull_wrapper">
+<div class="hull_info_wrapper">
+<div class="hull_image">
+<p><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A2%D0%B2%D0%B8%D0%BD%D1%81" title="Твинс"><img src="https://ru.tankiwiki.com/images/ru/d/d3/Turret_twins_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span>
+</p>
+</div>
+<div class="hull_info">
+<div class="hull_description">
+<p>这款射速极快双联装等离子炮是中近距离动态战斗的理想选择。等离子体的爆炸瞬间就会把敌人化为一堆融化的铁水。必须遵守安全规程并避免近战，否则可能会不小心烧毁自己的坦克。<br>等离子加速器冷却和电容器再充能系统的设计非常可靠，以至于一些坦克手用任何随手可得的杂物（比如砖头）顶住扳机，并且永远不停止射击。正因如此，恶毒的流言经常将这种烦人的射击声音称为额外的打击因素，不仅惹恼敌人，也惹恼队友。
+</p>
+</div>
+<div class="hull_stats">
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Icon_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 92%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 88%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Icon_range.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 60%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">转向速度</div><div class="statbar"><div class="statbar_inner" style="width: 67%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Icon_impact_force.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 17%"></div></div></div></li></ul>
+</div>
+<div class="hull_review">
+<div class="hull_review_title">玩家评价</div>
+<div class="reviews_cards">
+<div class="review_card positive"><div class="review_card_title"><div class="review_icon"></div><span>炮塔优点</span></div><div class="review_card_description">可观的伤害。炮塔转向快。弹丸具有强烈的击退效果。溅射伤害。</div></div>
+<div class="review_card negative"><div class="review_card_title"><div class="review_icon"></div><span>炮塔缺点</span></div><div class="review_card_description">攻击时的最大伤害射程有限。攻击敌人时无法利用掩体。存在自我伤害。</div></div>
+</div>
+</div>
+</div>
+</div>
+</div><p><br>
+</p><h3><span id=".D0.A0.D0.B8.D0.BA.D0.BE.D1.88.D0.B5.D1.82"></span><span class="mw-headline" id="Рикошет"><a href="./%D0%A0%D0%B8%D0%BA%D0%BE%D1%88%D0%B5%D1%82" class="mw-redirect" title="Рикошет">火龙珠</a></span></h3><div class="hull_wrapper">
+<div class="hull_info_wrapper">
+<div class="hull_image">
+<p><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A0%D0%B8%D0%BA%D0%BE%D1%88%D0%B5%D1%82" title="Рикошет"><img src="https://ru.tankiwiki.com/images/ru/b/bc/Turret_ricochet_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span>
+</p>
+</div>
+<div class="hull_info">
+<div class="hull_description">
+<p>火龙珠等离子炮发射包裹在“智能”负能量场中的等离子弹丸。击中坦克时弹丸会爆炸，但从其他表面则会弹开并继续飞行。因此，你可以用火龙珠击中掩体后面的目标，甚至无需看见它。<br>为了将这款炮塔列装，由 22 名专家组成的团队在地下掩体里连续工作了三年，且不得出入地面。不幸的是，他们未能解决使用安全问题。等离子弹丸在弹射后完全可能会飞回原处。这个“智能”负能量场还不够聪明，无法分自己的坦克和敌人的坦克。
+</p>
+</div>
+<div class="hull_stats">
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Icon_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 61%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 43%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Icon_range.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 60%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">转向速度</div><div class="statbar"><div class="statbar_inner" style="width: 67%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Icon_impact_force.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 18%"></div></div></div></li></ul>
+</div>
+<div class="hull_review">
+<div class="hull_review_title">玩家评价</div>
+<div class="reviews_cards">
+<div class="review_card positive"><div class="review_card_title"><div class="review_icon"></div><span>炮塔优点</span></div><div class="review_card_description">可观的伤害。弹丸具有强烈的击退效果。能够对视线之外的敌人造成伤害。炮塔转向快。</div></div>
+<div class="review_card negative"><div class="review_card_title"><div class="review_icon"></div><span>炮塔缺点</span></div><div class="review_card_description">最大伤害射程有限。油箱需要重新充能。自我伤害。让弹丸朝所需方向弹射需要一定的技巧。</div></div>
+</div>
+</div>
+</div>
+</div>
+</div><h3><span id=".D0.92.D1.83.D0.BB.D0.BA.D0.B0.D0.BD"></span><span class="mw-headline" id="Вулкан"><a href="./%D0%92%D1%83%D0%BB%D0%BA%D0%B0%D0%BD" class="mw-redirect" title="Вулкан">极速炮</a></span></h3><div class="hull_wrapper">
+<div class="hull_info_wrapper">
+<div class="hull_image">
+<p><span class="mw-default-size" typeof="mw:File"><a href="./%D0%92%D1%83%D0%BB%D0%BA%D0%B0%D0%BD" title="Вулкан"><img src="https://ru.tankiwiki.com/images/ru/6/64/Turret_minigun_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span>
+</p>
+</div>
+<div class="hull_info">
+<div class="hull_description">
+<p>这是一种自动多管速射炮，能够用穿甲弹连发将敌人撕成碎片。需要一定的时间来预热枪管旋转。射击时转向笨拙。如果长时间连续射击，会过热并点燃自己的坦克。<br>坦克炮固然很酷，但有时你只想把敌人打成筛子，而不去考虑诸如重新装填之类的复杂事情。这就是你所有问题的解决方案。六管联动，惊人的射速以及穿甲弹。无尽的穿甲弹。
+</p>
+</div>
+<div class="hull_stats">
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Icon_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 29%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Icon_range.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 60%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">转向速度</div><div class="statbar"><div class="statbar_inner" style="width: 67%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Icon_impact_force.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 2%"></div></div></div></li></ul>
+</div>
+<div class="hull_review">
+<div class="hull_review_title">玩家评价</div>
+<div class="reviews_cards">
+<div class="review_card positive"><div class="review_card_title"><div class="review_icon"></div><span>炮塔优点</span></div><div class="review_card_description">高精度和大伤害。无需重新装填即可射击。具有相当明显的物理冲击效果。配备有陀螺仪。</div></div>
+<div class="review_card negative"><div class="review_card_title"><div class="review_icon"></div><span>炮塔缺点</span></div><div class="review_card_description">在远距离时伤害会降低。长时间射击会导致过热，从而引发自我伤害。射击时炮塔转向减速。</div></div>
+</div>
+</div>
+</div>
+</div>
+</div><p><br>
+</p><h3><span id=".D0.A1.D0.BC.D0.BE.D0.BA.D0.B8"></span><span class="mw-headline" id="Смоки"><a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" class="mw-redirect" title="Смоки">轰天炮</a></span></h3><div class="hull_wrapper">
+<div class="hull_info_wrapper">
+<div class="hull_image">
+<p><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" title="Смоки"><img src="https://ru.tankiwiki.com/images/ru/6/61/Turret_smoky_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span>
+</p>
+</div>
+<div class="hull_info">
+<div class="hull_description">
+<p>标准坦克炮，没有多余的花哨和复杂设计。配备高速自动装填机。为了达到最大效率，需要熟练地将敌人保持在准星中并且做到枪枪命中。<br>这款传奇坦克炮因其廉价和易于维护而广受欢迎。将其安装在快速的底盘上，在惊慌失措的敌人之间穿梭，用消耗战术击垮笨重的重型坦克。
+</p>
+</div>
+<div class="hull_stats">
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Icon_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 71%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 52%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Icon_range.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 60%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">转向速度</div><div class="statbar"><div class="statbar_inner" style="width: 67%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Icon_impact_force.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 37%"></div></div></div></li></ul>
+</div>
+<div class="hull_review">
+<div class="hull_review_title">玩家评价</div>
+<div class="reviews_cards">
+<div class="review_card positive"><div class="review_card_title"><div class="review_icon"></div><span>炮塔优点</span></div><div class="review_card_description">高精度和高射速。能够打断其他炮塔的准星。强力的暴击伤害将帮助你对付任何敌人。</div></div>
+<div class="review_card negative"><div class="review_card_title"><div class="review_icon"></div><span>炮塔缺点</span></div><div class="review_card_description">在远距离时伤害会降低。为了提高效率，每一击都必须命中目标。无法控制暴击发生的概率。</div></div>
+</div>
+</div>
+</div>
+</div>
+</div><p><br>
+</p><h3><span id=".D0.A1.D1.82.D1.80.D0.B0.D0.B9.D0.BA.D0.B5.D1.80"></span><span class="mw-headline" id="Страйкер"><a href="./%D0%A1%D1%81%D1%82%D1%80%D0%B0%D0%B9%D0%BA%D0%B5%D1%80" class="mw-redirect" title="Страйкер">火箭炮</a></span></h3><div class="hull_wrapper">
+<div class="hull_info_wrapper">
+<div class="hull_image">
+<p><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A1%D1%82%D1%80%D0%B0%D0%B9%D0%BA%D0%B5%D1%80" title="Страйкер"><img src="https://ru.tankiwiki.com/images/ru/4/4e/Turret_striker_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span>
+</p>
+</div>
+<div class="hull_info">
+<div class="hull_description">
+<p>反坦克导弹发射器“火箭炮”需要相当长的时间来锁定目标。另一方面，目标没有任何机会躲避发射出的追踪导弹。为了应对动态战斗，它提供了直接瞄准发射导弹的功能。这有点浪费，但在近战中它提供了决定性的射速优势。<br>自古以来，坦克最大的威胁就是反坦克导弹。这个小家伙能够以极远的距离将爆炸物安全地送到目标手中。“火箭炮”反坦克系统延续了将浓缩地狱快递送达敌人装甲的多年传统。
+</p>
+</div>
+<div class="hull_stats">
+<ul><li class="mw-empty-elt"></li></ul>
+<p><big><b>单发模式</b></big>
+</p>
+ <div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Icon_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 57%"></div></div></div>
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 89%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Icon_range.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 60%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">转向速度</div><div class="statbar"><div class="statbar_inner" style="width: 67%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Icon_impact_force.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 33%"></div></div></div></li></ul>
+<p><br>
+<big><b>齐射模式</b></big>
+</p>
+<div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Icon_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 83%"></div></div></div>
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 89%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Icon_range.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">转向速度</div><div class="statbar"><div class="statbar_inner" style="width: 67%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Icon_impact_force.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 33%"></div></div></div></li></ul>
+</div>
+<div class="hull_review">
+<div class="hull_review_title">玩家评价</div>
+<div class="reviews_cards">
+<div class="review_card positive"><div class="review_card_title"><div class="review_icon"></div><span>炮塔优点</span></div><div class="review_card_description">能够用冲击波对多个敌人或视线之外的敌人造成伤害。带有追踪导弹的齐射模式。</div></div>
+<div class="review_card negative"><div class="review_card_title"><div class="review_icon"></div><span>炮塔缺点</span></div><div class="review_card_description">冲击波造成的自我伤害。齐射前需要长时间锁定目标。容易暴露位置的激光指示器。</div></div>
+</div>
+</div>
+</div>
+</div>
+</div><p><br>
+</p><h3><span id=".D0.93.D1.80.D0.BE.D0.BC"></span><span class="mw-headline" id="Гром"><a href="./%D0%93%D1%80%D0%BE%D0%BC" class="mw-redirect" title="Гром">雷暴炮</a></span></h3><div class="hull_wrapper">
+<div class="hull_info_wrapper">
+<div class="hull_image">
+<p><span class="mw-default-size" typeof="mw:File"><a href="./%D0%93%D1%80%D0%BE%D0%BC" title="Гром"><img src="https://ru.tankiwiki.com/images/ru/3/3c/Turret_thunder_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span>
+</p>
+</div>
+<div class="hull_info">
+<div class="hull_description">
+<p>雷暴炮的弹药完全由新一代通用穿甲高爆弹组成。这些炮弹允许攻击一组对手，炮塔相对较快的重新装填将有助于在面对敌人重型坦克时获得无可争辩的优势。但必须小心——在近战中很容易损坏自己的坦克。<br>这款中口径炮塔是在吸取了传奇“轰天炮”丰富使用经验的基础上开发出来的。结合快速的底盘，雷暴炮在熟练的坦克手手中会变成一件令人胆寒的武器。使用雷暴炮的笨拙坦克手是不存在的。通常，他们会迅速炸毁自己的坦克，然后就不再被认为是坦克手了。
+</p>
+</div>
+<div class="hull_stats">
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Icon_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 46%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Icon_range.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 60%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">转向速度</div><div class="statbar"><div class="statbar_inner" style="width: 67%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Icon_impact_force.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 67%"></div></div></div></li></ul>
+</div>
+<div class="hull_review">
+<div class="hull_review_title">玩家评价</div>
+<div class="reviews_cards">
+<div class="review_card positive"><div class="review_card_title"><div class="review_icon"></div><span>炮塔优点</span></div><div class="review_card_description">能够用冲击波对多个敌人或视线之外的敌人造成伤害。可以在战斗中利用任何掩体，通过溅射造成伤害。</div></div>
+<div class="review_card negative"><div class="review_card_title"><div class="review_icon"></div><span>炮塔缺点</span></div><div class="review_card_description">在远距离时伤害降低。冲击波造成的自我伤害。</div></div>
+</div>
+</div>
+</div>
+</div>
+</div><p><br>
+</p><h2><span id=".D0.91.D0.BE.D0.BB.D1.8C.D1.88.D0.B0.D1.8F_.D0.B4.D0.B0.D0.BB.D1.8C.D0.BD.D0.BE.D1.81.D1.82.D1.8C"></span><span class="mw-headline" id="Большая_дальность">远距离</span></h2><p>远距离炮塔没有射程限制，且打击威力不会随着距离的增加而下降。为了有效地使用这些炮塔，只需避免近战即可。
+</p><h3><span id=".D0.A6.D1.83.D0.BD.D0.B0.D0.BC.D0.B8"></span><span class="mw-headline" id="Цунами"><a href="./%D0%A6%D1%83%D0%BD%D0%B0%D0%BC%D0%B8" class="mw-redirect" title="Цунами">海啸</a></span></h3><div class="hull_wrapper">
+<div class="hull_info_wrapper">
+<div class="hull_image">
+<p><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A6%D1%83%D0%BD%D0%B0%D0%BC%D0%B8" title="Цунами"><img src="https://ru.tankiwiki.com/images/ru/7/74/Turret_Tsunami_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span>
+</p>
+</div>
+<div class="hull_info">
+<div class="hull_description">
+<p>双管远距离炮塔。第一根枪管听从指令开火。第二根枪管在第一根枪管开火一段时间后自动开火。<br>一个炮塔内包含两门中口径炮。通常，中口径炮在远距离上不如大口径武器。为了提高有效射程，海啸炮塔的射击配备了增加的火药装药，并且枪管经过强化淬火，能够承受更高的火药燃气压力。射击之间的暂停降低了炮塔机构的负荷，并允许修正瞄准，从而提高了射击精度。结果，海啸炮塔变得比其他远程炮塔更危险，通过更高的火力密度摧毁坦克的装甲。当然，前提是不发生脱靶。<br>双管齐发轰隆隆，<br>双波宛如海啸涌，<br>敌军消灭无影踪。
+</p>
+</div>
+<div class="hull_stats">
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Icon_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 51%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Icon_range.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">转向速度</div><div class="statbar"><div class="statbar_inner" style="width: 50%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Icon_impact_force.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 56%"></div></div></div></li></ul>
+</div>
+<div class="hull_review">
+<div class="hull_review_title">玩家评价</div>
+<div class="reviews_cards">
+<div class="review_card positive"><div class="review_card_title"><div class="review_icon"></div><span>炮塔优点</span></div><div class="review_card_description">每次射击都有很高的伤害。第二枚炮弹带来额外伤害。</div></div>
+<div class="review_card negative"><div class="review_card_title"><div class="review_icon"></div><span>炮塔缺点</span></div><div class="review_card_description">无法取消连发中的第二发。射击之间暂停时间较长。自我伤害。</div></div>
+</div>
+</div>
+</div>
+</div>
+</div><h3><span id=".D0.A1.D0.BA.D0.BE.D1.80.D0.BF.D0.B8.D0.BE.D0.BD"></span><span class="mw-headline" id="Скорпион"><a href="./%D0%A1%D0%BA%D0%BE%D1%80%D0%BF%D0%B8%D0%BE%D0%BD" class="mw-redirect" title="Скорпион">蝎子</a></span></h3><div class="hull_wrapper">
+<div class="hull_info_wrapper">
+<div class="hull_image">
+<p><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A1%D0%BA%D0%BE%D1%80%D0%BF%D0%B8%D0%BE%D0%BD" title="Скорпион"><img src="https://ru.tankiwiki.com/images/ru/a/aa/Turret_scorpion.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span>
+</p>
+</div>
+<div class="hull_info">
+<div class="hull_description">
+<p>蝎子炮塔拥有两个独立重新装填的射击模式。在标准模式下，使用远程主炮用高速弹丸攻击目标。按住射击按钮时，蝎子会引导导弹齐射，即使目标试图躲在障碍物后面。导弹从上方攻击目标，迫使其离开掩体。<br>现在蝎子炮塔被冠以反坦克火炮系统的高大上称呼。而原型甚至连枪管都不是真的——为了伪装，取而代之的是一根生锈的管子。经过测试，爆竹变成了大炮，然后大炮变成了一根巨大的棒子。口径不断增长，直到敌人不再装作聪明，而是开始装死。
+</p>
+</div>
+<div class="hull_stats">
+<ul><li class="mw-empty-elt"></li></ul>
+<p><big><b>单发模式</b></big>
+</p>
+ <div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Icon_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 45%"></div></div></div>
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 72%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Icon_range.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">转向速度</div><div class="statbar"><div class="statbar_inner" style="width: 50%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Icon_impact_force.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 78%"></div></div></div></li></ul>
+<p><br>
+<big><b>齐射模式</b></big>
+</p>
+<div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Icon_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 40%"></div></div></div>
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 0%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Icon_range.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">转向速度</div><div class="statbar"><div class="statbar_inner" style="width: 50%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Icon_impact_force.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 17%"></div></div></div></li></ul>
+</div>
+<div class="hull_review">
+<div class="hull_review_title">玩家评价</div>
+<div class="reviews_cards">
+<div class="review_card positive"><div class="review_card_title"><div class="review_icon"></div><span>炮塔优点</span></div><div class="review_card_description">每次射击都有很高的伤害。打断敌人的准星。无限射程。带有追踪导弹的齐射模式。</div></div>
+<div class="review_card negative"><div class="review_card_title"><div class="review_icon"><span></span><span>炮塔缺点</span></div><div class="review_card_description">射击之间暂停时间较长。强大的后坐力可能会掀翻轻型底盘。炮塔转向缓慢。</div></div>
+</div>
+</div>
+</div>
+</div>
+</div></div><p><br>
+</p><h3><span id=".D0.9C.D0.B0.D0.B3.D0.BD.D1.83.D0.BC"></span><span class="mw-headline" id="Магнум"><a href="./%D0%9C%D0%B0%D0%B3%D0%BD%D1%83%D0%BC" class="mw-redirect" title="Магнум">马格南</a></span></h3><div class="hull_wrapper">
+<div class="hull_info_wrapper">
+<div class="hull_image">
+<p><span class="mw-default-size" typeof="mw:File"><a href="./%D0%9C%D0%B0%D0%B3%D0%BD%D1%83%D0%BC" title="Магнум"><img src="https://ru.tankiwiki.com/images/ru/a/ac/Turret_magnum_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span>
+</p>
+</div>
+<div class="hull_info">
+<div class="hull_description">
+<p>马格南炮塔沿明显的弹道轨迹发射炮弹。在默认设置中，枪管角度是固定的，但某些装备改造允许将炮塔旋转替换为控制炮塔仰角。按住射击按钮时，瞄准系统会绘制出预期的轨迹和炮弹落点。每枚炮弹都有巨大的杀伤半径。<br>这是坦克制造艺术真正的 magnum opus（巅峰之作）。能够容纳在坦克底盘上的最大口径。能找到的最强大的高爆弹。带有最大枪口制退器的最长枪管。熟练掌握后，你可以在任何掩体后面以及任何距离上打击敌人。
+</p>
+</div>
+<div class="hull_stats">
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Icon_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 38%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 84%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Icon_range.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">转向速度</div><div class="statbar"><div class="statbar_inner" style="width: 50%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Icon_impact_force.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 78%"></div></div></div></li></ul>
+</div>
+<div class="hull_review">
+<div class="hull_review_title">玩家评价</div>
+<div class="reviews_cards">
+<div class="review_card positive"><div class="review_card_title"><div class="review_icon"></div><span>炮塔优点</span></div><div class="review_card_description">炮弹造成巨额伤害。藏在掩体后面也能造成伤害。炮弹爆炸可以同时击中多辆坦克。能够将炮弹“抛”过障碍物并投向高处。</div></div>
+<div class="review_card negative"><div class="review_card_title"><div class="review_icon"></div><span>炮塔缺点</span></div><div class="review_card_description">很难击中移动中的敌人。射击之间暂停时间长。自我伤害。</div></div>
+</div>
+</div>
+</div>
+</div>
+</div><p><br>
+</p><h3><span id=".D0.A0.D0.B5.D0.BB.D1.8C.D1.81.D0.B0"></span><span class="mw-headline" id="Рельса"><a href="./%D0%A0%D0%B5%D0%BB%D1%8C%D1%81%D0%B0" class="mw-redirect" title="Рельса">激光炮</a></span></h3><div class="hull_wrapper">
+<div class="hull_info_wrapper">
+<div class="hull_image">
+<p><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A0%D0%B5%D0%BB%D1%8C%D1%81%D0%B0" title="Рельса"><img src="https://ru.tankiwiki.com/images/ru/c/c9/Turret_railgun_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span>
+</p>
+</div>
+<div class="hull_info">
+<div class="hull_description">
+<p>大口径炮塔，拥有极高的枪口初速。超强力且超精准的动能弹能够贯穿一辆坦克，击中处于同一直线上的多个目标。需要记住的是，激光炮重新装填相当慢，并且在每次射击前需要显著的预热。<br>如果中口径炮塔已经无法满足你自我表达的渴望，那么这个玩具绝对是为你量身定做的。不仅需要良好的精准射击技巧，还需要出色的坦克定位能力。充能后的枪管比圣诞树还要耀眼，向经验丰富的敌人暴露了你的意图。
+</p>
+</div>
+<div class="hull_stats">
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Icon_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 59%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 84%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Icon_range.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">转向速度</div><div class="statbar"><div class="statbar_inner" style="width: 50%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Icon_impact_force.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li></ul>
+</div>
+<div class="hull_review">
+<div class="hull_review_title">玩家评价</div>
+<div class="reviews_cards">
+<div class="review_card positive"><div class="review_card_title"><div class="review_icon"></div><span>炮塔优点</span></div><div class="review_card_description">每次射击都有很高的伤害。能够透过其他坦克对敌人造成伤害。打断敌人的准星。无限射程。是高空建筑征服者手中的得力工具。</div></div>
+<div class="review_card negative"><div class="review_card_title"><div class="review_icon"></div><span>炮塔缺点</span></div><div class="review_card_description">射击之间暂停时间长。强大的后坐力可能会掀翻轻型底盘。射击前有延迟。炮塔转向缓慢。</div></div>
+</div>
+</div>
+</div>
+</div>
+</div><p><br>
+</p><h3><span id=".D0.93.D0.B0.D1.83.D1.81.D1.81"></span><span class="mw-headline" id="Гаусс"><a href="./%D0%93%D0%B0%D1%83%D1%81%D1%81" class="mw-redirect" title="Гаусс">电磁炮</a></span></h3><div class="hull_wrapper">
+<div class="hull_info_wrapper">
+<div class="hull_image">
+<p><span class="mw-default-size" typeof="mw:File"><a href="./%D0%93%D0%B0%D1%83%D1%81%D1%81" title="Гаусс"><img src="https://ru.tankiwiki.com/images/ru/4/4f/Turret_gauss_m3.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span>
+</p>
+</div>
+<div class="hull_info">
+<div class="hull_description">
+<p>战场上最具机动性的狙击手。配备爆炸性射击，可以同时击中多辆坦克。将敌人保持在准星中一段时间，即可启用炮塔枪管内置的电磁加速器。以这种方式加速的炮弹会造成更高的伤害，在任何距离上打击一组目标。<br>电磁炮诞生于坦克手的车库中，他们试图用手头的工具提高雷暴炮在对抗狙击手时的效率。该炮塔的显著特征是在准备电磁加速器射击时升起的天线。由于其独特的外观，该炮塔被称为“大耳狙击手”。
+</p>
+</div>
+<div class="hull_stats">
+<ul><li class="mw-empty-elt"></li></ul>
+<p><big><b>单发模式</b></big>
+</p>
+ <div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Icon_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 54%"></div></div></div>
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 73%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Icon_range.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">转向速度</div><div class="statbar"><div class="statbar_inner" style="width: 50%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Icon_impact_force.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 37%"></div></div></div></li></ul>
+<p><br>
+<big><b>齐射模式</b></big>
+</p>
+<div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Icon_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 29%"></div></div></div>
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 0%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Icon_range.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">转向速度</div><div class="statbar"><div class="statbar_inner" style="width: 50%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Icon_impact_force.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 78%"></div></div></div></li></ul>
+</div>
+<div class="hull_review">
+<div class="hull_review_title">玩家评价</div>
+<div class="reviews_cards">
+<div class="review_card positive"><div class="review_card_title"><div class="review_icon"></div><span>炮塔优点</span></div><div class="review_card_description">两种射击模式可在不同环境下舒适游戏。锁定目标射击时对敌人有巨大的物理冲击。锁定目标不伴随激光束。</div></div>
+<div class="review_card negative"><div class="review_card_title"><div class="review_icon"></div><span>炮塔缺点</span></div><div class="review_card_description">单发伤害在远距离时会降低。瞄准射击后重新装填缓慢。冲击波带来的自我伤害。</div></div>
+</div>
+</div>
+</div>
+</div>
+</div><p><br>
+</p><h3><span id=".D0.A8.D0.B0.D1.84.D1.82"></span><span class="mw-headline" id="Шафт"><a href="./%D0%A8%D0%B0%D1%84%D1%82" class="mw-redirect" title="Шафт">镭射炮</a></span></h3><div class="hull_wrapper">
+<div class="hull_info_wrapper">
+<div class="hull_image">
+<p><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A8%D0%B0%D1%84%D1%82" title="Шафт"><img src="https://ru.tankiwiki.com/images/ru/7/7b/Turret_shaft_m3_2.png" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></a></span>
+</p>
+</div>
+<div class="hull_info">
+<div class="hull_description">
+<p>带有独特射击模式的激光炮。将坦克停在原地，就可以将反应器的所有能量用于积蓄激光射击的威力。此模式下的伤害取决于充能积累的时间，但坦克必须保持完全静止。准星聚焦使用辅助瞄准激光，该激光很容易被任何现代坦克的观测系统侦测到。<br>对于狙击射击爱好者来说是不错的选择。该炮塔是一个拥有大量功能的现代多功能武器系统。它可以煮咖啡、订披萨、支付账单，但最大的特色是狙击准星。老练的坦克手不建议在狙击模式下待太久，否则从后面悄悄靠近的敌人会把你吓得够呛。
+</p>
+</div>
+<div class="hull_stats">
+<ul><li class="mw-empty-elt"></li></ul>
+<p><big><b>单发模式</b></big>
+</p>
+ <div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Icon_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 47%"></div></div></div>
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 65%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Icon_range.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">转向速度</div><div class="statbar"><div class="statbar_inner" style="width: 50%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Icon_impact_force.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 22%"></div></div></div></li></ul>
+<p><br>
+<big><b>瞄准模式</b></big>
+</p>
+<div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Icon_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 26%"></div></div></div>
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 0%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Icon_range.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">转向速度</div><div class="statbar"><div class="statbar_inner" style="width: 50%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Icon_impact_force.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 72%"></div></div></div></li></ul>
+</div>
+<div class="hull_review">
+<div class="hull_review_title">玩家评价</div>
+<div class="reviews_cards">
+<div class="review_card positive"><div class="review_card_title"><div class="review_icon"></div><span>炮塔优点</span></div><div class="review_card_description">单发最高伤害。随时发射精确充能份额的能力。远距离伤害不会降低。</div></div>
+<div class="review_card negative"><div class="review_card_title"><div class="review_icon"></div><span>炮塔缺点</span></div><div class="review_card_description">在瞄准模式下完全静止不动、视野较差且激光束对敌人可见。</div></div>
+</div>
+</div>
+</div>
+</div>
+</div><p><br>
+</p><h2><span id=".D0.9E.D1.81.D0.BE.D0.B1.D1.8B.D0.B5"></span><span class="mw-headline" id="Особые">特殊</span></h2><p>这些是独特的物品，<b>无法</b>购买或以其他方式永久获得。例外情况是，这些物品可以由游戏开发人员用于测试和组织活动。
+</p><h3><span id=".D0.A2.D0.B5.D1.80.D0.BC.D0.B8.D0.BD.D0.B0.D1.82.D0.BE.D1.80"></span><span class="mw-headline" id="Терминатор"><a href="./%D0%A2%D0%B5%D1%80%D0%BC%D0%B8%D0%BD%D0%B0%D1%82%D0%BE%D1%80" class="mw-redirect" title="Терминатор">终结者</a></span></h3><div class="hull_wrapper">
+<div class="hull_info_wrapper">
+<div class="hull_image">
+<p><span class="mw-default-size" typeof="mw:File"><a href="./%D0%A2%D0%B5%D1%80%D0%BC%D0%B8%D0%BD%D0%B0%D1%82%D0%BE%D1%80" title="终结者"><img src="https://ru.tankiwiki.com/images/ru/8/81/Terminator.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></a></span>
+</p>
+</div>
+<div class="hull_info">
+<div class="hull_description">
+<p>专为<a href="./%D0%94%D0%B6%D0%B0%D0%B3%D0%B3%D0%B5%D1%80%D0%BD%D0%B0%D1%83%D1%82" title="剑圣">剑圣</a>底盘开发的超重型炮塔。两门射速提升的激光炮配有用于近战的重型导弹发射器。不适用于其他底盘。据传闻，其开火产生的后坐力可以将炮塔从坦克上轰飞。
+</p>
+</div>
+<div class="hull_stats">
+<ul><li class="mw-empty-elt"></li></ul>
+<p><big><b>单发模式</b></big>
+</p>
+ <div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Icon_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div>
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Icon_range.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">旋转速度</div><div class="statbar"><div class="statbar_inner" style="width: 56%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Icon_impact_force.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li></ul>
+<p><br>
+<big><b>齐射模式</b></big>
+</p>
+<div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Icon_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div>
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 0%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Icon_range.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">旋转速度</div><div class="statbar"><div class="statbar_inner" style="width: 56%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Icon_impact_force.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 33%"></div></div></div></li></ul>
+</div>
+<div class="hull_review">
+<div class="hull_review_title">玩家评价</div>
+<div class="reviews_cards">
+<div class="review_card positive"><div class="review_card_title"><div class="review_icon"></div><span>炮塔优点</span></div><div class="review_card_description">高伤害。高冲击力。</div></div>
+<div class="review_card negative"><div class="review_card_title"><div class="review_icon"></div><span>炮塔缺点</span></div><div class="review_card_description">射击重新装填时间长。</div></div>
+</div>
+</div>
+</div>
+</div>
+</div><p><br>
+</p><h3><span id=".D0.9A.D1.83.D0.B2.D0.B0.D0.BB.D0.B4.D0.B0"></span><span class="mw-headline" id="Кувалда"><a href="./%D0%9A%D1%83%D0%B2%D0%B0%D0%BB%D0%B4%D0%B0" class="mw-redirect" title="Кувалда">大锤</a></span></h3><div class="hull_wrapper">
+<div class="hull_info_wrapper">
+<div class="hull_image">
+<p><span typeof="mw:File"><a href="./%D0%9A%D1%83%D0%B2%D0%B0%D0%BB%D0%B4%D0%B0" title="Кувалда"><img src="https://ru.tankiwiki.com/images/ru/thumb/a/ac/Turret_bonk_m3.png/170px-Turret_bonk_m3.png" decoding="async" loading="lazy" width="170" height="104" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/a/ac/Turret_bonk_m3.png/255px-Turret_bonk_m3.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/a/ac/Turret_bonk_m3.png/340px-Turret_bonk_m3.png 2x"></a></span>
+</p>
+</div>
+<div class="hull_info">
+<div class="hull_description">
+<p>B0-NK “大锤”是用于工业建筑作业的绝佳工具。庞大的凿子旨在破坏混凝土和砖墙、地基、开挖路面以及拆除坚硬覆盖层。结构中内置了喷气加速元件，以提高凿子的穿透能力。
+请仅将该工具用于指定用途。非标准应用可能会导致不可预见的后果，并自动取消设备保修维修的资格。
+</p>
+</div>
+<div class="hull_stats">
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Icon_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 100%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Icon_range.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 5%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">旋转速度</div><div class="statbar"><div class="statbar_inner" style="width: 0%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Icon_impact_force.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 78%"></div></div></div></li></ul>
+</div>
+<div class="hull_review">
+<div class="hull_review_title">玩家评价</div>
+<div class="reviews_cards">
+<div class="review_card positive"><div class="review_card_title"><div class="review_icon"></div><span>炮塔优点</span></div><div class="review_card_description">一击必杀。高后坐力。几乎总是暴击伤害。</div></div>
+<div class="review_card negative"><div class="review_card_title"><div class="review_icon"></div><span>炮塔缺点</span></div><div class="review_card_description">攻击距离非常短。</div></div>
+</div>
+</div>
+</div>
+</div>
+</div><p><br>
+</p><h3><span id=".D0.93.D0.BB.D0.B5.D0.B1.D1.8B.D1.87"></span><span class="mw-headline" id="Глебыч"><a href="./%D0%93%D0%BB%D0%B5%D0%B1%D1%8B%D1%87" class="mw-redirect" title="Глебыч">雪人</a></span></h3><div class="hull_wrapper">
+<div class="hull_info_wrapper">
+<div class="hull_image">
+<p><span typeof="mw:File"><a href="./%D0%93%D0%BB%D0%B5%D0%B1%D1%8B%D1%87" title="雪人"><img src="https://ru.tankiwiki.com/images/ru/thumb/e/ef/Turret_Snowman.png/170px-Turret_Snowman.png" decoding="async" loading="lazy" width="170" height="103" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/ef/Turret_Snowman.png/255px-Turret_Snowman.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/ef/Turret_Snowman.png/340px-Turret_Snowman.png 2x"></a></span>
+</p>
+</div>
+<div class="hull_info">
+<div class="hull_description">
+<p>雪人是一个特殊的炮塔，可以向附近的敌人发射致命的雪球。它是在圣诞节前夕的一场可怕暴风雪中偶然诞生的。其中一个马格南的旧原型机被丢弃并留在了垃圾场。在试图理枪管上的雪时，人们发现原型机中已经装填的雪球仍然可以用作弹药。最后，决定将其安装在底盘上，并用胡萝卜、点燃的树枝和水桶的雪人进行装饰。
+</p>
+</div>
+<div class="hull_stats">
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Icon_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 44%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 0%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Icon_range.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 60%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">旋转速度</div><div class="statbar"><div class="statbar_inner" style="width: 82%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Icon_impact_force.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 56%"></div></div></div></li></ul>
+</div>
+<div class="hull_review">
+<div class="hull_review_title">玩家评价</div>
+<div class="reviews_cards">
+<div class="review_card positive"><div class="review_card_title"><div class="review_icon"></div><span>炮塔优点</span></div><div class="review_card_description">可以在掩体后方进行射击。快速重新装填。暴击时会激活眩晕、穿甲、干扰器和电磁脉冲效果。</div></div>
+<div class="review_card negative"><div class="review_card_title"><div class="review_icon"></div><span>炮塔缺点</span></div><div class="review_card_description">自伤。</div></div>
+</div>
+</div>
+</div>
+</div>
+</div><p><br>
+</p><h3><span id=".D0.A2.D0.BE.D0.BC.D0.B0.D1.82.D1.8B.D1.87"></span><span class="mw-headline" id="Томатыч"><a href="./%D0%A2%D0%BE%D0%BC%D0%B0%D1%82%D1%8B%D1%87" class="mw-redirect" title="Томатыч">番茄炮</a></span></h3><div class="hull_wrapper">
+<div class="hull_info_wrapper">
+<div class="hull_image">
+<p><span typeof="mw:File"><a href="./%D0%A2%D0%BE%D0%BC%D0%B0%D1%82%D1%8B%D1%87" title="番茄炮"><img src="https://ru.tankiwiki.com/images/ru/thumb/3/33/Tomato_Gun.png/150px-Tomato_Gun.png" decoding="async" loading="lazy" width="150" height="114" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/33/Tomato_Gun.png/225px-Tomato_Gun.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/3/33/Tomato_Gun.png/300px-Tomato_Gun.png 2x"></a></span>
+</p>
+</div>
+<div class="hull_info">
+<div class="hull_description">
+<p>番茄炮是马格南的改装版本，外观经过修改，类似于雪人炮塔。枪管高度略高于马格南，且弹丸速度有所降低。这使得番茄炮成为了一款中距离炮塔。在暴击命中时，它会对敌人施加多个状态效果。
+</p>
+</div>
+<div class="hull_stats">
+<ul><li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Icon_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">伤害</div><div class="statbar"><div class="statbar_inner" style="width: 44%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6e/Icon_critical_damage.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">暴击伤害</div><div class="statbar"><div class="statbar_inner" style="width: 0%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bf/Icon_range.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">射程</div><div class="statbar"><div class="statbar_inner" style="width: 60%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/da/Icon_rotation_speed.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">旋转速度</div><div class="statbar"><div class="statbar_inner" style="width: 82%"></div></div></div></li>
+<li><div class="statbar_wrapper"><div class="stat_icon"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cb/Icon_impact_force.png" decoding="async" loading="lazy" width="512" height="512" class="mw-file-element"></span></span></div><div class="stat_label">冲击力</div><div class="statbar"><div class="statbar_inner" style="width: 56%"></div></div></div></li></ul>
+</div>
+<div class="hull_review">
+<div class="hull_review_title">玩家评价</div>
+<div class="reviews_cards">
+<div class="review_card positive"><div class="review_card_title"><div class="review_icon"></div><span>炮塔优点</span></div><div class="review_card_description">可以在掩体后方进行射击。快速重新装填。暴击时会激活眩晕、穿甲、干扰器和电磁脉冲效果。</div></div>
+<div class="review_card negative"><div class="review_card_title"><div class="review_icon"></div><span>炮塔缺点</span></div><div class="review_card_description">自伤。</div></div>
+</div>
+</div>
+</div>
+</div>
+</div><div align="right"><small>最后编辑：18/04/2026 Devise <span class="ai-translate-note" style="color:#8FB8D8;">（由 AI 自动翻译）</span></small></div></div></div></div></div></div><footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
+<p style="margin:0;"><strong style="color:#BFD5FF;">本站为玩家社区自建的非官方 Wiki 镜像。</strong></p>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":3326,"wgPageParseReport":{"limitreport":{"cputime":"1.356","walltime":"1.963","ppvisitednodes":{"value":4076,"limit":1000000},"postexpandincludesize":{"value":230416,"limit":4194304},"templateargumentsize":{"value":113231,"limit":4194304},"expansiondepth":{"value":9,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":961,"limit":5000000},"timingprofile":["100.00%  252.604      1 -total"," 48.94%  123.625     21 Шаблон:HullInfo"," 16.47%   41.596    135 Шаблон:StatBar"," 12.91%   32.606      5 Шаблон:Hotkey"," 11.44%   28.893      1 Шаблон:See_also","  7.75%   19.584      1 Шаблон:Другое_значение","  7.25%   18.313      1 Шаблон:RndTxt","  6.79%   17.140     42 Шаблон:ReviewCard","  3.84%    9.694     14 Шаблон:См._также/link","  3.44%    8.688      1 Шаблон:LastEdit"]},"cachereport":{"timestamp":"20260825000607","ttl":0,"transientcontent":true}}});});</script>
+    <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });</script></body></html>
