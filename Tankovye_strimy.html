@@ -1,0 +1,608 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>(function(){
+  var BASE = 'https://ru.tankiwiki.com';
+  function fix(v){ return (typeof v === 'string' && v.charAt(0) === '/' && v.indexOf('//') !== 0) ? BASE + v : v; }
+  ['HTMLScriptElement','HTMLLinkElement'].forEach(function(tag){
+    var proto = window[tag] && window[tag].prototype;
+    var prop  = tag === 'HTMLScriptElement' ? 'src' : 'href';
+    if (!proto) return;
+    var d = Object.getOwnPropertyDescriptor(proto, prop);
+    if (!d || !d.set) return;
+    Object.defineProperty(proto, prop, {
+      configurable: true,
+      get: function(){ return d.get.call(this); },
+      set: function(v){ d.set.call(this, fix(v)); }
+    });
+  });
+  var of = window.fetch;
+  if (of) window.fetch = function(u, o){ return of.call(this, (typeof u === 'string' ? fix(u) : u), o); };
+  var ox = window.XMLHttpRequest && XMLHttpRequest.prototype.open;
+  if (ox) XMLHttpRequest.prototype.open = function(m, u){
+    var a = Array.prototype.slice.call(arguments); a[1] = fix(u); return ox.apply(this, a);
+  };
+})();</script><title>3D 坦克直播 — 3D 坦克 Wiki</title><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+    <meta charset="UTF-8">
+    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/xg_pWYS8-HRESiV6Rdg4aY_R/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-qWH0xCejb2gc1yqo8ob4TQrvIcQ9XjhOfGKbhFr/+LvFrJdTE3bA+FQP/FLAiQhz"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgRequestId":"d24c29c429740ed850543292","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Tankovye_strimy","wgTitle":"Tankovye strimy","wgCurRevisionId":296247,"wgRevisionId":296247,"wgArticleId":9693,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"ru","wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgRelevantPageName":"Tankovye_strimy","wgRelevantArticleId":9693,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],
+"wgRestrictionMove":[],"wgVisualEditor":{"pageLanguageCode":"ru","pageLanguageDir":"ltr","pageVariantFallbacks":"ru"},"wgFlaggedRevsParams":{"tags":{"accuracy":{"levels":3}}},"wgStableRevisionId":296247,"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.flaggedRevs.icons":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.flaggedRevs.basic":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","mediawiki.toc","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.flaggedRevs.advanced","skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=ext.flaggedRevs.basic%2Cicons%7Cext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://ru.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://ru.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (ru)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://ru.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki&nbsp;— Atom-лента" href="https://ru.tankiwiki.com/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom"><style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
+
+/* 1. 只去掉源站皮肤的背景大图，保留底色；不要用 background 简写，否则会连带清掉皮肤别的背景设定 */
+html, body {
+    background-image: none !important;
+    background-color: #001926 !important;
+}
+/* 2. 让底色铺满视口，内容很短时下方不再露白 */
+html { min-height: 100%; }
+body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif; }
+
+/* 3. 版心容器 */
+#mw-main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #001926;
+}
+
+/* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
+      【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
+
+#mw-main-container .main-content,
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content,
+#mw-main-container #mw-content-text {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: auto !important;
+    flex-basis: auto !important;   /* 皮肤写了 .main-content{flex:0 0 75%} */
+    float: none !important;
+    margin-top: 0 !important;       /* 核心：清空原站皮肤的负 margin-top */
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    position: relative !important;
+    z-index: 1 !important;          /* 保证正文层级低于按钮 */
+}
+
+/* 5. 皮肤脚本 skins.tankiblue.js 会往 #mw-content-text 末尾插一条「发现错别字？Ctrl+Enter」
+      的俄语提示条和一个「报告错误」标签页。它按网址里有没有 'en'/'de' 来判断语言，
+      我们的域名两者都不含 → 一律显示俄语；且报错会提交到俄站编辑组，对镜像站没意义，直接隐藏。 */
+#custom-report-footer,
+.vectorTabs.customReport,
+.customReport { display: none !important; }
+
+/* 6. 返回按钮包裹容器：独占一行并强制最高层级 */
+.home-btn-wrapper {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px 0 20px 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    z-index: 9999 !important;       /* 核心：永远置于最顶层 */
+    clear: both !important;
+    overflow: visible !important;
+}
+
+/* 7. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐 */
+.home-back-btn {
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    width: auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    isolation: isolate !important;
+    
+    min-width: 142px !important;
+    padding: 0 24px !important;
+    height: 78px !important;
+    margin: 0 !important;
+    border: 1px solid rgba(255,255,255,.25) !important;
+    outline: 2px solid transparent !important;
+    border-radius: 6.5px !important;
+    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%) !important;
+    
+    position: relative !important;
+    z-index: 10000 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: all .15s ease !important;
+    overflow: visible !important;
+}
+.home-back-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(100% 100% at 0% 0%, rgba(191,213,255,.25) 0%, rgba(191,213,255,.15) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all .15s ease;
+    border-radius: inherit;
+    pointer-events: none;
+}
+.home-back-btn svg {
+    width: 24.375px;
+    height: 24px;
+    object-fit: contain;
+    transform: rotate(180deg);
+    transition: all .15s ease;
+    flex-shrink: 0;
+}
+.home-back-btn svg path { fill: #BFD5FF; transition: all .15s ease; }
+
+.home-back-btn:hover,
+.home-back-btn:active,
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF !important; border-color: #BFD5FF !important; }
+.home-back-btn:hover::before,
+.home-back-btn:active::before,
+.home-back-btn:focus-visible::before { opacity: 1; }
+.home-back-btn:hover svg,
+.home-back-btn:active svg,
+.home-back-btn:focus-visible svg { transform: rotate(180deg) translateX(10%); }
+.home-back-btn:hover svg path,
+.home-back-btn:active svg path,
+.home-back-btn:focus-visible svg path { fill: #fff; }
+
+.home-back-btn span {
+    color: #BFD5FF;
+    font-size: 16px;
+    margin-left: 10px;
+    font-weight: bold;
+    transition: all .15s ease;
+    white-space: nowrap;
+}
+.home-back-btn:hover span,
+.home-back-btn:active span,
+.home-back-btn:focus-visible span {
+    color: #fff;
+    transform: translateX(-4px);
+}
+
+/* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
+@media (hover: none) {
+    .home-back-btn { border-color: rgba(191,213,255,.55) !important; }
+    .home-back-btn svg path { fill: #CFE0FF; }
+}
+
+/* 移动端/窄屏自适应尺寸 */
+@media (max-width: 480px) {
+    .home-back-btn {
+        min-width: 106px !important;
+        padding: 0 16px !important;
+        height: 58px !important;
+        margin-left: 10px !important;
+    }
+    .home-back-btn svg { width: 20px !important; height: 19.7px !important; }
+    .home-back-btn span { font-size: 14px !important; margin-left: 8px !important; }
+}
+
+/* 8. 移动端容器 Padding */
+@media (max-width: 768px) {
+    #mw-main-container { padding: 10px !important; margin: 8px auto !important; }
+    .home-back-btn { margin-left: 10px !important; }
+    #mw-content-text .navigationContainerContent > div,
+    #mw-content-text [style*="width: 55%"],
+    #mw-content-text [style*="width:55%"],
+    #mw-content-text [style*="width: 45%"],
+    #mw-content-text [style*="width:45%"] { width: 100% !important; }
+}
+@media (max-width: 480px) {
+    #mw-main-container { padding: 6px !important; margin: 4px auto !important; }
+}
+
+/* 9. 防止宽表格 / 大图撑破版心 */
+#mw-content-text img { max-width: 100%; height: auto; }
+#mw-content-text table { max-width: 100%; }
+
+/* 10. 目录（TOC）修复，全局生效：
+    a) 皮肤把目录折叠按钮的文字放在 CSS 伪元素里渲染，而不是 HTML 文本：
+         .toctogglecheckbox:checked  + .toctitle .toctogglelabel::after → content:'показать'
+         .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after → content:'скрыть'
+       AI 翻译只处理 HTML 文本，摸不到 CSS content，所以这个按钮永远是俄语，必须在这里覆盖成中文。
+    b) 皮肤的响应式 CSS 里写了 @media screen and (max-width:768px){ #toc{display:none} }，
+       导致手机端整个目录被隐藏。这里恢复显示，并配合下方 TOC_MOBILE_COLLAPSE_SCRIPT：
+       移动端默认折叠，只占一行「目录 [展开]」，避免长目录把正文挤到屏幕外。 */
+#toc .toctogglecheckbox:checked + .toctitle .toctogglelabel::after { content: '展开' !important; }
+#toc .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after { content: '收起' !important; }
+@media screen and (max-width: 768px) {
+    #toc { display: table !important; }
+}
+
+/* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
+   只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+*/
+</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Tankovye_strimy rootpage-Tankovye_strimy skin-tankiblue action-view"><div id="skin-chrome-stub" aria-hidden="true" style="display:none !important;">
+<a class="problem" href="#"></a>
+<div class="close-wrapper"></div>
+<div class="support-block-popup"><div class="close-modal-support"></div></div>
+<div class="youtube-popup"><iframe title="stub"></iframe></div>
+<div class="video-button"></div>
+<div class="header-search"></div>
+<div class="search-dialog"></div>
+<div class="search-popup"><div class="close-wrapper"></div><div class="close-modal-search"></div></div>
+<div class="news-popup"></div>
+<div class="sales-block-header"></div>
+<div class="navbar-main"></div>
+<div class="main-navbar"></div>
+</div><div id="mw-main-container"><div class="home-btn-wrapper"><a class="home-back-btn" href="./Enciklopediya_igry_%C2%ABTanki_Onlayn%C2%BB" title="返回主页" aria-label="返回主页"><svg viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 0H13.5L25.5 12L24 13.5L13.5 24H18L30 12L18 0ZM24 13.5L21 10.5H0L3 13.5H24Z" fill="#BFD5FF"/></svg><span>返回主页</span></a></div><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">3D 坦克直播</h1><div class="dablink"><em>参见：</em> <a href="./%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D0%B1%D0%BB%D0%BE%D0%B3" class="mw-redirect" title="V-LOG">V-LOG</a> 和 <a href="./%D0%98%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F_%D0%BF%D0%BE_%D1%81%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D1%8E_%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE%D0%B7%D0%B0%D0%.B1%D0%B0%D1%81%D0%B5%D0%B9_%D1%81_YouTube" class="mw-redirect" title="YouTube 视频下载说明">YouTube 视频下载说明</a>
+</div><div class="alert error">
+  <div class="icon"></div>
+  <div class="text"><b>注意！</b>本文档处于归档状态，不再由编辑维护。</div>
+</div><p>3D 坦克直播是官方直播活动，开发人员会在直播中详细介绍游戏动态和开发计划、回答玩家提问并抽取奖品。
+</p><p>你可以在<a rel="nofollow" class="external text" href="http://ru.tankiforum.com/topic/59004/">论坛</a>上讨论直播相关内容。
+</p><p>以下是具有*参考价值*的直播列表。其他仅包含抽奖的短视频直播未收录在此列表中。
+</p><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"><div class="toctitle" lang="ru" dir="ltr"><h2 id="mw-toc-heading">目录</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Стримы"><span class="tocnumber">1</span> <span class="toctext">直播</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#22_февраля_2017_года"><span class="tocnumber">1.1</span> <span class="toctext">2017 年 2 月 22 日</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#7_апреля_2017_года"><span class="tocnumber">1.2</span> <span class="toctext">2017 年 4 月 7 日</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#12_мая_2017_года"><span class="tocnumber">1.3</span> <span class="toctext">2017 年 5 月 12 日</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#7_июля_2017_года"><span class="tocnumber">1.4</span> <span class="toctext">2017 年 7 月 7 日</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#28_июля_2017_года"><span class="tocnumber">1.5</span> <span class="toctext">2017 年 7 月 28 日</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#10_ноября_2017_года"><span class="tocnumber">1.6</span> <span class="toctext">2017 年 11 月 10 日</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#16_октября_2020_года"><span class="tocnumber">1.7</span> <span class="toctext">2020 年 10 月 16 日</span></a></li>
+</ul>
+</li>
+</ul>
+</div><h2><span id=".D0.A1.D1.82.D1.80.D0.B8.D0.BC.D1.8B"></span><span class="mw-headline" id="Стримы">直播</span></h2><h3><span id="22_.D1.84.D0.B5.D0.B2.D1.80.D0.B0.D0.BB.D1.8F_2017_.D0.B3.D0.BE.D0.B4.D0.B0"></span><span class="mw-headline" id="22_февраля_2017_года">2017 年 2 月 22 日<div title="点击打开视频" class="ShowYouTubePopup" style="width:22pxpx;" data-id="6bHbZ0WDF60"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/22px-YT-icon.png" decoding="async" loading="lazy" width="22" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/33px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/44px-YT-icon.png 2x"></span></span></div></span></h3><p>首次官方直播，嘉宾为马克西姆·胡赛诺夫（Maxim Khusainov）和谢苗·斯特里扎克（Semyon Strizhak）。
+</p><div class="btn btn-collapsed border-0 rounded-0 w-100 text-left text-uppercase position-relative py-2 my-3" data-toggle="collapse" data-target="#collapseExample1">直播内容</div><div class="collapse" id="collapseExample1"><div class="card card-body">
+<p><span style="color:#548bc9"><b>道具实验第 1 号：数据分析</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=6bHbZ0WDF60&amp;t=205s">►</span><br>
+— 此次实验反响一般，计划采用不同设置开展新实验。我们的目标是减小道具对游戏进程的影响，特别是在较低等级阶段，同时照顾到喜欢积极使用道具的玩家群体的利益。如果引入新的消耗品启用机制，在专家战场中仍将保留按旧规则游玩的可能性。
+</p><p><span style="color:#548bc9"><b>为什么更新不在测试服进行测试？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=6bHbZ0WDF60&amp;t=600s">►</span><br>
+— 玩家们不明白测试服只是开发人员的工具。必须在主服务器上测试某些更新，因为主服务器上的玩家行为以及游戏在高负载下的表现截然不同。
+</p><p><span style="color:#548bc9"><b>“你们修改了武器设置，把水晶退给我！”</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=6bHbZ0WDF60&amp;t=933s">►</span><br>
+— 游戏的历史（平衡性调整、123 版本发布）表明，返还水晶对经济系统有着极其负面的影响，因此这种情况将不再发生。
+</p><p><span style="color:#548bc9"><b>为什么要进行平衡性调整？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=6bHbZ0WDF60&amp;t=1100s">►</span><br>
+— 平衡性调整过去已经超过 4 年了，游戏发生了巨大变化。有一段时间完全没有进行平衡性调整，正因如此，玩家们感到厌烦并纷纷离开。武器平衡性和机制的改动为玩家带来了新的游戏体验，尽管适应新习惯可能会经历阵痛。
+</p><p><span style="color:#548bc9"><b>游戏什么时候会重新引入队友驱逐（Team-kill）功能？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=6bHbZ0WDF60&amp;t=1464s">►</span><br>
+— 移除队友驱逐在很大程度上是因为它经常被用来针对正常玩家，以便为好友腾出位置并从基金中获取更多水晶。开发人员希望仅在专家战场中恢复队友驱逐，在那里玩家将意识到使用该系统的风险。标准战场中的普通玩家应该受到匹配系统的保护，免受违规者侵害。
+</p><p><span style="color:#548bc9"><b>为什么要设置“加入战斗”按钮？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=6bHbZ0WDF60&amp;t=2036s">►</span><br>
+— 这是仓促制作出来的，用来测试其运行效果。开发人员并未料到它会被积极使用，但确实收集到了必要的反馈。此外，结合自动结束功能，该系统在低等级场中运行良好。
+</p><p><span style="color:#548bc9"><b>为什么要将炮塔的功能拆分到装备改造中并迫使玩家购买？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=6bHbZ0WDF60&amp;t=2100s">►</span><br>
+— 当前的平衡系统最初就是围绕存在装备改造设计的。装备改造的目的是以比购买新炮塔更低的成本提供新的游戏玩法，它并非纯粹针对付费玩家的商品。为什么离子炮的溅射伤害不是以装备改造的形式添加的？因为需要限制炮塔的应用范围——将重点从近战转移到近中距离；此外，在某种程度上这甚至是对炮塔的增强而非削弱。
+</p><p><span style="color:#548bc9"><b>解决游戏卡顿和严重错误</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=6bHbZ0WDF60&amp;t=2520s">►</span><br>
+— 确实存在服务器卡顿的技术原因，相关工作正在进行，卡顿情况也在持续监测中。严重错误的情况非常复杂，其中包含许多相互交织的问题，开发人员已经在着手处理了。
+</p><p><span style="color:#548bc9"><b>为什么要如此频繁地修改武器？为什么要修改磁力炮和滑膛炮？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=6bHbZ0WDF60&amp;t=3140s">►</span><br>
+— 因为由不同团队开发的两次更新发生了重叠，并且相隔一周发布。磁力炮的自我治疗由于平衡性调整的复杂性而被取消。滑膛炮的霰弹本就应该具备反弹能力，现在只是到了完善该炮塔的时候。近期没有对炮塔机制进行重大修改的计划。
+</p><p><span style="color:#548bc9"><b>为什么开发人员总推出各种“无聊玩意”？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=6bHbZ0WDF60&amp;t=3672s">►</span><br>
+— 最近经常发布玩法相关的更新，开发人员正在认真对待游戏，请大家稍安勿躁，前方还有很多有趣的内容。
+</p><p><span style="color:#548bc9"><b>为什么创建军团这么贵？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=6bHbZ0WDF60&amp;t=3840s">►</span><br>
+— 的确，军团许可证现在很贵。最初计划将军团人数限制得小一些，创建军团的费用也会更低。未来将添加购买额外名额的功能。
+</p><p><span style="color:#548bc9"><b>为什么迷彩这么贵？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=6bHbZ0WDF60&amp;t=4048s">►</span><br>
+— 因为它们不影响游戏玩法，而且你可以不买。要让新迷彩与现有的迷彩有所区别是一项复杂的任务，因此它们不会大量增加。
+</p><p><span style="color:#548bc9"><b>游戏什么时候会迁移到新引擎？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=6bHbZ0WDF60&amp;t=4187s">►</span><br>
+— 这一切都要从决定在 Unity 引擎上开发 Tanki X 开始说起。原本计划将 3D 坦克的所有玩家转移到 Tanki X 中，后者被开发为 3D 坦克的复刻版，但随后 Unity 停止在浏览器内部运行，导致 Tanki X 在违背开发人员意愿的情况下变成了客户端游戏。因此决定将两个项目分离开来。只要两个项目保持相似，利用和尝试彼此的研发成果就是合乎逻辑的，但未来它们的差异将会越来越大。3D 坦克将继续作为网页游戏运营，因此代码库开始逐渐迁移到前景广阔的 HTML5。这是一个非常耗时的工作，但相关工作已经在进行中了。
+</p><p><span style="color:#548bc9"><b>3D 坦克什么时候会关服？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=6bHbZ0WDF60&amp;t=4669s">►</span><br>
+— 只要还有人玩，项目就会存活并继续发展。
+</p><p><span style="color:#548bc9"><b>恢复水晶箱子掉落吧！</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=6bHbZ0WDF60&amp;t=4795s">►</span><br>
+— 玩家想要的不是捡箱子的机制，而是轻松获取水晶。开发人员知道玩家在某些情况下缺乏水晶。这个问题将会得到解决，但不会通过增加水晶箱子掉落来实现。
+</p><p><span style="color:#548bc9"><b>会有新底盘吗？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=6bHbZ0WDF60&amp;t=5189s">►</span><br>
+— 要让底盘彼此各不相同很困难，它们缺乏机制。我们有开发悬浮坦克和带侧移功能的步行坦克的计划。
+</p><p><span style="color:#548bc9"><b>迫击炮什么时候上线？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=6bHbZ0WDF60&amp;t=5500s">►</span><br>
+— 原型已经有了，需要制作炫酷的音效和特效，将所有东西整合并调整好。
+</p><p><span style="color:#548bc9"><b>迫击炮演示</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=6bHbZ0WDF60&amp;t=5953s">►</span>
+</p>
+</div></div><h3><span id="7_.D0.B0.D0.BF.D1.80.D0.B5.D0.BB.D1.87_2017_.D0.B3.D0.BE.D0.B4.D0.B0"></span><span class="mw-headline" id="7_апреля_2017_года">2017 年 4 月 7 日<div title="点击打开视频" class="ShowYouTubePopup" style="width:22pxpx;" data-id="cTUVb8daMHg"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/22px-YT-icon.png" decoding="async" loading="lazy" width="22" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/33px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/44px-YT-icon.png 2x"></span></span></div></span></h3><p>第二次官方直播，嘉宾为马克西姆·胡赛诺夫和玛丽亚·涅米尔斯卡娅（Maria Nemirskaya）。
+</p><p>(<i>无内容</i>)
+</p><h3><span id="12_.D0.BC.D0.B0.D1.8F_2017_.D0.B3.D0.BE.D0.B4.D0.B0"></span><span class="mw-headline" id="12_мая_2017_года">2017 年 5 月 12 日<div title="点击打开视频" class="ShowYouTubePopup" style="width:22pxpx;" data-id="W1aSGpoQAQs"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/22px-YT-icon.png" decoding="async" loading="lazy" width="22" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/33px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/44px-YT-icon.png 2x"></span></span></div></span></h3><p>第三次官方直播，嘉宾为马克西姆·胡赛诺夫、玛丽亚·涅米尔斯卡娅和谢苗·斯特里扎克。
+</p><div class="btn btn-collapsed border-0 rounded-0 w-100 text-left text-uppercase position-relative py-2 my-3" data-toggle="collapse" data-target="#collapseExample2">直播内容</div><div class="collapse" id="collapseExample2"><div class="card card-body">
+<p><span style="color:#548bc9"><b>关于周末活动</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=W1aSGpoQAQs&amp;t=350s">►</span><br>
+— 击杀数活动。积累击杀数即可获得奖励。击杀数达到 700、1000 或 1200 的玩家将参与“梦想坦克”抽奖。
+</p><p><span style="color:#548bc9"><b>关于匹配</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=W1aSGpoQAQs&amp;t=520s">►</span><br>
+— 匹配模型已经准备就绪。曾几何时，当游戏在线人数只有 100 人左右时，战场列表是最方便的游戏方式。当这一切需要规模化时，问题就出现了。匹配将解决目前战场存在的几乎所有问题。
+</p><p><span style="color:#548bc9"><b>为什么取消了死亡混战比赛？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=W1aSGpoQAQs&amp;t=2660s">►</span><br>
+— 这个创意因为玩家失去兴趣而“凉了”。这种形式的死亡混战比赛肯定不会再有了，如果有的话——也会是另一种形式。
+</p><p><span style="color:#548bc9"><b>关于节日期间的金箱子 Bug</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=W1aSGpoQAQs&amp;t=2790s">►</span><br>
+— 那些大规模掉落金箱子的人已经被封号了。对于捡金箱子的玩家，将采取其他惩罚措施。具体是什么——目前还未知。
+</p><p><span style="color:#548bc9"><b>关于即将到来的节日</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=W1aSGpoQAQs&amp;t=1h16m40s">►</span><br>
+— 和往常一样，活动消息不会过早公布。目前正在制定活动计划，马克西姆正在为“游戏”撰写剧本。
+</p><p><span style="color:#548bc9"><b>什么时候可以在移动设备上游玩？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=W1aSGpoQAQs&amp;t=1h19m46s">►</span><br>
+— 不会很快。这是一个漫长的过程。首先需要迁移到 HTML5，然后才能着手开发移动端版本。
+</p><p><span style="color:#548bc9"><b>如何在 3D 坦克中变得知名？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=W1aSGpoQAQs&amp;t=1h24m28s">►</span><br>
+— 可以成为游戏助手。例如：谢苗·斯特里扎克曾是一名普通玩家，后来他脱颖而出成为测试员，随后在测试员中表现突出并承担了更多职责。现在他是 3D 坦克官方团队的一员。
+</p><p><span style="color:#548bc9"><b>你们什么时候恢复水晶箱子掉落？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=W1aSGpoQAQs&amp;t=1h26m12s">►</span><br>
+— 水晶箱子掉落将永远不会回归游戏。它只会带来危害。是的，也许你能多赚 10 个水晶，而那个“带飞”整场战场的玩家却少拿了 10 个水晶。我们希望让真正游玩的人获得水晶。
+</p>
+</div></div><h3><span id="7_.D0.B8.D1.8E.D0.BB.D1.8F_2017_.D0.B3.D0.BE.D0.B4.D0.B0"></span><span class="mw-headline" id="7_июля_2017_года">2017 年 7 月 7 日<div title="点击打开视频" class="ShowYouTubePopup" style="width:22pxpx;" data-id="gi2o3ajbHv0"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/22px-YT-icon.png" decoding="async" loading="lazy" width="22" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/33px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/44px-YT-icon.png 2x"></span></span></div></span></h3><p>第四次官方直播，嘉宾为马克西姆·胡赛诺夫和亚历山大·沙费尔（Alexander Shafer）。
+</p><div class="btn btn-collapsed border-0 rounded-0 w-100 text-left text-uppercase position-relative py-2 my-3" data-toggle="collapse" data-target="#collapseExample3">直播内容</div><div class="collapse" id="collapseExample3"><div class="card card-body">
+<p><span style="color:#548bc9"><b>HTML5 相关消息</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=gi2o3ajbHv0&amp;t=10m14s">►</span><br>
+— 大厅部分几乎已经全部完成。目前正处于测试阶段。炮塔方面：13 门炮塔中，仅剩最后 5 门炮塔需要重写工作机制，其中 2 门已经在开发中。向 HTML5 的过渡——对我们开发人员来说是一次重大更新，但对你们玩家来说，它为接下来的炫酷更新打开了的大门。
+</p><p><span style="color:#548bc9"><b>网络延迟（FPS/Ping 问题）情况如何？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=gi2o3ajbHv0&amp;t=13m5s">►</span><br>
+— 根据我们的测量，严重卡顿现象已经减少。我们完全修复了一些卡顿，某些类型的卡顿当然还存在，但它们更多与硬件相关。我们消除了大约 70% 的卡顿问题。
+</p><p><span style="color:#548bc9"><b>匹配系统最新动态</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=gi2o3ajbHv0&amp;t=14m19s">►</span><br>
+— 匹配系统原本已经快要上线了，但我们当然决定在其中加入组队功能，因为和好友一起玩 3D 坦克会更有趣。在匹配中将可以创建 2 到 5 人的小组。这使开发变得稍微复杂了一些，因此我们需要更多时间。
+</p><p><span style="color:#548bc9"><b>什么时候会有新的优化、画质和着色器？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=gi2o3ajbHv0&amp;t=15m38s">►</span><br>
+— 一切都在 HTML5 之后。新的画质将会推出，但需要稍等片刻。我们之前没有这样做，因为显卡与 HTML5 的“相性”比 Flash 好得多。
+</p><p><span style="color:#548bc9"><b>什么时候可以在手机上玩 3D 坦克？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=gi2o3ajbHv0&amp;t=21m40s">►</span><br>
+— HTML5 之后。移动端客户端的开发工作已经在进行中了。
+</p><p><span style="color:#548bc9"><b>请增加军团的人数上限！</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=gi2o3ajbHv0&amp;t=21m40s">►</span><br>
+— 这也在进行中。在匹配推出后，我们将全力着手扩展和改进军团系统。其中，军团战也可能会出现。
+</p><p><span style="color:#548bc9"><b>什么时候举行自驾游活动？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=gi2o3ajbHv0&amp;t=26m">►</span><br>
+— 目前没有任何信息。这并不意味着什么都不会发生，但暂时也不意味着会有什么活动。一旦有消息——我们会在新闻、V-LOG 等渠道中通报。
+</p><p><span style="color:#548bc9"><b>匹配上线后，队伍将如何做到势均力敌？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=gi2o3ajbHv0&amp;t=29m21s">►</span><br>
+— 小组将按规模成对匹配：如果有一个 5 人小组，它将被分配去对抗一个 5 人小组。所有人都按天梯排名进行排序、配对，并进入随机战场。
+</p><p><span style="color:#548bc9"><b>会给油管主（YouTuber）发放兑换码吗？</b></span> <span class="linkElem" title="跳转 to 视频指定时间" data-url="https://www.youtube.com/watch?v=gi2o3ajbHv0&amp;t=29m21s">►</span><br>
+— 兑换码的应用范围非常广泛。它们制作出来也是为了满足这些需求。
+</p><p><span style="color:#548bc9"><b>会有新的战场模式吗？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=gi2o3ajbHv0&amp;t=32m27s">►</span><br>
+— 正如大家所记得的，我们在新年时推出了突袭模式。我们正在考虑这一点。平衡很难做。当然，游戏设计师能更好地介绍新模式，但总体而言目前我们还没有考虑新模式。
+</p><p><span style="color:#548bc9"><b>如果输入了兑换码，但军衔低于五级准尉，会给金箱子吗？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=gi2o3ajbHv0&amp;t=34m33s">►</span><br>
+— 会的，会的。它们可以在任何军衔下使用。
+</p><p><span style="color:#548bc9"><b>是否可以对匹配中的战场进行某种自定义设置？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=gi2o3ajbHv0&amp;t=40m33s">►</span><br>
+— 不能。但也许会有一些带有特殊设置的活动战场。
+</p><p><span style="color:#548bc9"><b>为什么在商店里不能通过短信（SMS）购买任何东西？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=gi2o3ajbHv0&amp;t=44m45s">►</span><br>
+— 因为通过短信支付时，我们无法明确你想买什么。因此我们只出售水晶。
+</p><p><span style="color:#548bc9"><b>StarLadder 发生什么事了？电竞将何去何从？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=gi2o3ajbHv0&amp;t=45m33s">►</span><br>
+— 我们终止了与 StarLadder 的合作，因为这不切实际。这当然很酷且体面：演播室、游戏分析，但考虑到我们投入的精力和资源，电竞并没有那么受欢迎。
+</p><p><span style="color:#548bc9"><b>游戏什么时候会有语音聊天？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=gi2o3ajbHv0&amp;t=47m32s">►</span><br>
+— 目前计划中还没有。但考虑到匹配系统会带来组队功能，我们开始考虑语音通信了。
+</p><p><span style="color:#548bc9"><b>把聊天频道的解锁军衔降低到二等兵吧！</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=gi2o3ajbHv0&amp;t=1h13m45s">►</span><br>
+— 不行，因为在大号上被封禁的玩家会去创建新号并再次违规。
+</p><p><span style="color:#548bc9"><b>每日任务可以在匹配中完成吗？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=gi2o3ajbHv0&amp;t=1h19m1s">►</span><br>
+— 是的，可以。
+</p><p><span style="color:#548bc9"><b>你们对游戏助手（App Assistant）有什么计划？</b></span> <span class="linkElem" title="跳转到视频指定时间" data-url="https://www.youtube.com/watch?v=gi2o3ajbHv0&amp;t=1h20m57s">►</span><br>
+— 近期的任务是添加聊天功能。我们还希望添加商店功能，以便例如当你不在电脑前时，也能在打折期间购买东西。
+</p>
+</div></div><h3><span id="28_.D0.B8.D1.8E.D0.BB.D1.8F_2017_.D0.B3.D0.BE.D0.B4.D0.B0"></span><span class="mw-headline" id="28_июля_2017_года">2017 年 7 月 28 日</span></h3><p>与 3D 坦克油管主 <b>killjet</b> 及谢苗·斯特里扎克的直播。未提供视频链接，因为该直播为非官方性质。
+</p><div class="btn btn-collapsed border-0 rounded-0 w-100 text-left text-uppercase position-relative py-2 my-3" data-toggle="collapse" data-target="#collapseExample4">直播内容</div><div class="collapse" id="collapseExample4"><div class="card card-body">
+<p><span style="color:#548bc9"><b>为什么修改了维修工具的工作机制？</b></span><br>
+— 这一改动属于其他一系列旨在改善付费玩家与免费玩家之间平衡的改动之一。在 2015 年底至 2016 年初，游戏跨过了可以被称为“坦克 1.0”的节点。除了开发人员停止购买流量（即宣传游戏）之外，没有发生什么重大变化，因为营销费用高于收入。这也是在线人数急剧下降的原因，这是完全预料之中的。
+</p><p>当时决定让 3D 坦克 “自生自灭”，并着手开发 Tanki X。当时 Unity 平台仍受浏览器支持，而 Tanki X 是 3D 坦克的新版本。开发人员甚至计划将玩家在 3D 坦克中的所有游戏进度转移到 TX 中，这样老玩家就不必从头开始游戏了。但随后浏览器停止支持 Unity，Tanki X 游戏便成了独立于 3D 坦克的项目。
+</p><p>因此，决定对游戏进行全面更新，因为本质上它只是旧引擎的演示版。游戏需要彻底重构，以使其对新老玩家都可用，让他们能够在同一服务器和同一社群中共存。
+</p><p>阻碍游戏更新的问题之一是付费玩家与免费玩家之间巨大的不平衡。必须解决这个问题，于是开发人员聘请了专业专家来评估这种不平衡对游戏的影响程度。
+</p><p>研究结果表明，部分玩家知道系统如何运作以及如何避免“挨打”，但大多数玩家只是开始按自己喜欢的方式游戏，把所有水晶花在随机物品上，却不明白这会对他们日后产生什么影响。然后，由于对抗更强装备的难度太高，他们无法继续推进游戏而选择了离开。
+</p><p>因此，削弱维修工具是使游戏对弱势玩家更友好的漫长过程的一部分。开发人员预料到了这种负面反应，但为了让游戏继续发展，这一更新是必要的。因此，旧版本的维修工具将不会回归游戏。
+</p><p><span style="color:#548bc9"><b>为什么不让 3D 坦克 “保持原样”？</b></span><br>
+— 早在 2015 年，当开发人员意识到游戏不再带来足以支付广告费用的收入时，他们有几种后续行动方案。第一种是游戏开发公司达到这一阶段时最常见的做法——让游戏“自生自灭”。玩家拥有处于当前几乎不变状态下的游戏，他们享受着原汁原味的游戏——皆大欢喜。这实际上就是开发人员在 2015 年左右所做的——他们没有发布任何重大更新。留给 3D 坦克开发的只有 3-4 名程序员，其余所有力量都投入到了 Tanki X 中。
+</p><p>这种情况持续了一段时间，直到开发人员完全确信新项目 Tanki X 的成功，该项目原计划于 2015 年 10 月左右发布。但随后出现了各种问题，显而易见，Tanki X 的发布将被大幅推迟，而 3D 坦克仍然是维持公司运转所必需的。当发现 Tanki X 无法取代 3D 坦克时，开发工作受到的阻碍尤为严重，因为浏览器停止支持 Unity 平台。
+</p><p>因此，开发人员得出结论，他们需要回归 3D 坦克的开发。这是一个问题，因为一方面，他们不想打扰习惯了游戏当前状态的老玩家；另一方面，他们必须完善项目以吸引新玩家，而这不改变原汁原味的“3D 坦克”是无法做到的。
+</p><p>从商业角度来看，开发人员选择了一个相当合理的方案：将游戏变成一台印钞机。最近的更新正是旨在让玩家投入资金（例如，将金箱子加入商店销售并从车库中移除“1500 个道具”礼包）。
+</p><p>但不久之后，这一切就被叫停了。取而代之的是，开发人员决定重塑项目并将其适配于当下的游戏市场。一款依然源自 2009 年引擎演示版的游戏，在当前状态下已经没有机会再次流行起来，因此需要进行非常宏大的重构。这就是为什么会出现诸如改进道具机制、更改战场列表、添加终极技能和匹配系统等变动的原因。
+</p><p>现在最大的问题是修改游戏，使老玩家能够与新玩家共存，并让所有人都能舒适地游玩。
+</p><p><span style="color:#548bc9"><b>旧版维修工具会在专家战场中可用吗？</b></span><br>
+— 现在谈论这个还为时过早，因为开发人员尚未决定专家战场将如何运作。截至目前，计划中没有这一项。但开发人员一直在分析游戏中的情况，并将在匹配上线后继续这样做，因此，如果情况表明玩家确实因为维修工具而减少了游戏时间，将会采取一些决策。
+</p><p><span style="color:#548bc9"><b>既然维修工具效果变差了，为什么不降低它的价格？</b></span><br>
+— 早在 2014 年推出相关冷却时间之前，维修工具的工作方式就和几周前差不多。它为你治疗直到生命值完全恢复，然后其效果停止。然而，当时的治疗速度要慢得多，效果也并不比现在的维修工具好多少。当时维修工具的价格是其他道具的 3 倍，这是物有所值的。但后来，当相关冷却时间机制上线后，维修工具被修改成了你最近看到的那个状态，这实际上使其强大得多。现在的维修工具成了它本应成为的模样。
+</p><p><span style="color:#548bc9"><b>为什么那些没有道具的“萌新”不去专家战场而在普通场玩？</b></span><br>
+— 你所说的“萌新”——大多是那些没有成为硬核玩家目标的休闲玩家。他们放学或下班回家，晚上玩一两个小时 3D 坦克来放松。这些玩家希望快速进入战场，玩一会儿，拿到水晶然后离开。他们不想考虑地图设置、消耗品和各种限制，因此战场列表对他们来说是一个复杂的、不感兴趣的功能，即使专家战场是免费的也是如此。
+</p><p><span style="color:#548bc9"><b>你们如何看待玩家离开游戏？</b></span><br>
+— 我们不能相信玩家所说的一切。每一条信息都必须经过核实。关于玩家因为更新而大规模流失的说法是不正确的。我们拥有关于游戏中发生的事情的统计数据。游戏必须发展，这些是发展所必需的更新。
+</p><p><span style="color:#548bc9"><b>开发人员是在杀死 3D 坦克以迫使玩家转投 Tanki X 吗？</b></span><br>
+— 不是。开发人员意识到 3D 坦克相比其他同类游戏项目拥有巨大的优势：它是一款网页端 3D 游戏，无需下载任何文件即可游玩，且系统配置要求低。
+</p><p>当浏览器停止支持 Unity 平台时，Tanki X 失去了大部分潜力。游戏只能通过客户端游玩，这使其相当不受欢迎，即使经过了一年的开放测试也是如此。
+</p><p><span style="color:#548bc9"><b>为什么要删除死亡混战比赛，而现在又以另一个名字——匹配系统把它请回来？</b></span><br>
+— 死亡混战比赛最初被视为匹配系统的初步测试。这是一个好主意，玩家确实在等待并希望尝试它。在死亡混战比赛上线当天，3D 坦克的活跃度迎来了激增！但遗憾的是，这与开发人员希望看到的相去甚远，因为死亡混战比赛的添加主要是为了赚取水晶，而不是为了解决匹配系统所解决的问题。
+</p><p>由于玩家期待的是一回事，得到的却是完全另一回事，死亡混战比赛很快失去了人气而被移除。死亡混战比赛的某些部分被移植到了匹配系统中，但毕竟死亡混战比赛和匹配系统远非同一回事。
+</p><p><span style="color:#548bc9"><b>为什么没有 2 倍基金？玩家该如何赚取水晶？</b></span><br>
+— 1.5 倍基金对玩家和开发人员都没有任何实质帮助。在上次出现 1.5 倍基金后，官方做出了决定：以后将不再有此类基金。
+</p><p><span style="color:#548bc9"><b>为什么停止支持电竞？</b></span><br>
+— 因为电竞已经不再是 3D 坦克的首要任务。每个人都喜欢游戏与 StarLadder 的合作，但遗憾的是，考虑到 3D 坦克中没有任何东西来支持电竞，这代价实在太高了。我们希望把这一切带回来，但目前游戏还没准备好。
+</p><p>电竞正是那些在游戏中无所事事的玩家（他们购买了所有武器、在所有地图上玩过、达到了最高等级、收集了所有成就等）所需要的。电竞是继续前进的理想方式。开发人员希望为玩家提供这种机会，但现在并不是最合适的时机。
+</p><p><span style="color:#548bc9"><b>开发人员会为了测试更新而玩游戏吗？</b></span><br>
+— 是的，他们会玩。特别是游戏设计师，比如谢苗·斯特里扎克。他有许多不同军衔和升级水平的账号，用于测试更新。亲自体验游戏是游戏设计师最重要的规则之一。
+</p>
+</div></div><h3><span id="10_.D0.BD.D0.BE.D1.8F.D0.B1.D1.80.D1.8F_2017_.D0.B3.D0.BE.D0.B4.D0.B0"></span><span class="mw-headline" id="10_ноября_2017_года">2017 年 11 月 10 日<div title="点击打开视频" class="ShowYouTubePopup" style="width:22pxpx;" data-id="L-G-KcCsynk"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/22px-YT-icon.png" decoding="async" loading="lazy" width="22" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/33px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/44px-YT-icon.png 2x"></span></span></div></span></h3><p>第五次官方直播，嘉宾为马克西姆·胡赛诺夫、谢尔盖·塔拉索夫（Sergey Tarasov）和帕维尔·戈尔布诺夫（Pavel Gorbunov）。
+</p><p>(<i>无内容</i>)
+</p><h3><span id="16_.D0.BE.D0.BA.D1.82.D1.8F.D0.B1.D1.80.D1.8F_2020_.D0.B3.D0.BE.D0.B4.D0.B0"></span><span class="mw-headline" id="16_октября_2020_года">2020 年 10 月 16 日<div title="点击打开视频" class="ShowYouTubePopup" style="width:22pxpx;" data-id="OFfJsEHOBu4"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/22px-YT-icon.png" decoding="async" loading="lazy" width="22" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/33px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/44px-YT-icon.png 2x"></span></span></div></span></h3><p>官方直播，嘉宾为谢苗·斯特里扎克和伊万·高登斯普恩（Ivan Goldenspoon）。
+</p><div class="btn btn-collapsed border-0 rounded-0 w-100 text-left text-uppercase position-relative py-2 my-3" data-toggle="collapse" data-target="#collapseExample5">直播内容</div><div class="collapse" id="collapseExample5"><div class="card card-body">
+<p><span style="color:#548bc9"><b>目前只能从超级礼盒中开出的无人机“危机”，会以水晶、坦克币或真实货币的形式上架销售吗？游戏里计划推出新的无人机吗？</b></span><br>
+— 无人机“危机”是专门为礼盒打造的，它以前在那里，以后也会一直在那里。也许作为某项活动的一部分，它会在特价优惠中短期上架。
+</p><p><span style="color:#548bc9"><b>开发人员是否打算在游戏中引入天气视觉效果（雾、雨等）？游戏的画质会完全重制为 3D 吗？</b></span><br>
+— 游戏里已经有了 3D 灌木丛和漂亮的超高皮肤。尽管其余部分看起来略显过时。如果我们重制所有地图，那将需要相当长的时间，而且不知道什么时候能完成，但处理一下光影效果——倒是可以尝试。
+我们之前在里约做过一次实验，我们在部分地方“烘焙”了阴影和光照：在有房屋和狭窄小巷的地方——光线特别暗，我们很喜欢这种效果。我们会尝试在各地都做出这样的光照效果，而且要力求更好。
+</p><p><span style="color:#548bc9"><b>是否计划让悬浮坦克能够仅通过键盘进行侧移，而无需使用鼠标？如果是，会有多快？</b></span><br>
+— 我们还在考虑，但这并不是那种我们现在就要立刻去做的东西。大家可能还记得，我们在测试中做过类似的实验。大家的评价显示出负面反馈。也许当时你们给出的反馈带有偏见，也就是针对新颖且不理解的事物。而现在你们想要点儿别的东西。这种操作方式是针对鼠标和移动端设计的——那里的所有功能运行得都很完美。我们觉得引入这种键盘操作没有意义，也就是说，为什么呢？我们有一部分忠实受众，他们习惯用键盘操控坦克且害怕碰触鼠标，但这并非永恒。现在有哪些游戏还使用纯键盘操作？这属于濒危物种。你完全可以在键盘上设置一个侧移按键，设置里有，但他们键盘上没有多余的按键，所以你可以把它绑定到你想绑定的任何键上。不过看到近期的键盘，我只想说，祝你们好运，伙计们！
+</p><p><span style="color:#548bc9"><b>是否计划将单排玩家和组队玩家的匹配机制进行某种划分？你们打算改善此类战斗中的平衡性吗？</b></span><br>
+— 通常大家一起玩是一件好事，所以我们没考虑过这种划分。如果说到“组队对抗组队”的战斗，这里有很多饱受争议的问题，因为并非所有组队都想和别的组队交战，而和陌生的单排玩家玩又没那么有趣。因此，目前我们不打算朝着这个方向发展。
+</p><p><span style="color:#548bc9"><b>未来还会推出新的底盘吗？为什么你们决定在车库里以水晶出售霍珀？</b></span><br>
+— 当然，新底盘在计划之中，甚至有好几个。不难猜出它们将是悬浮坦克，因为我们采用了新的移动模型，并且正基于它制作底盘。我们暂且不剧透它们会有什么功能。为什么决定在车库里以水晶出售霍珀？悬浮坦克最初就是为了鼠标操作而设计的，它们在这方面完成得非常完美。把这种飞行操作方式作为“高级”玩家的专属，而我们最初在移动端上把它构思为“基础”操作，这显得非常非常非常奇怪。我认为迟早我们会尝试这种模式，比如有些坦克属于高级货，但我不认为这会很快发生。我们从一开始就打算这样处理霍珀，并且从一开始就说过这是抢先体验。我相信未来的坦克也会使用抢先体验。因此不要指望我们会先把它做成付费的，然后再变成水晶购买，抢先体验就是这样运作的。
+</p><p><span style="color:#548bc9"><b>为什么装备改造不生效了？我很久以前买了一个马格南的装备改造并在车库中装备了它，但为什么在战斗中它没有生效呢？这个问题和什么有关？它会被修复吗？</b></span><br>
+— 在最近的平衡性调整中，马格南的装备改造被修改了，但你们会喜欢我们未来的计划，具体是什么我们不会说。如果你不知道马格南的装备改造稍微变了，那就换个装备改造。如果你提出这个问题时我们正好看到了坦克的小故障，你穿戴的装备改造——不生效，那我们应该已经修复了。
+</p><p><span style="color:#548bc9"><b>是否计划对蜂王终极技能的工作机制进行修改？</b></span><br>
+— 我们知道蜂王存在的问题，但直接简单粗暴地削弱它——有点不对劲。你们多半不会喜欢那种被称为“一刀切”的正统游戏设计方法，例如缩短持续时间——这太无趣了。而且这实际上并不能解决问题：为什么这个终极技能如此强势，以及为什么它使用起来太容易了。我们决定稍微拆分它一下，也就是说它将拥有两种机制，一切其实都会照常发生，只是你现在在这个终极技能上获得的穿甲效果，它会转化为状态效果，就像着火那样。而这已经带来了一些后果。
+</p><p><span style="color:#548bc9"><b>你们什么时候取消游戏内的充值（内购）？</b></span><br>
+— 什么时候取消充值？当程序员开始免费工作时，当服务器开始免费提供时……接下来，这个想法我们就不继续展开了，但大家应该都懂，游戏是“免费游玩（free to play）”，并不意味着里面不能有充值，游戏全靠这个维持生存，所以是的。但值得注意的是，我们正试图打造这样一款游戏：其中虽然包含高级内容，但即使你不拥有它，也能做到拥有高级内容的人所能做的一切，某些高级特殊情况除外。是的，当有些东西非常难以获得时，你们会很喜欢，你们自己也说过这一点。
+</p><p><span style="color:#548bc9"><b>提前关闭游戏的 Flash 客户端可能吗？</b></span><br>
+— 我们现在拥有的这个 Flash 客户端，随时都可以关闭，因为我们有 HTML5 客户端，我们的 HTML5 浏览器可以运行，安卓客户端也能运行。日期已经选定，用来宣布例如 Chrome 中的这个 Flash 将在何时关闭。在此之后，问题就在于我们还能支持它多久。提醒一下，我们制作阿瑞斯时就说过，它不会立刻在 Flash 客户端上推出，所以很多人对此的理解是，阿瑞斯一出——就没有 Flash。我们无法长期支持 Flash 客户端，原因很简单，信不信由你，在 Flash 上的开发工作量与安卓和 HTML5 加起来的一样多，这非常耗时。是的，我们知道你们已经习惯了旧客户端，但不得不做出艰难的决定。
+</p><p><span style="color:#548bc9"><b>备受瞩目的炮塔“特斯拉”什么时候发布？</b></span><br>
+— 某年某月某日。今年肯定不会，我可以告诉你们，因为目前我们专注于底盘，它们做出来相当有趣，所以新炮塔今年绝对不会发布。它会在明年发布，具体时间我也不说。它在计划中，在概念设计中，上面写着它打算做什么，但目前我们还没开始制作它。
+</p><p><span style="color:#548bc9"><b>每周任务“在获胜队伍中 15 次进入前三名”会被简化吗？</b></span><br>
+— 可能会改变，也可能不会。我们同意任务的难度在彼此之间应该保持一致，这里确实值得看一看。例如，将其从 15 次简化为 10 次，或者不要求一定要 TOP 3。其实有些人知道，也许连 TOP 3 也不会变成一个那么难的任务，说不定……
+</p><p><span style="color:#548bc9"><b>诸如“辣椒”、“Vavilon”、“Synergy”等迷彩会加入礼盒中吗？</b></span><br>
+— 不会，我们不打算将这些迷彩加入礼盒中，因为它们有特定的使命。但这个问题很有趣，也许我们应该考虑一下趣味迷彩。
+</p><p><span style="color:#548bc9"><b>游戏中还会举办类似《战争：“被盗的圣诞节”》这样的活动吗？</b></span><br>
+— 目前我们不考虑直接举办类似的东西，我们自己得出的结论是，如果按同样方式举办，留下的还是那些相同的问题。这场战争并不在游戏内，也就是说如果我们把这张地图做到游戏内部，虽然在 HTML5 上原则上是可行的，那到时候我们就会举办类似活动。机制本身很有趣，未来可能会有类似的东西。
+</p><p><span style="color:#548bc9"><b>你们打算在游戏设置中添加旧版界面（来自 Flash 版本）吗？当前的界面给 CPU 带来了沉重负担。</b></span><br>
+— 会有优化的。我们现在正致力于此，大概今天你们就已经看到一项优化了。关于旧版界面——也就是 HTML5 中的纯 Flash 界面，目前争议还很大。原因在于它不够“灵活”。有了新界面，我们工作起来要容易得多，在其中更改任何东西也更方便。旧界面几乎全部是精雕细琢“一锤一凿敲出来的大理石”，我把这称为手动调整像素。直接拿来并移植它，嗯，当然可以尝试快速制作，但相信我，效果会糟糕到你们真的不会喜欢，而做出糟糕的东西是个坏主意。
+</p><p><span style="color:#548bc9"><b>其他底盘的工作机制会有变动吗？</b></span><br>
+— 工作会继续，只要项目还活着，修复就永远不会停止。
+</p><p><span style="color:#548bc9"><b>移动版游戏中会出现专家战场吗？</b></span><br>
+— 我们对此有不同的想法。但目前还没有。
+</p><p><span style="color:#548bc9"><b>游戏中计划出现新模式吗？</b></span><br>
+— 也许有，我们对此有想法，但目前还没有。模式相当多。
+</p><p><span style="color:#548bc9"><b>“剑圣”模式会加入专家战场吗？</b></span><br>
+— 不会，不会加入。除非发生某种会改变专家战场运作方式的事情。
+</p><p><span style="color:#548bc9"><b>计划在匹配中引入地图选择功能吗（例如像知名游戏 CS:GO 那样）？</b></span><br>
+— 对于当前形态的匹配系统来说，带有地图选择功能的方案并不是一个好主意，除非我们创建另一种匹配系统，其中所有地图都按组别划分。但目前我们甚至无法想象这样做的目的是什么。
+</p><p><span style="color:#548bc9"><b>游戏中会出现类似于旧 V-LOG 栏目“Test Box”中那些消耗品的新道具吗？</b></span><br>
+— 不会，不会出现。因为道具数量已经够多了。总的来说，在我们看来，三种消耗品是完美的，五种就实在是太多了。没必要参考“Test Box”栏目的例子，因为那纯粹是娱乐内容。
+</p><p><span style="color:#548bc9"><b>游戏什么时候会出现新地图？</b></span><br>
+— 等它们做出来的时候。
+</p><p><span style="color:#548bc9"><b>通过 TO Mobile 加入专家战场会成为可能吗？目前可以通过 PC 进入专家战场，然后通过手机使用同一账号加载进入。你会身处同一场战斗中。</b></span><br>
+— 进入专家战场的方法已经有了，并且在问题本身中就有所描述。目前不计划创建新方法。
+</p><p><span style="color:#548bc9"><b>为什么你们要放弃 Flash 平台？你们认为随着 Flash 客户端的彻底关闭，会有很多人离开吗，毕竟它在低配 PC 上非常方便？</b></span><br>
+— 我们不这么认为。我们非常希望没有一个玩家离开项目。我们拥有关于 flash 玩家数量的确切数据，但出于显而易见的原因不会说出具体数字。倒也不是说我们要杀死旧技术，只是我们和它一起工作确实很吃力，新引擎给了我们极大的拯救。
+</p><p><span style="color:#548bc9"><b>万圣节会推出新的“僵尸”模式吗，毕竟你们说过想加入它？</b></span><br>
+— 的确，我们说过想加入它，这里大概应该回忆一下我们当时是怎么说的。我们当时说的不是“僵尸”模式，我们当时说的是游戏中的机器人。自己一个人扮演僵尸其实很无聊。你是想一直扮演僵尸，还是扮演那个开枪反击的人？在匹配中你绝对不会想这么做。如果你被分配成僵尸，你马上就会退游戏，因为你会想玩剑圣去大杀四方。我们谈论这个模式的前提是，如果游戏里出现了机器人，我们就会考虑这个模式。我们有机器人了吗？不，除了移动端操作教学外，我们没有机器人。这里的问题在于，这些机器人高度绑定于特定地图，这就是它们目前仅会的全部。目前我们还没有去为匹配中的某些热门模式制作它们，因此也就没有僵尸模式。
+</p><p><span style="color:#548bc9"><b>游戏的画质会完全重制为 3D 吗？</b></span><br>
+— 我们正在为此努力。
+</p><p><span style="color:#548bc9"><b>计划哪怕暂时恢复旧版的“匹配”战斗地图选择功能吗？</b></span><br>
+— 我们正在讨论这个问题，并且随着每一次更新都在推出一批针对 HTML5 客户端的修改、完善和改进。目前这是一个漫长但仍在持续的过程。也许在某个时刻我们也会走到这一步。
+</p><p><span style="color:#548bc9"><b>为什么不把某些地图改造以适应匹配，但把人数做成不是 10v10？你们计划扩充 MM 地图列表吗？</b></span><br>
+— 我们现在正在讨论地图上的玩家数量将朝哪个方向发展。当我们得出这个问题的答案时，我们会再次审视我们的地图池。其中一些地图将会消失。
+</p><p><span style="color:#548bc9"><b>你们会为游戏界面添加主题吗（例如深色或浅色主题）？</b></span><br>
+— 有趣的问题。也许有一天会添加更浅的主题。
+</p><p><span style="color:#548bc9"><b>成就系统会得到完善吗？</b></span><br>
+—如果你问的是：这个奇怪的面板会被重制，并且会搬进游戏里吗？总有一天会的。
+</p><p><span style="color:#548bc9"><b>完成成社会获得什么奖励吗？</b></span><br>
+— 我们的待办事项（backlog）里确实有关于成就的话题，但它还非常遥远。我们可以说目前我们正在考虑它，你们会因为成就获得奖励吗？现在普遍的趋势是玩家获得成就会得到一些东西。所以如果成就推出的话，它们会直接伴随着一些丰厚的奖励，因此多半会的。
+</p><p><span style="color:#548bc9"><b>如何评估某个更新的效果？</b></span><br>
+— 这个问题我们好像回答过，但我们再回答一次。我们有详细观察玩家行为当前实际发生情况的分析数据，并且我们确实有来自玩家的反馈，他们会指出具体哪里不对。当你明白它是如何运作的以及具体哪里痛时，你就能从中得出结论。整个过程大致就是这样，而且当然，它是非常综合的。你们的反馈确实产生了影响，我们可以根据它来评估：我们是否达到了想要的目标。
+</p><p><span style="color:#548bc9"><b>你们计划为轰天炮制作射击颜色吗？</b></span><br>
+— 无法确切说明，它在待办事项中。轰天炮的射击颜色连同飞行的炮弹总有一天会推出的，但不会在近期。
+</p><p><span style="color:#548bc9"><b>游戏中会加入道具转换功能吗？</b></span><br>
+— 我们曾有过这个想法，讨论过它，甚至接近于将其提上日程，但目前我们又把它搁置了。我们目前不考虑添加将一种道具转换为另一种道具的机制，但也许会有所改变，因为我们有关于更宏大机制的想法，这些对我们来说现在更有趣。
+</p><p><span style="color:#548bc9"><b>除了 HTML5，你们还使用哪些编程语言？</b></span><br>
+— 首先，HTML5 不是编程语言，但为了不深究，我们这样说：我们确实用了！针对不同的任务使用不同的语言。
+</p><p><span style="color:#548bc9"><b>会有提高游戏整体节奏的机制变动吗（例如提高底盘速度）？</b></span><br>
+— 还能怎么高？
+</p><p><span style="color:#548bc9"><b>装备改造被创造出来作为当前炮塔玩法的等效替代品。为什么“肾上腺素”装备改造以及底盘的装备改造，会带来如此巨大的优势且没有任何负面影响？</b></span><br>
+— 在这里我们确实没做好。在最近的更新中，装备改造的理念本身发生了改变，现在它确实是对你坦克的增强，并且装备改造现在能提供装备分数加成（这是一个非常非常大的暗示）。但要说我们从所有喇叭里大声喊出这一点，我觉得并没有这么做。现在装备改造确实是你坦克的升级，而“肾上腺素”装备改造正是以这样一种方式制作的：它保留了炮塔相同的玩法，但允许你获得优势。所有其他装备改造也是以同样的方式制作的。它们毕竟还是提供了优势。如果你认为其中某些偏弱——请让我们知道，我们会修复它的！
+</p><p><span style="color:#548bc9"><b>针对 iOS 操作系统的移动版游戏什么时候会制作出来？</b></span><br>
+— 这将发生在坦克在安卓上取得良好进展之后。这不会在 2020 年发生，但到明年年底我们可能会重新讨论这个问题。最好是关注 V-LOG，那里肯定会说的，因为我们确实也想在 iOS 上发布。
+</p><p><span style="color:#548bc9"><b>在我看来，赚取游戏内货币和物品的主要途径是附属事物（礼盒、任务、星级挑战等），而绝非游戏的基础——战斗。你们是刻意这么做的，还是为了防止项目现在就倒闭而采取的权宜之计？</b></span><br>
+— 如果说的是在匹配中赚取水晶，是的。我们是刻意这样做的，而且更确切地说，我们可以说现在几乎所有的游戏都正是走向了这一点。也就是说任务、任务进度、各种礼包、任务链，甚至星级挑战奖励加成——它们全都围绕着这个打造。当有这些东西时，许多玩家更容易关注它们，而且有大把理由证明为什么这样运作更酷，我们确实来到了这一步，因为出于某些原因这也分担了战斗的压力，我们确实是刻意这样做的。你完成任务——你就能获得你需要的大部分东西。这好还是坏？这个问题甚至不该问我们，这是整个行业的问题。以前这一切都不是这样的，为了公正起见，以前我们甚至连每日任务都没有。我们就不深入这个话题了，只能说这不是为了不让游戏死掉而想的办法。信不信由你。
+</p><p><span style="color:#548bc9"><b>你们是否打算加入在战斗中直接查看任务和好友列表的功能？</b></span><br>
+— 我们理解你们不仅是因为 Flash 上曾经这样才想要它，而是从根本上就想要这个功能。我们现在正在讨论一些版本。我们不说具体是哪些，但我们正在就此讨论某些内容，好让你们能了解任务，例如它们的进度，并让好友更紧密地融入战斗中，也许甚至可以通过在里面查看他们来实现。但这里的优先事项是，匹配并不需要这个。退出来，和好友组队，然后一二三开始游戏要简单得多。对于战场列表来说这更需要，所以我们才提出疑问：现在做这个是否值得？
+</p><p><span style="color:#548bc9"><b>匹配战斗中的高经验值获取什么时候会被取消？</b></span><br>
+— 当然，所有关于经验和基金的改动都是我们刻意做的，我们确实看到了它导致的情况，但我们认为加速游戏进程和更快获取内容是一件积极的事情。如果追溯到非常美好的旧时光，在平衡性调整之前，M3 底盘卖得很早，在你攒够水晶购买它之前就能买到，实际上，这和我们如今的情况完全一样。你们获取经验的速度同样变快了，所以我们要说的是，我们并没有迎来什么新事物，不如说更像是回到了非常古老的过去。我们检查过了，并没有出现你们在玩游戏时却买不起任何刚需物品的情况。
+</p><p><span style="color:#548bc9"><b>你们什么时候开始花大量时间开发移动版游戏？</b></span><br>
+— 我们正在开发它，并且在登陆 iOS 之前不会停下来。
+</p><p><span style="color:#548bc9"><b>游戏地图中会再次出现秘密房间吗？</b></span><br>
+— 你们大概注意到了，在广场 3C MM 地图中出现了并非必经之路的隧道。这样说吧，我们正在对这个问题进行试验。显而易见，如果我们完全转向在地图渲染方面比 Flash 更优化的 HTML5，我们也许会回到这个问题上。
+</p><p><span style="color:#548bc9"><b>为什么不为更快地协调盟友而加入语音聊天，毕竟许多游戏都有这个功能而且非常方便？</b></span><br>
+— 我们确信你们尝试过在 PC 上启动 Discord，但它开始变卡，现在想象一下，如果我们在游戏里内置语音通信，它开始变卡。那可就不太妙了。另一方面，我们多次提出过这个问题，确实游戏内嵌语音聊天会是个很棒的东西。这个想法很好，我们很喜欢，但如果你能使用 Discord，最好还是使用它。
+</p><p><span style="color:#548bc9"><b>为什么对专家战场采取了如此绝对的措施？</b></span><br>
+— 我们把所有资源都投到了匹配、每日任务和所有这些系统上。资源没有流向专家战场，当那里出现某些问题时，我们本质上是通过关闭其中某样东西来解决的。例如，激光炮/镭射炮中的水晶。从外部看起来可能像是我们来把你们的一切都搞砸了，但从我们的角度来看，我们是将资源投向了别处。专家战场还会回来吗？好问题。
+</p><p><span style="color:#548bc9"><b>为什么专家战场里无法创建“剑圣”模式的地图？</b></span><br>
+— 因为滥用它太容易了。这就好比如果我们把黄蜂火焰炮给所有黄蜂火焰炮玩家一样。所以目前我们不给。
+</p><p><span style="color:#548bc9"><b>你们在收集游戏平衡性统计数据时，关注的是哪些军衔区间？</b></span><br>
+— 当然是所有区间。确实，平衡性的全貌在各个军衔都有所不同，必须为此做点什么。我们有时会做。
+</p><p><span style="color:#548bc9"><b>玩家非常喜欢在最近某个活动中加入的“霍珀激光炮”模式。还计划推出类似模式吗？</b></span><br>
+— “霍珀激光炮”是个很棒的主题。是的，我们正在讨论类似模式，也许会有有趣的事情发生。
+</p><p><span style="color:#548bc9"><b>是否计划让悬浮坦克能够仅通过键盘进行侧移，而无需使用鼠标？如果是，会有多快？</b></span><br>
+— 我们在一开始就将键盘操作设计为基于侧移，但与此同时我们不得不放弃旋转炮塔。在测试期间，这让很多人非常不喜欢。而且，看着你们的反馈，我们不得不将操作改得更传统。是的，悬浮坦克原本不是为这种操作设计的，但至少你们能够像坦克原本那样操控它了。目前我们并没有讨论接下来要对此做些什么。正如我之前所说，悬浮坦克及其操作的目的已经完美实现了，在它完美适用的地方运行良好。
+</p><p><span style="color:#548bc9"><b>以后有可能用水晶购买那些只卖坦克币或只能从礼盒中开出的装备改造吗？</b></span><br>
+— 它们会不再需要付费吗？不会，但你可以从你在各种活动中绝佳获得的礼盒中开出它们。
+</p><p><span style="color:#548bc9"><b>在完成第二和第三个每周任务后，往往需要等待好几天才能刷新。也许应该改变这一点？</b></span><br>
+— 实际上，那里的系统运作大致如下：它会查看你上次在间断后第一次登录的时间，然后开始倒计时。也就是说，你很可能是曾经暂停过，刚好巧合导致你现在的期限变了。是否应该做点什么或者保持原样？不确定，也许应该重制一下，让所有人的计时器同时刷新，但这里会涌现出其他暗礁。例如，如果所有人的任务同时刷新，服务器可能会稍微卡顿几秒钟，我们尝试过。
+</p><p><span style="color:#548bc9"><b>最近 UT 皮肤越来越多了。未来普通皮肤会被超高皮肤取代吗？</b></span><br>
+— UT 皮肤不会，它们毕竟是超高皮肤。不过，请关注 V-LOG。
+</p><p><span style="color:#548bc9"><b>地图上的饰品道具怎么说？</b></span><br>
+— 这就是我们所说的，我们想更改地图上的光照，因为制作所有这些饰品道具相当昂贵且耗时，因为我们的地图基本上不是拼凑出来的。地图是由未在其他地图之间共用的碎片组成的。
+</p><p><span style="color:#548bc9"><b>计划延续“恶魔”系列皮肤吗？</b></span><br>
+— 目前没有，因为我们还没做过超高版本的恶魔皮肤，但这是个非常棒的主题，我们要能做出来就好了。目前不计划，但有这个想法。
+</p><p><span style="color:#548bc9"><b>为什么改变霍珀的重量不会影响其终极技能时的跳跃高度？</b></span><br>
+— 有趣的问题。在游戏物理中，冲击力彼此略有不同。有些冲击力会考虑重量：这通常是炮弹命中和自身射击后坐力。而有些冲击力则没有影响：它们通常与坦克的移动有关。也就是说，从这个意义上讲，重量确实对加速度影响不大，这样设计是有原因的。为了不继续这个话题，它就是这样运作的，而且能这样运作很好。
+</p><p><span style="color:#548bc9"><b>为什么与最初的概念相反，霍珀是相对地图本身向上跳跃，而不是相对车身姿态？</b></span><br>
+— 确实，在概念中我们计划让向量的方向不是相对于地图，而是相对于车身。也就是说如果你向侧面倾斜。你们知道悬浮坦克会向它们行驶的方向倾斜，跳跃应该朝着这个方向产生，也就是说可以急转车身然后朝另一个方向猛然跳跃。我们放弃这一点是有原因的，包括网络原因。但没有这个也并没有变得太糟糕，况且作为补偿，霍珀能够在飞行中控制自己，而在最初的概念中并没有这一点。
+</p><p><span style="color:#548bc9"><b>官方会允许为 HTML5 版本游戏制作和应用模组（Mods）吗？</b></span><br>
+— 关于合法性我们不知道，因为模组就其本质而言在精神上应该是违法的玩意，但我们喜欢它发展的方向，而且我们曾经提到过自制自定义界面——绝妙的想法……我们先不继续这个话题了。
+</p><p><span style="color:#548bc9"><b>你们有过制作轮式底盘的想法吗？</b></span><br>
+— 曾经在平衡性调整之前，有一个名为“Vickle”的底盘项目，它在图纸上确实采用 3x3 或 4x4 的轮式方案，但那只是在计划中的某个地方，关于它的想法是它原地肯定不会转向，总之它是一个轮式装甲运兵车坦克，而且它应该速度很快，并且好像带有漂移。为此需要制作一套不同的坦克移动物理机制，但我们没有这样做，而是制作了悬浮坦克。我们认为我们做得更好。
+</p><p><span style="color:#548bc9"><b>未来会出现新礼盒吗？</b></span><br>
+— 还有？嗯，如果你们想要的话。
+</p><p><span style="color:#548bc9"><b>为什么决定将 30 坦克币的硬币箱下架？</b></span><br>
+— 这样做是有原因的。
+</p><p><span style="color:#548bc9"><b>会添加将玩家的多个账号合并为一个账号的功能吗？</b></span><br>
+— 我们曾有过“多账号”的计划。我们讨论过它，它有优有缺。例如，我们认为高级货币可能对所有这种多账号通用，而水晶则每个账号分离开，这确实会更简单。另一方面，这种情况经常发生，你们不想暴露自己的小号，所以目前我们决定暂不这么做。原则上，我认为例如对于 Steam 或安卓这样的平台，能够用新角色重新通关游戏确实会很酷。也许我们会再次提起这个话题。
+</p><p><span style="color:#548bc9"><b>目前游戏中最吞道具的无人机之一是守卫者，每次使用消耗 3 个维修工具。是否计划为这款无人机减少消耗品的消耗量？</b></span><br>
+— 很高兴你们提出这个问题。我们完全同意无人机的消耗品消耗量应该大致相同，这意味着作为一种选择，也许应该增加其他无人机的消耗品消耗。实际上应该明白，它在产生冲击的同时带来了三个维修工具，正因如此它才使用了三个维修工具。我们也知道你们通常是怎么玩这台无人机的。你们并不是每天都在使用它。因此我们不认为这种情况是不对的，我们认为这款无人机就该这样运作。
+</p><p><span style="color:#548bc9"><b>当磁力炮更换射击颜色时，治疗光束的颜色不会改变。你们在考虑改变这道光束颜色的方案吗，还是说这会误导玩家？</b></span><br>
+— 你完全说得对，这会误导玩家。出于显而易见的原因，攻击光束可以是除了绿色之外的任何颜色。
+</p><p><span style="color:#548bc9"><b>是否计划为磁力炮添加新的射击颜色，毕竟它现在只有 3 种？</b></span><br>
+— 完全同意。关键是不要有接近绿色的特效。
+</p><p><span style="color:#548bc9"><b>你们会加入《坦克 X》中的某些地图吗（例如列宾或阿瑞斯）？</b></span><br>
+— 我们不会加入，因为这些地图是完全基于其他技术、其他原则组装的。它们甚至连边都沾不上 3D 坦克，但这个想法非常棒，而且我明白尝试一下会很有趣。我们以后会不会这样做，我不确定，因为首先必须完成我们饰品道具的重制。在此之前，不会有任何来自《坦克 X》的地图。
+</p><p><span style="color:#548bc9"><b>你们是否计划修改极速炮与“耐热性”装备改造的互动机制？</b></span><br>
+— 大家的知道，存在一种非常有趣的互动，即以前当你把火焰炮的防护模块装备到极速炮上时，你根本不会着火。我们小心翼翼地、满怀爱意地将这种互动移植到了底盘装备改造“耐热性”中。我们看到意见分歧，有人认为这是个漏洞（exploid），不应该这样做，另一些人则带着免疫游玩极速炮。我们认为这看起来像个漏洞，但它是一种透明且易懂的互动。我们不认为这很糟糕，除了修改极速炮本身的燃烧属性外，我们认为没必要对它做任何其他处理。相反，我认为这种组合正是那个最优的“带燃烧的极速炮”。是的，我们不会改变与极速炮的整合，但我们会密切关注你们的反馈。
+</p><p><span style="color:#548bc9"><b>为什么扮演剑圣时终极技能会积攒，而在你被消灭后会被重置为 0%？</b></span><br>
+— 确实——这是我们的失误，它在我们的待办事项中排队等待修复。我们迟早还是打算修复它的，因为当你当过剑圣，回来后发现之前有 98% 的终极技能，结果变成 0，这很不合理。我们会修复它的，但什么时候——不知道。
+</p><p><span style="color:#548bc9"><b>你们会把三维灌木丛加入移动版游戏吗？</b></span><br>
+— 是的，我们会加入，只是目前还不知道什么时候。
+</p><p><span style="color:#548bc9"><b>移动版游戏会出现优化更好的画质吗？</b></span><br>
+— 是的，确实需要优化，游戏并不是在所有手机上都能运行。优化问题永远开放，我们在努力。
+</p><p><span style="color:#548bc9"><b>HTML5 版本游戏中的镭射炮瞄准模式错误什么时候能修复？</b></span><br>
+— 确实，无论是通过鼠标还是键盘，镭射炮在瞄准镜中的操作都不是最优的，并且存在问题。键盘操作我们不会做太大改变，因为当你学会后，用鼠标玩镭射炮会更容易。但至于鼠标——是的。它绝对需要修复，并且在计划之中。
+</p><p><span style="color:#548bc9"><b>你们打算把 TO Mobile 中的车库做得类似于 HTML5 中的那样吗？</b></span><br>
+— 移动版和大厅的设计在 HTML5 中将永远有所不同。有些想法以后会移植过来吗？也许会。
+</p><p><span style="color:#548bc9"><b>匹配战斗中的高经验值和获取水晶机制以后会被移除吗？</b></span><br>
+— 这已经被讨论过很多次了。我们不打算移除它们，我们甚至在考虑加强它们，或者改变平衡的方案。
+</p><p><span style="color:#548bc9"><b>HTML5 版本游戏界面中会出现移除雷达的选项吗？</b></span><br>
+— 我们讨论过可以通过设置中的按钮将其移除的方案。我们会不会这样做以及什么时候做——是个开放的问题。
+</p><p><span style="color:#548bc9"><b>推荐人系统会在游戏的新版本中复活吗？</b></span><br>
+— 我们认为这个机制已经过时了。推荐人系统是为了吸引玩家进入移动端，但那样行不通。而且我们根本没有在开发它。不如优化游戏，让 App Store、Google Play 能够更好地帮助对你们的游戏感兴趣的玩家找到你们。
+</p><p><span style="color:#548bc9"><b>火箭炮发布后，音质变低了，戴耳机玩时完全没有高频声音。你们计划对这做点什么吗？</b></span><br>
+— 这些声音的制作人没有变，也许他的口味变了。我们会试图把这个问题传达给他，因为我们自己也注意到他的声音听起来和以前的轰天炮和雷暴炮不一样了——这是听得出来的。普通玩家察觉不到这一点，有些人甚至不带声音玩。我们会尝试弄楚哪种制作流程更适合我们，以及我们能否在不破坏某些东西的情况下恢复高频。
+</p><p><span style="color:#548bc9"><b>为什么火焰炮或冰风暴的声音比火箭炮或马格南的噪音安静得多？</b></span><br>
+— 在迁移声音时，我们确实遇到了重新调整声音的情况。也许如果是针对新客户端，那里的声音确实比原本应该的要安静。大多数玩家对当前的声音水平感到满意，如果有更多信息，我们一定会查看它，并可能会调整几个参数。谢谢！
+</p><p><span style="color:#548bc9"><b>有希望在未来出现类似于《坦克 X》、《坦克 2.0》等新项目吗？</b></span><br>
+— 在某种未来，你们可以期待我们的衍生项目。但如果指的是坦克的全新版本，目前还没有。这还处于极大的讨论范围内。关于坦克的衍生项目目前完全没有计划。
+</p><p><span style="color:#548bc9"><b>为什么你们要把游戏改成完全面向儿童受众？</b></span><br>
+— 总的来说，整个娱乐行业都在朝着儿童内容发展。3D 坦克是一款网页端的、街机风格的儿童射击游戏。最初这是一款关于我们童年“小坦克”的游戏。那么问题来了，我们是什么时候过渡到成人坦克的？而成人和儿童的分界线这个问题依然存在于我们之中。
+</p>
+</div></div><div align="right"><small>最后编辑：21/05/2024 HelpersBot <span class="ai-translate-note" style="color:#8FB8D8;">（由 AI 自动翻译）</span></small></div></div></div></div></div></div><footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
+<p style="margin:0;"><strong style="color:#BFD5FF;">本站为玩家社区自建的非官方 Wiki 镜像。</strong></p>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":1008,"wgPageParseReport":{"limitreport":{"cputime":"0.195","walltime":"0.219","ppvisitednodes":{"value":1789,"limit":1000000},"postexpandincludesize":{"value":33808,"limit":4194304},"templateargumentsize":{"value":20620,"limit":4194304},"expansiondepth":{"value":9,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%   79.874      1 -total"," 20.95%   16.730      1 Шаблон:See_also"," 15.28%   12.203    132 Шаблон:Color"," 13.82%   11.037      1 Шаблон:Другое_значение","  9.45%    7.551     44 Шаблон:Timecode","  6.67%    5.331     14 Шаблон:См._также/link","  5.93%    4.738      6 Шаблон:YouTubePopup","  5.87%    4.689      1 Шаблон:Alert","  5.48%    4.374      1 Шаблон:LastEdit","  4.28%    3.420      5 Шаблон:EndPrettySpoiler"]},"cachereport":{"timestamp":"20260824141158","ttl":86400,"transientcontent":false}}});});</script>
+    <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });</script></body></html>
