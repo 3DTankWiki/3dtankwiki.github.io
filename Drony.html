@@ -1,0 +1,669 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>(function(){
+  var BASE = 'https://ru.tankiwiki.com';
+  function fix(v){ return (typeof v === 'string' && v.charAt(0) === '/' && v.indexOf('//') !== 0) ? BASE + v : v; }
+  ['HTMLScriptElement','HTMLLinkElement'].forEach(function(tag){
+    var proto = window[tag] && window[tag].prototype;
+    var prop  = tag === 'HTMLScriptElement' ? 'src' : 'href';
+    if (!proto) return;
+    var d = Object.getOwnPropertyDescriptor(proto, prop);
+    if (!d || !d.set) return;
+    Object.defineProperty(proto, prop, {
+      configurable: true,
+      get: function(){ return d.get.call(this); },
+      set: function(v){ d.set.call(this, fix(v)); }
+    });
+  });
+  var of = window.fetch;
+  if (of) window.fetch = function(u, o){ return of.call(this, (typeof u === 'string' ? fix(u) : u), o); };
+  var ox = window.XMLHttpRequest && XMLHttpRequest.prototype.open;
+  if (ox) XMLHttpRequest.prototype.open = function(m, u){
+    var a = Array.prototype.slice.call(arguments); a[1] = fix(u); return ox.apply(this, a);
+  };
+})();</script><title>无人机 — Tanki Online Wiki</title><meta charset="UTF-8">
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgRequestId":"9a4dad89ec96cdf425a2824f","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Drony","wgTitle":"Drony","wgCurRevisionId":301802,"wgRevisionId":301802,"wgArticleId":10491,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"ru","wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgRelevantPageName":"Drony","wgRelevantArticleId":10491,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVisualEditor":{
+"pageLanguageCode":"ru","pageLanguageDir":"ltr","pageVariantFallbacks":"ru"},"wgFlaggedRevsParams":{"tags":{"accuracy":{"levels":3}}},"wgStableRevisionId":301802,"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.flaggedRevs.icons":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.flaggedRevs.basic":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["mediawiki.page.media","site","mediawiki.page.ready","mediawiki.toc","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.flaggedRevs.advanced","skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=ext.flaggedRevs.basic%2Cicons%7Cext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/c/c4/Drones_banner_new.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="511">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/c/c4/Drones_banner_new.png">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="341">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/thumb/c/c4/Drones_banner_new.png/640px-Drones_banner_new.png">
+    <meta property="og:image:width" content="640">
+    <meta property="og:image:height" content="272">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://ru.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://ru.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (ru)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://ru.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki&nbsp;— Atom-лента" href="https://ru.tankiwiki.com/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom">
+    <script src="https://www.google.com/recaptcha/api.js"></script><style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
+
+/* 1. 只去掉源站皮肤的背景大图，保留底色；不要用 background 简写，否则会连带清掉皮肤别的背景设定 */
+html, body {
+    background-image: none !important;
+    background-color: #001926 !important;
+}
+/* 2. 让底色铺满视口，内容很短时下方不再露白 */
+html { min-height: 100%; }
+body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif; }
+
+/* 3. 版心容器 */
+#mw-main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #001926;
+}
+
+/* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
+      【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
+
+#mw-main-container .main-content,
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content,
+#mw-main-container #mw-content-text {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: auto !important;
+    flex-basis: auto !important;   /* 皮肤写了 .main-content{flex:0 0 75%} */
+    float: none !important;
+    margin-top: 0 !important;       /* 核心：清空原站皮肤的负 margin-top */
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    position: relative !important;
+    z-index: 1 !important;          /* 保证正文层级低于按钮 */
+}
+
+/* 5. 皮肤脚本 skins.tankiblue.js 会往 #mw-content-text 末尾插一条「发现错别字？Ctrl+Enter」
+      的俄语提示条和一个「报告错误」标签页。它按网址里有没有 'en'/'de' 来判断语言，
+      我们的域名两者都不含 → 一律显示俄语；且报错会提交到俄站编辑组，对镜像站没意义，直接隐藏。 */
+#custom-report-footer,
+.vectorTabs.customReport,
+.customReport { display: none !important; }
+
+/* 6. 返回按钮包裹容器：独占一行并强制最高层级 */
+.home-btn-wrapper {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px 0 20px 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    z-index: 9999 !important;       /* 核心：永远置于最顶层 */
+    clear: both !important;
+    overflow: visible !important;
+}
+
+/* 7. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐 */
+.home-back-btn {
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    width: auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    isolation: isolate !important;
+    
+    min-width: 142px !important;
+    padding: 0 24px !important;
+    height: 78px !important;
+    margin: 0 !important;
+    border: 1px solid rgba(255,255,255,.25) !important;
+    outline: 2px solid transparent !important;
+    border-radius: 6.5px !important;
+    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%) !important;
+    
+    position: relative !important;
+    z-index: 10000 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: all .15s ease !important;
+    overflow: visible !important;
+}
+.home-back-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(100% 100% at 0% 0%, rgba(191,213,255,.25) 0%, rgba(191,213,255,.15) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all .15s ease;
+    border-radius: inherit;
+    pointer-events: none;
+}
+.home-back-btn svg {
+    width: 24.375px;
+    height: 24px;
+    object-fit: contain;
+    transform: rotate(180deg);
+    transition: all .15s ease;
+    flex-shrink: 0;
+}
+.home-back-btn svg path { fill: #BFD5FF; transition: all .15s ease; }
+
+.home-back-btn:hover,
+.home-back-btn:active,
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF !important; border-color: #BFD5FF !important; }
+.home-back-btn:hover::before,
+.home-back-btn:active::before,
+.home-back-btn:focus-visible::before { opacity: 1; }
+.home-back-btn:hover svg,
+.home-back-btn:active svg,
+.home-back-btn:focus-visible svg { transform: rotate(180deg) translateX(10%); }
+.home-back-btn:hover svg path,
+.home-back-btn:active svg path,
+.home-back-btn:focus-visible svg path { fill: #fff; }
+
+.home-back-btn span {
+    color: #BFD5FF;
+    font-size: 16px;
+    margin-left: 10px;
+    font-weight: bold;
+    transition: all .15s ease;
+    white-space: nowrap;
+}
+.home-back-btn:hover span,
+.home-back-btn:active span,
+.home-back-btn:focus-visible span {
+    color: #fff;
+    transform: translateX(-4px);
+}
+
+/* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
+@media (hover: none) {
+    .home-back-btn { border-color: rgba(191,213,255,.55) !important; }
+    .home-back-btn svg path { fill: #CFE0FF; }
+}
+
+/* 移动端/窄屏自适应尺寸 */
+@media (max-width: 480px) {
+    .home-back-btn {
+        min-width: 106px !important;
+        padding: 0 16px !important;
+        height: 58px !important;
+        margin-left: 10px !important;
+    }
+    .home-back-btn svg { width: 20px !important; height: 19.7px !important; }
+    .home-back-btn span { font-size: 14px !important; margin-left: 8px !important; }
+}
+
+/* 8. 移动端容器 Padding */
+@media (max-width: 768px) {
+    #mw-main-container { padding: 10px !important; margin: 8px auto !important; }
+    .home-back-btn { margin-left: 10px !important; }
+    #mw-content-text .navigationContainerContent > div,
+    #mw-content-text [style*="width: 55%"],
+    #mw-content-text [style*="width:55%"],
+    #mw-content-text [style*="width: 45%"],
+    #mw-content-text [style*="width:45%"] { width: 100% !important; }
+}
+@media (max-width: 480px) {
+    #mw-main-container { padding: 6px !important; margin: 4px auto !important; }
+}
+
+/* 9. 防止宽表格 / 大图撑破版心 */
+#mw-content-text img { max-width: 100%; height: auto; }
+#mw-content-text table { max-width: 100%; }
+
+/* 10. 目录（TOC）修复，全局生效：
+    a) 皮肤把目录折叠按钮的文字放在 CSS 伪元素里渲染，而不是 HTML 文本：
+         .toctogglecheckbox:checked  + .toctitle .toctogglelabel::after → content:'показать'
+         .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after → content:'скрыть'
+       AI 翻译只处理 HTML 文本，摸不到 CSS content，所以这个按钮永远是俄语，必须在这里覆盖成中文。
+    b) 皮肤的响应式 CSS 里写了 @media screen and (max-width:768px){ #toc{display:none} }，
+       导致手机端整个目录被隐藏。这里恢复显示，并配合下方 TOC_MOBILE_COLLAPSE_SCRIPT：
+       移动端默认折叠，只占一行「目录 [展开]」，避免长目录把正文挤到屏幕外。 */
+#toc .toctogglecheckbox:checked + .toctitle .toctogglelabel::after { content: '展开' !important; }
+#toc .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after { content: '收起' !important; }
+@media screen and (max-width: 768px) {
+    #toc { display: table !important; }
+}
+
+/* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
+   只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+*/
+</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Drony rootpage-Drony skin-tankiblue action-view"><div id="skin-chrome-stub" aria-hidden="true" style="display:none !important;">
+<a class="problem" href="#"></a>
+<div class="close-wrapper"></div>
+<div class="support-block-popup"><div class="close-modal-support"></div></div>
+<div class="youtube-popup"><iframe title="stub"></iframe></div>
+<div class="video-button"></div>
+<div class="header-search"></div>
+<div class="search-dialog"></div>
+<div class="search-popup"><div class="close-wrapper"></div><div class="close-modal-search"></div></div>
+<div class="news-popup"></div>
+<div class="sales-block-header"></div>
+<div class="navbar-main"></div>
+<div class="main-navbar"></div>
+</div><div id="mw-main-container"><div class="home-btn-wrapper"><a class="home-back-btn" href="./Enciklopediya_igry_%C2%ABTanki_Onlayn%C2%BB" title="返回主页" aria-label="返回主页"><svg viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 0H13.5L25.5 12L24 13.5L13.5 24H18L30 12L18 0ZM24 13.5L21 10.5H0L3 13.5H24Z" fill="#BFD5FF"/></svg><span>返回主页</span></a></div><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">无人机</h1><p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/c4/Drones_banner_new.png" decoding="async" loading="lazy" width="820" height="349" class="mw-file-element"></span></span>
+</p><p><b>无人机</b>是坦克的武器组件，可提供额外的被动能力，例如属性增长和强化<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">道具</a>。
+</p><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"><div class="toctitle" lang="ru" dir="ltr"><h2 id="mw-toc-heading">目录</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Общая_информация"><span class="tocnumber">1</span> <span class="toctext">基本信息</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Применение_в_бою"><span class="tocnumber">2</span> <span class="toctext">实战应用</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Дополнительные_механики"><span class="tocnumber">3</span> <span class="toctext">附加机制</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Усиление_припасов"><span class="tocnumber">3.1</span> <span class="toctext">强化道具</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Дополнительные_очки_репутации_за_поддержку_союзников"><span class="tocnumber">3.2</span> <span class="toctext">支援队友可获得额外的声望点数</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Сокращение_времени_перезарядки_припасов"><span class="tocnumber">3.3</span> <span class="toctext">缩短道具冷却时间</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Дополнительный_расход_припасов"><span class="tocnumber">3.4</span> <span class="toctext">额外消耗道具</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-8"><a href="#Классификация_дронов"><span class="tocnumber">4</span> <span class="toctext">无人机分类</span></a>
+<ul>
+<li class="toclevel-2 tocsection-9"><a href="#Пассивные_дроны"><span class="tocnumber">4.1</span> <span class="toctext">被动无人机</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Активные_дроны"><span class="tocnumber">4.2</span> <span class="toctext">主动无人机</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-11"><a href="#Удалённые_дроны"><span class="tocnumber">5</span> <span class="toctext">已移除的无人机</span></a></li>
+</ul>
+</div><h2><span id=".D0.9E.D0.B1.D1.89.D0.B0.D1.8F_.D0.B8.D0.BD.D1.84.D0.BE.D1.80.D0.BC.D0.B0.D0.BD.D0.B8.D1.8F"></span><span class="mw-headline" id="Общая_информация">基本信息</span></h2><p>几乎所有的无人机都可以在<a href="./%D0%93%D0%B0%D1%80%D0%B0%D0%B6" class="mw-redirect" title="Гараж">车库</a>的“<b>无人机</b>”专区用<a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы">水晶</a>购买。它们没有改造等级，但可以进行<a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="Улучшения">升级</a>。
+</p><p>除了布鲁特斯，每个无人机都有一套自己的专属效果，决定了其工作机制。
+</p><p>将无人机装备到坦克上后，可以在车库里将其更换为任何现有的无人机。
+</p><p>每架无人机都有自己独特的模型，以便将其与其他无人机区分开来。此外，无人机会借用其“主人”所使用的<a href="./%D0%9A%D1%80%D0%B0%D1%81%D0%BA%D0%B8" class="mw-redirect" title="Краски">迷彩</a>。无法通过坦克武器摧毁无人机。
+</p><h2><span id=".D0.9F.D1.80.D0.B8.D0.BC.D0.B5.D0.BD.D0.B5.D0.BD.D0.B8.D0.B5_.D0.B2_.D0.B1.D0.BE.D1.8e"></span><span class="mw-headline" id="Применение_в_бою">实战应用</span></h2><p>要使用无人机，必须像其他武器一样在车库中进行装备。一辆坦克只能装备一架无人机。战斗中，无人机会出现在坦克上方并一路跟随。坦克上方出现无人机，无疑是在发出信号：无人机已就绪，随时可能触发。
+</p><p>无人机的效果会在激活道具或拾取<a href="./%D0%94%D1%80%D0%BE%D0%BF" class="mw-redirect" title="Дроп">奖励箱</a>（危机和危机 XT 除外）时自动触发。
+</p><div class="alert warning">
+  <div class="icon"></div>
+  <div class="text"><b>注意！</b>使用自身的<a href="./%D0%9E%D0%B2%D0%B5%D1%80%D0%B4%D1%80%D0%B0%D0%B9%D0%B2" class="mw-redirect" title="Овердрайв">终结技能</a>，以及从他人的终结技能和无人机中获得道具加成效果，<b>无法</b>触发自身的无人机。</div>
+</div><h2><span id=".D0.94.D0.BE.D0.BF.D0.BE.D0.BB.D0.BD.D0.B8.D1.82.D0.B5.D0.BB.D1.8C.D0.BD.D1.8B.D0.B5_.D0.BC.D0.B5.D1.85.D0.B0.D0.BD.D0.B8.D0.BA.D0.B8"></span><span class="mw-headline" id="Дополнительные_механики">附加机制</span></h2><p>部分无人机拥有一项或多项附加工作机制：
+</p><h3><span id=".D0.A3.D1.81.D0.B8.D0.BB.D0.B5.D0.BD.D0.B8.D0.B5_.D0.BF.D1.80.D0.B8.D0.BF.D0.B0.D1.81.D0.BE.D0.B2"></span><span class="mw-headline" id="Усиление_припасов">强化道具</span></h3><p>无人机的升级等级会影响“<a href="./%D0%9F%D0%BE%D0%B2%D1%8B%D1%88%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9_%D1%83%D1%80%D0%BE%D0%BD" class="mw-redirect" title="Повышенный урон">伤害提升</a>”和“<a href="./%D0%9F%D0%BE%D0%B2%D1%8B%D1%88%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F_%D0%B7%D0%B0%D1%89%D0%B8%D1%82%D0%B0" class="mw-redirect" title="Повышенная защита">护甲提升</a>”道具的强化效果。
+</p><ul><li><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/8/85/Icon_double_armor_supply.png/25px-Icon_double_armor_supply.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/8/85/Icon_double_armor_supply.png 1.5x"></span></span> <b>“护甲提升”道具强化</b>：(50 → <span style="color:#e1e602">100</span>)，&nbsp;%<br></li>
+<li><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/dc/Icon_double_damage_supply.png/25px-Icon_double_damage_supply.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/d/dc/Icon_double_damage_supply.png 1.5x"></span></span> <b>“伤害提升”道具强化</b>：(50 → <span style="color:#e1e602">100</span>)，&nbsp;%<br></li></ul><p><br>
+</p><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample1">根据无人机升级等级的道具强化</div><div class="collapse" id="collapseExample1"><div class="">
+<table class="wikitable-modern" style="width: 60%">
+
+<tbody><tr class="wikitable-header wikitable-title-center">
+<th scope="col">等级</th>
+<th scope="col"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/dc/Icon_double_damage_supply.png/25px-Icon_double_damage_supply.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/dc/Icon_double_damage_supply.png 1.5x"></span></span>伤害提升</th>
+<th scope="col"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/8/85/Icon_double_armor_supply.png/25px-Icon_double_armor_supply.png" decoding="async" loading="lazy" width="25" height="25" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/8/85/Icon_double_armor_supply.png 1.5x"></span></span>护甲提升</th></tr>
+<tr>
+<td>0</td>
+<td>50</td>
+<td>50
+</td></tr>
+<tr>
+<td>1</td>
+<td>52,5</td>
+<td>52,5
+</td></tr>
+<tr>
+<td>2</td>
+<td>55</td>
+<td>55
+</td></tr>
+<tr>
+<td>3</td>
+<td>57,5</td>
+<td>57,5
+</td></tr>
+<tr>
+<td>4</td>
+<td>60</td>
+<td>60
+</td></tr>
+<tr>
+<td>5</td>
+<td>62,5</td>
+<td>62,5
+</td></tr>
+<tr>
+<td>6</td>
+<td>65</td>
+<td>65
+</td></tr>
+<tr>
+<td>7</td>
+<td>67,5</td>
+<td>67,5
+</td></tr>
+<tr>
+<td>8</td>
+<td>70</td>
+<td>70
+</td></tr>
+<tr>
+<td>9</td>
+<td>72,5</td>
+<td>72,5
+</td></tr>
+<tr>
+<td>10</td>
+<td>75</td>
+<td>75
+</td></tr>
+<tr>
+<td>11</td>
+<td>77,5</td>
+<td>77,5
+</td></tr>
+<tr>
+<td>12</td>
+<td>80</td>
+<td>80
+</td></tr>
+<tr>
+<td>13</td>
+<td>82,5</td>
+<td>82,5
+</td></tr>
+<tr>
+<td>14</td>
+<td>85</td>
+<td>85
+</td></tr>
+<tr>
+<td>15</td>
+<td>87,5</td>
+<td>87,5
+</td></tr>
+<tr>
+<td>16</td>
+<td>90</td>
+<td>90
+</td></tr>
+<tr>
+<td>17</td>
+<td>92,5</td>
+<td>92,5
+</td></tr>
+<tr>
+<td>18</td>
+<td>95</td>
+<td>95
+</td></tr>
+<tr>
+<td>19</td>
+<td>97,5</td>
+<td>97,5
+</td></tr>
+<tr>
+<td>20</td>
+<td>100</td>
+<td>100
+</td></tr>
+</tbody></table>
+</div></div><h3><span id=".D0.94.D0.BE.D0.BF.D0.BE.D0.BB.D0.BD.D0.B8.D1.82.D0.B5.D0.BB.D1.8C.D0.BD.D1.8B.D0.B5_.D0.BE.D1.87.D0.BA.D0.B8_.D1.80.D0.B5.D0.BF.D1.83.D1.82.D0.B0.D1.86.D0.B8.D0.B8_.D0.B7.D0.B0_.D0.BF.D0.BE.D0.B4.D0.B4.D0.B5.D1.80.D0.B6.D0.BA.D1.83_.D1.81.D0.BE.D1.8E.D0.B7.D0.BD.D0.B8.D0.BA.D0.BE.D0.B2"></span><span class="mw-headline" id="Дополнительные_очки_репутации_за_поддержку_союзников">支援队友可获得额外的声望点数</span></h3><p>将其效果扩散至友方坦克的<a href="./%D0%9C%D0%B5%D1%85%D0%B0%D0%BD%D0%B8%D0%BA" class="mw-redirect" title="Механик">医护兵</a>无人机，可以为主人带来额外的<a href="./%D0%9E%D1%87%D0%BA%D0%B8_%D1%80%D0%B5%D0%BF%D1%83%D1%82%D0%B0%D1%86%D0%B8%D0%B8" class="mw-redirect" title="Очки репутации">声望点数</a>。即使队友没有从该效果中获得实际收益，也会发放点数。
+</p><h3><span id=".D0.A1.D0.BE.D0.BA.D1.80.D0.B0.D1.89.D0.B5.D0.BD.D0.B8.D0.B5_.D0.B2.D1.80.D0.B5.D0.BC.D0.B5.D0.BD.D0.B8_.D0.BF.D0.B5.D1.80.D0.B5.D0.B7.D0.B0.D1.80.D1.8F.D0.B4.D0.BA.D0.B8_.D0.BF.D1.80.D0.B8.D0.BF.D0.B0.D1.81.D0.BE.D0.B2"></span><span class="mw-headline" id="Сокращение_времени_перезарядки_припасов">缩短道具冷却时间</span></h3><p>所有无人机（布鲁特斯除外）都可以<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">缩短</a>其属性中指定的道具的冷却时间。对于主动无人机，这只影响 1 个道具；对于亥伯龙神和危机，则会同时影响多个道具。
+</p><h3><span id=".D0.94.D0.BE.D0.BF.D0.BE.D0.BB.D0.BD.D0.B8.D1.82.D0.B5.D0.BB.D1.8C.D0.BD.D1.8B.D0.B9_.D1.80.D0.B0.D1.81.D1.85.D0.BE.D0.B4_.D0%BF%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D0%BE%D0%B2"></span><span class="mw-headline" id="Дополнительный_расход_припасов">额外消耗道具</span></h3><p>除布鲁特斯和神谕者外，所有无人机都有道具的额外消耗。因激活道具或拾取<a href="./%D0%94%D1%80%D0%BE%D0%Bp" class="mw-redirect" title="Дроп">奖励箱</a>（危机和危机 XT 除外）而触发的无人机，会额外消耗玩家库存中其属性中指定的若干个道具。
+</p><h2><span id=".D0.9A.D0.BB.D0.B0.D1.81.D1.81.D0.B8.D1.84.D0.B8.D0.BA.D0.B0.D1.86.D0.B8.D1.8F_.D0.B4.D1.80.D0.BE.D0.BD.D0.BE.D0.B2"></span><span class="mw-headline" id="Классификация_дронов">无人机分类</span></h2><h3><span id=".D0.9F.D0.B0.D1.81.D1.81.D0.B8.D0.B2.D0.BD.D1.8B.D0.B5_.D0.B4.D1.80.D0.BE.D0.BD.D1.8B"></span><span class="mw-headline" id="Пассивные_дроны">被动无人机</span></h3><p>此类无人机持续工作，而不仅仅是为了响应战斗中的特定操作。
+</p><div class="cards-row">
+<div class="modern-card">
+<div class="modern-card-header"><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">—</span></a><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9D%D0%BE%D0%B2%D0%BE%D0%B1%D1%80%D0%B0%D0%BD%D0%B5%D1%86" title="Новобранец"><img src="https://ru.tankiwiki.com/images/ru/thumb/6/64/IconsNormal_01.png/30px-IconsNormal_01.png" decoding="async" loading="lazy" width="30" height="29" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/64/IconsNormal_01.png/45px-IconsNormal_01.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/64/IconsNormal_01.png/60px-IconsNormal_01.png 2x"></a></span></span></div>
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/83/Drone_driver.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></span></span>
+<br>
+<br>
+</p>
+<div><a href="./%D0%9E%D1%80%D0%B0%D0%BA%D1%83%D0%BB" class="mw-redirect" title="Оракул">神谕者</a></div>
+<p><span style="color:#7D9DBA">强化道具。同时只能激活一个道具。</span>
+</p>
+</div>
+<div class="modern-card">
+<div class="modern-card-header"><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">1 000</span></a><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_5" title="Уорэнт-офицер 5"><img src="https://ru.tankiwiki.com/images/ru/thumb/5/55/IconsNormal_15.png/30px-IconsNormal_15.png" decoding="async" loading="lazy" width="30" height="29" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/55/IconsNormal_15.png/45px-IconsNormal_15.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/55/IconsNormal_15.png/60px-IconsNormal_15.png 2x"></a></span></span></div>
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/e4/Drone_brutus.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></span></span>
+<br>
+<br>
+</p>
+<div><a href="./%D0%91%D1%80%D1%83%D1%82" class="mw-redirect" title="Брут">布鲁特斯</a></div>
+<p><span style="color:#7D9DBA">为“护甲提升”和“伤害提升”道具提供被动加成。</span>
+</p>
+</div>
+<div class="modern-card">
+<div class="modern-card-header"><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">320 000</span></a><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%A4%D0%B5%D0%BB%D1%8C%D0%B4%D0%BC%D0%B0%D1%80%D1%88%D0%B0%D0%BB" title="Фельдмаршал"><img src="https://ru.tankiwiki.com/images/ru/thumb/3/38/IconsNormal_28.png/30px-IconsNormal_28.png" decoding="async" loading="lazy" width="30" height="29" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/38/IconsNormal_28.png/45px-IconsNormal_28.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/3/38/IconsNormal_28.png/60px-IconsNormal_28.png 2x"></a></span></span></div>
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/a7/Hyperion.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></span></span>
+<br>
+<br>
+</p>
+<div><a href="./%D0%93%D0%B8%D0%BF%D0%B5%D1%80%D0%B8%D0%BE%D0%BD" class="mw-redirect" title="Гиперион">亥伯龙神</a></div>
+<p><span style="color:#7D9DBA">激活任意道具时，可解除其他道具的关联冷却时间。</span>
+</p>
+</div>
+<div class="modern-card">
+<div class="modern-card-header"><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">365 000</span></a><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9B%D0%B5%D0%B3%D0%B5%D0%BD%D0%B4%D0%B0" title="Легенда"><img src="https://ru.tankiwiki.com/images/ru/thumb/5/55/IconsNormal_31.png/30px-IconsNormal_31.png" decoding="async" loading="lazy" width="30" height="29" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/55/IconsNormal_31.png/45px-IconsNormal_31.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/55/IconsNormal_31.png/60px-IconsNormal_31.png 2x"></a></span></span></div>
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/0/0c/Drone_Crisis.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></span></span>
+<br>
+<br>
+</p>
+<div><a href="./%D0%9A%D1%80%D0%B8%D0%B7%D0%B8%D1%81" class="mw-redirect" title="Кризис">危机</a></div>
+<p><span style="color:#7D9DBA">大幅强化“护甲提升”、“伤害提升”或“速度提升”道具的效果。</span>
+</p>
+</div>
+<div class="modern-card">
+<div class="modern-card-header"><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">—</span></a><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9D%D0%BE%D0%B2%D0%BE%D0%B1%D1%80%D0%B0%D0%BD%D0%B5%D1%86" title="Новобранец"><img src="https://ru.tankiwiki.com/images/ru/thumb/6/64/IconsNormal_01.png/30px-IconsNormal_01.png" decoding="async" loading="lazy" width="30" height="29" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/64/IconsNormal_01.png/45px-IconsNormal_01.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/64/IconsNormal_01.png/60px-IconsNormal_01.png 2x"></a></span></span></div>
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/4/4d/Hyperion_XT_preview.jpg" decoding="async" loading="lazy" width="360" height="220" class="mw-file-element"></span></span>
+<br>
+<br>
+</p>
+<div><a href="./%D0%93%D0%B8%D0%BF%D0%B5%D1%80%D0%B8%D0%BE%D0%BD_%D0%A5%D0%A2" class="mw-redirect" title="Гиперион ХТ">亥伯龙神 XT</a></div>
+<p><span style="color:#7D9DBA">激活任意道具时，可解除其他道具的关联冷却时间。</span>
+</p>
+</div>
+<div class="modern-card">
+<div class="modern-card-header"><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">—</span></a><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9D%D0%BE%D0%B2%D0%BE%D0%B1%D1%80%D0%B0%D0%BD%D0%B5%D1%86" title="Новобранец"><img src="https://ru.tankiwiki.com/images/ru/thumb/6/64/IconsNormal_01.png/30px-IconsNormal_01.png" decoding="async" loading="lazy" width="30" height="29" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/64/IconsNormal_01.png/45px-IconsNormal_01.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/64/IconsNormal_01.png/60px-IconsNormal_01.png 2x"></a></span></span></div>
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/7a/Crysis_XT_preview.png" decoding="async" loading="lazy" width="2562" height="1644" class="mw-file-element"></span></span>
+<br>
+<br>
+</p>
+<div><a href="./%D0%9A%D1%80%D0%B8%D0%B7%D0%B8%D1%81_%D0%A5%D0%A2" class="mw-redirect" title="Кризис ХТ">危机 XT</a></div>
+<p><span style="color:#7D9DBA">大幅强化“护甲提升”、“伤害提升”或“速度提升”道具的效果。</span>
+</p>
+</div>
+</div><h3><span id=".D0.90.D0.BA.D1.82.D0.B8.D0.B2.D0.BD.D1.8B.D0.B5_.D0.B4.D1.80.D0.BE.D0.BD.D1.8B"></span><span class="mw-headline" id="Активные_дроны">主动无人机</span></h3><p>此类无人机仅在“主动”使用特定道具时才有效。之后，无人机会强化其道具属性中指定的无人机的基础道具。
+</p><div class="cards-row">
+<div class="modern-card">
+<div class="modern-card-header"><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">20 000</span></a><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9B%D0%B5%D0%B9%D1%82%D0%B5%D0%BD%D0%B0%D0%BD%D1%82" title="Лейтенант"><img src="https://ru.tankiwiki.com/images/ru/thumb/4/48/IconsNormal_17.png/30px-IconsNormal_17.png" decoding="async" loading="lazy" width="30" height="29" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/48/IconsNormal_17.png/45px-IconsNormal_17.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/48/IconsNormal_17.png/60px-IconsNormal_17.png 2x"></a></span></span></div>
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/22/Drone_mechanic.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></span></span>
+<br>
+<br>
+</p>
+<div><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/2/25/Icon_repair_kit_supply.png/23px-Icon_repair_kit_supply.png" decoding="async" loading="lazy" width="23" height="23" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/25/Icon_repair_kit_supply.png 1.5x"></span></span> <a href="./%D0%9C%D0%B5%D1%85%D0%B0%D0%BD%D0%B8%D0%BA_(%D0%B4%D1%80%D0%BE%D0%BD)" class="mw-redirect" title="Механик (дрон)">医护兵</a></div>
+<p><span style="color:#7D9DBA">使用维修工具时，可改善维修效果并触发附近友方坦克的维修工具效果。</span>
+</p>
+</div>
+<div class="modern-card">
+<div class="modern-card-header"><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">20 000</span></a><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9A%D0%B0%D0%BF%D0%B8%D1%82%D0%B0%D0%BD" title="Капитан"><img src="https://ru.tankiwiki.com/images/ru/thumb/e/ed/IconsNormal_19.png/30px-IconsNormal_19.png" decoding="async" loading="lazy" width="30" height="29" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/ed/IconsNormal_19.png/45px-IconsNormal_19.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/ed/IconsNormal_19.png/60px-IconsNormal_19.png 2x"></a></span></span></div>
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/61/Drone_defender.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></span></span>
+<br>
+<br>
+</p>
+<div><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/8/85/Icon_double_armor_supply.png/23px-Icon_double_armor_supply.png" decoding="async" loading="lazy" width="23" height="23" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/8/85/Icon_double_armor_supply.png 1.5x"></span></span> <a href="./%D0%97%D0%B0%D1%89%D0%B8%D1%82%D0%BD%D0%B8%D0%BA" class="mw-redirect" title="Защитник">守卫者</a></div>
+<p><span style="color:#7D9DBA">使用“护甲提升”道具时，可强化其效果。</span>
+</p>
+</div>
+<div class="modern-card">
+<div class="modern-card-header"><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">20 000</span></a><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9C%D0%B0%D0%B9%D0%BE%D1%80" title="Майор"><img src="https://ru.tankiwiki.com/images/ru/thumb/b/b3/IconsNormal_20.png/30px-IconsNormal_20.png" decoding="async" loading="lazy" width="30" height="29" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/b3/IconsNormal_20.png/45px-IconsNormal_20.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/b3/IconsNormal_20.png/60px-IconsNormal_20.png 2x"></a></span></span></div>
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/1/1d/Drone_booster.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></span></span>
+<br>
+<br>
+</p>
+<div><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/dc/Icon_double_damage_supply.png/23px-Icon_double_damage_supply.png" decoding="async" loading="lazy" width="23" height="23" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/dc/Icon_double_damage_supply.png 1.5x"></span></span> <a href="./%D0%91%D1%83%D1%81%D1%82%D0%B5%D1%80" class="mw-redirect" title="Бустер">助推器</a></div>
+<p><span style="color:#7D9DBA">使用“伤害提升”道具时，可强化其效果。</span>
+</p>
+</div>
+<div class="modern-card">
+<div class="modern-card-header"><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">20 000</span></a><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%A1%D1%82%D0%B0%D1%80%D1%88%D0%B8%D0%B9_%D0%BB%D0%B5%D0%B9%D1%82%D0%B5%D0%BD%D0%B0%D0%BD%D1%82" title="Старший лейтенант"><img src="https://ru.tankiwiki.com/images/ru/thumb/7/72/IconsNormal_18.png/30px-IconsNormal_18.png" decoding="async" loading="lazy" width="30" height="29" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/72/IconsNormal_18.png/45px-IconsNormal_18.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/72/IconsNormal_18.png/60px-IconsNormal_18.png 2x"></a></span></span></div>
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/71/Drone_trickster.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></span></span>
+<br>
+<br>
+</p>
+<div><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/5/55/Icon_speed_boost_supply.png/23px-Icon_speed_boost_supply.png" decoding="async" loading="lazy" width="23" height="23" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/5/55/Icon_speed_boost_supply.png 1.5x"></span></span> <a href="./%D0%9B%D0%BE%D0%B2%D0%BA%D0%B0%D1%87" class="mw-redirect" title="Ловкач">欺诈者</a></div>
+<p><span style="color:#7D9DBA">使用“速度提升”道具时，可强化其效果。</span>
+</p>
+</div>
+<div class="modern-card">
+<div class="modern-card-header"><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">20 000</span></a><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9C%D0%BB%D0%B0%D0%B4%D1%88%D0%B8%D0%B9_%D0%BB%D0%B5%D0%B9%D1%82%D0%B5%D0%BD%D0%B0%D0%BD%D1%82" title="Младший лейтенант"><img src="https://ru.tankiwiki.com/images/ru/thumb/3/3f/IconsNormal_16.png/30px-IconsNormal_16.png" decoding="async" loading="lazy" width="30" height="29" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/3f/IconsNormal_16.png/45px-IconsNormal_16.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/3/3f/IconsNormal_16.png/60px-IconsNormal_16.png 2x"></a></span></span></div>
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/5/52/Drone_saboteur.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></span></span>
+<br>
+<br>
+</p>
+<div><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/2/28/Icon_mine_supply.png/23px-Icon_mine_supply.png" decoding="async" loading="lazy" width="23" height="23" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/2/28/Icon_mine_supply.png 1.5x"></span></span> <a href="./%D0%94%D0%B8%D0%B2%D0%B5%D1%80%D1%81%D0%B0%D0%BD%D1%82" class="mw-redirect" title="Диверсант">破坏者</a></div>
+<p><span style="color:#7D9DBA">使用“地雷”道具时，会在主地雷安装点的小半径范围内额外安装几枚地雷。</span>
+</p>
+</div>
+</div><h2><span id=".D0.A3.D0.B4.D0.B0.D0.BB.D1.91.D0.BD.D0.BD.D1.8B.D0.B5_.D0.B4.D1.80.D0.BE.D0.BD.D1.8B"></span><span class="mw-headline" id="Удалённые_дроны">已移除的无人机</span></h2><figure typeof="mw:File/Thumb"><span><img resource="/%D0%A4%D0%B0%D0%B9%D0%BB:Supply_battery_preview.png" src="https://ru.tankiwiki.com/images/ru/thumb/f/f5/Supply_battery_preview.png/150px-Supply_battery_preview.png" decoding="async" loading="lazy" width="150" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/f/f5/Supply_battery_preview.png 1.5x"></span><figcaption>电池</figcaption></figure><p>直到 2023 年 4 月 13 日发布的<a rel="nofollow" class="external text" href="http://ru.tankiforum.com/topic/317424/">#721 更新</a>为止，游戏中还存在另外 10 架具有各种游戏机制的无人机。所有这些无人机都已从游戏中<b>移除</b>，以简化玩家的无人机系统，而玩家们则为此获得了<a href="./%D0%9F%D0%BE%D0%B4%D1%81%D1%87%D1%91%D1%82_%D0%BA%D0%BE%D0%BC%D0%BF%D0%B5%D0%BD%D1%81%D0%B0%D1%86%D0%B8%D0%B8_%D0%B7%D0%B0_%D1%83%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5_%D0%B4%D1%80%D0%BE%D0%BD%D0%BE%D0%B2" class="mw-redirect" title="Подсчёт компенсации за удаление дронов">水晶形式的补偿</a>。<br>除了移除无人机之外，在同一次更新中，游戏还移除了“<b>电池</b>”道具。它曾被自动用于驱动已装备的无人机。
+</p><p>其中 5 架无人机的机制已转换为特殊的<a href="./%D0%A3%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0_%D0%B4%D0%BB%D1%8F_%D0%BA%D0%BE%D1%80%D0%BF%D1%83%D1%81%D0%BE%D0%B2" class="mw-redirect" title="Устройства для корпусов">底盘装备改造</a>：“工程师”、“驱动器”、“救生员”、“工兵”、“克星”和“爆破手”。
+</p><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample2">已移除的无人机</div><div class="collapse" id="collapseExample2"><div class="">
+<div class="cards-row">
+<div class="modern-card">
+<div class="modern-card-header"></div>
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/83/Drone_driver.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></span></span>
+<br>
+<br>
+</p>
+<div><a href="./%D0%94%D1%80%D0%B0%D0%B9%D0%B2%D0%B5%D1%80" class="mw-redirect" title="Драйвер">驱动器</a></div>
+<p><span style="color:#7D9DBA">消灭敌方坦克时可补充<a href="./%D0%9E%D0%B2%D0%B5%D1%80%D0%B4%D1%80%D0%B0%D0%B9%D0%B2%D1%8b" class="mw-redirect" title="Овердрайвы">终结技能</a>的充能。</span>
+</p>
+</div>
+<div class="modern-card">
+<div class="modern-card-header"></div>
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/4/4a/Drone_sprinter.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></span></span>
+<br>
+<br>
+</p>
+<div><a href="./%D0%A1%D0%BF%D1%80%D0%B8%D0%BD%D1%82%D0%B5%D1%80" class="mw-redirect" title="Спринтер">奔跑者</a></div>
+<p><span style="color:#7D9DBA">拾取旗帜、球或占领控制点时，可在短时间内激活所有道具。</span>
+</p>
+</div>
+<div class="modern-card">
+<div class="modern-card-header"></div>
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6f/Drone_enforcer.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></span></span>
+<br>
+<br>
+</p>
+<div><a href="./%D0%A8%D1%82%D1%83%D1%80%D0%BC%D0%BE%D0%B2%D0%B8%D0%BA" class="mw-redirect" title="Штурмовик">骑兵</a></div>
+<p><span style="color:#7D9DBA">消灭敌方坦克时可加速多个道具的冷却。</span>
+</p>
+</div>
+<div class="modern-card">
+<div class="modern-card-header"></div>
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/f/f0/Drone_blaster.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></span></span>
+<br>
+<br>
+</p>
+<div><a href="./%D0%9F%D0%BE%D0%B4%D1%80%D1%8B%D0%B2%D0%BD%D0%B8%D0%BA" class="mw-redirect" title="Подрывник">爆破手</a></div>
+<p><span style="color:#7D9DBA">当坦克战死或自毁时发生爆炸，对周遭所有敌人造成巨额伤害。</span>
+</p>
+</div>
+<div class="modern-card">
+<div class="modern-card-header"></div>
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/a3/Drone_trooper.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></span></span>
+<br>
+<br>
+</p>
+<div><a href="./%D0%94%D0%B5%D1%81%D0%B0%D0%BD%D1%82%D0%BD%D0%B8%D0%BA" class="mw-redirect" title="Десантник">空降兵</a></div>
+<p><span style="color:#7D9DBA">坦克复活时，可在短时间内激活“护甲提升”、“伤害提升”和“速度提升”道具。</span>
+</p>
+</div>
+<div class="modern-card">
+<div class="modern-card-header"></div>
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/22/Drone_miner.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></span></span>
+<br>
+<br>
+</p>
+<div><a href="./%D0%9C%D0%B8%D0%BD%D1%91%D1%80" class="mw-redirect" title="Минёр">工兵</a></div>
+<p><span style="color:#7D9DBA">允许一定数量的地雷在坦克阵亡后继续保留。</span>
+</p>
+</div>
+<div class="modern-card">
+<div class="modern-card-header"></div>
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cf/Drone_lifeguard.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></span></span>
+<br>
+<br>
+</p>
+<div><a href="./%D0%A1%D0%BF%D0%B0%D1%81%D0%B0%D1%82%D0%B5%D0%BB%D1%8C" class="mw-redirect" title="Спасатель">救生员</a></div>
+<p><span style="color:#7D9DBA">受到致命伤害时，可防止坦克阵亡并瞬间将其修复。</span>
+</p>
+</div>
+<div class="modern-card">
+<div class="modern-card-header"></div>
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/0/07/Drone_engineer.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></span></span>
+<br>
+<br>
+</p>
+<div><a href="./%D0%98%D0%BD%D0%B6%D0%B5%D0%BD%D0%B5%D1%80" class="mw-redirect" title="Инженер">工程师</a></div>
+<p><span style="color:#7D9DBA">当自己或队友拾取任何奖励箱时，修复自己和附近的队友。</span>
+</p>
+</div>
+<div class="modern-card">
+<div class="modern-card-header"></div>
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/32/Drone_supplier.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></span></span>
+<br>
+<br>
+</p>
+<div><a href="./%D0%A1%D0%BD%D0%B0%D0%B1%D0%B6%D0%B5%D0%BD%D0%B5%D1%86" class="mw-redirect" title="Снабженец">供应</a></div>
+<p><span style="color:#7D9DBA">使用多个道具时，可触发一定半径内友方坦克的已激活道具效果。</span>
+</p>
+</div>
+<div class="modern-card">
+<div class="modern-card-header"></div>
+<p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/38/Drone_camper.png" decoding="async" loading="lazy" width="164" height="106" class="mw-file-element"></span></span>
+<br>
+<br>
+</p>
+<div><a href="./%D0%9A%D0%B5%D0%BC%D0%BF%D0%B5%D1%80" class="mw-redirect" title="Кемпер">克星</a></div>
+<p><span style="color:#7D9DBA">当坦克生命值处于最大状态时，大幅强化“护甲提升”和“伤害提升”效果。</span>
+</p>
+</div>
+</div>
+</div></div><div align="right"><small>最后编辑：30/10/2025 Devise <span class="ai-translate-note" style="color:#8FB8D8;">（由 AI 自动翻译）</span></small></div></div></div></div></div></div><footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
+<p style="margin:0;"><strong style="color:#BFD5FF;">本站为玩家社区自建的非官方 Wiki 镜像。</strong></p>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":1117,"wgPageParseReport":{"limitreport":{"cputime":"0.241","walltime":"0.289","ppvisitednodes":{"value":800,"limit":1000000},"postexpandincludesize":{"value":16523,"limit":4194304},"templateargumentsize":{"value":12635,"limit":4194304},"expansiondepth":{"value":6,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%   30.527      1 -total"," 56.01%   17.097     21 Шаблон:Card/Default"," 14.54%    4.440     11 Шаблон:Ranks"," 10.97%    3.349      1 Шаблон:LastEdit","  9.40%    2.869      1 Шаблон:Alert","  8.29%    2.530      2 Шаблон:Spoiler/Start","  8.25%    2.519     21 Шаблон:Color","  7.68%    2.344      2 Шаблон:Spoiler/End","  6.86%    2.094     11 Шаблон:Items/Crystals"]},"cachereport":{"timestamp":"20260824083629","ttl":86400,"transientcontent":false}}});});</script>
+    <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });</script></body></html>
