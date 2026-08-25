@@ -1,0 +1,491 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>(function(){
+  var BASE = 'https://ru.tankiwiki.com';
+  function fix(v){ return (typeof v === 'string' && v.charAt(0) === '/' && v.indexOf('//') !== 0) ? BASE + v : v; }
+  ['HTMLScriptElement','HTMLLinkElement'].forEach(function(tag){
+    var proto = window[tag] && window[tag].prototype;
+    var prop  = tag === 'HTMLScriptElement' ? 'src' : 'href';
+    if (!proto) return;
+    var d = Object.getOwnPropertyDescriptor(proto, prop);
+    if (!d || !d.set) return;
+    Object.defineProperty(proto, prop, {
+      configurable: true,
+      get: function(){ return d.get.call(this); },
+      set: function(v){ d.set.call(this, fix(v)); }
+    });
+  });
+  var of = window.fetch;
+  if (of) window.fetch = function(u, o){ return of.call(this, (typeof u === 'string' ? fix(u) : u), o); };
+  var ox = window.XMLHttpRequest && XMLHttpRequest.prototype.open;
+  if (ox) XMLHttpRequest.prototype.open = function(m, u){
+    var a = Array.prototype.slice.call(arguments); a[1] = fix(u); return ox.apply(this, a);
+  };
+})();</script><title>电竞历史 — 3D 坦克 Wiki</title><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+    <meta charset="UTF-8">
+    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/xg_pWYS8-HRESiV6Rdg4aY_R/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-qWH0xCejb2gc1yqo8ob4TQrvIcQ9XjhOfGKbhFr/+LvFrJdTE3bA+FQP/FLAiQhz"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgRequestId":"2a132af02d5f02cfc64ec9a2","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Istoriya_kibersporta","wgTitle":"Istoriya kibersporta","wgCurRevisionId":295513,"wgRevisionId":295513,"wgArticleId":2326,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Киберспорт","Исторические статьи"],"wgPageViewLanguage":"ru","wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgRelevantPageName":"Istoriya_kibersporta","wgRelevantArticleId":2326,"wgIsProbablyEditable":false,
+"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVisualEditor":{"pageLanguageCode":"ru","pageLanguageDir":"ltr","pageVariantFallbacks":"ru"},"wgFlaggedRevsParams":{"tags":{"accuracy":{"levels":3}}},"wgStableRevisionId":295513,"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.flaggedRevs.icons":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.flaggedRevs.basic":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["mediawiki.page.media","site","mediawiki.page.ready","mediawiki.toc","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.flaggedRevs.advanced","skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=ext.flaggedRevs.basic%2Cicons%7Cext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://ru.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://ru.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (ru)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://ru.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki&nbsp;— Atom-лента" href="https://ru.tankiwiki.com/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom"><style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
+
+/* 1. 只去掉源站皮肤的背景大图，保留底色；不要用 background 简写，否则会连带清掉皮肤别的背景设定 */
+html, body {
+    background-image: none !important;
+    background-color: #001926 !important;
+}
+/* 2. 让底色铺满视口，内容很短时下方不再露白 */
+html { min-height: 100%; }
+body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif; }
+
+/* 3. 版心容器 */
+#mw-main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #001926;
+}
+
+/* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
+      【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
+
+#mw-main-container .main-content,
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content,
+#mw-main-container #mw-content-text {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: auto !important;
+    flex-basis: auto !important;   /* 皮肤写了 .main-content{flex:0 0 75%} */
+    float: none !important;
+    margin-top: 0 !important;       /* 核心：清空原站皮肤的负 margin-top */
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    position: relative !important;
+    z-index: 1 !important;          /* 保证正文层级低于按钮 */
+}
+
+/* 5. 皮肤脚本 skins.tankiblue.js 会往 #mw-content-text 末尾插一条「发现错别字？Ctrl+Enter」
+      的俄语提示条和一个「报告错误」标签页。它按网址里有没有 'en'/'de' 来判断语言，
+      我们的域名两者都不含 → 一律显示俄语；且报错会提交到俄站编辑组，对镜像站没意义，直接隐藏。 */
+#custom-report-footer,
+.vectorTabs.customReport,
+.customReport { display: none !important; }
+
+/* 6. 返回按钮包裹容器：独占一行并强制最高层级 */
+.home-btn-wrapper {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px 0 20px 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    z-index: 9999 !important;       /* 核心：永远置于最顶层 */
+    clear: both !important;
+    overflow: visible !important;
+}
+
+/* 7. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐 */
+.home-back-btn {
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    width: auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    isolation: isolate !important;
+    
+    min-width: 142px !important;
+    padding: 0 24px !important;
+    height: 78px !important;
+    margin: 0 !important;
+    border: 1px solid rgba(255,255,255,.25) !important;
+    outline: 2px solid transparent !important;
+    border-radius: 6.5px !important;
+    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%) !important;
+    
+    position: relative !important;
+    z-index: 10000 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: all .15s ease !important;
+    overflow: visible !important;
+}
+.home-back-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(100% 100% at 0% 0%, rgba(191,213,255,.25) 0%, rgba(191,213,255,.15) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all .15s ease;
+    border-radius: inherit;
+    pointer-events: none;
+}
+.home-back-btn svg {
+    width: 24.375px;
+    height: 24px;
+    object-fit: contain;
+    transform: rotate(180deg);
+    transition: all .15s ease;
+    flex-shrink: 0;
+}
+.home-back-btn svg path { fill: #BFD5FF; transition: all .15s ease; }
+
+.home-back-btn:hover,
+.home-back-btn:active,
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF !important; border-color: #BFD5FF !important; }
+.home-back-btn:hover::before,
+.home-back-btn:active::before,
+.home-back-btn:focus-visible::before { opacity: 1; }
+.home-back-btn:hover svg,
+.home-back-btn:active svg,
+.home-back-btn:focus-visible svg { transform: rotate(180deg) translateX(10%); }
+.home-back-btn:hover svg path,
+.home-back-btn:active svg path,
+.home-back-btn:focus-visible svg path { fill: #fff; }
+
+.home-back-btn span {
+    color: #BFD5FF;
+    font-size: 16px;
+    margin-left: 10px;
+    font-weight: bold;
+    transition: all .15s ease;
+    white-space: nowrap;
+}
+.home-back-btn:hover span,
+.home-back-btn:active span,
+.home-back-btn:focus-visible span {
+    color: #fff;
+    transform: translateX(-4px);
+}
+
+/* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
+@media (hover: none) {
+    .home-back-btn { border-color: rgba(191,213,255,.55) !important; }
+    .home-back-btn svg path { fill: #CFE0FF; }
+}
+
+/* 移动端/窄屏自适应尺寸 */
+@media (max-width: 480px) {
+    .home-back-btn {
+        min-width: 106px !important;
+        padding: 0 16px !important;
+        height: 58px !important;
+        margin-left: 10px !important;
+    }
+    .home-back-btn svg { width: 20px !important; height: 19.7px !important; }
+    .home-back-btn span { font-size: 14px !important; margin-left: 8px !important; }
+}
+
+/* 8. 移动端容器 Padding */
+@media (max-width: 768px) {
+    #mw-main-container { padding: 10px !important; margin: 8px auto !important; }
+    .home-back-btn { margin-left: 10px !important; }
+    #mw-content-text .navigationContainerContent > div,
+    #mw-content-text [style*="width: 55%"],
+    #mw-content-text [style*="width:55%"],
+    #mw-content-text [style*="width: 45%"],
+    #mw-content-text [style*="width:45%"] { width: 100% !important; }
+}
+@media (max-width: 480px) {
+    #mw-main-container { padding: 6px !important; margin: 4px auto !important; }
+}
+
+/* 9. 防止宽表格 / 大图撑破版心 */
+#mw-content-text img { max-width: 100%; height: auto; }
+#mw-content-text table { max-width: 100%; }
+
+/* 10. 目录（TOC）修复，全局生效：
+    a) 皮肤把目录折叠按钮的文字放在 CSS 伪元素里渲染，而不是 HTML 文本：
+         .toctogglecheckbox:checked  + .toctitle .toctogglelabel::after → content:'показать'
+         .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after → content:'скрыть'
+       AI 翻译只处理 HTML 文本，摸不到 CSS content，所以这个按钮永远是俄语，必须在这里覆盖成中文。
+    b) 皮肤的响应式 CSS 里写了 @media screen and (max-width:768px){ #toc{display:none} }，
+       导致手机端整个目录被隐藏。这里恢复显示，并配合下方 TOC_MOBILE_COLLAPSE_SCRIPT：
+       移动端默认折叠，只占一行「目录 [展开]」，避免长目录把正文挤到屏幕外。 */
+#toc .toctogglecheckbox:checked + .toctitle .toctogglelabel::after { content: '展开' !important; }
+#toc .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after { content: '收起' !important; }
+@media screen and (max-width: 768px) {
+    #toc { display: table !important; }
+}
+
+/* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
+   只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+*/
+</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Istoriya_kibersporta rootpage-Istoriya_kibersporta skin-tankiblue action-view"><div id="skin-chrome-stub" aria-hidden="true" style="display:none !important;">
+<a class="problem" href="#"></a>
+<div class="close-wrapper"></div>
+<div class="support-block-popup"><div class="close-modal-support"></div></div>
+<div class="youtube-popup"><iframe title="stub"></iframe></div>
+<div class="video-button"></div>
+<div class="header-search"></div>
+<div class="search-dialog"></div>
+<div class="search-popup"><div class="close-wrapper"></div><div class="close-modal-search"></div></div>
+<div class="news-popup"></div>
+<div class="sales-block-header"></div>
+<div class="navbar-main"></div>
+<div class="main-navbar"></div>
+</div><div id="mw-main-container"><div class="home-btn-wrapper"><a class="home-back-btn" href="./Enciklopediya_igry_%C2%ABTanki_Onlayn%C2%BB" title="返回主页" aria-label="返回主页"><svg viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 0H13.5L25.5 12L24 13.5L13.5 24H18L30 12L18 0ZM24 13.5L21 10.5H0L3 13.5H24Z" fill="#BFD5FF"/></svg><span>返回主页</span></a></div><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">电竞历史</h1><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"><div class="toctitle" lang="ru" dir="ltr"><h2 id="mw-toc-heading">目录</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Возникновение"><span class="tocnumber">1</span> <span class="toctext">起源</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Первые_кланы"><span class="tocnumber">2</span> <span class="toctext">首批军团</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Проблемы_первого_этапа"><span class="tocnumber">3</span> <span class="toctext">初期的难题</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Первые_турниры"><span class="tocnumber">4</span> <span class="toctext">首批赛事</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Первый_сезон_Межкланового_Чемпионата_(Высшая_Лига_Кланов)"><span class="tocnumber">4.1</span> <span class="toctext">军团对抗赛第一赛季（军团超级联赛）</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Введение_вооружения_второй_линейки,_раскол_кланового_движения"><span class="tocnumber">5</span> <span class="toctext">引入第二代武器，军团运动分裂</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Противостояние_«рельсоводов»_и_«тофовцев»"><span class="tocnumber">6</span> <span class="toctext">“激光炮派”与“TOF 派”的对抗</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#TOF:_сезоны_1-3._Первые_шаги_в_развитии_прямых_трансляций"><span class="tocnumber">7</span> <span class="toctext">TOF：第 1-3 赛季。直播发展的初探</span></a>
+<ul>
+<li class="toclevel-2 tocsection-9"><a href="#Первый_сезон_TOF_Dream_Team"><span class="tocnumber">7.1</span> <span class="toctext">TOF Dream Team 第一赛季</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Второй_сезон_TOF_Dream_Team"><span class="tocnumber">7.2</span> <span class="toctext">TOF Dream Team 第二赛季</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Третий_сезон_TOF-DT"><span class="tocnumber">7.3</span> <span class="toctext">TOF-DT 第三赛季</span></a>
+<ul>
+<li class="toclevel-3 tocsection-12"><a href="#Первые_прямые_трансляции_с_комментариями"><span class="tocnumber">7.3.1</span> <span class="toctext">首次带解说直播</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-13"><a href="#Лига_Кланов"><span class="tocnumber">8</span> <span class="toctext">军团联赛</span></a></li>
+<li class="toclevel-1 tocsection-14"><a href="#Старт_«Захвата_Карты»"><span class="tocnumber">9</span> <span class="toctext">“地图争夺战”开启</span></a></li>
+<li class="toclevel-1 tocsection-15"><a href="#Создание_командного_раздела"><span class="tocnumber">10</span> <span class="toctext">创建队伍专区</span></a></li>
+<li class="toclevel-1 tocsection-16"><a href="#Осенний_сезон_«Захвата_Карты»_(ЗК_1.5)"><span class="tocnumber">11</span> <span class="toctext">“地图争夺战”秋季赛（ZK 1.5）</span></a></li>
+<li class="toclevel-1 tocsection-17"><a href="#Ребаланс_и_его_влияние_на_киберспорт"><span class="tocnumber">12</span> <span class="toctext">平衡性调整及其对电竞的影响</span></a></li>
+<li class="toclevel-1 tocsection-18"><a href="#«Захват_Песочницы»"><span class="tocnumber">13</span> <span class="toctext">“高地角斗场争夺战”</span></a></li>
+<li class="toclevel-1 tocsection-19"><a href="#Новые_TOF_Solo_и_TOF_Tandem"><span class="tocnumber">14</span> <span class="toctext">全新的 TOF Solo 与 TOF Tandem</span></a></li>
+<li class="toclevel-1 tocsection-20"><a href="#Новый_«Захват_Карты»_(«Захват_2.0»)"><span class="tocnumber">15</span> <span class="toctext">全新“地图争夺战”（“争夺 2.0”）</span></a></li>
+<li class="toclevel-1 tocsection-21"><a href="#Масштабная_реформа_киберспорта_в_2013-2014_году"><span class="tocnumber">16</span> <span class="toctext">2013-2014 年电竞大规模改革</span></a>
+<ul>
+<li class="toclevel-2 tocsection-22"><a href="#Зимний_сезон_в_Топовой_Лиге"><span class="tocnumber">16.1</span> <span class="toctext">顶尖联赛冬季赛</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-23"><a href="#Конец_«старой_эпохи»:_МЧ-8_и_TOF-DT_7"><span class="tocnumber">17</span> <span class="toctext">“旧时代”的终结：МЧ-8 与 TOF-DT 7</span></a></li>
+<li class="toclevel-1 tocsection-24"><a href="#StarLadder_в_«Танках_Онлайн»"><span class="tocnumber">18</span> <span class="toctext">3D 坦克中的 StarLadder</span></a></li>
+<li class="toclevel-1 tocsection-25"><a href="#Возвращение_киберспорта_на_форум"><span class="tocnumber">19</span> <span class="toctext">电竞重返论坛</span></a></li>
+<li class="toclevel-1 tocsection-26"><a href="#Новый_сезон_TOF"><span class="tocnumber">20</span> <span class="toctext">TOF 新赛季</span></a></li>
+<li class="toclevel-1 tocsection-27"><a href="#Подготовка_и_проведение_МЧ-9"><span class="tocnumber">21</span> <span class="toctext">МЧ-9 的筹备与举办</span></a></li>
+</ul>
+</div><div class="alert error">
+  <div class="icon"></div>
+  <div class="text"><b>注意！</b>本文档已归档并不再维护。最新信息可在<a rel="nofollow" class="external text" href="https://tankisport.com/">电竞网站</a>上找到。</div>
+</div><p><b>军团社区</b>（电竞社区）诞生于 2009 年 8 月。它是由一群热衷于团队作战而非普通战斗的玩家组成的群体：讲究战术、语音频道协调，且起初不使用<a href="./%D0%9F%D1%80%D0%B8%D0%BF%D0%B0%D1%81%D1%8B" class="mw-redirect" title="Припасы">道具</a>。
+</p><h2><span id=".D0.92.D0.BE.D0.B7.D0.BD.D0.B8.D0.BA.D0.BE.D0.B2.D0.B5.D0.BD.D0.B8.D0.B5"></span><span class="mw-headline" id="Возникновение">起源</span></h2><p>游戏初期仅实现了两种模式：<a href="./DM" class="mw-redirect" title="DM">死亡混战</a>和<a href="./TDM" class="mw-redirect" title="TDM">团队对战</a>。然而，该项目的创新本质（3D 坦克是首款多人网页 3D 射击游戏）及其动态性在最初完全弥补了缺乏多样性的遗憾。随着时间推移，对新模式的需求自然而然地产生了，2009 年 7 月 31 日，随着<a href="./CTF" class="mw-redirect" title="CTF">互夺军旗</a>（Capture the Flag）模式的引入，这一需求得到了满足。
+互夺军旗模式的出现为玩家带来了全新的团队配合与战术可能性。作为最有效的游戏风格，防守和交火不再是唯一选择，玩家现在有机会也必须去进攻并控制基地。在普通战斗中几个人聚集成小队，玩家们逐渐效仿其他项目，萌生了创建军团的想法，以便在普通战斗中或与其他军团进行协同作战。
+</p><h2><span id=".D0.9F.D0.B5.D1.80.D0.B2.D1.8B.D0.B5_.D0.BA.D0.BB.D0.B0.D0.BD.D0.</td><span class=" mw-headline"="">首批军团</span></h2><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%A2%D0%9442_4-1_%D0%9D%D0%BE%D0%B6%D0%B8.jpg" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/5/53/%D0%A2%D0%9442_4-1_%D0%9D%D0%BE%D0%B6%D0%B8.jpg/350px-%D0%A2%D0%9442_4-1_%D0%9D%D0%BE%D0%B6%D0%B8.jpg" decoding="async" loading="lazy" width="350" height="258" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/53/%D0%A2%D0%9442_4-1_%D0%9D%D0%BE%D0%B6%D0%B8.jpg/525px-%D0%A2%D0%9442_4-1_%D0%9D%D0%BE%D0%B6%D0%B8.jpg 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/53/%D0%A2%D0%9442_4-1_%D0%9D%D0%BE%D0%B6%D0%B8.jpg/700px-%D0%A2%D0%9442_4-1_%D0%9D%D0%BE%D0%B6%D0%B8.jpg 2x"></a><figcaption>2010 年 1 月：最早的 6v6 军团战之一。当时 TD42 的优势毋庸置疑。</figcaption></figure><p>Kolhoz 被认为是游戏中注册的第一个军团。通过在论坛相应板块（为此特意创建）发帖，Kolhoz 还获得了一个私密权限的独立板块（直到 2012 年 10 月才被删除）。该军团汇集了许多传奇<a href="./%D0%A2%D0%B0%D0%BD%D0%BA%D0%B8%D1%81%D1%82" class="mw-redirect" title="Танкист">坦克手</a>，他们后来对电竞以及整个项目的发展产生了深远影响。
+</p><p>然而，如果说 Kolhoz 的创建更多是为了在愉快的氛围中享受有趣的游玩，那么晚一天成立的 TD42 则是由知名玩家建立的，旨在确立其团队作为项目中最佳团队的地位。很长一段时间里，TD42 在游戏领域占据主导地位，汇聚了顶尖玩家，几乎没有遇到来自其他军团的竞争。
+</p><p>向他们发出第一个挑战的是新军团“黑刀”（Чёрные Ножи）。起初，“黑刀”在各项游戏指标上都严重落后，但他们进行了刻苦训练。不过，他们花了几个月的时间才接近 TD42 的水平。尽管如此，在随后的电竞比赛中，各大军团平分秋色，TD42 与“黑刀”的对抗成为了游戏中第一个被赋予原则性地位的对决，电竞社区也首次分成了两大阵营。
+</p><p>“老爹”（ОтцЫ）也是最早的军团之一。与上述军团不同，该军团至今仍然存在（现更名为 Fathers），尽管其成员阵容经历过多次全面更迭，但它仍在积极发展，甚至利用参与者的赞助奖金池举办各种项目的公开锦标赛。
+</p><h2><span id=".D0.9F.D0.B5.D1.80.D0.B5.D0.B0.D0.B1.D0.B0.D0.BB.D0.B0.D0.BD.D1.81_.D0.и_.D0.B5.D0.B3.D0.BE_.D0.B2.D0.BB.D0.B8.D1.8F.D0.BD.D0.B8.D0.B5_.D0.BD.D0.B0_.D0.BA.D0.B8.D0.B1.D0.B5.D1.80.D1.81.D0.BF.D0.BE.D1.80.D1.82"></span><span class="mw-headline" id="Проблемы_первого_этапа">初期的难题</span></h2><p>在电竞发展的萌芽期，进行<a href="./%D0%9A%D0%BB%D0%B0%D0%BD%D0%B2%D0%B0%D1%80%D1%8B" class="mw-redirect" title="Кланвары">军团战</a>（源自英文 <i>clan war</i>）面临的主要困难在于无法控制道具的使用，且各军团之间缺乏彼此信任的保障。当时，首先是道具图标不会显示在坦克上方，其次是没有无道具的游戏模式。因此，初期军团在无道具限制的情况下互相交战，随后靠“君子协定”。经过相当长的一段时间后，应社区请求，开发人员在游戏中引入了“无道具战斗”模式（现可在<a href="./%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%B1%D0%B8%D1%82%D0%B2" class="mw-redirect" title="Список битв">战斗列表</a>中找到），在该模式中道具的使用被封锁（<a href="./%D0%94%D1%80%D0%BE%D0%BF" class="mw-redirect" title="Дроп">空投箱</a>除外）。这一创新成为军团社区取得的第一个重大成就，而控制空投则在两年多的时间里成为许多军团训练和战术思考的重中之重。
+</p><p>此外，社区还面临缺乏激烈竞争的问题，首届锦标赛仅有六个军团参加。
+</p><h2><span id=".D0.9F.D0.B5.D1.80.D0.B2.D1.8B.D0.B5_.D1.82.D1.83.D1.80.D0.BD.D0.B8.D1.80.D1.81"></span><span class="mw-headline" id="Первые_турниры">首批赛事</span></h2><h3><span id=".D0.9F.D0.B5.D1.80.D0.B2.D1.8B.D0.B9_.D1.81.D0.B5.D0.B7.D0.BE.D0.B7_.D0.9C.D0.B5.D0.B6.D0.BA.D0.BB.D0.B0.D0.BD.D0.BE.D0.B2.D0.B0.D0.B3.D0.BE_.D0.A7.D0.B5.D0.B5.D0.BD.D0.B0.D1.82.D0.B0_.28.D0.92.D1.8B.D1.81.D1.88.D0.B0.D1.8F_.D0.9B.D0.B8.D0.B3.D0.B0_.D0.9A.D0.BB.D0.B0.D0.BD.D0.B0.D0.B2.29"></span><span class="mw-headline" id="Первый_сезон_Межкланового_Чемпионата_(Высшая_Лига_Кланов)">军团对抗赛第一赛季（军团超级联赛）</span></h3><div class="dablink noprint"><em>主条目</em>：<b><a href="./%D0%9C%D0%B5%D0%B6%D0%BA%D0%BB%D0%B0%D0%BD%D0%BE%D0%B2%D1%8B%D0%B9_%D0%A7%D0%B5%D0%BC%D0%BF%D0%B8%D0%BE%D0%BD%D0%B0%D1%82" class="mw-redirect" title="Межклановый Чемпионат">军团对抗赛</a></b>
+</div><p>在项目中的军团数量达到举办锦标赛所需的最低要求后，举办首届军团对抗赛的工作由 aircolor 承担。他当时效力于 TD42，后来成为了两大游戏流派（第一代与第二代）、奖励迷彩、地图争夺战等众多内容的融合倡导者。
+</p><p>赛事规则允许最多使用两辆<a href="./%D0%98%D0%B7%D0%B8%D0%B4%D0%B0" class="mw-redirect" title="Изида">磁力炮</a>，而军团对抗赛（МЧ）的主力武器则是激光炮。底盘方面，选择了当时最高效的<a href="./%D0%94%D0%B8%D0%BA%D1%82%D0%B0%D1%82%D0%BE%D1%80" class="mw-redirect" title="Диктатор">主宰者</a>（规则并未禁止使用其他底盘，但那样做并不明智；当时游戏中尚未推出蜂王、维京、猛犸象等底盘）。因此，<a href="./%D0%94%D0%B8%D0%BA%D0%BE%D1%80%D0%B5%D0%BB%D1%8F" class="mw-redirect" title="Дикореля">主宰者激光炮</a>成为了第一个官方游戏<a href="./%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D1%8B" class="mw-redirect" title="Форматы">模式</a>。
+</p><p>该赛事被命名为“军团超级联赛”，共有 6 支队伍参赛：TD42、“黑刀”、Kolhoz、WTF、“老爹”和 OrkZ。赛事的最大亮点是公认的夺冠热门 TD42 的落败，他们在对阵“黑刀”的第一场比赛中以 3:0 获胜，但随后连输两场，按总积分计算落在了后面。
+</p><p>МЧ-1 最终积分榜：
+</p><p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/af/%D0%9C%D0%A7-1.jpg" decoding="async" loading="lazy" width="811" height="180" class="mw-file-element"></span></span>
+</p><h2><span id=".D0.92.D0.B2.D0.B5.D0.B4.D0.B5.D0.BD.D0.B8.D0.B5_.D0.B2.D0.BE.D0.BE.D1.80.D1.83.D0.B6.D0.B5.D0.BD.D0.B8.D1.8F_.D0.B2.D1.82.D0.BE.D1.80.D0.BE.D0.B9_.D0.BB.D0.B8.D0.BD.D0.B5.D0.B9.D0.BA.D0.B8.2C_.D1.80.D0.B0.D1.81.D0.BA.D0.BE.D0.BB_.D0.BA.D0.BB.D0.B0.D0.BD.D0.BE.D0.B2.D0.BE.D0.B3.D0.B0_.D0.B4.D0.B2.D0.B8.D0.B6.D0.B5.D0.BD.D0.B8.D1.85"></span><span class="mw-headline" id="Введение_вооружения_второй_линейки,_раскол_кланового_движения">引入第二代武器，军团运动分裂</span></h2><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%A7%D0%B5%D1%80%D0%BD%D1%8B%D0%B5_%D0%BD%D0%BE%D0%B6%D0%B8_%D0%B2_%D1%87%D0%B5%D0%BC%D0%BF%D0%B8%D0%BE%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%B2%D1%82%D0%BE%D1%80%D0%BE%D0%B9_%D0%BB%D0%B8%D0%BD%D0%B5%D0%B9%D0%BA%D0%B5.png" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/6/67/%D0%A7%D0%B5%D1%80%D0%BD%D1%8B%D0%B5_%D0%BD%D0%BE%D0%B6%D0%B8_%D0%B2_%D1%87%D0%B5%D0%BC%D0%BF%D0%B8%D0%BE%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%B2%D1%82%D0%BE%D1%80%D0%BE%D0%B9_%D0%BB%D0%B8%D0%BD%D0%B5%D0%B9%D0%BA%D0%B5.png/250px-%D0%A7%D0%B5%D1%80%D0%BD%D1%8B%D0%B5_%D0%BD%D0%BE%D0%B6%D0%B8_%D0%B2_%D1%87%D0%B5%D0%BC%D0%BF%D0%B8%D0%BE%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%B2%D1%82%D0%BE%D1%80%D0%BE%D0%B9_%D0%BB%D0%B8%D0%BD%D0%B5%D0%B9%D0%BA%D0%B5.png" decoding="async" loading="lazy" width="250" height="254" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/67/%D0%A7%D0%B5%D1%80%D0%BD%D1%8B%D0%B5_%D0%BD%D0%BE%D0%B6%D0%B8_%D0%B2_%D1%87%D0%B5%D0%BC%D0%BF%D0%B8%D0%BE%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%B2%D1%82%D0%BE%D1%80%D0%BE%D0%B9_%D0%BB%D0%B8%D0%BD%D0%B5%D0%B9%D0%BA%D0%B5.png/375px-%D0%A7%D0%B5%D1%80%D0%BD%D1%8B%D0%B5_%D0%BD%D0%BE%D0%B6%D0%B8_%D0%B2_%D1%87%D0%B5%D0%BC%D0%BF%D0%B8%D0%BE%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%B2%D1%82%D0%BE%D1%80%D0%BE%D0%B9_%D0%BB%D0%B8%D0%BD%D0%B5%D0%B9%D0%BA%D0%B5.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/67/%D0%A7%D0%B5%D1%80%D0%BD%D1%8B%D0%B5_%D0%BD%D0%BE%D0%B6%D0%B8_%D0%B2_%D1%87%D0%B5%D0%BC%D0%BF%D0%B8%D0%BE%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%B2%D1%82%D0%BE%D1%80%D0%BE%D0%B9_%D0%BB%D0%B8%D0%BD%D0%B5%D0%B9%D0%BA%D0%B5.png/500px-%D0%A7%D0%B5%D1%80%D0%BD%D1%8B%D0%B5_%D0%BD%D0%BE%D0%B6%D0%B8_%D0%B2_%D1%87%D0%B5%D0%BC%D0%BF%D0%B8%D0%BE%D0%BD%D0%B5_%D0%BD%D0%B0_%D0%B2%D1%82%D0%BE%D1%80%D0%BE%D0%B9_%D0%BB%D0%B8%D0%BD%D0%B5%D0%B9%D0%BA%D0%B5.png 2x"></a><figcaption>2010 年 8 月：“黑刀”身穿“<a href="./%D0%A7%D0%B5%D0%BC%D0%BF%D0%B8%D0%BE%D0%BD" class="mw-redirect" title="Чемпион">冠军</a>”迷彩与第二代底盘和炮塔合影。</figcaption></figure><p>感受到对新内容的诉求后，开发人员构思、平衡并分阶段推出了第二代底盘和炮塔。<a href="./%D0%A5%D0%BE%D1%80%D0%BD%D0%B5%D1%82" class="mw-redirect" title="Хорнет">蜂王</a>和<a href="./%D0%92%D0%B8%D0%BA%D0%B8%D0%BD%D0%B3" class="mw-redirect" title="Викинг">维京</a>底盘几乎同时发布，稍晚一点推出了<a href="./%D0%9C%D0%B0%D0%BC%D0%BE%D0%BD%D1%82" class="mw-redirect" title="Мамонт">猛犸象</a>。在炮塔中，<a href="./%D0%93%D1%80%D0%BE%D0%BC" class="mw-redirect" title="Гром">雷暴炮</a>率先登场，随后是<a href="./%D0%A0%D0%B8%D0%BA%D0%BE%D1%88%D0%B5%D1%82" class="mw-redirect" title="Рикошет">火龙珠</a>与<a href="./%D0%A4%D1%80%D0%B8%D0%B7" class="mw-redirect" title="Фриз">冰风暴</a>，而<a href="./%D0%A8%D0%B0%D1%84%D1%82" class="mw-redirect" title="Шафт">镭射炮</a>则在很长一段时间后才推出。
+</p><p>经受过考验且备受老军团喜爱的“主宰者激光炮”一直作为游戏模式保留到第五赛季的军团对抗赛。然而，涌现出了许多新军团，他们对在落后且在他们看来过时的“主宰者激光炮”上游戏不感兴趣，而是渴望使用第二代武器参与锦标赛。这一需求在 2010 年夏天得到了满足，Kirill kirill125 (konsttruktor) 推出了 <a href="./%D0%98%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D1%82%D1%83%D1%80%D0%BD%D0%B8%D1%80%D0%BE%D0%B2_TOF" class="mw-redirect" title="История турниров TOF">Tanki Online Fighting (TOF)</a>系列锦标赛，在一年多的时间里，军团分化为保守派和第一代武器支持者（所谓的“激光炮派”）以及只玩第二代武器或偏爱第二代武器的新玩家（“TOF 派”）。
+</p><p>值得一提的是，许多新玩家偏爱主宰者激光炮，而老军团的玩家也积极转入 TOF 队伍并参与第二代武器的锦标赛。
+</p><h2><span id=".D0.9F.D1.80.D0.BE.D1.82.D0.B8.D0.B2.D0.BE.D1.81.D1.82.D0.BE.D1.8F.D0.BD.D0.B8.D0.B5_.C2.AB.D1.80.D0.B5.D0.BB.D1.8C.D1.81.D0.BE.D0.B2.D0.BE.D0.B4.D0.BE.D0.B2.C2.BB_.D0.B8_.C2.AB.D1.82.D0.BE.D1.84.D0.BE.D0.B2.D1.86.D0.B5.D0.B2.C2.BB"></span><span class="mw-headline" id="Противостояние_«рельсоводов»_и_«тофовцев»">“激光炮派”与“TOF 派”的对抗</span></h2><p>很长一段时间里，这两个群体各自独立存在：军团对抗赛（МЧ）和 TOF 由不同的人组织，参赛者几乎没有交集，或者出于好奇而非追求成绩而参与不熟悉武器的锦标赛。论坛上的口角时有发生，但逐渐呈白热化趋势。
+</p><p>对抗的本质在于 МЧ 和 TOF 组织者与玩家之间的公开冲突：双方都会来到竞争对手的板块，开始批评赛事的组织、玩家的技术以及游戏玩法。“激光炮派”声称 TOF 的规则漏洞百出，TOF 裁判做出的决定不合逻辑（许多“TOF 派”也认同这些论点），并且第一代武器更具动态性、更具挑战性且总体更有趣，因为第二代武器并不平衡。“TOF 派”则声称 МЧ 是为<a href="./%D0%97%D0%B0%D0%B3%D0%BE%D0%B2%D0%BE%D1%80_%D0%93%D0%A2" class="mw-redirect" title="Заговор ГТ">某个军团</a>量身打造的（同样，这些指控得到了许多“激光炮派”的支持和传播），第一代武器已经过时、千篇一律，主宰者激光炮玩家不想玩第二代武器的唯一原因是不合时宜的保守主义和缺乏足够的战术技巧。然而，最后一个论点被 WAW 以及“天使与恶魔”（Ангелы и Демоны）所打破，他们在首次参加第二代武器的锦标赛中就夺得了军团联赛的第 3 名和第 4 名。
+</p><p>这两大群体的对抗在 2011/2012 年秋冬季严重激化，当时曾两夺 МЧ 冠军的 General Tanks 拒绝参加当时刚开赛的军团联赛。该联赛使用第二代武器，成为了项目历史上规模最大的锦标赛：超过 50 个军团报名，40 多个军团坚持到了最后。官方拒绝理由是：对组织者缺乏信任且对第二代武器缺乏兴趣。GT 协调员后来承认的实际原因：赢得 МЧ-5 冠军后缺乏动力且感到疲惫。МЧ-5 亚军 WAW 同意参赛并且很长一段时间领跑积分榜，但在倒数几轮中丢失了巨大的优势，最终仅获得第三名。首届也是唯一一届军团联赛的冠军是“风暴联盟”（Альянс Шторм）。
+</p><p>事实上，在整个军团联赛期间，赛事板块中 МЧ 和 TOF 的玩家与组织者之间的争论从未停止，经常演变成互相辱骂并以封号告终。组织者互相指责对方规则抄袭和组织失误，玩家则附和“自己人”并重提旧论。
+</p><p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/1/15/%D0%9A%D0%BE%D0%BC%D0%B8%D1%81%D1%81%D0%B0%D1%80_vs_740.png/820px-%D0%9A%D0%BE%D0%BC%D0%B8%D1%81%D1%81%D0%B0%D1%80_vs_740.png" decoding="async" loading="lazy" width="820" height="161" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/1/15/%D0%9A%D0%BE%D0%BC%D0%B8%D1%81%D1%81%D0%B0%D1%80_vs_740.png 1.5x"></span></span>
+</p><p>在 aircolor 和 arsim 的努力下，在 TOF-3 开赛前，两个对抗群体实现了联合，并创建了统一的电竞赛事组织机构：电竞管理中心（СЦУК）。这两种理念的对抗一直持续到引入“地图争夺战”以及 <a href="./%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D1%8B" class="mw-redirect" title="Форматы">TOF-740</a> 格式的出现，此后才显著减弱。
+</p><h2><span id="TOF:_.D1.81.D0.B5.D0.B7.D0.BE.D0.BD.D1.8B_1-3._.D0.9F.D0.B5.D1.80.D0.B2.D1.8B.D0.B5_.D1.88.D0.B0.D0.B3.D0.B8_.D0.B2_.D1.80.D0.B0.D0.B7.D0.B2.D0.B8.D1.82.D0.B8.D0.B8_.D0.BF.D1.80.D1.8F.D0.BC.D1.8B.D1.85_.D1.82.D1.80.D0.B0.D0.BD.D1.81.D0.BB.D1.8F.D1.86.D0.B8.D0.B9"></span><span class="mw-headline" id="TOF:_сезоны_1-3._Первые_шаги_в_развитии_прямых_трансляций">TOF：第 1-3 赛季。直播发展的初探</span></h2><p>第二代武器出现后，对新游戏模式和锦标赛的需求应运而生，但很长一段时间未能得到满足。konsttruktor 成为全新游戏模式以及原创锦标赛举办体系的构想者。同时，他也提出了两项全新大型赛事的构想：个人赛（TOF Solo Fighting）和双人赛（TOF Golden Tandem）。
+TOF 的核心理念是不受限制地使用第二代底盘、炮塔和迷彩。当时，即便是顶尖军团的玩家也没有多少道具，因此道具的使用仅限于决赛和半决赛。此外，在整个锦标赛期间消耗道具无法通过奖金池回本，而奖励迷彩直到第二赛季才引入。
+</p><h3><span id=".D0.9F.D0.B5.D1.80.D0.B2.D0.B9_.D1.81.D0.B5.D0.B7.D0.BE.D0.BD_TOF_Dream_Team"></span><span class="mw-headline" id="Первый_сезон_TOF_Dream_Team">TOF Dream Team 第一赛季</span></h3><p>与 МЧ 类似，第一赛季的 TOF 参赛军团数量较少。当时很少有人拥有足够数量的第二代武器和底盘来参加锦标赛，大多数新军团都选择了第一代武器。主要的争夺在两支夺冠热门之间展开——Dream Team 和 new World order，其中汇聚了实力强劲的<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">付费玩家</a>-<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">“强盗”</a>以及在道具战中公认的高手。在使用了道具的决赛中，Dream Team 胜出。
+</p><p>МЧ 冠军“黑刀”参加了锦标赛，但在半决赛中落败。
+</p><h3><span id=".D0.92.D1.82.D0.BE.D1.80.D0.BE.D0.B9_.D1.81.D0.B5.D0.B7.D0.BE.D0.би_TOF_Dream_Team"></span><span class="mw-headline" id="Второй_сезон_TOF_Dream_Team">TOF Dream Team 第二赛季</span></h3><ul><li>与玩家共同对规则进行了大幅修改；</li>
+<li>该赛事定位为自由报名的团队赛事，与仅允许证明过自身实力军团参加的 МЧ 形成对比；</li>
+<li>规模显著扩大：第二赛季有 32 支队伍参赛；</li>
+<li>效仿 МЧ 引入了带有 15% 通用抗性的“<a href="./%D0%9A%D0%B8%D1%81%D0%BB%D0%BE%D1%82%D0%B0" class="mw-redirect" title="Кислота">酸液</a>”奖励迷彩。“<a href="./%D0%A7%D0%B5%D0%BC%D0%BF%D0%B8%D0%BE%D0%BD" class="mw-redirect" title="Чемпион">冠军</a>”的抗性提升到了 20%；</li>
+<li>双败淘汰制（Double elimination）首次在坦克在线的团队锦标赛中应用（在此之前，aircolor 在举办首场个人赛“激光炮锦标赛”时曾使用过）。</li></ul><p>TOF-DT 2 的竞争激烈得多：多支队伍对冠军虎视眈眈。起初，人们认为只有上一赛季的决赛选手 new World order 和新秀 International 是夺冠热门。然而，黑马频出：其他队伍知之甚少的“酷椒粉”（Крутые Перцы）先是击败了 nWo，随后在胜者组半决赛中战胜了 International。两支军团都一路杀入败者组决赛，在争夺晋级超级决赛的战斗中，International 获胜，并在超级决赛中复仇“酷椒粉”，夺得了 TOF-DT 2 冠军头衔。此外，来自 International 的几名玩家还在当季的 TOF 单人和双人锦标赛中斩获名次。
+</p><p>现任 МЧ 冠军 General Tanks 的表现毫无说服力：第二轮即跌入败者组，再过一场比赛便彻底被淘汰出局。因此可以说，在军团联赛和 TOF-3 之前，第一代武器的冠军军团曾参加过 TOF 赛事，但都遭遇了滑铁卢。
+</p><h3><span id=".D0.A2.D1.80.D0.B5.D1.83.D0.B8.D0.B9_.D1.81.D0.B5.D0.B7.D0.BE.D0.BD_TOF-DT"></span><span class="mw-headline" id="Третий_сезон_TOF-DT">TOF-DT 第三赛季</span></h3><p>TOF-DT 第三赛季再次打破了规模纪录：共有 64 支队伍报名参赛。规则进行了重大修改，第一代武器军团不再忽视该锦标赛，МЧ 组织者也协助进行了筹办。
+</p><p>大量参赛队伍对竞争产生了积极影响：约有十支队伍争夺冠军，没有人敢妄言哪支是绝对热门。
+</p><p>规则的主要变化是取消了超级决赛：胜者组的两支获胜队伍与败者组的胜者在“三强决赛”（Финал Трёх）中相遇，该决赛使用道具进行。胜者组的获胜者是以 General Tanks 玩家为主的两支队伍 —— the Real World 和 mortal Teamwork。在败者组中，作为第三赛季黑马的新军团 СНК 赢得了胜利。然而，缺乏经验使他们无法向 GT 战队发起实质性挑战，在“三强决赛”中 СНК 垫底。冠军由 mortal Teamwork 夺得，他们先后战胜了 tRW，随后又击败了 СНК。
+</p><h4><span id=".D0.9F.D0.B5.D1.80.D0.B2.D1.8B.D0.B5_.D0.BF.D1.80.D1.8F.D0.BC.D1.8B.D0.B5_.D1.82.D1.80.D0.B0.D0.BD.D1.81.D0.BB.D1.8F.D1.86.D0.B8.D0.B8_.D1.81_.D0.BA.D0.BE.D0.BC.D0.BC.D0.B5.D0.BD.D1.82.D0.B0.D1.80.D0.B8.D1.8F.D0.BC.D0.B8"></span><span class="mw-headline" id="Первые_прямые_трансляции_с_комментариями">首次带解说直播</span></h4><p>3D 坦克中电竞赛事的组织者一直梦想着能对最精彩的战斗进行现场直播。曾有人尝试从地图边缘拍摄，但这种拍摄无法覆盖整个游戏空间，直播显得枯燥乏味，吸引不了观众。
+</p><p>随着<a href="./%D0%A0%D0%B5%D0%B6%D0%B8%D0%BC_%D0%9D%D0%B0%D0%B1%D0%BB%D1%8E%D0%B4%D0%B0%D1%82%D0%B5%D0%BB%D1%8F" class="mw-redirect" title="Режим Наблюдателя">观察者模式</a>的引入，这种尝试得以恢复，最初的几次实验就被认为取得了成功。第一场有解说的直播战斗是 TOF-DT 3 胜者组四分之一决赛 International 对阵“艰难与复杂”（Тяжело и Сложно）（解说：Alexss-s 和 Opex-Rah）。在观看了胜者组半决赛（International — mTw，围城大战）的直播并评估了该构想的前景后，开发人员为直播的发展提供了实质性帮助，在观察者模式中添加了设置摄像机并在其之间切换的功能。
+</p><p>几乎整个季后赛都进行了现场直播。“三强决赛”得到了全面报道，arsim 和 aircolor 作为解说员参与了两场直播。
+</p><h2><span id=".D0.9B.D0.B8.D0.B3.D0.B0_.D0.9A.D0.BB.D0.B0.D0.BD.D0.BE.D0.B2"></span><span class="mw-headline" id="Лига_Кланов">军团联赛</span></h2><div class="dablink noprint"><em>主条目</em>：<b><a href="./%D0.9B.D0.B8.D0.B3.D0.B0_%D0%BA.D0.BB.D0.B0.D0.BD.D0.BE.D0.B2" class="mw-redirect" title="Лига кланов">军团联赛</a></b>
+</div><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%90%D0%BB%D1%8C%D1%8F%D0%BD%D1%81_%D1%88%D1%82%D0%BE%D1%80%D0%BC.png" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/e/ef/%D0%90%D0%BB%D1%8C%D1%8F%D0%BD%D1%81_%D1%88%D1%82%D0%BE%D1%80%D0%BC.png/400px-%D0%90%D0%BB%D1%8C%D1%8F%D0%BD%D1%81_%D1%88%D1%82%D0%BE%D1%80%D0%BC.png" decoding="async" loading="lazy" width="400" height="200" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/ef/%D0%90%D0%BB%D1%8C%D1%8F%D0%BD%D1%81_%D1%88%D1%82%D0%BE%D1%80%D0%BC.png/600px-%D0%90%D0%BB%D1%8C%D1%8F%D0%BD%D1%81_%D1%88%D1%82%D0%BE%D1%80%D0%BC.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/ef/%D0%90%D0%BB%D1%8C%D1%8F%D0%BD%D1%81_%D1%88%D1%82%D0%BE%D1%80%D0%BC.png/800px-%D0%90%D0%BB%D1%8C%D1%8F%D0%BD%D1%81_%D1%88%D1%82%D0%BE%D1%80%D0%BC.png 2x"></a><figcaption>2011 年 12 月：军团联赛冠军“风暴联盟”合影。玩家们尚未获得“酸液”迷彩。</figcaption></figure><p>在 TOF Dream Team 第二赛季结束后，第二代武器最强军团的协调员们联合起来，在第二代武器上创建了一项新赛事。规则的制定是与玩家共同进行的，受沙地联赛（2011 年夏）的影响，诞生了一种新的游戏模式：第二代武器，不限制底盘，无防御迷彩。为了追求更高的动态性，每支队伍最多允许使用两门防御型武器（冰风暴和镭射炮）。
+</p><p>军团联赛成为了 3D 坦克历史上规模最大的军团锦标赛。许多第一代武器军团以及外国军团（德国、意大利和亚美尼亚）都参与其中。该赛事的特点是分为三个联赛，这在过去仅在 МЧ-2 中测试过：在预选赛阶段结束后，垫底的军团并未被淘汰出局，而是进入了第一和第二联赛。
+</p><p>超过 5 个军团对超级联赛的冠军虎视眈眈，而到最后阶段，成功与追赶者拉开可观差距的 WAW 被视为夺冠热门。然而，一连串的失利粉碎了他们的夺冠希望，在倒数第二轮中，由名气不小的 Vio-vio（原 <a href="./StarLadder" title="StarLadder">StarLadder</a> 裁判兼论坛管理员，现已离开该项目）率领的“风暴联盟”夺得了冠军。以相同积分并列第二和第三名的是 TOF-DT 2 的黑马“酷椒粉”以及 МЧ-5 亚军 WAW。上一届 TOF-DT 2 的冠军 International 险些挤进前八名。
+</p><p>军团联赛的举办因几起使用<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">外挂</a>的不愉快事件而蒙上阴影：例如，其中一名玩家使用了射速被“修改”过的雷暴炮。在传统的 МЧ 赛事中从未出现过这种情况。
+</p><p>军团联赛确立了电竞发展的新方向，表明严格的筛选和面向少数参与者的精英赛已成过去式，如果组织者想要发展游戏中的电竞社区，就必须将重点放在规模和普及度上。受其影响，МЧ-6 增设了第二联赛，后来 МЧ 组织者构思了“地图争夺战”。
+</p><h2><span id=".D0.A1.D1.82.D0.B0.D1.80.D1.82_.C2.AB.D0.97.D0.B0.D1.85.D0.B2.D0.B0.D1.82.D0.B0_.D0.9A.D0.B0.D1.80.D1.82.D1.8B.C2.BB"></span><span class="mw-headline" id="Старт_«Захвата_Карты»">“地图争夺战”开启</span></h2><p>“地图争夺战”的构想早在 2011-2012 年冬季就被 aircolor 提出，但由于正在进行的军团联赛、МЧ-6 以及计划中的 TOF-3，其实施被推迟了。
+</p><p>随着时间的推移，这一概念不断完善，2012 年 6 月 11 日，一项新赛事正式官宣：地图控制权争夺战。最初，13 张地图分给了 МЧ 和军团联赛中的顶尖军团，但在第一阶段，地图所有者经常更换，许多军团赢得了 3 张地图（规则规定的单个军团上限），但无法长期守住它们。
+</p><p>“地图争夺战”1.0 一举解决了军团社区的几个问题：
+</p><ul><li>赛事的规律性：地图争夺战不间断地进行；</li>
+<li>规模宏大：参赛军团数量不限；</li>
+<li>打破军团社区的封闭性：拥有地图的军团名称会放在地图预览图上，这有助于推广电竞并吸引新玩家。</li></ul><p>“争夺战 1.0”总体上受到了军团社区的积极欢迎，但游戏模式偏向“激光炮派”或“TOF 派”的失衡问题依然存在。然而，随着 TOF-740 格式的出现，不同流派之间的冲突实际上失去了现实意义。
+</p><p>此外，在确定格式时存在地图所有者的优势问题，而且排队等待时间过长，导致军团可能需要长时间等待或者根本无法报名心仪的地图。
+</p><p>“地图争夺战”的第一版整个夏天都在不断完善，组织者在 9 月宣布了“争夺 2.0”。第二版解决了排队问题——每张地图都绑定了一个常态化运行的预选小组，每周成绩最好的队伍有机会与地图所有者一决高下。但由于组织上的困难，争夺 2.0 的开赛时间被推迟，组织者转而推出了“地图争夺战 1.5”。
+</p><h2><span id=".D0.A1.D0.BE.D0.B7.D0.B4.D0.B0.D0.BD.D0.B8.D0.B5_.D0.BA.D0.BE.D0.BC.D0.B0.D0.BD.D0.B4.D0.BD.D0.BE.D0.B3.D0.B0_.D1.80.D0.B0.D0.B7.D0.B4.D0.B5.D0.BB.D0.B0"></span><span class="mw-headline" id="Создание_командного_раздела">创建队伍专区</span></h2><p>2012 年夏天，有必要对军团板块进行整顿：军团数量众多，其中大多数并不参与锦标赛和社区生活。aircolor 的目标是创建一个活跃的军团板块，让所有军团都参与游戏，不活跃的则被关停。采取的措施之一是禁止注册新军团。但一个尖锐的问题摆在了眼前：如果禁止注册，新军团从何而来？因为迟早军团数量会变少，而新玩家将无法创建自己的军团。
+</p><p>秋季时提出了一种巧妙的解决方案：在游戏中增设了另一个用于团队游戏的板块：队伍专区。允许玩家自由创建队伍并参加 TOF Dream Team 定期锦标赛，在其中可以赢得“军团许可证”——即队伍成为军团的权利。这一系统维持了一年多的时间。
+</p><h2><span id=".D0.9E.D1.81.D0.B5.D0.BD.D0.BD.D0.B8.D0.B9_.D1.81.D0.B5.D0.B7.D0.BE.D0.BD_.C2.AB.D0.97.D0.B0.D1.85.D0.B2.D0.B0.D1.82.D0.B0_.D0.9A.D0.B0.D1.80.D1.82.D1.8B.C2.BB_.28.D0.97.D0.91_1.5.29"></span><span class="mw-headline" id="Осенний_сезон_«Захвата_Карты»_(ЗК_1.5)">“地图争夺战”秋季赛（ZK 1.5）</span></h2><p>秋季赛的概念是通过单败淘汰赛（淘汰制）的小型锦标赛形式来争夺地图。与此同时，负责直播的团队正致力于提升画质、挑选解说员和导播。
+</p><p>确定的主要模式为 <a href="./%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D1%8B" class="mw-redirect" title="Форматы">740</a>、<a href="./%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D1%8B" class="mw-redirect" title="Форматы">TOF-740</a> 和 <a href="./%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D1%8B" class="mw-redirect" title="Форматы">TOF</a>（带道具）。
+</p><p>最初选择大桥 3C 和高地角斗场作为电竞中最受欢迎、最具观赏性的地图进行争夺。大桥 3C 首先开赛，General Tanks 如预料般获胜。高地角斗场争夺战推迟到 12 月举行，以便在直播尽可能完善的情况下进行，而在 11 月，各军团自行选择要争夺的地图：这一决定是在会议中做出的，当时加入了当时顶尖军团的代表。
+</p><p>最终，相比广场 3C 和边塞角斗场，大家选择了红色警戒，这一选择完全没有让人失望——比赛非常精彩。在没有 GT 的情况下，夺冠热门被认为是“Angry Smile Incorporated”(ASI) 和 С.Н.К.，“奥林普”也备受看好。然而，对于军团社区几乎被遗忘的老兵来说，这场锦标赛成为了他们的荣耀时刻。当“天使与恶魔”在 1/4 决赛中击败“轻松简单”（Легко и Просто）时，很少有人注意到这一点——在半决赛中，所有人都在押注 ASI。然而，“天使与恶魔”以 3:1 的比分轻松战胜了名声显赫的对手。但即便如此也没有说服怀疑论者：С.Н.К. 状态正佳，没有人怀疑他们会在决赛中获胜。
+</p><p>决赛的结果对所有人来说就更加令人惊讶了。仅仅在第一轮中，“天使与恶魔”就以 3:0 领先，尽管面临来自 С.Н.К. 的强大压迫，他们依然成功守住了优势——最终以 4:2 获胜。此后，“天使与恶魔”证明了这并非昙花一现：该军团凭借在自此之后所有锦标赛中的亮眼比赛和优异成绩，无愧于“顶尖”的称号。
+</p><h2><span id=".D0.A0.D0.B5.D0.B1.D0.B0.D0.BB.D0.B0.D0.BD.D1.81_.D0.B8_.D0.B5.D0.B3.D0.BE_.D0.B2.D0.BB.D0.B8.D1.8F.D0.BD.D0.B8.D0.B5_.D0.BD.D0.B0_.D0.BA.D0.B8.D0.B5.D0.BF.D0.BE.D1.80.D1.82"></span><span class="mw-headline" id="Ребаланс_и_его_влияние_на_киберспорт">平衡性调整及其对电竞的影响</span></h2><p>原本计划在 2012 年秋季举办三场锦标赛，最后一场本应是“高地角斗场争夺战”。然而，当得知<a href="./%D0%A0%D0%B5%D0%B1%D0%B0%D0%BB%D0%B0%D0%BD%D1%81" class="mw-redirect" title="Ребаланс">平衡性调整</a>将于 12 月发布时，该赛事被推迟了。电竞界开始准备按新规则进行游戏。
+</p><p>平衡性调整后首先明朗的是——组织者必须放弃旧体系，即根据底盘总生命值来决定模式的做法。如果说以前具有竞争力的底盘很少，比赛主要在蜂王、维京和猛犸象上进行，那么平衡性调整则让所有底盘各具特色，拥有各自的优缺点。试图在限制生命值的同时考虑底盘的所有可能组合将注定失败，因此组织者改变了理念。
+底盘被分为 3 类：轻型（<a href="./%D0%92%D0%B0%D1%81%D0%BF" class="mw-redirect" title="Васп">黄蜂轻甲</a>、<a href="./%D0%A5%D0%BE%D1%80%D0%BD%D0%B5%D1%82" class="mw-redirect" title="Хорнет">蜂王</a>）、中型（<a href="./%D0%A5%D0%B0%D0%BD%D1%82%D0%B5%D1%80" class="mw-redirect" title="Хантер">猎人中甲</a>、<a href="./%D0%92%D0%B8%D0%BA%D0%B8%D0%BD%D0%B3" class="mw-redirect" title="Викинг">维京</a>）和重型（<a href="./%D0%9C%D0%B0%D0%BC%D0%BE%D0%BD%D1%82" class="mw-redirect" title="Мамонт">猛犸象</a>、<a href="./%D0%A2%D0%B8%D1%82%D0%B0%D0%BD" class="mw-redirect" title="Титан">泰坦</a>）。<a href="./%D0%94%D0%B8%D0%BA%D1%82%D0%B0%D1%82%D0%BE%D1%80" class="mw-redirect" title="Диктатор">主宰者</a>则独树一帜：各项性能均优于维京和猎人，无法归入其他类别。
+</p><p>经决定，下一场锦标赛将是军团对抗赛第七赛季，并且它将首次不仅在全系列武器上展开，还将以多种模式进行。专门针对该赛事，电竞管理中心团队开发了三种游戏模式：<a href="./%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D1%8B" class="mw-redirect" title="Форматы">Light</a>、<a href="./%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D1%8B" class="mw-redirect" title="Форматы">Medium</a> 和 <a href="./%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D1%8B" class="mw-redirect" title="Форматы">Hard</a>。
+</p><p><b>Light</b> 成为类似 740 的模式：大量轻型底盘，并以激光炮作为主力武器。
+</p><p><b>Medium</b> 按照复杂规则进行：更多中型底盘，几乎允许所有炮塔。
+</p><p><b>Hard</b> 成为旧 TOF 模式的类似物：限制最少，允许重型底盘。
+</p><h2><span id=".C2.AB.D0.97.D0.B0.D1.85.D0.B2.D0.B0.D1.82_.D0.9F.D0.B5.D1.81.D0.BE.D1.87.D0.BD.D0.B8.D1.86.D1.8B.C2.BB"></span><span class="mw-headline" id="«Захват_Песочницы»">“高地角斗场争夺战”</span></h2><p><a href="./%D0%A0%D0%B5%D0%B1%D0%B0%D0%BB%D0%B0%D0%BD%D1%81" class="mw-redirect" title="Ребаланс">平衡性调整</a>已过，МЧ-7 的战火已熄，常胜冠军 General Tanks 黯然离去，组织者们回归了最初的构想：争夺游戏中声望最高的地图——<a href="./%D0%9F%D0%B5%D1%81%D0%BE%D1%87%D0%BD%D0%B8%D1%86%D0%B0" class="mw-redirect" title="Песочница">高地角斗场</a>。
+</p><p>该赛事开发了 4x4 的游戏模式（在高地角斗场上可能的最大玩家数量），并在季后赛中引入了双败淘汰制，这使得军团在遭遇首场失利后不会直接被淘汰出局。
+</p><p>该锦标赛于 2013 年夏天举行。夺冠最大热门被认为是吸收了已解散 GT 玩家的 С.Н.К.，他们完全不负众望，以巨大优势赢得了锦标赛。在决赛中，他们的对手是 MIX，“天使与恶魔”获得第三名，“Eternity”位列第四。
+</p><h2><span id=".D0.9D.D0.BE.D0.B2.D1.8B.D0.B5_TOF_Solo_.D0.B8_TOF_Tandem"></span><span class="mw-headline" id="Новые_TOF_Solo_и_TOF_Tandem">全新的 TOF Solo 与 TOF Tandem</span></h2><p>平衡性调整之后，不仅是团队游戏，连决斗也产生了对新模式的需求。当时的任务是开发个人赛的新概念，要求其举办频繁、尽可能简化玩家的参赛流程，并能在所有参赛群体（从职业选手到新手）中选拔出最强者。
+</p><p>组织者彻底重构了赛事规则，并于 2013 年春季推出了全新的 TOF Solo。其显著特点是引入了新秀组（Junior）：如果说在先前的 Solo 中所有等级的玩家都在一起竞技，那么现在装备落后、等级较低的新手和玩家有了属于自己的锦标赛。这一创新大获成功：TOF Solo Junior 成为了规模最大的个人赛——报名人数甚至高达 3000 人。
+</p><p>此外，在第一赛季中，军团玩家被禁止参加该锦标赛：首先，以往所有的 Solo 均由军团玩家赢得，组织者希望给其他玩家一个展现自我的机会；其次，赛程安排出现了困难：锦标赛每周举行 6 天，不可避免地会与军团锦标赛发生冲突。
+</p><p>在第二赛季中，这个问题得以解决：赛程得到了协调，锦标赛日历针对更自由的日程进行了优化，而军团玩家则被允许参加所谓的“竞技组”。
+</p><p>此外，在 2013 年夏天，组织者官宣了一项新赛事：TOF Solo Elite。只有在常规 Solo 中获得名次才有资格参赛，而在独特的奖励中，官方承诺会在游戏主页的专属排行榜上占有一席之地。TOF Solo Elite 曾被寄予厚望——电竞组织者认为该赛事代表着未来，甚至承诺给最佳决斗者在游戏主页排行榜上的席位——但遗憾的是，该赛事甚至未能维持一个赛季。
+</p><h2><span id=".D0.9D.D0.B5.D0.B2.D0.B9_.C2.AB.D0.97.D0.B0.D1.85.D0.B2.D0.B0.D1.82_.D0.9A.D0.B0.D1.80.D1.82.D1.8B.C2.BB_.28.C2.AB.D0.97.D0.B0.D1.85.D0.B2.D0.B0.D1.82_2.0.C2.BB.29"></span><span class="mw-headline" id="Новый_«Захват_Карты»_(«Захват_2.0»)">全新“地图争夺战”（“争夺 2.0”）</span></h2><p>在高地角斗场争夺战之后，组织者重新回归了“争夺 2.0”的构想。在开发新锦标赛的过程中，提出了以下要求：
+</p><ul><li>必须争夺 8 张地图：争夺单张地图的锦标赛虽然有趣，但对玩家的激励有限，因为通常都是夺冠热门获胜；</li>
+<li>杜绝如争夺战 1.0 那样的排队现象；</li>
+<li>新地图所有者必须在单场战斗中决出；</li>
+<li>军团必须在不同地图的不同模式下相互交战；</li>
+<li>顶尖军团之间必须有频繁的交锋。</li></ul><p>7 月，“争夺 2.0”向社区亮相，8 月便以全新模式举办了首场锦标赛。变革立竿见影：比赛结果丰富多彩且往往难以预测。观众不会对同一张地图的战斗感到审美疲劳，玩家在公平的条件下与不同的对手交锋。
+</p><p>在最近一届 TOF Dream Team 中获得许可证的军团表现出了出乎意料的强大实力：“伊比扎”（Ибица）与“不靠谱的阿德奎特”（Неадекватные Адекваты）在广场 3C 的超级决赛中相遇，而“疯狂农夫”（Mad Farmers）则在边塞角斗场对阵“奥林普”。其中，“不靠谱的阿德奎特”在其小组中名列第二，力压“黑鲨”（Чёрные Акулы），而 ASI 则仅列第五，未能晋级超级决赛。
+</p><h2><span id=".D0.9C.D0.B0.D1.81.D1.88.D1.82.D0.B0.D0.B1.D0.BD.D0.B0.D1.8F_.D1.80.D0.B5.D1.84.D0.BE.D1.80.D0.BC.D0.B0_.D0.B0_.D0.BA.D0.B8.D0.B1.D0.B5.D1.80.D1.81.D0.BF.D0.BE.D1.80.D1.82.D0.B0_.D0.B2_2013-2014_.D0.B3.D0.BE.D0.B4.D1.83"></span><span class="mw-headline" id="Масштабная_реформа_киберспорта_в_2013-2014_году">2013-2014 年电竞大规模改革</span></h2><p>2013 年 12 月，电竞管理中心（СЦУК）对电竞板块进行了大规模改革。
+</p><p><b>变革内容</b>：
+</p><ul><li>取消军团许可证：所有新创建的团队现在直接成为军团；</li>
+<li>简化了注册流程；</li>
+<li>军团被划分为 4 个联赛；</li>
+<li>“精英”（顶尖）联赛中的军团数量缩减至 16 个；</li>
+<li>“地图争夺战”被赛季锦标赛取代；</li>
+<li>修改了回合时间和获胜者的判定方式；</li>
+<li>官方个人赛（TOF Solo）和双人赛（TOF Tandem）关闭，但允许玩家自行创建赛事。</li></ul><p><b>划分为 4 个联赛</b>：
+</p><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:11018467075_f609468417_h.jpg" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6d/11018467075_f609468417_h.jpg/400px-11018467075_f609468417_h.jpg" decoding="async" loading="lazy" width="400" height="467" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/6d/11018467075_f609468417_h.jpg/600px-11018467075_f609468417_h.jpg 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/6d/11018467075_f609468417_h.jpg/800px-11018467075_f609468417_h.jpg 2x"></a><figcaption>军团系统架构</figcaption></figure><p>所有队伍统称为军团，并分为 4 个联赛：
+</p><ul><li><b>第四联赛</b>——面向新手军团，由中等级别玩家组成并在 M2 装备上进行游戏；</li>
+<li><b>第三联赛</b>——面向新手军团，由最高等级玩家组成并在 M3 装备上进行游戏；</li>
+<li><b>第二联赛</b>——32 个实力强劲的军团，仅在 M3 装备上进行游戏，拥有近乎全满的车库、深思熟虑的战术以及出色的协调员/战略家；</li>
+<li><b>顶尖联赛</b>——游戏中的前 16 个顶级军团，拥有技术惊人的玩家和顶尖协调员。他们的战斗面向全游戏直播。3D 坦克冠军头衔正是在他们之间展开争夺。</li></ul><p>当前排名的前 16 名保留在顶尖联赛中。12 月，他们参加了专项锦标赛，2 月则参与了 МЧ-8。其余队伍则进入第二联赛，与在 Dream Team 6 中赢得许可证的 10 支队伍一同竞技。第二联赛与德国和英国语区的玩家进行了专项锦标赛。前 16 名表现最佳的军团得以参加 МЧ-8。排名在 32 名之后的军团降级至第三联赛。所有在当时已注册但未在 DT-6 中赢得许可证的队伍均落入第三联赛。
+</p><p><b>创建新军团</b>：
+</p><p>在第 3 和第 4 联赛中创建军团变得完全自由，仅取决于等级：
+</p><ul><li>如果大多数玩家能买得起 M3 武器，则该军团参加第 3 联赛的锦标赛；</li>
+<li>如果等级较低，车库里主要是 M2 装备，则此类军团必须从第 4 联赛开始；</li>
+<li>如果第 4 联赛的军团玩到了高等级并购买了 M3 武器，则无论其竞技战绩如何，都可以晋升至第 3 联赛。</li></ul><p><b>顶尖联赛</b>：
+</p><ul><li>每个赛季结束后，表现最差的军团降级至第二联赛，第二联赛的队伍取而代之；</li>
+<li>如果顶尖军团解散/与其他军团合并——第二联赛中最优秀的军团随时准备顶替其空缺（甚至在赛季中期）；</li>
+<li>在锦标赛中赢得并在直播中赚取的水晶只能在赛季末兑现；</li>
+<li>直播中每出现一次脏话，该军团当季总收益就会被扣除 5% 作为罚款；</li>
+<li>直播增多，军团借此获得了不错的收益；</li>
+<li>每个顶尖军团在游戏中都拥有一张属于自己的地图（地图预览上有相应的字样）；</li>
+<li>在 МЧ 结束后，每个顶尖军团都可以定制自己独特的无抗性、任意设计的军团迷彩（最终该构想被放弃）；</li>
+<li>每个赛季结束后，排名前 8 的军团将获得“酸液”迷彩。</li></ul><p><b>TOF Solo 与 TOF Tandem 锦标赛关闭</b>：
+</p><p>管理层停止举办官方的个人和双人锦标赛。
+现在，玩家中的热心人士有机会创建自己的业余锦标赛：
+</p><ul><li>电竞管理中心将精力集中在发展军团锦标赛和直播上；</li>
+<li>经过组织者的简单审核后，任何玩家都可以创建自己的锦标赛；</li>
+<li>举办了众多参与者并获得积极反馈的最优锦标赛组织者将获得奖金池和奖励支持；</li>
+<li>多亏了这一系统，单人与双人锦标赛得以持续举办，而不再是一年 3-4 次。</li></ul><h3><span id=".D0.97.D0.B8.D0.BC.D0.BD.D0.B8.D0.B9_.D1.81.D0.B5.D0.B7.D0.BE.D0.BD_.D0.B2_.D0.A2.D0.BE.D0.BF.D0.BE.D0.B2.D0.BE.D0.B9_.D0.9B.D0.B8.D0.B3.D0.B5"></span><span class="mw-headline" id="Зимний_сезон_в_Топовой_Лиге">顶尖联赛冬季赛</span></h3><p>顶尖联赛冬季赛于 2013 年 11 月 28 日开赛。每个军团与所有对手交手一次。
+有些军团运气好，在心仪的地图上遇到了强敌。有些军团与领头羊的对决则抽到了不擅长的地图。
+</p><p>第一张地图是边塞角斗场。
+</p><p>每获得一场胜利，军团积 3 分，平局积 1 分，失利积 0 分。
+赛季结束时，各军团在积分榜上占据第 1 至 16 名，这正是他们在 МЧ-8 分组抽签时获得的种子排名号。
+</p><p>冬季赛的冠军由 NooBest 军团（前身为 С.Н.К）夺得。
+</p><p><b>玩家</b>：
+</p><ul><li>转会窗保留。但取消了三个月规则：玩家可以每月在联赛之间自由转会；</li>
+<li>在第 3 和第 4 联赛中，军团可以容纳无限数量的玩家；</li>
+<li>在第二和顶尖联赛中，军团阵容不得超过 15 名玩家。分析表明，大多数军团（以及过去的队伍）使用的玩家从未超过 15 名：具体而言，在获奖名单中几乎总是少于这个数字。军团还可以在赛季/锦标赛期间进行最多 5 次阵容替换。</li>
+<li>因此，赛季锦标赛成为军团测试新手并确定哪些玩家有资格参加 МЧ 的良机。</li></ul><p><b>修改回合时间和获胜者判定方式</b>：
+</p><table class="tpl-quote-tiny" style="margin:16px auto auto; border-collapse:collapse; background-color:transparent; border-style:none; width:auto;"><tbody><tr><td style="width:30px; padding-left:25px; vertical-align:top; text-align:left; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">«</td><td style="display:block; text-align:left; font-style:italic;">
+<p class="quote">每轮打 20 分钟的古老传统（由 Panzer 和 Alkorol 提出）已经过时。军团进入状态太慢，因为知道时间还很充裕：起初谁也不进攻，甚至在丢了旗帜后，军团通常也继续不紧不慢地玩，反正离回合结束还早得很。真正永远吸引人的只有高地角斗场的直播，那里随时都在发生状况。
+我们希望每个回合都是焦点：每个回合都要去拼搏，并且它能决定胜负。但与此同时，即便以大比分输掉某一个回合也不应彻底断送军团的机会……</p>
+</td><td style="width:30px; padding-right:25px; vertical-align:bottom; text-align:right; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">»</td></tr><tr><td colspan="3" style="font-size:80%; line-height:100%; text-align:right; padding: 5px 30px 0;">— Alexss-s，电竞负责人</td></tr>
+</tbody></table><p>因此，战斗计时发生了改变，并具备了以下参数：
+</p><ul><li>4 个回合，每回合 10 分钟（从耗时来看，这与 2 个回合每回合 20 分钟完全相同）；</li>
+<li>计分不按总旗数，而是按赢得的回合数（这意味着面对不同的基地，军团可能会采取不同的战术。根据局势，军团既可以主动进攻，也可以开始固守在前几回合中取得的战果）；</li>
+<li>如果在三回合过后比分为 2:0 或 3:0 且其中一方领先，战斗即告结束；</li>
+<li>如果在季后赛中四回合战平，则进行点球大战。</li></ul><p><b>附加调整</b>
+</p><ul><li>第一（顶尖）和第二联赛计划按赛季进行：冬季赛、春季赛、夏季赛和秋季赛。每个赛季不再举办“地图争夺战”，而是以频繁更换地图的新锦标赛形式举行；</li>
+<li>计划每年在 16 个顶尖军团和 16 个第二联赛最佳军团之间举办两次军团对抗赛，在其中决出冠军头衔并争夺巨额现金大奖。此外，每次 МЧ 结束后，成功晋级季后赛的军团将留在顶尖联赛中，无论过去的成就有多辉煌。</li>
+<li>规则中新增了关于电竞选手违规行为的条款：在电竞锦标赛的框架内，如果选手对对手表现出不尊重态度，无论是在比赛中、公开战中还是在 Skype 聊天中，都将受到惩罚。</li>
+<li>注册军团时不再需要收集确认信息（尽管玩家在加入时仍需留下确认）。</li></ul><h2><span id=".D0.9A.D0.BE.D0.BD.D0.B5.D1.86_.C2.AB.D1.81.D1.82.D0.B0.D1.80.D0.BE.D0.B9_.D1.8D.D0.BF.D0.BE.D1.85.D0.B8.C2.BB:_.D0.9C.D0.A7-8_.D0.B8_TOF-DT_7"></span><span class="mw-headline" id="Конец_«старой_эпохи»:_МЧ-8_и_TOF-DT_7">“旧时代”的终结：МЧ-8 与 TOF-DT 7</span></h2><p>作为终章的第八赛季传奇军团对抗赛变得越来越像其他游戏中的官方电竞赛事。第一点也是最重要的一点——出现了 9,000 美元的现金奖金池，由赛事优胜者瓜分。第二点是赛事的国际化。
+</p><p>历经千辛万苦后，始终无法平衡的 Medium 模式最终被历史淘汰，到了 МЧ-8 时只剩下了 Light 和 Hard（而且后者经过了大幅重构，融合了旧 TOF 和上述 Medium 的特征）。
+</p><p>在 GT 已经退出的情况下，刚刚在冬季赛中夺冠的 NooBest 夺取了桂冠，而他们的主要竞争对手则是“新人”Scorpions——该队伍名义上是在 МЧ 前不久创建的，但其成员都是来自 GT、“奥林普”和 NooBest 的精英玩家。此外，老牌劲旅 Black Sharks、MIX 等一如既往地被视为强队。最终，NooBest 成为了军团对抗赛的末代冠军，“蝎子”（Scorpions）则斩获亚军。
+</p><p>МЧ 结束后，常规的 TOF Dream Team 锦标赛拉开帷幕，然而它注定无法持续太久。在开赛前不久，《坦克》电竞经理人与 StarLadder 建立了联系，TOF Dream Team 平稳过渡为资格赛。几支表现出色的队伍收到了 Star Series 的邀请，至此，电竞第二分支 TOF 漫长而又充满争议的历史也画上了句号。
+</p><h2><span id="StarLadder_.D0.B2_.C2.AB.D0.A2.D0.B0.D0.BD.D0.BA.D0.B0.D1.85_.D0.9E.D0.BD.D0.BB.D0.B0.D0.B9.D0.BD.C2.BB"></span><span class="mw-headline" id="StarLadder_в_«Танках_Онлайн»">3D 坦克中的 StarLadder</span></h2><div class="dablink noprint"><em>主条目</em>：<b><a href="./StarLadder" title="StarLadder">StarLadder</a></b>
+</div><p>2014 年春季，《3D 坦克》与 StarLadder 签署了协议。<b>Starladder.TV</b> 是独联体地区最大的游戏平台，也是全球最大的游戏平台之一。在一年多的时间里，所有官方电竞都由 StarLadder 管理，而以往所有的积累要么变得不再适用，要么融入了新的模式和规程中。划分为四个联赛绝非偶然：正是这种体系被 StarLadder 的所有电竞项目所采用。
+</p><p>2014 年夏秋季以及 2015 年冬春季和夏季，共举办了四个赛季的 SLTV（第二赛季包含线下总决赛）。在所有赛季中，除了独特的迷彩外，还争夺着丰厚的现金大奖。详细信息可以在“<a href="./%D0%A2%D1%83%D1%80%D0%BD%D0%B8%D1%80%D1%81" class="mw-redirect" title="Турниры">锦标赛</a>”文章中或在 <a rel="nofollow" class="external text" href="http://tanki.starladder.tv/">StarLadder 网站</a>上找到。
+</p><p>值得一提的是，Arcade 战队（即过去的 NooBest 和 СНК）连续赢得了三个赛季的 SLTV Star Series 冠军，从而在冠军头衔数量上超越了传奇的 General Tanks。然而在第四赛季中，“阿卡达”仅获得第四名，而 All In 战队则赢得了其历史上首个冠军头衔。
+</p><p>2015 年 9 月初，《3D 坦克》暂停了与 StarLadder 的合作，并将公司的所有精力和资源集中在推出一款将实现自动化锦标赛系统的全新游戏上。
+</p><h2><span id=".D0.92.D0.BE.D0.B7.D0.B2.D1.80.D0.B0.D1.89.D0.B5.D0.BD.D0.B8.D0.B5_.D0.BA.D0.B8.D0.B1.D0.B5.D1.80.D1.81.D0.BF.D0.BE.D1.80.D1.82.D0.B0_.D0.BD.D0.B0_.D1.84.D0.BE.D1.80.D1.83.D0.BC"></span><span class="mw-headline" id="Возвращение_киберспорта_на_форум">电竞重返论坛</span></h2><p>在暂停与 StarLadder 电竞平台的合作后，《3D 坦克》的电竞领域迎来了变革。论坛上推出了首个名为“3Style”的团队锦标赛，奖品为“酸液”迷彩。该锦标赛是一次实验，因此与以往的赛事有着显著不同。新锦标赛的显著特点之一是在其中一个模式中使用了 <a href="./CP" class="mw-redirect" title="CP">CP</a> 模式。在锦标赛开赛前，“酸液”被从所有先前拥有者的车库中没收。Vavilon 在决赛中击败 Invincible 战队后，成为了该迷彩的唯一拥有者。在 3Style 结束几乎同时，又一场名为 Winter Tandem 的锦标赛开赛，分为 Star 和 Junior 类别。这是一场双人锦标赛，非常类似于 TOF Golden Tandem，但同时具备了一个以往没有的重要特征——开启了<a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F" class="mw-redirect" title="Улучшения">升级</a>的模式。“成人组”的冠军由 Mr.BaHbKa123 和 Immortal_HeRo_DoW 组合夺得。
+</p><p>随后，从当年 2 月底到 4 月中旬，共举办了 15 场闪电战锦标赛，参赛队伍会获得军团积分。所有有意愿的军团均可参加，每场闪电战的模式由组织者提前确定。在第一轮闪电战锦标赛结束后，积分最高的是 Synergy、Vavilon 和 Revolution 军团。
+</p><p>4 月中旬，电竞管理中心（СЦУК）官宣了一场名为“Masters of the sword”的大型激光炮锦标赛。它设有 4 个类别：Solo、Tandem、Trio 和 Clans。此外，Solo 还细分为 Star 和 Junior，而军团则分为两个联赛——超级联赛和第一联赛。前 3 个项目的注册对所有有意愿者开放，而在军团类别中，组织者根据第一轮闪电战后的排名允许前 32 个军团参赛，将其分为 2 个联赛，每联赛 16 个军团。锦标赛一直持续到 6 月初，Arm Power 军团夺得冠军。
+</p><h2><span id=".D0.9D.D0.BE.D0.B2.D1.89.D0.B9_.D1.81.D0.B5.D0.B7.D0.BE.D0.BD_TOF"></span><span class="mw-headline" id="Новый_сезон_TOF">TOF 新赛季</span></h2><p>在“Masters of the sword”结束刚结束时，组织者便宣布传奇的 Tanki Online Fighting 锦标赛回归，该赛事自 2014 年起停办。第八赛季的 TOF 包含 5 个项目：Solo Classic、Solo Thunder、Solo Ricochet、Solo Hammer 和 Dream Team。每个类别又细分为 2 个组别。所有类别的头号大奖毫无疑问是酸液。
+</p><p>排在首位的是 TOF Dream Team。该项目的注册于 6 月 10 日开放，参赛必须组建至少 5 人的队伍并报名参加两个子类别之一——带升级的 VIP 或者是无升级的 ECONOMY。锦标赛分为 2 个小组赛阶段和季后赛，持续了近 2 个月。在带升级的类别中，Vavilon 捍卫了他们拥有酸液的权利，而在 ECONOMY 中，Calm and Skill 夺得冠军。
+</p><p>7 月中旬，首个个人赛类别——Solo Classic 的战斗拉开帷幕。实际上它对武器没有任何限制。参赛者再次分为 VIP 和 ECONOMY 子类别，冠军分别由玩家 Face 和 Nomad 夺得。随后，其他个人赛项目——Thunder、Ricochet 和实验性质的 Hammer 也依次开赛。这些类别的显著特征是分为 Star 和 Junior。当然，人们对“成人”子类别给予了特别关注，其中的冠军得主分别是 MyLife-MyRules（在 Thunder 中）、Rendi.Orton（在 Solo Ricochet 中）和 avetismergelyan2（在 Solo Hammer 中）。赛季于 10 月初落下帷幕。
+</p><h2><span id=".D0.9F.D0.BE.D0.B4.D0.B3.D0.BE.D0.B2.D0.BA.D0.B0_.D0.B8_.D0.BF.D1.80.D0.BE.D0.B2.D0.B5.D0.B4.D0.B5.D0.BD.D0.B8.D0.B5_.D0.9C.D0.A7-9"></span><span class="mw-headline" id="Подготовка_и_проведение_МЧ-9">МЧ-9 的筹备与举办</span></h2><p>在举办 TOF 的过程中，电竞管理中心（СЦУК）组织了第二赛季的闪电战锦标赛。这一次它们的举办频率降低了——每周 1 场，并且修改了积分体系的逻辑。从 6 月初到 9 月底，共打了 17 场闪电战锦标赛，在此周期结束后，各大军团都在翘首期盼 МЧ-9。然而，根据组织者的决定，10 月又举办了 7 场被称为资格赛的闪电战锦标赛。它们与普通闪电战的区别在于对阵图的生成逻辑——根据军团排名进行编排，只有在对阵图内部队伍才会打乱。与此同时，还进行了模式的封闭测试。在第二轮闪电战和资格赛结束后，积分最高的是 Arm Power、Invincible 和 Eternity。
+</p><p>10 月底，电竞管理中心（СЦУК）官宣了 МЧ-9，并允许排名前 16 的军团参赛。赛事结构包括双循环小组赛和双败淘汰制季后赛。军团被分为 2 个小组。战斗于 11 月初打响。两支军团在小组赛阶段便提前结束了征程——解散的 Regrets 以及被取消资格的 Deadly Army。Synergy 表现优异，未尝一败。12 月初，季后赛赛程公布。夺冠热门依然是 Synergy，他们最终加冕冠军。Can't Stop 斩获银牌，而铜牌则归属 Eternity。2016 年就在此音符中画上了句号。
+</p><div align="right"><small>最后编辑：21/05/2024 HelpersBot <span class="ai-translate-note" style="color:#8FB8D8;">（由 AI 自动翻译）</span></small></div></div></div></div></div></div><footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
+<p style="margin:0;"><strong style="color:#BFD5FF;">本站为玩家社区自建的非官方 Wiki 镜像。</strong></p>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":1782,"wgPageParseReport":{"limitreport":{"cputime":"0.128","walltime":"0.154","ppvisitednodes":{"value":312,"limit":1000000},"postexpandincludesize":{"value":3687,"limit":4194304},"templateargumentsize":{"value":1904,"limit":4194304},"expansiondepth":{"value":7,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":3,"limit":5000000},"timingprofile":["100.00%   25.912      1 -total"," 31.56%    8.177      3 Шаблон:Main"," 22.59%    5.854      1 Шаблон:LastEdit"," 22.46%    5.820      1 Шаблон:Alert"," 17.85%    4.624      3 Шаблон:Другое_значение"," 17.25%    4.471      1 Шаблон:Q"]},"cachereport":{"timestamp":"20260824141324","ttl":86400,"transientcontent":false}}});});</script>
+    <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });</script></body></html>

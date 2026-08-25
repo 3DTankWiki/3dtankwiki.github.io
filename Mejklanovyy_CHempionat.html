@@ -1,0 +1,748 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>(function(){
+  var BASE = 'https://ru.tankiwiki.com';
+  function fix(v){ return (typeof v === 'string' && v.charAt(0) === '/' && v.indexOf('//') !== 0) ? BASE + v : v; }
+  ['HTMLScriptElement','HTMLLinkElement'].forEach(function(tag){
+    var proto = window[tag] && window[tag].prototype;
+    var prop  = tag === 'HTMLScriptElement' ? 'src' : 'href';
+    if (!proto) return;
+    var d = Object.getOwnPropertyDescriptor(proto, prop);
+    if (!d || !d.set) return;
+    Object.defineProperty(proto, prop, {
+      configurable: true,
+      get: function(){ return d.get.call(this); },
+      set: function(v){ d.set.call(this, fix(v)); }
+    });
+  });
+  var of = window.fetch;
+  if (of) window.fetch = function(u, o){ return of.call(this, (typeof u === 'string' ? fix(u) : u), o); };
+  var ox = window.XMLHttpRequest && XMLHttpRequest.prototype.open;
+  if (ox) XMLHttpRequest.prototype.open = function(m, u){
+    var a = Array.prototype.slice.call(arguments); a[1] = fix(u); return ox.apply(this, a);
+  };
+})();</script><title>跨军团锦标赛 — 3D 坦克 Wiki</title><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+    <meta charset="UTF-8">
+    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/xg_pWYS8-HRESiV6Rdg4aY_R/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-qWH0xCejb2gc1yqo8ob4TQrvIcQ9XjhOfGKbhFr/+LvFrJdTE3bA+FQP/FLAiQhz"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgRequestId":"d65052cae1802fe37cc435ce","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Mejklanovyy_CHempionat","wgTitle":"Mejklanovyy CHempionat","wgCurRevisionId":295733,"wgRevisionId":295733,"wgArticleId":2325,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Киберспорт","Исторические статьи"],"wgPageViewLanguage":"ru","wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgRelevantPageName":"Mejklanovyy_CHempionat","wgRelevantArticleId":2325,"wgIsProbablyEditable":
+false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVisualEditor":{"pageLanguageCode":"ru","pageLanguageDir":"ltr","pageVariantFallbacks":"ru"},"wgFlaggedRevsParams":{"tags":{"accuracy":{"levels":3}}},"wgStableRevisionId":295733,"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.flaggedRevs.icons":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.flaggedRevs.basic":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["mediawiki.page.media","site","mediawiki.page.ready","mediawiki.toc","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.flaggedRevs.advanced","skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=ext.flaggedRevs.basic%2Cicons%7Cext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <style>
+.mw-spinner{position:relative}.mw-spinner > .mw-spinner-container{transform-origin:0 0}.mw-spinner-small{width:20px;height:20px}.mw-spinner-small > .mw-spinner-container{transform:scale(0.3125)}.mw-spinner-large{width:32px;height:32px}.mw-spinner-large > .mw-spinner-container{transform:scale(0.5)}.mw-spinner-block{display:block;width:100%;text-align:center}.mw-spinner-block > .mw-spinner-container{display:inline-block;vertical-align:top}.mw-spinner-block.mw-spinner-small > .mw-spinner-container{min-width:20px}.mw-spinner-block.mw-spinner-large > .mw-spinner-container{min-width:32px}.mw-spinner-inline{display:inline-block;vertical-align:middle} .mw-spinner-container > div{transform-origin:32px 32px;animation:mw-spinner 1.2s linear infinite}.mw-spinner-container > div::after{content:' ';display:block;position:absolute;top:3px; left:29px;width:5px;height:14px;border-radius:20%;background:#000}.mw-spinner-container > div:nth-child(1){transform:rotate(0deg);animation-delay:-1.1s}.mw-spinner-container > div:nth-child(2){transform:rotate(30deg);animation-delay:-1s}.mw-spinner-container > div:nth-child(3){transform:rotate(60deg);animation-delay:-0.9s}.mw-spinner-container > div:nth-child(4){transform:rotate(90deg);animation-delay:-0.8s}.mw-spinner-container > div:nth-child(5){transform:rotate(120deg);animation-delay:-0.7s}.mw-spinner-container > div:nth-child(6){transform:rotate(150deg);animation-delay:-0.6s}.mw-spinner-container > div:nth-child(7){transform:rotate(180deg);animation-delay:-0.5s}.mw-spinner-container > div:nth-child(8){transform:rotate(210deg);animation-delay:-0.4s}.mw-spinner-container > div:nth-child(9){transform:rotate(240deg);animation-delay:-0.3s}.mw-spinner-container > div:nth-child(10){transform:rotate(270deg);animation-delay:-0.2s}.mw-spinner-container > div:nth-child(11){transform:rotate(300deg);animation-delay:-0.1s}.mw-spinner-container > div:nth-child(12){transform:rotate(330deg);animation-delay:0s}@keyframes mw-spinner{0%{opacity:1}100%{opacity:0}}
+.diff{border:0;border-spacing:4px;margin:0;width:100%; table-layout:fixed}.diff td{padding:0.33em 0.5em}.diff td.diff-marker{ padding:0.25em;text-align:right;font-weight:bold;font-size:1.25em;line-height:1.2}.diff td.diff-marker::before{content:attr(data-marker)}.diff td div{ word-wrap:break-word}.diff col.diff-marker{width:2%}.diff .diff-content{width:48%}.diff-title{vertical-align:top}.diff-notice,.diff-multi,.diff-otitle,.diff-ntitle{text-align:center}.diff-lineno{font-weight:bold;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.mw-diff-inline-added ins,.mw-diff-inline-changed ins,.mw-diff-inline-moved ins,.mw-diff-inline-deleted ins,.mw-diff-inline-added del,.mw-diff-inline-changed del,.mw-diff-inline-moved del,.mw-diff-inline-deleted del{padding:0.3em 1px;text-decoration:none;white-space:break-spaces}@media only screen and (max-width:720px){.client-js .mw-diff-inline-added ins,.client-js .mw-diff-inline-changed ins,.client-js .mw-diff-inline-moved ins,.client-js .mw-diff-inline-deleted ins,.client-js .mw-diff-inline-added del,.client-js .mw-diff-inline-changed del,.client-js .mw-diff-inline-moved del,.client-js .mw-diff-inline-deleted del{cursor:pointer}}.mw-diff-inline-added ins,.mw-diff-inline-changed ins,.mw-diff-inline-moved ins{background:#a3d3ff}.mw-diff-inline-deleted del,.mw-diff-inline-changed del,.mw-diff-inline-moved del{background:#ffe49c}.mw-diff-table-prefix{display:flex;justify-content:flex-end;align-items:center;margin:1em 0}.mw-diff-table-prefix .mw-diff-inline-legend{margin-right:auto}.mw-diff-table-prefix .mw-diff-inline-legend .mw-diff-inline-legend-ins,.mw-diff-table-prefix .mw-diff-inline-legend .mw-diff-inline-legend-del{display:inline-block;padding:4px 6px}.mw-diff-table-prefix .mw-diff-inline-legend .mw-diff-inline-legend-ins{background:#a3d3ff}.mw-diff-table-prefix .mw-diff-inline-legend .mw-diff-inline-legend-del{background:#ffe49c}.mw-diff-table-prefix .mw-diffPage-inlineToggle-container{margin-left:1em}.diff-addedline,.diff-deletedline,.diff-context{vertical-align:top;border-style:solid;border-width:1px 1px 1px 4px;border-radius:0.33em}.diff-addedline,.diff-deletedline,.diff-context,.mw-diff-inline-added,.mw-diff-inline-deleted,.mw-diff-inline-moved,.mw-diff-inline-changed,.mw-diff-inline-context{  font-size:13px;  -moz-tab-size:4; tab-size:4;line-height:1.6;white-space:pre-wrap;white-space:break-spaces}.diff-editfont-monospace .diff-addedline,.diff-editfont-monospace .diff-deletedline,.diff-editfont-monospace .diff-context,.diff-editfont-monospace .mw-diff-inline-added,.diff-editfont-monospace .mw-diff-inline-deleted,.diff-editfont-monospace .mw-diff-inline-moved,.diff-editfont-monospace .mw-diff-inline-changed,.diff-editfont-monospace .mw-diff-inline-context{font-family:monospace,monospace}.diff-editfont-sans-serif .diff-addedline,.diff-editfont-sans-serif .diff-deletedline,.diff-editfont-sans-serif .diff-context,.diff-editfont-sans-serif .mw-diff-inline-added,.diff-editfont-sans-serif .mw-diff-inline-deleted,.diff-editfont-sans-serif .mw-diff-inline-moved,.diff-editfont-sans-serif .mw-diff-inline-changed,.diff-editfont-sans-serif .mw-diff-inline-context{font-family:sans-serif}.diff-editfont-serif .diff-addedline,.diff-editfont-serif .diff-deletedline,.diff-editfont-serif .diff-context,.diff-editfont-serif .mw-diff-inline-added,.diff-editfont-serif .mw-diff-inline-deleted,.diff-editfont-serif .mw-diff-inline-moved,.diff-editfont-serif .mw-diff-inline-changed,.diff-editfont-serif .mw-diff-inline-context{font-family:serif}.mw-diff-inline-header{font-weight:bold;margin:1em 0}.diff-context{background:#f8f9fa;color:#222;border-color:#eee}.diff-addedline{border-color:#a3d3ff}.diff-deletedline{border-color:#ffe49c}.diffchange{font-weight:bold;text-decoration:none}.diff-addedline .diffchange,.diff-deletedline .diffchange{border-radius:0.33em;padding:0.25em 0}.diff-addedline .diffchange{background:#d8ecff}.diff-deletedline .diffchange{background:#feeec8} .diff-currentversion-title,.diff{direction:ltr;unicode-bidi:embed}.diff-contentalign-right td{ direction:rtl;unicode-bidi:embed}.diff-contentalign-left td{ direction:ltr;unicode-bidi:embed}.diff-multi,.diff-otitle,.diff-ntitle,.diff-lineno{direction:ltr !important; unicode-bidi:embed}.mw-diff-slot-header{text-align:center}.mw-diff-slot-error{text-align:center;color:#d03} .mw-diff-movedpara-left,.mw-diff-movedpara-right,.mw-diff-movedpara-left:visited,.mw-diff-movedpara-right:visited,.mw-diff-movedpara-left:active,.mw-diff-movedpara-right:active{display:block;color:transparent;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.mw-diff-movedpara-left:hover,.mw-diff-movedpara-right:hover{text-decoration:none;color:transparent}.mw-diff-movedpara-left::after,.mw-diff-movedpara-right::after{display:block;color:#202122;margin-top:-1.25em}.mw-diff-movedpara-left::after,.rtl .mw-diff-movedpara-right::after{content:'↪'}.mw-diff-movedpara-right::after,.rtl .mw-diff-movedpara-left::after{content:'↩'}#mw-inlinediff-header #mw-diff-otitle1,#mw-inlinediff-header #mw-diff-otitle2,#mw-inlinediff-header #mw-diff-otitle3,#mw-inlinediff-header #mw-diff-otitle5{display:none} .diff[data-selected-side='deleted'] .diff-side-added,.diff[data-selected-side='added'] .diff-side-deleted{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:text} .mw-diff-inline-added.mw-diff-empty-line::after,.mw-diff-inline-deleted.mw-diff-empty-line::after,.mw-inline-diff-newline::after{font-family:'Courier New',monospace;font-size:87.5%;padding:0 3px;display:inline-block;color:#555}.mw-diff-inline-added.mw-diff-empty-line::after,.mw-inline-diff-newline::after{content:'↲ новая строка';background:#a3d3ff}.mw-diff-inline-deleted.mw-diff-empty-line::after{content:'⟵ удалить';background:#ffe49c}.mw-diffPage-inlineToggle-container .oo-ui-fieldLayout-body{align-items:center;white-space:nowrap}.mw-diff-empty-line ins,.mw-diff-empty-line del{display:none}.mw-diff-usermetadata,.mw-diff-revision-history-links{display:none}@media only screen and (max-width:720px){.mw-diff-inline-legend{display:none}}
+@media print {
+	td.diff-context,td.diff-addedline .diffchange,td.diff-deletedline .diffchange{background-color:transparent}td.diff-addedline .diffchange{text-decoration:underline}td.diff-deletedline .diffchange{text-decoration:line-through}}
+.mw-editfont-monospace{font-family:monospace,monospace}.mw-editfont-sans-serif{font-family:sans-serif}.mw-editfont-serif{font-family:serif} .mw-editfont-monospace,.mw-editfont-sans-serif,.mw-editfont-serif{  font-size:13px;  -moz-tab-size:4; tab-size:4; }.mw-editfont-monospace.oo-ui-textInputWidget,.mw-editfont-sans-serif.oo-ui-textInputWidget,.mw-editfont-serif.oo-ui-textInputWidget{font-size:inherit}.mw-editfont-monospace.oo-ui-textInputWidget > .oo-ui-inputWidget-input,.mw-editfont-sans-serif.oo-ui-textInputWidget > .oo-ui-inputWidget-input,.mw-editfont-serif.oo-ui-textInputWidget > .oo-ui-inputWidget-input{  font-size:13px}.mw-editfont-monospace.oo-ui-textInputWidget > input.oo-ui-inputWidget-input,.mw-editfont-sans-serif.oo-ui-textInputWidget > input.oo-ui-inputWidget-input,.mw-editfont-serif.oo-ui-textInputWidget > input.oo-ui-inputWidget-input{min-height:32px}
+.unpatrolled{font-weight:bold;color:#d73333} .newpage,.minoredit,.botedit{font-weight:bold} .mw-userlink{word-wrap:break-word; -webkit-hyphens:auto;-moz-hyphens:auto;-ms-hyphens:auto;hyphens:auto; unicode-bidi:embed} .mw-tempuserlink{background-color:#eaecf0;padding:2px 8px;border-radius:0} span.comment{font-style:italic;unicode-bidi:-moz-isolate;unicode-bidi:isolate;word-wrap:break-word;overflow-wrap:break-word;word-break:break-word} .autocomment,.autocomment a,.autocomment a:visited{color:#72777d} li span.deleted,span.history-deleted{text-decoration:line-through;color:#72777d;font-style:italic}span.mw-history-suppressed{ text-decoration-style:double;color:#202122} span.mw-revdelundel-link,strong.mw-revdelundel-link{font-size:90%}.mw-usertoollinks-contribs-no-edits{color:#d03}.mw-usertoollinks-contribs-no-edits:visited{color:#a55858}        .mw-changeslist-separator:empty::before{content:'. .'} .mw-changeslist-separator--semicolon::before{content:';'}.mw-rollback-link::before{content:'['}.mw-rollback-link::after{content:']'}.mw-diff-edit::before,.mw-diff-tool::before,.mw-diff-undo::before,.comment--without-parentheses::before,.mw-changeslist-links::before,.mw-diff-bytes::before,.mw-tag-markers::before,.mw-uctop::before{content:'('}.mw-diff-edit::after,.mw-diff-tool::after,.mw-diff-undo::after,.comment--without-parentheses::after,.mw-changeslist-links::after,.mw-diff-bytes::after,.mw-tag-markers::after,.mw-uctop::after{content:')'}.mw-comment-none{display:block;position:absolute !important; clip:rect(1px,1px,1px,1px);width:1px;height:1px;margin:-1px;border:0;padding:0;overflow:hidden}.mw-changeslist-links{display:inline-block}.mw-changeslist-links > span:not(:first-child)::before{content:' | '}.mw-changeslist-links .mw-rollback-link::before,.mw-changeslist-links .mw-rollback-link::after{content:''}.mw-tag-marker::after{content:','}.mw-tag-marker:last-child::after{content:''}
+.ve-init-mw-progressBarWidget{height:1em;overflow:hidden;margin:0 25%}.ve-init-mw-progressBarWidget-bar{height:1em;width:0} .ve-init-mw-progressBarWidget{background-color:#fff;box-sizing:border-box;height:0.875em;border:1px solid #36c;border-radius:0.875em;box-shadow:0 1px 1px rgba(0,0,0,0.15)}.ve-init-mw-progressBarWidget-bar{background-color:#36c;height:0.875em}
+@media screen {
+	.toctoggle{-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none;font-size:94%}}
+.mw-diff-popup .oo-ui-clippableElement-clippable p{margin:0;white-space:nowrap}
+#mw-teleport-target{position:absolute;z-index:450}</style>
+    <style>
+.ve-init-mw-tempWikitextEditorWidget{border:0;padding:0;color:inherit;line-height:1.5em;width:100%;-moz-tab-size:4;tab-size:4; }.ve-init-mw-tempWikitextEditorWidget:focus{outline:0;padding:0}.ve-init-mw-tempWikitextEditorWidget::selection{background:rgba(109,169,247,0.5); }</style>
+    <style>
+.ve-active .ve-init-mw-desktopArticleTarget-targetContainer #siteNotice,.ve-active .mw-indicators,.ve-active #t-print,.ve-active #t-permalink,.ve-active #p-coll-print_export,.ve-active #t-cite,.ve-active .ve-init-mw-desktopArticleTarget-editableContent,.ve-active .ve-init-mw-tempWikitextEditorWidget{display:none}.ve-deactivating .ve-ui-surface{display:none}.ve-activating{ }.ve-activating .ve-ui-surface{height:0;padding:0 !important; overflow:hidden} .ve-loading .ve-init-mw-desktopArticleTarget-targetContainer > :not(.ve-init-mw-desktopArticleTarget-toolbarPlaceholder):not(.ve-init-mw-desktopArticleTarget),.ve-loading .ve-init-mw-desktopArticleTarget-originalContent,.ve-activated:not(.ve-loading) .ve-init-mw-desktopArticleTarget-uneditableContent{pointer-events:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;opacity:0.5}.ve-activated .ve-init-mw-desktopArticleTarget-targetContainer #firstHeading{ -webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;pointer-events:auto;cursor:text}.ve-activated .ve-init-mw-desktopArticleTarget-targetContainer #firstHeading a{ pointer-events:none}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks{cursor:pointer}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks:hover{ background:#e9f2fd}.ve-activated .ve-init-mw-desktopArticleTarget-originalContent #catlinks a{opacity:1} .ve-init-mw-desktopArticleTarget-loading-overlay{z-index:2;position:absolute;width:100%;top:1em}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder{overflow:hidden;transition:height 250ms ease;height:0;padding-bottom:2px; }.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{transform:translateY(-100%);transition:transform 250ms ease}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-open .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{transform:translateY(0)}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating{transition:none}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{position:fixed;top:0;z-index:1;background:#fff} .oo-ui-element-hidden{display:none !important; } .mw-editsection{ unicode-bidi:-moz-isolate;unicode-bidi:-webkit-isolate;unicode-bidi:isolate}.mw-editsection::before{content:'\200B'}.mw-editsection a{white-space:nowrap}.mw-editsection-divider{color:#54595d} .ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar{height:42px;border-bottom:1px solid #c8ccd1;box-shadow:0 1px 1px 0 rgba(0,0,0,0.1)}.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-floating,.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-open{height:42px}</style>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://ru.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://ru.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (ru)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://ru.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki&nbsp;— Atom-лента" href="https://ru.tankiwiki.com/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom"><style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
+
+/* 1. 只去掉源站皮肤的背景大图，保留底色；不要用 background 简写，否则会连带清掉皮肤别的背景设定 */
+html, body {
+    background-image: none !important;
+    background-color: #001926 !important;
+}
+/* 2. 让底色铺满视口，内容很短时下方不再露白 */
+html { min-height: 100%; }
+body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif; }
+
+/* 3. 版心容器 */
+#mw-main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #001926;
+}
+
+/* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
+      【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
+
+#mw-main-container .main-content,
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content,
+#mw-main-container #mw-content-text {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: auto !important;
+    flex-basis: auto !important;   /* 皮肤写了 .main-content{flex:0 0 75%} */
+    float: none !important;
+    margin-top: 0 !important;       /* 核心：清空原站皮肤的负 margin-top */
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    position: relative !important;
+    z-index: 1 !important;          /* 保证正文层级低于按钮 */
+}
+
+/* 5. 皮肤脚本 skins.tankiblue.js 会往 #mw-content-text 末尾插一条「发现错别字？Ctrl+Enter」
+      的俄语提示条和一个「报告错误」标签页。它按网址里有没有 'en'/'de' 来判断语言，
+      我们的域名两者都不含 → 一律显示俄语；且报错会提交到俄站编辑组，对镜像站没意义，直接隐藏。 */
+#custom-report-footer,
+.vectorTabs.customReport,
+.customReport { display: none !important; }
+
+/* 6. 返回按钮包裹容器：独占一行并强制最高层级 */
+.home-btn-wrapper {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px 0 20px 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    z-index: 9999 !important;       /* 核心：永远置于最顶层 */
+    clear: both !important;
+    overflow: visible !important;
+}
+
+/* 7. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐 */
+.home-back-btn {
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    width: auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    isolation: isolate !important;
+    
+    min-width: 142px !important;
+    padding: 0 24px !important;
+    height: 78px !important;
+    margin: 0 !important;
+    border: 1px solid rgba(255,255,255,.25) !important;
+    outline: 2px solid transparent !important;
+    border-radius: 6.5px !important;
+    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%) !important;
+    
+    position: relative !important;
+    z-index: 10000 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: all .15s ease !important;
+    overflow: visible !important;
+}
+.home-back-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(100% 100% at 0% 0%, rgba(191,213,255,.25) 0%, rgba(191,213,255,.15) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all .15s ease;
+    border-radius: inherit;
+    pointer-events: none;
+}
+.home-back-btn svg {
+    width: 24.375px;
+    height: 24px;
+    object-fit: contain;
+    transform: rotate(180deg);
+    transition: all .15s ease;
+    flex-shrink: 0;
+}
+.home-back-btn svg path { fill: #BFD5FF; transition: all .15s ease; }
+
+.home-back-btn:hover,
+.home-back-btn:active,
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF !important; border-color: #BFD5FF !important; }
+.home-back-btn:hover::before,
+.home-back-btn:active::before,
+.home-back-btn:focus-visible::before { opacity: 1; }
+.home-back-btn:hover svg,
+.home-back-btn:active svg,
+.home-back-btn:focus-visible svg { transform: rotate(180deg) translateX(10%); }
+.home-back-btn:hover svg path,
+.home-back-btn:active svg path,
+.home-back-btn:focus-visible svg path { fill: #fff; }
+
+.home-back-btn span {
+    color: #BFD5FF;
+    font-size: 16px;
+    margin-left: 10px;
+    font-weight: bold;
+    transition: all .15s ease;
+    white-space: nowrap;
+}
+.home-back-btn:hover span,
+.home-back-btn:active span,
+.home-back-btn:focus-visible span {
+    color: #fff;
+    transform: translateX(-4px);
+}
+
+/* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
+@media (hover: none) {
+    .home-back-btn { border-color: rgba(191,213,255,.55) !important; }
+    .home-back-btn svg path { fill: #CFE0FF; }
+}
+
+/* 移动端/窄屏自适应尺寸 */
+@media (max-width: 480px) {
+    .home-back-btn {
+        min-width: 106px !important;
+        padding: 0 16px !important;
+        height: 58px !important;
+        margin-left: 10px !important;
+    }
+    .home-back-btn svg { width: 20px !important; height: 19.7px !important; }
+    .home-back-btn span { font-size: 14px !important; margin-left: 8px !important; }
+}
+
+/* 8. 移动端容器 Padding */
+@media (max-width: 768px) {
+    #mw-main-container { padding: 10px !important; margin: 8px auto !important; }
+    .home-back-btn { margin-left: 10px !important; }
+    #mw-content-text .navigationContainerContent > div,
+    #mw-content-text [style*="width: 55%"],
+    #mw-content-text [style*="width:55%"],
+    #mw-content-text [style*="width: 45%"],
+    #mw-content-text [style*="width:45%"] { width: 100% !important; }
+}
+@media (max-width: 480px) {
+    #mw-main-container { padding: 6px !important; margin: 4px auto !important; }
+}
+
+/* 9. 防止宽表格 / 大图撑破版心 */
+#mw-content-text img { max-width: 100%; height: auto; }
+#mw-content-text table { max-width: 100%; }
+
+/* 10. 目录（TOC）修复，全局生效：
+    a) 皮肤把目录折叠按钮的文字放在 CSS 伪元素里渲染，而不是 HTML 文本：
+         .toctogglecheckbox:checked  + .toctitle .toctogglelabel::after → content:'показать'
+         .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after → content:'скрыть'
+       AI 翻译只处理 HTML 文本，摸不到 CSS content，所以这个按钮永远是俄语，必须在这里覆盖成中文。
+    b) 皮肤的响应式 CSS 里写了 @media screen and (max-width:768px){ #toc{display:none} }，
+       导致手机端整个目录被隐藏。这里恢复显示，并配合下方 TOC_MOBILE_COLLAPSE_SCRIPT：
+       移动端默认折叠，只占一行「目录 [展开]」，避免长目录把正文挤到屏幕外。 */
+#toc .toctogglecheckbox:checked + .toctitle .toctogglelabel::after { content: '展开' !important; }
+#toc .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after { content: '收起' !important; }
+@media screen and (max-width: 768px) {
+    #toc { display: table !important; }
+}
+
+/* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
+   只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+*/
+</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Mejklanovyy_CHempionat rootpage-Mejklanovyy_CHempionat skin-tankiblue action-view"><div id="skin-chrome-stub" aria-hidden="true" style="display:none !important;">
+<a class="problem" href="#"></a>
+<div class="close-wrapper"></div>
+<div class="support-block-popup"><div class="close-modal-support"></div></div>
+<div class="youtube-popup"><iframe title="stub"></iframe></div>
+<div class="video-button"></div>
+<div class="header-search"></div>
+<div class="search-dialog"></div>
+<div class="search-popup"><div class="close-wrapper"></div><div class="close-modal-search"></div></div>
+<div class="news-popup"></div>
+<div class="sales-block-header"></div>
+<div class="navbar-main"></div>
+<div class="main-navbar"></div>
+</div><div id="mw-main-container"><div class="home-btn-wrapper"><a class="home-back-btn" href="./Enciklopediya_igry_%C2%ABTanki_Onlayn%C2%BB" title="返回主页" aria-label="返回主页"><svg viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 0H13.5L25.5 12L24 13.5L13.5 24H18L30 12L18 0ZM24 13.5L21 10.5H0L3 13.5H24Z" fill="#BFD5FF"/></svg><span>返回主页</span></a></div><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">跨军团锦标赛</h1><p><b>跨军团锦标赛</b>（简称 МЧ）是游戏中历史最久、最具声望的军团赛事。该赛事举办时间不固定，间歇期从几个月到一年不等。当时许多习以为常的规则和传统都是首次在 МЧ 中进行试验的。总共进行了十一届赛季，其中 <a href="./General_Tanks" title="General Tanks">General Tanks</a> 军团赢得了三届，“黑刀”和“Synergy”各赢两届，TD42、“奥林匹斯”、“NooBest”和“Eternity Advanced”各赢一届。
+</p><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"><div class="toctitle" lang="ru" dir="ltr"><h2 id="mw-toc-heading">目录</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#История_создания._Калибровка_игрового_формата"><span class="tocnumber">1</span> <span class="toctext">创建历史。游戏模式校准</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Межклановый_Чемпионат_1_(Высшая_Лига_Кланов)"><span class="tocnumber">2</span> <span class="toctext">跨军团锦标赛 1（军团超级联赛）</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Результаты_МЧ-1"><span class="tocnumber">2.1</span> <span class="toctext">МЧ-1 结果</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#Межклановый_Чемпионат_2"><span class="tocnumber">3</span> <span class="toctext">跨军团锦标赛 2</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Организация"><span class="tocnumber">3.1</span> <span class="toctext">组织</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Ход_турнира_и_результаты"><span class="tocnumber">3.2</span> <span class="toctext">赛事进程与结果</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-7"><a href="#Межклановый_Чемпионат_3"><span class="tocnumber">4</span> <span class="toctext">跨军团锦标赛 3</span></a>
+<ul>
+<li class="toclevel-2 tocsection-8"><a href="#Групповой_этап"><span class="tocnumber">4.1</span> <span class="toctext">小组赛阶段</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Плей-офф"><span class="tocnumber">4.2</span> <span class="toctext">季后赛</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="#Межклановый_Чемпионат_4"><span class="tocnumber">5</span> <span class="toctext">跨军团锦标赛 4</span></a>
+<ul>
+<li class="toclevel-2 tocsection-11"><a href="#Групповой_этап_2"><span class="tocnumber">5.1</span> <span class="toctext">小组赛阶段</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#Плей-офф_2"><span class="tocnumber">5.2</span> <span class="toctext">季后赛</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-13"><a href="#Межклановый_Чемпионат_5"><span class="tocnumber">6</span> <span class="toctext">跨军团锦标赛 5</span></a>
+<ul>
+<li class="toclevel-2 tocsection-14"><a href="#Групповой_этап_3"><span class="tocnumber">6.1</span> <span class="toctext">小组赛阶段</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#Плей-офф_3"><span class="tocnumber">6.2</span> <span class="toctext">季后赛</span></a>
+<ul>
+<li class="toclevel-3 tocsection-16"><a href="#Четвертьфиналы"><span class="tocnumber">6.2.1</span> <span class="toctext">四分之一决赛</span></a></li>
+<li class="toclevel-3 tocsection-17"><a href="#Полуфиналы"><span class="tocnumber">6.2.2</span> <span class="toctext">半决赛</span></a></li>
+<li class="toclevel-3 tocsection-18"><a href="#Финал_и_матч_за_третье_место"><span class="tocnumber">6.2.3</span> <span class="toctext">决赛与三四名决赛</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-19"><a href="#Итоги"><span class="tocnumber">6.3</span> <span class="toctext">总结</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-20"><a href="#Межклановый_Чемпионат_6"><span class="tocnumber">7</span> <span class="toctext">跨军团锦标赛 6</span></a>
+<ul>
+<li class="toclevel-2 tocsection-21"><a href="#Рождение_формата_740"><span class="tocnumber">7.1</span> <span class="toctext">740 模式的诞生</span></a></li>
+<li class="toclevel-2 tocsection-22"><a href="#Групповой_Этап"><span class="tocnumber">7.2</span> <span class="toctext">小组赛阶段</span></a></li>
+<li class="toclevel-2 tocsection-23"><a href="#Плей-офф_4"><span class="tocnumber">7.3</span> <span class="toctext">季后赛</span></a>
+<ul>
+<li class="toclevel-3 tocsection-24"><a href="#Четвертьфиналы_2"><span class="tocnumber">7.3.1</span> <span class="toctext">四分之一决赛</span></a></li>
+<li class="toclevel-3 tocsection-25"><a href="#Полуфиналы_2"><span class="tocnumber">7.3.2</span> <span class="toctext">半决赛</span></a></li>
+<li class="toclevel-3 tocsection-26"><a href="#Финал"><span class="tocnumber">7.3.3</span> <span class="toctext">决赛</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-27"><a href="#Итоги_2"><span class="tocnumber">7.4</span> <span class="toctext">总结</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-28"><a href="#Межклановый_Чемпионат_7"><span class="tocnumber">8</span> <span class="toctext">跨军团锦标赛 7</span></a>
+<ul>
+<li class="toclevel-2 tocsection-29"><a href="#Новые_форматы,_новый_регламент._Закрытие_«General_Tanks»"><span class="tocnumber">8.1</span> <span class="toctext">新模式、新规程。“General Tanks”解散</span></a></li>
+<li class="toclevel-2 tocsection-30"><a href="#Подготовка_и_новшества"><span class="tocnumber">8.2</span> <span class="toctext">筹备与创新</span></a></li>
+<li class="toclevel-2 tocsection-31"><a href="#Групповой_этап_4"><span class="tocnumber">8.3</span> <span class="toctext">小组赛阶段</span></a></li>
+<li class="toclevel-2 tocsection-32"><a href="#Плей-офф_5"><span class="tocnumber">8.4</span> <span class="toctext">季后赛</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-33"><a href="#Межклановый_Чемпионат_8"><span class="tocnumber">9</span> <span class="toctext">跨军团锦标赛 8</span></a>
+<ul>
+<li class="toclevel-2 tocsection-34"><a href="#Подготовка_и_новшества_2"><span class="tocnumber">9.1</span> <span class="toctext">筹备与创新</span></a></li>
+<li class="toclevel-2 tocsection-35"><a href="#Особенности"><span class="tocnumber">9.2</span> <span class="toctext">特点</span></a>
+<ul>
+<li class="toclevel-3 tocsection-36"><a href="#Бой"><span class="tocnumber">9.2.1</span> <span class="toctext">战斗</span></a></li>
+<li class="toclevel-3 tocsection-37"><a href="#Призы"><span class="tocnumber">9.2.2</span> <span class="toctext">奖励</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-38"><a href="#Групповой_этап_5"><span class="tocnumber">9.3</span> <span class="toctext">小组赛阶段</span></a></li>
+<li class="toclevel-2 tocsection-39"><a href="#Плей-офф_6"><span class="tocnumber">9.4</span> <span class="toctext">季后赛</span></a></li>
+<li class="toclevel-2 tocsection-40"><a href="#Четвертьфиналы_3"><span class="tocnumber">9.5</span> <span class="toctext">四分之一决赛</span></a></li>
+<li class="toclevel-2 tocsection-41"><a href="#Полуфиналы_3"><span class="tocnumber">9.6</span> <span class="toctext">半决赛</span></a></li>
+<li class="toclevel-2 tocsection-42"><a href="#Финалы"><span class="tocnumber">9.7</span> <span class="toctext">决赛</span></a></li>
+<li class="toclevel-2 tocsection-43"><a href="#Суперфинал"><span class="tocnumber">9.8</span> <span class="toctext">超级决赛</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-44"><a href="#Межклановый_Чемпионат_9"><span class="tocnumber">10</span> <span class="toctext">跨军团锦标赛 9</span></a>
+<ul>
+<li class="toclevel-2 tocsection-45"><a href="#Подготовка_почвы_для_турнира"><span class="tocnumber">10.1</span> <span class="toctext">赛事筹备</span></a></li>
+<li class="toclevel-2 tocsection-46"><a href="#Последние_приготовления"><span class="tocnumber">10.2</span> <span class="toctext">最终准备</span></a></li>
+<li class="toclevel-2 tocsection-47"><a href="#Основные_положения"><span class="tocnumber">10.3</span> <span class="toctext">基本规定</span></a></li>
+<li class="toclevel-2 tocsection-48"><a href="#Групповой_этап_6"><span class="tocnumber">10.4</span> <span class="toctext">小组赛阶段</span></a></li>
+<li class="toclevel-2 tocsection-49"><a href="#Четвертьфиналы_4"><span class="tocnumber">10.5</span> <span class="toctext">四分之一决赛</span></a></li>
+<li class="toclevel-2 tocsection-50"><a href="#Полуфиналы_4"><span class="tocnumber">10.6</span> <span class="toctext">半决赛</span></a></li>
+<li class="toclevel-2 tocsection-51"><a href="#Финалы_2"><span class="tocnumber">10.7</span> <span class="toctext">决赛</span></a></li>
+<li class="toclevel-2 tocsection-52"><a href="#Гранд-финал"><span class="tocnumber">10.8</span> <span class="toctext">总决赛</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-53"><a href="#Межклановый_Чемпионат_X"><span class="tocnumber">11</span> <span class="toctext">跨军团锦标赛 X</span></a>
+<ul>
+<li class="toclevel-2 tocsection-54"><a href="#Четвертьфиналы_5"><span class="tocnumber">11.1</span> <span class="toctext">四分之一决赛</span></a></li>
+<li class="toclevel-2 tocsection-55"><a href="#Малый_полуфинал"><span class="tocnumber">11.2</span> <span class="toctext">小半决赛</span></a></li>
+<li class="toclevel-2 tocsection-56"><a href="#Полуфиналы_5"><span class="tocnumber">11.3</span> <span class="toctext">半决赛</span></a></li>
+<li class="toclevel-2 tocsection-57"><a href="#Финал_2"><span class="tocnumber">11.4</span> <span class="toctext">决赛</span></a></li>
+<li class="toclevel-2 tocsection-58"><a href="#Гранд-финал_2"><span class="tocnumber">11.5</span> <span class="toctext">总决赛</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-59"><a href="#Межклановый_Чемпионат_XI"><span class="tocnumber">12</span> <span class="toctext">跨军团锦标赛 XI</span></a>
+<ul>
+<li class="toclevel-2 tocsection-60"><a href="#Групповая_стадия"><span class="tocnumber">12.1</span> <span class="toctext">小组赛阶段</span></a></li>
+<li class="toclevel-2 tocsection-61"><a href="#Четвертьфиналы_6"><span class="tocnumber">12.2</span> <span class="toctext">四分之一决赛</span></a></li>
+<li class="toclevel-2 tocsection-62"><a href="#Полуфиналы_6"><span class="tocnumber">12.3</span> <span class="toctext">半决赛</span></a></li>
+<li class="toclevel-2 tocsection-63"><a href="#Финал_3"><span class="tocnumber">12.4</span> <span class="toctext">决赛</span></a></li>
+<li class="toclevel-2 tocsection-64"><a href="#Нижняя_сетка"><span class="tocnumber">12.5</span> <span class="toctext">败者组</span></a></li>
+<li class="toclevel-2 tocsection-65"><a href="#Гранд-финал_3"><span class="tocnumber">12.6</span> <span class="toctext">总决赛</span></a></li>
+</ul>
+</li>
+</ul>
+</div><h3><span id=".D0.98.D1.81.D1.82.D0.BE.D1.80.D0.B8.D1.8F_.D1.81.D0.BE.D0.B7.D0.B0.D0.BD.D0.B8.D1.8F._.D0.9A.D0.B0.D0.BB.D0.B8.D0.B1.D1.80.D0.BE.D0.B2.D0.BA.D0.B0_.D0.B8.D0.B3.D1.80.D0.BE.D0.B2.D0.BE.D0.B3.D0.BE_.D1.84.D0.BE.D1.80.D0.BC.D0.B0.D1.82.D0.B0"></span><span class="mw-headline" id="История_создания._Калибровка_игрового_формата">创建历史。游戏模式校准</span></h3><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D0%B9_%D0%9A%D0%92_8_%D0%BD%D0%B0_8.jpg" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/8/8a/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D0%B9_%D0%9A%D0%92_8_%D0%BD%D0%B0_8.jpg/280px-%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D0%B9_%D0%9A%D0%92_8_%D0%BD%D0%B0_8.jpg" decoding="async" loading="lazy" width="280" height="206" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/8/8a/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D0%B9_%D0%9A%D0%92_8_%D0%BD%D0%B0_8.jpg/420px-%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D0%B9_%D0%9A%D0%92_8_%D0%BD%D0%B0_8.jpg 1.5x, https://ru.tankiwiki.com/images/ru/thumb/8/8a/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D0%B9_%D0%9A%D0%92_8_%D0%BD%D0%B0_8.jpg/560px-%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D0%B9_%D0%9A%D0%92_8_%D0%BD%D0%B0_8.jpg 2x"></a><figcaption>2010 年 1 月。8 对 8 测试军团战。这类比赛通常以平局告终</figcaption></figure><p>自首批军团出现（2009 年 8 月）以来，关于锦标赛的想法就在空气中弥漫。然而，军团系统并未整合到游戏中，军团数量很少，军团战的模式也未确定。长久以来，各大军团维持着半官方的相互对战统计，在其中测试各种战斗参数，旨在确定军团战的最佳进行方式：道具的使用、每支队伍的玩家数量、战斗持续时间等。
+</p><p><b>玩家数量：</b>经过多次测试，队伍认为“黄金分割点”——既不让游戏变得“沉闷”，又能展现战术并在进攻与防守之间保持平衡——是每支队伍六名玩家。
+</p><p><b>战斗持续时间：</b>在确定一个既能保持积极游戏不让人厌烦，又能享受乐趣或扭转战局的时间段后，各队伍将一轮比赛的时间定为 20 分钟。随后也诞生了将一轮比赛创建为 26 分钟的传统，这与补给箱掉落算法有关：道具箱每 4 分钟掉落一次。因此，在 20:00（回合开始）时，地图是“干净”的，但在短短一到一分半钟后，各大军团就会展开激烈争夺，而最后一个掉落物会在回合结束前 1-2 分钟掉落。目前道具掉落算法已经改变，但这一传统得以保留。
+</p><p><b><a href="./%D0%A0%D0%B0%D1%81%D1%85%D0%BE%D0%B4%D0%BD%D0%B8%D0%BA%D0%B8" class="mw-redirect" title="Расходники">道具</a>：</b>决定放弃积极使用道具是出于几个原因：首先，当时即使对于军团玩家来说道具也是稀缺资源。其次，使用道具的战斗动态会激增到这样一个水平，即结果仅由团队配合和个人技术决定，战术则会变得毫无用处，这是各大军团所不能接受的。
+</p><p><b><a href="./%D0%9A%D0%B0%D1%80%D1%82%D1%8B" class="mw-redirect" title="Карты">地图</a>：</b>在某个阶段，人们楚地认识到，并非在所有地图上都能进行有趣的团队对抗。有些地图过于封闭，有些则过于庞大，当时各大军团只能挑出 6 张能够在进攻与防守、战术与个人技术之间实现平衡的地图。
+</p><p>这些地图包括：<a href="./%D0%91%D0%B0%D1%80%D0%B4%D0%B0" class="mw-redirect" title="Барда">城镇 3C</a>、<a href="./%D0%9A%D1%83%D0%BD%D0%B3%D1%83%D1%80" class="mw-redirect" title="Кунгур">大桥 3C</a>、<a href="./%D0%9C%D0%BE%D1%81%D1%82%D1%8B" class="mw-redirect" title="Мосты">路桥大战</a>、<a href="./%D0%9F%D0%B0%D1%80%D0%BC%D0%B0" class="mw-redirect" title="Парма">边塞角斗场</a>、<a href="./%D0%A1%D0%BE%D0%BB%D0%B8%D0%BA%D0%B0%D0%BC%D1%81%D0%BA" class="mw-redirect" title="Соликамск">废墟大战</a>和<a href="./%D0%A2%D1%80%D0%B8%D0%B1%D1%8C%D1%8E%D1%82" class="mw-redirect" title="Трибьют">广场 3C</a>。
+</p><p>关于具体战斗在哪个地图上进行的问题，解决得很简单：所有军团相互进行 2 场比赛，一场客场，一场主场。主队首先开始排除地图，从而获得优势：他不仅拥有 3 次排除机会对客队的 2 次，而且还享有最后一次排除权。
+</p><p>经过数月的测试确定了最佳战斗参数后，各大军团开始为第一届锦标赛做准备。<i>aircolor</i> 承担了组织工作，2 月 1 日，军团超级联赛正式宣布举办（该名称在第二赛季保留，但在第三赛季更改为如今人们熟悉的名称）。
+</p><h2><span id=".D0.9C.D0.B5.D0.B6.D0.BA.D0.BB.D0.B0.D0.BD.D0.BE.D0.B2.D1.8B.D0.B9_.D0.A7.D0.B5.D0.BC.D0.BF.D0.B8.D0.BE.D0.BD.D0.B0.D1.82_1_.28.D0.92.D1.8B.D1.81.D1.88.D0.B0.D1.8F_.D0.9B.D0.B8.D0.B3.D0.B0_.D0.9A.D0.BB.D0.B0.D0.BD.D0.BE.D0.B2.29"></span><span class="mw-headline" id="Межклановый_Чемпионат_1_(Высшая_Лига_Кланов)">跨军团锦标赛 1（军团超级联赛）</span></h2><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%9F%D0%B5%D1%80%D0%B2%D1%8B%D0%B9_%D0%BA%D0%B2_%D0%B2_%D0%9C%D0%A7-1.jpg" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/7/77/%D0%9F%D0%B5%D1%80%D0%B2%D1%8B%D0%B9_%D0%BA%D0%B2_%D0%B2_%D0%9C%D0%A7-1.jpg/280px-%D0%9F%D0%B5%D1%80%D0%B2%D1%8B%D0%B9_%D0%BA%D0%B2_%D0%B2_%D0%9C%D0%A7-1.jpg" decoding="async" loading="lazy" width="280" height="175" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/77/%D0%9F%D0%B5%D1%80%D0%B2%D1%8B%D0%B9_%D0%BA%D0%B2_%D0%B2_%D0%9C%D0%A7-1.jpg/420px-%D0%9F%D0%B5%D1%80%D0%B2%D1%8B%D0%B9_%D0%BA%D0%B2_%D0%B2_%D0%9C%D0%A7-1.jpg 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/77/%D0%9F%D0%B5%D1%80%D0%B2%D1%8B%D0%B9_%D0%BA%D0%B2_%D0%B2_%D0%9C%D0%A7-1.jpg/560px-%D0%9F%D0%B5%D1%80%D0%B2%D1%8B%D0%B9_%D0%BA%D0%B2_%D0%B2_%D0%9C%D0%A7-1.jpg 2x"></a><figcaption>跨军团锦标赛首场官方比赛。War Tank Forces 对阵 Tank Division 42</figcaption></figure><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%A0%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B_%D0%BC%D1%87-1.png" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/b/be/%D0%A0%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B_%D0%BC%D1%87-1.png/280px-%D0%A0%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B_%D0%BC%D1%87-1.png" decoding="async" loading="lazy" width="280" height="286" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/be/%D0%A0%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B_%D0%BC%D1%87-1.png/420px-%D0%A0%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B_%D0%BC%D1%87-1.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/be/%D0%A0%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B_%D0%BC%D1%87-1.png/560px-%D0%A0%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B_%D0%BC%D1%87-1.png 2x"></a><figcaption>МЧ-1 所有比赛结果</figcaption></figure><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%9C%D0%A7-1.jpg" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/a/af/%D0%9C%D0%A7-1.jpg/280px-%D0%9C%D0%A7-1.jpg" decoding="async" loading="lazy" width="280" height="62" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/a/af/%D0%9C%D0%A7-1.jpg/420px-%D0%9C%D0%A7-1.jpg 1.5x, https://ru.tankiwiki.com/images/ru/thumb/a/af/%D0%9C%D0%A7-1.jpg/560px-%D0%9C%D0%A7-1.jpg 2x"></a><figcaption>МЧ-1 最终积分榜</figcaption></figure><p><i>Aircolor</i> 和 <i>Panzer</i> 坚持要举办锦标赛，但当时军团数量很少，而且它们对综合性锦标赛持怀疑态度：当时大家都对常规军团战很满意。决定性的因素是开发商批准的奖金池。最终只有 6 个军团组织起了达到参赛水平的阵容：Kolhoz、TD42、“黑刀”、“ОтцЫ”、WTF 和 OrkZ。
+</p><p>赛事规则摘录：
+</p><table class="tpl-quote-tiny" style="margin:16px auto auto; border-collapse:collapse; background-color:transparent; border-style:none; width:auto;"><tbody><tr><td style="width:30px; padding-left:25px; vertical-align:top; text-align:left; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">«</td><td style="display:block; text-align:left; font-style:italic;">
+<p class="quote">
+</p><ul><li>战斗仅在无道具地图上进行。但有箱子掉落。<br></li>
+<li>在任何地图上，战斗始终严格进行 6 对 6 的对决。<br></li>
+<li>比赛进行 2 个回合——蓝方回合和红方回合。单回合持续时间正好为 20 分钟。<br></li>
+<li>第一赛季军团战地图列表：废墟大战、广场 3C、路桥大战、大桥 3C、边塞角斗场、城镇 3C。不允许使用其他地图。<br></li>
+<li>在赛程表中排在第一位的军团进行“主场比赛”（主队）。其对手被视为“客场作战”（客队）。地图的选择通过分阶段排除法进行。主队开始首先排除地图。若某军团无故缺席，或军团人数不足以参赛，则判定其技术性失利，比分为 0:3。<br></li>
+<li>如果在赛季进行期间某个军团解散或被驱逐出联赛，该军团的所有比赛结果将被取消。并且该军团在赛季的每场比赛中均被记录为 0:3 的技术性失利。</li></ul>
+<br><br>积分系统（每回合）：
+<ul><li>胜利得 3 分；</li>
+<li>平局得 1 分；</li>
+<li>失败得 0 分。</li></ul>
+<br><br>因此，如果一个军团在两场比赛中都取得了胜利——无论是在蓝方回合还是红方回合，它将获得 6 分。如果是一胜一平，则获得 4 分。<p class="mw-empty-elt"></p>
+</td><td style="width:30px; padding-right:25px; vertical-align:bottom; text-align:right; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">»</td></tr><tr><td colspan="3" style="font-size:80%; line-height:100%; text-align:right; padding: 5px 30px 0;">— МЧ-1</td></tr>
+</tbody></table><h3><span id=".D0.A0.D0.B5.D0.B7.D1.83.D0.BB.D1.8C.D1.82.D0.B0.D1.82.D1.8B_.D0.9C.D0.A7-1"></span><span class="mw-headline" id="Результаты_МЧ-1">МЧ-1 结果</span></h3><p>经与开发商协商，锦标赛的开赛在综合板块进行了公告，但这并没有带来高热度：游戏本身推出刚满半年，项目的受众才刚刚开始形成。因此，对军团游戏感兴趣的玩家非常少。
+</p><p>第一赛季的夺冠热门被认为是 Tank Division 42（TD42）军团，他们集结了顶尖玩家，自诞生以来一直统治着游戏空间。在第二轮比赛中，TD42 与他们的主要竞争对手“黑刀”相遇，并在边塞角斗场的对决中印证了其热门地位：第一回合 3:0 获胜，第二回合 2:2 平局。双方都很少失分，TD42 的领先优势一直保持到第四轮，当时他们再次与“黑刀”交锋。比赛以“黑刀”的爆冷获胜告终：其会长在城镇 3C 采取的防守战术为队伍带来了两场胜利：第一回合 2:0，第二回合 1:0。此时“黑刀”以 3 分的优势升至积分榜首，而受挫的 TD42 在同一轮比赛中输给了路桥大战的“Отцы”，并在比赛日结束时失去了争夺冠军的机会。
+</p><p>夺冠热门的失利对游戏社区来说犹如一枚重磅炸弹，就连“黑刀”的会长 shark_tank 也承认，当时的 TD42 确实更强。
+</p><table class="tpl-quote-tiny" style="margin:16px auto auto; border-collapse:collapse; background-color:transparent; border-style:none; width:auto;"><tbody><tr><td style="width:30px; padding-left:25px; vertical-align:top; text-align:left; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">«</td><td style="display:block; text-align:left; font-style:italic;">
+<p class="quote">在第一赛季中，我们运气不错。TD 搬起石头砸了自己的脚，高估了自己的实力，并在我们精准计算胜率的地方露出了破绽。每场比赛前，我们都计算过需要做到的最低限度才能获得取胜的机会。但实际上，那个赛季我们比 TD 要弱</p>
+</td><td style="width:30px; padding-right:25px; vertical-align:bottom; text-align:right; color:silver; font-size:2.5em; font-family:serif; font-weight:bold;">»</td></tr><tr><td colspan="3" style="font-size:80%; line-height:100%; text-align:right; padding: 5px 30px 0;">— shark_tank，“黑刀”会长</td></tr>
+</tbody></table><h2><span id=".D0.9C.D0.B5.D0.B6.D0.BA.D0.BB.D0.B0.D0.BD.D0.BE.D0.B2.D1.8B.D0.B9_.D0.A7.D0.B5.D0.BC.D0.BF.D0.B8.D0.BE.D0.BD.D0.B0.D1.82_2"></span><span class="mw-headline" id="Межклановый_Чемпионат_2">跨军团锦标赛 2</span></h2><h3><span id=".D0.9E.D0.85.D0.B3.D0.B0.D0.BD.D0.B8.D0.B7.D0.B0.D0.B3.D0.B8.D1.8F"></span><span class="mw-headline" id="Организация">组织</span></h3><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%A0%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B_%D0%BC%D1%87-2.png" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/b/bd/%D0%A0%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B_%D0%BC%D1%87-2.png/280px-%D0%A0%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B_%D0%BC%D1%87-2.png" decoding="async" loading="lazy" width="280" height="87" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/bd/%D0%A0%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B_%D0%BC%D1%87-2.png/420px-%D0%A0%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B_%D0%BC%D1%87-2.png 1.5x, https://ru.tankiwiki.com/images/ru/b/bd/%D0%A0%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B_%D0%BC%D1%87-2.png 2x"></a><figcaption>МЧ-2 所有比赛结果</figcaption></figure><p>第二届 МЧ 在两周后开赛，参赛阵容几乎完全相同：在原本的六个军团基础上仅加入了两个——General Tanks（获得第 5 名，未来成为初代游戏中获得荣誉最多的军团）和 Totenkopf。在与各大军团协商后，组织者更改了战斗结果的判定方式：现在积分不再按每回合计算，而是根据两个回合的总和计算。这一创新在随后的所有锦标赛中（除 TOF Dream Team 外）得到了沿用，并一直使用至今。
+</p><p>如果说第一届锦标赛是出于兴趣而办，以最强军团称号作为奖励，那么到了第二赛季，aircolor 就奖金池问题与开发商达成了协议。这个想法扎根下来，此后没有任何一场官方锦标赛是没有水晶奖金的。
+此外，在 МЧ-2 中分为了超级联赛和甲级联赛，但由于顶级军团的二队占据绝对统治地位，该实验最终失败，因此在 МЧ-3 中取消了这一划分。
+</p><h3><span id=".D0.A5.D0.BE.D0.B4_.D1.82.D1.83.D1.80.D0.BD.D0.B8.D1.80.D0.B0_.D0.B8_.D1.80.D0.B5.D0.B7.D1.83.D0.BB.D1.8C.D1.82.D0.B0.D1.82.D1.8B"></span><span class="mw-headline" id="Ход_турнира_и_результаты">赛事进程与结果</span></h3><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%98%D1%82%D0%BE%D0%B3%D0%BE%D0%B2%D0%B0%D1%8F_%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0_%D0%9C%D0%A7-2.gif" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/4/4b/%D0%98%D1%82%D0%BE%D0%B3%D0%BE%D0%B2%D0%B0%D1%8F_%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0_%D0%9C%D0%A7-2.gif/280px-%D0%98%D1%82%D0%BE%D0%B3%D0%BE%D0%B2%D0%B0%D1%8F_%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0_%D0%9C%D0%A7-2.gif" decoding="async" loading="lazy" width="280" height="157" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/4b/%D0%98%D1%82%D0%BE%D0%B3%D0%BE%D0%B2%D0%B0%D1%8F_%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0_%D0%9C%D0%A7-2.gif/420px-%D0%98%D1%82%D0%BE%D0%B3%D0%BE%D0%B2%D0%B0%D1%8F_%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0_%D0%9C%D0%A7-2.gif 1.5x, https://ru.tankiwiki.com/images/ru/4/4b/%D0%98%D1%82%D0%BE%D0%B3%D0%BE%D0%B2%D0%B0%D1%8F_%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0_%D0%9C%D0%A7-2.gif 2x"></a><figcaption>МЧ-2 最终积分榜</figcaption></figure><p>“黑刀”在 МЧ-1 中的胜利使他们成为第二赛季的夺冠热门。但在第二轮比赛中，他们就迎来了打击，这也成为了第一个危险信号：在边塞角斗场上，WTF 以 7:2 的比分击败了冠军。
+</p><p>在第四轮中，“黑刀”迎来了自我救赎的机会：在与 TD42 的比赛中，双方选择了废墟大战——一张更适合擅长阵地战的“黑刀”的封闭地图。经过深思熟虑的战术和训练，他们以 3:0 的悬殊比分取得了令人信服的胜利。在积分上追平 TD42 后，“黑刀”升至第二位。WTF 依然稳居第一，但在第六轮中，TD42 将他们拉到了更习惯的第三位。
+</p><p>因此，经过六场比赛后，“黑刀”和 TD42 并驾齐驱，各自拥有 5 胜 1 负。这种势均力敌的局面一直保持到第九轮，当时 TD42 与 WTF 战平，已经准备好放弃夺冠机会了。但此时却传出消息：在同时进行的 General Tanks 对阵“黑刀”的比赛中，GT 以 1:0 获胜。“黑刀”的爆冷失利使 TD42 成为单一领头羊，但接下来他们将与“黑刀”交锋，这场比赛将决定锦标赛的归属。
+</p><p>两支队伍以最佳状态迎来了这场对决，但对于不习惯冒险的“黑刀”来说，要升至第一必须取胜。对于 TD42 来说，只需一场平局即可保持对“黑刀”的领先优势，但 WTF 仅落后两分。因此最终两个军团都在为胜利而战。经过苦战，TD42 运回了唯一一个制胜军旗，从而将对“黑刀”的领先优势扩大到四分。WTF 也赢得了他们的比赛，结果赛季热门“黑刀”在倒数第二轮时位居第三。
+</p><p>TD42 没有再失分，顺理成章地成为了冠军。“黑刀”在争夺第二名的比赛中向 WTF 复仇，而 WTF 则连续第二次获得季军。
+</p><p>TD42 就第一赛季的惨败向“黑刀”进行了复仇，但根据普遍看法（以及双方军团协调员的承认），第二赛季的结果并没有像第一赛季那样反映出真正的实力对比：在 МЧ-1 中 TD42 客观上更强却输了，而在 МЧ-2 中“黑刀”重复了他们的错误。
+</p><h2><span id=".D0.9C.D0.B5.D0.B6.D0.BA.D0.BB.D0.B0.D0.BD.D0.BE.D0.B2.D1.8B.D0.B9_.D0.A7.D0.B5.D0.BC.D0.BF.D0.B8.D0.BE.D0.BD.D0.B0.D1.82_3"></span><span class="mw-headline" id="Межклановый_Чемпионат_3">跨军团锦标赛 3</span></h2><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%A1%D1%85%D0%B5%D0%BC%D0%B0_%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D1%87-3.png" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/5/56/%D0%A1%D1%85%D0%B5%D0%BC%D0%B0_%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D1%87-3.png/280px-%D0%A1%D1%85%D0%B5%D0%BC%D0%B0_%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D1%87-3.png" decoding="async" loading="lazy" width="280" height="257" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/56/%D0%A1%D1%85%D0%B5%D0%BC%D0%B0_%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D1%87-3.png/420px-%D0%A1%D1%85%D0%B5%D0%BC%D0%B0_%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D1%87-3.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/56/%D0%A1%D1%85%D0%B5%D0%BC%D0%B0_%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D1%87-3.png/560px-%D0%A1%D1%85%D0%B5%D0%BC%D0%B0_%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D1%87-3.png 2x"></a><figcaption>МЧ-3 赛制图</figcaption></figure><p>在第三赛季中，该锦标赛获得了它现在的名称——这在很大程度上归功于参赛人数的急剧增加：在超级联赛和甲级联赛合并后，组成了两个各有 8 个军团的小组，并引入了季后赛系统。
+</p><p>因此，共有 16 个军团参加了 МЧ 的主要（小组）阶段，并且在所有后续赛季中，无论报名意愿人数多少，其数量都保持不变。
+</p><p>此外还决定，在未来，上一届 МЧ 前 8 名的军团将默认获得小组赛席位，其余 8 个席位将由预选赛阶段的优胜者获得。
+</p><p>此外还宣布，МЧ-3 的冠军将获得带有对所有炮塔 15% 防御加成的“冠军”奖励迷彩。这一理念在后来得到了普及：TOF 和 ЛК 比赛的冠军也会获得奖励迷彩。
+</p><h3><span id=".D0.93.D1.80.D1.83.D0.BF.D0.BF.D0.BE.D0.B2.D0.BE.D0.B9_.D1.8D.D1.82.D0.B0.D0.BF"></span><span class="mw-headline" id="Групповой_этап">小组赛阶段</span></h3><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%BE%D0%B2%D0%BE%D0%B9_%D1%8D%D1%82%D0%B0%D0%BF_%D0%BC%D1%87-3.png" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/3/3a/%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%BE%D0%B2%D0%BE%D0%B9_%D1%8D%D1%82%D0%B0%D0%BF_%D0%BC%D1%87-3.png/280px-%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%BE%D0%B9_%D1%8D%D1%82%D0%B0%D0%BF_%D0%BC%D1%87-3.png" decoding="async" loading="lazy" width="280" height="168" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/3a/%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%BE%D0%B2%D0%BE%D0%B9_%D1%8D%D1%82%D0%B0%D0%BF_%D0%BC%D1%87-3.png/420px-%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%BE%D0%B2%D0%BE%D0%B9_%D1%8D%D1%82%D0%B0%D0%BF_%D0%BC%D1%87-3.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/3/3a/%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%BE%D0%B2%D0%BE%D0%B9_%D1%8D%D1%82%D0%B0%D0%BF_%D0%BC%D1%87-3.png/560px-%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%BE%D0%B2%D0%BE%D0%B9_%D1%8D%D1%82%D0%B0%D0%BF_%D0%BC%D1%87-3.png 2x"></a><figcaption>МЧ-3 小组赛阶段结果</figcaption></figure><p>与接下来的赛季不同，在 МЧ-3 中每个小组只有 2 个军团晋级（在 МЧ-5 和 МЧ-6 中，每组 8 支队伍里有 4 支晋级），之后进行半决赛和决赛。
+</p><p>可以说，МЧ-3 是 6 个赛季中最容易预测的一届。B 组完全没有任何惊喜：“黑刀”的绝对统治地位毋庸置疑——14 场比赛全部取胜，军旗得失比为 116:2。值得一提的是，“黑刀”分到的是一个极度轻松的小组，而在 A 组中竞争则激烈得多：TD42、WTF 和 General Tanks 为争夺头名和出线权展开了厮杀。在第二轮中，GT 首次真正证明了自己：以 2:1 击败了 TD42。尽管如此，WTF 和 TD42 还是携手出线，凭借附加数据（在积分相同时与 WTF 的直接交锋失利）将 GT 甩在了身后。
+</p><h3><span id=".D0.9F.D0.BB.D0.B5.D0.B9-.D0.BE.D1.84.D1.84"></span><span class="mw-headline" id="Плей-офф">季后赛</span></h3><figure typeof="mw:File/Frame"><span><img src="https://ru.tankiwiki.com/images/ru/d/d1/%D0%9F%D0%BB%D0%B5%D0%B9-%D0%BE%D1%84%D1%84_%D0%9C%D0%A7-3.png" decoding="async" loading="lazy" width="174" height="469" class="mw-file-element"></span><figcaption>МЧ-3 季后赛结果</figcaption></figure><p>正如预期那样，决赛中碰面的是过去几个赛季的老冤家：TD42 和“黑刀”。电子竞技史上首次有数百名观众通过当时唯一可能的方式观看了这场比赛：通过外部链接观看，并在聊天室中支持喜爱的队伍。“黑刀”被认为是夺冠热门，但“TD 队员”成功向宿敌发起了挑战。在第一场比赛中，“黑刀”以 2:0 稳操胜券。TD42 成功扭转了战局，在第二场比赛中逼平对手，并在第三场比赛中获胜。然而，TD42 的阵容并非最优，而“黑刀”则渴望为 МЧ-2 的惨败复仇。TD42 已经没有足够的精力进行接下来的战斗了：他们在第四场比赛中以 2:0 落败，并在战斗结束前退出了地图。
+</p><p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/be/%D0%A4%D0%B8%D0%BD%D0%B0%D0%BB_%D0%9C%D0%A7-3.jpg/600px-%D0%A4%D0%B8%D0%BD%D0%B0%D0%BB_%D0%9C%D0%A7-3.jpg" decoding="async" loading="lazy" width="600" height="474" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/be/%D0%A4%D0%B8%D0%BD%D0%B0%D0%BB_%D0%9C%D0%A7-3.jpg/900px-%D0%A4%D0%B8%D0%BD%D0%B0%D0%BB_%D0%9C%D0%A7-3.jpg 1.5x, https://ru.tankiwiki.com/images/ru/b/be/%D0%A4%D0%B8%D0%BD%D0%B0%D0%BB_%D0%9C%D0%A7-3.jpg 2x"></span></span>
+МЧ-3 决赛最后几分钟截图：TD42 队员接受了失利并退出了战斗</p><p>在赛季间隙，TD42 会长 Panzer 解散了军团，其给出的理由是新老交替失败以及想要保留第一代最强军团之一的形象。剩余的活跃玩家转入了 Heavy Division（2014 年 2 月 14 日，该军团因缺乏玩家而“解散”）。
+</p><p>“黑刀”从开发商那里获得了带有对所有炮塔 15% 防御加成的“冠军”迷彩。在 МЧ-4 之后，当 GT <a href="./%D0%97%D0%B0%D0%B3%D0%BE%D0%B2%D0%BE%D1%80_%D0%93%D0%A2" class="mw-redirect" title="Заговор ГТ">已经拥有该迷彩</a>时，防御加成被提高到了 20%。
+</p><p>“黑刀”的胜利确定了电子竞技的发展方向：阵地战战胜了进攻战。他们的继承者 General Tanks 借鉴并完善了道具掉落区控制战术，而将地图划分为 6-9 个区域的做法至今仍被顶级军团所采用。
+</p><p>МЧ-3 终于变得足够流行和大众化，以至于人们可以充满信心地说：《3D 坦克》中的电子竞技大有可为，并且将会不断发展。与此同时，首届 TOF Dream Team 开启，填补了第二梯队赛事空白，军团中的玩家数量现在已经不是几十人，而是几百人了。游戏社区中一小部分但很活跃的群体在不断成长、增重、学习并准备认真展露头角，但这需要时间。
+</p><h2><span id=".D0.9C.D0.B5.D0.B6.D0.BA.D0.BB.D0.B0.D0.BD.D0.BE.D0.B2.D1.8B.D0.B9_.D0.A7.D0.B5.D0.BC.D0.BF.D0.B8.D0.BE.D0.BD.D0.B0.D1.82_4"></span><span class="mw-headline" id="Межклановый_Чемпионат_4">跨军团锦标赛 4</span></h2><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0_%D0%BC%D1%87-4_%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B.png" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/4/48/%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0_%D0%BC%D1%87-4_%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B.png/280px-%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0_%D0%BC%D1%87-4_%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B.png" decoding="async" loading="lazy" width="280" height="371" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/48/%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0_%D0%BC%D1%87-4_%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B.png/420px-%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0_%D0%BC%D1%87-4_%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/48/%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0_%D0%BC%D1%87-4_%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B.png/560px-%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0_%D0%BC%D1%87-4_%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B.png 2x"></a><figcaption>МЧ-4 小组赛阶段结果，包括 11 月 30 日 A 组第一名争夺战</figcaption></figure><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%9C%D1%87-4_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%BE%D0%B2%D0%BE%D0%B9_%D1%8D%D1%82%D0%B0%D0%BF.png" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/3/37/%D0%9C%D1%87-4_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%BE%D0%B2%D0%BE%D0%B9_%D1%8D%D1%82%D0%B0%D0%BF.png/280px-%D0%9C%D1%87-4_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%BE%D0%B2%D0%BE%D0%B9_%D1%8D%D1%82%D0%B0%D0%BF.png" decoding="async" loading="lazy" width="280" height="152" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/37/%D0%9C%D1%87-4_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%BE%D0%B2%D0%BE%D0%B9_%D1%8D%D1%82%D0%B0%D0%BF.png/420px-%D0%9C%D1%87-4_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%BE%D0%B2%D0%BE%D0%B9_%D1%8D%D1%82%D0%B0%D0%BF.png 1.5x, https://ru.tankiwiki.com/images/ru/3/37/%D0%9C%D1%87-4_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%BE%D0%B2%D0%BE%D0%B9_%D1%8D%D1%82%D0%B0%D0%BF.png 2x"></a><figcaption>МЧ-4 小组赛阶段最终积分榜</figcaption></figure><p>第四赛季几乎没有带来组织上的创新，但在游戏玩法上变得更加有趣和多样化。
+</p><p>报名参加锦标赛的军团多达 30 多个，但组织者没有打破只允许 16 支队伍进入小组赛的原则，为所有申请者举行了预选赛。
+</p><p>为了加快小组赛的进行（10 月底开赛，临近假期和节日期间），16 个军团被分为 4 个小组，每个小组只有两支队伍晋级季后赛。
+</p><p>赛事的夺冠热门依然是“黑刀”，他们满足于在 МЧ-3 和与 TD42 的对决中取得的胜利，尽管如此，他们仍渴望延续连胜势头并成为三冠王。但这并不容易做到：志向远大、状态正佳的 General Tanks，以及吸收了 TD42 明星的 Heavy Division 也对冠军虎视眈眈。
+</p><h3><span id=".D0.93.D1.80.D1.83.D0.BF.D0.BF.D0.BE.D0.B2.D0.BE.D0.B9_.D1.8D.D1.82.D0.B0.D0.BF_2"></span><span class="mw-headline" id="Групповой_этап_2">小组赛阶段</span></h3><p>A 组的爆冷可以说是“黑刀”的失利：在积分相同需要进行加赛争夺头名时，他们以 1:0 输给了 We Always Win，而且不是在别处，正是在边塞角斗场——他们夺得冠军并击败 TD42 的标志性地图。
+</p><p>在 B 组中，WTF 稳居第一，而争夺第二名和季后赛门票的则是两个新军团：Foxtrot Force 和“天使与恶魔”。在直接对话中，双方互有胜负，但最终 FF 以超出对手 2 分的成绩杀入八强。
+</p><p>C 组则汇聚了赛事的两大夺冠热门：General Tanks 和 Heavy Division。主要问题不再是“谁能出线？”，而是“谁能夺得头名？”。答案在第二个比赛日揭晓，当时 HD 和 GT 在城镇 3C 进行了两场比赛：第一场 GT 以 3:1 获胜，第二场双方战成 0:0 平。因此，GT 独占鳌头，而 HD 则不断失分，甚至有无法出线的风险，但最终他们领先“Kolhoz”2 分，占据了第二名。
+</p><p>D 组则由“军团”和“哥萨克 UA”占据主导地位。
+</p><h3><span id=".D0.9F.D0.BB.D0.B5.D0.B9-.D0.BE.D1.84.D1.84_2"></span><span class="mw-headline" id="Плей-офф_2">季后赛</span></h3><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%9F%D0%BB%D0%B5%D0%B9-%D0%BE%D1%84%D1%84_%D0%BC%D1%87-4.png" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/4/40/%D0%9F%D0%BB%D0%B5%D0%B9-%D0%BE%D1%84%D1%84_%D0%BC%D1%87-4.png/280px-%D0%9F%D0%BB%D0%B5%D0%B9-%D0%BE%D1%84%D1%84_%D0%BC%D1%87-4.png" decoding="async" loading="lazy" width="280" height:="" 233"="" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/40/%D0%9F%D0%BB%D0%B5%D0%B9-%D0%BE%D1%84%D1%84_%D0%BC%D1%87-4.png/420px-%D0%9F%D0%BB%D0%B5%D0%B9-%D0%BE%D1%84%D1%84_%D0%BC%D1%87-4.png 1.5x, https://ru.tankiwiki.com/images/ru/4/40/%D0%9F%D0%BB%D0%B5%D0%B9-%D0%BE%D1%84%D1%84_%D0%BC%D1%87-4.png 2x"></a><figcaption>МЧ-4 季后赛结果</figcaption></figure><p>惊喜从四分之一决赛就已经开始：在小组赛中表现不佳的 HD 将三届 МЧ 季军 WTF 淘汰出局。Foxtrot Force 对阵夺冠大热 GT 时展现出了意料之外的强大抵抗力——在城镇 3C 以 1:0、在路桥大战以 3:1 的苦战紧咬对手。
+</p><p>主要的竞争在 WAW 对阵“哥萨克 UA”以及“军团”对阵“黑刀”的对决中展开。如果在第一组对决中“哥萨克”采取严密的防守战术，最终只逼出了两场平局，那么“军团”则差点制造冷门：在第一场战平后，第二场“军团士兵”以 4:1 取胜。许多人觉得伟大冠军的没落即将来临，并在“黑刀”的论坛板块开始了过早的幸灾乐祸。然而，“黑刀”展现出了韧性，通过将经验较浅的对手拖入消耗战来消磨对方：第三场比赛以零比零平局告终，而第四场比赛“黑刀”获胜，在一场长达五个小时的战斗中赢得了半决赛门票。
+</p><p>在半决赛中，HD 在城镇 3C 的两场比赛中历经艰辛击败了 WAW，而雄心勃勃的 General Tanks 则需要在对阵他们的导师和灵感源泉——“黑刀”的比赛中，检验他们对冠军的冲击力是否有据可依。这场考试交出了满意的答卷：GT 在边塞角斗场以 5:0、在大桥 3C 以 2:0 获胜并晋级决赛，在决赛中等待“GT 队员”的是小组赛老对手 Heavy Division。
+</p><p>三四名决赛成为了“黑刀”就小组赛输给 WAW 的复仇之战：在边塞角斗场以 6:0、在城镇 3C 以 2:1 取胜。
+</p><p>General Tanks 对阵 Heavy Division 的决赛仅在第一场比赛中呈现胶着状态：双方都在等待对方出现失误，而 GT 以微弱优势赢得了胜利。第二场比赛中，HD 选错了地图，来到了“GT 队员”喜爱的边塞角斗场并惨败。
+</p><p>因此，前八强军团排名如下：
+</p><ol><li>General Tanks</li>
+<li>Heavy Division</li>
+<li>“黑刀”</li>
+<li>We Always Win</li>
+<li>“军团”</li>
+<li>WTF</li>
+<li>“哥萨克 UA”</li>
+<li>Foxtrot Force</li></ol><p>第 5 至第 8 名根据所获积分进行分配。
+</p><p>МЧ-4 标志着军团电竞新纪元的开始：第一代军团让出了位置，经验较少但充满新鲜血液、对胜利极度饥渴的队伍登上了主要舞台：在 МЧ-1 的参赛者中，只有“黑刀”和 WTF 杀入了前八。
+</p><p>赛季末也伴随着顶级军团内部的丑闻：在 General Tanks 中，协调员 Djoxk 与管理层之间积聚的分歧导致了一半主力阵容的离队，而 We Always Win 则由于不认同军团长的人事政策而流失了相当一部分队员。出于某种奇怪的巧合，这两拨人合并组成了新军团 Pioneers，并成为了 МЧ-5 的头号夺冠热门。
+</p><h2><span id=".D0.9C.D0.B5.D0.B6.D0.BA.D0.BB.D0.B0.D0.BD.D0.BE.D0.B2.D1.8B.D0.B9_.D0.A7.D0.B5.D0.BC.D0.B5.D0.BF.D0.B8.D0.BE.D0.BD.D0.B0.D1.82_5"></span><span class="mw-headline" id="Межклановый_Чемпионат_5">跨军团锦标赛 5</span></h2><p>原本人们认为 МЧ-4 将是采用“<a href="./%D0%94%D0%B8%D0%BA%D0%BE%D1%80%D0%B5%D0%BB%D1%8C%D1%81%D0%B0" class="mw-redirect" title="Дикорельса">主宰者+激光炮</a>”模式的最后一届，第五赛季就会加入第二梯队的底盘和炮塔。然而，各大军团拒绝改变，而组织者也没有针对新模式的好点子。此外，第二梯队的市场已被 TOF 牢牢占据。最终，唯一的创新是加入了防御地图：德国小镇和雷达站。
+</p><p>在竞技层面上，МЧ-5 被认为是最不可预测和最有趣的一届。赛前所有人都押注 Pioneers 夺冠——这个军团是由从 WAW 离开的玩家群体组建的。几位来自 General Tanks 冠军阵容的成员也加入了他们，在赛季间隙举办的“沙子联赛”中，这个新军团崭露头角，在决胜局中击败 GT 并夺得头名。赛前“黑刀”也进行了认真的补强：两届冠军的行列中加入了真正的明星、前 TD42 玩家——alexxxxxxxxxx 和 von_dorimi。此外，WTF 的部分主力队员也转投了“黑刀”。Foxtrot Force 状态正佳，而作为上一届锦标赛冠军的 GT 也没有被任何人排除在争冠行列之外。
+</p><h3><span id=".D0.93.D1.80.D1.83.D0.BF.D0.BF.D0.BE.D0.B2.D0.B5.D0.B9_.D1.8D.D1.82.D0.B0.D0.BF_3"></span><span class="mw-headline" id="Групповой_этап_3">小组赛阶段</span></h3><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%9C%D0%A7-5_%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D1%8B.png" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/c/c3/%D0%9C%D0%A7-5_%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D1%8B.png/280px-%D0%9C%D0%A7-5_%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D1%8B.png" decoding="async" loading="lazy" width="280" height="217" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/c3/%D0%9C%D0%A7-5_%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D1%8B.png/420px-%D0%9C%D0%A7-5_%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D1%8B.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/c/c3/%D0%9C%D0%A7-5_%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D1%8B.png/560px-%D0%9C%D0%A7-5_%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D1%8B.png 2x"></a><figcaption>МЧ-5 小组赛阶段结果</figcaption></figure><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0_%D0%BC%D1%87-5_%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0.png" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/dc/%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0_%D0%BC%D1%87-5_%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0.png/280px-%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0_%D0%BC%D1%87-5_%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0.png" decoding="async" loading="lazy" width="280" height="76" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/dc/%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0_%D0%BC%D1%87-5_%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0.png/420px-%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0_%D0%BC%D1%87-5_%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/dc/%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0_%D0%BC%D1%87-5_%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0.png/560px-%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0_%D0%BC%D1%87-5_%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0.png 2x"></a><figcaption>МЧ-5 小组赛阶段最终积分榜</figcaption></figure><p>组织者恢复了两个每组 8 个军团的小组赛制，以获得更持久、更精彩的小组赛。这一决定完全正确：在漫长的赛程中，队伍互换了位置，夺冠热门不断失分，而军团的最终排名直到最后关头才见分晓。
+</p><p>在 A 组中，Pioneers 大放异彩：14 场比赛取得 13 场胜利，仅输给“黑刀”一场。然而，据“先锋”会长所说，失利在很大程度上是由玩家掉线引起的，在回敬战中他们以 4:0 在大桥 3C 痛击对手。“黑刀”随后又吞下两场败绩——分别输给 HD 和“黑鲨”，最终位居第二。“黑鲨”首次崭露头角，不仅击败了“黑刀”，还击败了 Heavy Division，以落后 HD 仅两分的成绩从第四位出线。
+</p><p>B 组则要精彩得多。起初人们可能会觉得 Pioneers 的角色会被 General Tanks 取代：在经过四轮比赛后，GT 已经拿下了 4 场胜利，军旗得失比为 17-0。然而，Foxtrot Force 拿到了相同的积分，WAW 和 WTF 紧随其后，GT 内部的危机在与强敌的前几场比赛中就显露出来了：在第五轮中，GT 与 WTF 战平，第六轮与 WAW 战平。紧接着是与 FF 的两场比赛，双方互有胜负——此时“福克斯”已经占据了第一位，领先 GT 两分。
+</p><p>此后，冠军军团内部的危机进一步加剧：GT 与 WAW 战平并输给 WTF，这使得 FF 稳固了榜首地位。而 GT 在最后一轮差点跌至第三，在与 RTS 的比赛的最后几分钟才艰难抢下胜利。最终获得第二名，并确保在半决赛中遭遇 Pioneers，而 FF 则以第一名的身份迎战“黑鲨”。
+</p><p>小组赛的结果巩固了社区对 Pioneers 将毫无悬念赢得锦标赛的信念。无论是 FF 还是“黑刀”都不被认为是真正的竞争对手，而 GT 则陷入了极深的危机：队伍既无战术也无成绩。GT 管理层采取了紧急措施：邀请了 HD 成员、前 TD42 成员、МЧ-2 冠军得主 <i>hyppopotam</i>。他无法在小组赛中帮助军团，但与队伍一同为季后赛做好了准备。此外，在季后赛开始前，Foxtrot Force 的顶级玩家之一 <i>anton777</i> 也转投了 GT。在决胜局中，两人都为新军团的比赛和成绩做出了重大贡献。
+</p><h3><span id=".D0.9F.D0.BB.D0.B5.D0.B9-.D0.BE.D1.84.D1.84_3"></span><span class="mw-headline" id="Плей-офф_3">季后赛</span></h3><h4><span id=".D0.A7.D0.B5.D0.B2.D0.B5.D0.B0.D1.82.D1.8C.D1.84.D0.B8.D0.BD.D0.B0.D0.BB.D1.8B"></span><span class="mw-headline" id="Четвертьфиналы">四分之一决赛</span></h4><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%A7%D0%B5%D1%82%D0%B2%D0%B5%D1%80%D1%82%D1%8C%D1%84%D0%B8%D0%BD%D0%B0%D0%BB%D1%8B_%D0%BC%D1%87-5.png" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/8/83/%D0%A7%D0%B5%D1%82%D0%B2%D0%B5%D1%80%D1%82%D1%8C%D1%84%D0%B8%D0%BD%D0%B0%D0%BB%D1%8B_%D0%BC%D1%87-5.png/280px-%D0%A7%D0%B5%D1%82%D0%B2%D0%B5%D1%80%D1%82%D1%8C%D1%84%D0%B8%D0%BD%D0%B0%D0%BB%D1%8B_%D0%BC%D1%87-5.png" decoding="async" loading="lazy" width="280" height="71" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/8/83/%D0%A7%D0%B5%D1%82%D0%B2%D0%B5%D1%80%D1%82%D1%8C%D1%84%D0%B8%D0%BD%D0%B0%D0%BB%D1%8B_%D0%BC%D1%87-5.png/420px-%D0%A7%D0%B5%D1%82%D0%B2%D0%B5%D1%80%D1%82%D1%8C%D1%84%D0%B8%D0%BD%D0%B0%D0%BB%D1%8B_%D0%BC%D1%87-5.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/8/83/%D0%A7%D0%B5%D1%82%D0%B2%D0%B5%D1%80%D1%82%D1%8C%D1%84%D0%B8%D0%BD%D0%B0%D0%BB%D1%8B_%D0%BC%D1%87-5.png/560px-%D0%A7%D0%B5%D1%82%D0%B2%D0%B5%D1%80%D1%82%D1%8C%D1%84%D0%B8%D0%BD%D0%B0%D0%BB%D1%8B_%D0%BC%D1%87-5.png 2x"></a><figcaption>МЧ-5 四分之一决赛结果</figcaption></figure><p>在 Pioneers 对阵 War Tanks Forces 的对决中，获胜者显而易见，但 WTF 成功给自认为冠军已经稳操胜券的 A 组头名制造了麻烦。第一回合战平，随后的第二回合“先锋”艰难取胜。在大桥 3C 进行的下一场比赛中，第一回合再次陷入苦战——2:1。但在第二回合中，“先锋”摆正了心态，将对手生生碾压——3:0。
+</p><p>“黑刀”尽管在小组赛中排名第二，但仍被视为夺冠热门之一，在与 WAW 的对决中许多人看好他们。然而，他们在第一场比赛中就以 0:2 落败，接下来的比赛中，即便第一回合获胜也未能带来理想的结果：总比分 2:3 落败并被淘汰出局。不久后，该军团的核心玩家在论坛上发帖宣布离队，几天后军团解散，“黑刀”管理层也承认参加 МЧ-5 是一个错误。
+</p><p>通过 <i>von-dorimi</i> 的视角回顾“黑刀”的最后一战：
+</p><p><iframe data-extension="youtube" width="560" height="315" src="https://www.youtube-nocookie.com/embed/vdNJIjNpupA?" frameborder="0" allowfullscreen=""></iframe>
+</p><p>General Tanks 对阵 Heavy Division 的比赛是 МЧ-4 决赛的重演，但在游戏社区看来，两个军团都不具备夺冠实力，双方实力相当。首场比赛战平，但随后糟糕的地图选择注定了 HD 的命运：GT 在雷达站以 2:0、在大桥 3C 以 5:2 大胜，昂首挺进半决赛，在那里“GT 队员”已经静候 Pioneers 的大驾。
+</p><p>“黑鲨”当时是名不见经传的黑马，并未被 Foxtrot Force 视为强劲对手。然而爆冷在第一场比赛就上演了：FF 未能集结最佳阵容，“黑鲨”以 2:0 取胜。接下来的两场比赛以平局告终，“鲨鱼”拿下了第四场。赛事夺冠热门之一的 Foxtrot Force 在八强赛就宣告出局。
+</p><h4><span id=".D0.9F.D0.BE.D0.BB.D1.83.D1.84.D0.B8.D0.BD.D0.B0.D0.BB.D1.8B"></span><span class="mw-headline" id="Полуфиналы">半决赛</span></h4><p>尽管击败了 FF，但“黑鲨”终究是新手，没有人期待他们在对阵经验丰富的 We Always Win 时能创造奇迹：WAW 顺理成章地取胜。
+</p><p><b>“黑鲨” 2:0 We Always Win | 3:0 (1:0, 2:0) — 大桥 3C；2:0 (2:0, 0:0) — 城镇 3C。</b>
+</p><p><b>Pioneers — General Tanks</b>
+</p><p>本届赛事最受期待的对决，许多人原本期望能在决赛中看到它。
+</p><p>两支队伍为比赛做了不同的准备：胜券在握的 Pioneers 训练了 TOF，而 GT 则拼尽全力试图在短时间内练习好所需的地图。选择防守战术的 GT 决定将其在城镇 3C 和废墟大战中付诸实践——这两张地图最适合防守，且“先锋”对其的熟悉程度不及大桥 3C、边塞角斗场或路桥大战。
+</p><p>GT 的战略在第一场比赛中就差点破产：“先锋”以 1:0 领先并长时间保持优势，但在第二回合中 GT 成功扳平比分。
+</p><p>第二场比赛在城镇 3C 进行，凭借严密的防守，GT 成功守住了自己的军旗，而“先锋”则出现失误丢掉了第二回合——1:0。“先锋”的处境变得复杂起来：他们已经没有犯错的余地了。然而他们在第三场比赛刚开始几分钟就再次犯错。General Tanks 取得领先并立即进入死守状态，在废墟大战中这并不算太难。第一回合结束时比分没有改变，第二回合接近尾声时，“先锋”才好不容易扳平比分，在距离结束还有 3 分钟时避免了失利。
+</p><p>奇迹般的生还激励了“先锋”，第四场比赛以他们在劣势方以 2:1 获胜开局。当时看来对抗局势已经发生逆转，“先锋”将局势掌握在了自己手中，但在第二回合中，GT 在劣势基地以 2:0 取胜，从而得以晋级决赛。
+</p><p><b>Pioneers 0:2 General Tanks | 1:1 (1:0, 0:1) — 废墟大战；0:1 (0:1, 0:0) — 城镇 3C；1:1 (0:1, 1:0) — 废墟大战；2:3 (2:1, 0:2) — 城镇 3C。</b>
+</p><p>General Tanks 的胜利出乎游戏社区的意料，并决定了军团运动的发展方向。GT 协调员在 МЧ-5 总结专栏文章中所描述的对手分析和决胜局备战方法，成为了大多数协调员的基础，在随后的锦标赛中，几乎所有军团不仅进行训练，还通过分析对手的优缺点来针对性地备战。
+</p><p>其中也少不了丑闻。半决赛刚一获胜，General Tanks 的会长就作出了轰动性的坦白：Pioneers 的替补队员之一 coffee 实际上是他的第二个账号。最终 coffee 被封号，他的名字也成了 3D 坦克电竞圈里的贬义代名词。
+</p><h4><span id=".D0.A4.D0.B8.D0.BD.D0.B0.D0.BB_.D0.B8_.D0.BC.D0.B0.D1.82.D1.87_.D0.B7.D0.B0_.D1.82.D1.80.D0.B5.D1.82.D1.85.D1.8C.D0.B5_.D0.BC.D0.B5.D1.81.D1.82.D0.BE"></span><span class="mw-headline" id="Финал_и_матч_за_третье_место">决赛与三四名决赛</span></h4><p>决赛在 General Tanks 和 We Always Win 之间展开。GT 再次需要 4 场比赛才能获胜，但过程比对阵“先锋”时要简单得多：WAW 选择了防守战术并长时间保持平局，但他们没能运回任何一个军旗。最终 GT 在第二场比赛中零封对手，并在第四场比赛中大胜。General Tanks 成功卫冕，这是连“黑刀”此前也未曾做到的壮举。
+</p><p>在三四名决赛中，Pioneers 轻松击败了“黑鲨”。
+</p><h3><span id=".D0.98.D1.82.D0.BE.D0.B3.D0.B8"></span><span class="mw-headline" id="Итоги">总结</span></h3><p>МЧ-5 不负众望，可以说是 TO 历史上最有趣的一届锦标赛：夺冠热门军团的长期危机、其他热门在季后赛的失利、决胜局的意外结果以及季后赛中的持久战，这一切都说明了问题。
+</p><p>此外，МЧ-5 也是最后一届采用“主宰者+激光炮”模式举办的锦标赛，各大军团为这个传奇模式举办了一场非常体面的告别仪式。
+</p><h2><span id=".D0.9C.D0.B5.D0.B6.D0.BA.D0.BB.D0.B0.D0.BD.D0.BE.D0.B2.D1.8B.D0.B9_.D0.A7.D0.B5.D0.BC.D0.BF.D0.B8.D0.BE.D0.BD.D0.B0.D1.82_6"></span><span class="mw-headline" id="Межклановый_Чемпионат_6">跨军团锦标赛 6</span></h2><h3><span id=".D0.A0.D0.BE.D0.B6.D0.B4.D0.B5.D0.BD.D0.B8.D0.B5_.D1.84.D0.BE.D1.80.D0.BC.D0.B0.D1.82.D0.B0_740"></span><span class="mw-headline" id="Рождение_формата_740"><a href="./%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D1%8B" class="mw-redirect" title="Форматы">740 模式</a>的诞生</span></h3><p>2011 年 5 月结束后，迎来了第二梯队的赛事：夏天举办沙子联赛，秋天举办军团联赛。МЧ 组织者则借此机会暂停了一段时间，以免赛事冲突。此外，还需要构思一种新的游戏模式。МЧ-4 本就被组织者计划为“主宰者+激光炮”模式的最后一届。但“激光炮玩家”不愿接受改变，而组织者又缺乏在保持第一梯队动态的同时创建新模式的想法，因此 МЧ-5 毫无变化地举行了。然而事实证明，在 МЧ-6 中，即使遭到保守派的抵制，也必须做出改变。在 <a href="./%D0%97%D0%B0%D0%B3%D0%BE%D0%B2%D0%BE%D1%80_%D0%93%D0%A2" class="mw-redirect" title="Заговор ГТ">Lyzzard 和 Alexss-s</a> 的共同努力下，740 模式被构思出来并在迷你锦标赛中进行了测试。起初该模式遭到负面评价，但它不仅成为了 МЧ-6 的正式比赛模式，还成为了游戏中最高欢迎度的电子竞技模式之一。
+</p><p>显然，最佳方案是引入第二梯队底盘并保留第一梯队武器。组织者面临着一个严重的问题：第二梯队的主要底盘——维京，既慢又肉，在 6 对 6 的比赛中，军团必然会选择维京和猛犸象，这会让游戏变得沉闷而可预测。<i>Lyzzard</i> 提出了解决方案：限制单支队伍的底盘总生命值（HP）。这样组织者希望达到平衡：既能让游戏足够迅速，又不失混乱。
+</p><p>经过测试，740 点的生命值上限被认为是最优的，这样队伍就可以选择 2 个维京、2 个主宰者和 2 个蜂王。但主宰者很快就被机动性更强的蜂王所取代，此后两个维京和四个蜂王的组合成为了主流。
+</p><p>秋天，在军团联赛进行的同时，还举行了一场测试性质的迷你锦标赛，结果表明 740 模式有着广阔的前景：军团很喜欢这个模式，比赛也非常有趣。新年过后，МЧ-6 正式官宣。
+</p><p>除了模式之外，本届赛事的创新点还包括：
+</p><ul><li>设立了带奖金池的甲级联赛。</li>
+<li>基于军团对争议问题投票的裁判系统。同以往所有锦标赛中的所有系统一样，遭到了激烈的批评。</li></ul><p>组织者保持了传统，仅允许 8 个顶级军团和预选赛中表现最好的 8 个军团进入正赛，不过对于那些接近晋级小组赛的队伍，又增设了一个拥有 8 个名额的“МЧ 杯”。因此，共有 40 个军团参加了 МЧ-6，其中 24 个参加了正赛阶段。
+</p><p>锦标赛的夺冠热门被认为是 General Tanks，不过 Heavy Division、“黑鲨”和“海豚”（当时由“主宰者+激光炮”强手和“Kolhoz”军团组成的新军团）的呼声也很高，没有人承诺 GT 会有一场轻松的旅程。
+</p><h3><span id=".D0.93.D1.80.D1.83.D0.BF.D0.BF.D0.BE.D0.B2.D0.BE.D0.B9_.D0.AD.D1.82.D0.B0.D0.BF"></span><span class="mw-headline" id="Групповой_Этап">小组赛阶段</span></h3><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0_%D0%BC%D1%87-6_%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B.png" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/8/8b/%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0_%D0%BC%D1%87-6_%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B.png/280px-%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0_%D0%BC%D1%87-6_%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B.png" decoding="async" loading="lazy" width="280" height="224" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/8/8b/%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0_%D0%BC%D1%87-6_%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B.png/420px-%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0_%D0%BC%D1%87-6_%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/8/8b/%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0_%D0%BC%D1%87-6_%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B.png/560px-%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0_%D0%BC%D1%87-6_%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D1%8B.png 2x"></a><figcaption>МЧ-6 小组赛阶段结果表</figcaption></figure><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0_%D0%BC%D1%87-6.png" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/2/26/%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0_%D0%BC%D1%87-6.png/280px-%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0_%D0%BC%D1%87-6.png" decoding="async" loading="lazy" width="280" height="126" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/26/%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0_%D0%BC%D1%87-6.png/420px-%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0_%D0%BC%D1%87-6.png 1.5x, https://ru.tankiwiki.com/images/ru/2/26/%D0%93%D1%80%D1%83%D0%BF%D0%BF%D0%B0_%D0%BC%D1%87-6.png 2x"></a><figcaption>МЧ-6 小组赛阶段最终积分榜</figcaption></figure><p>在 A 组中，GT 展现了近乎百分之百的战绩：13 胜 1 平。其余的晋级名额在多达五个军团之间展开争夺，谁能晋级季后赛直到最后一个比赛日才见分晓。最终 Heavy Division 获得第二名，“军团”落后一分位居第三，最后一张门票则归属于落后 2 分的 SAS。前三名很容易预测，但 SAS 的结果对许多人来说是个惊喜：该军团以前并未展现出色的实力，但在 МЧ-6 中他们成功赢下了几场关键比赛，并最终实至名归地力压强大的“犰狳”和 White Wolves。
+</p><p>在 B 组中，最初的不确定性要大得多：“黑鲨”和“海豚”的呼声不相上下，人们对在军团联赛中表现强劲的 WAW 寄予厚望。一众中游队伍预示着一场有趣的末班车争夺战。
+</p><p>“黑鲨”开局缓慢，在前四场交锋中吞下两场败绩。这被“海豚”和 WAW 钻了空子。然而随后 WAW 遭遇两连败，“海豚”输给“鲨鱼”，这让后者得以重返头名争夺战。此后 ЧА 表现更稳定且未再尝败绩，这让他们稳居榜首。最后一轮中，“海豚”拒绝与 WAW 比赛并位居第三，“奥林匹斯”则以超出“先锋” 1 分、超出 A&amp;D 两分的微弱优势强行抢下了最后一张晋级门票。
+</p><h3><span id=".D0.9F.D0.BB.D0.B5.D0.B9-.D0.BE.D1.84.D1.84_4"></span><span class="mw-headline" id="Плей-офф_4">季后赛</span></h3><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%9F%D0%BB%D0%B5%D0%B9-%D0%BE%D1%84%D1%84_%D0%BC%D1%87-6.png" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/2/27/%D0%9F%D0%BB%D0%B5%D0%B9-%D0%BE%D1%84%D1%84_%D0%BC%D1%87-6.png/280px-%D0%9F%D0%BB%D0%B5%D0%B9-%D0%BE%D1%84%D1%84_%D0%BC%D1%87-6.png" decoding="async" loading="lazy" width="280" height="322" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/27/%D0%9F%D0%BB%D0%B5%D0%B9-%D0%BE%D1%84%D1%84_%D0%BC%D1%87-6.png/420px-%D0%9F%D0%BB%D0%B5%D0%B9-%D0%BE%D1%84%D1%84_%D0%BC%D1%87-6.png 1.5x, https://ru.tankiwiki.com/images/ru/2/27/%D0%9F%D0%BB%D0%B5%D0%B9-%D0%BE%D1%84%D1%84_%D0%BC%D1%87-6.png 2x"></a><figcaption>МЧ-6 季后赛结果：</figcaption></figure><h4><span id=".D0.A7.D0.B5.D1.82.D0.B2.D0.B5.D1.80.D1.82.D1.8C.D1.84.D0.B8.D0.BD.D0.B0.D0.BB.D1.8B_2"></span><span class="mw-headline" id="Четвертьфиналы_2">四分之一决赛</span></h4><p>General Tanks 自信于夺冠热门的角色，已经开始筹备半决赛和决赛，并严重轻视了迅猛崛起的“奥林匹斯”，这差点导致无法挽回的后果：前两场比赛双方战平，且“奥林匹斯”甚至有机会取胜。不过好在底蕴尚存，GT 稳稳赢下了接下来的两场比赛。
+</p><p><b>“黑鲨” — SAS</b>
+</p><p>在“鲨鱼”面前，SAS 毫无胜算。两场比赛下来总比分 12-1。
+</p><p><b>We Always Win — “军团”</b>
+</p><p>没有人敢断言谁是热门：“军团”在小组赛中表现不错，而 WAW 一向以季后赛的强大韧性和坚决著称。“军团士兵”的进攻哲学并未奏效，他们在两场比赛中失利，基本没有什么翻盘的机会。
+</p><p><b>Heavy Division — “海豚”</b>
+</p><p>四分之一决赛中最有看点的一组对决。A 组第二名对阵放弃 B 组第二名的军团。赛前期待值极高，但开局惊艳的“海豚”未能证明自己作为新星的实力：第一场比赛 HD 以 4:0、第二场以 7:1 获胜。赛后有传言称，在备战对阵“海豚”的比赛时，其他与“海豚”会长关系紧张的军团给予了 HD 帮助。
+</p><h4><span id=".D0.9F.D0.BE.D0.BB.D1.83.D1.84.D0.B8.D0.BD.D0.B0.D0.BB.D1.8B_2"></span><span class="mw-headline" id="Полуфиналы_2">半决赛</span></h4><p>МЧ-6 的两场半决赛都追平了一项纪录：自 МЧ-4 以来，季后赛首次打满了 5 场比赛。如果在 General Tanks 对阵 We Always Win 的对决中是热门方步步紧逼、WAW 苦苦追赶，那么另一场半决赛则局势如过山车般跌宕起伏。
+</p><h4><span id=".D0.A4.D0.B8.D0.BD.D0.B0.D0.BB"></span><span class="mw-headline" id="Финал">决赛</span></h4><h4><span id=".D0.A4.D0.B8.D0.BD.D0.B0.D0.BB"></span><span class="mw-headline" id="Финал">决赛</span></h4><h4><span id=".D0.A4.D0.B8.D0.BD.D0.B0.D0.BB"></span><span class="mw-headline" id="Финал">决赛</span></h4><h4><span id=".D0.A4.D0.B8.D0.BD.D0.B0.D0.BB"></span><span class="mw-headline" id="Финал">决赛</span></h4><h4><span id=".D0.A4.D0.B8.D0.BD.D0.B0.D0.BB"></span><span class="mw-headline" id="Финал">决赛</span></h4><p>两支决赛队伍都陷入了窘境：关于对手偏好和战术的信息少之又少。不过“鲨鱼”得到了 GT 对手的帮助，他们为决赛准备了德国小镇。
+</p><p>第一场比赛差点成了 GT 的滑铁卢：糟糕的地图选择，使得“鲨鱼”得以在路桥大战中展现出最佳状态。第二回合的大部分时间里他们都处于领先地位，GT 直到最后一分钟才扳平比分。
+</p><p>GT 处于落后局面的回合视频：
+</p><p><iframe data-extension="youtube" width="560" height="315" src="https://www.youtube-nocookie.com/embed/QRHXbgkcmMQ?" frameborder="0" allowfullscreen=""></iframe>
+</p><p>此后 ЧА 重蹈 WAW 的覆辙，选择了德国小镇。在 МЧ-6 中，德国小镇上的 GT 无人能敌：第一场比赛战平，第二场大胜。第四场比赛在边塞角斗场进行，在历史备受喜爱的地图上，General Tanks 没有给对手留下任何生路——以 7:1 的比分大胜。
+</p><p><b>General Tanks 2:0 “黑鲨” | 1:1 (0:0, 1:1) — 路桥大战；1:1 (1:0, 0:1) — 德国小镇；2:0 (2:0, 0:0) — 德国小镇；7:1 (2:0, 5:1) — 边塞角斗场。</b>
+</p><h3><span id=".D0.98.D1.82.D0.BE.D0.B3.D0.B8_2"></span><span class="mw-headline" id="Итоги_2">总结</span></h3><p>本届锦标赛的重头戏是 GT 连胜纪录的延续：他们成为历史上第一支三连冠得主，而且是连续夺冠，每次都是全新阵容（唯一不变的是 G4orm 和 Alexss-s 的存在）。
+</p><p>740 模式扎根并成为主流，后来在此基础之上为第二梯队创建了动态模式。“黑鲨”巩固了其顶级军团的地位。“奥林匹斯”取得了巨大进步，夺得第五名并在随后的“地图争夺战”中延续了成功。We Always Win 宣告解散，许多玩家（包括会长）转投 Heavy Division，不过在那里也没有待太久。“海豚”之星陨落的速度与其升起的一样快：在地图争夺战中，分到高地角斗场的该军团在第一场比赛就拱手相让，此后便再无亮眼表现。
+</p><p>МЧ-6 刚一结束，TOF-3 便拉开帷幕，此后地图争夺战占据了主要军团赛事的位置。
+</p><h2><span id=".D0.9C.D0.B5.D0.B6.D0.BA.D0.BB.D0.B0.D0.BD.D0.BE.D0.B2.D1.8B.D0.B9_.D0.A7.D0.B5.D0.BC.D0.B5.D0.BF.D0.B8.D0.BE.D0.BD.D0.B0.D1.82_7"></span><span class="mw-headline" id="Межклановый_Чемпионат_7">跨军团锦标赛 7</span></h2><h3><span id=".D0.9D.D0.BE.D0.B2.D1.8B.D0.B5_.D1.84.D0.BE.D1.80.D0.BC.D0.B0.D1.82.D1.8B.2C_.D0.BD.D0.BE.D0.B2.D1.8B.D0.B9_.D1.80.D0.B5.D0.B3.D0.BB.D0.B0.D0.BC.D0.B5.D0.BD.D1.82._.D0.97.D0.B0.D0.BA.D1.80.D1.81.D1.82.D0.B8.D0.B5_.C2.ABGeneral_Tanks.C2.BB"></span><span class="mw-headline" id="Новые_форматы,_новый_регламент._Закрытие_«General_Tanks»">新模式、新规程。“General Tanks”解散</span></h3><p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/c0/Yrpa_b.png" decoding="async" loading="lazy" width="999" height="532" class="mw-file-element"></span></span>
+</p><h3><span id=".D0.9F.D0.BE.D0.B4.D0.B3.D0.BE.D1.82.D0.BE.D0.B2.D0.BA.D0.B0_.D0.B8_.D0.BD.D0.BE.D0.B2.D1.88.D0.B5.D1.81.D1.82.D0.B2.D0.B0"></span><span class="mw-headline" id="Подготовка_и_новшества">筹备与创新</span></h3><p>组织者早在 2012 年秋天就开始筹备 МЧ-7。
+</p><p>筹备并落实了以下创新：
+</p><ul><li>受地图争夺战成功经验的影响，跨军团锦标赛 3 年来首次引入多模式并行；</li>
+<li>彻底改变了大众化方法的理念：考虑到预选赛，有超过 60 个军团参加了本届赛事。正赛阶段的参赛军团数量从 16 个增加到 32 个，季后赛不再像以往所有赛季那样从 1/4 决赛打起，而是从 1/8 决赛打起；</li>
+<li>МЧ 历史上首次允许外国军团（德国和英国）参赛；</li>
+<li>作为实验，在 Hard 模式中允许开启友军伤害；</li>
+<li>彻底重构了季后赛胜者判定系统（详见下文）；</li>
+<li>引入了额外的奖励迷彩。</li></ul><p>组织者提前宣布 МЧ-7 将于 2013 年春季举行。由于平衡性重置，ЦУК 面临着一项雄心勃勃的任务：在短时间内（考虑到新年假期）准备好 3 个在动态、武器和玩法上各有不同的平衡模式。
+</p><p>ЦУК 打破了过去的信条，取消了总生命值上限。取而代之的是将可用底盘分为 3 类：重型（猛犸象、泰坦）、中型（猎人、维京）和轻型（蜂王、黄蜂轻甲）。唯独主宰者是个例外：由于其超越其他坦克的 TТХ（战术技术性能），组织者被迫将其从中型底盘中剔除，但对于重型底盘来说主宰者又显得过于灵活且生命值储备不足。
+</p><p>每个模式都引入了自身的限制：在 Hard 中，军团可以使用两个重型底盘；在 Medium 中，最多三个中型底盘但不能有迷彩（轻型底盘可带迷彩）；在 Light 中，只能使用轻型底盘。
+</p><p>МЧ-7 中使用的模式详细说明：
+</p><dl><dd><i><b>Hard：</b></i>
+<ul><li><i>战斗为 6 对 6 进行</i></li>
+<li><i>允许使用道具；</i></li>
+<li><i>迷彩无限制；</i></li>
+<li><i>冰风暴和火焰炮仅允许在中型底盘上使用；</i></li>
+<li><i>最多 2 个重型底盘；</i></li>
+<li><i>磁力炮被禁；</i></li>
+<li><i>每支队伍最多 1 个轰天炮；</i></li>
+<li><i>最多 1 个冰风暴；</i></li>
+<li><i>开启友军伤害。</i></li></ul></dd>
+<dd></dd>
+<dd><i><b>Medium：</b></i>
+<ul><li><i>允许使用的武器：激光炮、离子炮、雷暴炮、火龙珠、火焰炮。火焰炮和离子炮仅限轻型底盘。</i></li>
+<li><i>最多 3 把激光炮；</i></li>
+<li><i>最多 2 门离子炮；</i></li>
+<li><i>最多 1 门雷暴炮；</i></li>
+<li><i>迷彩仅限轻型底盘；</i></li>
+<li><i>最多 3 个中型底盘；</i></li>
+<li><i>最多允许 1 个主宰者，但搭配它只能再带 1 个中型底盘（主宰者搭配 2 个中型底盘是不行的）。</i></li></ul></dd></dl><dl><dd><i>允许的底盘组合示例：</i>
+<ul><li><i>3 个中型底盘无主宰者；</i></li>
+<li><i>2 个中型底盘无主宰者；</i></li>
+<li><i>1 个中型底盘无主宰者；</i></li>
+<li><i>1 个中型底盘带主宰者；</i></li>
+<li><i>仅主宰者无中型底盘；</i></li>
+<li><i>仅轻型底盘。</i></li></ul></dd>
+<dd></dd>
+<dd><i><b>Light：</b></i>
+<ul><li><i>仅限轻型底盘；</i></li>
+<li><i>黄蜂轻甲的数量不得超过两个（但黄蜂轻甲并非必选）；</i></li>
+<li><i>最多 1 个轰天炮；</i></li>
+<li><i>其余武器：激光炮；</i></li>
+<li><i>每支队伍允许 2 个青春迷彩；</i></li>
+<li><i>其余人禁止使用对激光炮抗性超过 25% 的迷彩。</i></li></ul></dd></dl><h3><span id=".D0.93.D1.80.D1.83.D0.BF.D0.BF.D0.BE.D0.B2.D0.B5.D0.B9_.D1.8D.D1.82.D0.B0.D0.BF_4"></span><span class="mw-headline" id="Групповой_этап_4">小组赛阶段</span></h3><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%9C%D0%A7-7_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%BE%D0%B2%D0%BE%D0%B9_%D1%8D%D1%82%D0%B0%D0%BF.png" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/b/b0/%D0%9C%D0%A7-7_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%BE%D0%B2%D0%BE%D0%B9_%D1%8D%D1%82%D0%B0%D0%BF.png/280px-%D0%9C%D0%A7-7_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%BE%D0%B2%D0%B9_%D1%8D%D1%82%D0%B0%D0%BF.png" decoding="async" loading="lazy" width="280" height="447" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/b/b0/%D0%9C%D0%A7-7_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%BE%D0%B2%D0%BE%D0%B9_%D1%8D%D1%82%D0%B0%D0%BF.png 1.5x"></a><figcaption>МЧ-7 小组赛最终积分榜：在第 1 和第 2 小组中，未来的半决赛队伍为争夺小组第一进行了加赛。</figcaption></figure><p>小组赛阶段采用了 4 个小组、每组 8 个军团的赛制，且军团与每个对手交锋一次。
+</p><p>参赛人数的增加带来了其特有的属性：在 МЧ-7 中，小组夺冠热门在争夺第 1-2 名的过程中分出高下，而中游队伍则为打入季后赛而战。
+</p><p>早在第一轮比赛中，第 2 小组就迎来了两大夺冠热门的直接对话：Angry Smile Incorporated (ASI) 迎战卫冕冠军 General Tanks。“GT 队员”在锦标赛开始前就宣布无论结果如何，МЧ 结束后军团都将解散。首场比赛留下了复杂的印象：在全盘压制对手（总比分 4:0 战胜 GT）的同时，“GT 队员”违反了规则，在第一回合开始时出动了三把离子炮（Medium 模式中最多允许两把）。为此 GT 遭到技术性判负。公众对此反应不一：许多人认为其中存在又一次的<a href="./%D0%97%D0%B0%D0%B3%D0%BE%D0%B2%D0%BE%D1%80_%D0%93%D0%A2" class="mw-redirect" title="Заговор ГТ">阴谋</a>，甚至要求因打假赛将 GT 取消资格。可以说，МЧ 的开局一如既往。
+</p><p>第 1 小组领头羊——“天使与恶魔”对阵“黑鲨”的强强对话以平局收场，这使得两支军团都未能登上榜首。在第 2 小组中，General Tanks 以 9:1 的悬殊比分击败了“奥林匹斯”，从而在积分上追平了“奥林匹斯”：由于第一轮输给 ASI，GT 未能获得小组头名。在第 3 和第 4 小组中，领头羊 С.Н.К. 和 MIX 毫无悬念地拿下积分并以小组第一身份出线。值得一提的仅有 MIX 在 Hard 模式下意外输给路桥大战的 United 8——U8 以 3:1 取胜。
+</p><p>常规赛结束后，第 1 和第 2 小组的领头羊不得不进行争夺小组头名的“黄金赛”。“天使与恶魔”轻取“黑鲨”，而 GT 则再次战胜“奥林匹斯”——常规时间 1:1，点球大战 3:2 胜出。
+</p><p>МЧ 小组赛的所有结果可以在<a rel="nofollow" class="external text" href="https://docs.google.com/spreadsheet/ccc?key=0ApsQ8Tt8HDqqdHRhNkJDcjk5NjBKWkh0N0lmMTFXWkE#gid=9">表格中</a>查看。
+</p><h3><span id=".D0.9F.D0.BB.D0.B5.D0.B9-.D0.BE.D1.84.D1.84_5"></span><span class="mw-headline" id="Плей-офф_5">季后赛</span></h3><p>与 МЧ-6 相比，季后赛的赛制与胜者判定系统进行了近乎彻底的重构：
+</p><ul><li>如果说以前主队在选择地图和阵营方面拥有优先权，那么在 МЧ-7 中，作为主队的每个军团都可以选择其比赛所要进行的模式（二选一）；</li>
+<li>在以往所有的 МЧ 中，军团打到两场胜利即告结束（每场比赛 2 个回合），而在 МЧ-7 中，比赛场数限制为两场；</li>
+<li>两场比赛的得分相加。运回军旗更多的一方被宣布为胜利者；</li>
+<li>若出现平局，则在“客场”比赛中运回更多军旗的军团获胜（客场进球规则）；</li>
+<li>若完全打平，则双方进行点球大战。</li></ul><p>最终这些创新将 МЧ 带上了一个新高度：
+</p><ul><li>为了获胜，军团必须精通所有模式：正因如此，组织者解决了秋季地图争夺战赛季中许多军团只练习两个模式、总是排除第三个模式的问题；</li>
+<li>比赛场数被控制在合理范围内：在过去的赛季中，决出胜者往往需要军团进行 4-6 场比赛。</li></ul><p>1/8 决赛更像是一场形式：顶级军团毫无悬念地晋级。唯一的例外是“天使与恶魔”，他们在第一场比赛中意外输给了“轻而易举”，但在第二场比赛中进行了有说服力的复仇。而在 1/4 决赛中，激烈的竞争展开了：“黑鲨”和“奥林匹斯”一样，为在小组中获得第二名付出了代价，需要面对第 3 和第 4 小组的领头羊：“黑鲨”将迎战 С.Н.К.，而“奥林匹斯”则对阵 MIX。
+</p><p>“黑鲨”对阵 С.Н.К 的比赛引发了巨大的轰动：普遍看法认为这两个军团都是锦标赛的夺冠热门。对于第一场比赛，С.Н.К. 选择了 Hard 模式，但以 1:2 落败。第二场比赛在 Light 模式下进行，本应是“鲨鱼”无可争议的主场，但 С.Н.К. 取得领先。即便在“鲨鱼”扳平比分后，С.Н.К. 也无限接近胜利，然而制胜军旗未能运回：“鲨鱼”将其截回并以一次卓有成效的进攻回应，此后 С.Н.К. 再也没有时间和精力进行抵抗。
+</p><p>“奥林匹斯”与 MIX 的交锋异常紧张：落后 2 个军旗的“奥林匹斯”成功扳平。并凭借客场军旗优势晋级下一轮。
+</p><p>在半决赛中，观众迎来了两场胜负难料的对决：
+</p><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%93%D0%A2_-_%D0%9E%D0%BB%D0%B8%D0%BC%D0%BF,_%D1%84%D0%B8%D0%BD%D0%B0%D0%BB_%D0%9C%D0%A7-7.jpg" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d1/%D0%93%D0%A2_-_%D0%9E%D0%BB%D0%B8%D0%BC%D0%BF%2C_%D1%84%D0%B8%D0%BD%D0%B0%D0%BB_%D0%9C%D0%A7-7.jpg/250px-%D0%93%D0%A2_-_%D0%9E%D0%BB%D0%B8%D0%BC%D0%BF%2C_%D1%84%D0%B8%D0%BD%D0%B0%D0%BB_%D0%9C%D0%A7-7.jpg" decoding="async" loading="lazy" width="250" height="153" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d1/%D0%93%D0%A2_-_%D0%9E%D0%BB%D0%B8%D0%BC%D0%BF%2C_%D1%84%D0%B8%D0%BD%D0%B0%D0%BB_%D0%9C%D0%A7-7.jpg/375px-%D0%93%D0%A2_-_%D0%9E%D0%BB%D0%B8%D0%BC%D0%BF%2C_%D1%84%D0%B8%D0%BD%D0%B0%D0%BB_%D0%9C%D0%A7-7.jpg 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d1/%D0%93%D0%A2_-_%D0%9E%D0%BB%D0%B8%D0%BC%D0%BF%2C_%D1%84%D0%B8%D0%BD%D0%B0%D0%BB_%D0%9C%D0%A7-7.jpg/500px-%D0%93%D0%A2_-_%D0%9E%D0%BB%D0%B8%D0%BC%D0%BF%2C_%D1%84%D0%B8%D0%BD%D0%B0%D0%BB_%D0%9C%D0%A7-7.jpg 2x"></a><figcaption>决赛的最后关头。GT 黯然落败</figcaption></figure><p>在上半区，往届 МЧ 三冠王、大桥 3C 地图的拥有者 General Tanks 迎战秋季地图争夺战的胜者红警戒——“天使与恶魔”。凭借巧妙的地图排除，GT 成功将对手诱骗至自己的主场：比赛在大桥 3C 进行。尽管如此，双方实力仍被评估为势均力敌。然而比赛刚开局就给 A&amp;D 浇了一盆冷水：lmike 悄悄潜入他们的军旗并成功运走。A&amp;D 陷入了落后境地，这打乱了他们的整场比赛部署：他们不敢冒丢掉第二个军旗的风险，打得极其束手束脚。
+</p><p>结果第一场比赛以 GT 1:0 告终，而在第二场比赛中冠军没有给对手留下任何生路：对决总比分——4:0。
+</p><p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/f/ff/%D0%9C%D0%A7_7_%D0%BF%D0%BB%D0%B5%D0%B9-%D0%BE%D1%84.png" decoding="async" loading="lazy" width="943" height="407" class="mw-file-element"></span></span>
+</p><h2><span id=".D0.9C.D0.B5.D0.B6.D0.BA.D0.BB.D0.B0.D0.BD.D0.BE.D0.B2.D1.8B.D0.B9_.D0.A7.D0.B5.D0.BC.D0.B5.D0.BF.D0.B8.D0.BE.D0.BD.D0.B0.D1.82_8"></span><span class="mw-headline" id="Межклановый_Чемпионат_8">跨军团锦标赛 8</span></h2><p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/1/13/MCH8.png" decoding="async" loading="lazy" width="800" height="571" class="mw-file-element"></span></span>
+</p><p>МЧ-8 于 2014 年 3 月 1 日拉开帷幕。<br>参加跨军团锦标赛的有超级联赛军团以及冬季预选赛中的优秀军团。与 МЧ-7 一样，允许外国军团参赛：<a rel="nofollow" class="external text" href="http://en.tankiforum.com/index.php?showtopic=182031">“Arab Knights”</a>和<a rel="nofollow" class="external text" href="http://en.tankiforum.com/index.php?showtopic=181502">“Noob Army”</a>。<br>冠军的有力争夺者包括“NooBest”（冬季赛季冠军）、Scorpions（其阵容囊括了曾为 СНК（现为“NooBest”）以及更早前为传奇军团“General Tanks”效力的所有明星玩家）、“MIX”、“A&amp;D”和“黑鲨”。所有人都拥有在实战中展现自我的绝佳机会。
+</p><h3><span id=".D0.9F.D0.BE.D0.B4.D0.B3.D0.BE.D0.B2.D0.BE.D0.B2.D0.BA.D0.B0_.D0.B8_.D0.BD.D0.BE.D0.B2.D1.88.D0.B5.D1.81.D1.82.D0.B2.D0.B0_2"></span><span class="mw-headline" id="Подготовка_и_новшества_2">筹备与创新</span></h3><p>决定将 МЧ 打造成过渡性质的赛事。在 МЧ-8 和冬季预选赛前夕，电子竞技经历了<a href="./%D0%98%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%BA%D0%B8%D0%B1%D0%B5%D1%80%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%B0" class="mw-redirect" title="История киберспорта">大规模变革</a>。
+</p><p>由于有外国军团参加跨军团锦标赛，因此决定在三个语言区进行赛事转播：德语区、俄语区和欧洲区（国际区）。为此，建议拥有数字、无法发音、与其他玩家重复以及利用拉丁字母模仿西里尔字母（例如 3JI0）昵称的玩家进行改名。此外，首次引入了总额达 9,000 美元的现金奖金池，并由前三名平分。
+</p><h3><span id=".D0.9E.D1.81.D0.BE.D0.B1.D0.B5.D0.BD.D0.BD.D0.BE.D1.81.D1.82.D0.B8"></span><span class="mw-headline" id="Особенности">特点</span></h3><p>另一个不同点是 МЧ-8 的战斗进行模式：<br>
+<i> <b>Light：</b> </i>
+</p><ul><li><i>6 对 6 地图</i></li>
+<li><i>武器：仅限激光炮</i>；</li>
+<li><i>底盘：黄蜂轻甲、蜂王、猎人、维京无限制</i>；</li>
+<li><i>迷彩：每支队伍来自激光炮的抗性总和不得超过 100%。允许使用奖励迷彩</i>；</li></ul><p><i>高地角斗场：</i>
+</p><ul><li><i>武器：仅限激光炮</i>；</li>
+<li><i>底盘：黄蜂轻甲、蜂王、猎人、维京无限制</i>；</li>
+<li><i>迷彩：无激光炮抗性</i>。</li></ul><p><i> <b>Hard：</b> </i>
+</p><ul><li><i>6 对 6 地图</i></li>
+<li><i>武器：每支队伍同种武器不得超过两把。轰天炮、磁力炮和冰风暴禁用</i>；</li>
+<li><i>底盘：仅限维京和猎人</i>；</li>
+<li><i>迷彩：除独特奖励外均可</i>；</li></ul><p><i>高地角斗场：</i>
+</p><ul><li><i>武器：每种武器最多一把。轰天炮、磁力炮和冰风暴禁用</i>；</li>
+<li><i>底盘：仅限维京和猎人</i>；</li>
+<li><i>迷彩：除独特奖励外均可</i>。</li></ul><p>地图保持不变：城镇 3C、大桥 3C、路桥大战、边塞角斗场、高地角斗场、红警戒、废墟大战。
+</p><h4><span id=".D0.91.D0.BE.D0.B9"></span><span class="mw-headline" id="Бой">战斗</span></h4><p>战斗（与 МЧ-7 不同）持续时间不是 20 分钟，而是 10 分钟。战斗本身包含 4 个回合，每个回合持续 13 分钟（3 分钟准备，10 分钟战斗）。回合中运回敌方军旗更多的军团获胜。整场战斗中赢得回合数更多的一方获胜。
+</p><h4><span id=".D0.9F.D1.80.D0.B8.D0.B7.D1.8B"></span><span class="mw-headline" id="Призы">奖励</span></h4><p>第 1 名：<br>
+— $6 000；<br>
+— 10 000 000 水晶；<br>
+— “冠军”迷彩。<br>第 2 名：<br>
+— $2 000；<br>
+— 10 000 000 水晶；<br>
+— “白银”迷彩。<br>第 3 名：<br>
+— $1 000；<br>
+— 6 000 000 水晶；<br>
+— “黄金”迷彩。<br>第 4 名：4 000 000 水晶。<br>第 5-8 名：3 000 000 水晶。<br>第 9-16 名：2 000 000 水晶。
+</p><h3><span id=".D0.93.D1.80.D1.83.D0.BF.D0.BF.D0.BE.D0.B2.D0.BE.D0.B9_.D1.8D.D1.82.D0.B0.D0.BF_5"></span><span class="mw-headline" id="Групповой_этап_5">小组赛阶段</span></h3><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%9C%D0%A7-8_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%BE%D0%B2%D0%BE%D0%B9_%D1%8D%D1%82%D0%B0%D0%BF_%D0%B7%D0%B5%D0%BB%D0%B5%D0%BD%D0%B0%D1%8F_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B0.jpg" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d3/%D0%9C%D0%A7-8_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%BE%D0%B2%D0%BE%D0%B9_%D1%8D%D1%82%D0%B0%D0%BF_%D0%B7%D0%B5%D0%BB%D0%B5%D0%BD%D0%B0%D1%8F_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B0.jpg/400px-%D0%9C%D0%A7-8_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%BE%D0%B2%D0%BE%D0%B9_%D1%8D%D1%82%D0%B0%D0%BF_%D0%B7%D0%B5%D0%BB%D0%B5%D0%BD%D0%B0%D1%8F_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B0.jpg" decoding="async" loading="lazy" width="400" height="125" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d3/%D0%9C%D0%A7-8_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%BE%D0%B2%D0%BE%D0%B9_%D1%8D%D1%82%D0%B0%D0%BF_%D0%B7%D0%B5%D0%BB%D0%B5%D0%BD%D0%B0%D1%8F_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B0.jpg/600px-%D0%9C%D0%A7-8_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%BE%D0%B2%D0%BE%D0%B9_%D1%8D%D1%82%D0%B0%D0%BF_%D0%B7%D0%B5%D0%BB%D0%B5%D0%BD%D0%B0%D1%8F_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B0.jpg 1.5x, https://ru.tankiwiki.com/images/ru/d/d3/%D0%9C%D0%A7-8_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%BE%D0%B2%D0%BE%D0%B9_%D1%8D%D1%82%D0%B0%D0%BF_%D0%B7%D0%B5%D0%BB%D0%B5%D0%BD%D0%B0%D1%8F_%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B0.jpg 2x"></a><figcaption>МЧ-8 小组赛积分榜。绿色小组。“N/A”军团遭取消资格。</figcaption></figure><p>经过两轮 МЧ 后，黑色小组的积分榜形势已经一目了然——黑组的夺冠热门是“NooBest”军团。与他们稳步并肩作战的是第二联赛的最强军团之一——“Step by Step”（在针对第 2 联赛的冬季预选赛中获得第二名）。
+在红色小组中，“Scorpions”稳稳占据榜首。该小组的另一大热门是“MIX”，他们在与“Scorpions”的直接对决中位列积分榜第四。
+蓝色小组的情况同样风平浪静。“Mad Farmers”表现出了非常稳健的实力，令人略感意外。在经历冬季低迷后，该军团再次开始重回正轨。
+而绿色小组则带来了巨大惊喜。夺冠热门“黑鲨”军团输掉了前两场开局之战。如果说第一场输给 DoW 尚在情理之中，那么对阵阿拉伯军团的第二场比赛则引发了丑闻。据玩家保证，阿拉伯人有严重的<a href="./%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%D0%B8%D0%B3%D1%80%D0%BE%D0%BA%D0%BE%D0%B2" class="mw-redirect" title="Словарь игроков">网络延迟</a>并直接穿透坦克。但随着小组赛最后几场对决的临近，该军团终于拿下了 15 积分并以小组第二出线。小组头名是年轻的“DoW”军团——热门地图“大桥 3C”的拥有者。
+</p><p>МЧ 小组赛接近尾声。МЧ 组委会决定取消“N/A”军团的资格（因多次违反规则），并将其降入第三联赛。此外，“N/A”在小组赛的所有比赛中均被判 0:3 的技术性失利。此后，“N/A”军团宣告解散，其会长在第三联赛创建了新军团“Era”。
+</p><h3><span id=".D0.9F.D0.BB.D0.B5.D0.B9-.D0.BE.D1.84.D1.84_6"></span><span class="mw-headline" id="Плей-офф_6">季后赛</span></h3><p>在季后赛中，引入了一种全新的双败淘汰制系统。为此，专门引入了胜者组和败者组（在胜者组中落败的队伍会进入败者组）。在两个组别中都落败的军团将自动离开锦标赛。此外，每个军团的阵容（包括管理层）不得超过 15 名玩家。在季后赛中，最多可以报名 3 名玩家。
+</p><h3><span id=".D0.A7.D0.B5.D0.B4.D0.B2.D0.B5.D1.80.D1.82.D1.8C.D1.84.D0.B8.D0.BD.D0.B0.D0.BB.D1.8B_3"></span><span class="mw-headline" id="Четвертьфиналы_3">四分之一决赛</span></h3><p><i>胜者组：</i><br>
+</p><p><b>«All In» 0:2 «Black Sharks»</b>。“鲨鱼”在红色警戒和<a href="./%D0%9A%D1%83%D0%BD%D0%B3%D1%83%D1%80" class="mw-redirect" title="大桥 3C">大桥 3C</a> 的硬核模式下击败了“ViNow”。轻量模式下的边塞角斗场则以平局收场。<br>
+<b>«MIX» 2:1 «A&amp;D»</b>。这场对决漫长而紧张。直到硬核模式下边塞角斗场的第五局，Mix 才战胜了对手；在锦标赛开始前，许多人曾预测该对手能进入前三名。<br>
+<b>«DoW» 2:0 «Chaos»</b>。“Dawn of War”在轻量模式边塞角斗场上以 3:0 令人信服地战胜了“混沌”。第二局是平局，而在第三局这个难以置信的互夺军旗局中，“DoW”笑到了最后，在红色警戒上以 5:4 取胜。<br>
+<b>«Scorpions» 0:2 «NooBest»</b>。“NooBest”仅用两局就取得了胜利，在每一局中他们都以微弱的 1:0 获胜（红色警戒硬核和边塞角斗场轻量），从而将夺冠热门之一送入了败者组。
+</p><p><i>败者组：</i><br>
+</p><p><b>«Arab Knights» 2:1 «Harsh Crew»</b>。在这场战斗中，“阿拉伯骑士”展现了他们在使用道具时的强大实力，以及他们在激光炮上的疲软。好在这个外国军团拥有优先选择模式的权力，他们在三局之内将“Harsh Crew”淘汰出局。<br>
+<b>«Hard Shield» 2:1 «Centurion»</b>。作为顶级联赛的老牌劲旅，军团“Hard Shield”（前身为“Броня Крепка”）与新秀“Centurion”交手时遇到了巨大麻烦。前三局均以有得分的平局告终，期间胜利的天平可能会向任何一方倾斜。经过五局较量，系列赛比分打成 1:1，幸运女神眷顾了“БК”，他们在最后一局成功从“Centurion”的基地抢走唯一的旗子并守住了自己的旗子。<br>
+<b>«Mad Farmers» 1:2 «Noob Army»</b>。在废墟大战的轻量模式以 1:1 平局收场后，“Noob Army”在接下来两个使用道具的模式中以 2:1 的比分战胜了“农民”，晋级下一阶段。<br>
+<b>«Step by Step» 2:0 «Fathers»</b>。“Fathers”进行了顽强的抵抗，但他们的对手求胜心切，仅用两局比赛——高地角斗场的硬核模式和大桥 3C 的轻量模式——就将“Fathers”淘汰出局。
+</p><p><b>«Arab Knights» 1:2 «All In»</b>。对阿拉伯人来说，这场战斗的发展与上一场截然不同。“All In”率先选择模式，不出意料地决定玩轻量模式。然而，仅仅领先一个旗子（2:1）并不能算作俄罗斯赛区顶级军团之一应有的绝对优势。第二局硬核模式由外国选手赢得，一切悬念留到了第三局，“All In”重振旗鼓，以 4:1 的比分大胜对手。<br>
+<b>«Hard Shield» 1:2 «A&amp;D»</b>。仅仅两局过后，双方各胜一场，但这并未妨碍他们在接下来的两局中打出沉闷的 0:0。直到轻量模式边塞角斗场的第五局，“天使与恶魔”才成功战胜顽强的对手，确保自己晋级败者组半决赛。<br>
+<b>«Noob Army» 0:2 «Chaos»</b>。第一局，“Chaos”没有给外国选手留任何机会，在城镇 3C 的轻量模式中以冰球般的 5:0 比分大胜。第二局，“Chaos”在硬核模式下彻底击溃了对手，从而获得了晋级下一阶段的资格。<br>
+<b>«Step by Step» 1:2 «Scorpions»</b>。在赢得第一局（城镇 3C 轻量 2:1）后，夺冠热门之一的“蝎子”军团意外地在硬核模式中遇到了麻烦。不过，在第三局中“蝎子”重整旗鼓，没有给对手任何机会，以 3:0 的比分取得胜利。<br>
+</p><h3><span id=".D0.9F.D0.BE.D0.BB.D1.83.D1.84.D0.B8.D0.BD.D0.B0.D0.BB.D1.8B_3"></span><span class="mw-headline" id="Полуфиналы_3">半决赛</span></h3><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%9C%D0%A7-8_%D0%BF%D0%BE%D0%BB%D1%83%D1%84%D0%B8%D0%BD%D0%B0%D0%BB%D1%8B.jpg" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/9/9c/%D0%9C%D0%A7-8_%D0%BF%D0%BE%D0%BB%D1%83%D1%84%D0%B8%D0%BD%D0%B0%D0%BB%D1%8B.jpg/400px-%D0%9C%D0%A7-8_%D0%BF%D0%BE%D0%BB%D1%83%D1%84%D0%B8%D0%BD%D0%B0%D0%BB%D1%8B.jpg" decoding="async" loading="lazy" width="400" height="215" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/9/9c/%D0%9C%D0%A7-8_%D0%BF%D0%BE%D0%BB%D1%83%D1%84%D0%B8%D0%BD%D0%B0%D0%BB%D1%8B.jpg/600px-%D0%9C%D0%A7-8_%D0%BF%D0%BE%D0%BB%D1%83%D1%84%D0%B8%D0%BD%D0%B0%D0%BB%D1%8B.jpg 1.5x, https://ru.tankiwiki.com/images/ru/thumb/9/9c/%D0%9C%D0%A7-8_%D0%BF%D0%BE%D0%BB%D1%83%D1%84%D0%B8%D0%BD%D0%B0%D0%BB%D1%8B.jpg/800px-%D0%9C%D0%A7-8_%D0%BF%D0%BE%D0%BB%D1%83%D1%84%D0%B8%D0%BD%D0%B0%D0%BB%D1%8B.jpg 2x"></a><figcaption>MЧ-8 半决赛</figcaption></figure><p><i>胜者组：</i>
+</p><p><b>«Black Sharks» 1:2 «MIX»</b>。这是季后赛中最长的一场战斗。双方军团为争夺胜者组决赛名额激战了 7 局。第一局以平局收场（0:0），这让人不禁联想到接下来的比赛将会是艰难的阵地战，且运回的旗子数量极少。然而在接下来的几局中，双方开始频繁失误，导致不断地互换与夺回。交替更换模式后，战至第四局结束时双方各胜一场，接下来的任何失误都可能付出惨痛代价。在极其顽强的抵抗中，Mix 在第 5 局和第 6 局遏制住了“鲨鱼”的攻势并逼平了比分。在第七局中，比赛仅进行了两分钟双方就各夺一旗，局势开放且极具攻击性，Mix 运气更好，他们在局中成功运送了第二面旗子，令对手军心涣散。随后稳扎稳打赢下比赛便只是时间问题。<br>
+<b>«DoW» 0:2 «NooBest»</b>。“NooBest”仅用三局就击溃了渴望胜利的“Dawn of War”军团。第一局在大桥 3C 进行硬核模式，最终以 1:1 的激烈平局收场。第二局，“NooBest”加大了对对手基地的压制力度，迫使其阵脚大乱，并成功运回了一面无人应答的旗子。这极大地增强了“NooBest”选手的信心，他们在红色警戒的第三局中统治了整张地图，不给“DoW”留丝毫机会，夺得四面旗子仅失一面。
+</p><p><i>败者组：</i>
+</p><p><b>«All In» 2:1 «A&amp;D»</b>。这场战斗的特点是所有局数均在轻量模式下进行。第一局宛如热身，双方在边塞角斗场上打出了 2:2 的比分。随后展开了阵地争夺战，两支军团你来我往。第四局以平局告终，此时双方在此之前各胜一局。在最后的第五局中，“All In”在路桥大战上击败了“A&amp;D”，延续了他们在锦标赛中的征程，不过仅仅坚持到了下一轮。<br>
+<b>«Chaos» 0:2 «Scorpions»</b>。“蝎子”仅用两局就将“混沌”淘汰出局。第一局（城镇 3C 硬核）以微弱的 1:0 取胜。然而在第二局中，“蝎子”从所有能想到和想不到的方向发起进攻，彻底撕碎了对手的防线，在废墟大战这张地图上轻而易举地拿下了相当可观的 4 面旗子。
+</p><p><b>«Black Sharks» 2:0 «All In»</b>。“鲨鱼”再次在三局之内击败了“All In”对手，他们曾在四分之一决赛中相遇并将其送入败者组。前两局比赛势均力敌，不过“All In”稍逊一筹，未能守住他们在废墟大战上的旗子。而在第三局中，“Black Sharks”的蜂王激光炮手为对手上了一堂精彩的高地角斗场团队配合课——7:2，他们昂首挺胸晋级败者组决赛。<br>
+<b>«DoW» 0:2 «Scorpions»</b>。“DoW”的运气确实不太好，他们轮流与两大最强军团交手，尽管进行了顽强的抵抗，最终还是未能闯入前四。在与“蝎子”的第一场比赛中（红色警戒轻量），他们在局中取得 2:0 领先的情况下未能顶住对手的猛烈反攻，丢掉了这一局。第二局打平，而在第三局中，“蝎子”在城镇 3C 运回 2 面无人应答的旗子，稳稳击败了“DoW”。
+</p><h3><span id=".D0.A4.D0.B8.D0.BD.D0.B0.D0.BB.D1.8B"></span><span class="mw-headline" id="Финалы">决赛</span></h3><p><i>胜者组决赛：</i>
+</p><p><b>«MIX» 0:2 «NooBest»</b>。整场战斗精彩且充满动态，尽管双方起初都龟缩防守。第一局在红色警戒的轻量模式下进行，“NooBest”的黄蜂轻甲大放异彩，几乎凭一己之力将旗子从 Mix 的基地运出。然而 Mix 并未放弃，发动了猛烈反攻并扳平了比分。第二局（大桥 3C 硬核）中，“NooBest”出其不意突破了 Mix 的防线，成功快速夺旗，随后扩大了优势。第三局 Mix 选手则彻底崩盘，先是丢旗，接着在极具威胁的进攻中接连失误、底盘翻覆。最终，“NooBest”挺进超级总决赛，静候败者组的胜者。
+</p><p><i>败者组决赛：</i>
+</p><p><b>«Black Sharks» 0:2 «Scorpions»</b>。这场比赛决定了谁将获得尴尬的第 4 名，谁又将至少跻身前三。这个幸运儿便是“蝎子”，他们在两局比赛中都展现了极具自信且极具创意的打法。大桥 3C 的硬核模式显然不适合“鲨鱼”，因为他们的防守队员被“蝎子”机动性极强的进攻手轻易戏耍，对手运回了 2 面无人应答的旗子。而在第二局废墟大战中，“鲨鱼”仿佛在地图上迷失了方向。他们什么也做不好，反观对手则轻松运回三面旗子，顺利晋级败者组的第二场决赛，在那里等待他们的是此前在胜者组落败的 Mix。<br>
+<b>«MIX» 0:2 «Scorpions»</b>。这场比赛的胜者将前往超级总决赛迎战“NooBest”，败者则获得第三名。Mix 自身的失误和缺乏专注再次害了他们。在大桥 3C（硬核）的第一局中，当己方基地只有“蝎子”的队员时，他们竟轻率地将旗子送回。对手随即组织了一次运旗，惊慌失措的 Mix 队员根本来不及阻拦。试图扳平比分的尝试也无济于事。下一局在城镇 3C 进行，采用轻量模式。“蝎子”出色的团队配合让他们成功从敌方基地抢旗并顺利运回。不过这一次 Mix 表现得更为顽强，并在局末成功将“蝎子”的运旗手逼入绝境并夺回了旗子。第三局在边塞角斗场进行。开局不久双方便发起进攻并互换了旗子。在夺回旗子时“蝎子”的队员运气更好，在成功运旗之后，他们将己方基地死死封锁，最终赢下了这一局和整场比赛。
+</p><h3><span id=".D0.A1.D1.83.D0.BF.D0.B5.D1.80.D1.84.D0.B8.D0.BD.D0.B0.D0.BB"></span><span class="mw-headline" id="Суперфинал">超级总决赛</span></h3><p><b>«NooBest» 3:1 «Scorpions»</b>。决赛采用三胜制，这意味着双方都有额外的复活机会。然而，“NooBest”态度严谨，绝不打算给对手任何一丝生路。第一局（大桥 3C 硬核）双方迅速互换阵地，随后同步夺回旗子并再次互换。“NooBest”成功“施压”对手，夺回旗子并将比分改写为 1:0。在第二局中，再次在硬核模式下进行，不过换成了城镇 3C，“蝎子”犯了一个战术错误，将一名队员“垫”到了地图边缘，导致场上少了一名有效战力的队员。当“NooBest”运旗成功时，他们可能恰恰缺了这名队员。“蝎子”绝地反击，最终成功将旗子运回己方基地，但“NooBest”竭尽全力延缓了运送时间，并且成功了：“蝎子”根本没有足够的时间夺回自己的旗子。第三局在红色警戒的轻量模式下进行，“NooBest”聪明反被聪明误，没有夺回躺在地图中央的旗子。<a rel="nofollow" class="external text" href="http://tankionline.com/ru/2014/04/ostrye-zhala-skorpionov/">“蝎子”</a>顺势抢走并运回，随后又运回一面，从而扳回一局。第四 and 最后一局双方在高地角斗场展开较量，“NooBest”严密的团队协作压倒了“蝎子”的个人技术，为他们赢得了跨军团锦标赛的冠军。
+<span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/df/%D0%9F%D0%BE%D0%B1%D0%B5%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D1%8C_%D0%9C%D0%A7-8.png" decoding="async" loading="lazy" width="1280" height="720" class="mw-file-element"></span></span>
+</p><h2><span id=".D0.9C.D0.B5.D0.B6.D0.BA.D0.BB.D0.B0.D0.BD.D0.BE.D0.B2.D1.8B.D0.B9_.D0.A7.D0.B5.D0.BC.D0.B5.D0.B8.D0.BE.D0.BD.D0.B0.D0.B7_9"></span><span class="mw-headline" id="Межклановый_Чемпионат_9">第 9 届跨军团锦标赛</span></h2><p><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/a3/%D0%9C%D0%A79_%D0%BB%D0%BE%D0%B3%D0%BE.jpg" decoding="async" loading="lazy" width="626" height="412" class="mw-file-element"></span></span>
+</p><h3><span id=".D0.9F.D0.BE.D0.B4.D0.B3.D0.BE.D1.82.D0.BE.D0.B2.D0.BA.D0.B0_.D0.BF.D0.BE.D1.87.D0.B2.D1.8B_.D0.B4.D0.BB.D1.8F_.D1.82.D1.83.D1.80.D0.BD.D0.B8.D1.80.D0.B0"></span><span class="mw-headline" id="Подготовка_почвы_для_турнира">赛事筹备</span></h3><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%9C%D0%A79_%D1%80%D0%B5%D0%B9%D1%82%D0%B8%D0%BD%D0%B3.png" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/9/96/%D0%9C%D0%A79_%D1%80%D0%B5%D0%B9%D1%82%D0%B8%D0%BD%D0%B3.png/250px-%D0%9C%D0%A79_%D1%80%D0%B5%D0%B9%D1%82%D0%B8%D0%BD%D0%B3.png" decoding="async" loading="lazy" width="250" height="234" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/9/96/%D0%9C%D0%A79_%D1%80%D0%B5%D0%B9%D1%82%D0%B8%D0%BD%D0%B3.png/375px-%D0%9C%D0%A79_%D1%80%D0%B5%D0%B9%D1%82%D0%B8%D0%BD%D0%B3.png 1.5x, https://ru.tankiwiki.com/images/ru/9/96/%D0%9C%D0%A79_%D1%80%D0%B5%D0%B9%D1%82%D0%B8%D0%BD%D0%B3.png 2x"></a><figcaption>第 9 届跨军团锦标赛前的军团最终积分榜</figcaption></figure><p>在《3D 坦克》与 StarLadder 结束合作经历了一段短暂的平静期后，项目迎来了电竞新纪元，社区最渴望的便是跨军团锦标赛的复兴。当然，组织者也意识到了这一点，但从首个名为 3Style 的赛事启动到第 9 届跨军团锦标赛参赛名单最终确定，几乎经过了整整一年时间。
+</p><p>从 2016 年初开始，组织者着手开发新模式。电竞中长期缺乏模式划分让这个问题变得复杂。尽管如此，ЦУК 还是成功明确了四个主要模式的限制，并在 2 月 6 日将其公布，随后在 2 月 27 日启动了第一系列“闪电”锦标赛。军团积分榜开始成型，各军团积极训练各种模式，组织者则在一旁密切关注。经过两个月的闪电战后，ЦУК 公布了一场大型激光炮锦标赛，优胜者理所当然地获得了积分，并继续向第 9 届跨军团锦标赛迈进，有关该赛事的讨论也愈发频繁。
+</p><p>第二系列“闪电”锦标赛于 6 月 11 日拉开帷幕，并继续沿用以往的模式，不过对积分获取机制进行了改进。这一次，赛事系列一直持续到 9 月 25 日，之后电竞社区便屏息以待第 9 届跨军团锦标赛的公告。
+</p><h3><span id=".D0.9F.D0.BE.D1.81.D0.BB.D0.B5.D0.B4.D0.BD.D0.B8.D0.B5_.D0.BF.D1.80.D0.B8.D0.B3.D0.BE.D1.82.D0.BE.D0.B2.D0.BB.D0.B5.D0.BD.D0.B8.D1.8F"></span><span class="mw-headline" id="Последние_приготовления">最后的准备工作</span></h3><p>由于 10 月 20 日进行了全面的平衡性更新，这可能会在原定于 10 月举办的第 9 届跨军团锦标赛期间引发重大的模式调整，组织者被迫再举办 7 场资格赛闪电锦标赛。除此之外，这为各战队提供了赚取额外积分的机会，赛程对阵表根据积分榜进行划分，从而让新秀军团也有机会参与第 9 届跨军团锦标赛。在 10 月期间，官方对新模式进行了封闭测试，其结果是对轻量模式进行了重大更改，并对硬核模式进行了一些改进。最终，在 10 月底，第 9 届跨军团锦标赛的规则公布，赛程也随之敲定。
+</p><h3><span id=".D0.9E.D1.81.D0.BD.D0.BE.D0.B2.D0.BD.D1.8B.D0.B5_.D0.BF.D0.BE.D0.BB.D0.BE.D0.B6.D0.B5.D0.BD.D0.B8.D1.8F"></span><span class="mw-headline" id="Основные_положения">基本条款</span></h3><p>积分最高且确认参赛的 16 个军团获准参加锦标赛。他们被分为 2 个小组进行双循环赛，并交替扮演主客场身份。每个小组前 4 名晋级季后赛。季后赛采用双败淘汰制（Double Elimination）。
+</p><p>锦标赛主要地图：红色警戒、路桥大战、边塞角斗场、广场 3C、火车站、废墟大战、城镇 3C、德国小镇、大桥 3C。点球大战地图：边塞角斗场、高地角斗场、黑色森林。
+</p><p>第 9 届跨军团锦标赛中使用的模式说明：
+</p><p><b>XP/BP</b>
+</p><ul><li>底盘：黄蜂轻甲（每个军团不超过 3 个）、蜂王；</li>
+<li>炮塔：激光炮；</li>
+<li>模式：XP/BP；</li>
+<li>防护模块：无关紧要；</li>
+<li>道具：关闭。</li></ul><p><b>Light</b>
+</p><ul><li>底盘：蜂王、黄蜂轻甲（每个军团不超过 2 个）；</li>
+<li>炮塔：激光炮、轰天炮（每个军团不超过 1 个）；</li>
+<li>防护模块：无轰天炮抗性，激光炮抗性 35%（每支队伍不超过 2 个）；</li>
+<li>升级：关闭；</li>
+<li>道具：关闭；</li>
+<li>换装：关闭。</li></ul><p><b>Medium</b>
+</p><ul><li>底盘：轻型、中型（每个军团不超过 3 个）；</li>
+<li>炮塔：除磁力炮外全部可用，且每个军团每种炮塔不超过一个；</li>
+<li>防护模块：除独特奖励外均可；</li>
+<li>升级：关闭；</li>
+<li>道具：关闭；</li>
+<li>换装：开启。</li></ul><p><b>Hard</b>
+</p><ul><li>底盘：全部可用，但重型（猛犸象、泰坦）每个军团不超过 2 个；</li>
+<li>炮塔：全部可用，但每个军团每种炮塔不超过两个，磁力炮仅限轻型底盘；</li>
+<li>防护模块：除独特奖励外均可；</li>
+<li>升级：关闭；</li>
+<li>道具：开启；</li>
+<li>依赖道具：关闭；</li>
+<li>换装：开启。</li></ul><p>不出所料，跨军团锦标赛中发放了最具声望的奖励迷彩——“冠军”、“白银”、“黄金”、“角斗士”（仅限锦标赛前八名军团获得），以及“光谱”模块。除此之外，优胜者还获得了海量水晶和特殊的代金券。代金券的概念系首次使用，它们赋予在游戏内商店购买特定金额商品的权利。例如，冠军军团获得了价值 2 万卢布的账户额度。
+</p><h3><span id=".D0.93.D1.80.D1.83.D0.BF.D0.BF.D0.BE.D0.B2.D0.BE.D0.B9_.D1.8D.D1.82.D0.B0.D0.BF_6"></span><span class="mw-headline" id="Групповой_этап_6">小组赛</span></h3><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%9C%D0%A79_%D0%B8%D1%82%D0%BE%D0%B3%D0%B8_%D0%B3%D1%80%D1%83%D0%BF%D0%BF.png" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/8/8f/%D0%9C%D0%A79_%D0%B8%D1%82%D0%BE%D0%B3%D0%B8_%D0%B3%D1%80%D1%83%D0%BF%D0%BF.png/250px-%D0%9C%D0%A79_%D0%B8%D1%82%D0%BE%D0%B3%D0%B8_%D0%B3%D1%80%D1%83%D0%BF%D0%BF.png" decoding="async" loading="lazy" width="250" height="337" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/8/8f/%D0%9C%D0%A79_%D0%B8%D1%82%D0%BE%D0%B3%D0%B8_%D0%B3%D1%80%D1%83%D0%BF%D0%BF.png/375px-%D0%9C%D0%A79_%D0%B8%D1%82%D0%BE%D0%B3%D0%B8_%D0%B3%D1%80%D1%83%D0%BF%D0%BF.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/8/8f/%D0%9C%D0%A79_%D0%B8%D1%82%D0%BE%D0%B3%D0%B8_%D0%B3%D1%80%D1%83%D0%BF%D0%BF.png/500px-%D0%9C%D0%A79_%D0%B8%D1%82%D0%BE%D0%B3%D0%B8_%D0%B3%D1%80%D1%83%D0%BF%D0%BF.png 2x"></a><figcaption>小组赛结果</figcaption></figure><p>各军团的小组赛历时两周。第一循环于 11 月 2 日开始，11 月 14 日结束。根据结果显示，A 组的 Vavilon 和 B 组的 Synergy 与 Invincible 是无可争议的夺冠热门，这些军团未尝败绩。Chaos 和 Revolution 的表现令人惊艳，而 Eternity 则在某种程度上让粉丝们感到失望，在 A 组的第一循环中仅以第三名收场。在同一组中，现任“冠军”迷彩拥有者 Arm Power 的战绩则完全无法令人满意。各组的倒数第一也浮出水面，即 A 组的 HARD SHOW 和 B 组的 STAR WARRIORS。此外，Regrets 军团宣布解散，并在小组赛结束前的所有比赛中被判技术负分。
+</p><p>第二循环于 11 月 18 日开始，一直持续到月底。其中最轰动的事件是外国战队 Deadly Army 被取消资格，其季后赛席位由 Revolution 取代，此外还有 WOODPECKERS 军团某位玩家遭到禁赛，导致其所在战队在所有有其出场的比赛中被判技术负分，这也使得“啄木鸟”实际上失去了晋级季后赛的希望。经过第二循环的较量，未尝败绩的 Synergy 表现最为强势。
+</p><h3><span id=".D0.A7.D0.B5.D1.82.D0.B2.D0.B5.D1.80.D1.82.D1.84.D0.B8.D0.BD.D0.B0.D0.BB.D1.84_4"></span><span class="mw-headline" id="Четвертьфиналы_4">四分之一决赛</span></h3><p>季后赛首轮比赛结果在预料之中：Synergy 击败了 Revolution，Invincible 战胜了 Next，Eternity 则稳稳击败了 Chaos。而在 Vavilon 对阵 Can’t Stop 的比赛中，虽然 Vavilon 赢得了胜利，但被发现违反了模式规则。Vavilon 被判技术负分，而 Can’t Stop 则通过胜者组晋级半决赛。
+</p><h3><span id=".D0.9F.D0.BE.D0.BB.D1.83.D1.84.D0.B8.D0.BD.D0.B0.D0.BB.D1.8B_4"></span><span class="mw-headline" id="Полуфиналы_4">半决赛</span></h3><p>败者组的小半决赛由 Vavilon 和 Revolution 掌控。Chaos 和 Next 结束了他们在跨军团锦标赛中的征程，分获第 7 名和第 8 名。
+</p><p>如果在 Synergy 对阵 Invincible 的比赛中一切尘埃落定得相当快（Synergy 以 3-0 取胜），那么 Can’t Stop 与 Eternity 则迟迟无法分出高下。在 6 局常规赛中，双方各胜 2 场，随后前往边塞角斗场进行 XP/BP 模式的点球大战，出乎许多人的意料，Can’t Stop 最终胜出。胜者组决赛选手就此诞生——Can’t Stop 与 Synergy。
+</p><p>在败者组半决赛中，Invincible 和 Eternity 已经分别在等待 Vavilon 和 Revolution。这一次，Eternity 的比赛打得更加轻松，凭借顺理成章的 3 局胜利，“永恒”继续在赛程中挺进。Invincible 与 Vavilon 的对抗则更加紧张：两队打满了全部 6 局才分出胜负，最终胜者依然是 Vavilon。至此，Invincible 和 Revolution 被淘汰出局，分获第 5 名和第 6 名。
+</p><h3><span id=".D0.A4.D0.B8.D0.BD.D0.B0.D0.BB.D1.8B_2"></span><span class="mw-headline" id="Финалы_2">决赛</span></h3><p>接下来是 Vavilon 与 Eternity 之间的败者组小决赛，胜者在经过 5 局苦战后才见分晓——Eternity 以 3-0 的比分确保自己挺进败者组决赛，而 Vavilon 则停留在第 4 名。
+</p><p>原本充满悬念的胜者组决赛并未带来势均力敌的战斗——Synergy 仅用 4 局就横扫了 Can’t Stop，将其送入败者组对阵 Eternity。
+</p><h3><span id=".D0.93.D1.80.D0.B0.D0.BD.D0.B4-.D1.84.D0.B8.D0.BD.D0.B0.D0.BB"></span><span class="mw-headline" id="Гранд-финал">总决赛</span></h3><h3><span id=".D0.93.D1.80.D0.B0.D0.BD.D0.B4-.D1.84.D0.B8.D0.BD.D0.B0.D0.BB"></span><span class="mw-headline" id="Гранд-финал">总决赛</span></h3><p>与前几个阶段不同，决赛要求在全部 4 种模式下进行，地图各异且每张地图打 2 局，率先赢得 5 局的军团获胜。前两局在红色警戒的 XP/BP 模式下进行，Synergy 连胜两局——2:0、3:1。随后是大桥 3C 的轻量模式，Synergy 再次占优——2:0、2:1。正当人们以为 Synergy 只差一胜就能夺冠时，他们在路桥大战的中型模式中以一个旗子的劣势落败，不过在下一局中，他们成功再度压制对手并一锤定音。Can’t Stop 获得亚军，而新的冠军则由 Synergy 加冕。他们在第 9 届跨军团锦标赛中的战绩为：16 胜、2 平、0 负。
+<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/e8/%D0%9C%D0%A79_%D0%BF%D0%BB%D0%B5%D0%B9%D0%BE%D1%84%D1%84.png/800px-%D0%9C%D0%A79_%D0%BF%D0%BB%D0%B5%D0%B9%D0%BE%D1%84%D1%84.png" decoding="async" loading="lazy" width="800" height="465" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/e/e8/%D0%9C%D0%A79_%D0%BF%D0%BB%D0%B5%D0%B9%D0%BE%D1%84%D1%84.png 1.5x"></span></span>
+</p><p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d4/%D0%9C%D0%A79_%D1%87%D0%B5%D0%BC%D0%BF%D0%B8%D0%BE%D0%BD.jpg/800px-%D0%9C%D0%A79_%D1%87%D0%B5%D0%BC%D0%BF%D0%B8%D0%BE%D0%BD.jpg" decoding="async" loading="lazy" width="800" height="450" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d4/%D0%9C%D0%A79_%D1%87%D0%B5%D0%BC%D0%BF%D0%B8%D0%BE%D0%BD.jpg/1200px-%D0%9C%D0%A79_%D1%87%D0%B5%D0%BC%D0%BF%D0%B8%D0%BE%D0%BD.jpg 1.5x, https://ru.tankiwiki.com/images/ru/d/d4/%D0%9C%D0%A79_%D1%87%D0%B5%D0%BC%D0%BF%D0%B8%D0%BE%D0%BD.jpg 2x"></span></span>
+</p><h2><span id=".D0.9C.D0.B5.D0.B6.D0.BA.D0.BB.D0.B0.D0.BD.D0.BE.D0.B2.D1.8B.D0.B9_.D0.A7.D0.B5.D0.BC.D0.BF.D0.B8.D0.BE.D0.BD.D0.B0.D0.B7_X"></span><span class="mw-headline" id="Межклановый_Чемпионат_X">第 10 届跨军团锦标赛</span></h2><p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d6/Clan_Championship3.jpg/800px-Clan_Championship3.jpg" decoding="async" loading="lazy" width="800" height="450" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d6/Clan_Championship3.jpg/1200px-Clan_Championship3.jpg 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d6/Clan_Championship3.jpg/1600px-Clan_Championship3.jpg 2x"></span></span>
+</p><p>2017 年 10 月 9 日，第 10 届跨军团锦标赛正式宣布启动，共有 16 个通过准入资格审查的军团参加了比赛。本届锦标赛的一个显著特点是在以往不属于电竞地图的地图上进行战斗。此外还加入了一个新模式——<a href="./%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D1%8B" class="mw-redirect" title="Форматы">Hard CP</a>。不仅如此，奖品中还加入了面向冠军战队全体成员的游戏键盘。比赛的头号夺冠热门毋庸置疑是上一届跨军团锦标赛冠军“Synergy”、TOF 冠军“Vavilon”与“Перцы”，以及上一赛季 <a href="./%D0%A2%D1%83%D1%80%D0%BD%D0%B8%D1%80%D1%8B" class="mw-redirect" title="Турниры">MOTS</a> 的冠军。同时，在 MQT 赛事中表现亮眼的“Biological Hazard”也不容小觑。与上一届跨军团锦标赛不同，本届比赛的小组赛阶段将队伍平均分为四个小组。各战队彼此交手两次，每个小组积分最高的前两名军团晋级季后赛。公认的“死亡之组”是 A 组，该组汇聚了整整四支实力强劲的战队，其中包括夺冠热门：上述的“Synergy”、“Biological Hazard”，以及“Invincible”和“WooDPeckers”。经过第一循环后，“Biological Hazard”和“Invincible”分别稳居积分榜第一和第二位。但在第二循环结束后，“Synergy”取代了“Invincible”的位置。至此，小组赛阶段结束后，晋级季后赛的战队名单如下：“Vavilon”、“Synergy”、“International”、“Перцы”、“Penguins”、“No Name”、“Lucky Star”以及“Biological Hazard”。
+</p><h3><span id=".D0.A7.D0.B5.D1.82.D0.B2.D0.B5.D1.80.D1.82.D1.8C.D1.84.D0.B8.D0.BD.D0.B0.D0.BB.D1.8B_5"></span><span class="mw-headline" id="Четвертьфиналы_5">四分之一决赛</span></h3><p>在四分之一决赛阶段，四支夺冠热门直接碰面——前冠军“Synergy”对阵“Перцы”，以及“Biological Hazard”对阵“International”，后者在小组赛中表现不俗，并在季后赛前加强了阵容，正式加入争夺梦寐以求的冠军行列。在第一组对决中，“Synergy”更胜一筹，而在第二场较量中，“International”取得了胜利。其余对决的结果则更加意料之中——Penguins 以 3-0 的比分稳稳淘汰“No Name”，“Vavilon”则以 2-0 击败“Lucky Star”，将后者送入败者组。
+</p><h3><span id=".D0.9C.D0.B0.D0.BB.D1.8B.D0.B9_.D0.BF.D0.BE.D0.BB.D1.83.D1.84.D0.B8.D0.BD.D0.B0.D0.BB"></span><span class="mw-headline" id="Малый_полуфинал">小半决赛</span></h3><p>在败者组的小半决赛中（胜者组落败的队伍降入此处），有两支队伍被淘汰出局。它们是以 1-3 不敌“No Name”的“Lucky Star”，以及在对阵“Перцы”的苦战中以 2-3 落败的“Biological Hazard”。
+</p><h3><span id=".D0.9F.D0.BE.D0.BB.D1.83.D1.84.D0.B8.D0.BD.D0.B0.D0.BB.D1.8B_5"></span><span class="mw-headline" id="Полуфиналы_5">半决赛</span></h3><figure class="mw-default-size mw-halign-right" typeof="mw:File/Thumb"><span><img resource="/%D0%A4%D0%B0%D0%B9%D0%BB:Paint_CCX_Vavilon.png" src="https://ru.tankiwiki.com/images/ru/3/30/Paint_CCX_Vavilon.png" decoding="async" loading="lazy" width="166" height="106" class="mw-file-element"></span><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:Paint_CCX_Vavilon.png" class="mw-file-magnify"></a><figcaption>“Vavilon”迷彩</figcaption></figure><figure class="mw-default-size mw-halign-right" typeof="mw:File/Thumb"><span><img resource="/%D0%A4%D0%B0%D0%B9%D0%BB:Paint_CCX_Synergy.png" src="https://ru.tankiwiki.com/images/ru/4/4b/Paint_CCX_Synergy.png" decoding="async" loading="lazy" width="166" height="106" class="mw-file-element"></span><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:Paint_CCX_Synergy.png" class="mw-file-magnify"></a><figcaption>“Synergy”迷彩</figcaption></figure><figure class="mw-default-size mw-halign-right" typeof="mw:File/Thumb"><span><img resource="/%D0%A4%D0%B0%D0%B9%D0%BB:Paint_CCX_International.png" src="https://ru.tankiwiki.com/images/ru/b/bc/Paint_CCX_International.png" decoding="async" loading="lazy" width="166" height="106" class="mw-file-element"></span><a href="https://ru.tankiwiki.com/images/ru/b/bc/Paint_CCX_International.png" class="mw-file-magnify"></a><figcaption>“International”迷彩</figcaption></figure><figure class="mw-default-size mw-halign-right" typeof="mw:File/Thumb"><span><img resource="/%D0%A4%D0%B0%D0%B9%D0%BB:Paint_CCX_Peppers.png" src="https://ru.tankiwiki.com/images/ru/5/50/Paint_CCX_Peppers.png" decoding="async" loading="lazy" width="166" height="106" class="mw-file-element"></span><a href="https://ru.tankiwiki.com/images/ru/f/50/Paint_CCX_Peppers.png" class="mw-file-magnify"></a><figcaption>“Перцы”迷彩</figcaption></figure><p>半决赛结束后，有两支队伍已经稳稳占据了梦寐以求的前三名席位，它们分别是：以 4-0 击败 Penguins 的“Vavilon”，以及同样轻松击败“International”的“Synergy”。为了支持这些战队的粉丝，游戏中引入了四款决赛选手的专属军团迷彩，每位玩家都可以通过购买来支持自己支持的战队。购买的迷彩在第 10 届跨军团锦标赛结束后将永远留在坦克手中。半决赛落败的“International”在败者组小决赛中迎战老对手“Перцы”，并以 5-1 的悬殊比分自信胜出。
+</p><p>“Vavilon”与“Synergy”需要互相切磋，以决定谁更配得上进入本项目最具声望锦标赛的超级总决赛。凭借在轻量模式中更胜一筹的表现，“Vavilon”以 5-2 的比分战胜了“Synergy”。由此，他们已经确保至少获得第 10 届跨军团锦标赛的银牌。
+</p><h3><span id=".D0.A4.D0.B8.D0.BD.D0.B0.BB_2"></span><span class="mw-headline" id="Финал_2">决赛</span></h3><p>“Synergy”前往败者组决赛，在那里“International”正严阵以待。经过 6 局的苦战，“Synergy”成功胜出。最终比分为 5-1。
+</p><h3><span id=".D0.93.D1.80.D0.B0.D0.BD.D0.B4-.D1.84.D0.B8.D0.BD.D0.B0.D0.BB_2"></span><span class="mw-headline" id="Гранд-финал_2">总决赛</span></h3><p>第 10 届跨军团锦标赛的超级总决赛在《3D 坦克》最具知名度的两大军团——“Synergy”与“Vavilon”之间展开。两支队伍此前已在胜者组决赛中相遇，当时“Vavilon”笑到了最后。前冠军必须认真总结并重整旗鼓，他们确实做到了，其结果便是“Synergy”在总决赛中发挥极其稳定，以 6-1 获胜，顺理成章地荣膺第 9 届和第 10 届跨军团锦标赛的双料冠军！
+</p><p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/dd/Clan_Championship2.png/600px-Clan_Championship2.png" decoding="async" loading="lazy" width="600" height="359" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/dd/Clan_Championship2.png/900px-Clan_Championship2.png 1.5x"></span></span>
+</p><h2><span id=".D0.9C.D0.B5.D0.B6.D0.BA.D0.BB.D0.B0.D0.BD.D0.BE.D0.B2.D1.8B.D0.B9_.D0.A7.D0.B5.D0.BC.D0.BF.D0.B8.D0.BE.D0.BD.D0.B0.D0.B7_XI"></span><span class="mw-headline" id="Межклановый_Чемпионат_XI">第 11 届跨军团锦标赛</span></h2><p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/be/Clan_Championship11_1.jpg/800px-Clan_Championship11_1.jpg" decoding="async" loading="lazy" width="800" height="239" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/b/be/Clan_Championship11_1.jpg 1.5x"></span></span>
+</p><p>第十一届跨军团锦标赛于 2018 年 10 月 3 日宣布启动。战斗模式与第 10 届跨军团锦标赛保持一致：<a href="./%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D1%8B" class="mw-redirect" title="Форматы">XP/BP</a>、<a href="./%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D1%8B" class="mw-redirect" title="Форматы">Light</a>、<a href="./%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D1%8B" class="mw-redirect" title="Форматы">Medium</a>、<a href="./%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D1%8B" class="mw-redirect" title="Форматы">Hard CTF</a> 以及 <a href="./%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D1%8B" class="mw-redirect" title="Форматы">Hard CP</a>；地图列表也没有经历重大改动。共有 16 支战队参加了比赛，其中 6 支获得直接邀请，其余 10 支通过选拔赛晋级。前六强战队——“WooDPeckers”、“Penguins”、“Synergy”、“Eternity Advanced”、“Force”和“Перцы”——被视为本届赛事的夺冠大热门。
+</p><h3><span id=".D0.93.D1.80.D1.83.D0.BF.D0.BF.D0.BE.D0.B2.D0.B0.D1.8F_.D1.81.D1.82.D0.B0.D0.B4.D0.B8.D1.8F"></span><span class="mw-headline" id="Групповая_стадия">小组赛阶段</span></h3><p>在小组赛阶段，各军团被分为 4 个小组，其中获得直接邀请的战队在 A 组和 C 组各占一个席位，在 B 组和 D 组各占两个席位。总体而言，小组赛阶段可谓波澜不惊。夺冠热门稳稳晋级季后赛，陪伴他们的还有“Next”和“Cadets”战队。
+</p><h3><span id=".D0.A7.D0.B5.D1.82.D0.B2.D0.B5.D1.80.D1.82.D1.8C.D1.84.D0.B8.D0.BD.D0.B0.D0.BB.D1.8B_6"></span><span class="mw-headline" id="Четвертьфиналы_6">四分之一决赛</span></h3><p>在四分之一决赛中，战斗在单一模式下进行，共计 4 局。
+</p><p><b>WooDPeckers — Force</b> </p><div title="点击打开视频" class="ShowYouTubePopup" style="width:22pxpx;" data-id="extMh2dDgtM"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/22px-YT-icon.png" decoding="async" loading="lazy" width="22" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/33px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/44px-YT-icon.png 2x"></span></span></div><p>比赛在<a href="./%D0%9C%D0%BE%D1%81%D1%82%D1%8B" class="mw-redirect" title="路桥大战">路桥大战匹配</a>地图的 Light 模式下进行。双方战队展现了势均力敌的实力，但在关键时刻幸运女神更青睐“WooDPeckers”战队。“伍兹”战队的选手 Tolokonnikov.V 表现尤为耀眼，完成多次旗子夺回，并展现出在正确的时间出现在正确地点的非凡能力。各局比分：1:0、1:0、2:1——“WooDPeckers”获胜。
+</p><p><b>Penguins — Next</b> </p><div title="点击打开视频" class="ShowYouTubePopup" style="width:22pxpx;" data-id="j4EH2gsjZYQ"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/22px-YT-icon.png" decoding="async" loading="lazy" width="22" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/33px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/44px-YT-icon.png 2x"></span></span></div><p>“Penguins”出乎意料地在<a href="./%D0%A0%D0%B5%D0%B4_%D0%90%D0%BB%D0%B5%D1%80%D1%82" class="mw-redirect" title="红色警戒">红色警戒</a>地图的 Hard CTF 模式下遇到了来自“Next”的强力抵抗。尽管第一局遭遇惨败，“Next”依然重整旗鼓，在接下来的比赛时间里发挥出色，将比赛拖入点球大战。然而在加时局中，“Penguins”更胜一筹。比赛最终结果——以 2:1 的比分战胜“企鹅”。
+</p><p><b>Synergy — Перцы</b> </p><div title="点击打开视频" class="ShowYouTubePopup" style="width:22pxpx;" data-id="G-70_Rd4H8E"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/22px-YT-icon.png" decoding="async" loading="lazy" width="22" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/33px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/44px-YT-icon.png 2x"></span></span></div><p>1/4 决赛中最精彩的对决之一在“Synergy”和“Перцы”之间展开。“Synergy”拿下了第一局，“Перцы”则赢下了第三局和第四局。在第二局中，“Перцы”因违反模式规则被判技术负分，随后双方前往<a href="./%D0%9F%D0%B5%D1%80%D0%B5%D0%BA%D1%80%D1%91%D1%81%D1%82%D0%BE%D0%BA" class="mw-redirect" title="十字路口">十字路口</a>分出胜负。在节奏极快的点球局中，“Synergy”获胜，并在最后几秒钟插下了决定性的旗子。
+</p><p><b>Eternity Advanced — Cadets</b> </p><div title="点击打开视频" class="ShowYouTubePopup" style="width:22pxpx;" data-id="V5waaI0YUvM"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/22px-YT-icon.png" decoding="async" loading="lazy" width="22" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/33px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/44px-YT-icon.png 2x"></span></span></div><p>双方选择的模式——在<a href="./%D0%93%D1%83%D0%B1%D0%B0%D1%85%D0%B0" class="mw-redirect" title="双塔遗迹">双塔遗迹</a>地图上的 Hard CP——远比原先更适合本身就被视为夺冠热门的“Eternity Advanced”。最终结果——“Eternity”以 3:0 的比分大胜。
+</p><h3><span id=".D0.9F.D0.BE.D0.BB.D1.83.D1.84.D0.B8.D0.BD.D0.B0.D0.BB.D1.8B_6"></span><span class="mw-headline" id="Полуфиналы_6">半决赛</span></h3><p>半决赛包含 3 场比赛，每场 2 局。每场比赛都在不同的模式下进行。
+</p><p><b>WooDPeckers — Penguins</b> </p><div title="点击打开视频" class="ShowYouTubePopup" style="width:22pxpx;" data-id="x5KRVG7x9uI"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/22px-YT-icon.png" decoding="async" loading="lazy" width="22" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/33px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/44px-YT-icon.png 2x"></span></span></div><p>两支队伍的第一场比赛在<a href="./%D0%9C%D0%BE%D0%BB%D0%BE%D1%82%D0%BE%D0%B2" class="mw-redirect" title="火车站">火车站</a>地图的 Medium 模式下进行。“Penguins”凭借名义上更具优势的基地在第一局中稳操胜券，并在第二局中逼平对手，从而以 1:0 的比分拿下第一种模式。第 3 局和第 4 局在<a href="./%D0%93%D1%83%D0%B1%D0%B0%D1%85%D0%B0" class="mw-redirect" title="双塔遗迹">双塔遗迹</a>地图的 Hard CP 模式下进行，“企鹅”再次展现强大实力。这一次，欧洲战队在两局比赛中双双获胜，如果没有选手 Advice 近乎全场一人死守其中一个据点的精湛操作，这几乎是无法实现的。总比分 3:0，“Penguins”昂首挺进决赛。
+</p><p><b>Synergy — Eternity Advanced</b> </p><div title="点击打开视频" class="ShowYouTubePopup" style="width:22pxpx;" data-id="-7GM5gi_8vE"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/22px-YT-icon.png" decoding="async" loading="lazy" width="22" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/33px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/44px-YT-icon.png 2x"></span></span></div><p>“Synergy”与“Eternity Advanced”的半决赛是本届赛事中首次让观众同时看到 3 种不同模式以及点球局的比赛。双方战队展开了胶着的阵地战，在 6 局常规赛中总共只运送了 6 面旗子。首场比赛——<a href="./%D0%A0%D0%B5%D0%B4_%D0%90%D0%BB%D0%B5%D1%80%D1%82" class="mw-redirect" title="红色警戒">红色警戒</a>上的 XP/BP——“Synergy”以 1:0 拿下；第二场——<a href="./%D0%A0%D0%B5%D0%B4_%D0%90%D0%BB%D0%B5%D1%80%D1%82" class="mw-redirect" title="红色警戒">红色警戒</a> Medium——“Eternity Advanced”以相同比分回敬；而在<a href="./%D0%9A%D1%83%D0%BD%D0%B3%D1%83%D1%80" class="mw-redirect" title="大桥 3C">大桥 3C</a> 上的 Hard CTF 则以平局收场。值得一提的是，“Synergy”对大桥 3C 红色基地的有趣防守战术，导致比赛主要焦点集中在中央桥梁上，最后十分钟的戏剧性结局也令人印象深刻，最终“Eternity”在最后几秒成功插旗，将胜负悬念拖入加时附加局。最终，在<a href="./%D0%90%D1%82%D1%80%D0%B0" class="mw-redirect" title="天空管道">天空管道</a> 3x3 模式中的胜利依然属于“Synergy”，他们接下来将在决赛中迎战“Penguins”。
+</p><h3><span id=".D0.A4.D0.B8.D0.BD.D0.B0.BB_3"></span><span class="mw-headline" id="Финал_3">决赛</span></h3><p><b>Penguins — Synergy</b> </p><div title="点击打开视频" class="ShowYouTubePopup" style="width:22pxpx;" data-id="GRpOkKzq7Tc"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/22px-YT-icon.png" decoding="async" loading="lazy" width="22" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/33px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/44px-YT-icon.png 2x"></span></span></div><p>在胜者组决赛以及总决赛中，双方战队都需要在全部五个模式中展现精湛技艺。“Penguins”与“Synergy”势均力敌，在整个对决过程中平分秋色，胜利天平左右摇摆。10 局战罢比分定格在 3:3，最终在<a href="./%D0%9F%D0%B5%D1%81%D0%BE%D1%87%D0%BD%D0%B8%D1%86%D0%B0" class="mw-redirect" title="高地角斗场">高地角斗场</a>上才决出胜负，和半决赛一样，幸运女神再次眷顾了“Synergy”。
+</p><h3><span id=".D0.9D.D0.B8.D0.B6.D0.BD.D1.8F.D1.8F_.D1.81.D0.B5.D1.82.D0.BA.D0.B0"></span><span class="mw-headline" id="Нижняя_сетка">败者组</span></h3><p>在败者组中，“Eternity Advanced”展现出了稳健的统治力，连斩 3 个对手。首当其冲遭遇他们猛烈攻势的是“Force”战队。开局不利的“Eternity”在第二和第三种模式中找回场子，最终比赛比分定格在 3:1。“WooDPeckers”同样无法阻挡“Eternity Advanced”：以 2:5 落败后，“伍兹”最终以第四名结束了本届赛事的征程。“Penguins”在败者组决赛中也没能阻挡状态正盛的“Eternity”，经过 11 局激战以 4:5 惜败，夺得第 11 届跨军团锦标赛季军。
+</p><h3><span id=".D0.93.D1.80.D0.B0.D0.BD.D0.B4-.D1.84.D0.B8.D0.B4.D0.B0.D0.BB_3"></span><span class="mw-headline" id="Гранд-финал_3">总决赛</span></h3><p><b>Synergy — Eternity Advanced</b> </p><div title="点击打开视频" class="ShowYouTubePopup" style="width:22pxpx;" data-id="rzpORW19_20"><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/22px-YT-icon.png" decoding="async" loading="lazy" width="22" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/33px-YT-icon.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/46/YT-icon.png/44px-YT-icon.png 2x"></span></span></div><p>摆在败者组胜者面前的是最强大的对手，因为“Synergy”不仅赢下了本届赛事的所有比赛，还是跨军团锦标赛的卫冕冠军。毫无疑问，双方都不具备绝对优势，胜负将在最终的几局中揭晓。带着 3:2 的总比分优势（Synergy 领先），两支战队迎来了最后一个模式——<a href="./%D0%93%D1%83%D0%B1%D0%B0%D1%85%D0%B0" class="mw-redirect" title="双塔遗迹">双塔遗迹</a>上的 Hard CP，卫冕冠军此时只需赢下一局便可夺冠。然而，“Eternity Advanced”经过败者组魔鬼赛程的历练，在决战时刻爆发出更强大的实力，在双塔遗迹连赢两局，加冕跨军团锦标赛新科冠军。
+</p><p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/c/c0/Clan_Championship11_2.png/800px-Clan_Championship11_2.png" decoding="async" loading="lazy" width="800" height="417" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/c0/Clan_Championship11_2.png 1.5x"></span></span>
+</p><p>回顾整场赛事，第十一届跨军团锦标赛堪称每场比赛精彩桥段最为丰富的赛季之一。扣人心弦的数小时拉锯战以及场场点球大战——这就是 2018 年重磅赛事留给广大观众的最深刻印象。
+</p><div align="right"><small>最后编辑：21/05/2024 HelpersBot <span class="ai-translate-note" style="color:#8FB8D8;">（由 AI 自动翻译）</span></small></div></div></div></div></div></div><footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
+<p style="margin:0;"><strong style="color:#BFD5FF;">本站为玩家社区自建的非官方 Wiki 镜像。</strong></p>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":892,"wgPageParseReport":{"limitreport":{"cputime":"0.341","walltime":"0.458","ppvisitednodes":{"value":542,"limit":1000000},"postexpandincludesize":{"value":6154,"limit":4194304},"templateargumentsize":{"value":3146,"limit":4194304},"expansiondepth":{"value":7,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":302,"limit":5000000},"timingprofile":["100.00%   20.593      1 -total"," 29.29%    6.032      1 Шаблон:LastEdit"," 28.29%    5.826      2 Шаблон:Q"," 26.59%    5.476      8 Шаблон:YouTubePopup"]},"cachereport":{"timestamp":"20260824141325","ttl":86400,"transientcontent":false}}});});</script>
+    <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });</script></body></html>

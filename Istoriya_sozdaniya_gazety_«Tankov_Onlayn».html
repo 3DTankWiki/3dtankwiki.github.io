@@ -1,0 +1,366 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>(function(){
+  var BASE = 'https://ru.tankiwiki.com';
+  function fix(v){ return (typeof v === 'string' && v.charAt(0) === '/' && v.indexOf('//') !== 0) ? BASE + v : v; }
+  ['HTMLScriptElement','HTMLLinkElement'].forEach(function(tag){
+    var proto = window[tag] && window[tag].prototype;
+    var prop  = tag === 'HTMLScriptElement' ? 'src' : 'href';
+    if (!proto) return;
+    var d = Object.getOwnPropertyDescriptor(proto, prop);
+    if (!d || !d.set) return;
+    Object.defineProperty(proto, prop, {
+      configurable: true,
+      get: function(){ return d.get.call(this); },
+      set: function(v){ d.set.call(this, fix(v)); }
+    });
+  });
+  var of = window.fetch;
+  if (of) window.fetch = function(u, o){ return of.call(this, (typeof u === 'string' ? fix(u) : u), o); };
+  var ox = window.XMLHttpRequest && XMLHttpRequest.prototype.open;
+  if (ox) XMLHttpRequest.prototype.open = function(m, u){
+    var a = Array.prototype.slice.call(arguments); a[1] = fix(u); return ox.apply(this, a);
+  };
+})();</script><title>《3D 坦克》报纸创建历史 — 3D 坦克 Wiki</title><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+    <meta charset="UTF-8">
+    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/xg_pWYS8-HRESiV6Rdg4aY_R/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-qWH0xCejb2gc1yqo8ob4TQrvIcQ9XjhOfGKbhFr/+LvFrJdTE3bA+FQP/FLAiQhz"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgRequestId":"50b1cf0a16e7d2fe555e169c","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Istoriya_sozdaniya_gazety_«Tankov_Onlayn»","wgTitle":"Istoriya sozdaniya gazety «Tankov Onlayn»","wgCurRevisionId":295514,"wgRevisionId":295514,"wgArticleId":2186,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Исторические статьи"],"wgPageViewLanguage":"ru","wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgRelevantPageName":"Istoriya_sozdaniya_gazety_«Tankov_Onlayn»",
+"wgRelevantArticleId":2186,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVisualEditor":{"pageLanguageCode":"ru","pageLanguageDir":"ltr","pageVariantFallbacks":"ru"},"wgFlaggedRevsParams":{"tags":{"accuracy":{"levels":3}}},"wgStableRevisionId":295514,"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.flaggedRevs.icons":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.flaggedRevs.basic":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["mediawiki.page.media","site","mediawiki.page.ready","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.flaggedRevs.advanced",
+"skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=ext.flaggedRevs.basic%2Cicons%7Cext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/thumb/e/e2/TONews_1st.png/1200px-TONews_1st.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1078">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/thumb/e/e2/TONews_1st.png/800px-TONews_1st.png">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="718">
+    <meta property="og:image" content="https://ru.tankiwiki.com/images/ru/thumb/e/e2/TONews_1st.png/640px-TONews_1st.png">
+    <meta property="og:image:width" content="640">
+    <meta property="og:image:height" content="575">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://ru.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://ru.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (ru)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://ru.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki&nbsp;— Atom-лента" href="https://ru.tankiwiki.com/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom"><style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
+
+/* 1. 只去掉源站皮肤的背景大图，保留底色；不要用 background 简写，否则会连带清掉皮肤别的背景设定 */
+html, body {
+    background-image: none !important;
+    background-color: #001926 !important;
+}
+/* 2. 让底色铺满视口，内容很短时下方不再露白 */
+html { min-height: 100%; }
+body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif; }
+
+/* 3. 版心容器 */
+#mw-main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #001926;
+}
+
+/* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
+      【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
+
+#mw-main-container .main-content,
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content,
+#mw-main-container #mw-content-text {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: auto !important;
+    flex-basis: auto !important;   /* 皮肤写了 .main-content{flex:0 0 75%} */
+    float: none !important;
+    margin-top: 0 !important;       /* 核心：清空原站皮肤的负 margin-top */
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    position: relative !important;
+    z-index: 1 !important;          /* 保证正文层级低于按钮 */
+}
+
+/* 5. 皮肤脚本 skins.tankiblue.js 会往 #mw-content-text 末尾插一条「发现错别字？Ctrl+Enter」
+      的俄语提示条和一个「报告错误」标签页。它按网址里有没有 'en'/'de' 来判断语言，
+      我们的域名两者都不含 → 一律显示俄语；且报错会提交到俄站编辑组，对镜像站没意义，直接隐藏。 */
+#custom-report-footer,
+.vectorTabs.customReport,
+.customReport { display: none !important; }
+
+/* 6. 返回按钮包裹容器：独占一行并强制最高层级 */
+.home-btn-wrapper {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px 0 20px 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    z-index: 9999 !important;       /* 核心：永远置于最顶层 */
+    clear: both !important;
+    overflow: visible !important;
+}
+
+/* 7. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐 */
+.home-back-btn {
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    width: auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    isolation: isolate !important;
+    
+    min-width: 142px !important;
+    padding: 0 24px !important;
+    height: 78px !important;
+    margin: 0 !important;
+    border: 1px solid rgba(255,255,255,.25) !important;
+    outline: 2px solid transparent !important;
+    border-radius: 6.5px !important;
+    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%) !important;
+    
+    position: relative !important;
+    z-index: 10000 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: all .15s ease !important;
+    overflow: visible !important;
+}
+.home-back-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(100% 100% at 0% 0%, rgba(191,213,255,.25) 0%, rgba(191,213,255,.15) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all .15s ease;
+    border-radius: inherit;
+    pointer-events: none;
+}
+.home-back-btn svg {
+    width: 24.375px;
+    height: 24px;
+    object-fit: contain;
+    transform: rotate(180deg);
+    transition: all .15s ease;
+    flex-shrink: 0;
+}
+.home-back-btn svg path { fill: #BFD5FF; transition: all .15s ease; }
+
+.home-back-btn:hover,
+.home-back-btn:active,
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF !important; border-color: #BFD5FF !important; }
+.home-back-btn:hover::before,
+.home-back-btn:active::before,
+.home-back-btn:focus-visible::before { opacity: 1; }
+.home-back-btn:hover svg,
+.home-back-btn:active svg,
+.home-back-btn:focus-visible svg { transform: rotate(180deg) translateX(10%); }
+.home-back-btn:hover svg path,
+.home-back-btn:active svg path,
+.home-back-btn:focus-visible svg path { fill: #fff; }
+
+.home-back-btn span {
+    color: #BFD5FF;
+    font-size: 16px;
+    margin-left: 10px;
+    font-weight: bold;
+    transition: all .15s ease;
+    white-space: nowrap;
+}
+.home-back-btn:hover span,
+.home-back-btn:active span,
+.home-back-btn:focus-visible span {
+    color: #fff;
+    transform: translateX(-4px);
+}
+
+/* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
+@media (hover: none) {
+    .home-back-btn { border-color: rgba(191,213,255,.55) !important; }
+    .home-back-btn svg path { fill: #CFE0FF; }
+}
+
+/* 移动端/窄屏自适应尺寸 */
+@media (max-width: 480px) {
+    .home-back-btn {
+        min-width: 106px !important;
+        padding: 0 16px !important;
+        height: 58px !important;
+        margin-left: 10px !important;
+    }
+    .home-back-btn svg { width: 20px !important; height: 19.7px !important; }
+    .home-back-btn span { font-size: 14px !important; margin-left: 8px !important; }
+}
+
+/* 8. 移动端容器 Padding */
+@media (max-width: 768px) {
+    #mw-main-container { padding: 10px !important; margin: 8px auto !important; }
+    .home-back-btn { margin-left: 10px !important; }
+    #mw-content-text .navigationContainerContent > div,
+    #mw-content-text [style*="width: 55%"],
+    #mw-content-text [style*="width:55%"],
+    #mw-content-text [style*="width: 45%"],
+    #mw-content-text [style*="width:45%"] { width: 100% !important; }
+}
+@media (max-width: 480px) {
+    #mw-main-container { padding: 6px !important; margin: 4px auto !important; }
+}
+
+/* 9. 防止宽表格 / 大图撑破版心 */
+#mw-content-text img { max-width: 100%; height: auto; }
+#mw-content-text table { max-width: 100%; }
+
+/* 10. 目录（TOC）修复，全局生效：
+    a) 皮肤把目录折叠按钮的文字放在 CSS 伪元素里渲染，而不是 HTML 文本：
+         .toctogglecheckbox:checked  + .toctitle .toctogglelabel::after → content:'показать'
+         .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after → content:'скрыть'
+       AI 翻译只处理 HTML 文本，摸不到 CSS content，所以这个按钮永远是俄语，必须在这里覆盖成中文。
+    b) 皮肤的响应式 CSS 里写了 @media screen and (max-width:768px){ #toc{display:none} }，
+       导致手机端整个目录被隐藏。这里恢复显示，并配合下方 TOC_MOBILE_COLLAPSE_SCRIPT：
+       移动端默认折叠，只占一行「目录 [展开]」，避免长目录把正文挤到屏幕外。 */
+#toc .toctogglecheckbox:checked + .toctitle .toctogglelabel::after { content: '展开' !important; }
+#toc .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after { content: '收起' !important; }
+@media screen and (max-width: 768px) {
+    #toc { display: table !important; }
+}
+
+/* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
+   只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+*/
+</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Istoriya_sozdaniya_gazety_«Tankov_Onlayn» rootpage-Istoriya_sozdaniya_gazety_«Tankov_Onlayn» skin-tankiblue action-view"><div id="skin-chrome-stub" aria-hidden="true" style="display:none !important;">
+<a class="problem" href="#"></a>
+<div class="close-wrapper"></div>
+<div class="support-block-popup"><div class="close-modal-support"></div></div>
+<div class="youtube-popup"><iframe title="stub"></iframe></div>
+<div class="video-button"></div>
+<div class="header-search"></div>
+<div class="search-dialog"></div>
+<div class="search-popup"><div class="close-wrapper"></div><div class="close-modal-search"></div></div>
+<div class="news-popup"></div>
+<div class="sales-block-header"></div>
+<div class="navbar-main"></div>
+<div class="main-navbar"></div>
+</div><div id="mw-main-container"><div class="home-btn-wrapper"><a class="home-back-btn" href="./Enciklopediya_igry_%C2%ABTanki_Onlayn%C2%BB" title="返回主页" aria-label="返回主页"><svg viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 0H13.5L25.5 12L24 13.5L13.5 24H18L30 12L18 0ZM24 13.5L21 10.5H0L3 13.5H24Z" fill="#BFD5FF"/></svg><span>返回主页</span></a></div><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">《3D 坦克》报纸创建历史</h1><div class="dablink"><em>参见：</em> <a href="./%D0%9F%D1%80%D0%B5%D1%81%D1%81%D0%B0" class="mw-redirect" title="Пресса">媒体</a>
+</div><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:0_390f4_e19557c4_orig.jpg" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/0/01/0_390f4_e19557c4_orig.jpg/400px-0_390f4_e19557c4_orig.jpg" decoding="async" loading="lazy" width="400" height="174" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/0/01/0_390f4_e19557c4_orig.jpg/600px-0_390f4_e19557c4_orig.jpg 1.5x, https://ru.tankiwiki.com/images/ru/0/01/0_390f4_e19557c4_orig.jpg 2x"></a><figcaption>2010 年报纸团队（从左到右：3y6i, moro_lg, Figishe, Shopot, belo4ka, MTZ-80, scarz）</figcaption></figure><p>2010 年 7 月 7 日，《3D 坦克》游戏拥有了自己的报纸。正是在那天，第一期报纸正式出版。
+</p><p>一切始于以昵称 Shopot 为首的一群志同道合的人。正他成为了组织者和主编。对他的采访构成了本文的基础。
+</p><p>关于办报的想法在组织者们的坦克手中盘旋了相当长的一段时间。这是必要且备受期待的。
+</p><p>当论坛上突然来了一位名叫 belo4ka 的坦克手，并带着“用户采访”主题帖时，这个想法开始具象化。她希望在论坛上创建一个“采访”子版块。
+</p><p>Shopot 决定支持这个想法，但“采访”子版块不应该孤立存在，而应成为更大项目的一部分。这个更大的项目就是“报纸”，况且当时已经有人想要着手它的创建了。Siams 已经多次对游戏中的“高层人物”进行了采访，自由射手（Вольный стрелок）对自己的工作了如指掌，其他伙伴也准备好参与这一活动。也就是说，支持力度相当不错。
+</p><p>随后，未来的主编径直走向《3D 坦克》项目协调员亚历山德拉·梅德韦杰娃（Александра Медведева）。她非常喜欢这个想法并给予了批准。现在需要与 belo4ka 沟通并说服她“报纸”项目确实很棒。与 belo4ka 沟通比跟梅德韦杰娃要困难得多，但最终还是获得了她的同意。
+</p><p>在此之后，决定在论坛上创建两个版块。一个是真正的“报纸”，对所有用户开放浏览；另一个是“编辑角”，这是一个进行所有草稿工作的版块，只有部分管理层代表以及编辑团队才有权访问。为此，Shopot 找到了亚历山德拉，仅几天后，带有必要权限级别的版块便建立好了。
+</p><p>接下来就是组建团队。理所当然地，名单上的前几位是 siams 和 belo4ka。Skype 会议随即创建，大家一起商讨还要把谁拉进团队。首批编辑名单如下：
+</p><ul><li><b>Shopot</b>；</li>
+<li><b>belo4ka</b>；</li>
+<li><b>siams</b>；</li>
+<li><b>V-L-A-D</b>；</li>
+<li><b>d0wn</b>；</li>
+<li><b>Scorpion321</b></li></ul><p><br>
+</p><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:TONews_1st.png" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/e/e2/TONews_1st.png/300px-TONews_1st.png" decoding="async" loading="lazy" width="300" height="269" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e2/TONews_1st.png/450px-TONews_1st.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e2/TONews_1st.png/600px-TONews_1st.png 2x"></a><figcaption>《3D 坦克》报纸第一期</figcaption></figure><p>团队组建完毕，编辑们接到任务：筹备第一期报纸。Shopot 对此表示：“我很紧张，因为我甚至不知道该写些什么。想法有一大堆，但怎么知道哪个更重要呢？”伙伴们态度坚决：“别担心，一切都会办妥，我们一定能成功！”最终，第一期报纸顺利问世。
+</p><p>2010 年报纸编辑团队成员：
+</p><ol><li><b>Shopot</b> — 报纸思想奠基人；</li>
+<li><b>belo4ka</b> — 报纸思想奠基人；</li>
+<li><b>自由射手（Вольный стрелок）</b>；</li>
+<li><b>moro_lg</b> — 记者、摄影记者；</li>
+<li><b>MTZ-80</b> — 记者（真正的专业人士）、精神领袖。他也是传说中的叶夫根尼·瓦加尼奇（Евгений Ваганыч）；</li>
+<li><b>V-L-A-D</b> — 主编；</li>
+<li><b>Big Point</b> — 记者、填字游戏编制者；</li>
+<li><b>scarz</b> — 记者、相当知名的玩家。曾采访过开发人员，包括安东·沃尔科夫（Антон Волков）；</li>
+<li><b>3y6i</b> — 著名的报纸记者。他的报纸特辑总是让人一口气读完；</li>
+<li><b>siams</b> — 记者、最老牌军团的成员之一；</li>
+<li><b>Figishe</b> — 记者、地图制作师。</li></ol><p><br>
+</p><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:TONews_portal.png" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/f/f4/TONews_portal.png/300px-TONews_portal.png" decoding="async" loading="lazy" width="300" height="95" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/f/f4/TONews_portal.png/450px-TONews_portal.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/f/f4/TONews_portal.png/600px-TONews_portal.png 2x"></a><figcaption>Tanki Online News</figcaption></figure><p>2012 年 5 月 31 日，第 28 期报纸出版。那天，评论区里有人抱怨报纸的排版极其难看，在论坛上根本没有它的立足之地。时任主编的 <b>Les_Alterman</b> 立即回应：“<i>很快一切都会变得不同、便捷、漂亮……但这是个惊喜</i>”。
+</p><p>“惊喜”发生在 6 月 20 日：出乎所有人意料，3D 坦克报纸迁移到了一个拥有响亮名称的新门户网站 — <b>Tanki Online News</b>。这个全新的《3D 坦克》综合媒体旨在将所有关于游戏的资讯来源融为一体：原本分散的开发者博客（<a href="./%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D0%B1%D0%BB%D0%BE%D0%B3" class="mw-redirect" title="Видеоблог">V-LOG</a>）、游戏新闻、电竞赛事新闻以及报纸，现在都汇聚在同一个地方。该门户网站由开发团队与当时的报纸编辑部共同创建并维护，当时的成员如下：
+</p><ol><li><b>Les_Alterman</b> — 主编、记者、排版设计师；</li>
+<li><b>Mapro</b> — 记者、副主编、编辑部人事经理；</li>
+<li><b>MuJIaxa</b> — 竞赛组织者兼负责人；</li>
+<li><b>Sanitar-13</b> — 记者、编辑；</li>
+<li><b>XEPUVIM</b> — 记者、诗人；</li>
+<li><b>MTZ-80</b> — 记者、精神领袖；</li>
+<li><b>Cardinal_Richelieu</b> — 记者；</li>
+<li><b>Mysleslov</b> — 竞赛组织者兼负责人；</li>
+<li><b>T.RexChaos</b> — 排版设计师；</li>
+<li><b>dimmmy</b> — 排版设计师。</li></ol><p><br>在 TO News 门户网站上，一切确实“既便捷又漂亮”：主页呈现为一个新文章流；这些文章被分为游戏公告、开发者署名文章、电竞赛事新闻、创意草图、采访以及许多其他专栏，它们本身都可以通过各自的标签页访问。玩家可以使用当时任何可用的社交网络在门户网站注册，并给自己起任何昵称，不管是“坦克风”的还是别的什么 — 完全无所谓。文章下方可以进行评论，并且评论的回复采用“树状”显示：首先显示一条评论及其回复，然后才是下一条评论。这种评论机制非常方便，因为报纸和整个 TO News 门户网站一直以来都与激烈的讨论密不可分。
+</p><p>尽管如此，在 2014 年初，Tanki Online News 门户网站上的活动被迫戛然而止。该门户网站连同其上的大量资料被直接删除。当然，部分文章被备份了，例如发布在游戏主页上，并且 2012-2013 年的采访也被小心翼翼地归档到了当时的论坛中，但部分资料还是永远地丢失了。
+</p><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:TON_opros.png" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/b/b5/TON_opros.png/300px-TON_opros.png" decoding="async" loading="lazy" width="300" height="113" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/b5/TON_opros.png/450px-TON_opros.png 1.5x, https://ru.tankiwiki.com/images/ru/b/b5/TON_opros.png 2x"></a><figcaption>坦克手关于 TON 未来的讨论</figcaption></figure><p>对于每个人习惯的那种形式的 3D 坦克报纸来说，2014 年是一个“动荡”的时期。报纸再次搬回了论坛，“Tanki Online News”主题帖连同旧的“门户之前”的文章归档一起，被搬到了最顶端，与“新闻”并列。除了论坛之外，一些文章继续在游戏主页上发布。各类比赛和报纸专栏也继续举办，例如传奇的“<a href="./%D0%9A%D0%B8%D0%BD%D0%BE%D0%BF%D1%8F%D1%82%D0%BD%D0%B8%D1%86%D0%B0" class="mw-redirect" title="Кинопятница">电影星期五</a>”。然而，这一切就像门户网站的情况一样，继续各自为战：备受喜爱的“期数”最终也没能恢复。2014 年 10 月，报纸在论坛上的活动被暂停。
+</p><figure typeof="mw:File/Thumb"><a href="https://ru.tankiwiki.com/%D0%A4%D0%B0%D0%B9%D0%BB:TONews_reborn.png" class="mw-file-description"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/df/TONews_reborn.png/300px-TONews_reborn.png" decoding="async" loading="lazy" width="300" height="149" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/df/TONews_reborn.png/450px-TONews_reborn.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/df/TONews_reborn.png/600px-TONews_reborn.png 2x"></a><figcaption>报纸重返论坛</figcaption></figure><p>将近半年后，即 2015 年 2 月初，一份更名为“Tanki Online Newspaper”、拥有全新团队和全新思维的报纸再次投入到与文本和无聊论坛成员的战斗中。文章依然零散且不与具体期数绑定，但其中的每一篇都无疑以其标题吸引人，并让人忍不住一遍又一遍地重读。
+</p><p>而在 2016 年 3 月 14 日，Tanki Online Newspaper 终于恢复了按期数发布材料的系统：在这一天，发布了三月份的报纸。游戏信息部队的生活以惯常的平稳节奏继续，每个月都有各自的丑闻、阴谋和调查。
+</p><p>2016 年 3 月报纸编辑部成员：
+</p><ol><li><b>Sanitar-13</b> — 管理员；</li>
+<li><b>Eva (ex. KOPOJIEBULLIHA)</b> — 管理员；</li>
+<li><b>Svistoplyaska</b>；</li>
+<li><b>00denis</b>；</li>
+<li><b>Epak</b>。</li></ol><p><br>
+2017 年 1 月底是报纸生存史上的又一个悲剧时刻。由于整个论坛数据的丢失，3D 坦克媒体近七年的历史付诸东流。不过，当时还是成功恢复了部分 15-16 年的文章。
+</p><p>2018 年年中，报纸编辑部经历了一次真正的创作危机：由于个人原因，在编辑部“服役”总计超过六年的 <b>Sanitar-13</b> 首先被迫辞去管理职务，紧接着是接替格尔曼（Герман）主编热情两年多的 <b>Eva</b>。在接下来的几年里，阿列クセ伊 <b>Guard</b> 接任了 TO News 的管理员职位。
+</p><p>2020 年也在 TO News 的历史上留下了悲伤的印记：在更改网站主页界面后，由于不明原因，绝大多数旧新闻再次无法访问，其中包括许多在新闻门户网站存在时创建的采访和专栏。
+</p><p>对报纸的“最后一口气”的尝试发生在 2020 年 11 月。当时，记者团队由基里尔 <b>47x</b> 接管，多亏了坦克手创作集体<a rel="nofollow" class="external text" href="https://vk.com/screen_lan">“Lanafles”</a>，报纸以崭新且时尚的风格呈现在读者面前。
+</p><p>但这并没有维持多久。2021 年 6 月 12 日，<a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/293970/">最后一期报纸</a>面世，随后由于论坛活跃度不足以及报纸主题帖本身缺乏人气，决定暂停 Tanki Online Newspaper 编辑部历时十一年的运营。
+</p><p>2021 年 6 月报纸编辑部的最终成员：
+</p><ol><li><b>47x</b> — 管理员；</li>
+<li><b>Viridiano (ex. Aspirante)</b> — 高级编辑；</li>
+<li><b>Winn</b> — 高级编辑；</li>
+<li><b>Senua</b> — 记者；</li>
+<li><b>ln_Vitro</b> — 记者；</li>
+<li><b>Lej</b> — 记者；</li>
+<li><b>FuryRust</b> — 记者；</li>
+<li><b>Wormhole</b> — 排版设计师；</li>
+<li><b>Quo</b> — 排版设计师。</li></ol><p><br>
+</p><div align="right"><small>最后编辑：2024/05/21 HelpersBot <span class="ai-translate-note" style="color:#8FB8D8;">（由 AI 自动翻译）</span></small></div></div></div></div></div></div><footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
+<p style="margin:0;"><strong style="color:#BFD5FF;">本站为玩家社区自建的非官方 Wiki 镜像。</strong></p>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":1595,"wgPageParseReport":{"limitreport":{"cputime":"0.063","walltime":"0.083","ppvisitednodes":{"value":119,"limit":1000000},"postexpandincludesize":{"value":340,"limit":4194304},"templateargumentsize":{"value":80,"limit":4194304},"expansiondepth":{"value":8,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%   21.463      1 -total"," 73.71%   15.821      1 Шаблон:See_also"," 48.24%   10.354      1 Шаблон:Другое_значение"," 25.35%    5.442      1 Шаблон:LastEdit"," 24.41%    5.239     14 Шаблон:См._также/link"]},"cachereport":{"timestamp":"20260824205758","ttl":86400,"transientcontent":false}}});});</script>
+    <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });</script></body></html>

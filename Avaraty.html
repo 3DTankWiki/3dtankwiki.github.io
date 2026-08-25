@@ -1,0 +1,1903 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>(function(){
+  var BASE = 'https://ru.tankiwiki.com';
+  function fix(v){ return (typeof v === 'string' && v.charAt(0) === '/' && v.indexOf('//') !== 0) ? BASE + v : v; }
+  ['HTMLScriptElement','HTMLLinkElement'].forEach(function(tag){
+    var proto = window[tag] && window[tag].prototype;
+    var prop  = tag === 'HTMLScriptElement' ? 'src' : 'href';
+    if (!proto) return;
+    var d = Object.getOwnPropertyDescriptor(proto, prop);
+    if (!d || !d.set) return;
+    Object.defineProperty(proto, prop, {
+      configurable: true,
+      get: function(){ return d.get.call(this); },
+      set: function(v){ d.set.call(this, fix(v)); }
+    });
+  });
+  var of = window.fetch;
+  if (of) window.fetch = function(u, o){ return of.call(this, (typeof u === 'string' ? fix(u) : u), o); };
+  var ox = window.XMLHttpRequest && XMLHttpRequest.prototype.open;
+  if (ox) XMLHttpRequest.prototype.open = function(m, u){
+    var a = Array.prototype.slice.call(arguments); a[1] = fix(u); return ox.apply(this, a);
+  };
+})();</script><title>头像 — 3D 坦克 Wiki</title><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+    <meta charset="UTF-8">
+    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/xg_pWYS8-HRESiV6Rdg4aY_R/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-qWH0xCejb2gc1yqo8ob4TQrvIcQ9XjhOfGKbhFr/+LvFrJdTE3bA+FQP/FLAiQhz"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgRequestId":"2f90f20b2c8f1db493e0a7c9","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Avaraty","wgTitle":"Avaraty","wgCurRevisionId":302376,"wgRevisionId":302376,"wgArticleId":17768,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"ru","wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgRelevantPageName":"Avaraty","wgRelevantArticleId":17768,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],
+"wgVisualEditor":{"pageLanguageCode":"ru","pageLanguageDir":"ltr","pageVariantFallbacks":"ru"},"wgFlaggedRevsParams":{"tags":{"accuracy":{"levels":3}}},"wgStableRevisionId":302376,"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.flaggedRevs.icons":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","jquery.makeCollapsible.styles":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.flaggedRevs.basic":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","jquery.makeCollapsible","mediawiki.toc","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.flaggedRevs.advanced","skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=ext.flaggedRevs.basic%2Cicons%7Cext.visualEditor.desktopArticleTarget.noscript%7Cjquery.makeCollapsible.styles%7Cmediawiki.skinning.interface%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://ru.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://ru.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (ru)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://ru.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki&nbsp;— Atom-лента" href="https://ru.tankiwiki.com/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom"><style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
+
+/* 1. 只去掉源站皮肤的背景大图，保留底色；不要用 background 简写，否则会连带清掉皮肤别的背景设定 */
+html, body {
+    background-image: none !important;
+    background-color: #001926 !important;
+}
+/* 2. 让底色铺满视口，内容很短时下方不再露白 */
+html { min-height: 100%; }
+body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif; }
+
+/* 3. 版心容器 */
+#mw-main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #001926;
+}
+
+/* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
+      【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
+
+#mw-main-container .main-content,
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content,
+#mw-main-container #mw-content-text {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: auto !important;
+    flex-basis: auto !important;   /* 皮肤写了 .main-content{flex:0 0 75%} */
+    float: none !important;
+    margin-top: 0 !important;       /* 核心：清空原站皮肤的负 margin-top */
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    position: relative !important;
+    z-index: 1 !important;          /* 保证正文层级低于按钮 */
+}
+
+/* 5. 皮肤脚本 skins.tankiblue.js 会往 #mw-content-text 末尾插一条「发现错别字？Ctrl+Enter」
+      的俄语提示条和一个「报告错误」标签页。它按网址里有没有 'en'/'de' 来判断语言，
+      我们的域名两者都不含 → 一律显示俄语；且报错会提交到俄站编辑组，对镜像站没意义，直接隐藏。 */
+#custom-report-footer,
+.vectorTabs.customReport,
+.customReport { display: none !important; }
+
+/* 6. 返回按钮包裹容器：独占一行并强制最高层级 */
+.home-btn-wrapper {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px 0 20px 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    z-index: 9999 !important;       /* 核心：永远置于最顶层 */
+    clear: both !important;
+    overflow: visible !important;
+}
+
+/* 7. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐 */
+.home-back-btn {
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    width: auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    isolation: isolate !important;
+    
+    min-width: 142px !important;
+    padding: 0 24px !important;
+    height: 78px !important;
+    margin: 0 !important;
+    border: 1px solid rgba(255,255,255,.25) !important;
+    outline: 2px solid transparent !important;
+    border-radius: 6.5px !important;
+    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%) !important;
+    
+    position: relative !important;
+    z-index: 10000 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: all .15s ease !important;
+    overflow: visible !important;
+}
+.home-back-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(100% 100% at 0% 0%, rgba(191,213,255,.25) 0%, rgba(191,213,255,.15) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all .15s ease;
+    border-radius: inherit;
+    pointer-events: none;
+}
+.home-back-btn svg {
+    width: 24.375px;
+    height: 24px;
+    object-fit: contain;
+    transform: rotate(180deg);
+    transition: all .15s ease;
+    flex-shrink: 0;
+}
+.home-back-btn svg path { fill: #BFD5FF; transition: all .15s ease; }
+
+.home-back-btn:hover,
+.home-back-btn:active,
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF !important; border-color: #BFD5FF !important; }
+.home-back-btn:hover::before,
+.home-back-btn:active::before,
+.home-back-btn:focus-visible::before { opacity: 1; }
+.home-back-btn:hover svg,
+.home-back-btn:active svg,
+.home-back-btn:focus-visible svg { transform: rotate(180deg) translateX(10%); }
+.home-back-btn:hover svg path,
+.home-back-btn:active svg path,
+.home-back-btn:focus-visible svg path { fill: #fff; }
+
+.home-back-btn span {
+    color: #BFD5FF;
+    font-size: 16px;
+    margin-left: 10px;
+    font-weight: bold;
+    transition: all .15s ease;
+    white-space: nowrap;
+}
+.home-back-btn:hover span,
+.home-back-btn:active span,
+.home-back-btn:focus-visible span {
+    color: #fff;
+    transform: translateX(-4px);
+}
+
+/* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
+@media (hover: none) {
+    .home-back-btn { border-color: rgba(191,213,255,.55) !important; }
+    .home-back-btn svg path { fill: #CFE0FF; }
+}
+
+/* 移动端/窄屏自适应尺寸 */
+@media (max-width: 480px) {
+    .home-back-btn {
+        min-width: 106px !important;
+        padding: 0 16px !important;
+        height: 58px !important;
+        margin-left: 10px !important;
+    }
+    .home-back-btn svg { width: 20px !important; height: 19.7px !important; }
+    .home-back-btn span { font-size: 14px !important; margin-left: 8px !important; }
+}
+
+/* 8. 移动端容器 Padding */
+@media (max-width: 768px) {
+    #mw-main-container { padding: 10px !important; margin: 8px auto !important; }
+    .home-back-btn { margin-left: 10px !important; }
+    #mw-content-text .navigationContainerContent > div,
+    #mw-content-text [style*="width: 55%"],
+    #mw-content-text [style*="width:55%"],
+    #mw-content-text [style*="width: 45%"],
+    #mw-content-text [style*="width:45%"] { width: 100% !important; }
+}
+@media (max-width: 480px) {
+    #mw-main-container { padding: 6px !important; margin: 4px auto !important; }
+}
+
+/* 9. 防止宽表格 / 大图撑破版心 */
+#mw-content-text img { max-width: 100%; height: auto; }
+#mw-content-text table { max-width: 100%; }
+
+/* 10. 目录（TOC）修复，全局生效：
+    a) 皮肤把目录折叠按钮的文字放在 CSS 伪元素里渲染，而不是 HTML 文本：
+         .toctogglecheckbox:checked  + .toctitle .toctogglelabel::after → content:'показать'
+         .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after → content:'скрыть'
+       AI 翻译只处理 HTML 文本，摸不到 CSS content，所以这个按钮永远是俄语，必须在这里覆盖成中文。
+    b) 皮肤的响应式 CSS 里写了 @media screen and (max-width:768px){ #toc{display:none} }，
+       导致手机端整个目录被隐藏。这里恢复显示，并配合下方 TOC_MOBILE_COLLAPSE_SCRIPT：
+       移动端默认折叠，只占一行「目录 [展开]」，避免长目录把正文挤到屏幕外。 */
+#toc .toctogglecheckbox:checked + .toctitle .toctogglelabel::after { content: '展开' !important; }
+#toc .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after { content: '收起' !important; }
+@media screen and (max-width: 768px) {
+    #toc { display: table !important; }
+}
+
+/* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
+   只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+*/
+</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Avaraty rootpage-Avaraty skin-tankiblue action-view"><div id="skin-chrome-stub" aria-hidden="true" style="display:none !important;">
+<a class="problem" href="#"></a>
+<div class="close-wrapper"></div>
+<div class="support-block-popup"><div class="close-modal-support"></div></div>
+<div class="youtube-popup"><iframe title="stub"></iframe></div>
+<div class="video-button"></div>
+<div class="header-search"></div>
+<div class="search-dialog"></div>
+<div class="search-popup"><div class="close-wrapper"></div><div class="close-modal-search"></div></div>
+<div class="news-popup"></div>
+<div class="sales-block-header"></div>
+<div class="navbar-main"></div>
+<div class="main-navbar"></div>
+</div><div id="mw-main-container"><div class="home-btn-wrapper"><a class="home-back-btn" href="./Enciklopediya_igry_%C2%ABTanki_Onlayn%C2%BB" title="返回主页" aria-label="返回主页"><svg viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 0H13.5L25.5 12L24 13.5L13.5 24H18L30 12L18 0ZM24 13.5L21 10.5H0L3 13.5H24Z" fill="#BFD5FF"/></svg><span>返回主页</span></a></div><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">头像</h1><div class="dablink"><em>参见：</em> <a href="./%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D0%BD%D0%B8%D0%BA%D0%B8_%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D0%B8" class="mw-redirect" title="Помощники администрации">管理助手</a>
+</div><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"><div class="toctitle" lang="ru" dir="ltr"><h2 id="mw-toc-heading">目录</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Администрация_проекта"><span class="tocnumber">1</span> <span class="toctext">项目管理员</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Администратор_чата"><span class="tocnumber">2</span> <span class="toctext">聊天管理员</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Модератор_чата"><span class="tocnumber">3</span> <span class="toctext">聊天版主</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Кандидат_в_модераторы_чата"><span class="tocnumber">4</span> <span class="toctext">聊天版主候选人</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Администратор_форума"><span class="tocnumber">5</span> <span class="toctext">论坛管理员</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Модератор_форума"><span class="tocnumber">6</span> <span class="toctext">论坛版主</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Кандидат_в_модераторы_форума"><span class="tocnumber">7</span> <span class="toctext">论坛版主候选人</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Администратор_модераторов_битв"><span class="tocnumber">8</span> <span class="toctext">战局版主管理员</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#Модератор_Битв"><span class="tocnumber">9</span> <span class="toctext">战局版主</span></a></li>
+<li class="toclevel-1 tocsection-10"><a href="#Администратор_редакторов_энциклопедии"><span class="tocnumber">10</span> <span class="toctext">百科编辑管理员</span></a></li>
+<li class="toclevel-1 tocsection-11"><a href="#Редакторы_энциклопедии"><span class="tocnumber">11</span> <span class="toctext">百科编辑</span></a></li>
+<li class="toclevel-1 tocsection-12"><a href="#Кандидат_в_редакторы_энциклопедии"><span class="tocnumber">12</span> <span class="toctext">百科编辑候选人</span></a></li>
+<li class="toclevel-1 tocsection-13"><a href="#Автор_вики-контента"><span class="tocnumber">13</span> <span class="toctext">Wiki 内容作者</span></a></li>
+<li class="toclevel-1 tocsection-14"><a href="#Кандидат_в_авторы_вики-контента"><span class="tocnumber">14</span> <span class="toctext">Wiki 内容作者候选人</span></a></li>
+<li class="toclevel-1 tocsection-15"><a href="#Администратор_ассистентов"><span class="tocnumber">15</span> <span class="toctext">助手管理员</span></a></li>
+<li class="toclevel-1 tocsection-16"><a href="#Ассистент"><span class="tocnumber">16</span> <span class="toctext">助手</span></a></li>
+<li class="toclevel-1 tocsection-17"><a href="#Администратор_организаторов_мероприятий"><span class="tocnumber">17</span> <span class="toctext">活动组织者管理员</span></a></li>
+<li class="toclevel-1 tocsection-18"><a href="#Организатор_мероприятий"><span class="tocnumber">18</span> <span class="toctext">活动组织者</span></a></li>
+<li class="toclevel-1 tocsection-19"><a href="#Кандидат_в_организаторы_мероприятий"><span class="tocnumber">19</span> <span class="toctext">活动组织者候选人</span></a></li>
+<li class="toclevel-1 tocsection-20"><a href="#Помощники_мероприятий"><span class="tocnumber">20</span> <span class="toctext">活动助手</span></a></li>
+<li class="toclevel-1 tocsection-21"><a href="#Кандидат_в_помощники_мероприятий"><span class="tocnumber">21</span> <span class="toctext">活动助手候选人</span></a></li>
+<li class="toclevel-1 tocsection-22"><a href="#Оператор_мероприятий"><span class="tocnumber">22</span> <span class="toctext">活动操作员</span></a></li>
+<li class="toclevel-1 tocsection-23"><a href="#Кандидат_в_операторы_мероприятий"><span class="tocnumber">23</span> <span class="toctext">活动操作员候选人</span></a></li>
+<li class="toclevel-1 tocsection-24"><a href="#Администратор_репортёров"><span class="tocnumber">24</span> <span class="toctext">记者管理员</span></a></li>
+<li class="toclevel-1 tocsection-25"><a href="#Репортёр"><span class="tocnumber">25</span> <span class="toctext">记者</span></a></li>
+<li class="toclevel-1 tocsection-26"><a href="#Кандидат_в_репортёры"><span class="tocnumber">26</span> <span class="toctext">记者候选人</span></a></li>
+<li class="toclevel-1 tocsection-27"><a href="#Администратор_организаторов_конкурсов"><span class="tocnumber">27</span> <span class="toctext">比赛组织者管理员</span></a></li>
+<li class="toclevel-1 tocsection-28"><a href="#Организатор_конкурсов"><span class="tocnumber">28</span> <span class="toctext">比赛组织者</span></a></li>
+<li class="toclevel-1 tocsection-29"><a href="#Кандидат_в_организаторы_конкурсов"><span class="tocnumber">29</span> <span class="toctext">比赛组织者候选人</span></a></li>
+<li class="toclevel-1 tocsection-30"><a href="#Администратор_организаторов_паркурных_мероприятий"><span class="tocnumber">30</span> <span class="toctext">跑酷活动组织者管理员</span></a></li>
+<li class="toclevel-1 tocsection-31"><a href="#Организатор_паркурных_мероприятий"><span class="tocnumber">31</span> <span class="toctext">跑酷活动组织者</span></a></li>
+<li class="toclevel-1 tocsection-32"><a href="#Кандидат_в_организаторы_паркурных_мероприятий"><span class="tocnumber">32</span> <span class="toctext">跑酷活动组织者候选人</span></a></li>
+<li class="toclevel-1 tocsection-33"><a href="#Администратор_тестеров"><span class="tocnumber">33</span> <span class="toctext">测试员管理员</span></a></li>
+<li class="toclevel-1 tocsection-34"><a href="#Тестер"><span class="tocnumber">34</span> <span class="toctext">测试员</span></a></li>
+<li class="toclevel-1 tocsection-35"><a href="#Кандидат_в_тестеры"><span class="tocnumber">35</span> <span class="toctext">测试员候选人</span></a></li>
+<li class="toclevel-1 tocsection-36"><a href="#Администратор_ресурса_помощи"><span class="tocnumber">36</span> <span class="toctext">帮助资源管理员</span></a></li>
+<li class="toclevel-1 tocsection-37"><a href="#Консультант-модератор_ресурса_помощи"><span class="tocnumber">37</span> <span class="toctext">帮助资源顾问版主</span></a></li>
+<li class="toclevel-1 tocsection-38"><a href="#Кандидат_в_консультант-модераторы_ресурса_помощи"><span class="tocnumber">38</span> <span class="toctext">帮助资源顾问版主候选人</span></a></li>
+<li class="toclevel-1 tocsection-39"><a href="#Администратор_социальных_сетей"><span class="tocnumber">39</span> <span class="toctext">社交媒体管理员</span></a></li>
+<li class="toclevel-1 tocsection-40"><a href="#Модератор_социальных_сетей"><span class="tocnumber">40</span> <span class="toctext">社交媒体版主</span></a></li>
+<li class="toclevel-1 tocsection-41"><a href="#Кандидат_в_модераторы_социальных_сетей"><span class="tocnumber">41</span> <span class="toctext">社交媒体版主候选人</span></a></li>
+<li class="toclevel-1 tocsection-42"><a href="#Администратор_группы_«Танки_Онлайн»_в_Facebook"><span class="tocnumber">42</span> <span class="toctext">Facebook《3D 坦克》群组管理员</span></a></li>
+<li class="toclevel-1 tocsection-43"><a href="#Консультант-модератор_группы_«Танки_Онлайн»_в_Facebook"><span class="tocnumber">43</span> <span class="toctext">Facebook《3D 坦克》群组顾问版主</span></a></li>
+<li class="toclevel-1 tocsection-44"><a href="#Консультант-модератор_группы_«Танки_Онлайн»_в_Twitter"><span class="tocnumber">44</span> <span class="toctext">Twitter《3D 坦克》群组顾问版主</span></a></li>
+<li class="toclevel-1 tocsection-45"><a href="#Администратор_группы_дизайнеров"><span class="tocnumber">45</span> <span class="toctext">设计师群组管理员</span></a></li>
+<li class="toclevel-1 tocsection-46"><a href="#Участник_группы_дизайнеров"><span class="tocnumber">46</span> <span class="toctext">设计师群组成员</span></a></li>
+<li class="toclevel-1 tocsection-47"><a href="#Кандидат_в_участники_группы_дизайнеров"><span class="tocnumber">47</span> <span class="toctext">设计师群组成员候选人</span></a></li>
+<li class="toclevel-1 tocsection-48"><a href="#Творческие_танкисты"><span class="tocnumber">48</span> <span class="toctext">创意坦克手</span></a></li>
+<li class="toclevel-1 tocsection-49"><a href="#Администратор_киберспорта"><span class="tocnumber">49</span> <span class="toctext">电竞管理员</span></a></li>
+<li class="toclevel-1 tocsection-50"><a href="#Модератор_киберспорта"><span class="tocnumber">50</span> <span class="toctext">电竞版主</span></a></li>
+<li class="toclevel-1 tocsection-51"><a href="#Кандидат_в_модераторы_киберспорта"><span class="tocnumber">51</span> <span class="toctext">电竞版主候选人</span></a></li>
+<li class="toclevel-1 tocsection-52"><a href="#Руководитель_группы_контент-помощников_киберспорта"><span class="tocnumber">52</span> <span class="toctext">电竞内容助手群组负责人</span></a></li>
+<li class="toclevel-1 tocsection-53"><a href="#Контент-помощник_киберспорта"><span class="tocnumber">53</span> <span class="toctext">电竞内容助手</span></a></li>
+<li class="toclevel-1 tocsection-54"><a href="#Кандидат_в_контент-помощники_киберспорта"><span class="tocnumber">54</span> <span class="toctext">电竞内容助手候选人</span></a></li>
+<li class="toclevel-1 tocsection-55"><a href="#Администратор_киберспортивных_трансляций"><span class="tocnumber">55</span> <span class="toctext">电竞赛事直播管理员</span></a></li>
+<li class="toclevel-1 tocsection-56"><a href="#Комментаторы_и_операторы_киберспортивных_трансляций"><span class="tocnumber">56</span> <span class="toctext">电竞赛事直播解说员和操作员</span></a></li>
+<li class="toclevel-1 tocsection-57"><a href="#Кандидат_в_комментаторы_киберспортивных_трансляций"><span class="tocnumber">57</span> <span class="toctext">电竞赛事直播解说员候选人</span></a></li>
+<li class="toclevel-1 tocsection-58"><a href="#Администратор_помощников_видеоблога"><span class="tocnumber">58</span> <span class="toctext">V-LOG 助手管理员</span></a></li>
+<li class="toclevel-1 tocsection-59"><a href="#Помощник_видеоблога"><span class="tocnumber">59</span> <span class="toctext">V-LOG 助手</span></a></li>
+<li class="toclevel-1 tocsection-60"><a href="#Кандидат_в_помощники_видеоблога"><span class="tocnumber">60</span> <span class="toctext">V-LOG 助手候选人</span></a></li>
+<li class="toclevel-1 tocsection-61"><a href="#Администратор_переводчиков_и_корректоров"><span class="tocnumber">61</span> <span class="toctext">翻译与校对管理员</span></a></li>
+<li class="toclevel-1 tocsection-62"><a href="#Контент-помощники_группы_корректоров"><span class="tocnumber">62</span> <span class="toctext">校对群组内容助手</span></a></li>
+<li class="toclevel-1 tocsection-63"><a href="#Кандидат_в_переводчики_и_корректоры"><span class="tocnumber">63</span> <span class="toctext">翻译与校对候选人</span></a></li>
+<li class="toclevel-1 tocsection-64"><a href="#Медаль_«За_заслуги»"><span class="tocnumber">64</span> <span class="toctext">“功勋”勋章</span></a></li>
+<li class="toclevel-1 tocsection-65"><a href="#Менеджер_программы_Youtuber_TO"><span class="tocnumber">65</span> <span class="toctext">Youtuber TO 项目经理</span></a></li>
+<li class="toclevel-1 tocsection-66"><a href="#Лучший_Youtuber_TO"><span class="tocnumber">66</span> <span class="toctext">最佳 Youtuber TO</span></a></li>
+<li class="toclevel-1 tocsection-67"><a href="#Картодел"><span class="tocnumber">67</span> <span class="toctext">地图制作者</span></a></li>
+<li class="toclevel-1 tocsection-68"><a href="#Куратор_«Tanki_Online_Shop»"><span class="tocnumber">68</span> <span class="toctext">“Tanki Online Shop”负责人</span></a></li>
+</ul>
+</div><h3><span id=".D0.90.D0.B4.D0.BC.D0.B8.D0.BD.D0.B8.D1.81.D1.82.D1.80.D0.B0.D1.86.D0.B8.D1.8F_.D0.BF.D1.80.D0.BE.D0.B5.D0.BA.D1.82.D0.B0"></span><span class="mw-headline" id="Администрация_проекта">项目管理员</span></h3><table>
+
+
+<tbody><tr>
+<td style="width:13%"><span class="mw-default-size" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/60/Avatar_razrab.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span></span>
+</td>
+<td>他们包括开发人员、社区经理以及用户技术支持服务专家。
+</td></tr></tbody></table><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/a/a8/Avatar_razrab1.png/90px-Avatar_razrab1.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/a/a8/Avatar_razrab1.png 1.5x"></span></span>
+</p>
+</div></div><p><br></p><hr><p><br>
+</p><h3><span id=".D0.90.D0.B4.D0.BC.D0.B8.D0.BD.D0.B8.D1.81.D1.82.D1.80.D0.B0.D1.82.D0.BE.D1.80_.D1.87.D0.B0.D1.82.D0.B0"></span><span class="mw-headline" id="Администратор_чата">聊天管理员</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="聊天管理员头像"><img alt="聊天管理员头像" src="https://ru.tankiwiki.com/images/ru/1/1a/Avatar_admin_chat.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>聊天管理员头像</figcaption></figure>
+</td>
+<td>聊天管理员是维持秩序的精英队伍，他们执行与聊天版相同的功能，但被赋予了更大的权限。甚至可以永久禁止严重违规者使用聊天室。正是聊天管理员负责受理对版主工作的投诉。
+</td></tr></tbody></table><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/4d/Avatar_admin_chat1.png/90px-Avatar_admin_chat1.png" decoding="async" loading="lazy" width="90" height="77" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/4/4d/Avatar_admin_chat1.png 1.5x"></span></span>
+</p>
+</div></div><ul><li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/64/">小组成员名单</a></li></ul><p><br>
+</p><h3><span id=".D0.9C.D0.BE.D0.B4.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80_.D1.87.D0.B0.D1.82.D0.B0"></span><span class="mw-headline" id="Модератор_чата">聊天版主</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="聊天版主头像"><img alt="聊天版主头像" src="https://ru.tankiwiki.com/images/ru/f/f9/Avatar_moder_chat.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>聊天版主头像</figcaption></figure>
+</td>
+<td>这些光荣的伙伴是管理员的千里眼。他们始终战斗在最前线，深入游戏当中，密切监视着刷屏者、说脏话者、“挂机者”以及其他违反规则的人，防止他们破坏守法坦克手的心情。如果您的战斗中有违反游戏规则的信息，您可以直接在战斗中举报：打开战斗聊天，点击违规玩家的昵称，然后选择“举报该信息”。
+</td></tr></tbody></table><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/c/c8/Avatar_moder_chat1.png/90px-Avatar_moder_chat1.png" decoding="async" loading="lazy" width="90" height="77" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/c/c8/Avatar_moder_chat1.png 1.5x"></span></span>
+</p>
+</div></div><ul><li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/64/">小组成员名单</a></li></ul><h3><span id=".D0.9A.D0.B0.D0.BD.D0.B4.D0.B8.D0.B4.D0.B0.D1.82_.D0.B2_.D0.BC.D0.BE.D0.B4.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B_.D1.87.D0.B0.D1.82.D0.B0"></span><span class="mw-headline" id="Кандидат_в_модераторы_чата">聊天版主候选人</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="聊天版主候选人头像"><img alt="聊天版主候选人头像" src="https://ru.tankiwiki.com/images/ru/3/34/Avatar_candidat_moder_chat.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>聊天版主候选人头像</figcaption></figure>
+</td>
+<td>他们是决定尝试担任聊天版主的用户。在通过相应的培训、试用期并获得对其工作的积极评价后，他们将成为正式的聊天版主。
+</td></tr></tbody></table><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/74/Avatar_candidat_moder_chat1.png/90px-Avatar_candidat_moder_chat1.png" decoding="async" loading="lazy" width="90" height="77" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/7/74/Avatar_candidat_moder_chat1.png 1.5x"></span></span>
+</p>
+</div></div><ul><li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/64/">小组成员名单</a></li>
+<li><a rel="nofollow" class="external text" href="http://helper.tankionline.com/position/show/79">如何成为聊天版主</a></li></ul><p><br></p><hr><p><br>
+</p><h3><span id=".D0.90.D0.B4.D0.BC.D0.B8.D0.BD.D0.B8.D1.81.D1.82.D1.80.D0.B0.D1.82.D0.BE.D1.80_.D1.84.D0.BE.D1.80.D1.83.D0.BC.D0.B0"></span><span class="mw-headline" id="Администратор_форума">论坛管理员</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="论坛管理员头像"><img alt="论坛管理员头像" src="https://ru.tankiwiki.com/images/ru/b/b1/Avatar_admin_forum.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>论坛管理员头像</figcaption></figure>
+</td>
+<td>履行监督论坛版主活动的职能。处理关于版主工作错误的投诉，并维护论坛秩序。
+</td></tr></tbody></table><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/9/94/Avatar_admin_forum1.png/90px-Avatar_admin_forum1.png" decoding="async" loading="lazy" width="90" height="77" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/9/94/Avatar_admin_forum1.png 1.5x"></span></span>
+</p>
+</div></div><ul><li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/63/">小组成员名单</a></li></ul><p><br>
+</p><h3><span id=".D0.9C.D0.BE.D0.B4.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80_.D1.84.D0.BE.D1.80.D1.83.D0.BC.D0.B0"></span><span class="mw-headline" id="Модератор_форума">论坛版主</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="论坛版主头像"><img alt="论坛版主头像" src="https://ru.tankiwiki.com/images/ru/f/f6/Avatar_moder_forum.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>论坛版主头像</figcaption></figure>
+</td>
+<td>这些英勇的文字战士日夜在论坛上维护秩序：不知疲倦地排干跑题的“沼泽”，理塞满垃圾的主题的“奥革阿斯牛圈”，删除过时的内容并将焦点集中在最重要的事情上。如果有人决定在论坛上胡作非为，认为“互联网上什么都可以做”——那就叫版主来，他会生动地解释说，无论何时何地都必须遵守文明交流的规则。
+</td></tr></tbody></table><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/a/a8/Avatar_moder_forum1.png/90px-Avatar_moder_forum1.png" decoding="async" loading="lazy" width="90" height="77" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/a/a8/Avatar_moder_forum1.png 1.5x"></span></span>
+<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/f/f7/Avatar_paspab_na_svasi.png/90px-Avatar_paspab_na_svasi.png" decoding="async" loading="lazy" width="90" height="69" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/f/f7/Avatar_paspab_na_svasi.png 1.5x"></span></span>
+</p>
+</div></div><ul><li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/63/">小组成员名单</a></li></ul><h3><span id=".D0.9A.D0.B0.D0.BD.D0.B4.D0.B8.D0.B4.D0.B0.D1.82_.D0.B2_.D0.BC.D0.BE.D0.B4.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8b_.D1.84.D0.BE.D1.80.D1.83.D0.BC.D0.B0"></span><span class="mw-headline" id="Кандидат_в_модераторы_форума">论坛版主候选人</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="论坛版主候选人头像"><img alt="论坛版主候选人头像" src="https://ru.tankiwiki.com/images/ru/f/f0/Avatar_candidat_moder_forum.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>论坛版主候选人头像</figcaption></figure>
+</td>
+<td>他们是决定尝试担任论坛版主的用户。在通过相应的培训、试用期并获得对其工作的积极评价后，他们将成为正式的论坛版主。
+</td></tr></tbody></table><ul><li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/63/">小组成员名单</a></li>
+<li><a rel="nofollow" class="external text" href="https://helper.tankionline.com/group/33">如何成为论坛版主</a></li></ul><p><br></p><hr><p><br>
+</p><h3><span id=".D0.90.D0.B4.D0.BC.D0.B8.D0.BD.D0.B8.D1.81.D1.82.D1.80.D0.B0.D1.82.D0.BE.D1.80_.D0.BC.D0.BE.D0.B4.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D0.BE.D0.B2_.D0.B1.D0.B8.D1.82.D1.80"></span><span class="mw-headline" id="Администратор_модераторов_битв">战局版主管理员</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-default-size mw-halign-left" typeof="mw:File"><span title="战局管理员头像"><img alt="战局管理员头像" src="https://ru.tankiwiki.com/images/ru/d/de/Avatar_trespassers_adm.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>战局管理员头像</figcaption></figure>
+</td>
+<td>战局版主管理员负责监督该小组的活动并组织其工作。处理有关版主工作错误的投诉，并维护游戏秩序。
+</td></tr></tbody></table><ul><li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/275/">小组成员名单</a></li></ul><p><br>
+</p><h3><span id=".D0.9C.D0.BE.D0.B4.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80_.D0.91.D0.B8.D1.82.D0.B2"></span><span class="mw-headline" id="Модератор_Битв">战局版主</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="战局版主头像"><img alt="战局版主头像" src="https://ru.tankiwiki.com/images/ru/4/4f/Avatar_trespassers.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>战局版主头像</figcaption></figure>
+</td>
+<td>经过专门培训的专业人员，负责打击战斗中的违规行为——破坏游戏和使用第三方软件。如果您有证据证明某些人通过第三方软件或与试图获取优势的敌方坦克手勾结进行违规，您可以在论坛的“<a rel="nofollow" class="external text" href="http://ru.tankiforum.com/forum/37/">游戏违规者</a>”板块中创建一个主题并将其发布在其中。
+</td></tr></tbody></table><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/c/c6/Avatar_trespassers1.png/90px-Avatar_trespassers1.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/c/c6/Avatar_trespassers1.png 1.5x"></span></span>
+<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/29/Avatar_trespassers_old.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span></span>
+</p>
+</div></div><ul><li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/275/">小组成员名单</a></li></ul><p><br></p><hr><p><br>
+</p><h3><span id=".D0.90.D0.B4.D0.BC.D0.B8.D0.BD.D0.B8.D1.81.D1.82.D1.80.D0.B0.D1.82.D0.BE.D1.80_.D1.80.E..._энциклопедии"></span><span class="mw-headline" id="Администратор_редакторов_энциклопедии">百科编辑管理员</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="百科编辑管理员头像"><img alt="百科编辑管理员头像" src="https://ru.tankiwiki.com/images/ru/1/19/Wiki_admins.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>百科编辑管理员头像</figcaption></figure>
+</td>
+<td>监督编辑小组的活动，组织他们的工作，并对发布信息的质量负责。
+</td></tr></tbody></table><ul><li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/1085/">小组成员名单</a></li></ul><p><br>
+</p><h3><span id=".D0.A0.D0.B5.D0.B4.D0.B0.D0.BA.D1.82.D0.BE.D1.80.D1.8B_.D1.8D.D0.BD.D1.86.D0.B8.D0.BA.D0.BB.D0.BE.D0.BF.D0.B5.D0.B4.D0.B8.D0.B8"></span><span class="mw-headline" id="Редакторы_энциклопедии">百科编辑</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="百科编辑头像"><img alt="百科编辑头像" src="https://ru.tankiwiki.com/images/ru/7/7a/WikiEditors.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>百科编辑头像</figcaption></figure>
+</td>
+<td>3D 坦克信息部队的分支之一，其任务是为坦克手提供最新信息，并维护知识宝库——3D 坦克 Wiki 的秩序。
+</td></tr></tbody></table><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/68/WikiEditors1.png/90px-WikiEditors1.png" decoding="async" loading="lazy" width="90" height="77" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/6/68/WikiEditors1.png 1.5x"></span></span>
+</p>
+</div></div><ul><li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/1085/">小组成员名单</a></li></ul><h3><span id=".D0.9A.D0.B0.D0.BD.D0.B4.D0.B8.D0.B4.D0.B0.D1.82_.D0.B2_.D1.80.D0.B5.D0.B4.D0.B0.D0.BA.D1.82.D0.BE.D1.80.D1.8B_.D1.8D.D0.BD.D1.86.D0.B8.D0.BA.D0.BB.D0.BE.D0.BF.D0.B5.D0.B4.D0.B8.D0.B8"></span><span class="mw-headline" id="Кандидат_в_редакторы_энциклопедии">百科编辑候选人</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="百科编辑候选人头像"><img alt="百科编辑候选人头像" src="https://ru.tankiwiki.com/images/ru/7/7a/Avatar_Wiki_Candidate.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>百科编辑候选人头像</figcaption></figure>
+</td>
+<td>他们是决定尝试担任百科编辑的用户。在通过相应的培训、试用期并获得对其工作的积极评价后，他们将成为正式的百科编辑。
+</td></tr></tbody></table><ul><li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/1085/">小组成员名单</a></li>
+<li><a rel="nofollow" class="external text" href="http://helper.tankionline.com/position/show/79">如何成为百科编辑</a></li></ul><p><br>
+</p><h3><span id=".D0.90.D0.B2.D1.82.D0.BE.D1.80_.D0.B2.D0.B8.D0.BA.D0.B8-.D0.BA.D0.BE.D0.BD.D1.82.D0.B5.D0.BD.D1.82.D0.B0"></span><span class="mw-headline" id="Автор_вики-контента">Wiki 内容作者</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="Wiki 内容作者头像"><img alt="Wiki 内容作者头像" src="https://ru.tankiwiki.com/images/ru/9/94/WikiCW.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>Wiki 内容作者头像</figcaption></figure>
+</td>
+<td>Wiki 内容作者负责在 Wiki 中编写和更新指南风格的评测和页面。他们还撰写技术文章、创建策略指南，并传播有关电竞社区和游戏历史的总体信息。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像已不再使用。</div>
+</div><h3><span id=".D0.9A.D0.B0.D0.BD.D0.B4.D0.B8.D0.B4.D0.B0.D1.82_.D0.B2_.D0.B0.D0.B2.D1.82.D0.BE.D1.80.D1.8B_.D0.B2.D0.B8.D0.BA.D0.B8-.D0.BA.D0.BE.D0.BD.D1.82.D0.B5.D0.BD.D1.82.D0.B0"></span><span class="mw-headline" id="Кандидат_в_авторы_вики-контента">Wiki 内容作者候选人</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="Wiki 内容作者候选人头像"><img alt="Wiki 内容作者候选人头像" src="https://ru.tankiwiki.com/images/ru/1/1a/WikiCWC.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>Wiki 内容作者候选人头像</figcaption></figure>
+</td>
+<td>决定亲自尝试担任 Wiki 内容作者的用户。在通过试用期并获得对其工作的积极评价后，他们将成为正式的 Wiki 内容作者。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像已不再使用。</div>
+</div><p><br></p><hr><p><br>
+</p><h3><span id=".D0.90.D0.B4.D0.BC.D0.B8.D0.BD.D0.B8.D1.81.D1.82.D1.80.D0.B0.D1.82.D0.BE.D1.80_.D0.B0.D1.81.D1.81.D0.B8.D1.81.D1.82.D0.B5.D0.BD.D1.82.D0.BE.D0.B2"></span><span class="mw-headline" id="Администратор_ассистентов">助手管理员</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="助手管理员头像"><img alt="助手管理员头像" src="https://ru.tankiwiki.com/images/ru/a/ab/EventOH_admin.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>助手管理员头像</figcaption></figure>
+</td>
+<td>助手管理员监督团队的工作，对任务完成质量负责，并致力于改进任务。
+</td></tr></tbody></table><ul><li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/147689/">小组成员名单</a></li></ul><p><br>
+</p><h3><span id=".D0.90.D1.81.D1.81.D0.B8.D1.81.D1.82.D0.B5.D0.BD.D1.82"></span><span class="mw-headline" id="Ассистент">助手</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="助手头像"><img alt="助手头像" src="https://ru.tankiwiki.com/images/ru/5/55/EventOH.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>助手头像</figcaption></figure>
+</td>
+<td>助手是专门与游戏社区经理一起执行各种任务的玩家。
+</td></tr></tbody></table><ul><li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/147689/">小组成员名单</a></li>
+<li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/messenger/compose/?to=48">如何成为助手</a></li></ul><p><br></p><hr><p><br>
+</p><h3><span id=".D0.90.D0.B4.D0.BC.D0.B8.D0.BD.D0.B8.D1.81.D1.82.D1.80.D0.B0.D1.82.D0.BE.D1.80_.D0.BE.D1.80.D0.B3.D0.B0.D0.BD.D0.B8.D0.B7.D0.B0.D1.82.D0.BE.D1.80.D0.BE.D0.B2_.D0.BC.D0.B5.D1.80.D0.BE.D0.BF.D1.80.D0.B8.D1.8F.D1.82.D0.B8.D0.B9"></span><span class="mw-headline" id="Администратор_организаторов_мероприятий">活动组织者管理员</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="活动组织者管理员头像"><img alt="活动组织者管理员头像" src="https://ru.tankiwiki.com/images/ru/a/ab/EventOH_admin.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>活动组织者管理员头像</figcaption></figure>
+</td>
+<td>活动组织者管理员与社区经理紧密合作，组织团队工作，对游戏内举办的活动质量负责，并采纳改进建议。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像目前仅由<a href="./%D0%90%D1%81%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BD%D1%82%D1%8B" class="mw-redirect" title="Ассистенты">助手</a>群组使用</div>
+</div><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/3a/EventsAdministratorsAvatar_New.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span></span>
+</p>
+</div></div><p><br>
+</p><h3><span id=".D0.9E.D1.80.D0.B3.D0.B0.D0.BD.D0.B8.D0.B7.D0.B0.D1.82.D0.BE.D1.80_.D0.BC.D0.B5.D1.80.D0.BE.D0.BF.D1.80.D0.B8.D1.8F.D1.82.D0.B8.D0.B9"></span><span class="mw-headline" id="Организатор_мероприятий">活动组织者</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="活动组织者头像"><img alt="活动组织者头像" src="https://ru.tankiwiki.com/images/ru/5/55/EventOH.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>活动组织者头像</figcaption></figure>
+</td>
+<td>活动组织者是一群极具创造力的坦克手，负责构思和实现游戏中的各种活动和促销方案。他们一直在战场上和社交媒体上努力工作，为玩家带来最欢乐、最愉悦的心情。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像目前仅由<a href="./%D0%90%D1%81%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BD%D1%82%D1%8B" class="mw-redirect" title="Ассистенты">助手</a>群组使用。</div>
+</div><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/21/EventsOrganizersAvatar_New.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span></span>
+</p>
+</div></div><h3><span id=".D0.9A.D0.B0.D0.BD.D0.B4.D0.B8.D0.B4.D0.B0.D1.82_.D0.B2_.D0.BE.D1.80.D0.B3.D0.B0.D0.BD.D0.B8.D0.B7.D0.B0.D1.82.D0.BE.D1.80.D1.8B_.D0.BC.D0.B5.D1.80.D0.BE.D0.BF.D1.80.D0.B8.D1.8F.D1.82.D0.B8.D0.B9"></span><span class="mw-headline" id="Кандидат_в_организаторы_мероприятий">活动组织者候选人</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="活动组织者候选人头像"><img alt="活动组织者候选人头像" src="https://ru.tankiwiki.com/images/ru/9/99/EventsOrganizersCandidateAvatar_New.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>活动组织者候选人头像</figcaption></figure>
+</td>
+<td>决定亲自尝试担任活动组织者的用户。在通过试用期并获得对其工作的积极评价后，他们将成为正式的活动组织者。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像仅在英文本地化中使用，现已不再使用。</div>
+</div><p><br>
+</p><h3><span id=".D0.9F.D0.BE.D0.BC.D0.BE.D1.89.D0.BD.D0.B8.D0.BA.D0.B8_.D0.BC.D0.B5.D1.80.D0.BE.D0.BF.D1.80.D0.B8.D1.8F.D1.82.D0.B8.D0.B9"></span><span class="mw-headline" id="Помощники_мероприятий">活动助手</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="活动助手头像"><img alt="活动助手头像" src="https://ru.tankiwiki.com/images/ru/4/48/EventOH_helper.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>活动助手头像</figcaption></figure>
+</td>
+<td>活动助手是一个重要的组织模块。正是这些伙伴身处所有小型比赛和大型活动的最前线，随时准备向组织者提供帮助。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像已不再使用。</div>
+</div><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/68/EventsHelpersAvatar_New.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span></span>
+</p>
+</div></div><h3><span id=".D0.9A.D0.B0.D0.BD.D0.B4.D0.B8.D0.B4.D0.B0.D1.82_.D0.B2_.D0.BF.D0.BE.D0.BC.D0.BE.D1.89.D0.BD.D0.B8.D0.BA.D0.B8_.D0.BC.D0.B5.D1.80.D0.BE.D0.BF.D1.80.D0.B8.D1.8F.D1.82.D0.B8.D0.B9"></span><span class="mw-headline" id="Кандидат_в_помощники_мероприятий">活动助手候选人</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="活动助手候选人头像"><img alt="活动助手候选人头像" src="https://ru.tankiwiki.com/images/ru/6/65/EventsHelpersCandidateAvatar_New.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>活动助手候选人头像</figcaption></figure>
+</td>
+<td>决定亲自尝试担任活动助手角色的用户。在通过试用期并获得对其工作的积极评价后，他们将成为正式的活动助手。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像仅在英文本地化中使用，现已不再使用。</div>
+</div><p><br>
+</p><h3><span id=".D0.9E.D0.BF.D0.B5.D1.80.D0.B0.D1.80.D0.BE.D1.80_.D0.BC.D0.B5.D1.80.D0.BE.D0.BF.D1.80.D0.B8.D1.8F.D1.82.D0.B8.D0.B9"></span><span class="mw-headline" id="Оператор_мероприятий">活动操作员</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="活动操作员头像"><img alt="活动操作员头像" src="https://ru.tankiwiki.com/images/ru/0/0b/EventEvidenceBroadcastersAvatar_New.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>活动操作员头像</figcaption></figure>
+</td>
+<td>活动证据广播员在活动组织中发挥着重要作用，确保活动中发生的一切都被记录下来。此类广播员的任务是记录整个活动，特别是如果活动组织者被迫驱逐违规者时。活动广播员必须与活动组织者进行密切的沟通和协作。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像仅在波兰语本地化中使用，现已不再使用。</div>
+</div><h3><span id=".D0.9A.D0.B0.D0.BD.D0.B4.D0.B8.D0.B4.D0.B0.D1.82_.D0.B2_.D0.BE.D0.BF.D0.B5.D1.80.D0.B0.D1.80.D0.BE.D1.80.D1.8B_.D0.BC.D0.B5.D1.80.D0.BE.D0.BF.D1.80.D0.B8.D1.8F.D1.82.D0.B8.D0.B9"></span><span class="mw-headline" id="Кандидат_в_операторы_мероприятий">活动操作员候选人</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="活动操作员候选人头像"><img alt="活动操作员候选人头像" src="https://ru.tankiwiki.com/images/ru/8/89/EventEvidenceBroadcastersCandidateAvatar_New.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>活动操作员候选人头像</figcaption></figure>
+</td>
+<td>自己决定尝试担任活动广播员的用户。在通过试用期并获得对其工作的积极评价后，他们将成为正式的活动广播员。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像仅在波兰语本地化中使用，现已不再使用。</div>
+</div><p><br></p><hr><p><br>
+</p><h3><span id=".D0.90.D0.B4.D0.BC.D0.B8.D0.BD.D0.B8.D1.81.D1.82.D1.80.D0.B0.D1.82.D0.BE.D1.80_.D1.80.D0.B5.D0.BF.D0.BE.D1.80.D1.82.D1.91.D1.80.D0.BE.D0.B2"></span><span class="mw-headline" id="Администратор_репортёров">记者管理员</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="记者管理员头像"><img alt="记者管理员头像" src="https://ru.tankiwiki.com/images/ru/b/b1/Avatar_admin_reporter.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>记者管理员头像</figcaption></figure>
+</td>
+<td>监督记者小组的活动，组织他们的工作，并对发布信息的质量负责。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像已不再使用。</div>
+</div><p><br>
+</p><h3><span id=".D0.A0.D0.B5.D0.BF.D0.BE.D1.80.D1.82.D1.91.D1.80"></span><span class="mw-headline" id="Репортёр">记者</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="记者头像"><img alt="记者头像" src="https://ru.tankiwiki.com/images/ru/9/94/Avatar_pressa_new.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>记者头像</figcaption></figure>
+</td>
+<td>活动组织者是一群极具创造力的坦克手，负责构思和实现游戏中的各种活动和促销方案。他们一直在战场上和社交媒体上努力工作，为玩家带来最欢乐、最愉悦的心情。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像已不再使用。</div>
+</div><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/8/89/Avatar_pressa_new1.png/90px-Avatar_pressa_new1.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/8/89/Avatar_pressa_new1.png 1.5x"></span></span>
+</p>
+</div></div><h3><span id=".D0.9A.D0.B0.D0.BD.D0.B4.D0.B8.D0.B4.D0.B0.D1.82_.D0.B2_.D1.80.D0.B5.D0.BF.D0.BE.D1.80.D1.82.D1.91.D1.80.D1.88"></span><span class="mw-headline" id="Кандидат_в_репортёры">记者候选人</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="记者候选人头像"><img alt="记者候选人头像" src="https://ru.tankiwiki.com/images/ru/d/df/Reporter_candidate_avatar.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>记者候选人头像</figcaption></figure>
+</td>
+<td>自己决定尝试担任报纸记者的用户。在通过试用期并获得对其工作的积极评价后，他们将成为正式的记者。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像仅在英文本地化中使用，现已不再使用。</div>
+</div><p><br></p><hr><p><br>
+</p><h3><span id=".D0.90.D0.B4.D0.BC.D0.B8.D0.BD.D0.B8.D1.81.D1.82.D1.80.D0.B0.D1.82.D0.BE.D1.80_.D0.BE.D1.80.D0.B3.D0.B0.D0.BD.D0.B8.D0.B7.D0.B0.D1.82.D0.BE.D1.80.D0.BE.D0.B2_.D0.BA.D0.BE.D0.BD.D0.BA.D1.83.D1.80.D1.81.D0.BE.D0.B2"></span><span class="mw-headline" id="Администратор_организаторов_конкурсов">比赛组织者管理员</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="比赛组织者管理员头像"><img alt="比赛组织者管理员头像" src="https://ru.tankiwiki.com/images/ru/0/05/Avatar_OE_Adm.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>比赛组织者管理员头像</figcaption></figure>
+</td>
+<td>“比赛”板块的组织者管理员负责监督小组的工作，组织其工作并对所举行比赛的质量负责。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像已不再使用。</div>
+</div><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/d9/Contest_Organizers_Admin.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span></span>
+</p>
+<div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像仅在英文本地化中使用，现已不再使用。</div>
+</div>
+<p><br>
+<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/30/DE_contest_admin_avatar.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span></span>
+</p>
+<div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像仅在德语本地化中使用，现已不再使用。</div>
+</div>
+<p><br>
+<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/b7/Avatar_otdel_OK1.png/90px-Avatar_otdel_OK1.png" decoding="async" loading="lazy" width="90" height="77" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/b/b7/Avatar_otdel_OK1.png 1.5x"></span></span>
+</p>
+</div></div><p><br>
+</p><h3><span id=".D0.9E.D1.80.D0.B3.D0.B0.D0.BD.D0.B8.D0.B7.D0.B0.D1.82.D0.BE.D1.80_.D0.BA.D0.BE.D0.BD.D0.BA.D1.83.D1.80.D1.81.D0.BE.D0.B2"></span><span class="mw-headline" id="Организатор_конкурсов">比赛组织者</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="比赛组织者头像"><img alt="比赛组织者头像" src="https://ru.tankiwiki.com/images/ru/6/60/Avatar_OE.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>比赛组织者头像</figcaption></figure>
+</td>
+<td>“比赛”板块的组织者是 3D 坦克管理助手的细分部门之一。正是这些专家的肩膀上承担着在论坛专属的“比赛”板块以及游戏聊天中创建和举办各种比赛的任务。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像已不再使用。</div>
+</div><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/80/Avatar_otdel_OK.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span></span>
+</p>
+<div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像仅在英文本地化中使用，现已不再使用。</div>
+</div>
+<p><br>
+<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/7a/DE_contest_helper_avatar.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span></span>
+</p>
+<div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像仅在德语本地化中使用，现已不再使用。</div>
+</div>
+</div></div><h3><span id=".D0.9A.D0.B0.D0.BD.D0.B4.D0.B8.D0.B4.D0.B0.D1.82_.D0.B2_.D0.BE.D1.80.D0.B3.D0.B0.D0.BD.D0.B8.D0.B7.D0.B0.D1.82.D0.BE.D1.80.D1.8B_.D0.BA.D0.BE.D0.BD.D0.BA.D1.83.D1.80.D1.81.D0.BE.D0.B2"></span><span class="mw-headline" id="Кандидат_в_организаторы_конкурсов">比赛组织者候选人</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="比赛组织者候选人头像"><img alt="比赛组织者候选人头像" src="https://ru.tankiwiki.com/images/ru/c/c8/Avatar_OE_Candidate.png.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>比赛组织者候选人头像</figcaption></figure>
+</td>
+<td>他们是决定尝试担任比赛组织者的用户。在通过相应的培训、试用期并获得对其工作的积极评价后，他们将成为正式的比赛组织者。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像已不再使用。</div>
+</div><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/8/81/Contest_organizers_candidate.png/90px-Contest_organizers_candidate.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/8/81/Contest_organizers_candidate.png 1.5x"></span></span>
+</p>
+<div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像仅在英文本地化中使用，现已不再使用。</div>
+</div>
+<p><br>
+<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/4/48/DE_contest_candidate_avatar.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span></span>
+</p>
+<div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像仅在德语本地化中使用，现已不再使用。</div>
+</div>
+</div></div><p><br></p><hr><p><br>
+</p><h3><span id=".D0.90.D0.B4.D0.BC.D0.B8.D0.BD.D0.B8.D1.81.D1.82.D1.80.D0.B0.D1.82.D0.BE.D1.80_.D0.BE.D1.80.D0.B3.D0.B0.D0.BD.D0.B8.D0.B7.D0.B0.D1.82.D0.BE.D1.80.D0.BE.D0.B2_.D0.BF.D0.B0.D1.80.D0.BA.D1.83.D1.80.D0.BD.D1.8B.D1.85_.D0.BC.D0.B5.D1.80.D0.BE.D0.BF.D1.80.D0.B8.D1.8F.D1.82.D0.B8.D0.B9"></span><span class="mw-headline" id="Администратор_организаторов_паркурных_мероприятий">跑酷活动组织者管理员</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="跑酷活动组织者管理员头像"><img alt="跑酷活动组织者管理员头像" src="https://ru.tankiwiki.com/images/ru/2/24/Avatar_OPE_Adm.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>跑酷活动组织者管理员头像</figcaption></figure>
+</td>
+<td>跑酷活动组织者管理员监督团队的工作，组织其工作并对所举行活动的质量负责。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像已不再使用。</div>
+</div><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/32/ADM-LP.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span></span>
+</p>
+<div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像仅在巴西本地化中使用，现已不再使用。</div>
+</div>
+</div></div><p><br>
+</p><h3><span id=".D0.9E.D1.80.D0.B3.D0.B0.D0.BD.D0.B8.D0.B7.D0.B0.D1.82.D0.BE.D1.80_.D0.BF.D0.B0.D1.80.D0.BA.D1.83.D1.80.D0.BD.D1.8B.D1.85_.D0.BC.D0.B5.D1.80.D0.BE.D0.BF.D1.80.D0.B8.D1.8F.D1.82.D0.B8.D0.B9"></span><span class="mw-headline" id="Организатор_паркурных_мероприятий">跑酷活动组织者</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="跑酷活动组织者头像"><img alt="跑酷活动组织者头像" src="https://ru.tankiwiki.com/images/ru/4/41/Avatar_OPE.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>跑酷活动组织者头像</figcaption></figure>
+</td>
+<td>跑酷活动组织者是一个紧密团结的团队，负责当前的跑酷动作、锦标赛、比赛并确保其举办质量。正是这些伙伴让普通玩家能够长期保持高度热情，并对跑酷活动产生越来越多的兴趣。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像已不再使用。</div>
+</div><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/9/9d/Avatar_Parkour.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span></span>
+</p>
+<div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像仅在巴西本地化中使用，现已不再使用。</div>
+</div>
+<p><br>
+<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/0/02/Parkour_Contest_organizers.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span></span>
+</p>
+<div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像仅在英文本地化中使用，现已不再使用。</div>
+</div>
+</div></div><h3><span id=".D0.9A.D0.B0.D0.BD.D0.B4.D0.B8.D0.B4.D0.B0.D1.82_.D0.B2_.D0.BE.D1.80.D0.B3.D0.B0.D0.BD.D0.B8.D0.B7.D0.B0.D1.82.D0.BE.D1.80.D1.8B_.D0.BF.D0.B0.D1.80.D0.BA.D1.83.D1.80.D0.BD.D1.8B.D1.85_.D0.BC.D0.B5.D1.80.D0.BE.D0.BF.D1.80.D0.B8.D1.8F.D1.82.D0.B8.D0.B9"></span><span class="mw-headline" id="Кандидат_в_организаторы_паркурных_мероприятий">跑酷活动组织者候选人</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="跑酷活动组织者候选人头像"><img alt="跑酷活动组织者候选人头像" src="https://ru.tankiwiki.com/images/ru/a/a8/Avatar_OPE_Candidate.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>跑酷活动组织者候选人头像</figcaption></figure>
+</td>
+<td>他们是决定尝试担任跑酷活动组织者的用户。在通过相应的培训、试用期并获得对其工作的积极评价后，他们将成为正式的跑酷活动组织者。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像已不再使用。</div>
+</div><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/1/1b/Parkour_Contest_organizers_candidate.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span></span>
+</p>
+<div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像仅在英文本地化中使用，现已不再使用。</div>
+</div>
+</div></div><p><br></p><hr><p><br>
+</p><h3><span id=".D0.90.D0.B4.D0.BC.D0.B8.D0.BD.D0.B8.D1.81.D1.82.D1.80.D0.B0.D1.82.D0.BE.D1.80_.D1.82.D0.B5.D1.81.D1.82.D0.B5.D1.80.D0.BE.D0.B2"></span><span class="mw-headline" id="Администратор_тестеров">测试员管理员</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="测试员管理员头像"><img alt="测试员管理员头像" src="https://ru.tankiwiki.com/images/ru/7/7e/Tester_admins.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>测试员管理员头像</figcaption></figure>
+</td>
+<td>监督测试小组的活动，组织测试服务器上的工作。
+</td></tr></tbody></table><ul><li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/1063/">小组成员名单</a></li></ul><p><br>
+</p><h3><span id=".D0.A2.D0.B5.D1.81.D1.82.D0.B5.D1.80"></span><span class="mw-headline" id="Тестер">测试员</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="测试员头像"><img alt="测试员头像" src="https://ru.tankiwiki.com/images/ru/1/19/Avatar_tester.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>测试员头像</figcaption></figure>
+</td>
+<td>没有任何新产品，哪怕是初看最成功的决定，在没有经过测试之前都不会进入游戏。正是测试员率先“尝鲜”所有新功能，帮助发现错误并调试所有机制，以确保它们工作得清晰且完美。
+</td></tr></tbody></table><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/3/3c/Avatar_tester1.png/90px-Avatar_tester1.png" decoding="async" loading="lazy" width="90" height="77" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/3/3c/Avatar_tester1.png 1.5x"></span></span>
+</p>
+</div></div><ul><li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/1063/">小组成员名单</a></li></ul><h3><span id=".D0.9A.D0.B0.D0.BD.D0.B4.D0.B8.D0.B4.D0.B0.D1.82_.D0.B2_.D1.82.D0.B5.D1.81.D1.82.D0.B5.D1.80.D1.8B"></span><span class="mw-headline" id="Кандидат_в_тестеры">测试员候选人</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="测试员候选人头像"><img alt="测试员候选人头像" src="https://ru.tankiwiki.com/images/ru/2/2e/Avatar_Tester_Kand.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>测试员候选人头像</figcaption></figure>
+</td>
+<td>他们是决定尝试担任测试员的用户。在通过相应的培训、试用期并获得对其工作的积极评价后，他们将成为正式的测试员。
+</td></tr></tbody></table><ul><li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/1063/">小组成员名单</a></li>
+<li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/forum/68/">如何成为测试员</a></li></ul><p><br></p><hr><p><br>
+</p><h3><span id=".D0.90.D0.B4.D0.BC.D0.B8.D0.BD.D0.B8.D1.81.D1.82.D1.80.D0.B0.D1.82.D0.BE.D1.80_.D1.80.D0.B5.D1.81.D1.83.D1.80.D1.81.D0.B0_.D0.BF.D0.BE.D0.BC.D0.BE.D1.89.D0.B8"></span><span class="mw-headline" id="Администратор_ресурса_помощи">帮助资源管理员</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="测试员管理员头像"><img alt="测试员管理员头像" src="https://ru.tankiwiki.com/images/ru/6/62/Consultant_adm.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>测试员管理员头像</figcaption></figure>
+</td>
+<td>监督帮助资源顾问版主的活动，处理用户的疑问、问题和想法，并对回答质量负责。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像已不再使用。</div>
+</div><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/c/cb/Consultant_adm1.png/90px-Consultant_adm1.png" decoding="async" loading="lazy" width="90" height="77" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/c/cb/Consultant_adm1.png 1.5x"></span></span>
+</p>
+</div></div><p><br>
+</p><h3><span id=".D0.9A.D0.BE.D0.BD.D1.81.D1.83.D0.BB.D1.8C.D1.82.D0.B0.D0.BD.D1.82-.D0.BC.D0.BE.D0.B4.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80_.D1.80.D0.B5.D1.81.D1.83.D1.80.D1.81.D0.B0_.D0.BF.D0.BE.D0.BC.D0.BE.D1.89.D0.B8"></span><span class="mw-headline" id="Консультант-модератор_ресурса_помощи">帮助资源顾问版主</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="帮助资源顾问版主头像"><img alt="帮助资源顾问版主头像" src="https://ru.tankiwiki.com/images/ru/9/95/Avatar_helpa.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>帮助资源顾问版主头像</figcaption></figure>
+</td>
+<td>玩家帮助资源是玩家可以独立寻找问题答案的地方，如有必要还可以提出自己的问题，并与其他玩家和开发者分享想法。
+<p>每一个想法或漏洞都由版主处理，每一个问题都经过分析，必要时由助手回答。
+</p>
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像已不再使用。</div>
+</div><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/5/57/Avatar_cons-new1.png/90px-Avatar_cons-new1.png" decoding="async" loading="lazy" width="90" height="77" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/5/57/Avatar_cons-new1.png 1.5x"></span></span>
+</p>
+</div></div><h3><span id=".D0.9A.D0.B0.D0.BD.D0.B4.D0.B8.D0.B4.D0.B0.D1.82_.D0.B2_.D0.BA.D0.BE.D0.BD.D1.81.D1.83.D0.BB.D1.8C.D1.82.D0.B0.D0.BD.D1.82-.D0.BC.D0.BE.D0.B4.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B_.D1.80.D0.B5.D1.81.D1.83.D1.80.D1.81.D0.B0_.D0.BF.D0.BE.D0.BC.D0.BE.D1.89.D0.B8"></span><span class="mw-headline" id="Кандидат_в_консультант-модераторы_ресурса_помощи">帮助资源顾问版主候选人</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="帮助资源顾问版主候选人头像"><img alt="帮助资源顾问版主候选人头像" src="https://ru.tankiwiki.com/images/ru/7/71/Help_Site_Consultants_candidate.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>帮助资源顾问版主候选人头像</figcaption></figure>
+</td>
+<td>他们是决定尝试担任帮助资源顾问版主的用户。在通过相应的培训、试用期并获得对其工作的积极评价后，他们将成为正式的帮助资源顾问版主。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像已不再使用。</div>
+</div><p><br></p><hr><p><br>
+</p><h3><span id=".D0.90.D0.B4.D0.BC.D0.B8.D0.BD.D0.B8.D1.81.D1.82.D1.80.D0.B0.D1.82.D0.BE.D1.80_.D1.81.D0.BE.D1.86.D0.B8.D0.B0.D0.BB.D1.8C.D0.BD.D1.8B.D1.85_.D1.81.D0.B5.D1.82.D0.B5.D0.B9"></span><span class="mw-headline" id="Администратор_социальных_сетей">社交媒体管理员</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="社交媒体管理员头像"><img alt="社交媒体管理员头像" src="https://ru.tankiwiki.com/images/ru/6/6c/Avatar_admin_social.networks.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>社交媒体管理员头像</figcaption></figure>
+</td>
+<td>社交媒体管理员监督社交媒体助手小组的活动并组织其工作。处理有关版主工作错误的投诉，并维护社交媒体上的秩序。
+</td></tr></tbody></table><ul><li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/220/">小组成员名单</a></li></ul><p><br>
+</p><h3><span id=".D0.9C.D0.BE.D0.B4.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80_.D1.81.D0.BE.D1.86.D0.B8.D0.B0.D0.BB.D1.8C.D0.BD.D1.8B.D1.85_.D1.81.D0.B5.D1.82.D0.B5.D0.B9"></span><span class="mw-headline" id="Модератор_социальных_сетей">社交媒体版主</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="社交媒体版主头像"><img alt="社交媒体版主头像" src="https://ru.tankiwiki.com/images/ru/0/08/Social_helpers.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>社交媒体版主头像</figcaption></figure>
+</td>
+<td>《3D 坦克》的社区存在于所有热门的社交网络中。其中的秩序和愉快氛围由顾问版主小组维护。此外，他们可以回答您所有与游戏相关的问题。
+</td></tr></tbody></table><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/3d/VK_mods.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span></span>
+<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/f/fa/OldVK_mods.png/90px-OldVK_mods.png" decoding="async" loading="lazy" width="90" height="77" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/f/fa/OldVK_mods.png 1.5x"></span></span>
+</p>
+</div></div><ul><li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/220/">小组成员名单</a></li></ul><h3><span id=".D0.9A.D0.B0.D0.BD.D0.B4.D0.B8.D0.B4.D0.B0.D1.82_.D0.B2_.D0.BC.D0.BE.D0.B4.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B_.D1.81.D0.BE.D1.86.D0.B8.D0.B0.D0.BB.D1.8C.D0.BD.D1.8B.D1.85_.D1.81.D0.B5.D1.82.D0.B5.D0.B9"></span><span class="mw-headline" id="Кандидат_в_модераторы_социальных_сетей">社交媒体版主候选人</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="社交媒体版主候选人头像"><img alt="社交媒体版主候选人头像" src="https://ru.tankiwiki.com/images/ru/thumb/e/e3/Social_Media_Helpers_candidate.png/90px-Social_Media_Helpers_candidate.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/e/e3/Social_Media_Helpers_candidate.png 1.5x"></span><figcaption>社交媒体版主候选人头像</figcaption></figure>
+</td>
+<td>他们是决定尝试担任社交媒体版主的用户。在通过相应的培训、试用期并获得对其工作的积极评价后，他们将成为正式的社交媒体版主。
+</td></tr></tbody></table><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/2/2d/SM_candidate.png/90px-SM_candidate.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/2d/SM_candidate.png/135px-SM_candidate.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/2/2d/SM_candidate.png/180px-SM_candidate.png 2x"></span></span>
+</p>
+</div></div><ul><li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/220/">小组成员名单</a></li>
+<li><a rel="nofollow" class="external text" href="https://helper.tankionline.com/group/35">如何成为社交媒体版主</a></li></ul><p><br><br>
+</p><h3><span id=".D0.90.D0.B4.D0.BC.D0.B8.D0.BD.D0.B8.D1.81.D1.82.D1.80.D0.B0.D1.82.D0.BE.D1.80_.D0.B3.D1.80.D1.83.D0.BF.D0.BF.D1.8B_.C2.AB.D0.A2.D0.B0.D0.BD.D0.BA.D0.B8_.D0.9E.D0.BD.D0.BB.D0.B0.D0.B9.D0.BD.C2.BB_.D0.B2_Facebook"></span><span class="mw-headline" id="Администратор_группы_«Танки_Онлайн»_в_Facebook">Facebook《3D 坦克》群组管理员</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="Facebook《3D 坦克》群组管理员头像"><img alt="Facebook《3D 坦克》群组管理员头像" src="https://ru.tankiwiki.com/images/ru/6/6f/FB_Admin.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>Facebook《3D 坦克》群组管理员头像</figcaption></figure>
+</td>
+<td>Facebook 群组管理员监督群组活动并组织其工作。处理有关版主工作错误的投诉，并维护群组内的秩序。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像已不再使用。</div>
+</div><p><br>
+</p><h3><span id=".D0.9A.D0.BE.D0.BD.D1.81.D1.83.D0.BB.D1.8C.D1.82.D0.B0.D0.BD.D1.82-.D0.BC.D0.BE.D0.B4.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80_.D0.B3.D1.80.D1.83.D0.BF.D0.BF.D1.8B_.C2.AB.D0.A2.D0.B0.D0.BD.D0.BA.D0.B8_.D0.9E.D0.BD.D0.BB.D0.B0.D0.B9.D0.BD.C2.BB_.D0.B2_Facebook"></span><span class="mw-headline" id="Консультант-модератор_группы_«Танки_Онлайн»_в_Facebook">Facebook《3D 坦克》群组顾问版主</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="Facebook《3D 坦克》群组顾问版主头像"><img alt="Facebook《3D 坦克》群组顾问版主头像" src="https://ru.tankiwiki.com/images/ru/1/15/Moders-fb.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>Facebook《3D 坦克》群组顾问版主头像</figcaption></figure>
+</td>
+<td>Facebook 版主对与 3D 坦克官方 FB 主页相关的一切事务负责。他们在评论区和私信中回答问题、封禁违规者，并协助社区经理举办比赛和活动。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像已不再使用。</div>
+</div><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/e8/OldModers-fb.png/90px-OldModers-fb.png" decoding="async" loading="lazy" width="90" height="77" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/e/e8/OldModers-fb.png 1.5x"></span></span>
+</p>
+</div></div><h3><span id=".D0.9A.D0.BE.D0.BD.D1.81.D1.83.D0.BB.D1.8C.D1.82.D0.B0.D0.BD.D1.82-.D0.BC.D0.BE.D0.B4.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80_.D0.B3.D1.80.D1.83.D0.BF.D0.BF.D1.8B_.C2.AB.D0.A2.D0.B0.D0.BD.D0.BA.D0.B8_.D0.9E.D0.BD.D0.BB.D0.B0.D0.B9.D0.BD.C2.BB_.D0.B2_Twitter"></span><span class="mw-headline" id="Консультант-модератор_группы_«Танки_Онлайн»_в_Twitter">Twitter《3D 坦克》群组顾问版主</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="Twitter《3D 坦克》群组顾问版主头像"><img alt="Twitter《3D 坦克》群组顾问版主头像" src="https://ru.tankiwiki.com/images/ru/e/ed/Avatar_Twitter.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>Twitter《3D 坦克》群组顾问版主头像</figcaption></figure>
+</td>
+<td>浏览游戏社交媒体群组的玩家经常会遇到一些问题，顾问版主一定会对此进行解答。Twitter 助手是帮助寻找游戏问题答案的玩家，同时也负责在推特坦克社区中维持愉快的氛围。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像已不再使用。</div>
+</div><p><br></p><hr><p><br>
+</p><h3><span id=".D0.90.D0.B4.D0.BC.D0.B8.D0.BD.D0.B8.D1.81.D1.82.D1.80.D0.B0.D1.82.D0.BE.D1.80_.D0.B3.D1.80.D1.83.D0.BF.D0.BF.D1.8B_.D0.B4.D0.B8.D0.B7.D0.B0.D0.B9.D0.BD.D0.B5.D1.80.D0.BE.D0.B2"></span><span class="mw-headline" id="Администратор_группы_дизайнеров">设计师群组管理员</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="设计师群组管理员头像"><img alt="设计师群组管理员头像" src="https://ru.tankiwiki.com/images/ru/2/25/DT_Admin_avatar.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>设计师群组管理员头像</figcaption></figure>
+</td>
+<td>设计师群组管理员履行与设计师群组成员相同的功能，但拥有更广泛的权限。此外，如果您想对 Designers 成员的工作提出投诉，您应该将其发送给管理员。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像仅在英文本地化中使用，现已不再使用。</div>
+</div><p><br>
+</p><h3><span id=".D0.A3.D1.87.D0.B0.D1.81.D1.82.D0.BD.D0.B8.D0.BA_.D0.B3.D1.80.D1.83.D0.BF.D0.BF.D1.8B_.D0.B4.D0.B8.D0.B7.D0.B0.D0.B9.D0.BD.D0.B5.D1.80.D0.BE.D0.B2"></span><span class="mw-headline" id="Участник_группы_дизайнеров">设计师群组成员</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="设计师群组成员头像"><img alt="设计师群组成员头像" src="https://ru.tankiwiki.com/images/ru/6/66/Designers_Team_member.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>设计师群组成员头像</figcaption></figure>
+</td>
+<td>设计师团队是一群才华横溢、紧密团结的智囊团，他们致力于在英语社区中维持高水平的创意。他们的职责是让官方平台上发布的项目、主题和内容的视觉设计焕发生机。并且负责为社区创作新颖且原创的艺术作品。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像仅在英文本地化中使用，现已不再使用。</div>
+</div><h3><span id=".D0.9A.D0.B0.D0.BD.D0.B4.D0.B8.D0.B4.D0.B0.D1.8_в_.D1.83.D1.87.D0.B0.D1.81.D1.82.D0.BD.D0.B8.D0.BA.D0.B8_.D0.B3.D1.80.D1.83.D0.BF.D0.BF.D1.8B_.D0.B4.D0.B8.D0.B7.D0.B0.D0.B9.D0.BD.D0.B5.D1.80.D0.BE.D0.B2"></span><span class="mw-headline" id="Кандидат_в_участники_группы_дизайнеров">设计师群组成员候选人</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="设计师群组成员候选人头像"><img alt="设计师群组成员候选人头像" src="https://ru.tankiwiki.com/images/ru/b/be/Designers_Team_candidate.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>设计师群组成员候选人头像</figcaption></figure>
+</td>
+<td>他们是决定尝试担任设计师的用户。在通过相应的培训、试用期并获得对其工作的积极评价后，他们将成为正式的设计师群组成员。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像仅在英文本地化中使用，现已不再使用。</div>
+</div><p><br></p><hr><p><br>
+</p><h3><span id=".D0.A2.D0.B2.D0.BE.D1.80.D1.87.D0.B5.D1.81.D0.BA.D0.B8.D0.B5_.D1.82.D0.B0.D0.BD.D0.BA.D0.B8.D1.81.D1.82.D1.8B"></span><span class="mw-headline" id="Творческие_танкисты">创意坦克手</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="创意坦克手头像"><img alt="创意坦克手头像" src="https://ru.tankiwiki.com/images/ru/b/b2/Avatar_Art.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>创意坦克手头像</figcaption></figure>
+</td>
+<td>他们是创意板块的常客，不知疲倦地将最奇思妙想的想法付诸实践，并通过为整个游戏社区发布的作品传递艺术的魔法氛围。
+</td></tr></tbody></table><p><br></p><hr><p><br>
+</p><h3><span id=".D0.90.D0.B4.D0.BC.D0.B8.D0.BD.D0.B8.D1.81.D1.82.D1.80.D0.B0.D1.82.D0.BE.D1.80_.D0.BA.D0.B8.D0.B1.D0.B5.D1.80.D1.81.D0.BF.D0.BE.D1.80.D1.82.D0.B0"></span><span class="mw-headline" id="Администратор_киберспорта">电竞管理员</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="电竞管理员头像"><img alt="电竞管理员头像" src="https://ru.tankiwiki.com/images/ru/c/c5/Photo-276667.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>电竞管理员头像</figcaption></figure>
+</td>
+<td>电竞管理员负责协调并确保社区中电竞活动的质量和规律性。他们是电竞助手小组的领导者，并指导他们的工作。如果您对电竞助手的工作有任何不满，您应该联系他们。
+</td></tr></tbody></table><ul><li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/742/">小组成员名单</a></li></ul><p><br>
+</p><h3><span id=".D0.9C.D0.BE.D0.B4.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80_.D0.BA.D0.B8.D0.B1.D0.B5.D1.81.D1.81.D0.BF.D0.BE.D1.80.D1.82.D0.B0"></span><span class="mw-headline" id="Модератор_киберспорта">电竞版主</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="电竞版主头像"><img alt="电竞版主头像" src="https://ru.tankiwiki.com/images/ru/3/3a/Photo-116162.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>电竞版主头像</figcaption></figure>
+</td>
+<td>电竞版主的任务是确保在电竞比赛期间一切正常运转。如果您有与电竞相关的投诉或问题，您应该联系这些伙伴。
+</td></tr></tbody></table><ul><li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/742/">小组成员名单</a></li></ul><h3><span id=".D0.9A.D0.B0.D0.BD.D0.B4.D0.B8.D0.B4.D0.B0.D1.82_.D0.B2_.D0.BC.D0.BE.D0.B4.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B_.D0.BA.D0.B8.D0.B1.D0.B5.D1.81.D1.81.D0.BE.D1.80.D1.82.D0.B0"></span><span class="mw-headline" id="Кандидат_в_модераторы_киберспорта">电竞版主候选人</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="电竞版主候选人头像"><img alt="电竞版主候选人头像" src="https://ru.tankiwiki.com/images/ru/0/0c/ESportsHelperCandidateAvatar.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>电竞版主候选人头像</figcaption></figure>
+</td>
+<td>他们是决定尝试担任电竞版主的用户。在通过相应的培训、试用期并获得对其工作的积极评价后，他们将成为正式的电竞版主。
+</td></tr></tbody></table><ul><li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/742/">小组成员名单</a></li>
+<li><a rel="nofollow" class="external text" href="https://helper.tankionline.com/group/9">如何成为电竞版主</a></li></ul><p><br><br>
+</p><h3><span id=".D0.A0.D1.83.D0.BA.D0.BE.D0.B4.D0.B8.D1.82.D0.B5.D0.BB.D1.8C_.D0.B3.D1.80.D1.83.D0.BF.D0.BF.D1.8B_.D0.BA.D0.BE.D0.BD.D1.82.D0.B5.D0.BD.D1.82-.D0.BF.D0.BE.D0.BC.D0.BE.D1.89.D0.BD.D0.B8.D0.BA.D0.BE.D0.B2_.D0.BA.D0.B8.D0.B1.D0.B5.D1.81.D1.81.D0.BE.D1.80.D1.82.D0.B0"></span><span class="mw-headline" id="Руководитель_группы_контент-помощников_киберспорта">电竞内容助手群组负责人</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="电竞内容助手负责人头像"><img alt="电竞内容助手负责人头像" src="https://ru.tankiwiki.com/images/ru/7/77/ESportsContentTeamLeader.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>电竞内容助手负责人头像</figcaption></figure>
+</td>
+<td>内容群组负责人的工作是确保 EN 社区中定期产生高质量的内容，并管理英语内容助手团队。他的工作是在每个视频之后向助手提供反馈，并解决可能出现的任何问题。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像仅在英文本地化中使用。</div>
+</div><p><br>
+</p><h3><span id=".D0.9A.D0.BE.D0.BD.D1.82.D0.B5.D0.BD.D1.82-.D0.BF.D0.BE.D0.BC.D0.BE.D1.89.D0.BD.D0.B8.D0.BA_.D0.BA.D0.B8.D0.B1.D0.B5.D1.81.D1.81.D0.BE.D1.80.D1.82.D0.B0"></span><span class="mw-headline" id="Контент-помощник_киберспорта">电竞内容助手</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="电竞内容助手头像"><img alt="电竞内容助手头像" src="https://ru.tankiwiki.com/images/ru/6/69/ESportContentHelper.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>电竞内容助手头像</figcaption></figure>
+</td>
+<td>电竞内容助手团队负责报道比赛以及整个游戏的电竞社区。这个活动范围广泛的团队承担着撰写比赛评测，以及拍摄、剪辑和制作电竞视频的任务。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像仅在英文本地化中使用。</div>
+</div><h3><span id=".D0.9A.D0.B0.D0.BD.D0.B4.D0.B8.D0.B4.D0.B0.D1.82_.D0.B2_.D0.BA.D0.BE.D0.BD.D1.82.D0.B5.D0.BD.D1.82-.D0.BF.D0.BE.D0.BC.D0.BE.D1.89.D0.BD.D0.B8.D0.BA.D0.B8_.D0.BA.D0.B8.D0.B1.D0.B5.D1.81.D1.81.D0.BE.D1.80.D1.82.D0.B0"></span><span class="mw-headline" id="Кандидат_в_контент-помощники_киберспорта">电竞内容助手候选人</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="电竞内容助手候选人头像"><img alt="电竞内容助手候选人头像" src="https://ru.tankiwiki.com/images/ru/8/84/ESportsContentHelperCandidate.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>电竞内容助手候选人头像</figcaption></figure>
+</td>
+<td>他们是决定尝试担任电竞内容助手用户。在通过相应的培训、试用期并获得对其工作的积极评价后，他们将成为正式的电竞内容助手。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像仅在英文本地化中使用。</div>
+</div><p><br></p><hr><p><br>
+</p><h3><span id=".D0.90.D0.B4.D0.BC.D0.B8.D0.BD.D0.B8.D1.81.D1.82.D1.80.D0.B0.D1.82.D0.BE.D1.80_.D0.BA.D0.B8.D0.B1.D0.B5.D1.81.D1.81.D0.BE.D1.80.D1.82.D0.B8.D0.B2.D0.BD.D1.8B.D1.85_.D1.82.D1.80.D0.B0.D0.BD.D1.81.D0.BB.D1.8F.D1.86.D0.B8.D0.B9"></span><span class="mw-headline" id="Администратор_киберспортивных_трансляций">电竞赛事直播管理员</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="电竞赛事直播管理员头像"><img alt="电竞赛事直播管理员头像" src="https://ru.tankiwiki.com/images/ru/a/a9/Cs_comments_admin.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>电竞赛事直播管理员头像</figcaption></figure>
+</td>
+<td>电竞赛事直播管理员负责协调操作员和解说员的工作。如果您对该小组成员的工作有任何不满，您应该联系他们。
+</td></tr></tbody></table><ul><li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/20339/">小组成员名单</a></li></ul><p><br>
+</p><h3><span id=".D0.9A.D0.BE.D0.BC.D0.BC.D0.B5.D0.BD.D1.82.D0.B0.D1.82.D0.BE.D1.80.D1.8B_.D0.B8_.D0.BE.D0.BF.D0.B5.D1.80.D0.B0.D1.82.D0.BE.D1.80.D1.8B_.D0.BA.D0.B8.D0.B1.D0.B5.D1.81.D1.81.D0.BE.D1.80.D1.82.D0.B8.D0.B2.D0.BD.D1.8B.D1.85_.D1.82.D1.80.D0.B0.D0.BD.D1.81.D0.BB.D1.8F.D1.86.D0.B8.D0.B9"></span><span class="mw-headline" id="Комментаторы_и_операторы_киберспортивных_трансляций">电竞赛事直播解说员和操作员</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="电竞解说与转播操作员头像"><img alt="电竞解说与转播操作员头像" src="https://ru.tankiwiki.com/images/ru/0/03/Cs_coments.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>电竞解说与转播操作员头像</figcaption></figure>
+</td>
+<td>喜欢观看精彩战局的转播并希望随时了解电竞最新动态吗？那么这些人正是你所需要的。
+</td></tr></tbody></table><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/0/05/OldCs_coments.png/90px-OldCs_coments.png" decoding="async" loading="lazy" width="90" height="77" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/0/05/OldCs_coments.png 1.5x"></span></span>
+</p>
+</div></div><ul><li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/20339/">小组名单</a></li>
+<li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/20341/">如何成为电竞解说与转播操作员</a></li></ul><h3><span id=".D0.9A.D0.B0.D0.BD.D0.B4.D0.B0.D1.82_.D0.B2_.D0.BA.D0.BE.D0.BC.D0.BC.D0.B5.D0.BD.D1.82.D0.B0.D1.82.D0.BE.D1.80.D1.8B_.D0.BA.D0.B8.D0.B1.D0.B5.D1.80.D1.81.D0.BF.D0.BE.D1.80.D1.82.D0.B8.D0.B2.D0.BD.D1.8B.D1.85_.D1.82.D1.80.D0.B0.D0.BD.D1.81.D0.BB.D1.8F.D1.86.D0.B8.D0.B9"></span><span class="mw-headline" id="Кандидат_в_комментаторы_киберспортивных_трансляций">电竞解说候选人</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="电竞解说候选人头像"><img alt="电竞解说候选人头像" src="https://ru.tankiwiki.com/images/ru/4/46/ESportsCommentatorCandidate.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>电竞解说候选人头像</figcaption></figure>
+</td>
+<td>他们是指决定尝试担任电竞解说角色的玩家。在通过相应的培训、实习期并获得对其工作的积极评价后，他们将成为正式的电竞解说。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像仅在英文语言环境中应用。</div>
+</div><p><br></p><hr><p><br>
+</p><h3><span id=".D0.90.D0.B4.D0.BC.D0.B8.D0.BD.D0.B8.D1.81.D1.82.D1.80.D0.B0.D1.82.D0.BE.D1.80_.D0.BF.D0.BE.D0.BC.D0.BE.D1.89.D0.BD.D0.B8.D0.BA.D0.BE.D0.B2_.D0.B2.D0.B8.D0.B4.D0.B5.D0.BE.D0.B1.D0.BB.D0.BE.D0.B3.D0.B0"></span><span class="mw-headline" id="Администратор_помощников_видеоблога">V-LOG 助理管理员</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="V-LOG 助理管理员头像"><img alt="V-LOG 助理管理员头像" src="https://ru.tankiwiki.com/images/ru/e/e7/Avatar_CH_admin.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>V-LOG 助理管理员头像</figcaption></figure>
+</td>
+<td>V-LOG 助理管理员负责组织小组活动并对拍摄视频材料的质量负责。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像也在英文语言环境中的 Rent a Spec 小组使用。</div>
+</div><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2c/Content_creators_admin.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span></span>
+</p>
+</div></div><ul><li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/41508/">小组名单</a></li></ul><p><br>
+</p><h3><span id=".D0.9F.D0.BE.D0.BC.D0.BE.D1.89.D0.BD.D0.B8.D0.BA_.D0.B2.D0.B8.D0.B4.D0.B5.D0.BE.D0.B1.D0.BB.D0.BE.D0.B3.D0.B0"></span><span class="mw-headline" id="Помощник_видеоблога">V-LOG 助理</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="V-LOG 助理头像"><img alt="V-LOG 助理头像" src="https://ru.tankiwiki.com/images/ru/1/19/Avatar_CH.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>V-LOG 助理头像</figcaption></figure>
+</td>
+<td>V-LOG 助理团队致力于为 3D 坦克的 V-LOG 以及游戏社区拍摄富有教育意义的视频内容。
+</td></tr></tbody></table><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/5/51/Content_creators.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span></span>
+</p>
+</div></div><ul><li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/41508/">小组名单</a></li></ul><h3><span id=".D0.9A.D0.B0.D0.BD.D0.B4.D0.B8.D0.B4.D0.B0.D1.82_.D0.B2_.D0.BF.D0.BE.D0.BC.D0.BE.D1.89.D0.BD.D0.B8.D0.BA.D0.B8_.D0.B2.D0.B8.D0.B4.D0.B5.D0.BE.D0.B1.D0.BB.D0.BE.D0.B3.D0.B0"></span><span class="mw-headline" id="Кандидат_в_помощники_видеоблога">V-LOG 助理候选人</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="V-LOG 助理候选人头像"><img alt="V-LOG 助理候选人头像" src="https://ru.tankiwiki.com/images/ru/6/6f/Content_Candidate.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>V-LOG 助理候选人头像</figcaption></figure>
+</td>
+<td>他们是指决定尝试担任 V-LOG 助理角色的玩家。在通过相应的培训、实习期并获得对其工作的积极评价后，他们将成为正式的 V-LOG 助理。
+</td></tr></tbody></table><ul><li><a rel="nofollow" class="external text" href="https://ru.tankiforum.com/topic/41508/">小组名单</a></li>
+<li><a rel="nofollow" class="external text" href="https://helper.tankionline.com/group/36">如何成为 V-LOG 助理</a></li></ul><p><br></p><hr><p><br>
+</p><h3><span id=".D0.90.D0.B4.D0.BC.D0.B8.D0.BD.D0.B8.D1.81.D1.82.D1.80.D0.B0.D1.82.D0.BE.D1.80_.D0.BF.D0.B5.D1.80.D0.B5.D0.B2.D0.BE.D0.B4.D1.87.D0.B8.D0.BA.D0.BE.D0.B2_.D0.B8_.D0.BA.D0.BE.D1.80.D1.80.D0.B5.D0.BA.D1.82.D0.BE.D1.80.D0.BE.D0.B2"></span><span class="mw-headline" id="Администратор_переводчиков_и_корректоров">翻译与校对管理员</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="翻译与校对小组管理员头像"><img alt="翻译与校对小组管理员头像" src="https://ru.tankiwiki.com/images/ru/5/55/Content_Translators_Admin.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>翻译与校对小组管理员头像</figcaption></figure>
+</td>
+<td>翻译与校对管理员执行与翻译和校对相同的职能，但被赋予了更广泛的权限。如果你想就助理的行为或操作进行投诉，或者对助理的工作分享任何意见，你应该联系管理员。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像仅在英文语言环境中应用。</div>
+</div><p><br>
+</p><h3><span id=".D0.9A.D0.BE.D0.BD.D1.82.D0.B5.D0.BD.D1.82-.D0.BF.D0.BE.D0.BC.D0.BE.D1.89.D0.BD.D0.B8.D0.BA.D0.B8_.D0.B3.D1.80.D1.85.D0.BF.D0.BF.D1.81_.D0.BA.D0.BE.D1.80.D1.80.D0.B5.D0.BA.D1.82.D0.BE.D1.80.D0.BE.D0.B2"></span><span class="mw-headline" id="Контент-помощники_группы_корректоров">校对小组内容助理</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="校对小组内容助理头像"><img alt="校对小组内容助理头像" src="https://ru.tankiwiki.com/images/ru/3/32/Content_Translators_Helper.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>校对小组内容助理头像</figcaption></figure>
+</td>
+<td>内容助理分为 4 个团队：“V-LOG 翻译”、“游戏翻译”、“校对”和“转播团队（操作员和解说员）”。
+<ul><li>操作员是直播团队的重要组成部分。这些员工负责向观众实时呈现直播镜头，没有他们的工作，任何转播都将无法进行。</li>
+<li>电解说员在直播中对“坦克”电竞顶峰的最残酷战斗和社区活动进行解说。他们的工作是在频道直播中娱乐观众，并在直播中为社区创作有趣的内容。他们是社区的公众之声！</li></ul>
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像仅在英文语言环境中应用。</div>
+</div><h3><span id=".D0.9A.D0.B0.D0.BD.D0.B4.D0.B8.D0.B4.D0.B0.D1.82_.D0.B2_.D0.BF.D0.B5.D1.80.D0.B5.D0.B2.D0.BE.D0.B4.D1.87.D0.B8.D0.BA.D0.B8_.D0.B8_.D0.BA.D0.BE.D1.80.D1.80.D0.B5.D0.BA.D1.82.D0.BE.D1.80.D1.8B"></span><span class="mw-headline" id="Кандидат_в_переводчики_и_корректоры">翻译与校对候选人</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="翻译与校对候选人头像"><img alt="翻译与校对候选人头像" src="https://ru.tankiwiki.com/images/ru/2/29/ProofreaderCandidate.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>翻译与校对候选人头像</figcaption></figure>
+</td>
+<td>他们是指决定尝试担任翻译和校对角色的玩家。在通过相应的培训、实习期并获得对其工作的积极评价后，他们将成为正式的翻译和校对。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像仅在英文语言环境中应用。</div>
+</div><p><br></p><hr><p><br>
+</p><h3><span id=".D0.9C.D0.B5.D0.B4.D0.B0.D0.BB.D1.8C_.C2.AB.D0.97.D0.B0_.D0.B7.D0.B0.D1.81.D0.BB.D1.83.D0.B3.D0.B8.C2.BB"></span><span class="mw-headline" id="Медаль_«За_заслуги»">“功绩”勋章</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="“功绩”勋章头像"><img alt="“功绩”勋章头像" src="https://ru.tankiwiki.com/images/ru/b/b7/Medal.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>“功绩”勋章头像</figcaption></figure>
+</td>
+<td>授予对项目发展做出重大贡献的杰出坦克手。
+</td></tr></tbody></table><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/da/Za_zaslugi_old.png/90px-Za_zaslugi_old.png" decoding="async" loading="lazy" width="90" height="77" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/d/da/Za_zaslugi_old.png 1.5x"></span></span>
+<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/a0/Za_zaslugi_old1.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span></span>
+</p>
+</div></div><ul><li><a rel="nofollow" class="external text" href="./Za_zaslugi">获得者名单</a></li></ul><p><br></p><hr><p><br>
+</p><h3><span id=".D0.9C.D0.B5.D0.BD.D0.B5.D0.B4.D0.B6.D0.B5.D1.80_.D0.BF.D1.80.D0.BE.D0.B3.D1.80.D0.B0.D0.BC.D0.BC.D1.8B_Youtuber_TO"></span><span class="mw-headline" id="Менеджер_программы_Youtuber_TO">Youtuber TO 项目经理</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="Youtuber TO 项目经理头像"><img alt="Youtuber TO 项目经理头像" src="https://ru.tankiwiki.com/images/ru/9/9d/Admin_youtuber.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>Youtuber TO 项目经理头像</figcaption></figure>
+</td>
+<td>Youtuber TO 项目经理与社区经理一同负责启动 YouTuber TO 项目。他们负责检查和维护 YouTube 频道及其内容的标准。有关该项目的任何问题或请求均应发送给 YouTuber TO 项目经理。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像仅在英文语言环境以及 <a rel="nofollow" class="external text" href="https://tankianalytics.com/">Youtuber TO 网站</a>上应用。</div>
+</div><h3><span id=".D0.9B.D1.83.D1.87.D1.88.D0.B8.D0.B9_Youtuber_TO"></span><span class="mw-headline" id="Лучший_Youtuber_TO">最佳 Youtuber TO</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="最佳 Youtuber TO 头像"><img alt="最佳 Youtuber TO 头像" src="https://ru.tankiwiki.com/images/ru/0/0f/Top_youtuber.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>最佳 Youtuber TO 头像</figcaption></figure>
+</td>
+<td>这是参与 Youtuber TO 项目的“3D 坦克”Top 10 月播放量最高的 YouTube 主播。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像仅在英文语言环境以及 <a rel="nofollow" class="external text" href="https://tankianalytics.com/">Youtuber TO 网站</a>上应用。</div>
+</div><p><br></p><hr><p><br>
+</p><h3><span id=".D0.9A.D0.B0.D1.80.D1.82.D0.BE.D0.B4.D0.B5.D0.BB"></span><span class="mw-headline" id="Картодел">地图制作者</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="地图制作者头像"><img alt="地图制作者头像" src="https://ru.tankiwiki.com/images/ru/thumb/2/25/Map_Maker_Avatar.png/90px-Map_Maker_Avatar.png" decoding="async" loading="lazy" width="90" height="81" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/2/25/Map_Maker_Avatar.png 1.5x"></span><figcaption>地图制作者头像</figcaption></figure>
+</td>
+<td>这些玩家是真正的建筑、设计和战术大师。他们为游戏设计和创建了各种战术复杂的地图，并且是所有相关问题的联络人。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像不再使用。</div>
+</div><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/e2/Avatar_kartodel.png/90px-Avatar_kartodel.png" decoding="async" loading="lazy" width="90" height="77" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/e/e2/Avatar_kartodel.png 1.5x"></span></span>
+</p>
+</div></div><p><br></p><hr><p><br>
+</p><h3><span id=".D0.9A.D1.83.D1.80.D0.B0.D1.82.D0.BE.D1.80_.C2.ABTanki_Online_Shop.C2.BB"></span><span class="mw-headline" id="Куратор_«Tanki_Online_Shop»">“Tanki Online Shop” 负责人</span></h3><table>
+
+<tbody><tr>
+<td style="width:13%"><figure class="mw-halign-left" typeof="mw:File"><span title="“Tanki Online Shop” 负责人头像"><img alt="“Tanki Online Shop” 负责人头像" src="https://ru.tankiwiki.com/images/ru/9/9b/Avatar_shop.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element"></span><figcaption>“Tanki Online Shop” 负责人头像</figcaption></figure>
+</td>
+<td>他们是商店团队的成员，不仅负责支付流程，还负责与“3D 坦克”商品相关的一切事务——处理订单、打包和发货以及构思新品。
+</td></tr></tbody></table><div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">该头像不再使用。</div>
+</div><div class="toccolours mw-collapsible mw-collapsed" style="width:380px">
+<p><i>其他版本的头像：</i>
+</p>
+<div class="mw-collapsible-content">
+<p><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/9/9f/Avatar_shop1.png/90px-Avatar_shop1.png" decoding="async" loading="lazy" width="90" height="90" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/9/9f/Avatar_shop1.png 1.5x"></span></span>
+</p>
+</div></div><p><br></p><hr><p><br>
+</p><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample1">2020 年愚人节头像</div><div class="collapse" id="collapseExample1"><div class="">
+<div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">这些头像仅存在于英文语言环境中。</div>
+</div><table class="wikitable-modern white-table default" style="width:80%">
+
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/3/3e/Avatar_Riddler_8.png/97px-Avatar_Riddler_8.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/3/3e/Avatar_Riddler_8.png 1.5x"></span></span>
+</td>
+<td>论坛最高领袖头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/5/56/Avatar_Marcus.png/97px-Avatar_Marcus.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/56/Avatar_Marcus.png 1.5x"></span></span>
+</td>
+<td>生日蛋糕头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/21/Avatar_Gogo.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>“土豆麦克风”头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/ad/Avatar_MartRigge.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>愚人节活动管理员头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/2/2e/Avatar_The.L-E-G-E-N-D.png/97px-Avatar_The.L-E-G-E-N-D.png" decoding="async" loading="lazy" width="97" height="115" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/2/2e/Avatar_The.L-E-G-E-N-D.png 1.5x"></span></span>
+</td>
+<td>“燃烧的记者”头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/e9/Avatar_FelTin63.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>倒立的愚人节活动管理员头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/8/8c/Avatar_How_do_I_change_my_nickname_back.png/97px-Avatar_How_do_I_change_my_nickname_back.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/8/8c/Avatar_How_do_I_change_my_nickname_back.png 1.5x"></span></span>
+</td>
+<td>小丑头像</td></tr></tbody></table>
+</div></div><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample2">头像设计比赛</div><div class="collapse" id="collapseExample2"><div class="">
+<div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">这些头像仅存在于英文语言环境中。</div>
+</div><table class="wikitable-modern white-table default" style="width:80%">
+
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/82/I.Ro.png" decoding="async" loading="lazy" width="97" height="147" class="mw-file-element"></span></span>
+</td>
+<td>由玩家 I.Ro 创建的论坛头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/eb/ChristmasWin1.png" decoding="async" loading="lazy" width="97" height="108" class="mw-file-element"></span></span>
+</td>
+<td>由玩家 Seraphina 创建的论坛头像</td></tr></tbody></table>
+</div></div><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample3">2020 年圣诞节</div><div class="collapse" id="collapseExample3"><div class="">
+<div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">2020 年 12 月 8 日，这些头像被添加到管理员和助理的账户中。</div>
+</div><table class="wikitable-modern white-table default" style="width:80%">
+
+
+<tbody><tr>
+<td>
+</td>
+<td>英文论坛头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/e1/Xmas_Developer.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>社区经理的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/dd/Xmas_Forum_Administrator.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>论坛版主管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/67/Xmas_Battle_Administrator.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>战场版主管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2a/Xmas_Chat_Administrator.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>聊天版主管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/3a/Xmas_Content_Administrator.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>设计小组管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2e/Xmas_Content_Administrator2.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>翻译与校对小组管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/ed/Xmas_Contest_Administrator.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>竞赛组织者管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/28/Xmas_eSports_Administrator.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>电竞管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/7c/Xmas_Events_Administrator.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>跑酷活动组织者管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cc/Xmas_Help_Site_Administrator.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>帮助资源管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/4/4c/Xmas_Newspaper_Administrator.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>记者管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/4/42/Xmas_Social_Media_Administrator.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>社交媒体管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/5/56/Xmas_Wiki_Administrator.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>百科管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/69/Content_Administrator3.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>转播组织者管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/70/Xmas_Content_Administrator4.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>内容助理管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/3d/Xmas_Battle_Moderator.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>战场版主的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6c/Xmas_Chat_Moderator.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>聊天版主的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/84/Xmas_Content_Helper.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>操作员和解说员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/a4/Xmas_Content_Helper2.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>内容助理的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/84/Xmas_Content_Helper3.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>翻译与校对小组的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/0/0f/Xmas_Contest_Organizer.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>竞赛组织者的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/5/5d/Xmas_Wiki_Editor.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>百科编辑的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/ae/Xmas_Designer.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>设计师的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/22/Xmas_eSports_Helper.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>电竞内容助理的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/73/Xmas_eSports_Helpers_Team_Leader.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>电竞内容助理小组组长的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2f/Xmas_eSports_Official.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>电竞版主的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6f/Xmas_Event_Broadcaster.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>活动操作员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/ec/Xmas_Event_Helper.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>活动助理的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/39/Xmas_Event_Organizer.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>活动组织者的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/d8/Xmas_Forum_Moderator.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>论坛版主的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/3e/Xmas_Newspaper_Reporter.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>记者的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/c2/Xmas_Social_Media_Helper.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>社交媒体版主的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/4/49/Xmas_Content_Helper_Candidate.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>内容助理候选人的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2b/Xmas_Content_Helper_Candidate2.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>翻译与校对小组候选人的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/0/04/Xmas_eSports_Helper_Candidate.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>电竞内容助理候选人的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/a4/Xmas_Event_Organizer_Candidate.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>活动组织者候选人的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/22/Xmas_Help_Site_Consultant_Candidate.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>帮助资源小组候选人的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/8d/Xmas_Newspaper_Reporter_Candidate.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>记者候选人的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/3b/Xmas_Social_Media_Helper_Candidate.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>社交媒体助理候选人的圣诞头像</td></tr>
+<tr>
+<td>
+</td>
+<td>俄语论坛头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/ad/RU_Xmas_Community_Manager.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>社区经理的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cc/RU_Xmas_Administrators_OK.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>竞赛组织者管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/c5/RU_Xmas_Battle_Administrators.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>战场版主管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/0/0c/RU_Xmas_Chat_Administrators.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>聊天版主管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/28/RU_Xmas_Commentator_Administrators.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>电竞赛事转播组织者管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/d4/RU_Xmas_Content_Assistant_Administrators.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>V-LOG 内容助理管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/b2/RU_Xmas_Event_organizer_administrators.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>活动组织者管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/2e/RU_Xmas_Parkour_administrators.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>跑酷活动组织者管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/f/f8/RU_Xmas_Reporter_Administrators.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>记者管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/5/51/RU_Xmas_Testers_Administrators.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>测试员管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/9/9f/RU_Xmas_Wiki_Administrators.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>百科编辑管理员的圣诞头像</td></tr>
+<tr>
+<td>
+</td>
+<td>德语论坛头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/9/93/DE_Xmas_Forum_Administrators.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>论坛管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/61/DE_Xmas_eSports_Administrator.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>电竞管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/a5/DE_Xmas_Social_Media_Administrator.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>社交媒体版主管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/d1/DE_Xmas_eSports_Team_Leader.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>电竞内容助理小组组长的圣诞头像</td></tr></tbody></table>
+</div></div><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample4">2021 年愚人节头像</div><div class="collapse" id="collapseExample4"><div class="">
+<div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">这些头像是作为愚人节玩笑添加给某些英文论坛助理的。</div>
+</div><table class="wikitable-modern white-table default" style="width:80%">
+
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/0/0c/Drone_Crisis.png/100px-Drone_Crisis.png" decoding="async" loading="lazy" width="100" height="65" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/0/0c/Drone_Crisis.png/150px-Drone_Crisis.png 1.5x, https://ru.tankiwiki.com/images/ru/0/0c/Drone_Crisis.png 2x"></span></span>
+</td>
+<td>危机领主</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/a/a7/Hyperion.png/100px-Hyperion.png" decoding="async" loading="lazy" width="100" height="65" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/a/a7/Hyperion.png/150px-Hyperion.png 1.5x, https://ru.tankiwiki.com/images/ru/a/a7/Hyperion.png 2x"></span></span>
+</td>
+<td>亥伯龙神</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/0/07/Drone_engineer.png/100px-Drone_engineer.png" decoding="async" loading="lazy" width="100" height="65" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/0/07/Drone_engineer.png/150px-Drone_engineer.png 1.5x, https://ru.tankiwiki.com/images/ru/0/07/Drone_engineer.png 2x"></span></span>
+</td>
+<td>工程师</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Drone_brutus.png/100px-Drone_brutus.png" decoding="async" loading="lazy" width="100" height="65" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e4/Drone_brutus.png/150px-Drone_brutus.png 1.5x, https://ru.tankiwiki.com/images/ru/e/e4/Drone_brutus.png 2x"></span></span>
+</td>
+<td>布鲁特斯</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/71/Drone_trickster.png/100px-Drone_trickster.png" decoding="async" loading="lazy" width="100" height="65" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/71/Drone_trickster.png/150px-Drone_trickster.png 1.5x, https://ru.tankiwiki.com/images/ru/7/71/Drone_trickster.png 2x"></span></span>
+</td>
+<td>欺诈者</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/4a/Drone_sprinter.png/100px-Drone_sprinter.png" decoding="async" loading="lazy" width="100" height="65" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/4a/Drone_sprinter.png/150px-Drone_sprinter.png 1.5x, https://ru.tankiwiki.com/images/ru/4/4a/Drone_sprinter.png 2x"></span></span>
+</td>
+<td>奔跑者</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/a/a3/Drone_trooper.png/100px-Drone_trooper.png" decoding="async" loading="lazy" width="100" height="65" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/a/a3/Drone_trooper.png/150px-Drone_trooper.png 1.5x, https://ru.tankiwiki.com/images/ru/a/a3/Drone_trooper.png 2x"></span></span>
+</td>
+<td>骑兵</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/61/Drone_defender.png/100px-Drone_defender.png" decoding="async" loading="lazy" width="100" height="65" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/61/Drone_defender.png/150px-Drone_defender.png 1.5x, https://ru.tankiwiki.com/images/ru/6/61/Drone_defender.png 2x"></span></span>
+</td>
+<td>守卫者</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/2/22/Drone_miner.png/100px-Drone_miner.png" decoding="async" loading="lazy" width="100" height="65" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/22/Drone_miner.png/150px-Drone_miner.png 1.5x, https://ru.tankiwiki.com/images/ru/2/22/Drone_miner.png 2x"></span></span>
+</td>
+<td>工兵</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/c/cf/Drone_lifeguard.png/100px-Drone_lifeguard.png" decoding="async" loading="lazy" width="100" height="65" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/cf/Drone_lifeguard.png/150px-Drone_lifeguard.png 1.5x, https://ru.tankiwiki.com/images/ru/c/cf/Drone_lifeguard.png 2x"></span></span>
+</td>
+<td>救生员</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/f/f0/Drone_blaster.png/100px-Drone_blaster.png" decoding="async" loading="lazy" width="100" height="65" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/f/f0/Drone_blaster.png/150px-Drone_blaster.png 1.5x, https://ru.tankiwiki.com/images/ru/f/f0/Drone_blaster.png 2x"></span></span>
+</td>
+<td>爆破手</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6f/Drone_enforcer.png/100px-Drone_enforcer.png" decoding="async" loading="lazy" width="100" height="65" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/6f/Drone_enforcer.png/150px-Drone_enforcer.png 1.5x, https://ru.tankiwiki.com/images/ru/6/6f/Drone_enforcer.png 2x"></span></span>
+</td>
+<td>骑兵</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/8/83/Drone_driver.png/100px-Drone_driver.png" decoding="async" loading="lazy" width="100" height="65" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/8/83/Drone_driver.png/150px-Drone_driver.png 1.5x, https://ru.tankiwiki.com/images/ru/8/83/Drone_driver.png 2x"></span></span>
+</td>
+<td>驱动器</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/5/52/Drone_saboteur.png/100px-Drone_saboteur.png" decoding="async" loading="lazy" width="100" height="65" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/52/Drone_saboteur.png/150px-Drone_saboteur.png 1.5x, https://ru.tankiwiki.com/images/ru/5/52/Drone_saboteur.png 2x"></span></span>
+</td>
+<td>破坏者</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/2/22/Drone_mechanic.png/100px-Drone_mechanic.png" decoding="async" loading="lazy" width="100" height="65" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/22/Drone_mechanic.png/150px-Drone_mechanic.png 1.5x, https://ru.tankiwiki.com/images/ru/2/22/Drone_mechanic.png 2x"></span></span>
+</td>
+<td>机械师</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/1/1d/Drone_booster.png/100px-Drone_booster.png" decoding="async" loading="lazy" width="100" height="65" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/1/1d/Drone_booster.png/150px-Drone_booster.png 1.5x, https://ru.tankiwiki.com/images/ru/1/1d/Drone_booster.png 2x"></span></span>
+</td>
+<td>助推器</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/3/38/Drone_camper.png/100px-Drone_camper.png" decoding="async" loading="lazy" width="100" height="65" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/38/Drone_camper.png/150px-Drone_camper.png 1.5x, https://ru.tankiwiki.com/images/ru/3/38/Drone_camper.png 2x"></span></span>
+</td>
+<td>露营者</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/3/32/Drone_supplier.png/100px-Drone_supplier.png" decoding="async" loading="lazy" width="100" height="65" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/32/Drone_supplier.png/150px-Drone_supplier.png 1.5x, https://ru.tankiwiki.com/images/ru/3/32/Drone_supplier.png 2x"></span></span>
+</td>
+<td>供应</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/67/UFO_Drone.png" decoding="async" loading="lazy" width="90" height="75" class="mw-file-element"></span></span>
+</td>
+<td>UFO
+</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/0/0a/April_Fools_Battery2_21.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>50 个电池</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/f/f5/Supply_battery_preview.png/97px-Supply_battery_preview.png" decoding="async" loading="lazy" width="97" height="63" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/f/f5/Supply_battery_preview.png/146px-Supply_battery_preview.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/f/f5/Supply_battery_preview.png 2x"></span></span>
+</td>
+<td>15 个电池</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6a/April_Fools_Old_Battery_21.png/97px-April_Fools_Old_Battery_21.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/6/6a/April_Fools_Old_Battery_21.png 1.5x"></span></span>
+</td>
+<td>15 个旧电池</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/e3/April_Fools_FM_21.png/97px-April_Fools_FM_21.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/e/e3/April_Fools_FM_21.png 1.5x"></span></span>
+</td>
+<td>论坛版主“愚人节傻瓜”头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/5/5c/April_Fools_FC_21.png/97px-April_Fools_FC_21.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/5/5c/April_Fools_FC_21.png 1.5x"></span></span>
+</td>
+<td>论坛版主候选人“愚人节傻瓜”头像</td></tr></tbody></table>
+</div></div><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample5">2021-2022 年圣诞节</div><div class="collapse" id="collapseExample5"><div class="">
+<div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">2021-2022 年 12 月 20 日，作为圣诞氛围的一部分，这些头像被添加到管理员和论坛助理的账户中。</div>
+</div><table class="wikitable-modern white-table default" style="width:80%">
+
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/77/Developer_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>社区经理的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/8d/Forum_Admin_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>论坛版主管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bb/Battle_Mod_Admin_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>战场版主管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/80/Chat_Admin_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>聊天版主管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/5/59/Content_Admin_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>内容助理管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/d3/Content_Broadcasts_Admin_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>转播组织者管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/3c/Contest_Admin_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>竞赛组织者管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/36/ESports_Content_Admin_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>电竞管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/dd/Event_Admin_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>活动组织者管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/f/f8/Designer_Admin_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>设计小组管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/0/04/ESports_Referees_Admin_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>电竞助理管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/37/Content_Video_Admin_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>视频内容助理管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/7/7d/Wiki_Admin_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>百科管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/4/4b/Content_Translators_Admin_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>翻译与校对小组管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/5/59/Content_Admin_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>内容助理管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/e/eb/Battle_Mod_Helper_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>战场版主的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cd/Chat_Helper_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>聊天版主的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/80/Content_Helper_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>内容助理的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6b/Content_Broadcasts_Helper_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>电竞解说员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/0/0b/Content_Translators_Helper_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>翻译与校对小组的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/4/42/Event_Broadcasts_Helper_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>电竞赛事转播组织者的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/5/5a/Contest_Helper_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>竞赛组织者的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/25/Parkour_Contests_Helper_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>跑酷活动组织者的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/6/6b/Wiki_Helper_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>百科编辑的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/1/1e/Designer_Helper_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>设计小组的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/d/db/ESports_Referees_Helper_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>电竞版主的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/a/a9/ESports_Content_Helper_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>电竞内容助理的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/c/cd/Event_Helpers_Helper_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>活动助理的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/84/Event_Organizers_Helper_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>活动组织者的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/9/96/Forum_Moderator_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>论坛版主的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/1/13/SM_Helpers_Helper_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>社交媒体版主的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/9/95/Content_Candidate_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>内容助理候选人的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/39/Content_Broadcasts_Candidate_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>电竞赛事转播组织者候选人的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/b/bb/ESports_Content_Candidate_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>电竞内容助理候选人的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/3/3a/Event_Helpers_Candidate_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>活动组织者候选人的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/2/29/Content_Translator_Candidate_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>翻译与校对小组候选人的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/1/1b/Designer_Candidate_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>设计小组候选人的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/9/94/Wiki_Candidate_Xmas2022.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element"></span></span>
+</td>
+<td>百科编辑候选人的圣诞头像</td></tr></tbody></table>
+</div></div><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample6">2025 年圣诞节</div><div class="collapse" id="collapseExample6"><div class="">
+<div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">2025 年 12 月 16 日，作为圣诞氛围的一部分，这些头像被添加到管理员和论坛助理的账户中。</div>
+</div><table class="wikitable-modern white-table default" style="width:80%">
+
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/a/a0/Xmas25_CM_Developer.png/97px-Xmas25_CM_Developer.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/a/a0/Xmas25_CM_Developer.png/146px-Xmas25_CM_Developer.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/a/a0/Xmas25_CM_Developer.png/194px-Xmas25_CM_Developer.png 2x"></span></span>
+</td>
+<td>社区经理的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/2/29/Xmas25_Head_Admin.png/97px-Xmas25_Head_Admin.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/29/Xmas25_Head_Admin.png/146px-Xmas25_Head_Admin.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/2/29/Xmas25_Head_Admin.png/194px-Xmas25_Head_Admin.png 2x"></span></span>
+</td>
+<td>首席管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d4/Xmas25_Forum_Administrator.png/97px-Xmas25_Forum_Administrator.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d4/Xmas25_Forum_Administrator.png/146px-Xmas25_Forum_Administrator.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d4/Xmas25_Forum_Administrator.png/194px-Xmas25_Forum_Administrator.png 2x"></span></span>
+</td>
+<td>论坛版主管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/b7/Xmas25_Battle_Mod_Admin.png/97px-Xmas25_Battle_Mod_Admin.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/b7/Xmas25_Battle_Mod_Admin.png/146px-Xmas25_Battle_Mod_Admin.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/b7/Xmas25_Battle_Mod_Admin.png/194px-Xmas25_Battle_Mod_Admin.png 2x"></span></span>
+</td>
+<td>战场版主管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6c/Xmas25_Chat_Admin.png/97px-Xmas25_Chat_Admin.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/6c/Xmas25_Chat_Admin.png/146px-Xmas25_Chat_Admin.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/6c/Xmas25_Chat_Admin.png/194px-Xmas25_Chat_Admin.png 2x"></span></span>
+</td>
+<td>聊天版主管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/1/17/Xmas25_Broadcasting_Admin.png/97px-Xmas25_Broadcasting_Admin.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/1/17/Xmas25_Broadcasting_Admin.png/146px-Xmas25_Broadcasting_Admin.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/1/17/Xmas25_Broadcasting_Admin.png/194px-Xmas25_Broadcasting_Admin.png 2x"></span></span>
+</td>
+<td>电竞赛事转播组织者管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/5/58/Xmas25_Testers_Admin.png/97px-Xmas25_Testers_Admin.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/58/Xmas25_Testers_Admin.png/146px-Xmas25_Testers_Admin.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/58/Xmas25_Testers_Admin.png/194px-Xmas25_Testers_Admin.png 2x"></span></span>
+</td>
+<td>测试员管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/5/5c/Xmas25_eSports_Admin.png/97px-Xmas25_eSports_Admin.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/5c/Xmas25_eSports_Admin.png/146px-Xmas25_eSports_Admin.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/5c/Xmas25_eSports_Admin.png/194px-Xmas25_eSports_Admin.png 2x"></span></span>
+</td>
+<td>电竞管理中心管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/3/3e/Xmas25_eSports_CH_Team_Leader.png/97px-Xmas25_eSports_CH_Team_Leader.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/3e/Xmas25_eSports_CH_Team_Leader.png/146px-Xmas25_eSports_CH_Team_Leader.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/3/3e/Xmas25_eSports_CH_Team_Leader.png/194px-Xmas25_eSports_CH_Team_Leader.png 2x"></span></span>
+</td>
+<td>电竞内容助理管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/e0/Xmas25_Wiki_Admin.png/97px-Xmas25_Wiki_Admin.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e0/Xmas25_Wiki_Admin.png/146px-Xmas25_Wiki_Admin.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e0/Xmas25_Wiki_Admin.png/194px-Xmas25_Wiki_Admin.png 2x"></span></span>
+</td>
+<td>百科管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d4/Xmas25_Translator_Admin.png/97px-Xmas25_Translator_Admin.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d4/Xmas25_Translator_Admin.png/146px-Xmas25_Translator_Admin.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d4/Xmas25_Translator_Admin.png/194px-Xmas25_Translator_Admin.png 2x"></span></span>
+</td>
+<td>翻译与校对小组管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d5/Xmas25_RaS_Admin.png/97px-Xmas25_RaS_Admin.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d5/Xmas25_RaS_Admin.png/146px-Xmas25_RaS_Admin.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d5/Xmas25_RaS_Admin.png/194px-Xmas25_RaS_Admin.png 2x"></span></span>
+</td>
+<td>内容助理管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/c/cf/Xmas25_Social_Media_Mod_Admin.png/97px-Xmas25_Social_Media_Mod_Admin.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/cf/Xmas25_Social_Media_Mod_Admin.png/146px-Xmas25_Social_Media_Mod_Admin.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/c/cf/Xmas25_Social_Media_Mod_Admin.png/194px-Xmas25_Social_Media_Mod_Admin.png 2x"></span></span>
+</td>
+<td>社交媒体版主管理员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/8/8a/Xmas25_Battle_Mod_Helper.png/97px-Xmas25_Battle_Mod_Helper.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/8/8a/Xmas25_Battle_Mod_Helper.png/146px-Xmas25_Battle_Mod_Helper.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/8/8a/Xmas25_Battle_Mod_Helper.png/194px-Xmas25_Battle_Mod_Helper.png 2x"></span></span>
+</td>
+<td>战场版主的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/b0/Xmas25_Chat_Mod_Helper.png/97px-Xmas25_Chat_Mod_Helper.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/b0/Xmas25_Chat_Mod_Helper.png/146px-Xmas25_Chat_Mod_Helper.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/b0/Xmas25_Chat_Mod_Helper.png/194px-Xmas25_Chat_Mod_Helper.png 2x"></span></span>
+</td>
+<td>聊天版主的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/b7/Xmas25_RaS_Helper.png/97px-Xmas25_RaS_Helper.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/b7/Xmas25_RaS_Helper.png/146px-Xmas25_RaS_Helper.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/b7/Xmas25_RaS_Helper.png/194px-Xmas25_RaS_Helper.png 2x"></span></span>
+</td>
+<td>内容助理的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/49/Xmas25_Broadcasting_Helper.png/97px-Xmas25_Broadcasting_Helper.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/49/Xmas25_Broadcasting_Helper.png/146px-Xmas25_Broadcasting_Helper.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/49/Xmas25_Broadcasting_Helper.png/194px-Xmas25_Broadcasting_Helper.png 2x"></span></span>
+</td>
+<td>电竞解说员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/b2/Xmas25_Translator_Helper.png/97px-Xmas25_Translator_Helper.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/b2/Xmas25_Translator_Helper.png/146px-Xmas25_Translator_Helper.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/b2/Xmas25_Translator_Helper.png/194px-Xmas25_Translator_Helper.png 2x"></span></span>
+</td>
+<td>翻译与校对小组的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/3/34/Xmas25_Wiki_Helper.png/97px-Xmas25_Wiki_Helper.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/34/Xmas25_Wiki_Helper.png/146px-Xmas25_Wiki_Helper.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/3/34/Xmas25_Wiki_Helper.png/194px-Xmas25_Wiki_Helper.png 2x"></span></span>
+</td>
+<td>百科编辑的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/7b/Xmas25_Creative_League_Members.png/97px-Xmas25_Creative_League_Members.png" decoding="async" loading="lazy" width="97" height="98" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/7b/Xmas25_Creative_League_Members.png/146px-Xmas25_Creative_League_Members.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/7b/Xmas25_Creative_League_Members.png/194px-Xmas25_Creative_League_Members.png 2x"></span></span>
+</td>
+<td>设计小组的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/f/f2/Xmas25_eSports_Officials.png/97px-Xmas25_eSports_Officials.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/f/f2/Xmas25_eSports_Officials.png/146px-Xmas25_eSports_Officials.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/f/f2/Xmas25_eSports_Officials.png/194px-Xmas25_eSports_Officials.png 2x"></span></span>
+</td>
+<td>电竞管理中心的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/72/Xmas25_Forum_Moderators.png/97px-Xmas25_Forum_Moderators.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/72/Xmas25_Forum_Moderators.png/146px-Xmas25_Forum_Moderators.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/72/Xmas25_Forum_Moderators.png/194px-Xmas25_Forum_Moderators.png 2x"></span></span>
+</td>
+<td>论坛版主的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/3/3d/Xmas25_Social_Media_Mod_Helper.png/97px-Xmas25_Social_Media_Mod_Helper.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/3d/Xmas25_Social_Media_Mod_Helper.png/146px-Xmas25_Social_Media_Mod_Helper.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/3/3d/Xmas25_Social_Media_Mod_Helper.png/194px-Xmas25_Social_Media_Mod_Helper.png 2x"></span></span>
+</td>
+<td>社交媒体版主的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/3/38/Xmas25_Testers_Helper.png/97px-Xmas25_Testers_Helper.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/38/Xmas25_Testers_Helper.png/146px-Xmas25_Testers_Helper.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/3/38/Xmas25_Testers_Helper.png/194px-Xmas25_Testers_Helper.png 2x"></span></span>
+</td>
+<td>测试员的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/e7/Xmas25_eSports_Content_Helpers.png/97px-Xmas25_eSports_Content_Helpers.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e7/Xmas25_eSports_Content_Helpers.png/146px-Xmas25_eSports_Content_Helpers.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e7/Xmas25_eSports_Content_Helpers.png/194px-Xmas25_eSports_Content_Helpers.png 2x"></span></span>
+</td>
+<td>电竞内容助理的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/e/e7/Xmas25_RaS_Candidate.png/97px-Xmas25_RaS_Candidate.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e7/Xmas25_RaS_Candidate.png/146px-Xmas25_RaS_Candidate.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e7/Xmas25_RaS_Candidate.png/194px-Xmas25_RaS_Candidate.png 2x"></span></span>
+</td>
+<td>内容助理候选人的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/74/Xmas25_Broadcasting_Helper_Candidate.png/97px-Xmas25_Broadcasting_Helper_Candidate.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/74/Xmas25_Broadcasting_Helper_Candidate.png/146px-Xmas25_Broadcasting_Helper_Candidate.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/74/Xmas25_Broadcasting_Helper_Candidate.png/194px-Xmas25_Broadcasting_Helper_Candidate.png 2x"></span></span>
+</td>
+<td>电竞赛事转播组织者候选人的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/74/Xmas25_eSports_CH_Candidate.png/97px-Xmas25_eSports_CH_Candidate.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/74/Xmas25_eSports_CH_Candidate.png/146px-Xmas25_eSports_CH_Candidate.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/74/Xmas25_eSports_CH_Candidate.png/194px-Xmas25_eSports_CH_Candidate.png 2x"></span></span>
+</td>
+<td>电竞内容助理候选人的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/a/ab/Xmas25_Translator_Candidate.png/97px-Xmas25_Translator_Candidate.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/a/ab/Xmas25_Translator_Candidate.png/146px-Xmas25_Translator_Candidate.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/a/ab/Xmas25_Translator_Candidate.png/194px-Xmas25_Translator_Candidate.png 2x"></span></span>
+</td>
+<td>翻译与校对小组候选人的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/9/90/Xmas25_Wiki_Candidate.png/97px-Xmas25_Wiki_Candidate.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/9/90/Xmas25_Wiki_Candidate.png/146px-Xmas25_Wiki_Candidate.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/9/90/Xmas25_Wiki_Candidate.png/194px-Xmas25_Wiki_Candidate.png 2x"></span></span>
+</td>
+<td>百科编辑候选人的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/4/4e/Xmas25_Chat_Mod_Candidate.png/97px-Xmas25_Chat_Mod_Candidate.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/4e/Xmas25_Chat_Mod_Candidate.png/146px-Xmas25_Chat_Mod_Candidate.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/4e/Xmas25_Chat_Mod_Candidate.png/194px-Xmas25_Chat_Mod_Candidate.png 2x"></span></span>
+</td>
+<td>聊天版主候选人的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/9/9d/Xmas25_eSports_Officials_Candidate.png/97px-Xmas25_eSports_Officials_Candidate.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/9/9d/Xmas25_eSports_Officials_Candidate.png/146px-Xmas25_eSports_Officials_Candidate.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/9/9d/Xmas25_eSports_Officials_Candidate.png/194px-Xmas25_eSports_Officials_Candidate.png 2x"></span></span>
+</td>
+<td>电竞管理中心候选人的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/c/c4/Xmas25_Forum_Moderator_Candidates.png/97px-Xmas25_Forum_Moderator_Candidates.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/c4/Xmas25_Forum_Moderator_Candidates.png/146px-Xmas25_Forum_Moderator_Candidates.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/c/c4/Xmas25_Forum_Moderator_Candidates.png/194px-Xmas25_Forum_Moderator_Candidates.png 2x"></span></span>
+</td>
+<td>论坛版主候选人的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/ba/Xmas25_Social_Media_Mod_Candidate.png/97px-Xmas25_Social_Media_Mod_Candidate.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/ba/Xmas25_Social_Media_Mod_Candidate.png/146px-Xmas25_Social_Media_Mod_Candidate.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/ba/Xmas25_Social_Media_Mod_Candidate.png/194px-Xmas25_Social_Media_Mod_Candidate.png 2x"></span></span>
+</td>
+<td>社交媒体版主候选人的圣诞头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/8/8a/Xmas25_Testers_Candidate.png/97px-Xmas25_Testers_Candidate.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/8/8a/Xmas25_Testers_Candidate.png/146px-Xmas25_Testers_Candidate.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/8/8a/Xmas25_Testers_Candidate.png/194px-Xmas25_Testers_Candidate.png 2x"></span></span>
+</td>
+<td>测试员候选人的圣诞头像</td></tr></tbody></table>
+</div></div><div class="spoiler_modern" data-toggle="collapse" data-target="#collapseExample7">其他头像</div><div class="collapse" id="collapseExample7"><div class="">
+<div class="alert notification">
+  <div class="icon"></div>
+  <div class="text">在 2021 年 9 月的“抢先体验”期间，RIDDLER_8 在车库中获得了<a href="/Paladin">圣骑士</a>底盘，并在论坛上获得了“圣骑士”头像！</div>
+</div><table class="wikitable-modern white-table default" style="width:80%">
+
+
+<tbody><tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/b/b2/Paladin.png/97px-Paladin.png" decoding="async" loading="lazy" width="97" height="59" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/b2/Paladin.png/146px-Paladin.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/b2/Paladin.png/194px-Paladin.png 2x"></span></span>
+</td>
+<td>RIDDLER_8 的头像</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/f/fb/League_of_clans.png/97px-League_of_clans.png" decoding="async" loading="lazy" width="97" height="101" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/f/fb/League_of_clans.png 1.5x"></span></span>
+</td>
+<td>军团联赛负责人</td></tr>
+<tr>
+<td><span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/7/70/Sltv.png/97px-Sltv.png" decoding="async" loading="lazy" width="97" height="97" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/7/70/Sltv.png 1.5x"></span></span>
+</td>
+<td>SLTV
+</td></tr></tbody></table>
+</div></div><div align="right"><small>最后修改：16/12/2025 Vestas <span class="ai-translate-note" style="color:#8FB8D8;">（由 AI 自动翻译）</span></small></div></div></div></div></div></div><footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
+<p style="margin:0;"><strong style="color:#BFD5FF;">本站为玩家社区自建的非官方 Wiki 镜像。</strong></p>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":1641,"wgPageParseReport":{"limitreport":{"cputime":"1.320","walltime":"2.555","ppvisitednodes":{"value":1631,"limit":1000000},"postexpandincludesize":{"value":22624,"limit":4194304},"templateargumentsize":{"value":12724,"limit":4194304},"expansiondepth":{"value":8,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%  119.377      1 -total"," 40.57%   48.433     56 Шаблон:Alert"," 17.25%   20.592      1 Шаблон:See_also"," 11.67%   13.929      1 Шаблон:Другое_значение"," 10.63%   12.690     30 Шаблон:SimpleSpoiler","  7.22%    8.614      1 Шаблон:LastEdit","  6.64%    7.923      7 Шаблон:Spoiler/Start","  5.47%    6.535      7 Шаблон:Spoiler/End","  4.98%    5.944     14 Шаблон:См._также/link"]},"cachereport":{"timestamp":"20260825065839","ttl":86400,"transientcontent":false}}});});</script>
+    <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });</script></body></html>

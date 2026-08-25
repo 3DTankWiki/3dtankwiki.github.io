@@ -1,0 +1,416 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>(function(){
+  var BASE = 'https://ru.tankiwiki.com';
+  function fix(v){ return (typeof v === 'string' && v.charAt(0) === '/' && v.indexOf('//') !== 0) ? BASE + v : v; }
+  ['HTMLScriptElement','HTMLLinkElement'].forEach(function(tag){
+    var proto = window[tag] && window[tag].prototype;
+    var prop  = tag === 'HTMLScriptElement' ? 'src' : 'href';
+    if (!proto) return;
+    var d = Object.getOwnPropertyDescriptor(proto, prop);
+    if (!d || !d.set) return;
+    Object.defineProperty(proto, prop, {
+      configurable: true,
+      get: function(){ return d.get.call(this); },
+      set: function(v){ d.set.call(this, fix(v)); }
+    });
+  });
+  var of = window.fetch;
+  if (of) window.fetch = function(u, o){ return of.call(this, (typeof u === 'string' ? fix(u) : u), o); };
+  var ox = window.XMLHttpRequest && XMLHttpRequest.prototype.open;
+  if (ox) XMLHttpRequest.prototype.open = function(m, u){
+    var a = Array.prototype.slice.call(arguments); a[1] = fix(u); return ox.apply(this, a);
+  };
+})();</script><title>截图 — 3D 坦克 Wiki</title><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+    <meta charset="UTF-8">
+    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/xg_pWYS8-HRESiV6Rdg4aY_R/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-qWH0xCejb2gc1yqo8ob4TQrvIcQ9XjhOfGKbhFr/+LvFrJdTE3bA+FQP/FLAiQhz"></script>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgRequestId":"378a20f56d121ed82281c8b7","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Skrinshot","wgTitle":"Skrinshot","wgCurRevisionId":296162,"wgRevisionId":296162,"wgArticleId":1460,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["FAQ RUS"],"wgPageViewLanguage":"ru","wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgRelevantPageName":"Skrinshot","wgRelevantArticleId":1460,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],
+"wgVisualEditor":{"pageLanguageCode":"ru","pageLanguageDir":"ltr","pageVariantFallbacks":"ru"},"wgFlaggedRevsParams":{"tags":{"accuracy":{"levels":3}}},"wgStableRevisionId":296162,"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.flaggedRevs.icons":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.flaggedRevs.basic":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["mediawiki.page.media","site","mediawiki.page.ready","mediawiki.toc","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.flaggedRevs.advanced","skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=ext.flaggedRevs.basic%2Cicons%7Cext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://ru.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://ru.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (ru)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://ru.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki&nbsp;— Atom-лента" href="https://ru.tankiwiki.com/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom"><style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
+
+/* 1. 只去掉源站皮肤的背景大图，保留底色；不要用 background 简写，否则会连带清掉皮肤别的背景设定 */
+html, body {
+    background-image: none !important;
+    background-color: #001926 !important;
+}
+/* 2. 让底色铺满视口，内容很短时下方不再露白 */
+html { min-height: 100%; }
+body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif; }
+
+/* 3. 版心容器 */
+#mw-main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #001926;
+}
+
+/* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
+      【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
+
+#mw-main-container .main-content,
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content,
+#mw-main-container #mw-content-text {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: auto !important;
+    flex-basis: auto !important;   /* 皮肤写了 .main-content{flex:0 0 75%} */
+    float: none !important;
+    margin-top: 0 !important;       /* 核心：清空原站皮肤的负 margin-top */
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    position: relative !important;
+    z-index: 1 !important;          /* 保证正文层级低于按钮 */
+}
+
+/* 5. 皮肤脚本 skins.tankiblue.js 会往 #mw-content-text 末尾插一条「发现错别字？Ctrl+Enter」
+      的俄语提示条和一个「报告错误」标签页。它按网址里有没有 'en'/'de' 来判断语言，
+      我们的域名两者都不含 → 一律显示俄语；且报错会提交到俄站编辑组，对镜像站没意义，直接隐藏。 */
+#custom-report-footer,
+.vectorTabs.customReport,
+.customReport { display: none !important; }
+
+/* 6. 返回按钮包裹容器：独占一行并强制最高层级 */
+.home-btn-wrapper {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px 0 20px 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    z-index: 9999 !important;       /* 核心：永远置于最顶层 */
+    clear: both !important;
+    overflow: visible !important;
+}
+
+/* 7. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐 */
+.home-back-btn {
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    width: auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    isolation: isolate !important;
+    
+    min-width: 142px !important;
+    padding: 0 24px !important;
+    height: 78px !important;
+    margin: 0 !important;
+    border: 1px solid rgba(255,255,255,.25) !important;
+    outline: 2px solid transparent !important;
+    border-radius: 6.5px !important;
+    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%) !important;
+    
+    position: relative !important;
+    z-index: 10000 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: all .15s ease !important;
+    overflow: visible !important;
+}
+.home-back-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(100% 100% at 0% 0%, rgba(191,213,255,.25) 0%, rgba(191,213,255,.15) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all .15s ease;
+    border-radius: inherit;
+    pointer-events: none;
+}
+.home-back-btn svg {
+    width: 24.375px;
+    height: 24px;
+    object-fit: contain;
+    transform: rotate(180deg);
+    transition: all .15s ease;
+    flex-shrink: 0;
+}
+.home-back-btn svg path { fill: #BFD5FF; transition: all .15s ease; }
+
+.home-back-btn:hover,
+.home-back-btn:active,
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF !important; border-color: #BFD5FF !important; }
+.home-back-btn:hover::before,
+.home-back-btn:active::before,
+.home-back-btn:focus-visible::before { opacity: 1; }
+.home-back-btn:hover svg,
+.home-back-btn:active svg,
+.home-back-btn:focus-visible svg { transform: rotate(180deg) translateX(10%); }
+.home-back-btn:hover svg path,
+.home-back-btn:active svg path,
+.home-back-btn:focus-visible svg path { fill: #fff; }
+
+.home-back-btn span {
+    color: #BFD5FF;
+    font-size: 16px;
+    margin-left: 10px;
+    font-weight: bold;
+    transition: all .15s ease;
+    white-space: nowrap;
+}
+.home-back-btn:hover span,
+.home-back-btn:active span,
+.home-back-btn:focus-visible span {
+    color: #fff;
+    transform: translateX(-4px);
+}
+
+/* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
+@media (hover: none) {
+    .home-back-btn { border-color: rgba(191,213,255,.55) !important; }
+    .home-back-btn svg path { fill: #CFE0FF; }
+}
+
+/* 移动端/窄屏自适应尺寸 */
+@media (max-width: 480px) {
+    .home-back-btn {
+        min-width: 106px !important;
+        padding: 0 16px !important;
+        height: 58px !important;
+        margin-left: 10px !important;
+    }
+    .home-back-btn svg { width: 20px !important; height: 19.7px !important; }
+    .home-back-btn span { font-size: 14px !important; margin-left: 8px !important; }
+}
+
+/* 8. 移动端容器 Padding */
+@media (max-width: 768px) {
+    #mw-main-container { padding: 10px !important; margin: 8px auto !important; }
+    .home-back-btn { margin-left: 10px !important; }
+    #mw-content-text .navigationContainerContent > div,
+    #mw-content-text [style*="width: 55%"],
+    #mw-content-text [style*="width:55%"],
+    #mw-content-text [style*="width: 45%"],
+    #mw-content-text [style*="width:45%"] { width: 100% !important; }
+}
+@media (max-width: 480px) {
+    #mw-main-container { padding: 6px !important; margin: 4px auto !important; }
+}
+
+/* 9. 防止宽表格 / 大图撑破版心 */
+#mw-content-text img { max-width: 100%; height: auto; }
+#mw-content-text table { max-width: 100%; }
+
+/* 10. 目录（TOC）修复，全局生效：
+    a) 皮肤把目录折叠按钮的文字放在 CSS 伪元素里渲染，而不是 HTML 文本：
+         .toctogglecheckbox:checked  + .toctitle .toctogglelabel::after → content:'показать'
+         .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after → content:'скрыть'
+       AI 翻译只处理 HTML 文本，摸不到 CSS content，所以这个按钮永远是俄语，必须在这里覆盖成中文。
+    b) 皮肤的响应式 CSS 里写了 @media screen and (max-width:768px){ #toc{display:none} }，
+       导致手机端整个目录被隐藏。这里恢复显示，并配合下方 TOC_MOBILE_COLLAPSE_SCRIPT：
+       移动端默认折叠，只占一行「目录 [展开]」，避免长目录把正文挤到屏幕外。 */
+#toc .toctogglecheckbox:checked + .toctitle .toctogglelabel::after { content: '展开' !important; }
+#toc .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after { content: '收起' !important; }
+@media screen and (max-width: 768px) {
+    #toc { display: table !important; }
+}
+
+/* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
+   只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+*/
+</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Skrinshot rootpage-Skrinshot skin-tankiblue action-view"><div id="skin-chrome-stub" aria-hidden="true" style="display:none !important;">
+<a class="problem" href="#"></a>
+<div class="close-wrapper"></div>
+<div class="support-block-popup"><div class="close-modal-support"></div></div>
+<div class="youtube-popup"><iframe title="stub"></iframe></div>
+<div class="video-button"></div>
+<div class="header-search"></div>
+<div class="search-dialog"></div>
+<div class="search-popup"><div class="close-wrapper"></div><div class="close-modal-search"></div></div>
+<div class="news-popup"></div>
+<div class="sales-block-header"></div>
+<div class="navbar-main"></div>
+<div class="main-navbar"></div>
+</div><div id="mw-main-container"><div class="home-btn-wrapper"><a class="home-back-btn" href="./Enciklopediya_igry_%C2%ABTanki_Onlayn%C2%BB" title="返回主页" aria-label="返回主页"><svg viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 0H13.5L25.5 12L24 13.5L13.5 24H18L30 12L18 0ZM24 13.5L21 10.5H0L3 13.5H24Z" fill="#BFD5FF"/></svg><span>返回主页</span></a></div><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">截图</h1><p><b>截图</b>（英语 <i>screenshot</i> — 屏幕截图）是指通过按下键盘上的 <span class="hotkey">PrtScr</span> 键（针对全屏）或 <span class="hotkey">Alt</span>+<span class="hotkey">PrtScr</span> 组合键（针对当前窗口）从显示器屏幕获取的图像。操作系统的剪贴板中会保存屏幕截图。随后，所获取的截图可以粘贴到图形编辑器中进行处理和保存。浏览器配有额外的插件，借助它们无需图形编辑器即可获取并保存截图。此外，还有专门用于创建、处理和保存截图的程序。
+</p><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"><div class="toctitle" lang="ru" dir="ltr"><h2 id="mw-toc-heading">目录</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Windows"><span class="tocnumber">1</span> <span class="toctext">Windows</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Создание_скриншота_при_помощи_графического_редактора"><span class="tocnumber">1.1</span> <span class="toctext">使用图形编辑器创建截图</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Создание_скриншота_при_помощи_инструмента_«Ножницы»"><span class="tocnumber">1.2</span> <span class="toctext">使用“截图工具”创建截图</span></a>
+<ul>
+<li class="toclevel-3 tocsection-4"><a href="#Снятие_скриншотов"><span class="tocnumber">1.2.1</span> <span class="toctext">截取截图</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-5"><a href="#Windows_8_и_10:_простейшее_создание_скриншотов"><span class="tocnumber">1.3</span> <span class="toctext">Windows 8 和 10：最简截图方法</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Создание_скриншота_при_помощи_FastStone_Capture"><span class="tocnumber">1.4</span> <span class="toctext">使用 FastStone Capture 创建截图</span></a>
+<ul>
+<li class="toclevel-3 tocsection-7"><a href="#Снятие_скриншотов_2"><span class="tocnumber">1.4.1</span> <span class="toctext">截取截图</span></a></li>
+<li class="toclevel-3 tocsection-8"><a href="#Полный_снимок_веб-страницы"><span class="tocnumber">1.4.2</span> <span class="toctext">网页完整截图</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-9"><a href="#Создание_скриншота_при_помощи_TechSmith_SnagIt"><span class="tocnumber">1.5</span> <span class="toctext">使用 TechSmith SnagIt 创建截图</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Создание_скриншотов_при_помощи_Joxi"><span class="tocnumber">1.6</span> <span class="toctext">使用 Joxi 创建截图</span></a>
+<ul>
+<li class="toclevel-3 tocsection-11"><a href="#Снятие_скриншотов_3"><span class="tocnumber">1.6.1</span> <span class="toctext">截取截图</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-12"><a href="#Создание_скриншотов_при_помощи_Screenpic"><span class="tocnumber">1.7</span> <span class="toctext">使用 Screenpic 创建截图</span></a>
+<ul>
+<li class="toclevel-3 tocsection-13"><a href="#Снятие_скриншотов_4"><span class="tocnumber">1.7.1</span> <span class="toctext">截取截图</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-14"><a href="#Создание_скриншотов_при_помощи_Lightshot"><span class="tocnumber">1.8</span> <span class="toctext">使用 Lightshot 创建截图</span></a>
+<ul>
+<li class="toclevel-3 tocsection-15"><a href="#Снятие_скриншотов_5"><span class="tocnumber">1.8.1</span> <span class="toctext">截取截图</span></a></li>
+<li class="toclevel-3 tocsection-16"><a href="#Полноэкранный_скриншот"><span class="tocnumber">1.8.2</span> <span class="toctext">全屏截图</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-17"><a href="#Снимок_экрана_в_Apple/Мacintosh_OS"><span class="tocnumber">2</span> <span class="toctext">Apple/Macintosh OS 屏幕截图</span></a>
+<ul>
+<li class="toclevel-2 tocsection-18"><a href="#Создание_скриншота_средствами_самой_системы"><span class="tocnumber">2.1</span> <span class="toctext">使用系统自带功能创建截图</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="#Создание_скриншота_при_помощи_Mac_OS_X_Grab"><span class="tocnumber">2.2</span> <span class="toctext">使用 Mac OS X Grab 创建截图</span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="#Создание_скриншота_при_помощи_виджета_Screenshot_Plus"><span class="tocnumber">2.3</span> <span class="toctext">使用 Screenshot Plus 小组件创建截图</span></a></li>
+</ul>
+</li>
+</ul>
+</div><h2><span class="mw-headline" id="Windows">Windows</span></h2><h3><span id=".D0.A1.D0.BE.D0.B7.D0.B4.D0.B0.D0.BD.D0.B8.D0.B5_.D1.81.D0.BA.D1.80.D0.B8.D0.BD.D1.88.D0.BE.D1.82.D0.B0_.D0.BF.D1.80.D0.B8_.D0.BF.D0.BE.D0.BC.D0.BE.D1.89.D0.B8_.D0.B3.D1.80.D0.B0.D1.84.D0.B8.D1.87.D0.B5.D1.81.D0.BA.D0.BE.D0.B3.D0.BE_.D1.80.D0.B5.D0.B4.D0.B0.D0.BA.D1.82.D0.BE.D1.80.D0.B0"></span><span class="mw-headline" id="Создание_скриншота_при_помощи_графического_редактора">使用图形编辑器创建截图</span></h3><figure class="mw-halign-right" typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/thumb/2/29/Prtscralt.png/250px-Prtscralt.png" decoding="async" loading="lazy" width="250" height="79" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/2/29/Prtscralt.png 1.5x"></span><figcaption></figcaption></figure><ol><li>按下 <span class="hotkey">Alt</span>+<span class="hotkey">PrtScr</span> — 活动程序窗口的图片（例如，如果您在游戏中 — 来自浏览器）将进入剪贴板；</li>
+<li>启动任意图形编辑器。例如，<i>Paint</i>。点击“<b>编辑</b>” → “<b>粘贴</b>”（<span class="hotkey">Ctrl</span>+<span class="hotkey">V</span>）；</li>
+<li>之前制作的窗口图片已粘贴；</li>
+<li>点击“<b>文件</b>” → “<b>另存为</b>”；</li>
+<li>选择文件类型：png 或 jpg；</li>
+<li>点击“<b>保存</b>”。</li></ol><h3><span id=".D0.A1.D0.BE.D0.B7.D0.B4.D0.B0.D0.BD.D0.B8.D0.B5_.D1.81.D0.BA.D1.80.D0.B8.D0.BD.D1.88.D0.BE.D1.82.D0.B0_.D0.BF.D1.80.D0.B8_.D0.BF.D0.BE.D0.BC.D0.BE.D1.89.D0.B8_.D0.B8.D0.BD.D1.81.D1.82.D1.80.D1.83.D0.BC.D0.B5.D0.BD.D1.82.D0.B0_.C2.AB.D0.9D.D0.BE.D0.B6.D0.BD.D0.B8.D1.86.D1.8B.C2.BB"></span><span class="mw-headline" id="Создание_скриншота_при_помощи_инструмента_«Ножницы»">使用“截图工具”创建截图</span></h3><p>在 Windows 7 及更高版本中，存在上述经典截图方法的内置替代方案。它被称为“<i>截图工具</i>”。这是系统预装的一个工具，可以在“<b>开始</b>” → “<b>所有程序</b>” → “<b>附件</b>”菜单中找到。“<i>截图工具</i>”允许您选中所需的屏幕区域并将其保存为图形文件。为了快速调用此工具，您可以为其设置热键或将快捷方式放在方便的位置（例如桌面或任务栏）。
+</p><h4><span id=".D0.A1.D0.BD.D1.8F.D1.82.D0.B8.D0.B5_.D1.81.D0.BA.D1.80.D0.B8.D0.BD.D1.88.D0.BE.D1.82.D0.BE.D0.B2"></span><span class="mw-headline" id="Снятие_скриншотов">截取截图</span></h4><ol><li>启动“<i>截图工具</i>”；</li>
+<li>启动需要截图的程序；</li>
+<li>点击“<b>新建</b>”。<br>通过右侧菜单，您可以选择截图模式 — 全屏、窗口或任意区域；</li>
+<li>制作并保存截图。</li></ol><h3><span id="Windows_8_.D0.B8_10:_.D0.BF.D1.80.D0.BE.D1.81.D1.82.D0.B5.D0.B9.D1.88.D0.B5.D0.B5_.D1.81.D0.BE.D0.B7.D0.B4.D0.B0.D0.BD.D0.B8.D0.B5_.D1.81.D0.BA.D1.80.D0.B8.D0.BD.D1.88.D0.BE.D1.82.D0.BE.D0.B2"></span><span class="mw-headline" id="Windows_8_и_10:_простейшее_создание_скриншотов">Windows 8 和 10：最简截图方法</span></h3><p>如果您的操作系统是 Windows 8 及更高版本，您可以使用 <span class="hotkey">Win</span>+<span class="hotkey">PrtScr</span> 组合键截图。全屏截图将自动保存到“图片”文件夹中（其快捷方式通常位于“开始”菜单或“计算机”中）。此方法不需要任何第三方工具。
+</p><h3><span id=".D0.A1.D0.BE.D0.B7.D0.B4.D0.B0.D0.BD.D0.B8.D0.B5_.D1.81.D0.BA.D1.80.D0.B8.D0.BD.D1.88.D0.BE.D1.82.D0.B0_.D0.BF.D1.80.D0.B8_.D0.BF.D0.BE.D0.BC.D0.BE.D1.89.D0.B8_FastStone_Capture"></span><span class="mw-headline" id="Создание_скриншота_при_помощи_FastStone_Capture">使用 FastStone Capture 创建截图</span></h3><p><a rel="nofollow" class="external text" href="http://www.faststone.org/FSCaptureDownload.htm">FastStone Capture</a> 是一款允许编辑和查看图形文件，以及进行屏幕截图并进行后续编辑的程序。支持所有主流图像格式：BMP、JPEG、JPEG 2000、GIF、PNG、PCX、TIFF、WMI、ICO 和 TGA。内置编辑器允许您旋转、调整大小、更改色深、裁剪片段以及对图像进行其他操作。在截取截图时，您可以使用热键和众多设置，借助它们您可以截取活动窗口、整个屏幕工作区等。
+</p><p>除了常规截图外，<i>FastStone Capture</i> 还可以制作网页的完整截图，即使网页在浏览器中滚动也是如此。提供在截图上添加说明文字、签名、指示箭头和水印的功能。截图区域可任意指定，也可以进行全屏截图。
+</p><p><span style="color:red"><b>请注意</b></span>：该程序为共享软件，试用版仅有效一个月。
+</p><h4><span id=".D0.A1.D0.BD.D1.8F.D1.82.D0.B8.D0.B5_.D1.81.D0.BA.D1.80.D0.B8.D0.BD.D1.88.D0.BE.D1.82.D0.BE.D0.B2_2"></span><span class="mw-headline" id="Снятие_скриншотов_2">截取截图 2</span></h4><figure class="mw-default-size mw-halign-right" typeof="mw:File/Thumb"><span><img resource="/%D0%A4%D0%B0%D0%B9%D0%BB:FastStone_scroll.jpg" src="https://ru.tankiwiki.com/images/ru/thumb/f/f6/FastStone_scroll.jpg/300px-FastStone_scroll.jpg.png" decoding="async" loading="lazy" width="300" height="170" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/f/f6/FastStone_scroll.jpg/450px-FastStone_scroll.jpg.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/f/f6/FastStone_scroll.jpg/600px-FastStone_scroll.jpg.png 2x"></span><figcaption>网页完整截图</figcaption></figure><ol><li>启动 <i>FastStone Capture</i>；</li>
+<li>启动需要截图的程序；</li>
+<li>选择以下截图方法之一：
+<ul><li>点击托盘图标并选择建议的截图方法之一；</li>
+<li>使用可在“<b>Settings</b>” → “<b>Hotkeys</b>”中设置的热键；</li></ul></li>
+<li>制作并保存截图。</li></ol><h4><span id=".D0.9F.D0.BE.D0.BB.D0.BD.D1.8B.D0.B9_.D1.81.D0.BD.D0.B8.D0.BC.D0.BE.D0.BA_.D0.B2.D0.B5.D0.B1-.D1.81.D1.82.D1.80.D0.B0.D0.BD.D0.B8.D1.86.D1.8B"></span><span class="mw-headline" id="Полный_снимок_веб-страницы">网页完整截图</span></h4><ol><li>启动 <i>FastStone Capture</i>；</li>
+<li>启动需要截图的程序（在我们的例子中是<a href="./%D0%91%D1%80%D0%B0%D1%83%D0%B7%D0%B5%D1%80%D1%8B" class="mw-redirect" title="Браузеры">浏览器</a>）；</li>
+<li>点击图标<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/8/80/Scroll.jpg" decoding="async" loading="lazy" width="25" height="27" class="mw-file-element"></span></span>；</li>
+<li>按住鼠标左键，将鼠标光标从上往下拖动；</li>
+<li>保存截图。</li></ol><h3><span id=".D0.A1.D0.BE.D0.B7.D0.B4.D0.B0.D0.BD.D0.B8.D0.B5_.D1.81.D0.BA.D1.80.D0.B8.D0.BD.D1.88.D0.BE.D1.82.D0.B0_.D0.BF.D1.80.D0.B8_.D0.BF.D0.BE.D0.BC.D0.BE.D1.89.D0.B8_TechSmith_SnagIt"></span><span class="mw-headline" id="Создание_скриншота_при_помощи_TechSmith_SnagIt">使用 TechSmith SnagIt 创建截图</span></h3><p><a rel="nofollow" class="external text" href="http://www.techsmith.com/download/snagit/">该程序</a>的主要用途是从显示器屏幕截取截图。而且 <i>SnagIt</i> 不仅能够拍摄所选区域的静态图形截图，例如还可以将屏幕上发生的事情录制成视频，以及捕获使用 <a rel="nofollow" class="external text" href="http://ru.wikipedia.org/wiki/DirectX">DirectX</a> 的应用程序中的图像。
+</p><p>内置的注释编辑器允许您向截图中添加说明、突出显示某些内容、在需要的地方插入箭头等。此外，程序还允许从无法通过“<b>复制</b>”/“<b>粘贴</b>”命令移动文本的地方“提取”文本。
+</p><p>其他功能：支持与扫描仪和数码相机协同工作，以及自动将程序制作的截图发送到网站。还有许多其他小功能：热键管理、使用预设、从 EXE 和 DLL 中“提取”图标和其他图形、截取需要滚动才能查看的网页截图等等。
+</p><p><span style="color:red"><b>请注意</b></span>：该程序为共享软件，试用版仅有效 15 天。
+</p><p><b>截取截图</b>：
+</p><ol><li>启动 <i>SnagIt</i>；</li>
+<li>启动需要截图的程序；</li>
+<li>点击“<b>Start new capture</b>”或按 <span class="hotkey">PrtScr</span> 键（默认）。<br>热键可在“<b>Options</b>” → “<b>Preferences</b>” → “<b>Hotkeys</b>”中进行设置；</li>
+<li>选中所需的屏幕区域；</li>
+<li>保存截图。</li></ol><h3><span id=".D0.A1.D0.BE.D0.B7.D0.B4.D0.B0.D0.BD.D0.B8.D0.B5_.D1.81.D0.BA.D1.80.D0.B8.D0.BD.D1.88.D0.BE.D1.82.D0.BE.D0.B2_.D0.BF.D1.80.D0.B8_.D0.BF.D0.BE.D0.BC.D0.BE.D1.89.D0.B8_Joxi"></span><span class="mw-headline" id="Создание_скриншотов_при_помощи_Joxi">使用 Joxi 创建截图</span></h3><p>Joxi 是一款免费的跨平台截图程序。使用简单，能够将截图上传到自己的托管服务器并提供链接，但有几个缺点：
+</p><ol><li>开始使用前必须进行注册（通过电子邮件或社交网络）；</li>
+<li>在免费版本中：
+<ul><li>上传截图的空间容量限制为 1 GB；</li><li>禁用了诸如上传图像直链这样有用的功能；</li><li>上传的文件在服务器上仅存储 3 个月。</li></ul></li></ol><p>您可以通过<a rel="nofollow" class="external text" href="http://joxi.ru/download/">链接</a>下载该程序。
+</p><p>下载并安装后，Joxi 将把自己写入自启动，并在每次系统启动后等待用户操作。Joxi 图标可以在托盘中找到。在程序设置中，您可以指定本地保存文件夹和图像质量（如果选择“高”，截图将保存为。png 格式，否则为。jpg），更改热键。在旁边可以找到已上传文件的历史记录，并在必要时从服务器删除不需要的截图。
+</p><h4><span id=".D0.A1.D0.BD.D1.8F.D1.82.D0.B8.D0.B5_.D1.81.D0.BA.D1.80.D0.B8.D0.BD.D1.88.D0.BE.D1.82.D0.BE.D0.B2_3"></span><span class="mw-headline" id="Снятие_скриншотов_3">截取截图 3</span></h4><p>使用以下热键（默认）截图会更方便：
+</p><ul><li><span class="hotkey">Ctrl</span>+<span class="hotkey">PrtScr</span> — 选择屏幕区域。上传前可以在内置编辑器中编辑截图。要上传生成的图像，需要按 <span class="hotkey">Ctrl</span>+<span class="hotkey">Enter</span> 或点击工具栏右侧带勾的绿色按钮。</li>
+<li><span class="hotkey">Ctrl</span>+<span class="hotkey">Shift</span>+<span class="hotkey">PrtScr</span> — 拍摄整个屏幕。这里上传前也会出现工具栏。</li>
+<li><span class="hotkey">Shift</span>+<span class="hotkey">PrtScr</span> — 立即将整个屏幕的截图上传到服务器，跳过编辑阶段。当您不想在点击上传按钮上浪费时间时非常有用。</li></ul><p>上传后，截图的链接将出现在您的剪贴板中。
+</p><h3><span id=".D0.A1.D0.BE.D0.B7.D0.B4.D0.B0.D0.BD.D0.B8.D0.B5_.D1.81.D0.BA.D1.80.D0.B8.D0.BD.D1.88.D0.BE.D1.82.D0.BE.D0.B2_.D0.BF.D1.80.D0.B8_.D0.BF.D0.BE.D0.BC.D0.BE.D1.89.D0.B8_Screenpic"></span><span class="mw-headline" id="Создание_скриншотов_при_помощи_Screenpic">使用 Screenpic 创建截图</span></h3><p>另一款具有将图像上传到托管服务器功能的截图软件，在您的磁盘上仅占用 8 MB。与 Joxi 不同，它不需要注册，并且以匿名或授权模式将截图无任何限制地上传到流行的 Imgur 托管服务器。您可以通过<a rel="nofollow" class="external text" href="http://screenpic.net/ru/download/">链接</a>下载 Screenpic。
+</p><p>该程序拥有简单极简的界面。功能包括：
+</p><ul><li>随 Windows 随系统自启动；</li>
+<li>保存截图的本地副本；</li>
+<li>上传历史记录；</li>
+<li>能够上传已保存到磁盘的文件；</li>
+<li>更改热键的功能。</li></ul><h4><span id=".D0.A1.D0.BD.D1.8F.D1.82.D0.B8.D0.B5_.D1.81.D0.BA.D1.80.D0.B8.D0.BD.D1.88.D0.BE.D1.82.D0.BE.D0.B2_4"></span><span class="mw-headline" id="Снятие_скриншотов_4">截取截图 4</span></h4><p>使用以下热键（默认）截图会更方便：
+</p><ul><li><span class="hotkey">PrtScr</span> — 选择屏幕区域。上传前可以在内置编辑器中编辑截图。要上传生成的图像，需要按 <span class="hotkey">Ctrl</span>+<span class="hotkey">Enter</span> 或点击“<b>上传</b>”按钮。</li>
+<li><span class="hotkey">Ctrl</span>+<span class="hotkey">PrtScr</span> — 拍摄整个屏幕。这里上传前也会出现工具栏。</li>
+<li><span class="hotkey">Alt</span>+<span class="hotkey">PrtScr</span> — 上传打开窗口的截图。</li></ul><p>上传后，截图的链接将出现在您的剪贴板中。<br>通过在设置中勾选相应选项，可以跳过上传前处理截图的阶段。
+</p><h3><span id=".D0.A1.D0.BE.D0.B7.D0.B4.D0.B0.D0.BD.D0.B8.D0.B5_.D1.81.D0.BA.D1.80.D0.B8.D0.BD.D1.88.D0.BE.D1.82.D0.BE.D0.B2_.D0.BF.D1.80.D0.B8_.D0.BF.D0.BE.D0.BC.D0.BE.D1.89.D0.B8_Lightshot"></span><span class="mw-headline" id="Создание_скриншотов_при_помощи_Lightshot">使用 Lightshot 创建截图</span></h3><div class="alert error">
+  <div class="icon"></div>
+  <div class="text"><b>注意！</b>不建议使用此托管服务器上传游戏违规行为截图。管理员可能会拒绝受理来自该托管服务器的截图！</div>
+</div><p><a rel="nofollow" class="external text" href="http://app.prntscr.com/ru/download.html">Lightshot</a> 是一款完全免费的程序，它静静地呆在托盘里等待被调用，以完成其工作。它直接在 Windows / Mac 环境中运行，不依赖于浏览器版本。支持的图像格式：JPEG、PNG。该程序默认替换 <span class="hotkey">PrtScr</span> 键的处理程序并拦截它以启动自身。用户可以点击并选择他感兴趣的屏幕区域，并且所选区域的大小将显示在选区旁边。它具有用于处理所创建截图的最简单工具。
+</p><h4><span id=".D0.A1.D0.BD.D1.8F.D1.82.D0.B8.D0.B5_.D1.81.D0.BA.D1.80.D0.B8.D0.BD.D1.88.D0.BE.D1.82.D0.BE.D0.B2_5"></span><span class="mw-headline" id="Снятие_скриншотов_5">截取截图 5</span></h4><figure class="mw-halign-right" typeof="mw:File/Thumb"><span><img resource="/%D0%A4%D0%B0%D0%B9%D0%BB:Lightshot.jpg" src="https://ru.tankiwiki.com/images/ru/thumb/8/8d/Lightshot.jpg/300px-Lightshot.jpg.png" decoding="async" loading="lazy" width="300" height="169" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/8/8d/Lightshot.jpg/450px-Lightshot.jpg.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/8/8d/Lightshot.jpg/600px-Lightshot.jpg.png 2x"></span><figcaption>选中屏幕部分的截图</figcaption></figure><ol><li>启动 <i>Lightshot</i>；</li>
+<li>启动需要截图的程序；</li>
+<li>选择以下截图方法之一：
+<ul><li>按下键盘上的 <span class="hotkey">PrtScr</span> 键（默认），然后选择您需要的区域，接着点击云朵形状的“上传到 prntscr.com”按钮<span typeof="mw:File"><span><img src="https://ru.tankiwiki.com/images/ru/4/43/Lightshot1.png" decoding="async" loading="lazy" width="25" height="21" class="mw-file-element"></span></span>（以便将截图上传到文件托管并立即获取链接）或者点击软盘形状的按钮，将截图以文件形式保存到您的计算机上。<br>用于保存所选窗口、整个窗口或将窗口上传到服务器的热键可以在“<b>设置</b>” → “<b>热键</b>”中进行设置；</li>
+<li>点击托盘图标并执行上述操作。</li></ul></li></ol><h4><span id=".D0.9F.D0.BE.D0.BB.D0.BD.D0.BE.D1.8D.D0.BA.D1.80.D0.B0.D0.BD.D0.BD.D1.8B.D0.B9_.D1.81.D0.BA.D1.80.D0.B8.D0.BD.D1.88.D0.BE.D1.82"></span><span class="mw-headline" id="Полноэкранный_скриншот">全屏截图</span></h4><ol><li>启动 <i>Lightshot</i>；</li>
+<li>启动需要截图的程序；</li>
+<li>按下 <span class="hotkey">Shift</span>+<span class="hotkey">PrtScr</span> 组合键（默认）；</li>
+<li>屏幕截图将保存到您的计算机上。</li></ol><p><br>
+</p><h2><span id=".D0.A1.D0.BD.D0.B8.D0.BC.D0.BE.D0.BA_.D1.8D.D0.BA.D1.80.D0.B0.D0.BD.D0.B0_.D0.B2_Apple.2F.D0.9Cacintosh_OS"></span><span class="mw-headline" id="Снимок_экрана_в_Apple/Мacintosh_OS">Apple/Macintosh OS 屏幕截图</span></h2><h3><span id=".D0.A1.D0.BE.D0.B7.D0.B4.D0.B0.D0.BD.D0.B8.D0.B5_.D1.81.D0.BA.D1.80.D0.B8.D0.BD.D1.88.D0.BE.D1.82.D0.B0_.D1.81.D1.80.D0.B5.D0.B4.D1.81.D1.82.D0.B2.D0.B0.D0.BC.D0.B8_.D1.81.D0.B0.D0.BC.D0.BE.D0.B9_.D1.81.D0.B8.D1.81.D1.82.D0.B5.D0.BC.D1.8B"></span><span class="mw-headline" id="Создание_скриншота_средствами_самой_системы">使用系统自带功能创建截图</span></h3><p>要制作截图，不需要任何特殊的程序。只需知道几个键盘快捷键即可。您可以在计算机设置中查看它们，具体在 <i>System Preferences</i> → <i>Keyboard &amp; Mouse</i> → <i>Keyboard Shortcuts</i> 中：
+</p><ul><li><span class="hotkey">Command</span>+<span class="hotkey">Shift</span>+<span class="hotkey">3</span>：全屏保存为桌面上的文件。</li>
+<li><span class="hotkey">Command</span>+<span class="hotkey">Shift</span>+<span class="hotkey">4</span>：所选区域保存为文件。</li>
+<li><span class="hotkey">Command</span>+<span class="hotkey">Shift</span>+<span class="hotkey">3</span>+<span class="hotkey">Space</span>：程序窗口保存为文件。</li></ul><p>要保存到剪贴板，需要同时按住 <span class="hotkey">Ctrl</span> 键。
+</p><h3><span id=".D0.A1.D0.BE.D0.B7.D0.B4.D0.B0.D0.BD.D0.B8.D0.B5_.D1.81.D0.BA.D1.80.D0.B8.D0.BD.D1.88.D0.BE.D1.82.D0.B0_.D0.BF.D1.80.D0.B8_.D0.BF.D0.BE.D0.BC.D0.BE.D1.89.D0.B8_Mac_OS_X_Grab"></span><span class="mw-headline" id="Создание_скриншота_при_помощи_Mac_OS_X_Grab">使用 Mac OS X Grab 创建截图</span></h3><p>为了不用记住热键，您可以使用标准的 <i>Mac OS X Grab</i> 工具。可以通过 Spotlight（电脑中的搜索）输入“grab”来找到它，或者在系统实用工具文件夹中找到它。<br>
+Grab 程序极其简单，同时又具备不错的功能。<br>有四种“拍摄”模式，每种模式都提供了热键：<br>
+</p><ul><li><i>Selection</i> — <span class="hotkey">Shift</span>+<span class="hotkey">Command</span>+<span class="hotkey">A</span> — 选定区域截图；</li>
+<li><i>Window</i> — <span class="hotkey">Shift</span>+<span class="hotkey">Command</span>+<span class="hotkey">W</span> — 窗口截图，可以从当前打开的任何窗口中选择；</li>
+<li><i>Screen</i> — <span class="hotkey">Command</span>+<span class="hotkey">Z</span> — 全屏截图；</li>
+<li><i>Timed Screen</i> — <span class="hotkey">Shift</span>+<span class="hotkey">Command</span>+<span class="hotkey">Z</span> — 定时全屏截图。点击启动计时器按钮后，将开始 10 秒倒计时。在这段时间内，您可以准备屏幕进行拍摄。</li></ul><p>截图完成后，Grab 中会出现一个带有生成图像的小窗口，现在可以将其保存到您需要的位置。
+</p><p>还值得注意的是，Grab 可以同时处理多个截图。也就是说，您可以“连拍”多张屏幕截图，然后进行对比并选择最佳的一张。Grab 还能够通过按 <span class="hotkey">Command</span>+<span class="hotkey">C</span> 将其截图复制到剪贴板。
+</p><h3><span id=".D0.A1.D0.BE.D0.B7.D0.B4.D0.B0.D0.BD.D0.B8.D0.B5_.D1.81.D0.BA.D1.80.D0.B8.D0.BD.D1.88.D0.BE.D1.82.D0.B0_.D0.BF.D1.80.D0.B8_.D0.BF.D0.BE.D0.BC.D0.BE.D1.89.D0.B8_.D0.B2.D0.B8.D0.B4.D0.B6.D0.B5.D1.82.D0.B0_Screenshot_Plus"></span><span class="mw-headline" id="Создание_скриншота_при_помощи_виджета_Screenshot_Plus">使用 Screenshot Plus 小组件创建截图</span></h3><p>能够制作以下类型的截图：
+</p><ul><li>全屏；</li>
+<li>延迟全屏；</li>
+<li>程序窗口（并且会裁剪掉所有背景，包括窗口顶部圆角下的背景）；</li>
+<li>小组件；</li>
+<li>屏幕区域。</li></ul><p>拍摄完成后，<i>Screenshot Plus</i> 会向您展示它并询问如何处理：删除、重试、保存到桌面或设置中指定的位置。
+</p><p><br>
+</p><div align="right"><small>最后编辑：21/05/2024 HelpersBot <span class="ai-translate-note" style="color:#8FB8D8;">（由 AI 自动翻译）</span></small></div></div></div></div></div></div><footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
+<p style="margin:0;"><strong style="color:#BFD5FF;">本站为玩家社区自建的非官方 Wiki 镜像。</strong></p>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":1361,"wgPageParseReport":{"limitreport":{"cputime":"0.159","walltime":"0.178","ppvisitednodes":{"value":544,"limit":1000000},"postexpandincludesize":{"value":2466,"limit":4194304},"templateargumentsize":{"value":635,"limit":4194304},"expansiondepth":{"value":4,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%   44.830      1 -total"," 31.94%   14.319     54 Шаблон:Hotkey"," 17.13%    7.678      1 Шаблон:LastEdit"," 14.83%    6.648      1 Шаблон:Alert","  8.94%    4.006      2 Шаблон:Color"]},"cachereport":{"timestamp":"20260824220642","ttl":86400,"transientcontent":false}}});});</script>
+    <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });</script></body></html>
