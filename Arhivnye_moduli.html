@@ -1,0 +1,2014 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>(function(){
+  var BASE = 'https://ru.tankiwiki.com';
+  function fix(v){ return (typeof v === 'string' && v.charAt(0) === '/' && v.indexOf('//') !== 0) ? BASE + v : v; }
+  ['HTMLScriptElement','HTMLLinkElement'].forEach(function(tag){
+    var proto = window[tag] && window[tag].prototype;
+    var prop  = tag === 'HTMLScriptElement' ? 'src' : 'href';
+    if (!proto) return;
+    var d = Object.getOwnPropertyDescriptor(proto, prop);
+    if (!d || !d.set) return;
+    Object.defineProperty(proto, prop, {
+      configurable: true,
+      get: function(){ return d.get.call(this); },
+      set: function(v){ d.set.call(this, fix(v)); }
+    });
+  });
+  var of = window.fetch;
+  if (of) window.fetch = function(u, o){ return of.call(this, (typeof u === 'string' ? fix(u) : u), o); };
+  var ox = window.XMLHttpRequest && XMLHttpRequest.prototype.open;
+  if (ox) XMLHttpRequest.prototype.open = function(m, u){
+    var a = Array.prototype.slice.call(arguments); a[1] = fix(u); return ox.apply(this, a);
+  };
+})();</script><title>存档底盘 — 3D 坦克 Wiki</title><meta charset="UTF-8">
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],"wgRequestId":"9fc6dc6fd12b17cd551bbb42","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Arhivnye_moduli","wgTitle":"Arhivnye moduli","wgCurRevisionId":295147,"wgRevisionId":295147,"wgArticleId":10523,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Исторические статьи"],"wgPageViewLanguage":"ru","wgPageContentLanguage":"ru","wgPageContentModel":"wikitext","wgRelevantPageName":"Arhivnye_moduli","wgRelevantArticleId":10523,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":
+false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgVisualEditor":{"pageLanguageCode":"ru","pageLanguageDir":"ltr","pageVariantFallbacks":"ru"},"wgFlaggedRevsParams":{"tags":{"accuracy":{"levels":3}}},"wgStableRevisionId":295147,"wgEditSubmitButtonLabelPublish":false};RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.flaggedRevs.icons":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.flaggedRevs.basic":"ready","skins.tankiblue.responsive":"ready","mediawiki.skinning.interface":"ready","skins.tankiblue":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","mediawiki.toc","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.flaggedRevs.advanced","skins.tankiblue.js","ext.purge"];</script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=ext.flaggedRevs.basic%2Cicons%7Cext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.skinning.interface%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.tankiblue%7Cskins.tankiblue.responsive&amp;only=styles&amp;skin=tankiblue">
+    <script async="" src="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=tankiblue"></script>
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <link rel="stylesheet" href="https://ru.tankiwiki.com/load.php?lang=ru&amp;modules=site.styles&amp;only=styles&amp;skin=tankiblue">
+    <meta name="generator" content="MediaWiki 1.42.3">
+    <meta name="robots" content="max-image-preview:standard">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://ru.tankiwiki.com/favicon.png">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://ru.tankiwiki.com/opensearch_desc.php" title="Tanki Online Wiki (ru)">
+    <link rel="EditURI" type="application/rsd+xml" href="https://ru.tankiwiki.com/api.php?action=rsd">
+    <link rel="alternate" type="application/atom+xml" title="Tanki Online Wiki&nbsp;— Atom-лента" href="https://ru.tankiwiki.com/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:%D0%A1%D0%B2%D0%B5%D0%B6%D0%B8%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8&amp;feed=atom"><style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Rubik&display=swap');
+
+/* 1. 只去掉源站皮肤的背景大图，保留底色；不要用 background 简写，否则会连带清掉皮肤别的背景设定 */
+html, body {
+    background-image: none !important;
+    background-color: #001926 !important;
+}
+/* 2. 让底色铺满视口，内容很短时下方不再露白 */
+html { min-height: 100%; }
+body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif; }
+
+/* 3. 版心容器 */
+#mw-main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #001926;
+}
+
+/* 4. 统一宽度：皮肤会按页面类型给内层不同的 width/float，这里只抹平尺寸，
+      【不动】背景、边框、阴影、内边距，避免把皮肤原有的卡片样式一起清掉 */
+
+#mw-main-container .main-content,
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content,
+#mw-main-container #mw-content-text {
+    max-width: none !important;
+    min-width: 0 !important;
+    width: auto !important;
+    flex-basis: auto !important;   /* 皮肤写了 .main-content{flex:0 0 75%} */
+    float: none !important;
+    margin-top: 0 !important;       /* 核心：清空原站皮肤的负 margin-top */
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    position: relative !important;
+    z-index: 1 !important;          /* 保证正文层级低于按钮 */
+}
+
+/* 5. 皮肤脚本 skins.tankiblue.js 会往 #mw-content-text 末尾插一条「发现错别字？Ctrl+Enter」
+      的俄语提示条和一个「报告错误」标签页。它按网址里有没有 'en'/'de' 来判断语言，
+      我们的域名两者都不含 → 一律显示俄语；且报错会提交到俄站编辑组，对镜像站没意义，直接隐藏。 */
+#custom-report-footer,
+.vectorTabs.customReport,
+.customReport { display: none !important; }
+
+/* 6. 返回按钮包裹容器：独占一行并强制最高层级 */
+.home-btn-wrapper {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px 0 20px 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    z-index: 9999 !important;       /* 核心：永远置于最顶层 */
+    clear: both !important;
+    overflow: visible !important;
+}
+
+/* 7. 返回主页按钮：与 tankionline 皮肤预览页翻页按钮 1:1 对齐 */
+.home-back-btn {
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    width: auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    isolation: isolate !important;
+    
+    min-width: 142px !important;
+    padding: 0 24px !important;
+    height: 78px !important;
+    margin: 0 !important;
+    border: 1px solid rgba(255,255,255,.25) !important;
+    outline: 2px solid transparent !important;
+    border-radius: 6.5px !important;
+    background: radial-gradient(100% 100% at 100% 100%, rgba(191,213,255,.15) 0%, rgba(191,213,255,0) 100%) !important;
+    
+    position: relative !important;
+    z-index: 10000 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: all .15s ease !important;
+    overflow: visible !important;
+}
+.home-back-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(100% 100% at 0% 0%, rgba(191,213,255,.25) 0%, rgba(191,213,255,.15) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all .15s ease;
+    border-radius: inherit;
+    pointer-events: none;
+}
+.home-back-btn svg {
+    width: 24.375px;
+    height: 24px;
+    object-fit: contain;
+    transform: rotate(180deg);
+    transition: all .15s ease;
+    flex-shrink: 0;
+}
+.home-back-btn svg path { fill: #BFD5FF; transition: all .15s ease; }
+
+.home-back-btn:hover,
+.home-back-btn:active,
+.home-back-btn:focus-visible { outline: 1px solid #BFD5FF !important; border-color: #BFD5FF !important; }
+.home-back-btn:hover::before,
+.home-back-btn:active::before,
+.home-back-btn:focus-visible::before { opacity: 1; }
+.home-back-btn:hover svg,
+.home-back-btn:active svg,
+.home-back-btn:focus-visible svg { transform: rotate(180deg) translateX(10%); }
+.home-back-btn:hover svg path,
+.home-back-btn:active svg path,
+.home-back-btn:focus-visible svg path { fill: #fff; }
+
+.home-back-btn span {
+    color: #BFD5FF;
+    font-size: 16px;
+    margin-left: 10px;
+    font-weight: bold;
+    transition: all .15s ease;
+    white-space: nowrap;
+}
+.home-back-btn:hover span,
+.home-back-btn:active span,
+.home-back-btn:focus-visible span {
+    color: #fff;
+    transform: translateX(-4px);
+}
+
+/* 触屏设备（手机/平板）没有悬停，按钮默认就给到更亮的描边，避免看起来像“没样式” */
+@media (hover: none) {
+    .home-back-btn { border-color: rgba(191,213,255,.55) !important; }
+    .home-back-btn svg path { fill: #CFE0FF; }
+}
+
+/* 移动端/窄屏自适应尺寸 */
+@media (max-width: 480px) {
+    .home-back-btn {
+        min-width: 106px !important;
+        padding: 0 16px !important;
+        height: 58px !important;
+        margin-left: 10px !important;
+    }
+    .home-back-btn svg { width: 20px !important; height: 19.7px !important; }
+    .home-back-btn span { font-size: 14px !important; margin-left: 8px !important; }
+}
+
+/* 8. 移动端容器 Padding */
+@media (max-width: 768px) {
+    #mw-main-container { padding: 10px !important; margin: 8px auto !important; }
+    .home-back-btn { margin-left: 10px !important; }
+    #mw-content-text .navigationContainerContent > div,
+    #mw-content-text [style*="width: 55%"],
+    #mw-content-text [style*="width:55%"],
+    #mw-content-text [style*="width: 45%"],
+    #mw-content-text [style*="width:45%"] { width: 100% !important; }
+}
+@media (max-width: 480px) {
+    #mw-main-container { padding: 6px !important; margin: 4px auto !important; }
+}
+
+/* 9. 防止宽表格 / 大图撑破版心 */
+#mw-content-text img { max-width: 100%; height: auto; }
+#mw-content-text table { max-width: 100%; }
+
+/* 10. 目录（TOC）修复，全局生效：
+    a) 皮肤把目录折叠按钮的文字放在 CSS 伪元素里渲染，而不是 HTML 文本：
+         .toctogglecheckbox:checked  + .toctitle .toctogglelabel::after → content:'показать'
+         .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after → content:'скрыть'
+       AI 翻译只处理 HTML 文本，摸不到 CSS content，所以这个按钮永远是俄语，必须在这里覆盖成中文。
+    b) 皮肤的响应式 CSS 里写了 @media screen and (max-width:768px){ #toc{display:none} }，
+       导致手机端整个目录被隐藏。这里恢复显示，并配合下方 TOC_MOBILE_COLLAPSE_SCRIPT：
+       移动端默认折叠，只占一行「目录 [展开]」，避免长目录把正文挤到屏幕外。 */
+#toc .toctogglecheckbox:checked + .toctitle .toctogglelabel::after { content: '展开' !important; }
+#toc .toctogglecheckbox:not(:checked) + .toctitle .toctogglelabel::after { content: '收起' !important; }
+@media screen and (max-width: 768px) {
+    #toc { display: table !important; }
+}
+
+/* ⚠️ 下面这组是「彻底清掉皮肤面板样式」的选项，默认注释掉。
+   只有当内层还残留不想要的白底/边框时再启用，启用后页面会变得很素：
+#mw-main-container .mw-body,
+#mw-main-container .mw-body-content {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+*/
+</style></head><body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Arhivnye_moduli rootpage-Arhivnye_moduli skin-tankiblue action-view"><div id="skin-chrome-stub" aria-hidden="true" style="display:none !important;">
+<a class="problem" href="#"></a>
+<div class="close-wrapper"></div>
+<div class="support-block-popup"><div class="close-modal-support"></div></div>
+<div class="youtube-popup"><iframe title="stub"></iframe></div>
+<div class="video-button"></div>
+<div class="header-search"></div>
+<div class="search-dialog"></div>
+<div class="search-popup"><div class="close-wrapper"></div><div class="close-modal-search"></div></div>
+<div class="news-popup"></div>
+<div class="sales-block-header"></div>
+<div class="navbar-main"></div>
+<div class="main-navbar"></div>
+</div><div id="mw-main-container"><div class="home-btn-wrapper"><a class="home-back-btn" href="./Enciklopediya_igry_%C2%ABTanki_Onlayn%C2%BB" title="返回主页" aria-label="返回主页"><svg viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 0H13.5L25.5 12L24 13.5L13.5 24H18L30 12L18 0ZM24 13.5L21 10.5H0L3 13.5H24Z" fill="#BFD5FF"/></svg><span>返回主页</span></a></div><div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr"><h1 id="firstHeading" class="firstHeading" lang="">存档底盘</h1><div class="dablink"><em>参见：</em> <a href="./%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D0%B8" class="mw-redirect" title="Модули">模块</a>
+</div><p>2018 年 6 月 4 日，随着<a rel="nofollow" class="external text" href="http://ru.tankiforum.com/topic/140226/">更新</a>的发布，为了给模块构建器让路，游戏删除了所有底盘。
+</p><p>在这篇文章中，你可以找到所有存档底盘的列表。
+</p><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"><div class="toctitle" lang="ru" dir="ltr"><h2 id="mw-toc-heading">目录</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Модули"><span class="tocnumber">1</span> <span class="toctext">模块</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Модули,_защищающие_от_одного_типа_повреждений_(Single)"><span class="tocnumber">1.1</span> <span class="toctext">防护单一类型伤害的模块 (Single)</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Модули,_защищающие_от_двух_типов_повреждений_(Double)"><span class="tocnumber">1.2</span> <span class="toctext">防护两种类型伤害的模块 (Double)</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Модули,_защищающие_от_трёх_типов_повреждений_(Triple)"><span class="tocnumber">1.3</span> <span class="toctext">防护三种类型伤害的模块 (Triple)</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Старые_модули_(LGC)"><span class="tocnumber">1.4</span> <span class="toctext">老模块 (LGC)</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Улучшения_модулей"><span class="tocnumber">2</span> <span class="toctext">模块升级</span></a>
+<ul>
+<li class="toclevel-2 tocsection-7"><a href="#Модули_в_продаже"><span class="tocnumber">2.1</span> <span class="toctext">出售中的模块</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Старые_модули_(LGC,_legacy)"><span class="tocnumber">2.2</span> <span class="toctext">老模块 (LGC, legacy)</span></a></li>
+</ul>
+</li>
+</ul>
+</div><h2><span id=".D0.9C.D0.BE.D0.B4.D1.83.D0.BB.D0.B8"></span><span class="mw-headline" id="Модули">模块</span></h2><h3><span id=".D0.9C.D0.BE.D0.B4.D1.83.D0.BB.D0.B8.2C_.D0.B7.D0.B0.D1.89.D0.B8.D1.89.D0.B0.D1.8E.D1.89.D0.B8.D0.B5_.D0.BE.D1.82_.D0.BE.D0.B4.D0.BD.D0.BE.D0.B3.D0.BE_.D1.82.D0.B8.D0.BF.D0.B0_.D0.BF.D0.BE.D0.B2.D1.80.D0.B5.D0.B6.D0.B4.D0.B5.D0.BD.D0.B8.D0.B9_.28Single.29"></span><span class="mw-headline" id="Модули,_защищающие_от_одного_типа_повреждений_(Single)">防护单一类型伤害的模块 (Single)</span></h3><table class="wikitable modules-table">
+<tbody><tr>
+<td width="55px">名称</td>
+<td width="100px"><b>M0</b><br><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">1 000</span></a>
+</td>
+<td width="100px"><b>M1</b><br><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">7 000</span></a>
+</td>
+<td width="100px"><b>M2</b><br><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">20 000</span></a>
+</td>
+<td width="100px"><b>M3</b><br><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">50 000</span></a>
+</td></tr>
+<tr>
+<td class="dummy-row">
+</td>
+<td rowspan="5">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9C%D0%B0%D1%81%D1%82%D0%B5%D1%80-%D0%BA%D0%B0%D0%BF%D1%80%D0%B0%D0%BB" title="Мастер-капрал"><img src="https://ru.tankiwiki.com/images/ru/thumb/5/51/IconsNormal_05.png/28px-IconsNormal_05.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/51/IconsNormal_05.png/42px-IconsNormal_05.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/51/IconsNormal_05.png/56px-IconsNormal_05.png 2x"></a></span> <a href="./%D0%9C%D0%B0%D1%81%D1%82%D0%B5%D1%80-%D0%BA%D0%B0%D0%BF%D1%80%D0%B0%D0%BB" class="mw-redirect" title="Мастер-капрал">中士</a></span>
+</p>
+</td>
+<td rowspan="5">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_1" title="Уорэнт-офицер 1"><img src="https://ru.tankiwiki.com/images/ru/thumb/3/39/IconsNormal_11.png/28px-IconsNormal_11.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/3/39/IconsNormal_11.png/42px-IconsNormal_11.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/3/39/IconsNormal_11.png/56px-IconsNormal_11.png 2x"></a></span> <a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_1" class="mw-redirect" title="Уорэнт-офицер 1">五级准尉</a></span>
+</p>
+</td>
+<td rowspan="5">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9B%D0%B5%D0%B9%D1%82%D0%B5%D0%BD%D0%B0%D0%BD%D1%82" title="Лейтенант"><img src="https://ru.tankiwiki.com/images/ru/thumb/4/48/IconsNormal_17.png/28px-IconsNormal_17.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/4/48/IconsNormal_17.png/42px-IconsNormal_17.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/4/48/IconsNormal_17.png/56px-IconsNormal_17.png 2x"></a></span> <a href="./%D0%9B%D0%B5%D0%B9%D1%82%D0%B5%D0%BD%D0%B0%D0%BD%D1%82" class="mw-redirect" title="Лейтенант">少尉</a></span>
+</p>
+</td>
+<td rowspan="5">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%91%D1%80%D0%B8%D0%B3%D0%B0%D0%B4%D0%B8%D1%80" title="Бригадир"><img src="https://ru.tankiwiki.com/images/ru/thumb/2/24/IconsNormal_23.png/28px-IconsNormal_23.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/2/24/IconsNormal_23.png/42px-IconsNormal_23.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/2/24/IconsNormal_23.png/56px-IconsNormal_23.png 2x"></a></span> <a href="./%D0%91%D1%80%D0%B8%D0%B3%D0%B0%D0%B4%D0%B8%D1%80" class="mw-redirect" title="Бригадир">准将</a></span>
+</p>
+</td></tr>
+<tr>
+<td class="filterable smoky"><a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" class="hud_sprite smoky_icon" title="防御轰天炮"></a>海豚 S-A
+</td></tr>
+<tr>
+<td class="filterable firebird"><a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%82" class="hud_sprite firebird_icon" title="防御火焰炮"></a>狐狸 S-A
+</td></tr>
+<tr>
+<td class="filterable twins"><a href="./%D0%A2%D0%B2%D0%B8%D0%BD%D1%81" class="hud_sprite twins_icon" title="防御离子炮"></a>狼 S-B
+</td></tr>
+<tr>
+<td class="filterable striker"><a href="./%D0%A1%D1%82%D1%80%D0%B0%D0%B9%D0%BA%D0%B5%D1%80" class="hud_sprite striker_icon" title="防御火箭炮"></a>海豚 S-D
+</td></tr>
+<tr>
+<td class="dummy-row">
+</td>
+<td rowspan="5">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%A1%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" title="Сержант"><img src="https://ru.tankiwiki.com/images/ru/thumb/5/57/IconsNormal_06.png/28px-IconsNormal_06.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/57/IconsNormal_06.png/42px-IconsNormal_06.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/57/IconsNormal_06.png/56px-IconsNormal_06.png 2x"></a></span> <a href="./%D0%A1%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" class="mw-redirect" title="Сержант">上士</a></span>
+</p>
+</td>
+<td rowspan="5">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_2" title="Уорэнт-офицер 2"><img src="https://ru.tankiwiki.com/images/ru/thumb/5/50/IconsNormal_12.png/28px-IconsNormal_12.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/50/IconsNormal_12.png/42px-IconsNormal_12.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/50/IconsNormal_12.png/56px-IconsNormal_12.png 2x"></a></span> <a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_2" class="mw-redirect" title="Уорэнт-офицер 2">四级准尉</a></span>
+</p>
+</td>
+<td rowspan="5">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%A1%D1%82%D0%B0%D1%80%D1%88%D0%B8%D0%B9_%D0%BB%D0%B5%D0%B9%D1%82%D0%B5%D0%BD%D0%B0%D0%BD%D1%82" title="Старший лейтенант"><img src="https://ru.tankiwiki.com/images/ru/thumb/7/72/IconsNormal_18.png/28px-IconsNormal_18.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/72/IconsNormal_18.png/42px-IconsNormal_18.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/72/IconsNormal_18.png/56px-IconsNormal_18.png 2x"></a></span> <a href="./%D0%A1%D1%82%D0%B0%D1%80%D1%88%D0%B8%D0%B9_%D0%BB%D0%B5%D0%B9%D1%82%D0%B5%D0%BD%D0%B0%D0%BD%D1%82" class="mw-redirect" title="Старший лейтенант">中尉</a></span>
+</p>
+</td>
+<td rowspan="5">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D0%BB-%D0%BC%D0%B0%D0%B9%D0%BE%D1%80" title="Генерал-майор"><img src="https://ru.tankiwiki.com/images/ru/thumb/7/73/IconsNormal_24.png/28px-IconsNormal_24.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/73/IconsNormal_24.png/42px-IconsNormal_24.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/73/IconsNormal_24.png/56px-IconsNormal_24.png 2x"></a></span> <a href="./%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D0%BB-%D0%BC%D0%B0%D0%B9%D0%BE%D1%80" class="mw-redirect" title="Генерал-майор">少将</a></span>
+</p>
+</td></tr>
+<tr>
+<td class="filterable railgun"><a href="./%D0%A0%D0%B5%D0%BB%D1%8C%D1%81%D0%B0" class="hud_sprite railgun_icon" title="防御激光炮"></a>猎鹰 S-A
+</td></tr>
+<tr>
+<td class="filterable thunder"><a href="./%D0%93%D1%80%D0%BE%D0%BC" class="hud_sprite thunder_icon" title="防御雷暴炮"></a>海豚 S-C
+</td></tr>
+<tr>
+<td class="filterable freeze"><a href="./%D0%A4%D1%80%D0%B8%D0%B7" class="hud_sprite freeze_icon" title="防御冰风暴"></a>狐狸 S-B
+</td></tr>
+<tr>
+<td class="filterable shaft"><a href="./%D0%A8%D0%B0%D1%84%D1%82" class="hud_sprite shaft_icon" title="防御镭射炮"></a>猎鹰 S-B
+</td></tr>
+<tr>
+<td class="dummy-row">
+</td>
+<td rowspan="7">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%A8%D1%82%D0%B0%D0%B1-%D1%81%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" title="Штаб-сержант"><img src="https://ru.tankiwiki.com/images/ru/thumb/5/53/IconsNormal_07.png/28px-IconsNormal_07.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/53/IconsNormal_07.png/42px-IconsNormal_07.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/53/IconsNormal_07.png/56px-IconsNormal_07.png 2x"></a></span> <a href="./%D0%A8%D1%82%D0%B0%D0%B1-%D1%81%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" class="mw-redirect" title="Штаб-сержант">三级军士长</a></span>
+</p>
+</td>
+<td rowspan="7">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_3" title="Уорэнт-офицер 3"><img src="https://ru.tankiwiki.com/images/ru/thumb/c/cc/IconsNormal_13.png/28px-IconsNormal_13.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/cc/IconsNormal_13.png/42px-IconsNormal_13.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/c/cc/IconsNormal_13.png/56px-IconsNormal_13.png 2x"></a></span> <a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_3" class="mw-redirect" title="Уорэнт-офицер 3">三级准尉</a></span>
+</p>
+</td>
+<td rowspan="7">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9A%D0%B0%D0%BF%D0%B8%D1%82%D0%B0%D0%BD" title="Капитан"><img src="https://ru.tankiwiki.com/images/ru/thumb/e/ed/IconsNormal_19.png/28px-IconsNormal_19.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/ed/IconsNormal_19.png/42px-IconsNormal_19.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/ed/IconsNormal_19.png/56px-IconsNormal_19.png 2x"></a></span> <a href="./%D0%9A%D0%B0%D0%BF%D0%B8%D1%82%D0%B0%D0%BD" class="mw-redirect" title="Капитан">上尉</a></span>
+</p>
+</td>
+<td rowspan="7">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D0%BB-%D0%BB%D0%B5%D0%B9%D1%82%D0%B5%D0%BD%D0%B0%D0%BD%D1%82" title="Генерал-лейтенант"><img src="https://ru.tankiwiki.com/images/ru/thumb/7/71/IconsNormal_25.png/28px-IconsNormal_25.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/71/IconsNormal_25.png/42px-IconsNormal_25.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/71/IconsNormal_25.png/56px-IconsNormal_25.png 2x"></a></span> <a href="./%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D0%BB-%D0%BB%D0%B5%D0%B9%D1%82%D0%B5%D0%BD%D0%B0%D0%BD%D1%82" class="mw-redirect" title="Генерал-лейтенант">中将</a></span>
+</p>
+</td></tr>
+<tr>
+<td class="filterable vulcan"><a href="./%D0%92%D1%83%D0%BB%D0%BA%D0%B0%D0%BD" class="hud_sprite vulcan_icon" title="防御极速炮"></a>海豚 S-B
+</td></tr>
+<tr>
+<td class="filterable isida"><a href="./%D0%98%D0%B7%D0%B8%D0%B4%D0%B0" class="hud_sprite isida_icon" title="防御磁力炮"></a>狐狸 S-C
+</td></tr>
+<tr>
+<td class="filterable hammer"><a href="./%D0%9C%D0%BE%D0%BB%D0%BE%D1%82" class="hud_sprite hammer_icon" title="防御滑膛炮"></a>狼 S-A
+</td></tr>
+<tr>
+<td class="filterable ricochet"><a href="./%D0%A0%D0%B8%D0%BA%D0%BE%D1%88%D0%B5%D1%82" class="hud_sprite ricochet_icon" title="防御火龙珠"></a>狼 S-C
+</td></tr>
+<tr>
+<td class="filterable magnum"><a href="./%D0%9C%D0%B0%D0%B3%D0%BD%D1%83%D0%BC" class="hud_sprite magnum_icon" title="防御马格南"></a>猎鹰 S-C
+</td></tr>
+<tr>
+<td><a href="./%D0%9C%D0%B8%D0%BD%D0%B0" class="hud_sprite mine_icon" title="防御地雷"></a>蜘蛛 S-A
+</td></tr>
+<tr>
+<td>防护</td>
+<td>10% → 15%
+</td>
+<td>15% → 25%
+</td>
+<td>25% → 35%
+</td>
+<td>35% → <span style="color:#FFFF00">50%</span>
+</td></tr>
+<tr>
+<td>升级</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B5%D0%B9_%C2%ABSingle%C2%BB" class="mw-redirect" title="Улучшения модулей «Single»">Single M0</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B5%D0%B9_%C2%ABSingle%C2%BB" class="mw-redirect" title="Улучшения модулей «Single»">Single M1</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B5%D0%B9_%C2%ABSingle%C2%BB" class="mw-redirect" title="Улучшения модулей «Single»">Single M2</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B5%D0%B9_%C2%ABSingle%C2%BB" class="mw-redirect" title="Улучшения модулей «Single»">Single M3</a>
+</td></tr></tbody></table><h3><span id=".D0.9C.D0.BE.D0.B4.D1.83.D0.BB.D0.B8.2C_.D0.B7.D0.B0.D1.89.D0.B8.D1.89.D0.B0.D1.8E.D1.89.D0.B8.D0.B5_.D0.BE.D1.82_.D0.B4.D0.B2.D1.83.D1.85_.D1.82.D0.B8.D0.BF.D0.BE.D0.B2_.D0.BF.D0.BE.D0.B2.D1.80.D0.B5.D0.B6.D0.B4.D0.B5.D0.BD.D0.B8.D0.B9_.28Double.29"></span><span class="mw-headline" id="Модули,_защищающие_от_двух_типов_повреждений_(Double)">防护两种类型伤害的模块 (Double)</span></h3><table class="wikitable modules-table">
+<tbody><tr>
+<td width="55px">名称</td>
+<td width="100px"><b>M0</b><br><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">2 500</span></a>
+</td>
+<td width="100px"><b>M1</b><br><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">15 000</span></a>
+</td>
+<td width="100px"><b>M2</b><br><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">50 000</span></a>
+</td>
+<td width="100px"><b>M3</b><br><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">150 000</span></a>
+</td></tr>
+<tr>
+<td class="dummy-row">
+</td>
+<td rowspan="9">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%A1%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" title="Сержант"><img src="https://ru.tankiwiki.com/images/ru/thumb/5/57/IconsNormal_06.png/28px-IconsNormal_06.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/57/IconsNormal_06.png/42px-IconsNormal_06.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/57/IconsNormal_06.png/56px-IconsNormal_06.png 2x"></a></span> <a href="./%D0%A1%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" class="mw-redirect" title="Сержант">上士</a></span>
+</p>
+</td>
+<td rowspan="9">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_2" title="Уорэнт-офицер 2"><img src="https://ru.tankiwiki.com/images/ru/thumb/5/50/IconsNormal_12.png/28px-IconsNormal_12.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/50/IconsNormal_12.png/42px-IconsNormal_12.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/50/IconsNormal_12.png/56px-IconsNormal_12.png 2x"></a></span> <a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_2" class="mw-redirect" title="Уорэнт-офицер 2">四级准尉</a></span>
+</p>
+</td>
+<td rowspan="9">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%A1%D1%82%D0%B0%D1%80%D1%88%D0%B8%D0%B9_%D0%BB%D0%B5%D0%B9%D1%82%D0%B5%D0%BD%D0%B0%D0%BD%D1%82" title="Старший лейтенант"><img src="https://ru.tankiwiki.com/images/ru/thumb/7/72/IconsNormal_18.png/28px-IconsNormal_18.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/72/IconsNormal_18.png/42px-IconsNormal_18.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/72/IconsNormal_18.png/56px-IconsNormal_18.png 2x"></a></span> <a href="./%D0%A1%D1%82%D0%B0%D1%80%D1%88%D0%B8%D0%B9_%D0%BB%D0%B5%D0%B9%D1%82%D0%B5%D0%BD%D0%B0%D0%BD%D1%82" class="mw-redirect" title="Старший лейтенант">中尉</a></span>
+</p>
+</td>
+<td rowspan="9">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D0%BB-%D0%BC%D0%B0%D0%B9%D0%BE%D1%80" title="Генерал-майор"><img src="https://ru.tankiwiki.com/images/ru/thumb/7/73/IconsNormal_24.png/28px-IconsNormal_24.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/73/IconsNormal_24.png/42px-IconsNormal_24.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/73/IconsNormal_24.png/56px-IconsNormal_24.png 2x"></a></span> <a href="./%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D0%BB-%D0%BC%D0%B0%D0%B9%D0%BE%D1%80" class="mw-redirect" title="Генерал-майор">少将</a></span>
+</p>
+</td></tr>
+<tr>
+<td class="filterable railgun shaft"><a href="./%D0%A0%D0%B5%D0%BB%D1%8C%D1%81%D0%B0" class="hud_sprite railgun_icon" title="防御激光炮"></a>鹰 D-A
+</td></tr>
+<tr>
+<td class="filterable smoky hammer"><a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" class="hud_sprite smoky_icon" title="防御轰天炮"></a>黑豹 D-A
+</td></tr>
+<tr>
+<td class="filterable firebird isida"><a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%82" class="hud_sprite firebird_icon" title="防御火焰炮"></a>山猫 D-A
+</td></tr>
+<tr>
+<td class="filterable smoky twins"><a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" class="hud_sprite smoky_icon" title="防御轰天炮"></a>黑豹 D-C
+</td></tr>
+<tr>
+<td class="filterable twins ricochet"><a href="./%D0%A2%D0%B2%D0%B8%D0%BD%D1%81" class="hud_sprite twins_icon" title="防御离子炮"></a>黑豹 D-D
+</td></tr>
+<tr>
+<td class="filterable smoky vulcan"><a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" class="hud_sprite smoky_icon" title="防御轰天炮"></a>虎鲸 D-D
+</td></tr>
+<tr>
+<td class="filterable vulcan striker"><a href="./%D0%92%D1%83%D0%BB%D0%BA%D0%B0%D0%BD" class="hud_sprite vulcan_icon" title="防御极速炮"></a>虎鲸 D-F
+</td></tr>
+<tr>
+<td class="filterable twins magnum"><a href="./%D0%A2%D0%B2%D0%B8%D0%BD%D1%81" class="hud_sprite twins_icon" title="防御离子炮"></a>熊猫 D-D
+</td></tr>
+<tr>
+<td class="dummy-row">
+</td>
+<td rowspan="8">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%A8%D1%82%D0%B0%D0%B1-%D1%81%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" title="Штаб-сержант"><img src="https://ru.tankiwiki.com/images/ru/thumb/5/53/IconsNormal_07.png/28px-IconsNormal_07.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/53/IconsNormal_07.png/42px-IconsNormal_07.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/53/IconsNormal_07.png/56px-IconsNormal_07.png 2x"></a></span> <a href="./%D0%A8%D1%82%D0%B0%D0%B1-%D1%81%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" class="mw-redirect" title="Штаб-сержант">三级军士长</a></span>
+</p>
+</td>
+<td rowspan="8">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_3" title="Уорэнт-офицер 3"><img src="https://ru.tankiwiki.com/images/ru/thumb/c/cc/IconsNormal_13.png/28px-IconsNormal_13.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/cc/IconsNormal_13.png/42px-IconsNormal_13.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/c/cc/IconsNormal_13.png/56px-IconsNormal_13.png 2x"></a></span> <a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_3" class="mw-redirect" title="Уорэнт-офицер 3">三级准尉</a></span>
+</p>
+</td>
+<td rowspan="8">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9A%D0%B0%D0%BF%D0%B8%D1%82%D0%B0%D0%BD" title="Капитан"><img src="https://ru.tankiwiki.com/images/ru/thumb/e/ed/IconsNormal_19.png/28px-IconsNormal_19.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/ed/IconsNormal_19.png/42px-IconsNormal_19.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/ed/IconsNormal_19.png/56px-IconsNormal_19.png 2x"></a></span> <a href="./%D0%9A%D0%B0%D0%BF%D0%B8%D1%82%D0%B0%D0%BD" class="mw-redirect" title="Капитан">上尉</a></span>
+</p>
+</td>
+<td rowspan="8">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D0%BB-%D0%BB%D0%B5%D0%B9%D1%82%D0%B5%D0%BD%D0%B0%D0%BD%D1%82" title="Генерал-лейтенант"><img src="https://ru.tankiwiki.com/images/ru/thumb/7/71/IconsNormal_25.png/28px-IconsNormal_25.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/71/IconsNormal_25.png/42px-IconsNormal_25.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/71/IconsNormal_25.png/56px-IconsNormal_25.png 2x"></a></span> <a href="./%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D0%BB-%D0%BB%D0%B5%D0%B9%D1%82%D0%B5%D0%BD%D0%B0%D0%BD%D1%82" class="mw-redirect" title="Генерал-лейтенант">中将</a></span>
+</p>
+</td></tr>
+<tr>
+<td class="filterable smoky railgun"><a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" class="hud_sprite smoky_icon" title="防御轰天炮"></a>虎鲸 D-A
+</td></tr>
+<tr>
+<td class="filterable firebird thunder"><a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%82" class="hud_sprite firebird_icon" title="防御火焰炮"></a>熊猫 D-A
+</td></tr>
+<tr>
+<td class="filterable isida freeze"><a href="./%D0%98%D0%B7%D0%B8%D0%B4%D0%B0" class="hud_sprite isida_icon" title="防御磁力炮"></a>山猫 D-B
+</td></tr>
+<tr>
+<td class="filterable thunder ricochet"><a href="./%D0%93%D1%80%D0%BE%D0%BC" class="hud_sprite thunder_icon" title="防御雷暴炮"></a>虎鲸 D-C
+</td></tr>
+<tr>
+<td class="filterable firebird freeze"><a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%82" class="hud_sprite firebird_icon" title="防御火焰炮"></a>山猫 D-C
+</td></tr>
+<tr>
+<td class="filterable shaft striker"><a href="./%D0%A8%D0%B0%D1%84%D1%82" class="hud_sprite shaft_icon" title="防御镭射炮"></a>鹰 D-C
+</td></tr>
+<tr>
+<td class="filterable ricochet magnum"><a href="./%D0%A0%D0%B8%D0%BA%D0%BE%D1%88%D0%B5%D1%82" class="hud_sprite ricochet_icon" title="防御火龙珠"></a>熊猫 D-E
+</td></tr>
+<tr>
+<td class="dummy-row">
+</td>
+<td rowspan="11">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9C%D0%B0%D1%81%D1%82%D0%B5%D1%80-%D1%81%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" title="Мастер-сержант"><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6b/IconsNormal_08.png/28px-IconsNormal_08.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/6b/IconsNormal_08.png/42px-IconsNormal_08.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/6b/IconsNormal_08.png/56px-IconsNormal_08.png 2x"></a></span> <a href="./%D0%9C%D0%B0%D1%81%D1%82%D0%B5%D1%80-%D1%81%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" class="mw-redirect" title="Мастер-сержант">二级军士长</a></span>
+</p>
+</td>
+<td rowspan="11">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_4" title="Уорэнт-офицер 4"><img src="https://ru.tankiwiki.com/images/ru/thumb/e/e8/IconsNormal_14.png/28px-IconsNormal_14.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e8/IconsNormal_14.png/42px-IconsNormal_14.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e8/IconsNormal_14.png/56px-IconsNormal_14.png 2x"></a></span> <a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_4" class="mw-redirect" title="Уорэнт-офицер 4">二级准尉</a></span>
+</p>
+</td>
+<td rowspan="11">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9C%D0%B0%D0%B9%D0%BE%D1%80" title="Майор"><img src="https://ru.tankiwiki.com/images/ru/thumb/b/b3/IconsNormal_20.png/28px-IconsNormal_20.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/b3/IconsNormal_20.png/42px-IconsNormal_20.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/b3/IconsNormal_20.png/56px-IconsNormal_20.png 2x"></a></span> <a href="./%D0%9C%D0%B0%D0%B9%D0%BE%D1%80" class="mw-redirect" title="Майор">少校</a></span>
+</p>
+</td>
+<td rowspan="11">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D0%BB" title="Генерал"><img src="https://ru.tankiwiki.com/images/ru/thumb/0/04/IconsNormal_26.png/28px-IconsNormal_26.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/0/04/IconsNormal_26.png/42px-IconsNormal_26.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/0/04/IconsNormal_26.png/56px-IconsNormal_26.png 2x"></a></span> <a href="./%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D0%BB" class="mw-redirect" title="Генерал">上将</a></span>
+</p>
+</td></tr>
+<tr>
+<td class="filterable freeze shaft"><a href="./%D0%A4%D1%80%D0%B8%D0%B7" class="hud_sprite freeze_icon" title="防御冰风暴"></a>熊猫 D-B
+</td></tr>
+<tr>
+<td class="filterable ricochet vulcan"><a href="./%D0%A0%D0%B8%D0%BA%D0%BE%D1%88%D0%B5%D1%82" class="hud_sprite ricochet_icon" title="防御火龙珠"></a>虎鲸 D-B
+</td></tr>
+<tr>
+<td class="filterable isida vulcan"><a href="./%D0%98%D0%B7%D0%B8%D0%B4%D0%B0" class="hud_sprite isida_icon" title="防御磁力炮"></a>熊猫 D-C
+</td></tr>
+<tr>
+<td class="filterable twins hammer"><a href="./%D0%A2%D0%B2%D0%B8%D0%BD%D1%81" class="hud_sprite twins_icon" title="防御离子炮"></a>黑豹 D-B
+</td></tr>
+<tr>
+<td class="filterable isida hammer"><a href="./%D0%98%D0%B7%D0%B8%D0%B4%D0%B0" class="hud_sprite isida_icon" title="防御磁力炮"></a>山猫 D-D
+</td></tr>
+<tr>
+<td class="filterable railgun thunder"><a href="./%D0%A0%D0%B5%D0%BB%D1%8C%D1%81%D0%B0" class="hud_sprite railgun_icon" title="防御激光炮"></a>鹰 D-B
+</td></tr>
+<tr>
+<td class="filterable railgun striker"><a href="./%D0%A0%D0%B5%D0%BB%D1%8C%D1%81%D0%B0" class="hud_sprite railgun_icon" title="防御激光炮"></a>鹰 D-D
+</td></tr>
+<tr>
+<td class="filterable thunder striker"><a href="./%D0%93%D1%80%D0%BE%D0%BC" class="hud_sprite thunder_icon" title="防御雷暴炮"></a>虎鲸 D-E
+</td></tr>
+<tr>
+<td class="filterable hammer magnum"><a href="./%D0%9C%D0%BE%D0%BB%D0%BE%D1%82" class="hud_sprite hammer_icon" title="防御滑膛炮"></a>熊猫 D-F
+</td></tr>
+<tr>
+<td class="filterable shaft magnum"><a href="./%D0%A8%D0%B0%D1%84%D1%82" class="hud_sprite shaft_icon" title="防御镭射炮"></a>鹰 D-E
+</td></tr>
+<tr>
+<td>防护</td>
+<td>10% → 15%
+</td>
+<td>15% → 25%
+</td>
+<td>25% → 35%
+</td>
+<td>35% → <span style="color:#FFFF00">50%</span>
+</td></tr>
+<tr>
+<td>升级</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B5%D0%B9_%C2%ABDouble%C2%BB" class="mw-redirect" title="Улучшения модулей «Double»">Double M0</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B5%D0%B9_%C2%ABDouble%C2%BB" class="mw-redirect" title="Улучшения модулей «Double»">Double M1</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B5%D0%B9_%C2%ABDouble%C2%BB" class="mw-redirect" title="Улучшения модулей «Double»">Double M2</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B5%D0%B9_%C2%ABDouble%C2%BB" class="mw-redirect" title="Улучшения модулей «Double»">Double M3</a>
+</td></tr></tbody></table><h3><span id=".D0.9C.D0.BE.D0.B4.D1.83.D0.BB.D0.B8.2C_.D0.B7.D0.B0.D1.89.D0.B8.D1.89.D0.B0.D1.8E.D1.89.D0.B8.D0.B5_.D0.BE.D1.82_.D1.82.D1.80.D1.91.D1.85_.D1.82.D0.B8.D0.BF.D0.BE.D0.B2_.D0.BF.D0.BE.D0.B2.D1.80.D0.B5.D0.B6.D0.B4.D0.B5.D0.BD.D0.B8.D0.B9_.28Triple.29"></span><span class="mw-headline" id="Модули,_защищающие_от_трёх_типов_повреждений_(Triple)">防护三种类型伤害的模块 (Triple)</span></h3><table class="wikitable modules-table">
+<tbody><tr>
+<td width="55px">名称</td>
+<td width="100px"><b>M0</b><br><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">5 000</span></a>
+</td>
+<td width="100px"><b>M1</b><br><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">30 000</span></a>
+</td>
+<td width="100px"><b>M2</b><br><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">100 000</span></a>
+</td>
+<td width="100px"><b>M3</b><br><a href="./%D0%9A%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB%D1%8B" class="mw-redirect" title="Кристаллы"><span class="crystals-modern">250 000</span></a>
+</td></tr>
+<tr>
+<td class="dummy-row">
+</td>
+<td rowspan="21">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%A8%D1%82%D0%B0%D0%B1-%D1%81%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" title="Штаб-сержант"><img src="https://ru.tankiwiki.com/images/ru/thumb/5/53/IconsNormal_07.png/28px-IconsNormal_07.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/53/IconsNormal_07.png/42px-IconsNormal_07.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/53/IconsNormal_07.png/56px-IconsNormal_07.png 2x"></a></span> <a href="./%D0%A8%D1%82%D0%B0%D0%B1-%D1%81%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" class="mw-redirect" title="Штаб-сержант">三级军士长</a></span>
+</p>
+</td>
+<td rowspan="21">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_3" title="Уорэнт-офицер 3"><img src="https://ru.tankiwiki.com/images/ru/thumb/c/cc/IconsNormal_13.png/28px-IconsNormal_13.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/cc/IconsNormal_13.png/42px-IconsNormal_13.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/c/cc/IconsNormal_13.png/56px-IconsNormal_13.png 2x"></a></span> <a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_3" class="mw-redirect" title="Уорэнт-офицер 3">三级准尉</a></span>
+</p>
+</td>
+<td rowspan="21">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9A%D0%B0%D0%BF%D0%B8%D1%82%D0%B0%D0%BD" title="Капитан"><img src="https://ru.tankiwiki.com/images/ru/thumb/e/ed/IconsNormal_19.png/28px-IconsNormal_19.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/ed/IconsNormal_19.png/42px-IconsNormal_19.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/ed/IconsNormal_19.png/56px-IconsNormal_19.png 2x"></a></span> <a href="./%D0%9A%D0%B0%D0%BF%D0%B8%D1%82%D0%B0%D0%BD" class="mw-redirect" title="Капитан">上尉</a></span>
+</p>
+</td>
+<td rowspan="21">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D0%BB-%D0%BB%D0%B5%D0%B9%D1%82%D0%B5%D0%BD%D0%B0%D0%BD%D1%82" title="Генерал-лейтенант"><img src="https://ru.tankiwiki.com/images/ru/thumb/7/71/IconsNormal_25.png/28px-IconsNormal_25.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/7/71/IconsNormal_25.png/42px-IconsNormal_25.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/7/71/IconsNormal_25.png/56px-IconsNormal_25.png 2x"></a></span> <a href="./%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D0%BB-%D0%BB%D0%B5%D0%B9%D1%82%D0%B5%D0%BD%D0%B0%D0%BD%D1%82" class="mw-redirect" title="Генерал-лейтенант">中将</a></span>
+</p>
+</td></tr>
+<tr>
+<td class="filterable firebird railgun thunder"><a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%82" class="hud_sprite firebird_icon" title="防御火焰炮"></a>科迪亚克 T-A
+</td></tr>
+<tr>
+<td class="filterable smoky twins freeze"><a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" class="hud_sprite smoky_icon" title="防御轰天炮"></a>灰熊 T-A
+</td></tr>
+<tr>
+<td class="filterable firebird freeze hammer"><a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%82" class="hud_sprite firebird_icon" title="防御火焰炮"></a>獾 T-A
+</td></tr>
+<tr>
+<td class="filterable smoky twins shaft"><a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" class="hud_sprite smoky_icon" title="防御轰天炮"></a>乌尔萨 T-A
+</td></tr>
+<tr>
+<td class="filterable isida freeze ricochet"><a href="./%D0%98%D0%B7%D0%B8%D0%B4%D0%B0" class="hud_sprite isida_icon" title="防御磁力炮"></a>獾 T-B
+</td></tr>
+<tr>
+<td class="filterable isida thunder freeze"><a href="./%D0%98%D0%B7%D0%B8%D0%B4%D0%B0" class="hud_sprite isida_icon" title="防御磁力炮"></a>獾 T-C
+</td></tr>
+<tr>
+<td class="filterable railgun isida hammer"><a href="./%D0%A0%D0%B5%D0%BB%D1%8C%D1%81%D0%B0" class="hud_sprite railgun_icon" title="防御激光炮"></a>灰熊 T-B
+</td></tr>
+<tr>
+<td class="filterable firebird thunder freeze"><a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%82" class="hud_sprite firebird_icon" title="防御火焰炮"></a>獾 T-D
+</td></tr>
+<tr>
+<td class="filterable shaft hammer vulcan"><a href="./%D0%A8%D0%B0%D1%84%D1%82" class="hud_sprite shaft_icon" title="防御镭射炮"></a>科迪亚克 T-B
+</td></tr>
+<tr>
+<td class="filterable railgun thunder shaft"><a href="./%D0%A0%D0%B5%D0%BB%D1%8C%D1%81%D0%B0" class="hud_sprite railgun_icon" title="防御激光炮"></a>狮鹫 T-A
+</td></tr>
+<tr>
+<td class="filterable thunder ricochet vulcan"><a href="./%D0%93%D1%80%D0%BE%D0%BC" class="hud_sprite thunder_icon" title="防御雷暴炮"></a>鲨鱼 T-A
+</td></tr>
+<tr>
+<td class="filterable firebird twins hammer"><a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%82" class="hud_sprite firebird_icon" title="防御火焰炮"></a>狮子 T-A
+</td></tr>
+<tr>
+<td class="filterable smoky railgun vulcan"><a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" class="hud_sprite smoky_icon" title="防御轰天炮"></a>鲨鱼 T-B
+</td></tr>
+<tr>
+<td class="filterable smoky isida thunder"><a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" class="hud_sprite smoky_icon" title="防御轰天炮"></a>鲨鱼 T-C
+</td></tr>
+<tr>
+<td class="filterable twins isida vulcan"><a href="./%D0%A2%D0%B2%D0%B8%D0%BD%D1%81" class="hud_sprite twins_icon" title="防御离子炮"></a>乌尔萨 T-F
+</td></tr>
+<tr>
+<td class="filterable railgun ricochet shaft"><a href="./%D0%A0%D0%B5%D0%BB%D1%8C%D1%81%D0%B0" class="hud_sprite railgun_icon" title="防御激光炮"></a>狮鹫 T-E
+</td></tr>
+<tr>
+<td class="filterable twins ricochet striker"><a href="./%D0%A2%D0%B2%D0%B8%D0%BD%D1%81" class="hud_sprite twins_icon" title="防御离子炮"></a>狮子 T-F
+</td></tr>
+<tr>
+<td class="filterable isida shaft striker"><a href="./%D0%98%D0%B7%D0%B8%D0%B4%D0%B0" class="hud_sprite isida_icon" title="防御磁力炮"></a>科迪亚克 T-J
+</td></tr>
+<tr>
+<td class="filterable isida ricochet magnum"><a href="./%D0%98%D0%B7%D0%B8%D0%B4%D0%B0" class="hud_sprite isida_icon" title="防御磁力炮"></a>乌尔萨 T-H
+</td></tr>
+<tr>
+<td class="filterable ricochet shaft magnum"><a href="./%D0%A0%D0%B8%D0%BA%D0%BE%D1%88%D0%B5%D1%82" class="hud_sprite ricochet_icon" title="防御火龙珠"></a>狮鹫 T-H
+</td></tr>
+<tr>
+<td class="dummy-row">
+</td>
+<td rowspan="24">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9C%D0%B0%D1%81%D1%82%D0%B5%D1%80-%D1%81%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" title="Мастер-сержант"><img src="https://ru.tankiwiki.com/images/ru/thumb/6/6b/IconsNormal_08.png/28px-IconsNormal_08.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/6/6b/IconsNormal_08.png/42px-IconsNormal_08.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/6/6b/IconsNormal_08.png/56px-IconsNormal_08.png 2x"></a></span> <a href="./%D0%9C%D0%B0%D1%81%D1%82%D0%B5%D1%80-%D1%81%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" class="mw-redirect" title="Мастер-сержант">二级军士长</a></span>
+</p>
+</td>
+<td rowspan="24">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_4" title="Уорэнт-офицер 4"><img src="https://ru.tankiwiki.com/images/ru/thumb/e/e8/IconsNormal_14.png/28px-IconsNormal_14.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/e/e8/IconsNormal_14.png/42px-IconsNormal_14.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/e/e8/IconsNormal_14.png/56px-IconsNormal_14.png 2x"></a></span> <a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_4" class="mw-redirect" title="Уорэнт-офицер 4">二级准尉</a></span>
+</p>
+</td>
+<td rowspan="24">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9C%D0%B0%D0%B9%D0%BE%D1%80" title="Майор"><img src="https://ru.tankiwiki.com/images/ru/thumb/b/b3/IconsNormal_20.png/28px-IconsNormal_20.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/b/b3/IconsNormal_20.png/42px-IconsNormal_20.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/b/b3/IconsNormal_20.png/56px-IconsNormal_20.png 2x"></a></span> <a href="./%D0%9C%D0%B0%D0%B9%D0%BE%D1%80" class="mw-redirect" title="Майор">少校</a></span>
+</p>
+</td>
+<td rowspan="24">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D0%BB" title="Генерал"><img src="https://ru.tankiwiki.com/images/ru/thumb/0/04/IconsNormal_26.png/28px-IconsNormal_26.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/0/04/IconsNormal_26.png/42px-IconsNormal_26.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/0/04/IconsNormal_26.png/56px-IconsNormal_26.png 2x"></a></span> <a href="./%D0%93%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D0%BB" class="mw-redirect" title="Генерал">上将</a></span>
+</p>
+</td></tr>
+<tr>
+<td class="filterable isida hammer vulcan"><a href="./%D0%98%D0%B7%D0%B8%D0%B4%D0%B0" class="hud_sprite isida_icon" title="防御磁力炮"></a>灰熊 T-C
+</td></tr>
+<tr>
+<td class="filterable smoky twins isida"><a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" class="hud_sprite smoky_icon" title="防御轰天炮"></a>灰熊 T-D
+</td></tr>
+<tr>
+<td class="filterable firebird twins ricochet"><a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%82" class="hud_sprite firebird_icon" title="防御火焰炮"></a>狮子 T-B
+</td></tr>
+<tr>
+<td class="filterable smoky railgun shaft"><a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" class="hud_sprite smoky_icon" title="防御轰天炮"></a>狮鹫 T-B
+</td></tr>
+<tr>
+<td class="filterable railgun shaft vulcan"><a href="./%D0%A0%D0%B5%D0%BB%D1%8C%D1%81%D0%B0" class="hud_sprite railgun_icon" title="防御激光炮"></a>狮鹫 T-C
+</td></tr>
+<tr>
+<td class="filterable smoky freeze ricochet"><a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" class="hud_sprite smoky_icon" title="防御轰天炮"></a>灰熊 T-E
+</td></tr>
+<tr>
+<td class="filterable firebird hammer vulcan"><a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%82" class="hud_sprite firebird_icon" title="防御火焰炮"></a>灰熊 T-F
+</td></tr>
+<tr>
+<td class="filterable smoky railgun ricochet"><a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" class="hud_sprite smoky_icon" title="防御轰天炮"></a>乌尔萨 T-B
+</td></tr>
+<tr>
+<td class="filterable smoky firebird hammer"><a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" class="hud_sprite smoky_icon" title="防御轰天炮"></a>灰熊 T-G
+</td></tr>
+<tr>
+<td class="filterable twins thunder vulcan"><a href="./%D0%A2%D0%B2%D0%B8%D0%BD%D1%81" class="hud_sprite twins_icon" title="防御离子炮"></a>鲨鱼 T-D
+</td></tr>
+<tr>
+<td class="filterable firebird isida hammer"><a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%82" class="hud_sprite firebird_icon" title="防御火焰炮"></a>獾 T-E
+</td></tr>
+<tr>
+<td class="filterable twins railgun thunder"><a href="./%D0%A2%D0%B2%D0%B8%D0%BD%D1%81" class="hud_sprite twins_icon" title="防御离子炮"></a>科迪亚克 T-C
+</td></tr>
+<tr>
+<td class="filterable freeze ricochet vulcan"><a href="./%D0%A4%D1%80%D0%B8%D0%B7" class="hud_sprite freeze_icon" title="防御冰风暴"></a>灰熊 T-H
+</td></tr>
+<tr>
+<td class="filterable firebird twins freeze"><a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%82" class="hud_sprite firebird_icon" title="防御火焰炮"></a>獾 T-F
+</td></tr>
+<tr>
+<td class="filterable firebird isida freeze"><a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%82" class="hud_sprite firebird_icon" title="防御火焰炮"></a>獾 T-H
+</td></tr>
+<tr>
+<td class="filterable twins ricochet hammer"><a href="./%D0%A2%D0%B2%D0%B8%D0%BD%D1%81" class="hud_sprite twins_icon" title="防御离子炮"></a>狮子 T-D
+</td></tr>
+<tr>
+<td class="filterable smoky firebird railgun"><a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" class="hud_sprite smoky_icon" title="防御轰天炮"></a>科迪亚克 T-H
+</td></tr>
+<tr>
+<td class="filterable firebird twins railgun"><a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%82" class="hud_sprite firebird_icon" title="防御火焰炮"></a>科迪亚克 T-G
+</td></tr>
+<tr>
+<td class="filterable isida thunder vulcan"><a href="./%D0%98%D0%B7%D0%B8%D0%B4%D0%B0" class="hud_sprite isida_icon" title="防御磁力炮"></a>鲨鱼 T-F
+</td></tr>
+<tr>
+<td class="filterable shaft vulcan striker"><a href="./%D0%A8%D0%B0%D1%84%D1%82" class="hud_sprite shaft_icon" title="防御镭射炮"></a>乌尔萨 T-G
+</td></tr>
+<tr>
+<td class="filterable twins striker magnum"><a href="./%D0%A2%D0%B2%D0%B8%D0%BD%D1%81" class="hud_sprite twins_icon" title="防御离子炮"></a>乌尔萨 T-J
+</td></tr>
+<tr>
+<td class="filterable firebird vulcan magnum"><a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%82" class="hud_sprite firebird_icon" title="防御火焰炮"></a>科迪亚克 T-L
+</td></tr>
+<tr>
+<td class="filterable shaft striker magnum"><a href="./%D0%A8%D0%B0%D1%84%D1%82" class="hud_sprite shaft_icon" title="防御镭射炮"></a>狮鹫 T-F
+</td></tr>
+<tr>
+<td class="dummy-row">
+</td>
+<td rowspan="19">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9F%D0%B5%D1%80%D0%B2%D1%8B%D0%B9_%D1%81%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" title="Первый сержант"><img src="https://ru.tankiwiki.com/images/ru/thumb/1/14/IconsNormal_09.png/28px-IconsNormal_09.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/1/14/IconsNormal_09.png/42px-IconsNormal_09.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/1/14/IconsNormal_09.png/56px-IconsNormal_09.png 2x"></a></span> <a href="./%D0%9F%D0%B5%D1%80%D0%B2%D1%8B%D0%B9_%D1%81%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D1%82" class="mw-redirect" title="Первый сержант">一级军士长</a></span>
+</p>
+</td>
+<td rowspan="19">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_5" title="Уорэнт-офицер 5"><img src="https://ru.tankiwiki.com/images/ru/thumb/5/55/IconsNormal_15.png/28px-IconsNormal_15.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/5/55/IconsNormal_15.png/42px-IconsNormal_15.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/5/55/IconsNormal_15.png/56px-IconsNormal_15.png 2x"></a></span> <a href="./%D0%A3%D0%BE%D1%80%D1%8D%D0%BD%D1%82-%D0%BE%D1%84%D0%B8%D1%86%D0%B5%D1%80_5" class="mw-redirect" title="Уорэнт-офицер 5">一级准尉</a></span>
+</p>
+</td>
+<td rowspan="19">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9F%D0%BE%D0%B4%D0%BF%D0%BE%D0%BB%D0%BA%D0%BE%D0%B2%D0%BD%D0%B8%D0%BA" title="Подполковник"><img src="https://ru.tankiwiki.com/images/ru/thumb/c/c8/IconsNormal_21.png/28px-IconsNormal_21.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/c/c8/IconsNormal_21.png/42px-IconsNormal_21.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/c/c8/IconsNormal_21.png/56px-IconsNormal_21.png 2x"></a></span> <a href="./%D0%9F%D0%BE%D0%B4%D0%BF%D0%BE%D0%BB%D0%BA%D0%BE%D0%B2%D0%BD%D0%B8%D0%BA" class="mw-redirect" title="Подполковник">中校</a></span>
+</p>
+</td>
+<td rowspan="19">
+<p><span class="rank-mini"><span typeof="mw:File"><a href="./%D0%9C%D0%B0%D1%80%D1%88%D0%B0%D0%BB" title="Маршал"><img src="https://ru.tankiwiki.com/images/ru/thumb/0/0f/IconsNormal_27.png/28px-IconsNormal_27.png" decoding="async" loading="lazy" width="28" height="27" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/0/0f/IconsNormal_27.png/42px-IconsNormal_27.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/0/0f/IconsNormal_27.png/56px-IconsNormal_27.png 2x"></a></span> <a href="./%D0%9C%D0%B0%D1%80%D1%88%D0%B0%D0%BB" class="mw-redirect" title="Маршал">元帅</a></span>
+</p>
+</td></tr>
+<tr>
+<td class="filterable railgun thunder freeze"><a href="./%D0%A0%D0%B5%D0%BB%D1%8C%D1%81%D0%B0" class="hud_sprite railgun_icon" title="防御激光炮"></a>科迪亚克 T-D
+</td></tr>
+<tr>
+<td class="filterable smoky railgun hammer"><a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" class="hud_sprite smoky_icon" title="防御轰天炮"></a>灰熊 T-J
+</td></tr>
+<tr>
+<td class="filterable smoky ricochet shaft"><a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" class="hud_sprite smoky_icon" title="防御轰天炮"></a>乌尔萨 T-C
+</td></tr>
+<tr>
+<td class="filterable freeze ricochet hammer"><a href="./%D0%A4%D1%80%D0%B8%D0%B7" class="hud_sprite freeze_icon" title="防御冰风暴"></a>狮子 T-C
+</td></tr>
+<tr>
+<td class="filterable twins shaft vulcan"><a href="./%D0%A2%D0%B2%D0%B8%D0%BD%D1%81" class="hud_sprite twins_icon" title="防御离子炮"></a>乌尔萨 T-D
+</td></tr>
+<tr>
+<td class="filterable smoky firebird freeze"><a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" class="hud_sprite smoky_icon" title="防御轰天炮"></a>獾 T-G
+</td></tr>
+<tr>
+<td class="filterable isida thunder shaft"><a href="./%D0%98%D0%B7%D0%B8%D0%B4%D0%B0" class="hud_sprite isida_icon" title="防御磁力炮"></a>科迪亚克 T-E
+</td></tr>
+<tr>
+<td class="filterable smoky twins railgun"><a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" class="hud_sprite smoky_icon" title="防御轰天炮"></a>乌尔萨 T-E
+</td></tr>
+<tr>
+<td class="filterable railgun thunder ricochet"><a href="./%D0%A0%D0%B5%D0%BB%D1%8C%D1%81%D0%B0" class="hud_sprite railgun_icon" title="防御激光炮"></a>科迪亚克 T-F
+</td></tr>
+<tr>
+<td class="filterable smoky thunder vulcan"><a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" class="hud_sprite smoky_icon" title="防御轰天炮"></a>鲨鱼 T-E
+</td></tr>
+<tr>
+<td class="filterable smoky railgun thunder"><a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" class="hud_sprite smoky_icon" title="防御轰天炮"></a>狮鹫 T-D
+</td></tr>
+<tr>
+<td class="filterable freeze hammer vulcan"><a href="./%D0%A4%D1%80%D0%B8%D0%B7" class="hud_sprite freeze_icon" title="防御冰风暴"></a>灰熊 T-K
+</td></tr>
+<tr>
+<td class="filterable isida ricochet hammer"><a href="./%D0%98%D0%B7%D0%B8%D0%B4%D0%B0" class="hud_sprite isida_icon" title="防御磁力炮"></a>狮子 T-E
+</td></tr>
+<tr>
+<td class="filterable firebird isida striker"><a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%82" class="hud_sprite firebird_icon" title="防御火焰炮"></a>獾 T-J
+</td></tr>
+<tr>
+<td class="filterable freeze hammer striker"><a href="./%D0%A4%D1%80%D0%B8%D0%B7" class="hud_sprite freeze_icon" title="防御冰风暴"></a>灰熊 T-L
+</td></tr>
+<tr>
+<td class="filterable thunder ricochet striker"><a href="./%D0%93%D1%80%D0%BE%D0%BC" class="hud_sprite thunder_icon" title="防御雷暴炮"></a>鲨鱼 T-G
+</td></tr>
+<tr>
+<td class="filterable freeze striker magnum"><a href="./%D0%A4%D1%80%D0%B8%D0%B7" class="hud_sprite freeze_icon" title="防御冰风暴"></a>科迪亚克 T-K
+</td></tr>
+<tr>
+<td class="filterable shaft hammer magnum"><a href="./%D0%A8%D0%B0%D1%84%D1%82" class="hud_sprite shaft_icon" title="防御镭射炮"></a>狮鹫 T-G
+</td></tr>
+<tr>
+<td>防护</td>
+<td>10% → 15%
+</td>
+<td>15% → 25%
+</td>
+<td>25% → 35%
+</td>
+<td>35% → <span style="color:#FFFF00">50%</span>
+</td></tr>
+<tr>
+<td>升级</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B5%D0%B9_%C2%ABTriple%C2%BB" class="mw-redirect" title="Улучшения модулей «Triple»">Triple M0</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B5%D0%B9_%C2%ABTriple%C2%BB" class="mw-redirect" title="Улучшения модулей «Triple»">Triple M1</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B5%D0%B9_%C2%ABTriple%C2%BB" class="mw-redirect" title="Улучшения модулей «Triple»">Triple M2</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B5%D0%B9_%C2%ABTriple%C2%BB" class="mw-redirect" title="Улучшения модулей «Triple»">Triple M3</a>
+</td></tr></tbody></table><h3><span id=".D0.A1.D1.82.D0.B0.D1.80.D1.8B.D0.B5_.D0.BC.D0.BE.D0.B4.D1.83.D0.BB.D0.B8_.28LGC.29"></span><span class="mw-headline" id="Старые_модули_(LGC)">老模块 (LGC)</span></h3><table class="wikitable">
+<tbody><tr>
+<td width="192px">名称</td>
+<td width="50px"><a href="./%D0%9E%D0%B3%D0%BD%D0%B5%D0%BC%D1%91%D1%82" class="hud_sprite firebird_icon" title="防御火焰炮"></a>
+</td>
+<td width="50px"><a href="./%D0%A4%D1%80%D0%B8%D0%B7" class="hud_sprite freeze_icon" title="防御冰风暴"></a>
+</td>
+<td width="50px"><a href="./%D0%98%D0%B7%D0%B8%D0%B4%D0%B0" class="hud_sprite isida_icon" title="防御磁力炮"></a>
+</td>
+<td width="48px"><a href="./%D0%9C%D0%BE%D0%BB%D0%BE%D1%82" class="hud_sprite hammer_icon" title="防御滑膛炮"></a>
+</td>
+<td width="50px"><a href="./%D0%A2%D0%B2%D0%B8%D0%BD%D1%81" class="hud_sprite twins_icon" title="防御离子炮"></a>
+</td>
+<td width="48px"><a href="./%D0%A0%D0%B8%D0%BA%D0%BE%D1%88%D0%B5%D1%82" class="hud_sprite ricochet_icon" title="防御火龙珠"></a>
+</td>
+<td width="50px"><a href="./%D0%A1%D0%BC%D0%BE%D0%BA%D0%B8" class="hud_sprite smoky_icon" title="防御轰天炮"></a>
+</td>
+<td width="48px"><a href="./%D0%92%D1%83%D0%BB%D0%BA%D0%B0%D0%BD" class="hud_sprite vulcan_icon" title="防御极速炮"></a>
+</td>
+<td width="50px"><a href="./%D0%93%D1%80%D0%BE%D0%BC" class="hud_sprite thunder_icon" title="防御雷暴炮"></a>
+</td>
+<td width="50px"><a href="./%D0%A0%D0%B5%D0%BB%D1%8C%D1%81%D0%B0" class="hud_sprite railgun_icon" title="防御激光炮"></a>
+</td>
+<td width="50px"><a href="./%D0%A8%D0%B0%D1%84%D1%82" class="hud_sprite shaft_icon" title="防御镭射炮"></a>
+</td></tr></tbody></table><div style="max-height:500px;overflow:auto;width:750px">
+<table class="wikitable legacy-modules-table">
+
+<tbody><tr class="filterable smoky">
+<td><a href="./%D0%A4%D0%BB%D0%BE%D1%80%D0%B0" class="mw-redirect" title="Флора">弗洛拉</a> LGC-01  <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A4%D0%BB%D0%BE%D1%80%D0%B0_LGC-01%C2%BB" title="Улучшения модуля «Флора LGC-01»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>10%</td>
+<td></td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable firebird">
+<td><a href="./%D0%9C%D0%BE%D1%80%D0%BF%D0%B5%D1%85" class="mw-redirect" title="Морпех">海军陆战队</a> LGC-02 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9C%D0%BE%D1%80%D0%BF%D0%B5%D1%85_LGC-02%C2%BB" title="Улучшения модуля «Морпех LGC-02»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td>10%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable twins">
+<td><a href="./%D0%91%D0%BE%D0%BB%D0%BE%D1%82%D0%BD%D1%8B%D0%B9" class="mw-redirect" title="Болотный">沼泽</a> LGC-03 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%91%D0%BE%D0%BB%D0%BE%D1%82%D0%BD%D1%8B%D0%B9_LGC-03%C2%BB" title="Улучшения модуля «Болотный LGC-03»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>10%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable railgun">
+<td><a href="./%D0%9B%D0%B5%D1%81%D0%BD%D0%B8%D0%BA" class="mw-redirect" title="Лесник">林务员</a> LGC-04 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9B%D0%B5%D1%81%D0%BD%D0%B8%D0%BA_LGC-04%C2%BB" title="Улучшения модуля «Лесник LGC-04»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>10%</td>
+<td>
+</td></tr>
+<tr class="filterable thunder">
+<td><a href="./%D0%9C%D0%B5%D1%82%D0%B0%D0%BB%D0%BB%D0%B8%D0%BA" class="mw-redirect" title="Металлик">金属</a> LGC-05 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9C%D0%B5%D1%82%D0%B0%D0%BB%D0%BB%D0%B8%D0%BA_LGC-05%C2%BB" title="Улучшения модуля «Металлик LGC-05»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>12%</td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable freeze">
+<td><a href="./%D0%9B%D0%B0%D0%B2%D0%B0" class="mw-redirect" title="Лава">熔岩</a> LGC-06 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9B%D0%B0%D0%B2%D0%B0_LGC-06%C2%BB" title="Улучшения модуля «Лава LGC-06»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td>15%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable shaft">
+<td><a href="./%D0%A1%D0%B2%D0%B8%D0%BD%D0%B5%D1%86" class="mw-redirect" title="Свинец">铅</a> LGC-07 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A1%D0%B2%D0%B8%D0%BD%D0%B5%D1%86_LGC-07%C2%BB" title="Улучшения модуля «Свинец LGC-07»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>18%
+</td></tr>
+<tr class="filterable vulcan">
+<td><a href="./%D0%97%D0%B0%D1%85%D0%B2%D0%B0%D1%82%D1%87%D0%B8%D0%BA" class="mw-redirect" title="Захватчик">侵略者</a> LGC-08 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%97%D0%B0%D1%85%D0%B2%D0%B0%D1%82%D1%87%D0%B8%D0%BA_LGC-08%C2%BB" title="Улучшения модуля «Захватчик LGC-08»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>18%</td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable isida">
+<td><a href="./%D0%A1%D0%B0%D1%84%D0%B0%D1%80%D0%B8" class="mw-redirect" title="Сафари">野生猎游</a> LGC-09 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A1%D0%B0%D1%84%D0%B0%D1%80%D0%B8_LGC-09%C2%BB" title="Улучшения модуля «Сафари LGC-09»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td>20%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable hammer">
+<td><a href="./%D0%9C%D0%B0%D0%B3%D0%BC%D0%B0" class="mw-redirect" title="Магма">岩浆</a> LGC-10 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9C%D0%B0%D0%B3%D0%BC%D0%B0_LGC-10%C2%BB" title="Улучшения модуля «Магма LGC-10»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td>20%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable ricochet">
+<td><a href="./%D0%94%D1%80%D0%B0%D0%BA%D0%BE%D0%BD" class="mw-redirect" title="Дракон">巨龙</a> LGC-11 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%94%D1%80%D0%B0%D0%BA%D0%BE%D0%BD_LGC-11%C2%BB" title="Улучшения модуля «Дракон LGC-11»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>22%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable firebird thunder railgun">
+<td><a href="./%D0%92%D0%B5%D1%87%D0%BD%D0%BE%D1%81%D1%82%D1%8C" class="mw-redirect" title="Вечность">永恒</a> LGC-12 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B5%D0%B9_%C2%AB%D0%92%D0%B5%D1%87%D0%BD%D0%BE%D1%81%D1%82%D1%8C%C2%BB" title="Улучшения модулей «Вечность»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td>14%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>5%</td>
+<td>5%</td>
+<td>
+</td></tr>
+<tr class="filterable freeze twins smoky">
+<td><a href="./%D0%9C%D1%8D%D1%80%D0%B8" class="mw-redirect" title="Мэри">玛丽</a> LGC-13 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9C%D1%8D%D1%80%D0%B8_LGC-13%C2%BB" title="Улучшения модуля «Мэри LGC-13»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td>14%</td>
+<td></td>
+<td></td>
+<td>5%</td>
+<td></td>
+<td>5%</td>
+<td></td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable firebird freeze hammer">
+<td><a href="./%D0%91%D1%83%D1%80%D1%8F" class="mw-redirect" title="Буря">暴风雨</a> LGC-14 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%91%D1%83%D1%80%D1%8F_LGC-14%C2%BB" title="Улучшения модуля «Буря LGC-14»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td>20%</td>
+<td>6%</td>
+<td></td>
+<td>5%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable twins smoky shaft">
+<td><a href="./%D0%9A%D0%B0%D1%80%D0%B1%D0%BE%D0%BD" class="mw-redirect" title="Карбон">碳纤维</a> LGC-15 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9A%D0%B0%D1%80%D0%B1%D0%BE%D0%BD_LGC-15%C2%BB" title="Улучшения модуля «Карбон LGC-15»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>5%</td>
+<td></td>
+<td>20%</td>
+<td></td>
+<td></td>
+<td></td>
+<td>5%
+</td></tr>
+<tr class="filterable freeze isida ricochet">
+<td><a href="./%D0%A1_%D0%BB%D1%8E%D0%B1%D0%BE%D0%B2%D1%8C%D1%8E" class="mw-redirect" title="С любовью">爱意</a> LGC-16 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A1_%D0%BB%D1%8E%D0%B1%D0%BE%D0%B2%D1%8C%D1%8E_LGC-16%C2%BB" title="Улучшения модуля «С любовью LGC-16»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td>15%</td>
+<td>10%</td>
+<td></td>
+<td></td>
+<td>5%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable freeze isida thunder">
+<td><a href="./%D0%A7%D1%83%D0%B6%D0%BE%D0%B9" class="mw-redirect" title="Чужой">异形</a> LGC-17 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A7%D1%83%D0%B6%D0%BE%D0%B9_LGC-17%C2%BB" title="Улучшения модуля «Чужой LGC-17»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td>5%</td>
+<td>24%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>5%</td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable isida hammer railgun">
+<td><a href="./%D0%9A%D0%BE%D0%BB%D1%8C%D1%87%D1%83%D0%B3%D0%B0" class="mw-redirect" title="Кольчуга">锁子甲</a> LGC-18 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9A%D0%BE%D0%BB%D1%8C%D1%87%D1%83%D0%B3%D0%B0_LGC-18%C2%BB" title="Улучшения модуля «Кольчуга LGC-18»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td>10%</td>
+<td>18%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>6%</td>
+<td>
+</td></tr>
+<tr class="filterable railgun shaft">
+<td><a href="./%D0%93%D1%80%D1%8F%D0%B7%D1%8C" class="mw-redirect" title="Грязь">泥泞</a> LGC-19 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%93%D1%80%D1%8F%D0%B7%D1%8C_LGC-19%C2%BB" title="Улучшения модуля «Грязь LGC-19»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>8%</td>
+<td>26%
+</td></tr>
+<tr class="filterable firebird isida twins smoky">
+<td><a href="./%D0%9F%D1%80%D0%B8%D0%B1%D0%BE%D0%B9" class="mw-redirect" title="Прибой">冲浪</a> LGC-20 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9F%D1%80%D0%B8%D0%B1%D0%BE%D0%B9_LGC-20%C2%BB" title="Улучшения модуля «Прибой LGC-20»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td>15%</td>
+<td></td>
+<td>8%</td>
+<td></td>
+<td>10%</td>
+<td></td>
+<td>5%</td>
+<td></td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable firebird freeze thunder">
+<td><a href="./%D0%AF%D0%B3%D1%83%D0%B0%D1%80" class="mw-redirect" title="Ягуар">美洲豹</a> LGC-21 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%AF%D0%B3%D1%83%D0%B0%D1%80_LGC-21%C2%BB" title="Улучшения модуля «Ягуар LGC-21»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td>10%</td>
+<td>23%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>5%</td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable hammer vulcan shaft">
+<td><a href="./%D0%9F%D0%B0%D1%80%D1%82%D0%B8%D0%B7%D0%B0%D0%BD" class="mw-redirect" title="Партизан">游击队</a> LGC-22 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9F%D0%B0%D1%80%D1%82%D0%B8%D0%B7%D0%B0%D0%BD_LGC-22%C2%BB" title="Улучшения модуля «Партизан LGC-22»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td>8%</td>
+<td></td>
+<td></td>
+<td></td>
+<td>25%</td>
+<td></td>
+<td></td>
+<td>5%
+</td></tr>
+<tr class="filterable hammer twins ricochet smoky">
+<td><a href="./%D0%9F%D1%83%D1%81%D1%82%D1%8B%D0%BD%D1%8F" class="mw-redirect" title="Пустыня">沙漠</a> LGC-23 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9F%D1%83%D1%81%D1%82%D1%8B%D0%BD%D1%8F_LGC-23%C2%BB" title="Улучшения модуля «Пустыня LGC-23»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td>10%</td>
+<td>5%</td>
+<td>28%</td>
+<td>5%</td>
+<td></td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable thunder railgun shaft">
+<td><a href="./%D0%A0%D0%B6%D0%B0%D0%B2%D1%87%D0%B8%D0%BD%D0%B0" class="mw-redirect" title="Ржавчина">铁锈</a> LGC-24 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A0%D0%B6%D0%B0%D0%B2%D1%87%D0%B8%D0%BD%D0%B0_LGC-24%C2%BB" title="Улучшения модуля «Ржавчина LGC-24»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>15%</td>
+<td>10%</td>
+<td>15%
+</td></tr>
+<tr class="filterable hammer smoky">
+<td><a href="./%D0%9F%D0%B8%D0%BA%D1%81%D0%B5%D0%BB%D1%8C" class="mw-redirect" title="Пиксель">像素</a> LGC-25 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9F%D0%B8%D0%BA%D1%81%D0%B5%D0%BB%D1%8C_LGC-25%C2%BB" title="Улучшения модуля «Пиксель LGC-25»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td>30%</td>
+<td></td>
+<td></td>
+<td>10%</td>
+<td></td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable smoky railgun">
+<td><a href="./%D0%A2%D1%83%D0%BD%D0%B4%D1%80%D0%B0" class="mw-redirect" title="Тундра">苔原</a> LGC-26 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A2%D1%83%D0%BD%D0%B4%D1%80%D0%B0_LGC-26%C2%BB" title="Улучшения модуля «Тундра LGC-26»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>10%</td>
+<td></td>
+<td></td>
+<td>30%</td>
+<td>
+</td></tr>
+<tr class="filterable ricochet vulcan thunder">
+<td><a href="./%D0%92%D0%B8%D1%85%D1%80%D1%8C" class="mw-redirect" title="Вихрь">旋风</a> LGC-27 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%92%D0%B8%D1%85%D1%80%D1%8C_LGC-27%C2%BB" title="Улучшения модуля «Вихрь LGC-27»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>15%</td>
+<td></td>
+<td>15%</td>
+<td>10%</td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable firebird hammer twins">
+<td><a href="./%D0%A0%D0%BE%D0%B4%D0%B6%D0%B5%D1%80" class="mw-redirect" title="Роджер">罗杰</a> LGC-28 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A0%D0%BE%D0%B4%D0%B6%D0%B5%D1%80_LGC-28%C2%BB" title="Улучшения модуля «Роджер LGC-28»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td>12%</td>
+<td></td>
+<td></td>
+<td>15%</td>
+<td>30%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable smoky vulcan railgun">
+<td><a href="./%D0%98%D0%B7%D0%BB%D0%BE%D0%BC" class="mw-redirect" title="Излом">断层</a> LGC-29 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%98%D0%B7%D0%BB%D0%BE%D0%BC_LGC-29%C2%BB" title="Улучшения модуля «Излом LGC-29»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>10%</td>
+<td>12%</td>
+<td></td>
+<td>20%</td>
+<td>
+</td></tr>
+<tr class="filterable firebird thunder">
+<td><a href="./%D0%92%D0%B5%D1%87%D0%BD%D0%BE%D1%81%D1%82%D1%8C" class="mw-redirect" title="Вечность">永恒</a> LGC-30 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B5%D0%B9_%C2%AB%D0%92%D0%B5%D1%87%D0%BD%D0%BE%D1%81%D1%82%D1%8C%C2%BB" title="Улучшения модулей «Вечность»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td>30%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>12%</td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable isida smoky thunder">
+<td><a href="./%D0%9A%D0%B5%D0%B4%D1%80" class="mw-redirect" title="Кедр">雪松</a> LGC-31 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9A%D0%B5%D0%B4%D1%80_LGC-31%C2%BB" title="Улучшения модуля «Кедр LGC-31»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td>5%</td>
+<td></td>
+<td></td>
+<td></td>
+<td>5%</td>
+<td></td>
+<td>32%</td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable freeze shaft">
+<td><a href="./%D0%9F%D0%B8%D1%82%D0%BE%D0%BD" class="mw-redirect" title="Питон">巨蟒</a> LGC-32 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9F%D0%B8%D1%82%D0%BE%D0%BD_LGC-32%C2%BB" title="Улучшения модуля «Питон LGC-32»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td>32%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>14%
+</td></tr>
+<tr class="filterable isida hammer vulcan">
+<td><a href="./%D0%A1%D0%B0%D0%BA%D1%83%D1%80%D0%B0" class="mw-redirect" title="Сакура">樱花</a> LGC-33 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A1%D0%B0%D0%BA%D1%83%D1%80%D0%B0_LGC-33%C2%BB" title="Улучшения модуля «Сакура LGC-33»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td>20%</td>
+<td>20%</td>
+<td></td>
+<td></td>
+<td></td>
+<td>10%</td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable isida twins smoky">
+<td><a href="./%D0%AD%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%B0" class="mw-redirect" title="Электра">伊莱克特拉</a> LGC-34 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%AD%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%B0_LGC-34%C2%BB" title="Улучшения модуля «Электра LGC-34»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td>30%</td>
+<td></td>
+<td>10%</td>
+<td></td>
+<td>10%</td>
+<td></td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable twins thunder railgun shaft">
+<td><a href="./%D0%9F%D0%B5%D1%81%D1%87%D0%B0%D0%BD%D0%B8%D0%BA" class="mw-redirect" title="Песчаник">砂岩</a> LGC-35 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9F%D0%B5%D1%81%D1%87%D0%B0%D0%BD%D0%B8%D0%BA_LGC-35%C2%BB" title="Улучшения модуля «Песчаник LGC-35»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>5%</td>
+<td></td>
+<td></td>
+<td></td>
+<td>14%</td>
+<td>20%</td>
+<td>15%
+</td></tr>
+<tr class="filterable firebird twins ricochet">
+<td><a href="./%D0%98%D1%81%D0%BA%D1%80%D0%B0" class="mw-redirect" title="Искра">火花</a> LGC-36 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%98%D1%81%D0%BA%D1%80%D0%B0_LGC-36%C2%BB" title="Улучшения модуля «Искра LGC-36»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td>15%</td>
+<td></td>
+<td></td>
+<td></td>
+<td>10%</td>
+<td>33%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable smoky railgun shaft">
+<td><a href="./%D0%94%D0%B8%D0%B4%D0%B6%D0%B8%D1%82%D0%B0%D0%BB" class="mw-redirect" title="Диджитал">数码</a> LGC-37 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%94%D0%B8%D0%B4%D0%B6%D0%B8%D1%82%D0%B0%D0%BB_LGC-37%C2%BB" title="Улучшения модуля «Диджитал LGC-37»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>13%</td>
+<td></td>
+<td></td>
+<td>35%</td>
+<td>10%
+</td></tr>
+<tr class="filterable freeze isida thunder">
+<td><a href="./%D0%A8%D0%B5%D0%BB%D0%B5%D1%81%D1%82" class="mw-redirect" title="Шелест">沙沙</a> LGC-38 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A8%D0%B5%D0%BB%D0%B5%D1%81%D1%82_LGC-38%C2%BB" title="Улучшения модуля «Шелест LGC-38»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td>20%</td>
+<td>10%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>32%</td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable vulcan railgun shaft">
+<td><a href="./%D0%9A%D1%83%D0%B7%D0%BD%D0%B5%D1%86" class="mw-redirect" title="Кузнец">铁匠</a> LGC-39 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9A%D1%83%D0%B7%D0%BD%D0%B5%D1%86_LGC-39%C2%BB" title="Улучшения модуля «Кузнец LGC-39»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>25%</td>
+<td></td>
+<td>17%</td>
+<td>20%
+</td></tr>
+<tr class="filterable freeze ricochet smoky">
+<td><a href="./%D0%A5%D0%BE%D1%85%D0%BB%D0%BE%D0%BC%D0%B0" class="mw-redirect" title="Хохлома">霍赫洛马</a> LGC-40 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A5%D0%BE%D1%85%D0%BB%D0%BE%D0%BC%D0%B0_LGC-40%C2%BB" title="Улучшения модуля «Хохлома LGC-40»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td>20%</td>
+<td></td>
+<td></td>
+<td></td>
+<td>20%</td>
+<td>22%</td>
+<td></td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable firebird freeze ricochet thunder">
+<td><a href="./%D0%93%D0%BB%D0%B8%D0%BD%D0%B0" class="mw-redirect" title="Глина">黏土</a> LGC-41 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%93%D0%BB%D0%B8%D0%BD%D0%B0_LGC-41%C2%BB" title="Улучшения модуля «Глина LGC-41»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td>36%</td>
+<td>10%</td>
+<td></td>
+<td></td>
+<td></td>
+<td>10%</td>
+<td></td>
+<td></td>
+<td>10%</td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable firebird hammer vulcan">
+<td><a href="./%D0%9D%D0%BE%D1%81%D0%BE%D1%80%D0%BE%D0%B3" class="mw-redirect" title="Носорог">犀牛</a> LGC-42 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9D%D0%BE%D1%81%D0%BE%D1%80%D0%BE%D0%B3_LGC-42%C2%BB" title="Улучшения модуля «Носорог LGC-42»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td>6%</td>
+<td></td>
+<td></td>
+<td>30%</td>
+<td></td>
+<td></td>
+<td></td>
+<td>30%</td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable firebird thunder railgun shaft">
+<td><a href="./%D0%9C%D0%B5%D1%82%D0%B5%D0%BB%D1%8C" class="mw-redirect" title="Метель">暴风雪</a> LGC-43 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9C%D0%B5%D1%82%D0%B5%D0%BB%D1%8C_LGC-43%C2%BB" title="Улучшения модуля «Метель LGC-43»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td>5%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>18%</td>
+<td>5%</td>
+<td>38%
+</td></tr>
+<tr class="filterable isida vulcan">
+<td><a href="./%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D1%8B%D0%B9_%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC" class="mw-redirect" title="Красный костюм">红色战衣</a> LGC-44 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D1%8B%D0%B9_%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC_LGC-44%C2%BB" title="Улучшения модуля «Красный костюм LGC-44»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td>30%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>40%</td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable firebird isida twins ricochet">
+<td><a href="./%D0%A3%D1%80%D0%B1%D0%B0%D0%BD" class="mw-redirect" title="Урбан">城市</a> LGC-45 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A3%D1%80%D0%B1%D0%B0%D0%BD_LGC-45%C2%BB" title="Улучшения модуля «Урбан LGC-45»"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td>5%</td>
+<td></td>
+<td>20%</td>
+<td></td>
+<td>40%</td>
+<td>5%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable firebird freeze hammer twins">
+<td><a href="./%D0%90%D1%82%D0%BE%D0%BC" class="mw-redirect" title="Атом">原子</a> LGC-46 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%90%D1%82%D0%BE%D0%BC_LGC-46%C2%BB" title="“原子 LGC-46”模块升级"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td>15%</td>
+<td>10%</td>
+<td></td>
+<td>35%</td>
+<td>10%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable ricochet smoky railgun">
+<td><a href="./%D0%A1%D0%B0%D0%B2%D0%B0%D0%BD%D0%BD%D0%B0" class="mw-redirect" title="Саванна">萨凡纳</a> LGC-47 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A1%D0%B0%D0%B2%D0%B0%D0%BD%D0%BD%D0%B0_LGC-47%C2%BB" title="“萨凡纳 LGC-47”模块升级"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>15%</td>
+<td>40%</td>
+<td></td>
+<td></td>
+<td>20%</td>
+<td>
+</td></tr>
+<tr class="filterable firebird hammer smoky">
+<td><a href="./%D0%92%D0%B5%D1%87%D0%BD%D0%BE%D1%81%D1%82%D1%8C" class="mw-redirect" title="Вечность">遗产</a> LGC-48 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B5%D0%B9_%C2%AB%D0%92%D0%B5%D1%87%D0%BD%D0%BE%D1%81%D1%82%D1%8C%C2%BB" title="“遗产”模块升级"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td>40%</td>
+<td></td>
+<td></td>
+<td>10%</td>
+<td></td>
+<td></td>
+<td>25%</td>
+<td></td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable twins vulcan thunder">
+<td><a href="./%D0%92%D0%B8%D1%88%D0%BD%D1%8F" class="mw-redirect" title="Вишня">酸樱桃</a> LGC-49 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%92%D0%B8%D1%88%D0%BD%D1%8F_LGC-49%C2%BB" title="“酸樱桃 LGC-49”模块升级"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>30%</td>
+<td></td>
+<td></td>
+<td>20%</td>
+<td>25%</td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable freeze isida ricochet">
+<td><a href="./%D0%98%D1%80%D0%B1%D0%B8%D1%81" class="mw-redirect" title="Ирбис">雪豹</a> LGC-50 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%98%D1%80%D0%B1%D0%B8%D1%81_LGC-50%C2%BB" title="“雪豹 LGC-50”模块升级"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td>20%</td>
+<td>42%</td>
+<td></td>
+<td></td>
+<td>16%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable firebird isida hammer">
+<td><a href="./%D0%9C%D0%B0%D1%80%D1%81" class="mw-redirect" title="Марс">火星</a> LGC-51 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9C%D0%B0%D1%80%D1%81_LGC-51%C2%BB" title="“火星 LGC-51”模块升级"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td>27%</td>
+<td></td>
+<td>18%</td>
+<td>33%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable twins thunder railgun">
+<td><a href="./%D0%98%D0%B7%D1%83%D0%BC%D1%80%D1%83%D0%B4" class="mw-redirect" title="Изумруд">翡翠</a> LGC-52 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%98%D0%B7%D1%83%D0%BC%D1%80%D1%83%D0%B4_LGC-52%C2%BB" title="“翡翠 LGC-52”模块升级"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>26%</td>
+<td></td>
+<td></td>
+<td></td>
+<td>42%</td>
+<td>10%</td>
+<td>
+</td></tr>
+<tr class="filterable freeze ricochet vulcan">
+<td><a href="./%D0%A3%D0%BB%D0%B5%D0%B9" class="mw-redirect" title="Улей">蜂巢</a> LGC-53 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A3%D0%BB%D0%B5%D0%B9_LGC-53%C2%BB" title="“蜂巢 LGC-53”模块升级"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td>20%</td>
+<td></td>
+<td></td>
+<td></td>
+<td>25%</td>
+<td></td>
+<td>33%</td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable firebird freeze twins">
+<td><a href="./%D0%98%D0%BD%D1%84%D0%B5%D1%80%D0%BD%D0%BE" class="mw-redirect" title="Инферно">地狱</a> LGC-54 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%98%D0%BD%D1%84%D0%B5%D1%80%D0%BD%D0%BE_LGC-54%C2%BB" title="“地狱 LGC-54”模块升级"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td>30%</td>
+<td>40%</td>
+<td></td>
+<td></td>
+<td>12%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable hammer smoky thunder shaft">
+<td><a href="./%D0%9D%D0%B5%D1%84%D1%80%D0%B8%D1%82" class="mw-redirect" title="Нефрит">软玉</a> LGC-55 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9D%D0%B5%D1%84%D1%80%D0%B8%D1%82_LGC-55%C2%BB" title="“软玉 LGC-55”模块升级"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td>15%</td>
+<td></td>
+<td></td>
+<td>25%</td>
+<td></td>
+<td>12%</td>
+<td></td>
+<td>45%
+</td></tr>
+<tr class="filterable firebird isida twins ricochet">
+<td><a href="./%D0%A2%D0%B0%D0%B9%D0%B3%D0%B0" class="mw-redirect" title="Тайга">泰加</a> LGC-56 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A2%D0%B0%D0%B9%D0%B3%D0%B0_LGC-56%C2%BB" title="“泰加 LGC-56”模块升级"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td>20%</td>
+<td></td>
+<td>30%</td>
+<td></td>
+<td>15%</td>
+<td>20%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable hammer smoky railgun">
+<td><a href="./%D0%A2%D0%B8%D0%B3%D1%80" class="mw-redirect" title="Тигр">黑豹</a> LGC-57 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A2%D0%B8%D0%B3%D1%80_LGC-57%C2%BB" title="“黑豹 LGC-57”模块升级"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td>40%</td>
+<td></td>
+<td></td>
+<td>30%</td>
+<td></td>
+<td></td>
+<td>15%</td>
+<td>
+</td></tr>
+<tr class="filterable firebird thunder railgun shaft">
+<td><a href="./%D0%9F%D1%80%D0%BE%D0%B4%D0%B8%D0%B4%D0%B6%D0%B8" class="mw-redirect" title="Продиджи">神童</a> LGC-58 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9F%D1%80%D0%BE%D0%B4%D0%B8%D0%B4%D0%B6%D0%B8_LGC-58%C2%BB" title="“神童 LGC-58”模块升级"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td>5%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>22%</td>
+<td>46%</td>
+<td>15%
+</td></tr>
+<tr class="filterable firebird hammer ricochet smoky">
+<td><a href="./%D0%9D%D0%B0%D0%BD%D0%BE" class="mw-redirect" title="Нано">纳米</a> LGC-59 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9D%D0%B0%D0%BD%D0%BE_LGC-59%C2%BB" title="“纳米 LGC-59”模块升级"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td>10%</td>
+<td></td>
+<td></td>
+<td>30%</td>
+<td></td>
+<td>28%</td>
+<td>20%</td>
+<td></td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable freeze isida hammer twins">
+<td><a href="./%D0%A1%D0%BA%D0%B0%D0%BB%D0%B0" class="mw-redirect" title="Скала">峭壁</a> LGC-60 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A1%D0%BA%D0%B0%D0%BB%D0%B0_LGC-60%C2%BB" title="“峭壁 LGC-60”模块升级"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td>15%</td>
+<td>30%</td>
+<td>10%</td>
+<td>48%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable isida hammer vulcan railgun">
+<td><a href="./%D0%95%D0%BD%D0%BE%D1%82" class="mw-redirect" title="Енот">浣熊</a> LGC-61 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%95%D0%BD%D0%BE%D1%82_LGC-61%C2%BB" title="“浣熊 LGC-61”模块升级"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td>18%</td>
+<td>30%</td>
+<td></td>
+<td></td>
+<td></td>
+<td>25%</td>
+<td></td>
+<td>20%</td>
+<td>
+</td></tr>
+<tr class="filterable ricochet smoky shaft">
+<td><a href="./%D0%A5%D0%B2%D0%BE%D1%8F" class="mw-redirect" title="Хвоя">针叶</a> LGC-62 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A5%D0%B2%D0%BE%D1%8F_LGC-62%C2%BB" title="“针叶 LGC-62”模块升级"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>20%</td>
+<td>48%</td>
+<td></td>
+<td></td>
+<td></td>
+<td>25%
+</td></tr>
+<tr class="filterable freeze thunder railgun shaft">
+<td><a href="./%D0%9F%D0%B8%D0%BA%D0%B0%D1%81%D1%81%D0%BE" class="mw-redirect" title="Пикассо">毕加索</a> LGC-63 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9F%D0%B8%D0%BA%D0%B0%D1%81%D1%81%D0%BE_LGC-63%C2%BB" title="“毕加索 LGC-63”模块升级"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td>20%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>20%</td>
+<td>25%</td>
+<td>30%
+</td></tr>
+<tr class="filterable twins vulcan shaft">
+<td><a href="./%D0%93%D1%80%D0%B0%D1%84%D1%84%D0%B8%D1%82%D0%B8" class="mw-redirect" title="Граффити">涂鸦</a> LGC-64 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%93%D1%80%D0%B0%D1%84%D1%84%D0%B8%D1%82%D0%B8_LGC-64%C2%BB" title="“涂鸦 LGC-64”模块升级"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>25%</td>
+<td></td>
+<td></td>
+<td>50%</td>
+<td></td>
+<td></td>
+<td>25%
+</td></tr>
+<tr class="filterable firebird freeze smoky">
+<td><a href="./%D0%97%D0%B5%D0%B2%D1%81" class="mw-redirect" title="Зевс">宙斯</a> LGC-65 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%97%D0%B5%D0%B2%D1%81_LGC-65%C2%BB" title="“宙斯 LGC-65”模块升级"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td>50%</td>
+<td>25%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>25%</td>
+<td></td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable ricochet thunder railgun">
+<td><a href="./%D0%A2%D0%B8%D0%BD%D0%B0" class="mw-redirect" title="Тина">沼泽</a> LGC-66 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A2%D0%B8%D0%BD%D0%B0_LGC-66%C2%BB" title="“沼泽 LGC-66”模块升级"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>50%</td>
+<td></td>
+<td></td>
+<td>20%</td>
+<td>30%</td>
+<td>
+</td></tr>
+<tr class="filterable isida smoky thunder">
+<td><a href="./%D0%92%D0%B5%D1%87%D0%BD%D0%BE%D1%81%D1%82%D1%8C" class="mw-redirect" title="Вечность">遗产</a> LGC-67 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B5%D0%B9_%C2%AB%D0%92%D0%B5%D1%87%D0%BD%D0%BE%D1%81%D1%82%D1%8C%C2%BB" title="“遗产”模块升级"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td>25%</td>
+<td></td>
+<td></td>
+<td></td>
+<td>40%</td>
+<td></td>
+<td>35%</td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable firebird freeze isida vulcan">
+<td><a href="./%D0%94%D1%80%D0%BE%D0%B2%D0%BE%D1%81%D0%B5%D0%BA" class="mw-redirect" title="Дровосек">伐木工</a> LGC-68 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%94%D1%80%D0%BE%D0%B2%D0%BE%D1%81%D0%B5%D0%BA_LGC-68%C2%BB" title="“伐木工 LGC-68”模块升级"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td>30%</td>
+<td>30%</td>
+<td>30%</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>10%</td>
+<td></td>
+<td></td>
+<td>
+</td></tr>
+<tr class="filterable hammer twins vulcan thunder">
+<td><a href="./%D0%90%D1%84%D1%80%D0%B8%D0%BA%D0%B0" class="mw-redirect" title="Африка">非洲</a> LGC-69 <span typeof="mw:File"><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%90%D1%84%D1%80%D0%B8%D0%BA%D0%B0_LGC-69%C2%BB" title="“非洲 LGC-69”模块升级"><img src="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/15px-Garage_Upgrade.png" decoding="async" loading="lazy" width="15" height="15" class="mw-file-element" srcset="https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/23px-Garage_Upgrade.png 1.5x, https://ru.tankiwiki.com/images/ru/thumb/d/d9/Garage_Upgrade.png/30px-Garage_Upgrade.png 2x"></a></span></td>
+<td></td>
+<td></td>
+<td></td>
+<td>20%</td>
+<td>25%</td>
+<td></td>
+<td></td>
+<td>30%</td>
+<td>25%</td>
+<td></td>
+<td>
+</td></tr></tbody></table>
+</div><p><br>
+</p><h2><span id=".D0.A3.D0.BB.D1.83.D1.87.D1.88.D0.B5.D0.BD.D0.B8.D1.81_.D0.BC.D0.BE.D0.B4.D1.83.D0.BB.D0.B5.D0.B9"></span><span class="mw-headline" id="Улучшения_модулей">模块升级</span></h2><h3><span id=".D0.9C.D0.BE.D0.B4.D1.83.D0.BB.D0.B8_.D0.B2_.D0.BF.D1.80.D0.BE.D0.B4.D0.B0.D0.B6.D0.B5"></span><span class="mw-headline" id="Модули_в_продаже">出售中的模块</span></h3><ul><li><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B5%D0%B9_%C2%ABSingle%C2%BB" class="mw-redirect" title="Улучшения модулей «Single»">“Single”模块升级</a></li>
+<li><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B5%D0%B9_%C2%ABDouble%C2%BB" class="mw-redirect" title="Улучшения модулей «Double»">“Double”模块升级</a></li>
+<li><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B5%D0%B9_%C2%ABTriple%C2%BB" class="mw-redirect" title="Улучшения модулей «Triple»">“Triple”模块升级</a></li></ul><h3><span id=".D0.A1.D1.82.D0.B0.D1.80.D1.8B.D0.B5_.D0.BC.D0.BE.D0.B4.D1.83.D0.BB.D0.B8_.28LGC.2C_legacy.29"></span><span class="mw-headline" id="Старые_модули_(LGC,_legacy)">旧模块（LGC，遗产）</span></h3><table class="lgc-links-table">
+
+<tbody><tr>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A4%D0%BB%D0%BE%D1%80%D0%B0_LGC-01%C2%BB" class="mw-redirect" title="Улучшения модуля «Флора LGC-01»">花卉 <br>LGC-01</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9C%D0%BE%D1%80%D0%BF%D0%B5%D1%85_LGC-02%C2%BB" class="mw-redirect" title="Улучшения модуля «Морпех LGC-02»">海军陆战队 <br>LGC-02</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%91%D0%BE%D0%BB%D0%BE%D1%82%D0%BD%D1%8B%D0%B9_LGC-03%C2%BB" class="mw-redirect" title="Улучшения модуля «Болотный LGC-03»">沼泽 <br>LGC-03</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9B%D0%B5%D1%81%D0%BD%D0%B8%D0%BA_LGC-04%C2%BB" class="mw-redirect" title="Улучшения модуля «Лесник LGC-04»">护林员 <br>LGC-04</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9C%D0%B5%D1%82%D0%B0%D0%BB%D0%BB%D0%B8%D0%BA_LGC-05%C2%BB" class="mw-redirect" title="Улучшения модуля «Металлик LGC-05»">金属 <br>LGC-05</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9B%D0%B0%D0%B2%D0%B0_LGC-06%C2%BB" class="mw-redirect" title="Улучшения модуля «Лава LGC-06»">熔岩 <br>LGC-06</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A1%D0%B2%D0%B8%D0%BD%D0%B5%D1%86_LGC-07%C2%BB" class="mw-redirect" title="Улучшения модуля «Свинец LGC-07»">铅 <br>LGC-07</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A1%D0%B0%D1%84%D0%B0%D1%80%D0%B8_LGC-09%C2%BB" class="mw-redirect" title="Улучшения модуля «Сафари LGC-09»">侵略者 <br>LGC-08</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%97%D0%B0%D1%85%D0%B2%D0%B0%D1%82%D1%87%D0%B8%D0%BA_LGC-08%C2%BB" class="mw-redirect" title="Улучшения модуля «Захватчик LGC-08»">狩猎 <br>LGC-09</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9C%D0%B0%D0%B3%D0%BC%D0%B0_LGC-10%C2%BB" class="mw-redirect" title="Улучшения модуля «Магма LGC-10»">岩浆 <br>LGC-10</a>
+</td></tr>
+<tr>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%94%D1%80%D0%B0%D0%BA%D0%BE%D0%BD_LGC-11%C2%BB" class="mw-redirect" title="Улучшения модуля «Дракон LGC-11»">巨龙 <br>LGC-11</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B5%D0%B9_%C2%AB%D0%92%D0%B5%D1%87%D0%BD%D0%BE%D1%81%D1%82%D1%8C%C2%BB" class="mw-redirect" title="Улучшения модулей «Вечность»">遗产 <br>LGC-12</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9C%D1%8D%D1%80%D0%B8_LGC-13%C2%BB" class="mw-redirect" title="Улучшения модуля «Мэри LGC-13»">玛丽 <br>LGC-13</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%91%D1%83%D1%80%D1%8F_LGC-14%C2%BB" class="mw-redirect" title="Улучшения модуля «Буря LGC-14»">暴风雪 <br>LGC-14</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9A%D0%B0%D1%80%D0%B1%D0%BE%D0%BD_LGC-15%C2%BB" class="mw-redirect" title="Улучшения модуля «Карбон LGC-15»">碳 <br>LGC-15</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A1_%D0%BB%D1%8E%D0%B1%D0%BE%D0%B2%D1%8C%D1%8E_LGC-16%C2%BB" class="mw-redirect" title="Улучшения модуля «С любовью LGC-16»">带着爱 <br>LGC-16</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A7%D1%83%D0%B6%D0%BE%D0%B9_LGC-17%C2%BB" class="mw-redirect" title="Улучшения модуля «Чужой LGC-17»">异形 <br>LGC-17</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9A%D0%BE%D0%BB%D1%8C%D1%87%D1%83%D0%B3%D0%B0_LGC-18%C2%BB" class="mw-redirect" title="Улучшения модуля «Кольчуга LGC-18»">锁子甲 <br>LGC-18</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%93%D1%80%D1%8F%D0%B7%D1%8C_LGC-19%C2%BB" class="mw-redirect" title="Улучшения модуля «Грязь LGC-19»">泥浆 <br>LGC-19</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9F%D1%80%D0%B8%D0%B1%D0%BE%D0%B9_LGC-20%C2%BB" class="mw-redirect" title="Улучшения модуля «Прибой LGC-20»">冲浪 <br>LGC-20</a>
+</td></tr>
+<tr>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%AF%D0%B3%D1%83%D0%B0%D1%80_LGC-21%C2%BB" class="mw-redirect" title="Улучшения модуля «Ягуар LGC-21»">美洲虎 <br>LGC-21</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9F%D0%B0%D1%80%D1%82%D0%B8%D0%B7%D0%B0%D0%BD_LGC-22%C2%BB" class="mw-redirect" title="Улучшения модуля «Партизан LGC-22»">游击队 <br>LGC-22</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9F%D1%83%D1%81%D1%82%D1%8B%D0%BD%D1%8F_LGC-23%C2%BB" class="mw-redirect" title="Улучшения модуля «Пустыня LGC-23»">沙漠 <br>LGC-23</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A0%D0%B6%D0%B0%D0%B2%D1%87%D0%B8%D0%BD%D0%B0_LGC-24%C2%BB" class="mw-redirect" title="Улучшения модуля «Ржавчина LGC-24»">生锈 <br>LGC-24</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9F%D0%B8%D0%BA%D1%81%D0%B5%D0%BB%D1%8C_LGC-25%C2%BB" class="mw-redirect" title="Улучшения модуля «Пиксель LGC-25»">像素 <br>LGC-25</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A2%D1%83%D0%BD%D0%B4%D1%80%D0%B0_LGC-26%C2%BB" class="mw-redirect" title="Улучшения модуля «Тундра LGC-26»">苔原 <br>LGC-26</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%92%D0%B8%D1%85%D1%80%D1%8C_LGC-27%C2%BB" class="mw-redirect" title="Улучшения модуля «Вихрь LGC-27»">旋风 <br>LGC-27</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A0%D0%BE%D0%B4%D0%B6%D0%B5%D1%80_LGC-28%C2%BB" class="mw-redirect" title="Улучшения модуля «Роджер LGC-28»">罗杰 <br>LGC-28</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%98%D0%B7%D0%BB%D0%BE%D0%BC_LGC-29%C2%BB" class="mw-redirect" title="Улучшения модуля «Излом LGC-29»">折断 <br>LGC-29</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B5%D0%B9_%C2%AB%D0%92%D0%B5%D1%87%D0%BD%D0%BE%D1%81%D1%82%D1%8C%C2%BB" class="mw-redirect" title="Улучшения модулей «Вечность»">遗产 <br>LGC-30</a>
+</td></tr>
+<tr>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9A%D0%B5%D0%B4%D1%80_LGC-31%C2%BB" class="mw-redirect" title="Улучшения модуля «Кедр LGC-31»">雪松 <br>LGC-31</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9F%D0%B8%D1%82%D0%BE%D0%BD_LGC-32%C2%BB" class="mw-redirect" title="Улучшения модуля «Питон LGC-32»">蟒蛇 <br>LGC-32</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A1%D0%B0%D0%BA%D1%83%D1%80%D0%B0_LGC-33%C2%BB" class="mw-redirect" title="Улучшения модуля «Сакура LGC-33»">樱花 <br>LGC-33</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%AD%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%B0_LGC-34%C2%BB" class="mw-redirect" title="Улучшения модуля «Электра LGC-34»">电光 <br>LGC-34</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9F%D0%B5%D1%81%D1%87%D0%B0%D0%BD%D0%B8%D0%BA_LGC-35%C2%BB" class="mw-redirect" title="Улучшения модуля «Песчаник LGC-35»">砂岩 <br>LGC-35</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%98%D1%81%D0%BA%D1%80%D0%B0_LGC-36%C2%BB" class="mw-redirect" title="Улучшения модуля «Искра LGC-36»">火花 <br>LGC-36</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%94%D0%B8%D0%B4%D0%B6%D0%B8%D1%82%D0%B0%D0%BB_LGC-37%C2%BB" class="mw-redirect" title="Улучшения модуля «Диджитал LGC-37»">数码 <br>LGC-37</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A8%D0%B5%D0%BB%D0%B5%D1%81%D1%82_LGC-38%C2%BB" class="mw-redirect" title="Улучшения модуля «Шелест LGC-38»">沙沙声 <br>LGC-38</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9A%D1%83%D0%B7%D0%BD%D0%B5%D1%86_LGC-39%C2%BB" class="mw-redirect" title="Улучшения модуля «Кузнец LGC-39»">铁匠 <br>LGC-39</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A5%D0%BE%D1%85%D0%BB%D0%BE%D0%BC%D0%B0_LGC-40%C2%BB" class="mw-redirect" title="Улучшения модуля «Хохлома LGC-40»">霍赫洛马 <br>LGC-40</a>
+</td></tr>
+<tr>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%93%D0%BB%D0%B8%D0%BD%D0%B0_LGC-41%C2%BB" class="mw-redirect" title="Улучшения модуля «Глина LGC-41»">粘土 <br>LGC-41</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9D%D0%BE%D1%81%D0%BE%D1%80%D0%BE%D0%B3_LGC-42%C2%BB" class="mw-redirect" title="Улучшения модуля «Носорог LGC-42»">犀牛 <br>LGC-42</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9C%D0%B5%D1%82%D0%B5%D0%BB%D1%8C_LGC-43%C2%BB" class="mw-redirect" title="Улучшения модуля «Метель LGC-43»">暴风雪 <br>LGC-43</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D1%8B%D0%B9_%D0%BA%D0%BE%D1%81%D1%82%D1%8E%D0%BC_LGC-44%C2%BB" class="mw-redirect" title="Улучшения модуля «Красный костюм LGC-44»">红色<br>套装 <br>LGC-44</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A3%D1%80%D0%B1%D0%B0%D0%BD_LGC-45%C2%BB" class="mw-redirect" title="Улучшения модуля «Урбан LGC-45»">城市 <br>LGC-45</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%90%D1%82%D0%BE%D0%BC_LGC-46%C2%BB" class="mw-redirect" title="Улучшения модуля «Атом LGC-46»">原子 <br>LGC-46</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A1%D0%B0%D0%B2%D0%B0%D0%BD%D0%BD%D0%B0_LGC-47%C2%BB" class="mw-redirect" title="Улучшения модуля «Саванна LGC-47»">萨凡纳 <br>LGC-47</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B5%D0%B9_%C2%AB%D0%92%D0%B5%D1%87%D0%BD%D0%BE%D1%81%D1%82%D1%8C%C2%BB" class="mw-redirect" title="Улучшения модулей «Вечность»">遗产 <br>LGC-48</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%92%D0%B8%D1%88%D0%BD%D1%8F_LGC-49%C2%BB" class="mw-redirect" title="Улучшения модуля «Вишня LGC-49»">酸樱桃 <br>LGC-49</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%98%D1%80%D0%B1%D0%B8%D1%81_LGC-50%C2%BB" class="mw-redirect" title="Улучшения модуля «Ирбис LGC-50»">雪豹 <br>LGC-50</a>
+</td></tr>
+<tr>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9C%D0%B0%D1%80%D1%81_LGC-51%C2%BB" class="mw-redirect" title="Улучшения модуля «Марс LGC-51»">火星 <br>LGC-51</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%98%D0%B7%D1%83%D0%BC%D1%80%D1%83%D0%B4_LGC-52%C2%BB" class="mw-redirect" title="Улучшения модуля «Изумруд LGC-52»">翡翠 <br>LGC-52</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A3%D0%BB%D0%B5%D0%B9_LGC-53%C2%BB" class="mw-redirect" title="Улучшения модуля «Улей LGC-53»">蜂巢 <br>LGC-53</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%98%D0%BD%D1%84%D0%B5%D1%80%D0%BD%D0%BE_LGC-54%C2%BB" class="mw-redirect" title="Улучшения модуля «Инферно LGC-54»">地狱 <br>LGC-54</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9D%D0%B5%D1%84%D1%80%D0%B8%D1%82_LGC-55%C2%BB" class="mw-redirect" title="Улучшения модуля «Нефрит LGC-55»">软玉 <br>LGC-55</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A2%D0%B0%D0%B9%D0%B3%D0%B0_LGC-56%C2%BB" class="mw-redirect" title="Улучшения модуля «Тайга LGC-56»">泰加 <br>LGC-56</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A2%D0%B8%D0%B3%D1%80_LGC-57%C2%BB" class="mw-redirect" title="Улучшения модуля «Тигр LGC-57»">黑豹 <br>LGC-57</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9F%D1%80%D0%BE%D0%B4%D0%B8%D0%B4%D0%B6%D0%B8_LGC-58%C2%BB" class="mw-redirect" title="Улучшения модуля «Продиджи LGC-58»">神童 <br>LGC-58</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9D%D0%B0%D0%BD%D0%BE_LGC-59%C2%BB" class="mw-redirect" title="Улучшения модуля «Нано LGC-59»">纳米 <br>LGC-59</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A1%D0%BA%D0%B0%D0%BB%D0%B0_LGC-60%C2%BB" class="mw-redirect" title="Улучшения модуля «Скала LGC-60»">峭壁 <br>LGC-60</a>
+</td></tr>
+<tr>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%95%D0%BD%D0%BE%D1%82_LGC-61%C2%BB" class="mw-redirect" title="Улучшения модуля «Енот LGC-61»">浣熊 <br>LGC-61</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A5%D0%B2%D0%BE%D1%8F_LGC-62%C2%BB" class="mw-redirect" title="Улучшения модуля «Хвоя LGC-62»">针叶 <br>LGC-62</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%9F%D0%B8%D0%BA%D0%B0%D1%81%D1%81%D0%BE_LGC-63%C2%BB" class="mw-redirect" title="Улучшения модуля «Пикассо LGC-63»">毕加索 <br>LGC-63</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%93%D1%80%D0%B0%D1%84%D1%84%D0%B8%D1%82%D0%B8_LGC-64%C2%BB" class="mw-redirect" title="Улучшения модуля «Граффити LGC-64»">涂鸦 <br>LGC-64</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%97%D0%B5%D0%B2%D1%81_LGC-65%C2%BB" class="mw-redirect" title="Улучшения модуля «Зевс LGC-65»">宙斯 <br>LGC-65</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%A2%D0%B8%D0%BD%D0%B0_LGC-66%C2%BB" class="mw-redirect" title="Улучшения модуля «Тина LGC-66»">沼泽 <br>LGC-66</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B5%D0%B9_%C2%AB%D0%92%D0%B5%D1%87%D0%BD%D0%BE%D1%81%D1%82%D1%8C%C2%BB" class="mw-redirect" title="Улучшения модулей «Вечность»">遗产 <br>LGC-67</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%94%D1%80%D0%BE%D0%B2%D0%BE%D1%81%D0%B5%D0%BA_LGC-68%C2%BB" class="mw-redirect" title="Улучшения модуля «Дровосек LGC-68»">伐木工 <br>LGC-68</a>
+</td>
+<td><a href="./%D0%A3%D0%BB%D1%83%D1%87%D1%88%D0%B5%D0%BD%D0%B8%D1%8F_%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F_%C2%AB%D0%90%D1%84%D1%80%D0%B8%D0%BA%D0%B0_LGC-69%C2%BB" class="mw-redirect" title="Улучшения модуля «Африка LGC-69»">非洲 <br>LGC-69</a>
+</td>
+<td>
+</td></tr></tbody></table><div align="right"><small>最后编辑：21/05/2024 HelpersBot <span class="ai-translate-note" style="color:#8FB8D8;">（由 AI 自动翻译）</span></small></div></div></div></div></div></div><footer class="site-disclaimer" style="max-width:1200px;margin:0 auto;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.15);color:#8FB8D8;font-size:13px;line-height:1.9;text-align:center;">
+<p style="margin:0;"><strong style="color:#BFD5FF;">本站为玩家社区自建的非官方 Wiki 镜像。</strong></p>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(17294416, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        trackHash: true
+    });
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://tankionline.com/ru/wp-content/plugins/ag-custom-blocks/build/blocks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
+    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":736,"wgPageParseReport":{"limitreport":{"cputime":"0.894","walltime":"0.974","ppvisitednodes":{"value":5990,"limit":1000000},"postexpandincludesize":{"value":27212,"limit":4194304},"templateargumentsize":{"value":2410,"limit":4194304},"expansiondepth":{"value":8,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":15761,"limit":5000000},"timingprofile":["100.00%  311.906      1 -total"," 67.35%  210.054    111 Шаблон:Resists"," 11.78%   36.727     36 Шаблон:Rank","  5.25%   16.373      1 Шаблон:See_also","  3.35%   10.451      1 Шаблон:Другое_значение","  2.16%    6.747      1 Шаблон:LastEdit","  1.61%    5.025     14 Шаблон:См._также/link","  1.34%    4.166      3 Шаблон:Color","  1.16%    3.617     12 Шаблон:Items/Crystals"]},"cachereport":{"timestamp":"20260824093414","ttl":86400,"transientcontent":false}}});});</script>
+    <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script>
+    <script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });</script></body></html>
