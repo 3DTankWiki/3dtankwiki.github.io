@@ -663,10 +663,21 @@ async function preparePage(pageNameToProcess, sourceReplacementMap, lastEditInfo
         headElements.push($.html(this));
     });
 
+    // ⚠️ 计算器单独修复（去掉源站的 buggy 计算器脚本）：
+    // 源站 upgradesCalculator.js 依赖页面里的 .total 元素来取“总计”数值，但源站所有
+    // 带计算器的页面都没有 .total → 勾选时抛 null 异常，且它还会重复加和导致“已选总计”
+    // 翻倍。这里把它从产物里剔除，改为在下方注入仓库自托管的、无需 .total 的“逻辑版”
+    // 计算器脚本（grandTotal 直接由表格最后两列求和得出）。
+    const CALC_SCRIPT_PATTERN = /skins\/TankiBlue\/resources\/scripts\/upgradesCalculator\.js/;
+
     const bodyEndScripts = new Array(); 
     $('body > script').each(function() { 
         const $el = $(this); 
-        if ($el.attr('src')?.startsWith('/')) $el.attr('src', BASE_URL + $el.attr('src')); 
+        const src = $el.attr('src') || '';
+        if (CALC_SCRIPT_PATTERN.test(src)) {
+            return; // 剔除源站计算器脚本，改用自托管逻辑版
+        }
+        if (src.startsWith('/')) $el.attr('src', BASE_URL + src); 
         bodyEndScripts.push($.html(this)); 
     });
     
@@ -811,7 +822,102 @@ function finalizePage(preparedData, translatedResultsForPage) {
     // hidetoc cookie 为 '1' 时才设置折叠状态，不会覆盖这里的默认值。
     const tocMobileScript = `<script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });<\/script>`;
     bodyEndScripts.push(tocMobileScript);
-    
+
+    // ⚠️ 运行时去重修复（重复的俄语计算器按钮 / 两个迷彩搜索框）：
+    // 源站 upgradesCalculator.js / paints.js 会用 JS 向页面重复注入「计算器模式」和
+    // 「迷彩搜索」控件。翻译时 Puppeteer 渲染后已把注入后的控件（标签已译成中文）
+    // 固化进了静态 HTML，但页面仍保留这两个脚本 → 用户浏览器里再次注入，产生重复。
+    // 关键：这两个脚本的事件都绑定到"第一个"（即静态中文）控件上，注入的重复项是
+    // 死控件，可安全删除。此脚本在 DOMContentLoaded 时执行（此时源脚本早已注入完毕），
+    // 把每个容器里除第一个外的重复控件移除，只保留翻译好的那个，功能不受影响。
+    const dedupInjectedUiScript = `<script>document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.item-upgrades-block').forEach(function(block) {
+            var modes = block.querySelectorAll('.calc-mode');
+            for (var i = modes.length - 1; i >= 1; i--) modes[i].remove();
+        });
+        document.querySelectorAll('.paint-filters-wrapper').forEach(function(w) {
+            var s = w.querySelectorAll('.paint-search');
+            for (var i = s.length - 1; i >= 1; i--) s[i].remove();
+        });
+    });<\/script>`;
+    bodyEndScripts.push(dedupInjectedUiScript);
+
+    // ✅ 计算器单独修复（自托管"逻辑版"，替换源站 buggy 的 upgradesCalculator.js）：
+    // 静态 HTML 已含翻译好的 .calc-mode/.discounts/升级表；此脚本只绑定功能、不再注入，
+    // 且不依赖 .total（总计数直接对表格最后两列求和得出），从而修复勾选时的崩溃与重复加和。
+    const calcLogicScript = `<script>document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.item-upgrades-block').forEach(function(block) {
+            var table = block.querySelector('.item-upgrades-table');
+            if (!table) return;
+            var cb = block.querySelector('input[type="checkbox"]');
+            var discounts = block.querySelector('.discounts');
+            var sum = block.querySelector('.sum');
+            var input = block.querySelector('.calc-input-group .delay');
+            var resetBtn = block.querySelector('.reset');
+            var cells = table.querySelectorAll('tr:not(.nocalc) td:nth-last-child(-n+2)');
+            var i;
+            for (i = 0; i < cells.length; i++) cells[i].dataset.initial = cells[i].innerHTML;
+            // 最后两列分别对应 speed(末列) / delay(倒数第二列)，总计直接求和
+            function colSum(sel) { var s = 0; table.querySelectorAll(sel).forEach(function(c){ var v = parseInt(c.textContent); if (!isNaN(v)) s += v; }); return s; }
+            var grandSpeed = colSum('tr:not(.nocalc) td:nth-last-child(1)');
+            var grandDelay = colSum('tr:not(.nocalc) td:nth-last-child(2)');
+            var speedCell = sum ? sum.querySelector('td.speed') : null;
+            var delayCell = sum ? sum.querySelector('td.delay') : null;
+            function cellCol(cell) { var tds = Array.prototype.slice.call(cell.parentElement.querySelectorAll('td')); var idx = tds.indexOf(cell); return idx === tds.length - 1 ? 'speed' : 'delay'; }
+            function refresh(on) {
+                if (on) {
+                    if (discounts) { discounts.style.display = 'flex'; discounts.classList.remove('hidden'); }
+                    if (sum) sum.classList.remove('hidden');
+                    if (speedCell) speedCell.textContent = String(grandSpeed);
+                    if (delayCell) delayCell.textContent = String(grandDelay);
+                    for (i = 0; i < cells.length; i++) cells[i].classList.add('highlighted');
+                } else {
+                    if (discounts) { discounts.style.display = 'none'; discounts.classList.add('hidden'); }
+                    if (sum) sum.classList.add('hidden');
+                    doReset();
+                }
+            }
+            function toggleCell(cell) {
+                var target = cellCol(cell) === 'speed' ? speedCell : delayCell;
+                if (!target) return;
+                var v = parseInt(cell.textContent); if (isNaN(v)) return;
+                var cur = parseInt(target.textContent) || 0;
+                cell.classList.toggle('highlighted');
+                target.textContent = String(cell.classList.contains('highlighted') ? cur + v : cur - v);
+            }
+            function applyDiscount() {
+                var val = parseInt(input.value); if (isNaN(val)) val = 0;
+                if (val > 95) val = 95; if (val < 0) val = 0; input.value = val;
+                var disc = (100 - val) / 100;
+                for (i = 0; i < cells.length; i++) cells[i].textContent = Math.ceil((parseInt(cells[i].dataset.initial) || 0) * disc);
+                if (speedCell) speedCell.textContent = '0';
+                if (delayCell) delayCell.textContent = '0';
+                ['speed','delay'].forEach(function(col) {
+                    var tgt = col === 'speed' ? speedCell : delayCell; if (!tgt) return;
+                    var s = 0;
+                    for (i = 0; i < cells.length; i++) { if (cells[i].classList.contains('highlighted') && cellCol(cells[i]) === col) s += parseInt(cells[i].textContent) || 0; }
+                    tgt.textContent = String(s);
+                });
+            }
+            function doReset() {
+                if (input) input.value = '0';
+                for (i = 0; i < cells.length; i++) { cells[i].classList.remove('highlighted'); cells[i].innerHTML = cells[i].dataset.initial; }
+                if (speedCell) speedCell.textContent = '0';
+                if (delayCell) delayCell.textContent = '0';
+            }
+            if (cb) cb.addEventListener('change', function(){ refresh(cb.checked); });
+            if (input) input.addEventListener('input', applyDiscount);
+            if (resetBtn) resetBtn.addEventListener('click', doReset);
+            for (i = 0; i < cells.length; i++) {
+                (function(cell) {
+                    cell.style.userSelect = 'none';
+                    cell.addEventListener('mousedown', function(e) { if (!cb || !cb.checked) return; e.preventDefault(); toggleCell(cell); });
+                })(cells[i]);
+            }
+        });
+    });<\/script>`;
+    bodyEndScripts.push(calcLogicScript);
+
     const headContent = headElements.filter(el => !el.toLowerCase().startsWith('<title>')).join('\n    '); 
     const footerHtml = (FOOTER_ON_ALL_PAGES || pageNameToProcess === START_PAGE) ? SITE_FOOTER_HTML : '';
     const finalHtml = `<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">${HEAD_BOOT_SCRIPT}<title>${translatedTitle}</title>${headContent}${PAGE_STYLE}</head><body class="${bodyClass}">${SKIN_CHROME_STUB}<div id="mw-main-container">${homeButtonHtml}<div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr">${finalHtmlContent}</div></div></div></div></div>${footerHtml}${bodyEndScripts.join('\n    ')}</body></html>`;
