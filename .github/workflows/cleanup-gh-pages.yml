@@ -1,0 +1,168 @@
+name: 清理 gh-pages 孤儿页面
+
+# 用途：删除 gh-pages 分支中“没有出现在 last_edit_info.json 记录里”的 HTML 页面，
+#       始终保留 index.html 与 Служебная:Поиск.html。
+#
+# 触发：
+#   - workflow_dispatch：手动触发。mode 默认 report（只统计 / 列出，不删除），
+#                        选 delete 才会真正删除并提交到 gh-pages。
+#   - schedule：每周日 02:00 UTC 自动跑一次 report，结果写入 Job Summary（不删除）。
+#
+# ⚠️ 安全设计：默认 report 模式不会改动任何文件。建议先手动跑一次 report 模式，
+#    在 Job Summary / 日志里确认要删除的清单，再手动选 delete 模式执行。
+#
+# 配置项（在下方 env 里调整，无需改脚本逻辑）：
+#   CLEANUP_RECURSIVE     : 'true' 递归整个 gh-pages；'false' 仅仓库根目录
+#   CLEANUP_EXCLUDE_DIRS  : 逗号分隔，这些目录不扫描 / 不删除（例如误提交进来的 node_modules）
+#   CLEANUP_KEEP          : 逗号分隔，始终保留的页面（无论是否在记录中）
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: '运行模式'
+        required: true
+        default: 'report'
+        type: choice
+        options:
+          - report   # 仅统计并列出将被删除的页面
+          - delete   # 真正从 gh-pages 删除并提交
+  schedule:
+    - cron: '0 2 * * 0'
+
+# 与翻译部署共用同一把串行锁，避免清理与部署同时修改 gh-pages 造成冲突 / 分叉
+concurrency:
+  group: wiki-translate-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+env:
+  CLEANUP_RECURSIVE: 'true'                          # true=递归整个 gh-pages；false=仅仓库根目录
+  CLEANUP_EXCLUDE_DIRS: 'node_modules'               # 逗号分隔，这些目录跳过（非页面）
+  CLEANUP_KEEP: 'index.html,Служебная:Поиск.html'    # 始终保留的页面
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出 gh-pages 分支
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          fetch-depth: 0
+
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 从 main 分支读取 last_edit_info.json（不切换工作树，避免污染 gh-pages 工作区）
+      - name: 从 main 分支读取 last_edit_info.json
+        run: |
+          git fetch origin main
+          git show origin/main:last_edit_info.json > _last_edit_info_main.json \
+            || git show FETCH_HEAD:last_edit_info.json > _last_edit_info_main.json
+          echo "✅ 已读取 main:last_edit_info.json，记录页面数："
+          node -e "console.log(Object.keys(JSON.parse(require('fs').readFileSync('_last_edit_info_main.json','utf8'))).length)"
+
+      - name: 计算孤儿页面（不在 last_edit_info.json 的 HTML）
+        id: plan
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+
+          const RECURSIVE = process.env.CLEANUP_RECURSIVE === 'true';
+          const EXCLUDE  = new Set((process.env.CLEANUP_EXCLUDE_DIRS || '').split(',').map(s => s.trim()).filter(Boolean));
+          const KEEP     = new Set((process.env.CLEANUP_KEEP || '').split(',').map(s => s.trim()).filter(Boolean));
+          const MODE     = '${{ github.event.inputs.mode }}' || 'report';
+
+          const info = JSON.parse(fs.readFileSync('_last_edit_info_main.json', 'utf8'));
+          // 记录里的页面名即为期望的文件名（key 可能含 '/'，如 Obshchenie/Soobshchestvo）
+          const allowed = new Set(Object.keys(info).map(k => k + '.html'));
+
+          const htmlFiles = [];
+          (function walk(dir) {
+            for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+              const full = path.join(dir, e.name);
+              if (e.isDirectory()) {
+                if (EXCLUDE.has(e.name)) continue;
+                if (RECURSIVE) walk(full);
+              } else if (e.isFile() && e.name.endsWith('.html')) {
+                htmlFiles.push(path.relative('', full).split(path.sep).join('/'));
+              }
+            }
+          })('.');
+
+          const orphans = htmlFiles.filter(f => !allowed.has(f) && !KEEP.has(f)).sort();
+
+          console.log(`📄 gh-pages HTML 文件总数 : ${htmlFiles.length}`);
+          console.log(`🗂️  last_edit_info 记录数 : ${allowed.size}`);
+          console.log(`🗑️  孤儿页面（待删除）    : ${orphans.length}`);
+
+          fs.writeFileSync('_orphans.json', JSON.stringify(orphans, null, 2));
+
+          const L = [
+            '## 🧹 gh-pages 孤儿页面清理',
+            '',
+            `- 模式: **${MODE}**`,
+            `- 递归扫描: **${RECURSIVE}**`,
+            `- HTML 文件总数: **${htmlFiles.length}**`,
+            `- 记录中页面: **${allowed.size}**`,
+            `- 孤儿页面（不在记录且非保留）: **${orphans.length}**`,
+            '',
+          ];
+          if (orphans.length) {
+            L.push('### 将被删除（前 200 条）');
+            L.push('');
+            L.push('```');
+            L.push(orphans.slice(0, 200).join('\n'));
+            L.push('```');
+            if (orphans.length > 200) L.push(`… 其余 ${orphans.length - 200} 条见运行日志`);
+          } else {
+            L.push('✅ 没有需要删除的孤儿页面。');
+          }
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, L.join('\n'));
+          NODE
+
+      - name: 删除孤儿页面并提交（仅 delete 模式）
+        if: ${{ github.event.inputs.mode == 'delete' }}
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const orphans = JSON.parse(fs.readFileSync('_orphans.json', 'utf8'));
+          let n = 0;
+          for (const f of orphans) {
+            try { fs.unlinkSync(f); n++; console.log('🗑️  删除: ' + f); }
+            catch (e) { console.warn('⚠️  删除失败: ' + f + ' -> ' + e.message); }
+          }
+          console.log(`已删除 ${n} 个文件`);
+          NODE
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # 只更新“已被删除的已跟踪文件”，不添加未跟踪文件（避免误提交临时文件）
+          git add -u
+          if git diff --staged --quiet; then
+            echo "没有需要提交的删除"
+            rm -f _orphans.json _last_edit_info_main.json
+            exit 0
+          fi
+          git commit -m "ci: 清理 gh-pages 孤儿页面（未收录于 last_edit_info.json）"
+
+          # 带重试的推送：远端若被其它 run 抢先，rebase 后重试
+          for i in 1 2 3 4 5; do
+            if git push origin gh-pages; then
+              echo "✅ gh-pages 推送成功"
+              rm -f _orphans.json _last_edit_info_main.json
+              exit 0
+            fi
+            echo "⚠️  第 $i 次推送被拒绝，rebase 后重试..."
+            git pull --rebase --autostash origin gh-pages || true
+            sleep $(( (RANDOM % 10) + 5 ))
+          done
+          echo "❌ gh-pages 连续 5 次推送失败"
+          exit 1
