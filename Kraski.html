@@ -7331,12 +7331,60 @@ Tankitty —— 战场上不可战胜的掠食者。</div>
     <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
     <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
     <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
-    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    
     <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
     <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
     <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
-    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    
     <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":535,"wgPageParseReport":{"limitreport":{"cputime":"5.606","walltime":"6.230","ppvisitednodes":{"value":42426,"limit":1000000},"postexpandincludesize":{"value":1056928,"limit":4194304},"templateargumentsize":{"value":513770,"limit":4194304},"expansiondepth":{"value":9,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00% 1035.061      1 -total"," 85.98%  889.940    699 Шаблон:Paint"," 27.80%  287.706    699 Шаблон:PaintPreview","  2.94%   30.435    319 Шаблон:Items/Container/Epic","  2.63%   27.173    258 Шаблон:Items/Container/Legendary","  1.85%   19.190      1 Шаблон:See_also","  1.61%   16.669    156 Шаблон:Items/Container/Rare","  1.41%   14.642    116 Шаблон:Items/Crystals","  1.20%   12.396     84 Шаблон:Items/Coins","  1.18%   12.226      1 Шаблон:Другое_значение"]},"cachereport":{"timestamp":"20260824201529","ttl":86400,"transientcontent":false}}});});</script>
     <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
     <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script>
-    <script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });</script></body></html>
+    <script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });</script><script>document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.item-upgrades-block').forEach(function(block) {
+            var modes = block.querySelectorAll('.calc-mode');
+            for (var i = modes.length - 1; i >= 1; i--) modes[i].remove();
+        });
+        document.querySelectorAll('.paint-filters-wrapper').forEach(function(w) {
+            var s = w.querySelectorAll('.paint-search');
+            for (var i = s.length - 1; i >= 1; i--) s[i].remove();
+        });
+    });</script><script>document.addEventListener('DOMContentLoaded', function() {
+        var paintEls = document.querySelectorAll('.rarity-cont .paint');
+        if (!paintEls.length) return;
+        var info = document.getElementById('paint_info');
+        if (!info) { info = document.createElement('div'); info.id = 'paint_info'; info.className = 'position-absolute d-none'; document.body.appendChild(info); }
+        var filtersWrapper = document.querySelector('.paint-filters-wrapper');
+        var searchInput = filtersWrapper ? filtersWrapper.querySelector('#paint-search-input') : null;
+        if (searchInput) searchInput.addEventListener('input', function(e){ searchPaints(e.target.value); });
+        for (var i = 0; i < paintEls.length; i++) {
+            (function(paint){
+                paint.addEventListener('mousemove', function(event) {
+                    var desc = paint.querySelector('.paint-description');
+                    if (desc) { info.innerHTML = ''; info.appendChild(desc.cloneNode(true)); info.classList.remove('d-none');
+                        info.style.left = (event.pageX + 15) + 'px'; info.style.top = (event.pageY + 15) + 'px'; }
+                });
+                paint.addEventListener('mouseleave', function(){ info.classList.add('d-none'); });
+            })(paintEls[i]);
+        }
+        document.querySelectorAll('.paint-filter').forEach(function(f) {
+            f.addEventListener('click', function(){
+                filterPaints(f.getAttribute('data-filter'));
+                document.querySelectorAll('.paint-filter').forEach(function(x){ x.classList.remove('paint-filter-active'); });
+                f.classList.add('paint-filter-active');
+            });
+        });
+        function searchPaints(name) {
+            var lower = (name || '').toLowerCase();
+            for (var i = 0; i < paintEls.length; i++) {
+                var pn = (paintEls[i].querySelector('.paint-name') ? paintEls[i].querySelector('.paint-name').textContent : '').toLowerCase();
+                paintEls[i].style.display = (lower.length <= 2 || pn.indexOf(lower) !== -1) ? 'flex' : 'none';
+            }
+        }
+        function filterPaints(category) {
+            for (var i = 0; i < paintEls.length; i++) {
+                var r = paintEls[i].getAttribute('data-rarity');
+                paintEls[i].style.display = (category === 'All' || r === category) ? 'flex' : 'none';
+            }
+        }
+    });</script><!-- wiki-fix-applied -->
+</body></html>

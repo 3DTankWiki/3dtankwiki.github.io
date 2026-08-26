@@ -415,12 +415,91 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
     <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/common.js"></script>
     <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/supportForm.js"></script>
     <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/sliders.js"></script>
-    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/paints.js"></script>
+    
     <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/headerAnimation.js"></script>
     <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/maps.js"></script>
     <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/modals.js"></script>
-    <script src="https://ru.tankiwiki.com/skins/TankiBlue/resources/scripts/upgradesCalculator.js"></script>
+    
     <script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":1305,"wgPageParseReport":{"limitreport":{"cputime":"0.476","walltime":"0.673","ppvisitednodes":{"value":383,"limit":1000000},"postexpandincludesize":{"value":4957,"limit":4194304},"templateargumentsize":{"value":671,"limit":4194304},"expansiondepth":{"value":10,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":87,"limit":5000000},"timingprofile":["100.00%  633.636      1 -total"," 99.20%  628.592      1 Шаблон:LegacyModule","  2.28%   14.442      1 Шаблон:See_also","  1.35%    8.525      1 Шаблон:Другое_значение","  0.78%    4.924      1 Шаблон:LastEdit","  0.71%    4.475      1 Шаблон:Mut1","  0.58%    3.651     14 Шаблон:См._также/link","  0.56%    3.575      1 Шаблон:Alert","  0.39%    2.472      3 Шаблон:Hint","  0.28%    1.759      1 Шаблон:EndUpgradesTable"]},"cachereport":{"timestamp":"20260825140444","ttl":86400,"transientcontent":false}}});});</script>
     <script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\(70,\s*223,\s*17\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);</script>
     <script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('.ShowYouTubePopup').forEach(popup => { if (popup.dataset.biliHandled) return; popup.addEventListener('click', (e) => { e.stopImmediatePropagation(); if (typeof tingle === 'undefined') return; let modal = new tingle.modal({ closeMethods: new Array('button', 'escape', 'overlay') }); modal.setContent(`<div class="report-head"><div class="report-title">观看视频</div><div class="report-close"></div></div><div style="margin: 15px 10px 10px 10px;"><iframe class="yt-video" width="640px" height="360px" src="https://player.bilibili.com/player.html?bvid=${popup.dataset.id}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>`); modal.open(); modal.getContent().querySelector('.report-close').addEventListener('click', () => modal.close()); }, true); popup.dataset.biliHandled = 'true'; }); });</script>
-    <script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });</script></body></html>
+    <script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });</script><script>document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.item-upgrades-block').forEach(function(block) {
+            var modes = block.querySelectorAll('.calc-mode');
+            for (var i = modes.length - 1; i >= 1; i--) modes[i].remove();
+        });
+        document.querySelectorAll('.paint-filters-wrapper').forEach(function(w) {
+            var s = w.querySelectorAll('.paint-search');
+            for (var i = s.length - 1; i >= 1; i--) s[i].remove();
+        });
+    });</script><script>document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.item-upgrades-block').forEach(function(block) {
+            var table = block.querySelector('.item-upgrades-table');
+            if (!table) return;
+            var cb = block.querySelector('input[type="checkbox"]');
+            var discounts = block.querySelector('.discounts');
+            var sum = block.querySelector('.sum');
+            var input = block.querySelector('.calc-input-group .delay');
+            var resetBtn = block.querySelector('.reset');
+            var cells = table.querySelectorAll('tr:not(.nocalc) td:nth-last-child(-n+2)');
+            var i;
+            for (i = 0; i < cells.length; i++) cells[i].dataset.initial = cells[i].innerHTML;
+            function colSum(sel) { var s = 0; table.querySelectorAll(sel).forEach(function(c){ var v = parseInt(c.textContent); if (!isNaN(v)) s += v; }); return s; }
+            var grandSpeed = colSum('tr:not(.nocalc) td:nth-last-child(1)');
+            var grandDelay = colSum('tr:not(.nocalc) td:nth-last-child(2)');
+            var speedCell = sum ? sum.querySelector('td.speed') : null;
+            var delayCell = sum ? sum.querySelector('td.delay') : null;
+            function cellCol(cell) { var tds = Array.prototype.slice.call(cell.parentElement.querySelectorAll('td')); var idx = tds.indexOf(cell); return idx === tds.length - 1 ? 'speed' : 'delay'; }
+            function refresh(on) {
+                if (on) {
+                    if (discounts) { discounts.style.display = 'flex'; discounts.classList.remove('hidden'); }
+                    if (sum) sum.classList.remove('hidden');
+                    if (speedCell) speedCell.textContent = String(grandSpeed);
+                    if (delayCell) delayCell.textContent = String(grandDelay);
+                    for (i = 0; i < cells.length; i++) cells[i].classList.add('highlighted');
+                } else {
+                    if (discounts) { discounts.style.display = 'none'; discounts.classList.add('hidden'); }
+                    if (sum) sum.classList.add('hidden');
+                    doReset();
+                }
+            }
+            function toggleCell(cell) {
+                var target = cellCol(cell) === 'speed' ? speedCell : delayCell;
+                if (!target) return;
+                var v = parseInt(cell.textContent); if (isNaN(v)) return;
+                var cur = parseInt(target.textContent) || 0;
+                cell.classList.toggle('highlighted');
+                target.textContent = String(cell.classList.contains('highlighted') ? cur + v : cur - v);
+            }
+            function applyDiscount() {
+                var val = parseInt(input.value); if (isNaN(val)) val = 0;
+                if (val > 95) val = 95; if (val < 0) val = 0; input.value = val;
+                var disc = (100 - val) / 100;
+                for (i = 0; i < cells.length; i++) cells[i].textContent = Math.ceil((parseInt(cells[i].dataset.initial) || 0) * disc);
+                if (speedCell) speedCell.textContent = '0';
+                if (delayCell) delayCell.textContent = '0';
+                ['speed','delay'].forEach(function(col) {
+                    var tgt = col === 'speed' ? speedCell : delayCell; if (!tgt) return;
+                    var s = 0;
+                    for (i = 0; i < cells.length; i++) { if (cells[i].classList.contains('highlighted') && cellCol(cells[i]) === col) s += parseInt(cells[i].textContent) || 0; }
+                    tgt.textContent = String(s);
+                });
+            }
+            function doReset() {
+                if (input) input.value = '0';
+                for (i = 0; i < cells.length; i++) { cells[i].classList.remove('highlighted'); cells[i].innerHTML = cells[i].dataset.initial; }
+                if (speedCell) speedCell.textContent = '0';
+                if (delayCell) delayCell.textContent = '0';
+            }
+            if (cb) cb.addEventListener('change', function(){ refresh(cb.checked); });
+            if (input) input.addEventListener('input', applyDiscount);
+            if (resetBtn) resetBtn.addEventListener('click', doReset);
+            for (i = 0; i < cells.length; i++) {
+                (function(cell) {
+                    cell.style.userSelect = 'none';
+                    cell.addEventListener('mousedown', function(e) { if (!cb || !cb.checked) return; e.preventDefault(); toggleCell(cell); });
+                })(cells[i]);
+            }
+        });
+    });</script><!-- wiki-fix-applied -->
+</body></html>
