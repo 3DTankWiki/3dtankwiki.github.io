@@ -181,6 +181,8 @@ const replacementDict = {
 'Новобранец': '新兵',
 'Танки': '3D坦克',
 'Танки Онлайн': '3D坦克',
+'tankionline.com': '3dtank.com',
+'TNK00-00000-0674E-PO3LP-PFNYX': 'TNK00-00000-000N5-DVDHX-IZZCZ',
 'Ореха': '榛子',
 'Орех': '榛子',
 'игрок': '玩家',
