@@ -663,19 +663,16 @@ async function preparePage(pageNameToProcess, sourceReplacementMap, lastEditInfo
         headElements.push($.html(this));
     });
 
-    // ⚠️ 计算器单独修复（去掉源站的 buggy 计算器脚本）：
-    // 源站 upgradesCalculator.js 依赖页面里的 .total 元素来取“总计”数值，但源站所有
-    // 带计算器的页面都没有 .total → 勾选时抛 null 异常，且它还会重复加和导致“已选总计”
-    // 翻倍。这里把它从产物里剔除，改为在下方注入仓库自托管的、无需 .total 的“逻辑版”
-    // 计算器脚本（grandTotal 直接由表格最后两列求和得出）。
-    const CALC_SCRIPT_PATTERN = /skins\/TankiBlue\/resources\/scripts\/upgradesCalculator\.js/;
-
     const bodyEndScripts = new Array(); 
     $('body > script').each(function() { 
         const $el = $(this); 
         const src = $el.attr('src') || '';
-        if (CALC_SCRIPT_PATTERN.test(src)) {
-            return; // 剔除源站计算器脚本，改用自托管逻辑版
+        // 剔除源站注入型脚本（upgradesCalculator.js / paints.js）：它们会在浏览器里
+        // 二次注入「计算器模式」/「迷彩搜索」控件，造成重复的俄语按钮 / 两个搜索框。
+        // 由 finalizePage 里注入的仓库自托管「逻辑版」脚本替代（不重复注入、计算器不依赖 .total）。
+        if (/skins\/TankiBlue\/resources\/scripts\/upgradesCalculator\.js/.test(src) ||
+            /skins\/TankiBlue\/resources\/scripts\/paints\.js/.test(src)) {
+            return;
         }
         if (src.startsWith('/')) $el.attr('src', BASE_URL + src); 
         bodyEndScripts.push($.html(this)); 
@@ -694,6 +691,31 @@ async function preparePage(pageNameToProcess, sourceReplacementMap, lastEditInfo
         $factBoxContent.html('<p id="dynamic-fact-placeholder" style="margin:0;">正在加载有趣的事实...</p>'); 
         // 动态引入 relPrefix，确保子目录也能正确读取到根目录的 facts.json
         bodyEndScripts.push(`<script>document.addEventListener('DOMContentLoaded', function() { fetch('${relPrefix}facts.json').then(r=>r.json()).then(f=>{ document.getElementById('dynamic-fact-placeholder').innerHTML = f[Math.floor(Math.random() * f.length)].cn; }).catch(()=>{}); });<\/script>`); 
+    }
+    // 源站实际使用的「随机趣闻」框是 .interestingFact（不是旧的 .random-text-box）。
+    // 这类框内容固定写死一条，不会真正随机读取 facts.json；这里补上随机化逻辑。
+    const hasInterestingFact = $contentContainer.find('.interestingFact').length > 0;
+    if (hasInterestingFact) {
+        // 把内容 div（带 `font-size: 95%; padding-top:10px` 样式的那一层）替换为占位符
+        $contentContainer.find('.interestingFact').each(function() {
+            const $content = $(this).find('div[style*="padding-top"]');
+            if ($content.length) $content.html('<p style="margin:0;" data-fact-placeholder="true">正在加载有趣的事实...</p>');
+        });
+        bodyEndScripts.push(`<script>document.addEventListener('DOMContentLoaded', function() {
+            fetch('${relPrefix}facts.json').then(r=>r.json()).then(function(facts) {
+                if (!facts || !facts.length) return;
+                var picks = [];
+                document.querySelectorAll('.interestingFact').forEach(function(box) {
+                    var content = box.querySelector('div[style*="padding-top"]');
+                    if (content) picks.push(content);
+                });
+                if (!picks.length) return;
+                var f = facts[Math.floor(Math.random() * facts.length)];
+                var cn = (f && f.cn) ? f.cn : '';
+                if (!cn) return;
+                picks.forEach(function(content) { content.innerHTML = '<p style="margin:0;">' + cn + '</p>'; });
+            }).catch(function(){});
+        });<\/script>`);
     }
 
     $contentContainer.find('a').each(function() { 
@@ -823,28 +845,11 @@ function finalizePage(preparedData, translatedResultsForPage) {
     const tocMobileScript = `<script>document.addEventListener('DOMContentLoaded', function() { var cb = document.getElementById('toctogglecheckbox'); if (cb && window.matchMedia && window.matchMedia('(max-width: 768px)').matches) cb.checked = true; });<\/script>`;
     bodyEndScripts.push(tocMobileScript);
 
-    // ⚠️ 运行时去重修复（重复的俄语计算器按钮 / 两个迷彩搜索框）：
-    // 源站 upgradesCalculator.js / paints.js 会用 JS 向页面重复注入「计算器模式」和
-    // 「迷彩搜索」控件。翻译时 Puppeteer 渲染后已把注入后的控件（标签已译成中文）
-    // 固化进了静态 HTML，但页面仍保留这两个脚本 → 用户浏览器里再次注入，产生重复。
-    // 关键：这两个脚本的事件都绑定到"第一个"（即静态中文）控件上，注入的重复项是
-    // 死控件，可安全删除。此脚本在 DOMContentLoaded 时执行（此时源脚本早已注入完毕），
-    // 把每个容器里除第一个外的重复控件移除，只保留翻译好的那个，功能不受影响。
-    const dedupInjectedUiScript = `<script>document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.item-upgrades-block').forEach(function(block) {
-            var modes = block.querySelectorAll('.calc-mode');
-            for (var i = modes.length - 1; i >= 1; i--) modes[i].remove();
-        });
-        document.querySelectorAll('.paint-filters-wrapper').forEach(function(w) {
-            var s = w.querySelectorAll('.paint-search');
-            for (var i = s.length - 1; i >= 1; i--) s[i].remove();
-        });
-    });<\/script>`;
-    bodyEndScripts.push(dedupInjectedUiScript);
-
-    // ✅ 计算器单独修复（自托管"逻辑版"，替换源站 buggy 的 upgradesCalculator.js）：
-    // 静态 HTML 已含翻译好的 .calc-mode/.discounts/升级表；此脚本只绑定功能、不再注入，
-    // 且不依赖 .total（总计数直接对表格最后两列求和得出），从而修复勾选时的崩溃与重复加和。
+    // ⚠️ 通用去重 + 功能脚本：由于上面已剔除源站 upgradesCalculator.js / paints.js，
+    // 这里补上仓库自托管的「逻辑版」脚本，让静态 HTML 里已经翻译好的控件正常工作：
+    //   - 计算器：不依赖 .total（修复勾选崩溃与重复加和），不重复注入
+    //   - 迷彩搜索/筛选/悬停：只绑定功能，不重复注入搜索框
+    //   - 运行时去重兜底：若仍有重复控件则只保留第一个（已翻译的中文控件）
     const calcLogicScript = `<script>document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.item-upgrades-block').forEach(function(block) {
             var table = block.querySelector('.item-upgrades-table');
@@ -857,7 +862,6 @@ function finalizePage(preparedData, translatedResultsForPage) {
             var cells = table.querySelectorAll('tr:not(.nocalc) td:nth-last-child(-n+2)');
             var i;
             for (i = 0; i < cells.length; i++) cells[i].dataset.initial = cells[i].innerHTML;
-            // 最后两列分别对应 speed(末列) / delay(倒数第二列)，总计直接求和
             function colSum(sel) { var s = 0; table.querySelectorAll(sel).forEach(function(c){ var v = parseInt(c.textContent); if (!isNaN(v)) s += v; }); return s; }
             var grandSpeed = colSum('tr:not(.nocalc) td:nth-last-child(1)');
             var grandDelay = colSum('tr:not(.nocalc) td:nth-last-child(2)');
@@ -918,6 +922,60 @@ function finalizePage(preparedData, translatedResultsForPage) {
     });<\/script>`;
     bodyEndScripts.push(calcLogicScript);
 
+    const paintsLogicScript = `<script>document.addEventListener('DOMContentLoaded', function() {
+        var paintEls = document.querySelectorAll('.rarity-cont .paint');
+        if (!paintEls.length) return;
+        var info = document.getElementById('paint_info');
+        if (!info) { info = document.createElement('div'); info.id = 'paint_info'; info.className = 'position-absolute d-none'; document.body.appendChild(info); }
+        var filtersWrapper = document.querySelector('.paint-filters-wrapper');
+        var searchInput = filtersWrapper ? filtersWrapper.querySelector('#paint-search-input') : null;
+        if (searchInput) searchInput.addEventListener('input', function(e){ searchPaints(e.target.value); });
+        for (var i = 0; i < paintEls.length; i++) {
+            (function(paint){
+                paint.addEventListener('mousemove', function(event) {
+                    var desc = paint.querySelector('.paint-description');
+                    if (desc) { info.innerHTML = ''; info.appendChild(desc.cloneNode(true)); info.classList.remove('d-none');
+                        info.style.left = (event.pageX + 15) + 'px'; info.style.top = (event.pageY + 15) + 'px'; }
+                });
+                paint.addEventListener('mouseleave', function(){ info.classList.add('d-none'); });
+            })(paintEls[i]);
+        }
+        document.querySelectorAll('.paint-filter').forEach(function(f) {
+            f.addEventListener('click', function(){
+                filterPaints(f.getAttribute('data-filter'));
+                document.querySelectorAll('.paint-filter').forEach(function(x){ x.classList.remove('paint-filter-active'); });
+                f.classList.add('paint-filter-active');
+            });
+        });
+        function searchPaints(name) {
+            var lower = (name || '').toLowerCase();
+            for (var i = 0; i < paintEls.length; i++) {
+                var pn = (paintEls[i].querySelector('.paint-name') ? paintEls[i].querySelector('.paint-name').textContent : '').toLowerCase();
+                paintEls[i].style.display = (lower.length <= 2 || pn.indexOf(lower) !== -1) ? 'flex' : 'none';
+            }
+        }
+        function filterPaints(category) {
+            for (var i = 0; i < paintEls.length; i++) {
+                var r = paintEls[i].getAttribute('data-rarity');
+                paintEls[i].style.display = (category === 'All' || r === category) ? 'flex' : 'none';
+            }
+        }
+    });<\/script>`;
+    bodyEndScripts.push(paintsLogicScript);
+
+    // 运行时去重兜底：若某控件仍被重复注入，只保留第一个（已翻译的中文控件）
+    const dedupInjectedUiScript = `<script>document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.item-upgrades-block').forEach(function(block) {
+            var modes = block.querySelectorAll('.calc-mode');
+            for (var i = modes.length - 1; i >= 1; i--) modes[i].remove();
+        });
+        document.querySelectorAll('.paint-filters-wrapper').forEach(function(w) {
+            var s = w.querySelectorAll('.paint-search');
+            for (var i = s.length - 1; i >= 1; i--) s[i].remove();
+        });
+    });<\/script>`;
+    bodyEndScripts.push(dedupInjectedUiScript);
+    
     const headContent = headElements.filter(el => !el.toLowerCase().startsWith('<title>')).join('\n    '); 
     const footerHtml = (FOOTER_ON_ALL_PAGES || pageNameToProcess === START_PAGE) ? SITE_FOOTER_HTML : '';
     const finalHtml = `<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">${HEAD_BOOT_SCRIPT}<title>${translatedTitle}</title>${headContent}${PAGE_STYLE}</head><body class="${bodyClass}">${SKIN_CHROME_STUB}<div id="mw-main-container">${homeButtonHtml}<div class="main-content"><div class="mw-body" id="content"><a id="top"></a><div class="mw-body-content"><div id="mw-content-text" class="mw-parser-output" lang="zh-CN" dir="ltr">${finalHtmlContent}</div></div></div></div></div>${footerHtml}${bodyEndScripts.join('\n    ')}</body></html>`;
