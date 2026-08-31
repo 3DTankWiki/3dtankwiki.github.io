@@ -4,6 +4,8 @@ const cheerio = require('cheerio');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const fs = require('fs');
 const path = require('path');
+// 【新增】diff 链接清单的生成逻辑（单独模块，便于脱离 Puppeteer 单独测试）
+const { renderDiffLinksMarkdown } = require('./diff_links.js');
 
 // --- 【配置常量】 ---
 // 🇷🇺 源站：俄语版 Tanki Online Wiki
@@ -19,6 +21,13 @@ const TARGET_BATCH_CHARS = 100000; // 🚀 全局唯一合并阈值：坚守此�
 const DICTIONARY_FILE = 'translations.js';
 const SOURCE_DICT_FILE = 'source_replacements.js'; 
 const OUTPUT_DIR = './output';
+
+// 【新增】源站双端 diff 链接清单：写在 main 分支根目录，每次有页面更新时整体覆盖
+// 说明见 writeDiffLinksFile()：oldRev 取自 last_edit_info.json 里上一次翻译时记录的版本
+const DIFF_LINKS_FILE = path.join(__dirname, 'diff_links.md');
+// RUN   = 文件包含「本次进程」所有已更新页面（默认，跨批累计，每批重写一次）
+// BATCH = 文件只包含「当前这一批」已更新页面
+const DIFF_LINKS_SCOPE = (process.env.DIFF_LINKS_SCOPE || 'RUN').toUpperCase();
 
 // --- 【站点声明与外观】 ---
 // 「最后编辑」作者旁边追加的 AI 翻译说明
@@ -396,6 +405,43 @@ function getPreparedSourceDictionary() {
         const sourceDict = new Function(`${scriptContent}; return sourceReplacementDict;`)();
         return new Map(Object.entries(sourceDict || {}));
     } catch (error) { return new Map(); }
+}
+
+// === 【新增】页面状态变化 → 源站双端 diff 链接 ===
+// runDiffRecords 记录本次进程内所有「修订号发生变化」的页面（key = 页面名，重复出现以最新为准）。
+// 关键点：oldRev 必须在 lastEditInfo 被覆盖【之前】取到，否则就退化成「本次 vs 本次」的无效 diff。
+const runDiffRecords = new Map();
+
+function rememberPageRevisionChange(pageName, oldRev, newRev, runMode) {
+    if (!newRev) return null;
+    if (String(newRev) === String(oldRev || '')) return null; // 强制重翻但版本未变，不产生 diff
+    const record = {
+        page: pageName,
+        oldRev: oldRev ? String(oldRev) : null, // null = 首次收录，没有「上一版」
+        newRev: String(newRev),
+        type: oldRev ? 'update' : 'new',
+        mode: runMode || 'FEED',
+        at: new Date().toISOString()
+    };
+    runDiffRecords.set(pageName, record);
+    return record;
+}
+
+// 用当前作用域内的记录【整体覆盖】diff_links.md（不追加历史）
+function writeDiffLinksFile(records, runMode) {
+    if (!records || records.length === 0) return;
+    try {
+        const markdown = renderDiffLinksMarkdown(records, {
+            generatedAt: new Date().toISOString(),
+            runMode: runMode,
+            scope: DIFF_LINKS_SCOPE
+        });
+        fs.writeFileSync(DIFF_LINKS_FILE, markdown, 'utf-8');
+        console.log(`🔗 已写入源站 diff 链接清单 -> ${path.basename(DIFF_LINKS_FILE)}（${records.length} 条，整体覆盖）`);
+    } catch (error) {
+        // 写清单失败绝不能影响主流程
+        console.warn(`⚠️ 写入 ${path.basename(DIFF_LINKS_FILE)} 失败: ${error.message}`);
+    }
 }
 
 // 检测文本中是否还有未翻译的原文字符：必须包含西里尔字母，
@@ -1051,13 +1097,19 @@ async function run() {
             }
         }
 
+        const batchDiffRecords = new Array();
         for (const preparedData of pendingPreparedPages) {
             const pageName = preparedData.pageNameToProcess;
             const pageResults = pageTranslatedResultsMap[pageName] || {};
             try {
                 finalizePage(preparedData, pageResults);
                 if (preparedData.currentEditInfo) {
-                    lastEditInfo[pageName] = preparedData.currentEditInfo;
+                    // ⚠️ 顺序：先拿旧修订号记账，再覆盖状态记录，否则 diff 的两端会变成同一个版本
+                    const prevRevision = lastEditInfo[pageName] || null;
+                    const newRevision = preparedData.currentEditInfo;
+                    const record = rememberPageRevisionChange(pageName, prevRevision, newRevision, runMode);
+                    if (record) batchDiffRecords.push(record);
+                    lastEditInfo[pageName] = newRevision;
                 }
             } catch (err) {
                 console.error(`保存页面出错[${pageName}]:`, err);
@@ -1070,6 +1122,14 @@ async function run() {
             console.log(`💾 已即时保存进度到 last_edit_info.json（当前 ${Object.keys(lastEditInfo).length} 条）`);
         } catch (e) {
             console.warn(`⚠️ 即时保存 last_edit_info.json 失败: ${e.message}`);
+        }
+
+        // 【新增】只要有页面更新，就整体覆盖 diff_links.md（BATCH 模式只写本批，RUN 模式写本次进程累计）
+        if (batchDiffRecords.length > 0) {
+            writeDiffLinksFile(
+                DIFF_LINKS_SCOPE === 'BATCH' ? batchDiffRecords : Array.from(runDiffRecords.values()),
+                runMode
+            );
         }
 
         // 扫除批次缓存，清空容积准备下一批
@@ -1205,5 +1265,8 @@ async function run() {
     
     console.log("--- 进程执行完毕，任务安全结束！ ---");
 }
+
+// 仅用于测试/调试：直接 `node translate.js` 时仍会正常执行 run()
+module.exports = { rememberPageRevisionChange, writeDiffLinksFile, runDiffRecords, DIFF_LINKS_FILE };
 
 run().catch(console.error);
