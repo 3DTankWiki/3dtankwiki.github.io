@@ -73,6 +73,14 @@ jobs:
           RUN_MODE: ${{ github.event.inputs.run_mode || 'FEED' }}
           PAGES_TO_PROCESS: ${{ github.event.inputs.pages }}
           MAX_EXECUTION_TIME: 345
+          # 📧 邮件通知（QQ 邮箱 SMTP）：全部留空则自动跳过，不影响流水线
+          MAIL_NOTIFY: ${{ vars.MAIL_NOTIFY || 'AUTO' }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          MAIL_USER: ${{ secrets.MAIL_USER }}
+          MAIL_PASS: ${{ secrets.MAIL_PASS }}
+          MAIL_CC: ${{ vars.MAIL_CC }}
+          # DIFF_LINKS_SCOPE=RUN（默认）：diff_links.md 包含本次运行所有已更新页面；=BATCH 只写当前批次
+          DIFF_LINKS_SCOPE: ${{ vars.DIFF_LINKS_SCOPE || 'RUN' }}
         run: |
           echo "当前工作目录下的文件列表:"
           ls -l
@@ -179,6 +187,12 @@ jobs:
           ROUND_MINUTES: '55'
           # 最多轮数：5 × 55min ≈ 4.6h 爬取 + 部署，仍低于 GHA 6 小时上限
           MAX_ROUNDS: '5'
+          # 📧 邮件通知：CRAWLER 每轮是独立进程，最多会发 MAX_ROUNDS 封；不想收就设 MAIL_NOTIFY=OFF
+          MAIL_NOTIFY: ${{ vars.MAIL_NOTIFY || 'AUTO' }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          MAIL_USER: ${{ secrets.MAIL_USER }}
+          MAIL_PASS: ${{ secrets.MAIL_PASS }}
+          MAIL_CC: ${{ vars.MAIL_CC }}
         run: |
           set -euo pipefail
 
