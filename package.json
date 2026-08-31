@@ -11,6 +11,7 @@
   "dependencies": {
     "@google/generative-ai": "latest",
     "cheerio": "latest",
+    "nodemailer": "latest",
     "puppeteer": "latest"
   }
 }
