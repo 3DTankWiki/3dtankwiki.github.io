@@ -6,6 +6,8 @@ const fs = require('fs');
 const path = require('path');
 // 【新增】diff 链接清单的生成逻辑（单独模块，便于脱离 Puppeteer 单独测试）
 const { renderDiffLinksMarkdown } = require('./diff_links.js');
+// 【新增】QQ 邮箱 SMTP 通知（未配置凭据时自动跳过）
+const { sendDiffLinksMail } = require('./mailer.js');
 
 // --- 【配置常量】 ---
 // 🇷🇺 源站：俄语版 Tanki Online Wiki
@@ -1257,6 +1259,23 @@ async function run() {
     try {
         fs.writeFileSync(EDIT_INFO_FILE, JSON.stringify(lastEditInfo, null, 2), 'utf-8');
     } catch (e) {}
+
+    // 【新增】整次运行结束后统一发一封汇总邮件（而不是每个批次一封，避免刷屏）。
+    // 没配置 MAIL_* 凭据 / 本次没有页面更新时会自动跳过，失败也只打日志，不影响部署。
+    try {
+        const mailResult = await sendDiffLinksMail({
+            records: Array.from(runDiffRecords.values()),
+            filePath: DIFF_LINKS_FILE,
+            runMode
+        });
+        if (mailResult.sent) {
+            console.log(`📧 邮件通知已发送：${mailResult.subject}${mailResult.dryRun ? '（dry-run，未真正投递）' : ''}`);
+        } else {
+            console.log(`📭 未发送邮件通知：${mailResult.reason}`);
+        }
+    } catch (error) {
+        console.warn(`⚠️ 邮件通知异常（已忽略，不影响部署）: ${error.message}`);
+    }
 
     // 🚀 --- 【最后记得关闭浏览器】 ---
     if (globalBrowser) {
