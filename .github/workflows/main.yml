@@ -137,7 +137,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add last_edit_info.json
+          # diff_links.md 由 translate.js 生成：每次有页面更新时整体覆盖
+          git add last_edit_info.json diff_links.md
 
           if git diff --staged --quiet; then
             echo "没有需要提交的更新"
@@ -145,9 +146,9 @@ jobs:
           fi
 
           if [ "${{ github.event_name }}" = "schedule" ]; then
-            git commit --no-verify -m "ci: 更新页面状态记录 (定时任务)"
+            git commit --no-verify -m "ci: 更新页面状态记录与 diff 链接 (定时任务)"
           else
-            git commit --no-verify -m "ci: 更新页面状态记录 (手动触发)"
+            git commit --no-verify -m "ci: 更新页面状态记录与 diff 链接 (手动触发)"
           fi
 
           # 🔁 带重试的推送
@@ -259,12 +260,13 @@ jobs:
           commit_progress_to_main() {
             local round="$1"
             # 回到仓库根（main 工作树）
-            git add last_edit_info.json
+            # diff_links.md 由 translate.js 生成：每次有页面更新时整体覆盖
+            git add last_edit_info.json diff_links.md
             if git diff --staged --quiet; then
-              echo "第 ${round} 轮没有 last_edit_info.json 变更需要提交"
+              echo "第 ${round} 轮没有 last_edit_info.json / diff_links.md 变更需要提交"
               return 0
             fi
-            git commit --no-verify -m "ci: CRAWLER 第 ${round} 轮进度"
+            git commit --no-verify -m "ci: CRAWLER 第 ${round} 轮进度与 diff 链接"
             push_with_retry main
           }
 
