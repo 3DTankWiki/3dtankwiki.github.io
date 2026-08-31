@@ -28,7 +28,7 @@ function readMailConfig() {
         to: (process.env.MAIL_TO || '').trim(),
         cc: (process.env.MAIL_CC || '').trim(),
         from: (process.env.MAIL_FROM || process.env.MAIL_USER || '').trim(),
-        subjectPrefix: process.env.MAIL_SUBJECT_PREFIX || '[3D坦克Wiki]',
+        subjectPrefix: process.env.MAIL_SUBJECT_PREFIX || '[3D坦克 Wiki]',
         dryRun: ['1', 'true', 'yes', 'on'].includes((process.env.MAIL_DRY_RUN || '').toLowerCase())
     };
 }
