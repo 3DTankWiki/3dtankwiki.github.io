@@ -144,6 +144,7 @@ function renderDiffLinksMarkdown(records, meta) {
         }
         lines.push('');
         lines.push('> 模板不参与翻译、不落盘（中文站没有独立模板页），只记录修订号并发送通知。');
+        lines.push('> 模板「上一版」优先取 `last_edit_info.json` 里记过的版本；首次记录时取 Feed 给出的 `oldid`（即这次改动的前一版）。');
         lines.push('> 模板一变，**引用它的中文页面内容就已经过期**；需要刷新时用 SPECIFIED 模式指定对应页面重新翻译。');
         lines.push('');
     }
