@@ -325,8 +325,27 @@ const NS_BLOCKLIST = new Array(
     'Обсуждение_файла', 'Обсуждение_шаблона', 'Обсуждение_категории', 'МедиаВики'
 );
 
+// ============================================================================
+// 【新增】模板命名空间：只记录 + 通知，绝不生成页面
+// ----------------------------------------------------------------------------
+// 模板（Шаблон: / Template:）以前被 NS_BLOCKLIST 直接丢掉；现在单独挑出来，但处理方式极简：
+//   1) 不抓取模板页（Feed 里已经带了修订号）
+//   2) 不交给 AI 翻译（模板不需要译文）
+//   3) 不写 output/、不部署（中文站没有独立模板页，内容在源站渲染时就已经展开进正文了）
+// 只做两件事：把修订号写进 last_edit_info.json（键名 = 原始标题 Шаблон:XXX），
+// 以及生成一条更新记录 → 进 diff_links.md + 邮件通知。
+// 模板一变，引用它的中文页面内容就已过期，需要时用 SPECIFIED 模式重翻那些页面。
+// ============================================================================
+
+// 是否属于模板命名空间（俄站同时存在 Шаблон: 与 Template: 两种写法）
+const isTemplateName = (title) => /^(Шаблон|Template|模板):/i.test(String(title || ''));
+
+// 其它命名空间（文件/用户/讨论…）依旧照旧直接丢弃
+const isBlockedNamespace = (title) => NS_BLOCKLIST.some(p => String(title).startsWith(p + ':'));
+
 async function getPagesForFeedMode(lastEditInfo) {
     console.log(`[更新模式] 正在从 ${RECENT_CHANGES_FEED_URL} 获取最近更新...`);
+    const emptyResult = { pages: new Array(), templates: new Array() };
     let browser;
     try {
         browser = await puppeteer.launch({ headless: true, args: new Array('--no-sandbox', '--disable-setuid-sandbox') });
@@ -341,7 +360,7 @@ async function getPagesForFeedMode(lastEditInfo) {
 
         const $ = cheerio.load(feedXml, { xmlMode: true, decodeEntities: false });
         const entries = $('entry');
-        if (entries.length === 0) return new Array();
+        if (entries.length === 0) return emptyResult;
 
         const pagesToConsider = new Map();
         entries.each((i, entry) => {
@@ -361,20 +380,41 @@ async function getPagesForFeedMode(lastEditInfo) {
         });
 
         const pagesToUpdate = new Array();
+        const templatesToUpdate = new Array();
         for (const [title, newRevisionId] of pagesToConsider.entries()) {
-            const blockedPrefixes = NS_BLOCKLIST.map(p => p + ':');
-            if (blockedPrefixes.some(p => title.startsWith(p))) continue;
-            
             const currentRevisionId = lastEditInfo[title] || 0;
-            if (newRevisionId > currentRevisionId) pagesToUpdate.push(title);
+            if (newRevisionId <= currentRevisionId) continue; // 版本没变（页面、模板同一套判定）
+
+            // 模板：不抓取、不翻译、不落盘，只把「标题 + 修订号」带出去记账
+            if (isTemplateName(title)) { templatesToUpdate.push({ title, revision: newRevisionId }); continue; }
+            if (isBlockedNamespace(title)) continue;
+
+            pagesToUpdate.push(title);
         }
-        return pagesToUpdate;
+        return { pages: pagesToUpdate, templates: templatesToUpdate };
     } catch (error) {
         console.error('❌[更新模式] 出错:', error.message);
-        return new Array();
+        return emptyResult;
     } finally {
         if (browser) await browser.close();
     }
+}
+
+// 【新增】模板记账：不抓模板页、不翻译、不写文件——直接拿 Feed 里的修订号记一笔
+function collectTemplateUpdates(targets, lastEditInfo, runMode) {
+    const records = new Array();
+    for (const target of targets || []) {
+        const title = typeof target === 'object' ? target.title : target;
+        const newRevision = typeof target === 'object' ? target.revision : null;
+        if (!title || !newRevision) continue;
+
+        const prevRevision = lastEditInfo[title] || null;
+        const record = rememberPageRevisionChange(title, prevRevision, newRevision, runMode, 'template');
+        if (record) records.push(record);
+        lastEditInfo[title] = newRevision; // 记账：下一轮 Feed 不会再把这个版本报一遍
+        console.log(`🧩 [模板] ${title}：修订号 ${prevRevision || '（首次记录）'} → ${newRevision}（不翻译、不生成页面，仅记录 + 通知）`);
+    }
+    return records;
 }
 
 function getDictionaryString() {
@@ -414,7 +454,7 @@ function getPreparedSourceDictionary() {
 // 关键点：oldRev 必须在 lastEditInfo 被覆盖【之前】取到，否则就退化成「本次 vs 本次」的无效 diff。
 const runDiffRecords = new Map();
 
-function rememberPageRevisionChange(pageName, oldRev, newRev, runMode) {
+function rememberPageRevisionChange(pageName, oldRev, newRev, runMode, kind) {
     if (!newRev) return null;
     if (String(newRev) === String(oldRev || '')) return null; // 强制重翻但版本未变，不产生 diff
     const record = {
@@ -422,6 +462,7 @@ function rememberPageRevisionChange(pageName, oldRev, newRev, runMode) {
         oldRev: oldRev ? String(oldRev) : null, // null = 首次收录，没有「上一版」
         newRev: String(newRev),
         type: oldRev ? 'update' : 'new',
+        kind: kind || 'page',                   // 'page' = 正常翻译落盘的页面；'template' = 只记录 + 通知
         mode: runMode || 'FEED',
         at: new Date().toISOString()
     };
@@ -1050,24 +1091,48 @@ async function run() {
 
     const runMode = (process.env.RUN_MODE || 'FEED').toUpperCase();
     let pagesToVisit = new Array();
+    // 【新增】模板目标：只记账 + 通知，不抓取、不翻译、不落盘
+    let templateTargets = new Array();
 
     switch (runMode) {
-        case 'FEED': pagesToVisit = await getPagesForFeedMode(lastEditInfo); break;
-        case 'CRAWLER': pagesToVisit = new Array(START_PAGE); break;
-        case 'SPECIFIED':
-            pagesToVisit = (process.env.PAGES_TO_PROCESS || '').split(',').map(p => sanitizePageName(p.trim())).filter(Boolean);
+        case 'FEED': {
+            const feedResult = await getPagesForFeedMode(lastEditInfo);
+            pagesToVisit = feedResult.pages;
+            templateTargets = feedResult.templates;
+            if (templateTargets.length > 0) {
+                console.log(`🧩[更新模式] 另有 ${templateTargets.length} 个模板有改动（不生成页面，仅记录 + 通知）：${templateTargets.map(t => t.title).join('、')}`);
+            }
             break;
+        }
+        case 'CRAWLER': pagesToVisit = new Array(START_PAGE); break;
+        case 'SPECIFIED': {
+            const specified = (process.env.PAGES_TO_PROCESS || '').split(',').map(p => sanitizePageName(p.trim())).filter(Boolean);
+            // 模板不翻译、不生成页面；指定列表里若混进模板名，只提示一下然后跳过
+            const specifiedTemplates = specified.filter(p => isTemplateName(p));
+            if (specifiedTemplates.length > 0) {
+                console.warn(`⚠️ 指定列表中包含模板（${specifiedTemplates.join('、')}）：模板不生成页面，仅在 FEED 模式下记账并发通知，本次已跳过。`);
+            }
+            pagesToVisit = specified.filter(p => !isTemplateName(p));
+            break;
+        }
     }
 
-    if (pagesToVisit.length === 0) return console.log("没有需要处理的页面，任务提前结束。");
+    // 模板只有「记账 + 通知」，不需要翻译；但哪怕本轮一个页面都不用翻，
+    // 只要有模板改动也要继续往下走，否则模板永远记不上、通知也发不出去。
+    if (pagesToVisit.length === 0 && templateTargets.length === 0) return console.log("没有需要处理的页面，任务提前结束。");
+    if (pagesToVisit.length === 0) console.log("本轮没有页面改动，仅有模板改动，继续执行模板记账（不生成任何页面）。");
     
     const visitedPages = new Set();
     let activeTasks = 0, pageIndex = 0;
     const isForceMode = runMode === 'FEED' || runMode === 'SPECIFIED';
 
     // 🌐 --- 启动全局单一共享浏览器，极大节省内存开销 ---
-    console.log(`🌐 正在启动全局共享浏览器 (并发限制: ${CONCURRENCY_LIMIT} 标签页)...`);
-    const globalBrowser = await puppeteer.launch({ headless: true, args: new Array('--no-sandbox', '--disable-setuid-sandbox') });
+    // （若本轮只有模板改动、没有页面要翻，就完全不需要浏览器：模板不抓取）
+    let globalBrowser = null;
+    if (pagesToVisit.length > 0) {
+        console.log(`🌐 正在启动全局共享浏览器 (并发限制: ${CONCURRENCY_LIMIT} 标签页)...`);
+        globalBrowser = await puppeteer.launch({ headless: true, args: new Array('--no-sandbox', '--disable-setuid-sandbox') });
+    }
 
     // 🚀 --- 全局积攒批次池 ---
     let pendingPreparedPages = new Array();
@@ -1256,12 +1321,30 @@ async function run() {
         await flushGlobalTranslation();
     }
 
+    // 【新增】模板记账：不抓模板页、不翻译、不写 output——只记修订号 + 生成 diff 记录（供清单与邮件用）
+    if (templateTargets.length > 0) {
+        try {
+            const templateRecords = collectTemplateUpdates(templateTargets, lastEditInfo, runMode);
+            if (templateRecords.length > 0) {
+                console.log(`🧩 模板记账完成：${templateRecords.length} 个模板的修订号已写入 last_edit_info.json（未生成任何页面）`);
+                // 模板记录一并写进 diff_links.md（RUN 模式写本次进程累计：页面 + 模板）
+                writeDiffLinksFile(
+                    DIFF_LINKS_SCOPE === 'BATCH' ? templateRecords : Array.from(runDiffRecords.values()),
+                    runMode
+                );
+            }
+        } catch (error) {
+            console.warn(`⚠️ 模板记账异常（已忽略，不影响翻译与部署）: ${error.message}`);
+        }
+    }
+
     try {
         fs.writeFileSync(EDIT_INFO_FILE, JSON.stringify(lastEditInfo, null, 2), 'utf-8');
     } catch (e) {}
 
     // 【新增】整次运行结束后统一发一封汇总邮件（而不是每个批次一封，避免刷屏）。
-    // 没配置 MAIL_* 凭据 / 本次没有页面更新时会自动跳过，失败也只打日志，不影响部署。
+    // 邮件里页面与模板分节展示（模板不生成页面，只提示「引用它的页面已过期」）。
+    // 没配置 MAIL_* 凭据 / 本次没有页面与模板更新时会自动跳过，失败也只打日志，不影响部署。
     try {
         const mailResult = await sendDiffLinksMail({
             records: Array.from(runDiffRecords.values()),
@@ -1285,7 +1368,18 @@ async function run() {
     console.log("--- 进程执行完毕，任务安全结束！ ---");
 }
 
-// 仅用于测试/调试：直接 `node translate.js` 时仍会正常执行 run()
-module.exports = { rememberPageRevisionChange, writeDiffLinksFile, runDiffRecords, DIFF_LINKS_FILE };
+// 直接 `node translate.js` 时照常执行 run()；被 require（测试/工具）时只导出函数，不自动跑
+module.exports = {
+    rememberPageRevisionChange,
+    writeDiffLinksFile,
+    runDiffRecords,
+    DIFF_LINKS_FILE,
+    // 模板：只记账 + 通知，不抓取、不翻译、不落盘
+    isTemplateName,
+    collectTemplateUpdates,
+    getPagesForFeedMode
+};
 
-run().catch(console.error);
+if (require.main === module) {
+    run().catch(console.error);
+}
