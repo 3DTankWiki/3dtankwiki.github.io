@@ -86,7 +86,10 @@ function buildPageRows(list) {
 function buildTemplateRows(list) {
     return list.map(r => {
         const diffUrl = buildDiffUrl(r.page, r.newRev, r.oldRev);
-        const curUrl = buildDiffUrl(r.page, 'cur', r.newRev);
+        // 模板行的「对比最新」锚在【上一版】：diff=cur&oldid=<oldRev>
+        //   —— 与 diff_links.md 尾注给的拼法一致，点进去就是「从上一版一路对比到源站最新」；
+        //   首次记录时 oldRev 取自 Feed 的 oldid，所以不会再出现 oldid=<本次修订号> 这种「自己比自己」的空对比。
+        const curUrl = buildDiffUrl(r.page, 'cur', r.oldRev || r.newRev);
         return `      <tr>
         <td style="padding:8px 10px;border:1px solid #f0e0c0;">${escapeHtml(r.page)}${r.note ? `<br><span style="color:#b7791f;font-size:12px;">⚠️ ${escapeHtml(r.note)}</span>` : ''}</td>
         <td style="padding:8px 10px;border:1px solid #f0e0c0;"><a href="${buildSourcePageUrl(r.page)}" style="color:#1a73e8;">源站模板页</a></td>
@@ -120,6 +123,7 @@ ${buildPageRows(pages)}
     const templateSection = templates.length === 0 ? '' : `
   <h3 style="margin:22px 0 8px;font-size:15px;">模板更新（${templates.length}）· 不生成页面，仅记录 + 通知</h3>
   <p style="margin:0 0 8px;color:#486581;font-size:13px;">模板内容在源站渲染时就已经展开进正文，中文站不生成独立模板页。但模板一变，<b>引用它的中文页面内容就已经过期</b>，需要时请用 SPECIFIED 模式重新翻译对应页面。</p>
+  <p style="margin:0 0 8px;color:#829ab1;font-size:12px;">「查看 diff」= 这次改动本身（上一版 → 本次）；「对比最新」= 从上一版一路对比到源站最新。首次记录时「上一版」取自 Feed 给出的旧修订号。</p>
   <table style="border-collapse:collapse;font-size:14px;width:100%;max-width:900px;">
     <thead>
       <tr style="background:#fdf6e7;">
@@ -166,6 +170,7 @@ function buildMailText(records, cfg, runMode) {
     if (templates.length > 0) {
         lines.push(`【模板更新】（${templates.length}）不生成页面，仅记录 + 通知`);
         lines.push('模板一变，引用它的中文页面内容就已经过期，需要时请用 SPECIFIED 模式重翻对应页面。');
+        lines.push('「查看 diff」= 这次改动本身；「对比最新」= 从上一版一路对比到源站最新。');
         lines.push('');
         templates.forEach((r, i) => {
             lines.push(`${i + 1}. ${r.page}  [${typeText(r)}]${r.note ? `  ⚠️ ${r.note}` : ''}`);
