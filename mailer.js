@@ -1,4 +1,4 @@
-// 页面更新后，把 diff_links.md 的内容通过 QQ 邮箱 SMTP 发出去。
+// 页面 / 模板更新后，把 diff 清单通过 QQ 邮箱 SMTP 发出去。
 //
 // 环境变量（全部可选，缺任一必填项就静默跳过，绝不影响主流程）：
 //   MAIL_NOTIFY          ON=强制开启 / OFF=关闭 / AUTO=配齐凭据才发（默认 AUTO）
@@ -14,7 +14,7 @@
 //   MAIL_DRY_RUN        1/true = 只渲染不真发（用 nodemailer 的 jsonTransport），用于本地调试
 
 const fs = require('fs');
-const { buildSitePageUrl, buildDiffUrl } = require('./diff_links.js');
+const { buildSitePageUrl, buildSourcePageUrl, buildDiffUrl, splitRecords, sortRecords, typeText } = require('./diff_links.js');
 
 function readMailConfig() {
     const port = parseInt(process.env.MAIL_PORT || '465', 10);
@@ -53,35 +53,55 @@ function localTimeText() {
     }
 }
 
-// 排序：修订号大的在前，其次按页面名
-function sortRecords(records) {
-    return (records || []).slice().sort((a, b) =>
-        String(b.newRev).localeCompare(String(a.newRev)) || String(a.page).localeCompare(String(b.page)));
+function revisionText(record) {
+    return record.oldRev
+        ? `${escapeHtml(record.oldRev)} → ${escapeHtml(record.newRev)}`
+        : `（新增）${escapeHtml(record.newRev)}`;
 }
 
+// 标题栏：页面数与模板数分开说，让人一眼看出「这次有模板动了」
 function buildSubject(records, cfg, runMode) {
-    return `${cfg.subjectPrefix} ${records.length} 个页面已更新（${runMode || 'FEED'} · ${localTimeText()}）`;
+    const { pages, templates } = splitRecords(records);
+    const parts = new Array();
+    if (pages.length > 0) parts.push(`${pages.length} 个页面`);
+    if (templates.length > 0) parts.push(`${templates.length} 个模板`);
+    const what = parts.length > 0 ? `${parts.join(' + ')}已更新` : '无更新';
+    return `${cfg.subjectPrefix} ${what}（${runMode || 'FEED'} · ${localTimeText()}）`;
+}
+
+function buildPageRows(list) {
+    return list.map(r => {
+        const diffUrl = buildDiffUrl(r.page, r.newRev, r.oldRev);
+        const curUrl = buildDiffUrl(r.page, 'cur', r.newRev); // 翻译完之后源站又改了什么
+        return `      <tr>
+        <td style="padding:8px 10px;border:1px solid #d9e2ec;">${escapeHtml(r.page)}${r.note ? `<br><span style="color:#b7791f;font-size:12px;">⚠️ ${escapeHtml(r.note)}</span>` : ''}</td>
+        <td style="padding:8px 10px;border:1px solid #d9e2ec;"><a href="${buildSitePageUrl(r.page)}" style="color:#1a73e8;">打开</a></td>
+        <td style="padding:8px 10px;border:1px solid #d9e2ec;"><a href="${diffUrl}" style="color:#1a73e8;">${r.oldRev ? '查看 diff' : '查看该版本'}</a>　<a href="${curUrl}" style="color:#999;">对比最新</a></td>
+        <td style="padding:8px 10px;border:1px solid #d9e2ec;">${revisionText(r)}</td>
+        <td style="padding:8px 10px;border:1px solid #d9e2ec;">${typeText(r)}</td>
+      </tr>`;
+    }).join('\n');
+}
+
+function buildTemplateRows(list) {
+    return list.map(r => {
+        const diffUrl = buildDiffUrl(r.page, r.newRev, r.oldRev);
+        const curUrl = buildDiffUrl(r.page, 'cur', r.newRev);
+        return `      <tr>
+        <td style="padding:8px 10px;border:1px solid #f0e0c0;">${escapeHtml(r.page)}${r.note ? `<br><span style="color:#b7791f;font-size:12px;">⚠️ ${escapeHtml(r.note)}</span>` : ''}</td>
+        <td style="padding:8px 10px;border:1px solid #f0e0c0;"><a href="${buildSourcePageUrl(r.page)}" style="color:#1a73e8;">源站模板页</a></td>
+        <td style="padding:8px 10px;border:1px solid #f0e0c0;"><a href="${diffUrl}" style="color:#1a73e8;">${r.oldRev ? '查看 diff' : '查看该版本'}</a>　<a href="${curUrl}" style="color:#999;">对比最新</a></td>
+        <td style="padding:8px 10px;border:1px solid #f0e0c0;">${revisionText(r)}</td>
+        <td style="padding:8px 10px;border:1px solid #f0e0c0;">${typeText(r)}</td>
+      </tr>`;
+    }).join('\n');
 }
 
 function buildMailHtml(records, cfg, runMode) {
-    const list = sortRecords(records);
-    const rows = list.map(r => {
-        const diffUrl = buildDiffUrl(r.page, r.newRev, r.oldRev);
-        const curUrl = buildDiffUrl(r.page, 'cur', r.newRev); // 翻译完之后源站又改了什么
-        const revText = r.oldRev ? `${escapeHtml(r.oldRev)} → ${escapeHtml(r.newRev)}` : `（新增）${escapeHtml(r.newRev)}`;
-        return `      <tr>
-        <td style="padding:8px 10px;border:1px solid #d9e2ec;">${escapeHtml(r.page)}</td>
-        <td style="padding:8px 10px;border:1px solid #d9e2ec;"><a href="${buildSitePageUrl(r.page)}" style="color:#1a73e8;">打开</a></td>
-        <td style="padding:8px 10px;border:1px solid #d9e2ec;"><a href="${diffUrl}" style="color:#1a73e8;">${r.oldRev ? '查看 diff' : '查看该版本'}</a>　<a href="${curUrl}" style="color:#999;">对比最新</a></td>
-        <td style="padding:8px 10px;border:1px solid #d9e2ec;">${revText}</td>
-        <td style="padding:8px 10px;border:1px solid #d9e2ec;">${r.oldRev ? '更新' : '新增'}</td>
-      </tr>`;
-    }).join('\n');
+    const { pages, templates } = splitRecords(sortRecords(records));
 
-    return `<div style="font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,'PingFang SC','Microsoft YaHei',sans-serif;color:#243b53;line-height:1.7;">
-  <h2 style="margin:0 0 12px;font-size:18px;">3D 坦克中文 Wiki · 页面更新通知</h2>
-  <p style="margin:0 0 6px;color:#486581;">本次共 <b>${list.length}</b> 个页面发生变化，运行模式 <b>${escapeHtml(runMode || 'FEED')}</b>，生成时间 ${escapeHtml(localTimeText())}。</p>
-  <p style="margin:0 0 16px;color:#486581;">下表「查看 diff」为源站 <b>上一版 → 本次</b> 的双端对比；「对比最新」可看翻译完之后源站是否又有改动。完整清单见附件 <code>diff_links.md</code>。</p>
+    const pageSection = pages.length === 0 ? '' : `
+  <h3 style="margin:18px 0 8px;font-size:15px;">页面更新（${pages.length}）</h3>
   <table style="border-collapse:collapse;font-size:14px;width:100%;max-width:900px;">
     <thead>
       <tr style="background:#f0f4f8;">
@@ -93,26 +113,69 @@ function buildMailHtml(records, cfg, runMode) {
       </tr>
     </thead>
     <tbody>
-${rows}
+${buildPageRows(pages)}
     </tbody>
-  </table>
+  </table>`;
+
+    const templateSection = templates.length === 0 ? '' : `
+  <h3 style="margin:22px 0 8px;font-size:15px;">模板更新（${templates.length}）· 不生成页面，仅记录 + 通知</h3>
+  <p style="margin:0 0 8px;color:#486581;font-size:13px;">模板内容在源站渲染时就已经展开进正文，中文站不生成独立模板页。但模板一变，<b>引用它的中文页面内容就已经过期</b>，需要时请用 SPECIFIED 模式重新翻译对应页面。</p>
+  <table style="border-collapse:collapse;font-size:14px;width:100%;max-width:900px;">
+    <thead>
+      <tr style="background:#fdf6e7;">
+        <th style="padding:8px 10px;border:1px solid #f0e0c0;text-align:left;">模板</th>
+        <th style="padding:8px 10px;border:1px solid #f0e0c0;text-align:left;">源站</th>
+        <th style="padding:8px 10px;border:1px solid #f0e0c0;text-align:left;">源站 diff</th>
+        <th style="padding:8px 10px;border:1px solid #f0e0c0;text-align:left;">修订号</th>
+        <th style="padding:8px 10px;border:1px solid #f0e0c0;text-align:left;">类型</th>
+      </tr>
+    </thead>
+    <tbody>
+${buildTemplateRows(templates)}
+    </tbody>
+  </table>`;
+
+    const totalText = `页面 <b>${pages.length}</b> 个、模板 <b>${templates.length}</b> 个`;
+
+    return `<div style="font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,'PingFang SC','Microsoft YaHei',sans-serif;color:#243b53;line-height:1.7;">
+  <h2 style="margin:0 0 12px;font-size:18px;">3D 坦克中文 Wiki · 更新通知</h2>
+  <p style="margin:0 0 6px;color:#486581;">本次共 ${totalText} 发生变化，运行模式 <b>${escapeHtml(runMode || 'FEED')}</b>，生成时间 ${escapeHtml(localTimeText())}。</p>
+  <p style="margin:0 0 16px;color:#486581;">下表「查看 diff」为源站 <b>上一版 → 本次</b> 的双端对比；「对比最新」可看翻译完之后源站是否又有改动。完整清单见附件 <code>diff_links.md</code>。</p>${pageSection}${templateSection}
   <p style="margin:18px 0 0;font-size:12px;color:#829ab1;">本邮件由 GitHub Actions 中的 translate.js 自动发送，直接回复无效。</p>
 </div>`;
 }
 
 function buildMailText(records, cfg, runMode) {
-    const list = sortRecords(records);
+    const { pages, templates } = splitRecords(sortRecords(records));
     const lines = new Array();
-    lines.push(`3D 坦克中文 Wiki · 页面更新通知`);
-    lines.push(`本次更新 ${list.length} 个页面 · 运行模式 ${runMode || 'FEED'} · 生成时间 ${localTimeText()}`);
+    lines.push(`3D 坦克中文 Wiki · 更新通知`);
+    lines.push(`本次更新：页面 ${pages.length} 个、模板 ${templates.length} 个 · 运行模式 ${runMode || 'FEED'} · 生成时间 ${localTimeText()}`);
     lines.push('');
-    list.forEach((r, i) => {
-        lines.push(`${i + 1}. ${r.page}  [${r.oldRev ? '更新' : '新增'}]`);
-        lines.push(`   中文站：${buildSitePageUrl(r.page)}`);
-        lines.push(`   源站 diff：${buildDiffUrl(r.page, r.newRev, r.oldRev)}`);
-        lines.push(`   修订号：${r.oldRev ? `${r.oldRev} → ${r.newRev}` : `（新增）${r.newRev}`}`);
+
+    if (pages.length > 0) {
+        lines.push(`【页面更新】（${pages.length}）`);
+        pages.forEach((r, i) => {
+            lines.push(`${i + 1}. ${r.page}  [${typeText(r)}]${r.note ? `  ⚠️ ${r.note}` : ''}`);
+            lines.push(`   中文站：${buildSitePageUrl(r.page)}`);
+            lines.push(`   源站 diff：${buildDiffUrl(r.page, r.newRev, r.oldRev)}`);
+            lines.push(`   修订号：${r.oldRev ? `${r.oldRev} → ${r.newRev}` : `（新增）${r.newRev}`}`);
+            lines.push('');
+        });
+    }
+
+    if (templates.length > 0) {
+        lines.push(`【模板更新】（${templates.length}）不生成页面，仅记录 + 通知`);
+        lines.push('模板一变，引用它的中文页面内容就已经过期，需要时请用 SPECIFIED 模式重翻对应页面。');
         lines.push('');
-    });
+        templates.forEach((r, i) => {
+            lines.push(`${i + 1}. ${r.page}  [${typeText(r)}]${r.note ? `  ⚠️ ${r.note}` : ''}`);
+            lines.push(`   源站模板页：${buildSourcePageUrl(r.page)}`);
+            lines.push(`   源站 diff：${buildDiffUrl(r.page, r.newRev, r.oldRev)}`);
+            lines.push(`   修订号：${r.oldRev ? `${r.oldRev} → ${r.newRev}` : `（新增）${r.newRev}`}`);
+            lines.push('');
+        });
+    }
+
     lines.push('完整清单见附件 diff_links.md。');
     return lines.join('\n');
 }
@@ -127,7 +190,7 @@ async function sendDiffLinksMail(options) {
     const records = sortRecords(opts.records);
 
     if (cfg.notify === 'OFF') return { sent: false, reason: 'MAIL_NOTIFY=OFF，已关闭邮件通知' };
-    if (records.length === 0) return { sent: false, reason: '本次运行没有页面更新，无需发送' };
+    if (records.length === 0) return { sent: false, reason: '本次运行没有页面/模板更新，无需发送' };
     if (!cfg.user || !cfg.pass || !cfg.to) {
         return { sent: false, reason: '缺少 MAIL_USER / MAIL_PASS / MAIL_TO，跳过邮件通知' };
     }
@@ -182,6 +245,7 @@ async function sendDiffLinksMail(options) {
                 accepted: (info && info.accepted) || (cfg.dryRun ? splitAddresses(cfg.to) : undefined),
                 dryRun: cfg.dryRun,
                 attachments: attachments.length,
+                counts: (() => { const s = splitRecords(records); return { pages: s.pages.length, templates: s.templates.length }; })(),
                 // dry-run 时把渲染结果带回来，方便调试/测试断言
                 raw: cfg.dryRun && info && info.message ? info.message : undefined
             };
@@ -194,4 +258,4 @@ async function sendDiffLinksMail(options) {
     return { sent: false, reason: `邮件发送失败: ${lastError && lastError.message}` };
 }
 
-module.exports = { sendDiffLinksMail, readMailConfig, buildMailHtml, buildMailText };
+module.exports = { sendDiffLinksMail, readMailConfig, buildMailHtml, buildMailText, buildSubject };
