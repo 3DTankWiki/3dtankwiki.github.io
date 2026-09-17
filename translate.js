@@ -371,22 +371,27 @@ async function getPagesForFeedMode(lastEditInfo) {
                 if ($(this).attr('rel') === 'alternate') { alternateLink = $(this).attr('href'); return false; }
             });
             if (title && alternateLink) {
+                // Feed 的 alternate 链接形如 index.php?title=X&diff=<本次修订号>&oldid=<上一版修订号>，
+                // 两个号都要留着：diff 是「本次」，oldid 是源站给出的「上一版」。
+                //（以前只取了 diff，于是首次记录模板时拿不到上一版，只能给出一个没有 diff 的裸版本链接）
                 const diffMatch = alternateLink.match(/diff=(\d+)/);
+                const oldMatch = alternateLink.match(/oldid=(\d+)/);
                 const newRevisionId = diffMatch && diffMatch[1] ? parseInt(diffMatch[1], 10) : null;
-                if (newRevisionId && (!pagesToConsider.has(title) || newRevisionId > pagesToConsider.get(title))) {
-                    pagesToConsider.set(title, newRevisionId);
+                const previousRevisionId = oldMatch && oldMatch[1] ? parseInt(oldMatch[1], 10) : null;
+                if (newRevisionId && (!pagesToConsider.has(title) || newRevisionId > pagesToConsider.get(title).revision)) {
+                    pagesToConsider.set(title, { revision: newRevisionId, previousRevision: previousRevisionId });
                 }
             }
         });
 
         const pagesToUpdate = new Array();
         const templatesToUpdate = new Array();
-        for (const [title, newRevisionId] of pagesToConsider.entries()) {
+        for (const [title, info] of pagesToConsider.entries()) {
             const currentRevisionId = lastEditInfo[title] || 0;
-            if (newRevisionId <= currentRevisionId) continue; // 版本没变（页面、模板同一套判定）
+            if (info.revision <= currentRevisionId) continue; // 版本没变（页面、模板同一套判定）
 
-            // 模板：不抓取、不翻译、不落盘，只把「标题 + 修订号」带出去记账
-            if (isTemplateName(title)) { templatesToUpdate.push({ title, revision: newRevisionId }); continue; }
+            // 模板：不抓取、不翻译、不落盘，只把「标题 + 本次/上一版修订号」带出去记账
+            if (isTemplateName(title)) { templatesToUpdate.push({ title, revision: info.revision, previousRevision: info.previousRevision }); continue; }
             if (isBlockedNamespace(title)) continue;
 
             pagesToUpdate.push(title);
@@ -406,9 +411,12 @@ function collectTemplateUpdates(targets, lastEditInfo, runMode) {
     for (const target of targets || []) {
         const title = typeof target === 'object' ? target.title : target;
         const newRevision = typeof target === 'object' ? target.revision : null;
+        // Feed 里带的「上一版」修订号（oldid）：我们没记过这个模板时就用它当 oldRev，
+        // 这样通知里的「查看 diff」才是真正的改动对比，而不是一个没有 diff 的裸版本链接
+        const feedPreviousRevision = (typeof target === 'object' && target.previousRevision) ? target.previousRevision : null;
         if (!title || !newRevision) continue;
 
-        const prevRevision = lastEditInfo[title] || null;
+        const prevRevision = lastEditInfo[title] || feedPreviousRevision || null;
         const record = rememberPageRevisionChange(title, prevRevision, newRevision, runMode, 'template');
         if (record) records.push(record);
         lastEditInfo[title] = newRevision; // 记账：下一轮 Feed 不会再把这个版本报一遍
