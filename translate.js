@@ -298,19 +298,6 @@ body { min-height: 100vh; margin: 0; font-family: 'Rubik','M PLUS 1p',sans-serif
 </style>`;
 const EDIT_INFO_FILE = path.join(__dirname, 'last_edit_info.json');
 
-// 从 last_edit_info.json 读取某个页面在本次运行开始前记录的修订号。
-//
-// 页面 diff 的 oldid 必须来自这里，而不是 Feed alternate 链接里的 oldid：
-// Feed 的 oldid 只表示源站这一次编辑的直接前一版；如果页面上一次翻译后
-// 源站已经连续改过多次，中文站对应的旧版本仍然是 last_edit 里保存的那一版。
-// 返回 null 表示这是首次记录（或记录不存在）。
-function getStoredRevision(lastEditInfo, pageName) {
-    if (!lastEditInfo || !Object.prototype.hasOwnProperty.call(lastEditInfo, pageName)) return null;
-    const revision = lastEditInfo[pageName];
-    if (revision === null || revision === undefined || String(revision).trim() === '') return null;
-    return String(revision);
-}
-
 // 【新增】超时保护相关常量 (避免被 GitHub Actions 6小时强杀)
 const MAX_EXECUTION_TIME_MINUTES = parseInt(process.env.MAX_EXECUTION_TIME || '330', 10); // 默认 5小时30分钟
 const MAX_EXECUTION_TIME_MS = MAX_EXECUTION_TIME_MINUTES * 60 * 1000;
@@ -400,8 +387,7 @@ async function getPagesForFeedMode(lastEditInfo) {
         const pagesToUpdate = new Array();
         const templatesToUpdate = new Array();
         for (const [title, info] of pagesToConsider.entries()) {
-            const storedRevision = getStoredRevision(lastEditInfo, title);
-            const currentRevisionId = storedRevision === null ? 0 : (Number(storedRevision) || 0);
+            const currentRevisionId = lastEditInfo[title] || 0;
             if (info.revision <= currentRevisionId) continue; // 版本没变（页面、模板同一套判定）
 
             // 模板：不抓取、不翻译、不落盘，只把「标题 + 本次/上一版修订号」带出去记账
@@ -425,13 +411,12 @@ function collectTemplateUpdates(targets, lastEditInfo, runMode) {
     for (const target of targets || []) {
         const title = typeof target === 'object' ? target.title : target;
         const newRevision = typeof target === 'object' ? target.revision : null;
-        // 模板首次记录时没有 last_edit，才使用 Feed 的 oldid；已有记录时必须
-        // 以 last_edit 为准，不能退回 Feed 的「直接前一版」。
+        // Feed 里带的「上一版」修订号（oldid）：我们没记过这个模板时就用它当 oldRev，
+        // 这样通知里的「查看 diff」才是真正的改动对比，而不是一个没有 diff 的裸版本链接
         const feedPreviousRevision = (typeof target === 'object' && target.previousRevision) ? target.previousRevision : null;
         if (!title || !newRevision) continue;
 
-        const storedRevision = getStoredRevision(lastEditInfo, title);
-        const prevRevision = storedRevision !== null ? storedRevision : feedPreviousRevision || null;
+        const prevRevision = lastEditInfo[title] || feedPreviousRevision || null;
         const record = rememberPageRevisionChange(title, prevRevision, newRevision, runMode, 'template');
         if (record) records.push(record);
         lastEditInfo[title] = newRevision; // 记账：下一轮 Feed 不会再把这个版本报一遍
@@ -478,19 +463,13 @@ function getPreparedSourceDictionary() {
 const runDiffRecords = new Map();
 
 function rememberPageRevisionChange(pageName, oldRev, newRev, runMode, kind) {
-    const normalizedNewRevision = newRev === null || newRev === undefined || String(newRev).trim() === ''
-        ? null
-        : String(newRev);
-    const normalizedOldRevision = oldRev === null || oldRev === undefined || String(oldRev).trim() === ''
-        ? null
-        : String(oldRev);
-    if (normalizedNewRevision === null) return null;
-    if (normalizedNewRevision === normalizedOldRevision) return null; // 强制重翻但版本未变，不产生 diff
+    if (!newRev) return null;
+    if (String(newRev) === String(oldRev || '')) return null; // 强制重翻但版本未变，不产生 diff
     const record = {
         page: pageName,
-        oldRev: normalizedOldRevision, // null = 首次收录，没有「上一版」
-        newRev: normalizedNewRevision,
-        type: normalizedOldRevision === null ? 'new' : 'update',
+        oldRev: oldRev ? String(oldRev) : null, // null = 首次收录，没有「上一版」
+        newRev: String(newRev),
+        type: oldRev ? 'update' : 'new',
         kind: kind || 'page',                   // 'page' = 正常翻译落盘的页面；'template' = 只记录 + 通知
         mode: runMode || 'FEED',
         at: new Date().toISOString()
@@ -1200,9 +1179,8 @@ async function run() {
             try {
                 finalizePage(preparedData, pageResults);
                 if (preparedData.currentEditInfo) {
-                    // ⚠️ 顺序：先从 last_edit 取出旧修订号，再覆盖状态记录。
-                    // 页面更新时 oldid 只能用 last_edit 里的版本，不能用 Feed 的 oldid。
-                    const prevRevision = getStoredRevision(lastEditInfo, pageName);
+                    // ⚠️ 顺序：先拿旧修订号记账，再覆盖状态记录，否则 diff 的两端会变成同一个版本
+                    const prevRevision = lastEditInfo[pageName] || null;
                     const newRevision = preparedData.currentEditInfo;
                     const record = rememberPageRevisionChange(pageName, prevRevision, newRevision, runMode);
                     if (record) batchDiffRecords.push(record);
@@ -1400,7 +1378,6 @@ async function run() {
 
 // 直接 `node translate.js` 时照常执行 run()；被 require（测试/工具）时只导出函数，不自动跑
 module.exports = {
-    getStoredRevision,
     rememberPageRevisionChange,
     writeDiffLinksFile,
     runDiffRecords,
