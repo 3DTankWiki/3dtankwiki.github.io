@@ -3,13 +3,13 @@
 > 本文件由 `translate.js` 自动生成：只要某个页面 / 模板的修订号相对 `last_edit_info.json` 发生变化，
 > 就会把「上一版 → 本次」的 diff 链接写到这里，**每次更新整体覆盖，不追加历史**。请勿手工编辑。
 
-- 生成时间：2026-09-27T17:53:38.250Z
+- 生成时间：2026-09-27T20:34:46.012Z
 - 运行模式：FEED
 - 本次更新：1 个页面
 
 | 页面 | 中文站 | 源站 diff（上一版 → 本次） | 修订号 | 类型 |
 | --- | --- | --- | --- | --- |
-| Missii | [打开](https://3dtankwiki.github.io/Missii) | [diff](https://ru.tankiwiki.com/index.php?title=Missii&diff=304272&oldid=303114) | 303114 → 304272 | 更新 |
+| Luchshie_pomoshchniki | [打开](https://3dtankwiki.github.io/Luchshie_pomoshchniki) | [diff](https://ru.tankiwiki.com/index.php?title=Luchshie_pomoshchniki&diff=304273&oldid=303022) | 303022 → 304273 | 更新 |
 
 > 想看「翻译完之后源站又改了什么」，把上面的 `oldid=` 值取出来拼成：
 > `<源站>/index.php?title=<页面>&diff=cur&oldid=<本次修订号>`
