@@ -66,7 +66,7 @@
   "Granaty": 303003,
   "Bomba": 304306,
   "Mortira": 304307,
-  "Medik": 304308,
+  "Medik": 304314,
   "Salyut": 304309,
   "Tykva": 304310,
   "Snezhok": 304311,
@@ -305,7 +305,7 @@
   "Temperatura": 298979,
   "Muzyka": 295797,
   "Akkaunt": 302400,
-  "Dvuhfaktornaya_autentifikaciya": 295296,
+  "Dvuhfaktornaya_autentifikaciya": 304315,
   "Kak_smenit_parol_ili_pochtu_na_akkaunte": 295545,
   "SHtab-serjant": 296094,
   "Abonementy": 302008,
@@ -1358,5 +1358,6 @@
   "Шаблон:Устройства/Рельса": 304258,
   "Шаблон:Устройства/Страйкер": 304257,
   "Шаблон:ShoteffectSwitcher": 304297,
-  "Шаблон:TurretNavigation": 304300
+  "Шаблон:TurretNavigation": 304300,
+  "Шаблон:TablePointsMM": 304313
 }
