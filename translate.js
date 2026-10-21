@@ -923,11 +923,9 @@ function finalizePage(preparedData, translatedResultsForPage) {
     let finalHtmlContent = $contentContainer.html();
     finalHtmlContent = formatTypography(finalHtmlContent);
 
-    // 动态计算“返回主页”按钮的正确层级退回路径
-    const depth = (pageNameToProcess.match(/\//g) ||[]).length;
-    const relPrefix = depth === 0 ? './' : '../'.repeat(depth);
+    // GitHub Pages 站点根目录就是主页；所有子页面的返回按钮统一链接到根路径。
     let homeButtonHtml = pageNameToProcess !== START_PAGE
-        ? `<div class="home-btn-wrapper"><a class="home-back-btn" href="${relPrefix}${encodeURIComponent(START_PAGE)}" title="返回主页" aria-label="返回主页">${HOME_BUTTON_SVG}<span>返回主页</span></a></div>`
+        ? `<div class="home-btn-wrapper"><a class="home-back-btn" href="/" title="返回主页" aria-label="返回主页">${HOME_BUTTON_SVG}<span>返回主页</span></a></div>`
         : '';
     
     const colorReplacementScript = `<script>function replaceColorsInDom() { const replacements = new Array({ from: /#?46DF11|rgb\\(70,\\s*223,\\s*17\\)/gi, to: '#76FF33' }, { from: /#?00D7FF/gi, to: '#00D4FF' }, { from: /#?(F86667|F33|FF3333)\\b/gi, to: '#FF6666' }, { from: /#?(FC0|FFCC00)\\b/gi, to: '#FFEE00' }, { from: /#?8C60EB/gi, to: '#D580FF' }); function applyReplacements(text) { if (!text) return text; let newText = text; for (const rule of replacements) newText = newText.replace(rule.from, rule.to); return newText; } document.querySelectorAll('[style]').forEach(el => { const orig = el.getAttribute('style'); const ns = applyReplacements(orig); if (ns !== orig) el.setAttribute('style', ns); }); document.querySelectorAll('style').forEach(tag => { const orig = tag.innerHTML; const ns = applyReplacements(orig); if (ns !== orig) tag.innerHTML = ns; }); } document.addEventListener('DOMContentLoaded', replaceColorsInDom);<\/script>`;
