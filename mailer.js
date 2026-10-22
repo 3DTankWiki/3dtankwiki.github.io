@@ -201,7 +201,11 @@ function buildMailText(entries, cfg, opts) {
 async function sendNewDiffMail(options) {
     const opts = options || {};
     const cfg = readMailConfig();
-    const entries = (opts.entries || []).slice().sort((a, b) => b.diff - a.diff);
+    // 🛡️ 彻底排除重定向页（防御性设计：确保不论外部如何传参，重定向页绝不进入邮件通知）
+    const entries = (opts.entries || [])
+        .filter(e => e && !e.redirect && !e.isRedirect)
+        .slice()
+        .sort((a, b) => b.diff - a.diff);
 
     if (cfg.notify === 'OFF') return { sent: false, skipped: true, reason: 'MAIL_NOTIFY=OFF，已关闭邮件通知' };
     if (entries.length === 0) return { sent: false, skipped: true, reason: '没有需要通知的改动（源站无新 diff 值，或新改动均为重定向页），无需发送' };
