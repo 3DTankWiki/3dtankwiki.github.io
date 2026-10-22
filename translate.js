@@ -390,25 +390,54 @@ function extractEditComment(summaryHtml) {
     }
 }
 
-// 从 <summary> 判断这条改动落下的是不是重定向页（这类页面不列入邮件通知），返回 { reason, target } 或 null：
-//   summary  MediaWiki 自动摘要「Перенаправление на X」/「Redirected page to X」（新建重定向）
-//   move     重命名日志「… переименовал страницу X в Y」/「moved page X to Y」：条目标题是旧名，那里只剩一个指向新名的重定向
-//   content  正文（新页内容或 diff 新增行）以 #REDIRECT / #перенаправление 开头（把现有页面改成重定向也能覆盖到）
-// 注意：JS 的 \b 不认西里尔字母，俄文关键字后面不能接 \b；#перенапр 是 #перенаправление 的合法简写，前缀匹配恰好两个都覆盖。
+// 从 Feed 的 <summary> 彻底判定该条改动是否属于重定向页（邮件通知彻底排除此类页面）。
+// 涵盖各种 MediaWiki 自动摘要、日志与正文语法：
+//   1. 正文 / diff 中出现 #REDIRECT、#перенаправление、#перенапр、#редирект
+//   2. 自动摘要 / 移动日志：
+//      - Перенаправление на / Redirected page to / Редирект на / Перенаправление в
+//      - переименовал(а) страницу / moved page
+//      - Новая страница: «#перенаправление» / Новая страница: #REDIRECT
+//      - Заменено на '#перенаправление' / Replaced content with '#REDIRECT'
+//   3. HTML 结构特征：含 class="mw-redirect" 或 redirect=no
 function detectRedirect(summaryHtml) {
     try {
         if (!summaryHtml) return null;
-        const { html, text } = firstSummaryParagraph(summaryHtml);
-        const lastLinkTitle = (html.match(/<a\b[^>]*\btitle="([^"]*)"[^>]*>(?![\s\S]*<a\b)/i) || [])[1] || '';
-        if (/^(Перенаправление на|Redirected page to)\s/iu.test(text)) {
-            return { reason: 'summary', target: lastLinkTitle ? sanitizePageName(lastLinkTitle) : null };
+
+        // 1. 正文 / diff / 摘要中出现显式的重定向指令语法
+        const contentMatch = summaryHtml.match(/(?:^|[^a-zA-Z0-9\u0400-\u04FF])#\s*(?:redirect|перенаправление|перенапр|редирект)[^\[]*\[\[([^\]|#]*)/iu);
+        if (contentMatch) {
+            const target = contentMatch[1].trim();
+            return { reason: 'content', target: target ? sanitizePageName(target) : null };
         }
+        if (/(?:^|[^a-zA-Z0-9\u0400-\u04FF])#\s*(?:redirect|перенаправление|перенапр|редирект)/iu.test(summaryHtml)) {
+            return { reason: 'content', target: null };
+        }
+
+        // 2. 检查摘要文本中的 MediaWiki 日志与自动摘要
+        const text = summaryHtml.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+
+        // 页面重命名（旧标题自动成为重定向）
         if (/переименовала?\s+страницу|moved page/iu.test(text)) {
+            const lastLinkTitle = (summaryHtml.match(/<a\b[^>]*\btitle="([^"]*)"[^>]*>(?![\s\S]*<a\b)/i) || [])[1] || '';
             return { reason: 'move', target: lastLinkTitle ? sanitizePageName(lastLinkTitle) : null };
         }
-        const content = summaryHtml.match(/(?:^|>)\s*#\s*(?:redirect|перенапр)[^\[]*\[\[([^\]|#]*)/iu);
-        if (content) return { reason: 'content', target: content[1] ? sanitizePageName(content[1].trim()) : null };
-        if (/(?:^|>)\s*#\s*(?:redirect|перенапр)/iu.test(summaryHtml)) return { reason: 'content', target: null };
+
+        // 自动摘要或编辑备注中的重定向关键字
+        const summaryMatch = text.match(/(?:Перенаправление на|Redirected page to|Редирект на|Перенаправление в)\s+\[?\[?([^\]]+?)\]?\]?(?:\s|$)/iu);
+        if (summaryMatch) {
+            const target = summaryMatch[1].trim();
+            return { reason: 'summary', target: target ? sanitizePageName(target) : null };
+        }
+
+        if (/(?:^|[^\w\u0400-\u04FF])(?:Перенаправление|Redirected page|Редирект)\b/iu.test(text)) {
+            return { reason: 'summary', target: null };
+        }
+
+        // 3. MediaWiki 专有 HTML 标识（指向重定向页的链接特征）
+        if (/class=["\x27][^"\x27]*\bmw-redirect\b|redirect=no/i.test(summaryHtml)) {
+            return { reason: 'mw_redirect_tag', target: null };
+        }
+
         return null;
     } catch (e) {
         return null;
@@ -417,7 +446,13 @@ function detectRedirect(summaryHtml) {
 
 // 重定向原因 → 日志文案
 function redirectReasonText(redirect) {
-    const reasons = { summary: '新建重定向', move: '页面重命名，旧标题已成重定向', content: '正文为 #REDIRECT', runtime: '抓取时探测到纯跳转' };
+    const reasons = {
+        summary: '新建重定向',
+        move: '页面重命名，旧标题已成重定向',
+        content: '正文为 #REDIRECT',
+        runtime: '抓取时探测到纯跳转',
+        mw_redirect_tag: '标记为重定向'
+    };
     const base = reasons[redirect && redirect.reason] || reasons.runtime;
     return redirect && redirect.target ? `${base} → ${redirect.target}` : base;
 }
@@ -614,9 +649,14 @@ function splitRedirectEntries(entries) {
     const notify = new Array();
     const redirects = new Array();
     for (const entry of entries || []) {
-        if (entry.redirect) redirects.push(entry);
-        else if (runRedirectPages.has(entry.title)) redirects.push({ ...entry, redirect: { reason: 'runtime', target: null } });
-        else notify.push(entry);
+        if (!entry) continue;
+        if (entry.redirect) {
+            redirects.push(entry);
+        } else if (runRedirectPages.has(entry.title)) {
+            redirects.push({ ...entry, redirect: { reason: 'runtime', target: null } });
+        } else {
+            notify.push(entry);
+        }
     }
     return { notify, redirects };
 }
@@ -648,9 +688,13 @@ function detectNewDiffs(feedEntries) {
     }
 
     if (result.newEntries.length > 0) {
-        console.log(`🔎 [diff 检测] 水位线 ${state.lastDiff || '（未建立，首次检测）'} → Feed 最新 diff ${result.maxDiff}：${result.newEntries.length} 个页面有新 diff 值`);
-        for (const e of result.newEntries) {
-            console.log(`   · ${e.title} [${e.kind}] ${e.oldid ? `${e.oldid} → ${e.diff}` : `（新建）${e.diff}`}${e.edits > 1 ? `（共 ${e.edits} 次改动）` : ''}`);
+        const { notify, redirects } = splitRedirectEntries(result.newEntries);
+        console.log(`🔎 [diff 检测] 水位线 ${state.lastDiff || '（未建立，首次检测）'} → Feed 最新 diff ${result.maxDiff}：共 ${result.newEntries.length} 处新改动（${notify.length} 处待通知，已排除 ${redirects.length} 个重定向页）`);
+        for (const e of notify) {
+            console.log(`   · [通知] ${e.title} [${e.kind}] ${e.oldid ? `${e.oldid} → ${e.diff}` : `（新建）${e.diff}`}${e.edits > 1 ? `（共 ${e.edits} 次改动）` : ''}`);
+        }
+        for (const e of redirects) {
+            console.log(`   · [重定向排除] ${e.title}（${redirectReasonText(e.redirect)}）`);
         }
     } else {
         console.log(`🔎 [diff 检测] Feed 里没有比水位线 ${state.lastDiff} 更新的 diff 值，源站无新改动。`);
@@ -1325,13 +1369,22 @@ async function run() {
     }
     // 【新增】和上次检测的最新 diff 值比，找出「有新 diff 值的页面」（邮件通知的唯一依据）
     const diffCheck = detectNewDiffs(feedEntries);
-    const hasNewDiffs = diffCheck.newEntries.length > 0;
+    const { notify: pendingNotifyEntries } = splitRedirectEntries(diffCheck.newEntries);
+    const hasNewDiffsToNotify = pendingNotifyEntries.length > 0;
+    const hasAnyNewDiffs = diffCheck.newEntries.length > 0;
 
     // 模板只有「记账 + 通知」，不需要翻译；但哪怕本轮一个页面都不用翻，
     // 只要有模板改动 / 源站有新 diff 值，也要继续往下走，否则模板永远记不上、通知也发不出去。
-    if (pagesToVisit.length === 0 && templateTargets.length === 0 && !hasNewDiffs) return console.log("没有需要处理的页面，源站也没有新的 diff 值，任务提前结束。");
-    if (pagesToVisit.length === 0 && templateTargets.length > 0) console.log("本轮没有页面改动，仅有模板改动，继续执行模板记账（不生成任何页面）。");
-    else if (pagesToVisit.length === 0) console.log("本轮没有需要翻译的页面，但源站有新的 diff 值，继续执行通知流程（不生成任何页面）。");
+    if (pagesToVisit.length === 0 && templateTargets.length === 0 && !hasAnyNewDiffs) {
+        return console.log("没有需要处理的页面，源站也没有新的 diff 值，任务提前结束。");
+    }
+    if (pagesToVisit.length === 0 && templateTargets.length > 0) {
+        console.log("本轮没有页面改动，仅有模板改动，继续执行模板记账（不生成任何页面）。");
+    } else if (pagesToVisit.length === 0 && hasNewDiffsToNotify) {
+        console.log("本轮没有需要翻译的页面，但源站有新的待通知改动，继续执行通知流程（不生成任何页面）。");
+    } else if (pagesToVisit.length === 0 && hasAnyNewDiffs) {
+        console.log("本轮没有需要翻译的页面，源站新改动均为重定向页（不发送通知），继续执行水位线推进。");
+    }
     
     const visitedPages = new Set();
     let activeTasks = 0, pageIndex = 0;
