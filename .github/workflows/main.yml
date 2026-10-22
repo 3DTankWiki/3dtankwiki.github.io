@@ -74,6 +74,7 @@ jobs:
           PAGES_TO_PROCESS: ${{ github.event.inputs.pages }}
           MAX_EXECUTION_TIME: 345
           # 📧 邮件通知（QQ 邮箱 SMTP）：全部留空则自动跳过，不影响流水线
+          #   触发依据：源站 Feed 里出现比 last_diff_check.json 记录的水位线更大的 diff 值（与本次翻译了什么无关）
           MAIL_NOTIFY: ${{ vars.MAIL_NOTIFY || 'AUTO' }}
           MAIL_TO: ${{ secrets.MAIL_TO }}
           MAIL_USER: ${{ secrets.MAIL_USER }}
@@ -146,7 +147,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           # diff_links.md 由 translate.js 生成：每次有页面更新时整体覆盖
+          # last_diff_check.json：源站「最新 diff 水位线」，只在 Feed 里出现更大的 diff 值时才会变化
+          #（首次运行前文件尚不存在，不存在时不能交给 git add，否则整步失败）
           git add last_edit_info.json diff_links.md
+          if [ -f last_diff_check.json ]; then git add last_diff_check.json; fi
 
           if git diff --staged --quiet; then
             echo "没有需要提交的更新"
@@ -154,9 +158,9 @@ jobs:
           fi
 
           if [ "${{ github.event_name }}" = "schedule" ]; then
-            git commit --no-verify -m "ci: 更新页面状态记录与 diff 链接 (定时任务)"
+            git commit --no-verify -m "ci: 更新页面状态记录、diff 链接与 diff 水位线 (定时任务)"
           else
-            git commit --no-verify -m "ci: 更新页面状态记录与 diff 链接 (手动触发)"
+            git commit --no-verify -m "ci: 更新页面状态记录、diff 链接与 diff 水位线 (手动触发)"
           fi
 
           # 🔁 带重试的推送
@@ -187,7 +191,8 @@ jobs:
           ROUND_MINUTES: '55'
           # 最多轮数：5 × 55min ≈ 4.6h 爬取 + 部署，仍低于 GHA 6 小时上限
           MAX_ROUNDS: '5'
-          # 📧 邮件通知：CRAWLER 每轮是独立进程，最多会发 MAX_ROUNDS 封；不想收就设 MAIL_NOTIFY=OFF
+          # 📧 邮件通知：CRAWLER 每轮是独立进程，每轮开始时都会检测一次源站 Feed，
+          #    只有出现比 last_diff_check.json 水位线更大的 diff 值才发（与本轮爬了多少页无关）；不想收就设 MAIL_NOTIFY=OFF
           MAIL_NOTIFY: ${{ vars.MAIL_NOTIFY || 'AUTO' }}
           MAIL_TO: ${{ secrets.MAIL_TO }}
           MAIL_USER: ${{ secrets.MAIL_USER }}
@@ -275,12 +280,15 @@ jobs:
             local round="$1"
             # 回到仓库根（main 工作树）
             # diff_links.md 由 translate.js 生成：每次有页面更新时整体覆盖
+            # last_diff_check.json：源站「最新 diff 水位线」，只在 Feed 里出现更大的 diff 值时才会变化
+            #（首次运行前文件尚不存在，不存在时不能交给 git add，否则整步失败）
             git add last_edit_info.json diff_links.md
+            if [ -f last_diff_check.json ]; then git add last_diff_check.json; fi
             if git diff --staged --quiet; then
-              echo "第 ${round} 轮没有 last_edit_info.json / diff_links.md 变更需要提交"
+              echo "第 ${round} 轮没有 last_edit_info.json / diff_links.md / last_diff_check.json 变更需要提交"
               return 0
             fi
-            git commit --no-verify -m "ci: CRAWLER 第 ${round} 轮进度与 diff 链接"
+            git commit --no-verify -m "ci: CRAWLER 第 ${round} 轮进度、diff 链接与 diff 水位线"
             push_with_retry main
           }
 
