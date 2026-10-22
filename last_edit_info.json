@@ -30,7 +30,7 @@
   "Vulkan": 303147,
   "Strayker": 303146,
   "Grom": 303148,
-  "Tsunami": 304299,
+  "Tsunami": 304323,
   "Skorpion": 303150,
   "Magnum": 303152,
   "Relsa": 303151,
@@ -1359,5 +1359,6 @@
   "Шаблон:Устройства/Страйкер": 304257,
   "Шаблон:ShoteffectSwitcher": 304297,
   "Шаблон:TurretNavigation": 304300,
-  "Шаблон:TablePointsMM": 304313
+  "Шаблон:TablePointsMM": 304313,
+  "Шаблон:Устройства/Цунами": 304322
 }
