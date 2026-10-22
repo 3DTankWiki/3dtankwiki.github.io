@@ -74,8 +74,8 @@
   "Ustroystva": 303701,
   "Uluchsheniya": 302960,
   "Modifikacii": 302783,
-  "Kraski": 304212,
-  "Skiny": 304320,
+  "Kraski": 304335,
+  "Skiny": 304327,
   "Cveta_vystrelov": 304298,
   "Uron": 302915,
   "Status-effekty": 301848,
@@ -1360,5 +1360,6 @@
   "Шаблон:ShoteffectSwitcher": 304297,
   "Шаблон:TurretNavigation": 304300,
   "Шаблон:TablePointsMM": 304313,
-  "Шаблон:Устройства/Цунами": 304322
+  "Шаблон:Устройства/Цунами": 304322,
+  "Grobovaya_doska": 304334
 }
