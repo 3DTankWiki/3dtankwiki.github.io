@@ -7,7 +7,9 @@ const path = require('path');
 // 【新增】diff 链接清单的生成逻辑（单独模块，便于脱离 Puppeteer 单独测试）
 const { renderDiffLinksMarkdown } = require('./diff_links.js');
 // 【新增】QQ 邮箱 SMTP 通知（未配置凭据时自动跳过）
-const { sendDiffLinksMail } = require('./mailer.js');
+const { sendNewDiffMail, readMailConfig } = require('./mailer.js');
+// 【新增】源站「最新 diff 水位线」：邮件通知的判定依据（单独模块，便于脱离 Puppeteer 单独测试）
+const { readDiffCheck, writeDiffCheck, findNewDiffEntries, maxDiffOf } = require('./diff_check.js');
 
 // --- 【配置常量】 ---
 // 🇷🇺 源站：俄语版 Tanki Online Wiki
@@ -30,6 +32,13 @@ const DIFF_LINKS_FILE = path.join(__dirname, 'diff_links.md');
 // RUN   = 文件包含「本次进程」所有已更新页面（默认，跨批累计，每批重写一次）
 // BATCH = 文件只包含「当前这一批」已更新页面
 const DIFF_LINKS_SCOPE = (process.env.DIFF_LINKS_SCOPE || 'RUN').toUpperCase();
+
+// 【新增】源站「最新 diff 水位线」：记录上次检测时 Feed 里最大的 diff=<修订号>（如 304330）。
+// 每次运行都把 Feed 里的 diff 值和它比：有更大的 → 说明源站有新改动的页面 → 发邮件，并把水位线推到新的最大值。
+// 与 last_edit_info.json（按页面记修订号、决定要不要重新翻译）互不干扰：
+// 文件上传、模板这些从不翻译的条目，也会因为 diff 值更新而进入通知。
+// 例外：重定向页（显式 #REDIRECT、重命名留下的旧标题、抓取时探测到的纯跳转页）不列入通知，但它们的 diff 值照样推进水位线。
+const DIFF_CHECK_FILE = path.join(__dirname, 'last_diff_check.json');
 
 // --- 【站点声明与外观】 ---
 // 「最后编辑」作者旁边追加的 AI 翻译说明
@@ -343,66 +352,164 @@ const isTemplateName = (title) => /^(Шаблон|Template|模板):/i.test(Strin
 // 其它命名空间（文件/用户/讨论…）依旧照旧直接丢弃
 const isBlockedNamespace = (title) => NS_BLOCKLIST.some(p => String(title).startsWith(p + ':'));
 
-async function getPagesForFeedMode(lastEditInfo) {
-    console.log(`[更新模式] 正在从 ${RECENT_CHANGES_FEED_URL} 获取最近更新...`);
-    const emptyResult = { pages: new Array(), templates: new Array() };
+// 文件命名空间（俄站同时存在 Файл: / Изображение: 与 File: / Image: 写法）
+const isFileName = (title) => /^(Файл|Изображение|File|Image):/i.test(String(title || ''));
+
+// Feed 条目分类（只影响通知里的展示与「本次处理」说明，不影响翻译流程）：
+//   page = 普通页面（翻译落盘）/ template = 模板（只记账）/ file = 文件（不处理）/ other = 用户页、分类等（不处理）
+function classifyTitle(title) {
+    if (isTemplateName(title)) return 'template';
+    if (isFileName(title)) return 'file';
+    if (isBlockedNamespace(title)) return 'other';
+    return 'page';
+}
+
+// Feed 用 decodeEntities:false 解析，文本里的 XML 实体要自己还原
+function decodeXmlEntities(text) {
+    return String(text == null ? '' : text)
+        .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"')
+        .replace(/&#0?39;/g, "'").replace(/&apos;/g, "'").replace(/&amp;/g, '&');
+}
+
+// Feed 的 <summary>（已还原实体的 HTML）第一段 <p>：写了编辑摘要时就是摘要；没写时是系统生成的日志句（带 mw-userlink 的编辑者签名）
+function firstSummaryParagraph(summaryHtml) {
+    const match = String(summaryHtml || '').match(/<p>([\s\S]*?)<\/p>/);
+    const html = match ? match[1] : '';
+    const text = html ? cheerio.load(`<p>${html}</p>`)('p').text().replace(/\s+/g, ' ').trim() : '';
+    return { html, text };
+}
+
+// 编辑摘要（只做展示用）：第一段是系统日志句时视为无摘要；解析失败一律返回空串
+function extractEditComment(summaryHtml) {
+    try {
+        const { html, text } = firstSummaryParagraph(summaryHtml);
+        if (!text || /mw-userlink/.test(html)) return '';
+        return text.length > 120 ? `${text.slice(0, 117)}…` : text;
+    } catch (e) {
+        return '';
+    }
+}
+
+// 从 <summary> 判断这条改动落下的是不是重定向页（这类页面不列入邮件通知），返回 { reason, target } 或 null：
+//   summary  MediaWiki 自动摘要「Перенаправление на X」/「Redirected page to X」（新建重定向）
+//   move     重命名日志「… переименовал страницу X в Y」/「moved page X to Y」：条目标题是旧名，那里只剩一个指向新名的重定向
+//   content  正文（新页内容或 diff 新增行）以 #REDIRECT / #перенаправление 开头（把现有页面改成重定向也能覆盖到）
+// 注意：JS 的 \b 不认西里尔字母，俄文关键字后面不能接 \b；#перенапр 是 #перенаправление 的合法简写，前缀匹配恰好两个都覆盖。
+function detectRedirect(summaryHtml) {
+    try {
+        if (!summaryHtml) return null;
+        const { html, text } = firstSummaryParagraph(summaryHtml);
+        const lastLinkTitle = (html.match(/<a\b[^>]*\btitle="([^"]*)"[^>]*>(?![\s\S]*<a\b)/i) || [])[1] || '';
+        if (/^(Перенаправление на|Redirected page to)\s/iu.test(text)) {
+            return { reason: 'summary', target: lastLinkTitle ? sanitizePageName(lastLinkTitle) : null };
+        }
+        if (/переименовала?\s+страницу|moved page/iu.test(text)) {
+            return { reason: 'move', target: lastLinkTitle ? sanitizePageName(lastLinkTitle) : null };
+        }
+        const content = summaryHtml.match(/(?:^|>)\s*#\s*(?:redirect|перенапр)[^\[]*\[\[([^\]|#]*)/iu);
+        if (content) return { reason: 'content', target: content[1] ? sanitizePageName(content[1].trim()) : null };
+        if (/(?:^|>)\s*#\s*(?:redirect|перенапр)/iu.test(summaryHtml)) return { reason: 'content', target: null };
+        return null;
+    } catch (e) {
+        return null;
+    }
+}
+
+// 重定向原因 → 日志文案
+function redirectReasonText(redirect) {
+    const reasons = { summary: '新建重定向', move: '页面重命名，旧标题已成重定向', content: '正文为 #REDIRECT', runtime: '抓取时探测到纯跳转' };
+    const base = reasons[redirect && redirect.reason] || reasons.runtime;
+    return redirect && redirect.target ? `${base} → ${redirect.target}` : base;
+}
+
+// 把 Feed 响应（原始 Atom XML，或 Chrome XML 查看器包装后的 HTML）解析成条目数组，每项：
+//   { title, kind, diff, oldid, updated, author, comment, redirect, link }
+// redirect = detectRedirect() 的结果（重定向页：{ reason, target }，否则 null）；
+// title 已经过 sanitizePageName（空格 → 下划线，与 last_edit_info.json 的键一致）；
+// diff / oldid 为数字：diff 是「本次」修订号（Feed 链接里的 diff=304330），oldid 是源站给出的「上一版」，新建页为 0；
+// 没有 diff 号的日志类条目（新建用户、上传日志等）diff = null，不参与任何判定。
+function parseRecentChangesFeed(responseText) {
+    const $html = cheerio.load(responseText || '');
+    const xmlContainer = $html('#webkit-xml-viewer-source-xml');
+    let feedXml = xmlContainer.length ? xmlContainer.html() : (responseText || '');
+    feedXml = feedXml.replace(/xmlns="[^"]*"/g, '');
+
+    const $ = cheerio.load(feedXml, { xmlMode: true, decodeEntities: false });
+    const entries = new Array();
+    $('entry').each((i, entry) => {
+        const $entry = $(entry);
+        const title = sanitizePageName($entry.find('title').first().text());
+        let alternateLink = null;
+        $entry.find('link').each(function() {
+            if ($(this).attr('rel') === 'alternate') { alternateLink = $(this).attr('href'); return false; }
+        });
+        if (!title || !alternateLink) return;
+        // Feed 的 alternate 链接形如 index.php?title=X&diff=<本次修订号>&oldid=<上一版修订号>，
+        // 两个号都要留着：diff 是「本次」，oldid 是源站给出的「上一版」。
+        const diffMatch = alternateLink.match(/diff=(\d+)/);
+        const oldMatch = alternateLink.match(/oldid=(\d+)/);
+        const summaryHtml = decodeXmlEntities($entry.find('summary').first().text());
+        entries.push({
+            title,
+            kind: classifyTitle(title),
+            diff: diffMatch ? parseInt(diffMatch[1], 10) : null,
+            oldid: oldMatch ? parseInt(oldMatch[1], 10) : 0,
+            updated: $entry.find('updated').first().text().trim() || null,
+            author: decodeXmlEntities($entry.find('author name').first().text()).trim() || null,
+            comment: extractEditComment(summaryHtml),
+            redirect: detectRedirect(summaryHtml),
+            link: decodeXmlEntities(alternateLink)
+        });
+    });
+    return entries;
+}
+
+// 用 Puppeteer 拉取源站 Feed（源站有 JS Cookie 校验，裸 HTTP 请求拿不到正文）。
+// 成功返回条目数组（可能为空）；失败返回 null（= 本次没检测成，水位线原地不动）。
+async function fetchRecentChangesFeed() {
     let browser;
     try {
         browser = await puppeteer.launch({ headless: true, args: new Array('--no-sandbox', '--disable-setuid-sandbox') });
         const page = await browser.newPage();
         await page.goto(RECENT_CHANGES_FEED_URL, { waitUntil: 'networkidle2', timeout: 60000 });
-        let responseText = await page.content();
-        
-        const $html = cheerio.load(responseText);
-        const xmlContainer = $html('#webkit-xml-viewer-source-xml');
-        let feedXml = xmlContainer.length ? xmlContainer.html() : responseText;
-        feedXml = feedXml.replace(/xmlns="[^"]*"/g, '');
-
-        const $ = cheerio.load(feedXml, { xmlMode: true, decodeEntities: false });
-        const entries = $('entry');
-        if (entries.length === 0) return emptyResult;
-
-        const pagesToConsider = new Map();
-        entries.each((i, entry) => {
-            const $entry = $(entry);
-            const title = sanitizePageName($entry.find('title').first().text());
-            let alternateLink = null;
-            $entry.find('link').each(function() {
-                if ($(this).attr('rel') === 'alternate') { alternateLink = $(this).attr('href'); return false; }
-            });
-            if (title && alternateLink) {
-                // Feed 的 alternate 链接形如 index.php?title=X&diff=<本次修订号>&oldid=<上一版修订号>，
-                // 两个号都要留着：diff 是「本次」，oldid 是源站给出的「上一版」。
-                //（以前只取了 diff，于是首次记录模板时拿不到上一版，只能给出一个没有 diff 的裸版本链接）
-                const diffMatch = alternateLink.match(/diff=(\d+)/);
-                const oldMatch = alternateLink.match(/oldid=(\d+)/);
-                const newRevisionId = diffMatch && diffMatch[1] ? parseInt(diffMatch[1], 10) : null;
-                const previousRevisionId = oldMatch && oldMatch[1] ? parseInt(oldMatch[1], 10) : null;
-                if (newRevisionId && (!pagesToConsider.has(title) || newRevisionId > pagesToConsider.get(title).revision)) {
-                    pagesToConsider.set(title, { revision: newRevisionId, previousRevision: previousRevisionId });
-                }
-            }
-        });
-
-        const pagesToUpdate = new Array();
-        const templatesToUpdate = new Array();
-        for (const [title, info] of pagesToConsider.entries()) {
-            const currentRevisionId = lastEditInfo[title] || 0;
-            if (info.revision <= currentRevisionId) continue; // 版本没变（页面、模板同一套判定）
-
-            // 模板：不抓取、不翻译、不落盘，只把「标题 + 本次/上一版修订号」带出去记账
-            if (isTemplateName(title)) { templatesToUpdate.push({ title, revision: info.revision, previousRevision: info.previousRevision }); continue; }
-            if (isBlockedNamespace(title)) continue;
-
-            pagesToUpdate.push(title);
-        }
-        return { pages: pagesToUpdate, templates: templatesToUpdate };
+        return parseRecentChangesFeed(await page.content());
     } catch (error) {
-        console.error('❌[更新模式] 出错:', error.message);
-        return emptyResult;
+        console.error('❌ 获取源站 Feed 失败:', error.message);
+        return null;
     } finally {
         if (browser) await browser.close();
     }
+}
+
+// FEED 模式：从 Feed 里挑出「修订号比 last_edit_info.json 记录的更新」的页面 / 模板。
+// 返回 { pages, templates, entries }，entries 是 Feed 全部条目（供「新 diff 值」检测复用，不必再抓一次）
+async function getPagesForFeedMode(lastEditInfo) {
+    console.log(`[更新模式] 正在从 ${RECENT_CHANGES_FEED_URL} 获取最近更新...`);
+    const entries = await fetchRecentChangesFeed();
+    const result = { pages: new Array(), templates: new Array(), entries };
+    if (!entries || entries.length === 0) return result;
+
+    // 同一页面在 Feed 里可能出现多次，只看最新一次
+    const pagesToConsider = new Map();
+    for (const entry of entries) {
+        if (!entry.diff) continue;
+        const known = pagesToConsider.get(entry.title);
+        if (!known || entry.diff > known.revision) {
+            pagesToConsider.set(entry.title, { revision: entry.diff, previousRevision: entry.oldid || null });
+        }
+    }
+
+    for (const [title, info] of pagesToConsider.entries()) {
+        const currentRevisionId = lastEditInfo[title] || 0;
+        if (info.revision <= currentRevisionId) continue; // 版本没变（页面、模板同一套判定）
+
+        // 模板：不抓取、不翻译、不落盘，只把「标题 + 本次/上一版修订号」带出去记账
+        if (isTemplateName(title)) { result.templates.push({ title, revision: info.revision, previousRevision: info.previousRevision }); continue; }
+        if (isBlockedNamespace(title)) continue;
+
+        result.pages.push(title);
+    }
+    return result;
 }
 
 // 【新增】模板记账：不抓模板页、不翻译、不写文件——直接拿 Feed 里的修订号记一笔
@@ -492,6 +599,90 @@ function writeDiffLinksFile(records, runMode) {
     } catch (error) {
         // 写清单失败绝不能影响主流程
         console.warn(`⚠️ 写入 ${path.basename(DIFF_LINKS_FILE)} 失败: ${error.message}`);
+    }
+}
+
+// === 【新增】源站「新 diff 值」检测 → 邮件通知 ===
+// 本次进程里抓取时探测到的纯重定向页（只生成跳转页、不翻译、不记修订号）：
+// Feed 摘要里看不出来的重定向（比如改动发生在 Feed 窗口之前）靠它兑底，同样不列入通知
+const runRedirectPages = new Set();
+
+// 重定向页不进邮件：Feed 摘要判定的（显式重定向 / 重命名留下的旧标题 / 正文 #REDIRECT）+ 本次抓取时探测到的。
+// 只影响通知内容，不影响水位线：它们的 diff 值照样算「已检测」，下次不会再报。
+// 返回 { notify, redirects }
+function splitRedirectEntries(entries) {
+    const notify = new Array();
+    const redirects = new Array();
+    for (const entry of entries || []) {
+        if (entry.redirect) redirects.push(entry);
+        else if (runRedirectPages.has(entry.title)) redirects.push({ ...entry, redirect: { reason: 'runtime', target: null } });
+        else notify.push(entry);
+    }
+    return { notify, redirects };
+}
+
+// 拿 Feed 条目和水位线（last_diff_check.json 里上次检测的最新 diff 值）比，找出「有新 diff 值的页面」。
+// 返回 { checked, firstRun, lastDiff, maxDiff, maxDiffTitle, newEntries }；
+// feedEntries 为 null（本次没拿到 Feed）时 checked=false，水位线保持不动。
+function detectNewDiffs(feedEntries) {
+    const state = readDiffCheck(DIFF_CHECK_FILE);
+    const result = {
+        checked: false,
+        firstRun: !(state.lastDiff > 0), // 还没建立过水位线：Feed 里带 diff 号的条目全部视为新改动
+        lastDiff: state.lastDiff,
+        maxDiff: state.lastDiff,
+        maxDiffTitle: state.lastDiffTitle,
+        newEntries: new Array()
+    };
+    if (!Array.isArray(feedEntries)) {
+        console.log(`🔎 [diff 检测] 本次未取得源站 Feed，跳过检测（水位线保持 ${state.lastDiff || '未建立'}）`);
+        return result;
+    }
+
+    result.checked = true;
+    result.newEntries = findNewDiffEntries(feedEntries, state.lastDiff);
+    const top = maxDiffOf(feedEntries);
+    if (top && top.diff > state.lastDiff) {
+        result.maxDiff = top.diff;
+        result.maxDiffTitle = top.title;
+    }
+
+    if (result.newEntries.length > 0) {
+        console.log(`🔎 [diff 检测] 水位线 ${state.lastDiff || '（未建立，首次检测）'} → Feed 最新 diff ${result.maxDiff}：${result.newEntries.length} 个页面有新 diff 值`);
+        for (const e of result.newEntries) {
+            console.log(`   · ${e.title} [${e.kind}] ${e.oldid ? `${e.oldid} → ${e.diff}` : `（新建）${e.diff}`}${e.edits > 1 ? `（共 ${e.edits} 次改动）` : ''}`);
+        }
+    } else {
+        console.log(`🔎 [diff 检测] Feed 里没有比水位线 ${state.lastDiff} 更新的 diff 值，源站无新改动。`);
+    }
+    return result;
+}
+
+// 推进水位线：只在 Feed 最大 diff 比记录值大时写盘（否则文件不动，不产生无意义提交）
+function saveDiffCheck(diffCheck) {
+    if (!diffCheck || !diffCheck.checked || !(diffCheck.maxDiff > diffCheck.lastDiff)) return false;
+    try {
+        writeDiffCheck(DIFF_CHECK_FILE, { lastDiff: diffCheck.maxDiff, lastDiffTitle: diffCheck.maxDiffTitle });
+        console.log(`💾 已更新 diff 水位线 -> ${path.basename(DIFF_CHECK_FILE)}：${diffCheck.lastDiff || '（无）'} → ${diffCheck.maxDiff}（${diffCheck.maxDiffTitle}）`);
+        return true;
+    } catch (error) {
+        console.warn(`⚠️ 写入 ${path.basename(DIFF_CHECK_FILE)} 失败: ${error.message}`);
+        return false;
+    }
+}
+
+// 通知里的「本次处理」一列：告诉收件人这条源站改动在中文站这边发生了什么
+function describeEntryHandling(entry, lastEditInfo) {
+    switch (entry.kind) {
+        case 'template': return '仅记录修订号（模板不生成页面）';
+        case 'file': return '不处理（文件）';
+        case 'other': return '不处理（非内容页）';
+        default: {
+            const record = runDiffRecords.get(entry.title);
+            if (record) return record.oldRev ? '✅ 本次已重新翻译' : '✅ 本次已新增翻译';
+            if (Number(lastEditInfo[entry.title] || 0) >= entry.diff) return '已是最新（此前已翻译）';
+            return '未翻译（本次未处理 / 抓取失败，下次 FEED 运行会自动重试）';
+        }
     }
 }
 
@@ -1099,12 +1290,15 @@ async function run() {
     let pagesToVisit = new Array();
     // 【新增】模板目标：只记账 + 通知，不抓取、不翻译、不落盘
     let templateTargets = new Array();
+    // 【新增】源站 Feed 全部条目（供「新 diff 值」检测使用）；null = 本次没拿到 Feed
+    let feedEntries = null;
 
     switch (runMode) {
         case 'FEED': {
             const feedResult = await getPagesForFeedMode(lastEditInfo);
             pagesToVisit = feedResult.pages;
             templateTargets = feedResult.templates;
+            feedEntries = feedResult.entries;
             if (templateTargets.length > 0) {
                 console.log(`🧩[更新模式] 另有 ${templateTargets.length} 个模板有改动（不生成页面，仅记录 + 通知）：${templateTargets.map(t => t.title).join('、')}`);
             }
@@ -1123,10 +1317,21 @@ async function run() {
         }
     }
 
+    // 【新增】非 FEED 模式也看一眼源站 Feed：水位线检测与翻译流程无关，只要源站有新 diff 值就该通知。
+    //（邮件通知已关闭时省掉这次额外抓取）
+    if (runMode !== 'FEED' && readMailConfig().notify !== 'OFF') {
+        console.log(`[diff 检测] 正在从 ${RECENT_CHANGES_FEED_URL} 获取源站最近更新...`);
+        feedEntries = await fetchRecentChangesFeed();
+    }
+    // 【新增】和上次检测的最新 diff 值比，找出「有新 diff 值的页面」（邮件通知的唯一依据）
+    const diffCheck = detectNewDiffs(feedEntries);
+    const hasNewDiffs = diffCheck.newEntries.length > 0;
+
     // 模板只有「记账 + 通知」，不需要翻译；但哪怕本轮一个页面都不用翻，
-    // 只要有模板改动也要继续往下走，否则模板永远记不上、通知也发不出去。
-    if (pagesToVisit.length === 0 && templateTargets.length === 0) return console.log("没有需要处理的页面，任务提前结束。");
-    if (pagesToVisit.length === 0) console.log("本轮没有页面改动，仅有模板改动，继续执行模板记账（不生成任何页面）。");
+    // 只要有模板改动 / 源站有新 diff 值，也要继续往下走，否则模板永远记不上、通知也发不出去。
+    if (pagesToVisit.length === 0 && templateTargets.length === 0 && !hasNewDiffs) return console.log("没有需要处理的页面，源站也没有新的 diff 值，任务提前结束。");
+    if (pagesToVisit.length === 0 && templateTargets.length > 0) console.log("本轮没有页面改动，仅有模板改动，继续执行模板记账（不生成任何页面）。");
+    else if (pagesToVisit.length === 0) console.log("本轮没有需要翻译的页面，但源站有新的 diff 值，继续执行通知流程（不生成任何页面）。");
     
     const visitedPages = new Set();
     let activeTasks = 0, pageIndex = 0;
@@ -1270,6 +1475,7 @@ async function run() {
                     fs.mkdirSync(outputDir, { recursive: true });
                 }
                 fs.writeFileSync(outputPath, redirectHtml, 'utf-8');
+                runRedirectPages.add(result.pageNameToProcess); // 重定向页不列入邮件通知
                 console.log(`✨[${result.pageNameToProcess}] 已生成静态跳转页 (指向 -> ${relPrefix}${result.targetUrl})`);
                 
                 // 将被重定向到的真正主体条目（去除锚点部分）入队
@@ -1349,12 +1555,22 @@ async function run() {
     } catch (e) {}
 
     // 【新增】整次运行结束后统一发一封汇总邮件（而不是每个批次一封，避免刷屏）。
-    // 邮件里页面与模板分节展示（模板不生成页面，只提示「引用它的页面已过期」）。
-    // 没配置 MAIL_* 凭据 / 本次没有页面与模板更新时会自动跳过，失败也只打日志，不影响部署。
+    // 依据只有一个：源站 Feed 里出现了比水位线（上次检测的最新 diff 值）更大的 diff 值；与本次翻译了什么无关。
+    // 没配置 MAIL_* 凭据 / 源站没有新 diff 值时会自动跳过，失败也只打日志，不影响部署。
+    // 重定向页不列入通知（水位线照常推进）
+    const { notify: notifyEntries, redirects: redirectEntries } = splitRedirectEntries(diffCheck.newEntries);
+    if (redirectEntries.length > 0) {
+        console.log(`🔇 已从通知中剔除 ${redirectEntries.length} 个重定向页：${redirectEntries.map(e => `${e.title}（${redirectReasonText(e.redirect)}）`).join('、')}`);
+    }
+
+    let mailResult = { sent: false, skipped: true, reason: '未执行' };
     try {
-        const mailResult = await sendDiffLinksMail({
-            records: Array.from(runDiffRecords.values()),
-            filePath: DIFF_LINKS_FILE,
+        mailResult = await sendNewDiffMail({
+            entries: notifyEntries.map(e => ({ ...e, status: describeEntryHandling(e, lastEditInfo) })),
+            lastDiff: diffCheck.lastDiff,
+            maxDiff: diffCheck.maxDiff,
+            // diff_links.md 只在本次真的翻译 / 记账过页面时才是新鲜的，否则不附（避免把上一次的清单发出去）
+            filePath: runDiffRecords.size > 0 ? DIFF_LINKS_FILE : null,
             runMode
         });
         if (mailResult.sent) {
@@ -1363,7 +1579,18 @@ async function run() {
             console.log(`📭 未发送邮件通知：${mailResult.reason}`);
         }
     } catch (error) {
+        mailResult = { sent: false, failed: true, reason: error.message };
         console.warn(`⚠️ 邮件通知异常（已忽略，不影响部署）: ${error.message}`);
+    }
+
+    // 推进水位线：发送成功 / 无需发送（关闭、未配置、没有新 diff）→ 推进；
+    // 发送失败 → 不推进，下次运行会把这批再报一次；dry-run 只渲染不真发，同样不推进，免得真发时漏掉这一批。
+    if (mailResult.failed) {
+        console.log(`⏸️ 邮件发送失败，diff 水位线保持 ${diffCheck.lastDiff || '未建立'}，下次运行将重新通知这批改动。`);
+    } else if (mailResult.dryRun) {
+        console.log(`⏸️ dry-run 模式，不推进 diff 水位线（保持 ${diffCheck.lastDiff || '未建立'}）。`);
+    } else {
+        saveDiffCheck(diffCheck);
     }
 
     // 🚀 --- 【最后记得关闭浏览器】 ---
@@ -1383,7 +1610,18 @@ module.exports = {
     // 模板：只记账 + 通知，不抓取、不翻译、不落盘
     isTemplateName,
     collectTemplateUpdates,
-    getPagesForFeedMode
+    getPagesForFeedMode,
+    // 源站「新 diff 值」检测（邮件通知依据）
+    DIFF_CHECK_FILE,
+    classifyTitle,
+    parseRecentChangesFeed,
+    fetchRecentChangesFeed,
+    detectNewDiffs,
+    saveDiffCheck,
+    detectRedirect,
+    splitRedirectEntries,
+    runRedirectPages,
+    describeEntryHandling
 };
 
 if (require.main === module) {
