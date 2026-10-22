@@ -86,7 +86,10 @@ function findNewDiffEntries(entries, lastDiff) {
             existing.diff = diff;
             existing.updated = entry.updated || existing.updated;
             existing.author = entry.author || existing.author;
-            existing.redirect = entry.redirect || null;
+            // 只要任一版被识别为重定向，且最新版未明确转为正文，保留 redirect 标记
+            existing.redirect = entry.redirect || existing.redirect || null;
+        } else if (entry.redirect && !existing.redirect) {
+            existing.redirect = entry.redirect;
         }
         // 摘要取「最新一次非空」的（Feed 条目顺序不保证，按 diff 大小判新旧）
         if (entry.comment && diff > existing.commentDiff) {
