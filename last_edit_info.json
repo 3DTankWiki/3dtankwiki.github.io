@@ -74,7 +74,7 @@
   "Ustroystva": 303701,
   "Uluchsheniya": 304368,
   "Modifikacii": 302783,
-  "Kraski": 304335,
+  "Kraski": 304403,
   "Skiny": 304327,
   "Cveta_vystrelov": 304298,
   "Uron": 302915,
@@ -1364,5 +1364,13 @@
   "Grobovaya_doska": 304349,
   "Uluchsheniya_Dyma": 304370,
   "Dym": 304369,
-  "Шаблон:GrenadeNavigation": 304378
+  "Шаблон:GrenadeNavigation": 304378,
+  "Chempion_5": 304402,
+  "Chempion_4": 304401,
+  "Chempion_3": 304400,
+  "Chempion_2": 304399,
+  "Chempion_1": 304398,
+  "Chempion_8": 304397,
+  "Chempion_7": 304396,
+  "Chempion_6": 304395
 }
