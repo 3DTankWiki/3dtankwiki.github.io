@@ -1,29 +1,14 @@
-# 最近更新的页面与模板 · 源站双端 Diff
+# 最近变更的页面与模板 · 源站双端 Diff
 
-> 本文件由 `translate.js` 自动生成：只要某个页面 / 模板的修订号相对 `last_edit_info.json` 发生变化，
+> 本文件由 `monitor.js` 自动生成：只要某个页面 / 模板的修订号相对 `last_edit_info.json` 发生变化，
 > 就会把「上一版 → 本次」的 diff 链接写到这里，**每次更新整体覆盖，不追加历史**。请勿手工编辑。
 
-- 生成时间：2026-11-26T14:51:21.302Z
-- 运行模式：FEED
-- 本次更新：2 个页面 + 2 个模板（模板不生成页面，仅记录修订号并发送通知）
+- 监测时间：2026-11-26T23:53:01.783Z
+- 本次变更：1 个页面
 
-## 页面（2）
-
-| 页面 | 中文站 | 源站 diff（上一版 → 本次） | 修订号 | 类型 |
+| 页面 | 源站页面 | 源站 diff（上一版 → 本次） | 修订号 | 类型 |
 | --- | --- | --- | --- | --- |
-| CHellendji | [打开](https://3dtankwiki.github.io/CHellendji) | [diff](https://ru.tankiwiki.com/index.php?title=CHellendji&diff=304453&oldid=304373) | 304373 → 304453 | 更新 |
-| Djaggernaut | [打开](https://3dtankwiki.github.io/Djaggernaut) | [diff](https://ru.tankiwiki.com/index.php?title=Djaggernaut&diff=304452&oldid=302541) | 302541 → 304452 | 更新 |
+| Matchmeyking | [打开](https://ru.tankiwiki.com/Matchmeyking) | [diff](https://ru.tankiwiki.com/index.php?title=Matchmeyking&diff=304455&oldid=304206) | 304206 → 304455 | 更新 |
 
-## 模板（2，不生成页面）
-
-| 模板 | 源站模板页 | 源站 diff（上一版 → 本次） | 修订号 | 类型 |
-| --- | --- | --- | --- | --- |
-| Шаблон:Устройства/Вулкан | [打开](https://ru.tankiwiki.com/%D0%A8%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%3A%D0%A3%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0/%D0%92%D1%83%D0%BB%D0%BA%D0%B0%D0%BD) | [diff](https://ru.tankiwiki.com/index.php?title=%D0%A8%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%3A%D0%A3%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0/%D0%92%D1%83%D0%BB%D0%BA%D0%B0%D0%BD&diff=304454&oldid=304218) | 304218 → 304454 | 模板更新 |
-| Шаблон:Устройства/Цунами | [打开](https://ru.tankiwiki.com/%D0%A8%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%3A%D0%A3%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0/%D0%A6%D1%83%D0%BD%D0%B0%D0%BC%D0%B8) | [diff](https://ru.tankiwiki.com/index.php?title=%D0%A8%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%3A%D0%A3%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0/%D0%A6%D1%83%D0%BD%D0%B0%D0%BC%D0%B8&diff=304451&oldid=304405) | 304405 → 304451 | 模板更新 |
-
-> 模板不参与翻译、不落盘（中文站没有独立模板页），只记录修订号并发送通知。
-> 模板「上一版」优先取 `last_edit_info.json` 里记过的版本；首次记录时取 Feed 给出的 `oldid`（即这次改动的前一版）。
-> 模板一变，**引用它的中文页面内容就已经过期**；需要刷新时用 SPECIFIED 模式指定对应页面重新翻译。
-
-> 想看「翻译完之后源站又改了什么」，把上面的 `oldid=` 值取出来拼成：
+> 想看「记录之后源站又改了什么」，把上面的 `oldid=` 值取出来拼成：
 > `<源站>/index.php?title=<页面>&diff=cur&oldid=<本次修订号>`
