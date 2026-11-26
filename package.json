@@ -1,15 +1,14 @@
 {
-  "name": "tanki-wiki-translator",
+  "name": "tanki-wiki-monitor",
   "version": "1.0.0",
-  "description": "抓取并翻译 3D 坦克 Wiki 页面。",
-  "main": "translate.js",
+  "description": "监测 3D 坦克俄语 Wiki 页面变更、记录修订号并发送通知。",
+  "main": "monitor.js",
   "scripts": {
-    "start": "node translate.js"
+    "start": "node monitor.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@google/generative-ai": "latest",
     "cheerio": "latest",
     "nodemailer": "latest",
     "puppeteer": "latest"
