@@ -2,7 +2,7 @@ name: 翻译并部署 Wiki 页面
 
 on:
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: '7,22,37,52 * * * *'
   workflow_dispatch:
     inputs:
       run_mode:
