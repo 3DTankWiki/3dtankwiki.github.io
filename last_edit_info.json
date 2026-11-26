@@ -52,7 +52,7 @@
   "Titan": 302845,
   "Ares": 302846,
   "Mamont": 302847,
-  "Djaggernaut": 302541,
+  "Djaggernaut": 304452,
   "Drony": 301802,
   "Orakul": 301196,
   "Brut": 299499,
@@ -111,7 +111,7 @@
   "Tankoiny": 302333,
   "Rubiny": 302045,
   "Kristally": 301263,
-  "CHellendji": 304373,
+  "CHellendji": 304453,
   "Premium-podpiska": 304234,
   "Konteynery": 302991,
   "Zolotoy_yashchik": 304352,
@@ -1360,7 +1360,7 @@
   "Шаблон:ShoteffectSwitcher": 304297,
   "Шаблон:TurretNavigation": 304300,
   "Шаблон:TablePointsMM": 304313,
-  "Шаблон:Устройства/Цунами": 304405,
+  "Шаблон:Устройства/Цунами": 304451,
   "Grobovaya_doska": 304349,
   "Uluchsheniya_Dyma": 304412,
   "Dym": 304406,
@@ -1375,5 +1375,6 @@
   "Chempion_6": 304433,
   "Uluchsheniya_Teleporta": 304414,
   "Teleport": 304411,
-  "Шаблон:RankPage": 304407
+  "Шаблон:RankPage": 304407,
+  "Шаблон:Устройства/Вулкан": 304454
 }
