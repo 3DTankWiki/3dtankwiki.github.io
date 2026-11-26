@@ -1,16 +1,10 @@
-// 「源站最新 diff 水位线」：邮件通知的判定依据。
-//
-// 源站 Feed 里每条改动的链接形如 index.php?title=X&diff=304330&oldid=304212，
-// 其中 diff=<修订号> 全站单调递增。我们只记一件事：上次检测时见过的最大 diff 值（水位线）。
-// 下次只要 Feed 里出现比水位线更大的 diff 值，就说明源站有新改动 → 发邮件，并把水位线推到新的最大值。
-//
 // 与 last_edit_info.json 的分工：
-//   - last_edit_info.json 按页面记修订号，决定「要不要重新翻译某页」；
+//   - last_edit_info.json 按页面/模板记修订号，追踪源站版本变更并生成 diff_links.md；
 //   - last_diff_check.json 只记一个全站水位线，决定「要不要发通知」。
-//   二者互不干扰：文件上传、用户页这类从不翻译的条目，也会因为 diff 值更新而进入通知。
-//   重定向页是例外：由 translate.js 在发件前剔除（条目的 redirect 字段），但 diff 值照样推进水位线。
+// 二者互不干扰：文件上传、用户页这类不记入 last_edit_info.json 的条目，也会因为 diff 值更新而进入通知。
+// 重定向页是例外：由 monitor.js 在发件前剔除（条目的 redirect 字段），但 diff 值照样推进水位线。
 //
-// 单独拆成模块的原因与 diff_links.js 相同：translate.js 顶部 require('puppeteer')，不便脱离浏览器环境测试。
+// 单独拆成模块的原因与 diff_links.js 相同：monitor.js 顶部 require('puppeteer')，不便脱离浏览器环境测试。
 
 const fs = require('fs');
 
